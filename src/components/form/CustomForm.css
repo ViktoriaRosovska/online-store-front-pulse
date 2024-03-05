@@ -1,0 +1,29 @@
+.form {
+    width: 700px;
+    max-width: 500px;
+    padding: 50px;
+    border-radius: 10px;
+    /*background-color: #D9D9D9;*/
+    margin-left: 120px;
+    margin-top: 10px;
+}
+
+.custom_form_button {
+    margin-left: 1px;
+    width: 460px;
+    height: 62px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    cursor: pointer;
+    margin-top: 74px;
+    font-size: 20px;
+}
+
+.custom_form_button:hover {
+    background-color: var(--white-dark-bg-color);
+    color: black;
+}

@@ -1,0 +1,19 @@
+.menu__list {
+    display: flex;
+    gap: 8px;
+}
+
+.menu__list-link {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    line-height: 20px;
+    min-width: 111px;
+    padding: 5px 0px;
+}
+
+.menu__list-item a:hover {
+    color: var(--grey-text-color);
+    background: var(--white-dark-bg-color);
+    border-radius: 20px;
+}

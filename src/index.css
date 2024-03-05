@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'Strong';
+    src: url('../fonts/Strong-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --white-text-color: #E9E9E9;
+    --white-dark-bg-color: #E3E3E3;
+    --white-light-bg-color: #FBFBFB;
+    --white-blue-bg-color: #EAEFF0;
+    --white-bg-header-color: #E8E5E5;
+    --white-bg-color-favorite-btn: #FFFFFF;
+    --black-text-color: #232323;
+    --black-bg-color: #292929;
+    --grey-text-color: #7A7C7F;
+    --grey-bg-color: #444444;
+    --grey-link-hover-footer-color: #ADA9A9;
+    --footer-glass-bg-color: rgba(217, 217, 217, 0.05);
+    --blue-bg-color: #495C80;
+    --red-color: #ED2424;
+    --yellow-color: #F5ED1D;
+
+    --tittle-font: 'Strong', sans-serif;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *::after, *::before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: roboto;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.main {
+    flex: 1 1 auto;
+}

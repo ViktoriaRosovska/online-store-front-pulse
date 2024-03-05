@@ -1,0 +1,31 @@
+.product__card {
+    width: 340px;
+}
+
+.product__card.catalog {
+    width: 320px;
+}
+
+.product__img-block {
+    position: relative;
+    width: inherit;
+    height: 290px;
+    border-radius: 16px;
+}
+
+.product__img-block.catalog {
+    position: relative;
+    height: 310px;
+    width: 320px;
+}
+
+.product__img.catalog {
+    height: 310px;
+    width: 320px;
+}
+
+.product__info {
+    margin: 12px 0px;
+    color: var("var(--black-text-color)");
+    font-size: 16px;
+}

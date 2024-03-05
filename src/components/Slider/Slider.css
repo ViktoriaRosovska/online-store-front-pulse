@@ -1,0 +1,11 @@
+.main_block_carausel {
+    width: 1363px;
+    height: 507px;
+    margin-left: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select:none;
+
+}

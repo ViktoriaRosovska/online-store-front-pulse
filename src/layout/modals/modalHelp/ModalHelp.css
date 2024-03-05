@@ -1,0 +1,31 @@
+.container_main {
+    position: absolute;
+    bottom: 15%;
+    width: 780px;
+    height: 581px;
+    border-radius: 36px;
+    background-color: #F2F2F2;
+    margin-top: 314px;
+    margin-left: 33%;
+    z-index: 4;
+    text-align: center;
+}
+.container_main_text {
+    margin-top: -32px;
+    font-size: 50px;
+    font-weight: lighter;
+}
+.container_main img {
+    margin-top: 68px;
+    margin-left: 684px;
+    margin-right: 48px;
+    cursor: pointer;
+}
+.container_main_text_info {
+    margin-top: 11px;
+    margin-left: 166px;
+    margin-right: 166px;
+    font-size: 13px;
+    font-weight: lighter;
+
+}

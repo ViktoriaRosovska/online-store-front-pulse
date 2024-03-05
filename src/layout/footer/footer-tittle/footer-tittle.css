@@ -1,0 +1,36 @@
+.footer__tittle {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.footer__tittle-input {
+    width: 350px;
+    border-radius: 16px;
+    background: transparent;
+    border: 1px solid var(--white-dark-bg-color);
+    color: var(--white-text-color);
+    padding: 20px 15px;
+    font-size: 16px;
+    line-height: 20%;
+}
+
+.footer__tittle-input::placeholder {
+    color: var(--white-text-color);
+}
+
+.footer__tittle-btn {
+    display: block;
+    width: 350px;
+    border-radius: 16px;
+    background: var(--white-dark-bg-color);
+    color: var(--black-text-color);
+    outline: none;
+    border: none;
+    padding: 20px 0px;
+    font-size: 16px;
+    letter-spacing: 1%;
+    line-height: 150%;
+}

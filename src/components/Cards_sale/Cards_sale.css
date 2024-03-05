@@ -1,0 +1,41 @@
+.card_sale {
+    width: 340px;
+    height:395px;
+    margin-left: 60px;
+    margin-top: 131px;
+
+
+}
+
+
+
+.card_line {
+
+    width: 342px;
+    height: 32px;
+    background-color: #FEF746;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    position: relative;
+    top: 15px;
+
+
+}
+.card_line p {
+    margin-left: 14px;
+line-height:32px
+}
+.card_price {
+    text-decoration: line-through;
+    color: red;
+    float: left;
+    margin-right: 5px;
+
+}
+.card_price-sale {
+    float: left;
+}
+.card_info {
+    display: flex;
+    justify-content: flex-start;
+}
