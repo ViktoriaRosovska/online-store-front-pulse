@@ -20,6 +20,9 @@ import {useState, useEffect, Children, cloneElement} from "react";
     })
    }
 
+
+
+
    useEffect(() => {
      setPages(
        Children.map(children, (child) => {

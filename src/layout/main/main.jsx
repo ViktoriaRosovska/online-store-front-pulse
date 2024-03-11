@@ -6,10 +6,34 @@ import SladerSale from "../../components/slider_sale/SladerSale.jsx";
 import ModalAuth from "../modals/ModalAuth.jsx";
 import Footer from "../footer/footer.jsx";
 import ModalHelp from "../modals/modalHelp/ModalHelp.jsx";
-import {useState} from "react";
-function Main({modal, modalOn}) {
+import {useContext, useEffect, useState} from "react";
+import {host} from "../../http/index.jsx";
+import {Context} from "../../main.jsx";
+import {useNavigate} from "react-router-dom";
+import {observer} from "mobx-react-lite";
+
+
+const Main = observer(  ({modal, modalOn}) => {
   const [seeMail, setSeeMail] = useState(false)
   const [onModalHelp, setOnModalHelp] = useState(false)
+
+const {store} = useContext(Context)
+  const navigate = useNavigate()
+
+  const click = () => {
+    navigate('/man')
+  }
+
+  useEffect(() => {
+
+    host.get('/products').then(res => store.setProducts(res))
+  }, [])
+
+
+
+
+
+
 
   const seeOnMail = () => {
     setSeeMail((e) =>!e);
@@ -31,7 +55,7 @@ function Main({modal, modalOn}) {
                 ОБИРАЙ КОМФОРТ ТА СВОБОДУ
               </h1>
             </div>
-            <button className='button_catalog'>Каталог</button>
+            <button className='button_catalog' onClick={click}>Каталог</button>
           </div>
         </div>
         <div className='main_man_woomen'>
@@ -84,6 +108,6 @@ function Main({modal, modalOn}) {
       </>
 
     )
-}
+})
 
 export default Main;

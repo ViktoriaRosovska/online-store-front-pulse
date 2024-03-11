@@ -5,11 +5,16 @@
     margin-top: 131px;
 
 
+
 }
 
 .card p {
     display: flex;
     justify-content: flex-start;
     margin-bottom: 6px;
+}
+.card img {
+    width: 100%;
+    border-radius:36px;
 }
 

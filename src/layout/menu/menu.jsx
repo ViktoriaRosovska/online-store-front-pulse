@@ -11,7 +11,8 @@ function Menu() {
         <List className="menu__list">
             {
                 menuArray.map((item, index) => (
-                        <MenuItem 
+                        <MenuItem
+                          onClick={() => navigate('/man')}
                             key={index}
                             classNameLi="menu__list-item"
                             classNameLink="menu__list-link"

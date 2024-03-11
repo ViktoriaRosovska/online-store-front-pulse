@@ -1,13 +1,38 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import React, {createContext, useState} from 'react';
 import App from './App.jsx'
 import './index.css'
+import ProductStore from "./store/ProductStore.js";
+import ManCatalog from "./layout/manCatalog/ManCatalog.jsx";
+import Header from "./layout/header/header.jsx";
+import ProductPage from "./components/pages/productPage/ProductPage.jsx";
+
+export const Context = createContext(null)
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+
   <React.StrictMode>
+
     <BrowserRouter>
-        <App />
+      <Context.Provider value={{
+        store: new ProductStore()
+      }}>
+
+        <Header />
+        <Routes>
+
+          <Route path={'/'} element={ <App />} />
+          <Route path={'/man'} element={<ManCatalog/>}/>
+          <Route path={'/man/:id'} element={<ProductPage/>}/>
+        </Routes>
+
+
+
+      </Context.Provider>
+
     </BrowserRouter>
+
   </React.StrictMode>,
 )
