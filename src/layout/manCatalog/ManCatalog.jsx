@@ -2,7 +2,7 @@ import {useEffect, useContext, useState} from "react";
 import {observer} from "mobx-react-lite";
 import {Context} from "../../main.jsx";
 import {host} from "../../http/index.jsx";
-import {useNavigate, useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Cards from "../../components/Cards/Cards.jsx";
 import './ManCatalog.css'
 import {brand} from "../../http/ProductsApi.jsx";
@@ -37,7 +37,7 @@ const {store} = useContext(Context)
 
 
   // const catProduct = store.product.data
-console.log(asyncData.products?.map(el => el.categories.sex))
+// console.log(asyncData.products?.filter(el => el.categories.sex !== 'male'))
 
 
 
@@ -62,7 +62,7 @@ console.log(asyncData.products?.map(el => el.categories.sex))
 
 
       {
-        asyncData.products?.map((el) => (
+        asyncData.products?.filter(el => el.categories.sex !== 'female').map((el) => (
             <div key={el._id} className='sport'  style={{cursor: 'pointer'}}>
               <Cards info={el.name}
                      image={el.imgThumbnail}

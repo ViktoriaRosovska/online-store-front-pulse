@@ -28,7 +28,7 @@ const ProductPage = observer( () => {
 
 
 
-  console.log(cross.imgGallery?.map(el => el))
+  // console.log(cross.imgGallery?.map(el => el))
 
   return (
     <div className='product_page'>

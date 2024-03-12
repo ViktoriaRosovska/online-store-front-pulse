@@ -5,19 +5,24 @@ import './menu.css'
 
 function Menu() {
 
-    
+
 
     return (
         <List className="menu__list">
             {
                 menuArray.map((item, index) => (
+
                         <MenuItem
 
                             key={index}
                             classNameLi="menu__list-item"
                             classNameLink="menu__list-link"
-                            href="#"
-                            menuItemText={item}
+                            href={
+                              item.category.href
+                            }
+
+
+                            menuItemText={item.category.name}
                         />
                     ))
             }

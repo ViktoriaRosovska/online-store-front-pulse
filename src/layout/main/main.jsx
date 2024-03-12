@@ -21,7 +21,7 @@ const {store} = useContext(Context)
   const navigate = useNavigate()
 
   const click = () => {
-    navigate('/man')
+    navigate('/catalog')
   }
 
   useEffect(() => {
