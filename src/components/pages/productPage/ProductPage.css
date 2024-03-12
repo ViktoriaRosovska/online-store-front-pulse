@@ -1,0 +1,19 @@
+.product_page {
+    display: flex;
+    width: 714px;
+    height: 770px;
+    margin-left: 120px;
+    position: relative;
+    top: 173px;
+
+
+}
+
+.product_page_img_cross {
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+
+
+    border-radius: 16px;
+}
