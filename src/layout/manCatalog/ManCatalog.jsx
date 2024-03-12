@@ -1,8 +1,6 @@
 import {useEffect, useContext, useState} from "react";
 import {observer} from "mobx-react-lite";
 import {Context} from "../../main.jsx";
-import {host} from "../../http/index.jsx";
-import {useNavigate} from "react-router-dom";
 import Cards from "../../components/Cards/Cards.jsx";
 import './ManCatalog.css'
 import {brand} from "../../http/ProductsApi.jsx";
@@ -13,7 +11,7 @@ const ManCatalog =  observer( () => {
 //   window.location.reload(false)
 // }
 const {store} = useContext(Context)
-  const navigate = useNavigate()
+
 
   const [asyncData, setAsyncData] = useState([]);
 

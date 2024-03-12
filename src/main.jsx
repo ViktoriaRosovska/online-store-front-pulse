@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import React, {createContext, useState} from 'react';
+import React, {createContext} from 'react';
 import App from './App.jsx'
 import './index.css'
 import ProductStore from "./store/ProductStore.js";
@@ -12,7 +12,7 @@ import Catalog from "./pages/catalog/Catalog.jsx";
 import NewBrands from "./pages/newBrands/NewBrands.jsx";
 import Woomans from "./pages/woomans/Woomans.jsx";
 import Sales from "./pages/sales/Sales.jsx";
-import Footer from "./layout/footer/footer.jsx";
+
 
 export const Context = createContext(null)
 
