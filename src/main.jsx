@@ -12,6 +12,7 @@ import Catalog from "./pages/catalog/Catalog.jsx";
 import NewBrands from "./pages/newBrands/NewBrands.jsx";
 import Woomans from "./pages/woomans/Woomans.jsx";
 import Sales from "./pages/sales/Sales.jsx";
+import Footer from "./layout/footer/footer";
 
 export const Context = createContext(null);
 
