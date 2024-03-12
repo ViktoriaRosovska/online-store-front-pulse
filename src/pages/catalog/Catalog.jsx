@@ -2,10 +2,7 @@ import './Catalog.css'
 import {observer} from "mobx-react-lite";
 import Cards from "../../components/Cards/Cards.jsx";
 import {useEffect, useState} from "react";
-import {host} from "../../http/index.jsx";
 import {brand} from "../../http/ProductsApi.jsx";
-import Footer from "../../layout/footer/footer.jsx";
-import Testing from "../testing.jsx";
 const Catalog = observer( () => {
   const [catalog, setCatalog] = useState([]);
 
