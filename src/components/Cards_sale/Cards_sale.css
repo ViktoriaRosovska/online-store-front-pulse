@@ -11,13 +11,13 @@
 
 .card_line {
 
-    width: 342px;
+    width: 339px;
     height: 32px;
     background-color: #FEF746;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
     position: relative;
-    top: 15px;
+    top: 30px;
 
 
 }
@@ -38,4 +38,8 @@ line-height:32px
 .card_info {
     display: flex;
     justify-content: flex-start;
+}
+.card_sale img {
+    width: 100%;
+    border-radius:36px;
 }

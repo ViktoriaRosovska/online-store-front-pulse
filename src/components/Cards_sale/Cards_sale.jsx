@@ -1,6 +1,14 @@
 import './Cards_sale.css'
 import Button from "../Buttons/Button.jsx";
-const CardsSale = ({image, info, price, sale}) => {
+import {useNavigate} from "react-router-dom";
+const CardsSale = ({image, info, price, sale, id}) => {
+
+
+  const navigate = useNavigate()
+
+
+  const aLink = () => {navigate('/man/' + id)}
+
   return (
     <>
       <div className='card_sale'>
@@ -11,7 +19,7 @@ const CardsSale = ({image, info, price, sale}) => {
         <p className='card_info'>{info}</p>
         <span className='card_price'>{`${price} грн`}  </span>
         <span className='card_price-sale'>{`${sale} грн`}</span>
-        <Button text={'Купити'}/>
+        <Button text={'Купити'} click={aLink}/>
       </div>
     </>
   );

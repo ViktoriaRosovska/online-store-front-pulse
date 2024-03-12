@@ -1,7 +1,8 @@
 import './Carousel.css'
 import {useState, useEffect, Children, cloneElement} from "react";
+import {observer} from "mobx-react-lite";
 
- const Carousel = ({children}) => {
+ const Carousel = observer( ({children}) => {
 
   const [pages, setPages] = useState([])
    const [offset, setOffset] = useState(0)
@@ -53,7 +54,7 @@ import {useState, useEffect, Children, cloneElement} from "react";
   <img src='public/icons/White Circular Buttonsright.png' className='arrow_r' onClick={handleRightArrowClick}/>
 </div>
   )
-  }
+  })
 
 
 export default Carousel;
