@@ -25,3 +25,4 @@ export const category = async () => {
   const {data} = await host.get('/categories')
   return data
 }
+

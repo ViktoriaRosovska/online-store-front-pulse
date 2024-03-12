@@ -20,7 +20,7 @@ const Main = observer(({ modal, modalOn }) => {
   const navigate = useNavigate();
 
   const click = () => {
-    navigate("/man");
+    navigate("/catalog");
   };
 
   useEffect(() => {

@@ -11,8 +11,8 @@ function Menu() {
           key={index}
           classNameLi="menu__list-item"
           classNameLink="menu__list-link"
-          href={item.link}
-          menuItemText={item.title}
+          href={item.category.href}
+          menuItemText={item.category.name}
         />
       ))}
     </List>

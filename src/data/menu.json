@@ -1,22 +1,12 @@
 [
   {
-    "title": "Чоловікам",
-    "link": "/man"
+    "category": { "name": "Чоловікам", "href": "/man" }
   },
-  {
-    "title": "Жінкам",
-    "link": "/woman"
-  },
-  {
-    "title": "Новинки",
-    "link": "/newModels"
-  },
-  {
-    "title": "Бренди",
-    "link": "/brends"
-  },
-  {
-    "title": "Розпродаж",
-    "link": "/sale"
-  }
+  { "category": { "name": "Жінкам", "href": "/woomans" } },
+
+  { "category": { "name": "Новинки", "href": "/newBrands" } },
+
+  { "category": { "name": "Бренди", "href": "/brands" } },
+
+  { "category": { "name": "Роспродаж", "href": "/sales" } }
 ]

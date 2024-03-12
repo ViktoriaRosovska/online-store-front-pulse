@@ -1,11 +1,8 @@
 import "./ProductPage.css";
 import { useParams } from "react-router-dom";
-// import {host} from "../../../http/index.jsx";
-// import {useContext, useEffect, useState} from "react";
-import { observer } from "mobx-react-lite";
-// import {Context} from "../../../main.jsx";
-import { fetchOneDevice } from "../../../http/ProductsApi.jsx";
 import { useEffect, useState } from "react";
+import { observer } from "mobx-react-lite";
+import { fetchOneDevice } from "../../../http/ProductsApi.jsx";
 
 const ProductPage = observer(() => {
   const { id } = useParams();
@@ -26,7 +23,7 @@ const ProductPage = observer(() => {
     });
   }, []);
 
-  console.log(cross.imgGallery?.map((el) => el));
+  // console.log(cross.imgGallery?.map(el => el))
 
   return (
     <div className="product_page">
