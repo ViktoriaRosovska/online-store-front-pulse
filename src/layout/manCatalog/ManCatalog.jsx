@@ -1,54 +1,36 @@
-import {useEffect, useContext, useState} from "react";
-import {observer} from "mobx-react-lite";
-import {Context} from "../../main.jsx";
-import {host} from "../../http/index.jsx";
-import {useNavigate, useParams} from "react-router-dom";
-import Cards from "../../components/Cards/Cards.jsx";
-import './ManCatalog.css'
-import {brand} from "../../http/ProductsApi.jsx";
+import { useEffect, useContext, useState } from "react";
+import { observer } from "mobx-react-lite";
+import { Context } from "../../main.jsx";
+// import { host } from "../../http/index.jsx";
+// import { useNavigate, useParams } from "react-router-dom";
+// import Cards from "../../components/Cards/Cards.jsx";
+import "./ManCatalog.css";
+import { brand } from "../../http/ProductsApi.jsx";
 
-
-const ManCatalog =  observer( () => {
-// const refreshPage = () => {
-//   window.location.reload(false)
-// }
-const {store} = useContext(Context)
-  const navigate = useNavigate()
+const ManCatalog = observer(() => {
+  // const refreshPage = () => {
+  //   window.location.reload(false)
+  // }
+  const { store } = useContext(Context);
+  // const navigate = useNavigate();
 
   const [asyncData, setAsyncData] = useState([]);
-
-
-
-
-
-
 
   // const brand = async () => {
   //   const {data} = await host.get('/products')
   //   return data
   // }
 
-
-  useEffect (() => {
-
-     brand().then(res =>  setAsyncData(res))
-    store.setProducts(asyncData)
-  }, [])
-
+  useEffect(() => {
+    brand().then((res) => setAsyncData(res));
+    store.setProducts(asyncData);
+  }, []);
 
   // const catProduct = store.product.data
-console.log(asyncData.products?.map(el => el.categories.sex))
-
-
-
+  console.log(asyncData.products?.map((el) => el.categories.sex));
 
   // console.log(asyncData.products)
   // console.log(asyncData.products?.map(el => el._id))
-
-
-
-
-
 
   // console.log(catProduct)
 
@@ -56,11 +38,10 @@ console.log(asyncData.products?.map(el => el.categories.sex))
   //   .then(res => res.json()).then(res => store.setProducts(res))}
   //  , [])
 
-
   return (
     <div>
-
-
+      <p>Hello! This is a man catalog</p>
+      {/* 
       {
         asyncData.products?.map((el) => (
             <div key={el._id} className='sport'  style={{cursor: 'pointer'}}>
@@ -75,14 +56,11 @@ console.log(asyncData.products?.map(el => el.categories.sex))
 
           )
         )
-      }
-
-
+      } */}
     </div>
-  )
-})
+  );
+});
 
-export default ManCatalog
-
+export default ManCatalog;
 
 // console.log(data.products.map(el => el.name))

@@ -1,23 +1,24 @@
 .header {
-    background-color: var(--white-bg-header-color);
-    border-radius: 0px 0px 36px 36px;
-    width: 100%;
-    position: fixed;
-    z-index: 2;
+  background-color: var(--white-bg-header-color);
+  border-radius: 0px 0px 36px 36px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 2;
 }
 
 .header.fixed {
-    background-color: var(--black-bg-color);
-    color: var(--white-text-color);
+  background-color: var(--black-bg-color);
+  color: var(--white-text-color);
 }
 
 .header__inner {
-    padding: 15px 0px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  padding: 15px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo__icon.fixed {
-    filter: invert(100%) sepia(1%) saturate(5805%) hue-rotate(184deg) brightness(116%) contrast(83%);
+  filter: invert(100%) sepia(1%) saturate(5805%) hue-rotate(184deg) brightness(116%) contrast(83%);
 }

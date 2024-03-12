@@ -1,13 +1,12 @@
 import Carousel from "../Carousel/Carousel.jsx";
-import CardsSale from "../Cards_sale/Cards_sale.jsx";
+// import CardsSale from "../Cards_sale/Cards_sale.jsx";
 import AsyncSliderSale from "../asyncSliderSale/AsyncSliderSale.jsx";
 
 const SliderSale = () => {
   return (
     <>
-      <div className='main_block_carausel'>
+      <div className="main_block_carausel">
         <Carousel>
-
           <AsyncSliderSale />
           <AsyncSliderSale />
           <AsyncSliderSale />
