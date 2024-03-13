@@ -40,7 +40,7 @@ const App = observer( () => {
 
           <Route path={'/'} element={
             <Main modal={modal} modalOn={modalOn}/>}/>
-          <Route path={'/man'} element={<ManCatalog/>}/>
+          <Route path={'https://pulse-run-api.onrender.com/api/man'} element={<ManCatalog/>}/>
           <Route path={'/man/:id'} element={<ProductPage/>}/>
           <Route path={'/brands'} element={<Brands/>}/>
           <Route path={'/catalog'} element={<Catalog/>}/>

@@ -22,9 +22,11 @@ const Main = observer(({ modal, modalOn }) => {
     navigate("/catalog");
   };
 
+
+
   useEffect(() => {
     host.get("/products").then((res) => store.setProducts(res));
-  }, [store]);
+  }, []);
 
   const seeOnMail = () => {
     setSeeMail((e) => !e);
