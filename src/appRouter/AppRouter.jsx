@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import ManCatalog from "../layout/manCatalog/ManCatalog.jsx";
+import ManCatalog from "../layout/manCatalog/ManCatalog.js";
 
 const AppRouter = () => {
   return (

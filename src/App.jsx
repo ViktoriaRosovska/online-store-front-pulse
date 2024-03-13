@@ -7,7 +7,7 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom'
 
 import {brand} from "./http/ProductsApi.jsx";
 import {Context} from "./main.jsx";
-import ManCatalog from "./layout/manCatalog/ManCatalog.jsx";
+import ManCatalog from "./layout/manCatalog/ManCatalog.js";
 import ProductPage from "./components/pages/productPage/ProductPage.jsx";
 import Brands from "./pages/brands/Brands.jsx";
 import Catalog from "./pages/catalog/Catalog.jsx";
