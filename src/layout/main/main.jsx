@@ -24,7 +24,7 @@ const Main = observer(({ modal, modalOn }) => {
 
   useEffect(() => {
     host.get("/products").then((res) => store.setProducts(res));
-  }, []);
+  }, [store]);
 
   const seeOnMail = () => {
     setSeeMail((e) => !e);
@@ -63,7 +63,7 @@ const Main = observer(({ modal, modalOn }) => {
         </div>
       </div>
       <div className="main_vector">
-        <img src="../../../image/Vector%202.png" />
+        <img src="../../../image/Vector%202.png" alt={'vector'}/>
       </div>
       <div className="main_block_new">
         <h1>НОВИНКИ</h1>
