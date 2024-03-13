@@ -1,0 +1,11 @@
+.manCatalog-aside {
+  width: 204px;
+  border: 1px solid red;
+  height: 100%;
+}
+.manCatalog-aside-list {
+  display: flex;
+  flex-direction: column;
+  width: 204px;
+  border: 1px solid red;
+}

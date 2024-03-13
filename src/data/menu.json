@@ -1,1 +1,12 @@
-["Чоловікам", "Жінкам", "Новинки", "Бренди", "Розпродаж"]
+[
+  {
+    "category": { "name": "Чоловікам", "href": "/man" }
+  },
+  { "category": { "name": "Жінкам", "href": "/woomans" } },
+
+  { "category": { "name": "Новинки", "href": "/newBrands" } },
+
+  { "category": { "name": "Бренди", "href": "/brands" } },
+
+  { "category": { "name": "Роспродаж", "href": "/sales" } }
+]
