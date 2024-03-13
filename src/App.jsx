@@ -41,12 +41,16 @@ const App = observer( () => {
           <Route path={'/'} element={
             <Main modal={modal} modalOn={modalOn}/>}/>
           <Route path={'/man'} element={<ManCatalog />}/>
-          <Route path={'/man/:id'} element={<ProductPage/>}/>
-          <Route path={'/brands'} element={<Brands/>}/>
-          <Route path={'/catalog'} element={<Catalog/>}/>
-          <Route path={'newBrands'} element={<NewBrands/>}/>
-          <Route path={'/sales'} element={<Sales/>}/>
           <Route path={'/woomans'} element={<Woomans/>}/>
+          <Route path={'newBrands'} element={<NewBrands/>}/>
+          <Route path={'/brands'} element={<Brands/>}/>
+          <Route path={'/man/:id'} element={<ProductPage/>}/>
+          <Route path={'/sales'} element={<Sales/>}/>
+
+          <Route path={'/catalog'} element={<Catalog/>}/>
+
+
+
         </Routes>
 
       </BrowserRouter>
