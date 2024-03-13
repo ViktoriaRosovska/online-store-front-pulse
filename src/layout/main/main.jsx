@@ -10,6 +10,7 @@ import { host } from "../../http/index.jsx";
 import { Context } from "../../main.jsx";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+import Footer from "../footer/footer.jsx";
 
 const Main = observer(({ modal, modalOn }) => {
   const [seeMail, setSeeMail] = useState(false);
@@ -89,6 +90,7 @@ const Main = observer(({ modal, modalOn }) => {
         )}
         {modal ? <ModalAuth modalOn={modalOn} modal={modal} seeOnMail={seeOnMail} /> : ""}
       </div>
+      <Footer />
     </>
   );
 });
