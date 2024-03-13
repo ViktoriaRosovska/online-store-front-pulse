@@ -1,67 +1,83 @@
 @font-face {
-    font-family: 'Strong';
-    src: url('../fonts/Strong-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Strong";
+  src: url("../fonts/Strong-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 :root {
-    --white-text-color: #E9E9E9;
-    --white-dark-bg-color: #E3E3E3;
-    --white-light-bg-color: #FBFBFB;
-    --white-blue-bg-color: #EAEFF0;
-    --white-bg-header-color: #E8E5E5;
-    --white-bg-color-favorite-btn: #FFFFFF;
-    --black-text-color: #232323;
-    --black-bg-color: #292929;
-    --grey-text-color: #7A7C7F;
-    --grey-bg-color: #444444;
-    --grey-link-hover-footer-color: #ADA9A9;
-    --footer-glass-bg-color: rgba(217, 217, 217, 0.05);
-    --blue-bg-color: #495C80;
-    --red-color: #ED2424;
-    --yellow-color: #F5ED1D;
+  --white-text-color: #e9e9e9;
+  --white-dark-bg-color: #e3e3e3;
+  --white-light-bg-color: #fbfbfb;
+  --white-blue-bg-color: #eaeff0;
+  --white-bg-header-color: #e8e5e5;
+  --white-bg-color-favorite-btn: #ffffff;
+  --black-text-color: #232323;
+  --black-bg-color: #292929;
+  --grey-text-color: #7a7c7f;
+  --grey-bg-color: #444444;
+  --grey-link-hover-footer-color: #ada9a9;
+  --footer-glass-bg-color: rgba(217, 217, 217, 0.05);
+  --blue-bg-color: #495c80;
+  --red-color: #ed2424;
+  --yellow-color: #f5ed1d;
 
-    --tittle-font: 'Strong', sans-serif;
+  --tittle-font: "Strong", sans-serif;
 }
 
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-*, *::after, *::before {
-    box-sizing: inherit;
-    margin: 0;
-    padding: 0;
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 html,
 body {
-    height: 100%;
-    font-family: roboto;
+  height: 100%;
+  font-family: roboto;
 }
 
 ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 .wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
-    max-width: 1220px;
-    margin: 0 auto;
-    padding: 0 10px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+@media screen and (min-width: 375px) {
+  .container {
+    max-width: 375px;
+    padding: 0 24px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+    padding: 0 40px;
+  }
 }
 
 .main {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
