@@ -4,6 +4,7 @@ import { Context } from "../../main.jsx";
 import Cards from "../../components/Cards/Cards.jsx";
 import "./ManCatalog.css";
 import { brand } from "../../http/ProductsApi.jsx";
+import { Aside } from "../../components/Aside/Aside.jsx";
 
 const ManCatalog = observer(() => {
   // const refreshPage = () => {
@@ -37,23 +38,29 @@ const ManCatalog = observer(() => {
 
   return (
     <div>
-      <p>Hello! This is a man catalog</p>
-      {/* 
-      {
-        asyncData.products?.filter(el => el.categories.sex !== 'female').map((el) => (
-            <div key={el._id} className='sport'  style={{cursor: 'pointer'}}>
-              <Cards info={el.name}
-                     image={el.imgThumbnail}
-                     price={el.price}
-                     id={el._id}
-
-              />
-
-            </div>
-
-          )
-        )
-      } */}
+      {/* Компонетн навігації */}
+      <div className="manCatalog-navigation">
+        <a href="/">Головна</a> / Чоловіче взуття
+      </div>
+      {/* Компонент фільтрації */}
+      <div className="manCatalog-header">
+        <div>Фільтр</div>
+        <h2>Чоловіче взуття</h2>
+        <div>Сортування</div>
+      </div>
+      {/* Компонент сторінки */}
+      <div className="manCatalog-mainPage">
+        <Aside />
+        <div>
+          {asyncData.products
+            ?.filter((el) => el.categories.sex !== "female")
+            .map((el) => (
+              <div key={el._id} className="sport" style={{ cursor: "pointer" }}>
+                <Cards info={el.name} image={el.imgThumbnail} price={el.price} id={el._id} />
+              </div>
+            ))}
+        </div>
+      </div>
     </div>
   );
 });
