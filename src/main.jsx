@@ -21,30 +21,18 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
   <React.StrictMode>
 
-    <BrowserRouter>
+
       <Context.Provider value={{
         store: new ProductStore()
       }}>
 
-        <Header />
-
-        <Routes>
-
-          <Route path={'/'} element={ <App />} />
-          <Route path={'/man'} element={<ManCatalog/>}/>
-          <Route path={'/man/:id'} element={<ProductPage/>}/>
-          <Route path={'/brands'} element={<Brands />}/>
-          <Route path={'/catalog'} element={<Catalog />}/>
-          <Route path={'newBrands'} element={<NewBrands />} />
-          <Route path={'/sales'} element={<Sales />}/>
-          <Route path={'/woomans'} element={<Woomans />}/>
-        </Routes>
 
 
 
+<App />
       </Context.Provider>
 
-    </BrowserRouter>
+
 
   </React.StrictMode>,
 )

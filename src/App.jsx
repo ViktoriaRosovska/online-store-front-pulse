@@ -3,6 +3,18 @@ import  {useContext, useEffect, useState} from "react";
 import Header from './layout/header/header.jsx';
 import Main from './layout/main/main.jsx';
 import {observer} from "mobx-react-lite";
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
+
+import {brand} from "./http/ProductsApi.jsx";
+import {Context} from "./main.jsx";
+import ManCatalog from "./layout/manCatalog/ManCatalog.jsx";
+import ProductPage from "./components/pages/productPage/ProductPage.jsx";
+import Brands from "./pages/brands/Brands.jsx";
+import Catalog from "./pages/catalog/Catalog.jsx";
+import NewBrands from "./pages/newBrands/NewBrands.jsx";
+import Sales from "./pages/sales/Sales.jsx";
+import Woomans from "./pages/woomans/Woomans.jsx";
+
 const App = observer( () => {
 
   const [modal, setModal] = useState(false)
@@ -21,20 +33,29 @@ const App = observer( () => {
 
   return (
 
-
-      <div className='wrapper'>
+    <div className='wrapper'>
+      <BrowserRouter>
         <Header modalOn={modalOn}/>
-        <Main modal={modal} modalOn={modalOn}/>
-      </div>
+        <Routes>
 
+          <Route path={'/'} element={
+            <Main modal={modal} modalOn={modalOn}/>}/>
+          <Route path={'/man'} element={<ManCatalog/>}/>
+          <Route path={'/man/:id'} element={<ProductPage/>}/>
+          <Route path={'/brands'} element={<Brands/>}/>
+          <Route path={'/catalog'} element={<Catalog/>}/>
+          <Route path={'newBrands'} element={<NewBrands/>}/>
+          <Route path={'/sales'} element={<Sales/>}/>
+          <Route path={'/woomans'} element={<Woomans/>}/>
+        </Routes>
+
+      </BrowserRouter>
+
+       </div>
 
 
   )
 })
 
-import {Routes, Route, BrowserRouter} from 'react-router-dom';
-import {host} from "./http/index.jsx";
-import {brand} from "./http/ProductsApi.jsx";
-import {Context} from "./main.jsx";
 
 export default App
