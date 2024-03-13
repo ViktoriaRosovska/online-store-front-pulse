@@ -1,10 +1,10 @@
-import Link from "./../../../components/link/link";
+import Links from "./../../../components/link/link";
 
 function MenuItem(props) {
 
     return (
         <li className={props.classNameLi}>
-            <Link className={props.classNameLink} href={props.href} linkText={props.menuItemText}/>
+            <Links className={props.classNameLink} href={props.href} linkText={props.menuItemText}/>
         </li>
     )
 }

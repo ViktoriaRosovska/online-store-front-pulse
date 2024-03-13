@@ -1,10 +1,11 @@
 import './ModalHelp.css'
 import CustomForm from "../../../components/form/CustomForm.jsx";
+import close from '../../../../public/icons/Group 176.png'
 const ModalHelp = ({seeMail, seeOnMail, off}) => {
 
   return (
     <div className='container_main'>
-      <img src='public/icons/Group 176.png' onClick={() => off()}/>
+      <img src={close} onClick={() => off()}/>
       <h1 className='container_main_text'>Забули пароль?</h1>
       <div  className='container_main_text_info'>
         <p>Вкажіть адресу електронної

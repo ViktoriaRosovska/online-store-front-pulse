@@ -1,6 +1,10 @@
 import './Carousel.css'
 import {useState, useEffect, Children, cloneElement} from "react";
 import {observer} from "mobx-react-lite";
+import img from '../../../public/icons/White Circular Buttonsright.png'
+import img2 from '../../../public/icons/White Circular Buttons.png'
+
+
 
  const Carousel = observer( ({children}) => {
 
@@ -42,7 +46,7 @@ import {observer} from "mobx-react-lite";
 
   return (
 <div className='main_container'>
-  <img className='arrow' src='public/icons/White Circular Buttons.png' onClick={handleLeftArrowClick}/>
+  <img className='arrow' src={img2} onClick={handleLeftArrowClick}/>
   <div className='window'>
     <div className='all_pages_container' style={{
       transform: `translateX(${offset}px)`,
@@ -51,7 +55,7 @@ import {observer} from "mobx-react-lite";
   </div>
 
 </div>
-  <img src='public/icons/White Circular Buttonsright.png' className='arrow_r' onClick={handleRightArrowClick}/>
+  <img src={img} className='arrow_r' onClick={handleRightArrowClick}/>
 </div>
   )
   })
