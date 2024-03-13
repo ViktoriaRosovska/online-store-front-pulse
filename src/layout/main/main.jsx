@@ -11,6 +11,7 @@ import { Context } from "../../main.jsx";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import Footer from "../footer/footer.jsx";
+import lineIcons from '../../../public/icons/Property 1=Default.png'
 
 const Main = observer(({ modal, modalOn }) => {
   const [seeMail, setSeeMail] = useState(false);
@@ -79,9 +80,9 @@ const Main = observer(({ modal, modalOn }) => {
         </div>
 
         <div className="sale_img_line" id="animal">
-          <img className="sale_line animal_line van" src="public/icons/Property 1=Default.png" />
+          <img className="sale_line animal_line van" src={lineIcons} />
 
-          <img className="sale_line_1 move-right" src="public/icons/Property 1=Default.png" />
+          <img className="sale_line_1 move-right" src={lineIcons} />
         </div>
         {onModalHelp ? (
           <ModalHelp seeMail={seeMail} seeOnMail={seeOnMail} onModalHelp={seeOnMail} off={seeOfModalHelp} />
