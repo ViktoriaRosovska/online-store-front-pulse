@@ -22,8 +22,6 @@ const Main = observer(({ modal, modalOn }) => {
     navigate("/catalog");
   };
 
-
-
   useEffect(() => {
     host.get("/products").then((res) => store.setProducts(res));
   }, []);
@@ -39,8 +37,8 @@ const Main = observer(({ modal, modalOn }) => {
   };
 
   return (
-    <>
-      <div className="main">
+    <main>
+      <section className="main">
         <div className="main_block">
           <div className="main_block_text">
             <h1>ОБИРАЙ КОМФОРТ ТА СВОБОДУ</h1>
@@ -49,8 +47,8 @@ const Main = observer(({ modal, modalOn }) => {
             Каталог
           </button>
         </div>
-      </div>
-      <div className="main_man_woomen">
+      </section>
+      <section className="main_man_woomen">
         <div className="main_man_block">
           <div className="main_man_block_text">
             Для нього
@@ -63,33 +61,48 @@ const Main = observer(({ modal, modalOn }) => {
             <div className="line_1"></div>
           </div>
         </div>
-      </div>
+      </section>
       <div className="main_vector">
-        <img src="../../../image/Vector%202.png" alt={'vector'}/>
+        <img src="../../../image/Vector%202.png" alt={"vector"} />
       </div>
       <div className="main_block_new">
         <h1>НОВИНКИ</h1>
         <Slider />
         <Banner />
-        <h1 className="slider_sale">РОЗПРОДАЖ</h1>
 
-        <div className="slider_sale_sale">
+        <section className="slider_sale_sale">
+          <h1 className="slider_sale">РОЗПРОДАЖ</h1>
           <SladerSale />
-        </div>
+          <div className="sale_img_line" id="animal">
+            <img
+              className="sale_line animal_line van"
+              src="public/icons/Property 1=Default.png"
+            />
 
-        <div className="sale_img_line" id="animal">
-          <img className="sale_line animal_line van" src="public/icons/Property 1=Default.png" />
+            <img
+              className="sale_line_1 move-right"
+              src="public/icons/Property 1=Default.png"
+            />
+          </div>
+        </section>
 
-          <img className="sale_line_1 move-right" src="public/icons/Property 1=Default.png" />
-        </div>
         {onModalHelp ? (
-          <ModalHelp seeMail={seeMail} seeOnMail={seeOnMail} onModalHelp={seeOnMail} off={seeOfModalHelp} />
+          <ModalHelp
+            seeMail={seeMail}
+            seeOnMail={seeOnMail}
+            onModalHelp={seeOnMail}
+            off={seeOfModalHelp}
+          />
         ) : (
           ""
         )}
-        {modal ? <ModalAuth modalOn={modalOn} modal={modal} seeOnMail={seeOnMail} /> : ""}
+        {modal ? (
+          <ModalAuth modalOn={modalOn} modal={modal} seeOnMail={seeOnMail} />
+        ) : (
+          ""
+        )}
       </div>
-    </>
+    </main>
   );
 });
 
