@@ -34,7 +34,7 @@ const App = observer( () => {
   return (
 
     <div className='wrapper'>
-      <BrowserRouter>
+      <BrowserRouter basename={'/app'}>
         <Header modalOn={modalOn}/>
         <Routes>
 

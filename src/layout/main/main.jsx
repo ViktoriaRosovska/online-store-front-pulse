@@ -4,7 +4,6 @@ import Banner from "./Banner/Banner.jsx";
 import Slider from "../../components/Slider/Slider.jsx";
 import SladerSale from "../../components/slider_sale/SladerSale.jsx";
 import ModalAuth from "../modals/ModalAuth.jsx";
-// import Footer from "../footer/footer.jsx";
 import ModalHelp from "../modals/modalHelp/ModalHelp.jsx";
 import { useContext, useEffect, useState } from "react";
 import { host } from "../../http/index.jsx";
@@ -87,7 +86,6 @@ const Main = observer(({ modal, modalOn }) => {
           ""
         )}
         {modal ? <ModalAuth modalOn={modalOn} modal={modal} seeOnMail={seeOnMail} /> : ""}
-        {/* <Footer /> */}
       </div>
     </>
   );
