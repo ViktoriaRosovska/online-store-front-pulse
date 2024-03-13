@@ -1,4 +1,39 @@
 .sport {
-float: left;
-    align-content: center;
+  float: left;
+  align-content: center;
+}
+.manCatalog-navigation {
+  padding-top: 114px;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 36px;
+}
+.manCatalog-navigation a {
+  color: var(--grey-text-color);
+}
+.manCatalog-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 36px;
+}
+.manCatalog-mainPage {
+  display: flex;
+}
+.manCatalog-aside-list {
+  min-width: 204px;
+  border: 1px solid green;
+}
+.checkboxList-title {
+  margin-bottom: 20px;
+}
+.checkboxList-items {
+  display: flex;
+  gap: 13px;
+  flex-direction: column;
+  /* border: 1px solid blue; */
+  margin-bottom: 40px;
+}
+.checkboxList-item {
+  display: flex;
+  gap: 7px;
 }
