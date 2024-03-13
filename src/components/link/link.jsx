@@ -1,7 +1,9 @@
-function Link(props) {
+import {Link} from "react-router-dom";
+
+function Links(props) {
     return (
-        <a className={props.className} href={props.href}>{props.linkText || props.children}</a>
+        <Link className={props.className} to={props.href}>{props.linkText || props.children}</Link>
     )
 }
 
-export default Link;
+export default Links;
