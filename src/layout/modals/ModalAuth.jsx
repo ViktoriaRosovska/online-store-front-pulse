@@ -1,8 +1,9 @@
 import './ModalAuth.css'
-import FormContainerInput from "../../components/formContainerInput/FormContainerInput.jsx";
-import InputForm from "../../components/formContainer/InputForm.jsx";
+import close from '../../../public/icons/Group 176.png'
 import CustomForm from "../../components/form/CustomForm.jsx";
 import {useState} from "react";
+import icon from '../../../public/icons/Group 47879.png'
+import icon2 from '../../../public/icons/Group 47880.png'
 const ModalAuth = ({modalOn,seeOnMail }) => {
 
 
@@ -19,7 +20,7 @@ const ModalAuth = ({modalOn,seeOnMail }) => {
   return (<>
 
       <div className={registr ? 'modal_auth_on' : 'modal_auth'}>
-        <img onClick={() => modalOn()} className='modal_auth_close' src='public/icons/Group 176.png'/>
+        <img onClick={() => modalOn()} className='modal_auth_close' src={close}/>
         <div className='modal_auth_text'>
           <p className='modal_auth_text_entrance' onClick={registrOn}
              style={!registr ? {fontWeight: 'normal'} : {fontWeight: 'lighter'}}
@@ -49,8 +50,8 @@ const ModalAuth = ({modalOn,seeOnMail }) => {
           <div className='modal_auth_container_line1'></div>
         </div>
         <div className='modal_auth_container_social' style={registr ? {marginTop: -50} : {marginTop: 96}}>
-          <img src='public/icons/Group 47879.png'/>
-          <img src='public/icons/Group 47880.png'/>
+          <img src={icon}/>
+          <img src={icon2}/>
         </div>
 
       </div>
