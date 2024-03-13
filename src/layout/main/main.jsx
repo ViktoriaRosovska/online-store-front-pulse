@@ -89,8 +89,9 @@ const Main = observer(({ modal, modalOn }) => {
           ""
         )}
         {modal ? <ModalAuth modalOn={modalOn} modal={modal} seeOnMail={seeOnMail} /> : ""}
+        <Footer />
       </div>
-      <Footer />
+
     </>
   );
 });
