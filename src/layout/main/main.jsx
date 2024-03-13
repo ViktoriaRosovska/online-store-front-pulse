@@ -10,8 +10,8 @@ import { host } from "../../http/index.jsx";
 import { Context } from "../../main.jsx";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import Footer from "../footer/footer.jsx";
 import lineIcons from "../../../public/icons/Property 1=Default.png";
+import { BoxHero, BoxHeroTitle, SectionHero } from "./main.styled.js";
 
 const Main = observer(({ modal, modalOn }) => {
   const [seeMail, setSeeMail] = useState(false);
@@ -40,16 +40,16 @@ const Main = observer(({ modal, modalOn }) => {
 
   return (
     <main>
-      <section className="main">
-        <div className="main_block">
-          <div className="main_block_text">
-            <h1>ОБИРАЙ КОМФОРТ ТА СВОБОДУ</h1>
-          </div>
-          <button className="button_catalog" onClick={click}>
-            Каталог
-          </button>
+      <SectionHero>
+        <div className="container">
+          <BoxHero>
+            <BoxHeroTitle>
+              <h1>ОБИРАЙ КОМФОРТ ТА СВОБОДУ</h1>
+            </BoxHeroTitle>
+            <button onClick={click}>Каталог</button>
+          </BoxHero>
         </div>
-      </section>
+      </SectionHero>
       <section className="main_man_woomen">
         <div className="main_man_block">
           <div className="main_man_block_text">
