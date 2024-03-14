@@ -5,6 +5,9 @@ import Cards from "../../components/Cards/Cards.jsx";
 import "./ManCatalog.css";
 import { brand } from "../../http/ProductsApi.jsx";
 import { Aside } from "../../components/Aside/Aside.jsx";
+// import { PageTitle } from "../../components/Typography/PageTitle.styled.js";
+// import { FilterButton } from "../../components/Buttons/FilterButton/FilterButton.styled.js";
+import { CatalogHeader } from "../../components/CatalogHeader/CatalogHeader.jsx";
 
 const ManCatalog = observer(() => {
   // const refreshPage = () => {
@@ -35,7 +38,9 @@ const ManCatalog = observer(() => {
   //   const {data} = await host.get('/products')
   //   return data
   // }
-
+  // const onShowFilter = () => {
+  //   setShowFilter(!showFilter);
+  // };
   useEffect(() => {
     brand().then((res) => setAsyncData(res));
     store.setProducts(asyncData);
@@ -60,13 +65,8 @@ const ManCatalog = observer(() => {
         <a href="/">Головна</a> / Чоловіче взуття
       </div>
       {/* Компонент фільтрації */}
-      <div className="manCatalog-header">
-        <div>
-          Фільтр Брeнд: {brandList.join(",")} Сезон: {seasonList.join(",")} Розмір: {sizeList.join(",")}
-        </div>
-        <h2>Чоловіче взуття</h2>
-        <div>Сортування</div>
-      </div>
+      <CatalogHeader brandList={brandList} seasonList={seasonList} sizeList={sizeList} />
+
       {/* Компонент сторінки */}
       <div className="manCatalog-mainPage">
         <Aside onChanged={onSelectionChanged} />
