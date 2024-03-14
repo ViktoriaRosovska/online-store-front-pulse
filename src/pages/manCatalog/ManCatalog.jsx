@@ -8,6 +8,7 @@ import { Aside } from "../../components/Aside/Aside.jsx";
 // import { PageTitle } from "../../components/Typography/PageTitle.styled.js";
 // import { FilterButton } from "../../components/Buttons/FilterButton/FilterButton.styled.js";
 import { CatalogHeader } from "../../components/CatalogHeader/CatalogHeader.jsx";
+import { Container } from "../../main.styled.js";
 
 const ManCatalog = observer(() => {
   // const refreshPage = () => {
