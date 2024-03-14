@@ -1,5 +1,4 @@
 import "./main.css";
-
 import Banner from "./Banner/Banner.jsx";
 import Slider from "../../components/Slider/Slider.jsx";
 import SladerSale from "../../components/slider_sale/SladerSale.jsx";
@@ -8,10 +7,17 @@ import ModalHelp from "../modals/modalHelp/ModalHelp.jsx";
 import { useContext, useEffect, useState } from "react";
 import { host } from "../../http/index.jsx";
 import { Context } from "../../main.jsx";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import lineIcons from "../../../public/icons/Property 1=Default.png";
-import { BoxHero, BoxHeroTitle, SectionHero } from "./main.styled.js";
+import {
+  BoxHero,
+  BoxHeroTitle,
+  BoxTitle,
+  ManBox,
+  SectionHero,
+  SectionManWomen,
+  WomenBox,
+} from "./main.styled.js";
 
 const Main = observer(({ modal, modalOn }) => {
   const [seeMail, setSeeMail] = useState(false);
@@ -50,20 +56,22 @@ const Main = observer(({ modal, modalOn }) => {
           </BoxHero>
         </div>
       </SectionHero>
-      <section className="main_man_woomen">
-        <div className="main_man_block">
-          <div className="main_man_block_text">
-            Для нього
-            <div className="line"></div>
-          </div>
-        </div>
-        <div className="main_woomen_block">
-          <div className="main_man_block_text">
-            Для неї
-            <div className="line_1"></div>
-          </div>
-        </div>
-      </section>
+      <SectionManWomen className="container">
+        <Link>
+          <ManBox>
+            <BoxTitle>
+              <h3>Для нього</h3>
+            </BoxTitle>
+          </ManBox>
+        </Link>
+        <Link>
+          <WomenBox>
+            <BoxTitle>
+              <h3>Для неї</h3>
+            </BoxTitle>
+          </WomenBox>
+        </Link>
+      </SectionManWomen>
       <div className="main_vector">
         <img src="../../../image/Vector%202.png" alt={"vector"} />
       </div>

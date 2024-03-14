@@ -1,3 +1,5 @@
+@import-normalize;
+
 @font-face {
   font-family: "Strong";
   src: url("../fonts/Strong-Regular.ttf") format("truetype");

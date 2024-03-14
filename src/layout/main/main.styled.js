@@ -65,7 +65,7 @@ export const BoxHeroTitle = styled.div`
 
   > h1 {
     color: white;
-    font-family: "Strong";
+    font-family: var(--tittle-font);
     line-height: 1;
     font-weight: 400;
     font-size: 48px;
@@ -73,6 +73,90 @@ export const BoxHeroTitle = styled.div`
     @media screen and (min-width: 1440px) {
       font-size: 90px;
       line-height: 1.5;
+    }
+  }
+`;
+
+export const SectionManWomen = styled.section`
+  padding-top: 80px;
+  padding-bottom: 80px;
+  display: flex;
+
+  @media screen and (max-width: 1439px) {
+    gap: 24px;
+    flex-direction: column;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding-top: 120px;
+    padding-bottom: 120px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
+export const ManBox = styled.div`
+  background-image: url("../../../image/men-mobile.jpg");
+  width: 327px;
+  height: 280px;
+  border-radius: 36px;
+  padding-top: 12px;
+
+  @media screen and (min-width: 1440px) {
+    background-image: url("../../../image/image 31.png");
+    width: 562px;
+    height: 280px;
+  }
+`;
+
+export const WomenBox = styled.div`
+  width: 327px;
+  height: 280px;
+  border-radius: 36px;
+  background-image: url("../../../image/women-mobile.jpg");
+  padding-top: 12px;
+
+  @media screen and (min-width: 1440px) {
+    background-image: url("../../../image/image 30.png");
+    width: 562px;
+    height: 280px;
+  }
+`;
+
+export const BoxTitle = styled.div`
+  width: 186px;
+  height: 48px;
+  background-color: #e4e4e4;
+  border-radius: 36px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  display: flex;
+  justify-content: center;
+
+  @media screen and (min-width: 1440px) {
+    height: 70px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  > h3 {
+    line-height: 1;
+    display: inline;
+    font-weight: 400;
+    font-size: 32px;
+    text-align: center;
+    color: #232323;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 2.5px;
+      background-color: #232323;
+      border-radius: 2px;
+      bottom: -3px;
     }
   }
 `;
