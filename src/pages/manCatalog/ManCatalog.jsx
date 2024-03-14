@@ -13,7 +13,24 @@ const ManCatalog = observer(() => {
   const { store } = useContext(Context);
 
   const [asyncData, setAsyncData] = useState([]);
+  const [brandList, setBrandList] = useState([]);
+  const [seasonList, setSeasonList] = useState([]);
+  const [sizeList, setSizeList] = useState([]);
 
+  const onSelectionChanged = (type, items) => {
+    console.log("onSelectionChanged", type, items);
+    switch (type) {
+      case "brand":
+        setBrandList(items);
+        break;
+      case "season":
+        setSeasonList(items);
+        break;
+      case "size":
+        setSizeList(items);
+        break;
+    }
+  };
   // const brand = async () => {
   //   const {data} = await host.get('/products')
   //   return data
@@ -44,13 +61,15 @@ const ManCatalog = observer(() => {
       </div>
       {/* Компонент фільтрації */}
       <div className="manCatalog-header">
-        <div>Фільтр</div>
+        <div>
+          Фільтр Брeнд: {brandList.join(",")} Сезон: {seasonList.join(",")} Розмір: {sizeList.join(",")}
+        </div>
         <h2>Чоловіче взуття</h2>
         <div>Сортування</div>
       </div>
       {/* Компонент сторінки */}
       <div className="manCatalog-mainPage">
-        <Aside />
+        <Aside onChanged={onSelectionChanged} />
         <div>
           {asyncData.products
             ?.filter((el) => el.categories.sex !== "female")
