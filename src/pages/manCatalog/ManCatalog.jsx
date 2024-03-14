@@ -59,7 +59,7 @@ const ManCatalog = observer(() => {
   //  , [])
 
   return (
-    <div>
+    <Container>
       {/* Компонетн навігації */}
       <div className="manCatalog-navigation">
         <a href="/">Головна</a> / Чоловіче взуття
@@ -80,7 +80,7 @@ const ManCatalog = observer(() => {
             ))}
         </div>
       </div>
-    </div>
+    </Container>
   );
 });
 
