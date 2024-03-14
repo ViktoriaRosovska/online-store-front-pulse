@@ -5,6 +5,8 @@ import Cards from "../../components/Cards/Cards.jsx";
 import "./ManCatalog.css";
 import { brand } from "../../http/ProductsApi.jsx";
 import { Aside } from "../../components/Aside/Aside.jsx";
+import { Container } from "../../main.styled.js";
+import { PageTitle } from "../../components/Typography/PageTitle.styled.js";
 
 const ManCatalog = observer(() => {
   // const refreshPage = () => {
@@ -54,7 +56,7 @@ const ManCatalog = observer(() => {
   //  , [])
 
   return (
-    <div>
+    <Container>
       {/* Компонетн навігації */}
       <div className="manCatalog-navigation">
         <a href="/">Головна</a> / Чоловіче взуття
@@ -64,7 +66,7 @@ const ManCatalog = observer(() => {
         <div>
           Фільтр Брeнд: {brandList.join(",")} Сезон: {seasonList.join(",")} Розмір: {sizeList.join(",")}
         </div>
-        <h2>Чоловіче взуття</h2>
+        <PageTitle>Чоловіче взуття</PageTitle>
         <div>Сортування</div>
       </div>
       {/* Компонент сторінки */}
@@ -80,7 +82,7 @@ const ManCatalog = observer(() => {
             ))}
         </div>
       </div>
-    </div>
+    </Container>
   );
 });
 
