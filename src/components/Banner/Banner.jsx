@@ -1,5 +1,5 @@
 import "./Banner.css";
-import Button from "../../../components/Buttons/Button.jsx";
+import Button from "../Buttons/Button";
 const MyComponent = () => {
   return (
     <section className="banner">
