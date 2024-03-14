@@ -1,34 +1,46 @@
+import { useReducer, useState } from "react";
+
 export const CheckboxList = (props) => {
-  const searchArray = [];
-  const addSearchArray = (value) => {
-    if (searchArray.includes(value)) {
-      let idx = searchArray.findIndex((el) => el === value);
-      console.log(idx, value);
-      searchArray.splice(idx, 1);
-      console.log(searchArray);
-      return;
-    }
-    if (!searchArray.includes(value)) {
-      searchArray.push(value);
-      console.log(searchArray);
-      return;
-    }
-    console.log(searchArray);
+  const [showAll, setShowAll] = useState(false);
+  const defaultShow = 10;
+  const showAllByDefault = props.items.length <= defaultShow;
+  const elementsToShow = showAll || showAllByDefault ? props.items : props.items.slice(0, defaultShow);
+  const [checked] = useState(new Set());
+  const [, forceUpdate] = useReducer((x) => x + 1, 0);
+
+  const handleInputChange = (e, item) => {
+    if (e.target.checked) checked.add(item);
+    else checked.delete(item);
+
+    forceUpdate();
+
+    if (props.onChanged) props.onChanged([...checked]);
   };
-  console.log(props.items);
+
+  const getChecked = (i) => checked.has(i);
+
   return (
     <div className="checkboxList-wrapper">
       <h3 className="checkboxList-title">{props.title}</h3>
       <div className="checkboxList-items">
-        {props.items.length &&
-          props.items.map((item) => {
+        {elementsToShow.length &&
+          elementsToShow.map((item) => {
             return (
               <div key={item} className="checkboxList-item">
-                <input type="checkbox" value={item} id={item} onChange={(e) => addSearchArray(e.target.value)} />
-                <label htmlFor={item}> {item}</label>
+                <input
+                  type="checkbox"
+                  value={item}
+                  id={"cbl_" + item}
+                  checked={getChecked(item)}
+                  onChange={(e) => handleInputChange(e, item)}
+                />
+                <label htmlFor={"cbl_" + item}> {item}</label>
               </div>
             );
           })}
+        {showAllByDefault ? null : (
+          <button onClick={() => setShowAll((prev) => !prev)}>{showAll ? "Сховати ^" : "Показати все v"}</button>
+        )}
       </div>
     </div>
   );
