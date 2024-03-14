@@ -1,13 +1,13 @@
 import "./App.css";
 import { useContext, useEffect, useState } from "react";
-import Main from "./layout/main/main.jsx";
 import { observer } from "mobx-react-lite";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { brand } from "./http/ProductsApi.jsx";
 import { Context } from "./main.jsx";
+import Main from "./pages/main/MainPage.jsx";
 import ManCatalog from "./pages/manCatalog/ManCatalog";
-import ProductPage from "./components/pages/productPage/ProductPage.jsx";
+import ProductPage from "./pages/productPage/ProductPage.jsx";
 import Brands from "./pages/brands/Brands.jsx";
 import Catalog from "./pages/catalog/Catalog.jsx";
 import NewBrands from "./pages/newBrands/NewBrands.jsx";
