@@ -42,7 +42,8 @@
 .button_catalog:hover {
   color: var(--grey-text-color);
   background: var(--white-dark-bg-color);
-} */
+}
+*/
 
 /* .main_man_woomen {
   width: 100%;
@@ -57,9 +58,10 @@
   /* width: 562px;
   height: 280px;
   /* margin-right: 2%; */
-  background-image: url("../../../image/image 30.png");
+  /* background-image: url("../../../image/image 30.png");
   cursor: pointer;
-}
+} */
+
 .main_man_block {
   width: 562px;
   height: 280px;
@@ -67,9 +69,8 @@
   margin-right: 21%;
   background-image: url("../../../image/image 31.png");
   border-radius: 36px;
-} */
-
-.main_man_block_text:hover {
+}
+*/ .main_man_block_text:hover {
   color: var(--grey-text-color);
   background: var(--white-dark-bg-color);
 }

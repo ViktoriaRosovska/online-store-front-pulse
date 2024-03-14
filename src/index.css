@@ -73,10 +73,18 @@ a {
   }
 }
 
+@media screen and (min-width: 375px) and (max-width: 1439px) {
+  .container {
+    min-width: 375px;
+    max-width: 1440px;
+    padding: 0 120px;
+  }
+}
+
 @media screen and (min-width: 1440px) {
   .container {
-    max-width: 1440px;
-    padding: 0 40px;
+    min-width: 1440px;
+    padding: 0 120px;
   }
 }
 

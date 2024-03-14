@@ -9,9 +9,15 @@ import { host } from "../../http/index.jsx";
 import { Context } from "../../main.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-
-import lineIcons from "../../../public/icons/Property 1=Default.png";
-import { Container } from "../../main.styled.js";
+import {
+  BoxHero,
+  BoxHeroTitle,
+  BoxTitle,
+  ManBox,
+  SectionHero,
+  SectionManWomen,
+  WomenBox,
+} from "./main.styled.js";
 
 const Main = observer(({ modal, modalOn }) => {
   const [seeMail, setSeeMail] = useState(false);
@@ -40,72 +46,73 @@ const Main = observer(({ modal, modalOn }) => {
 
   return (
     <main>
-      <Container>
-        <div className="main">
-          <div className="main_block">
-            <div className="main_block_text">
+      <SectionHero>
+        <div className="container">
+          <BoxHero>
+            <BoxHeroTitle>
               <h1>ОБИРАЙ КОМФОРТ ТА СВОБОДУ</h1>
-            </div>
-            <button className="button_catalog" onClick={click}>
-              Каталог
-            </button>
-          </div>
+            </BoxHeroTitle>
+            <button onClick={click}>Каталог</button>
+          </BoxHero>
         </div>
-        <div className="main_man_woomen">
-          <div className="main_man_block">
-            <div className="main_man_block_text">
-              Для нього
-              <div className="line"></div>
-            </div>
-          </div>
-          <div className="main_woomen_block">
-            <div className="main_man_block_text">
-              Для неї
-              <div className="line_1"></div>
-            </div>
-          </div>
-        </div>
-        <div className="main_vector">
-          <img src="../../../image/Vector%202.png" alt={"vector"} />
-        </div>
-        <div className="main_block_new">
-          <h1>НОВИНКИ</h1>
-          <Slider />
-        </div>
-        <Banner />
+      </SectionHero>
+      <SectionManWomen className="container">
+        <Link to="/man">
+          <ManBox>
+            <BoxTitle>
+              <h3>Для нього</h3>
+            </BoxTitle>
+          </ManBox>
+        </Link>
+        <Link to="/woomans">
+          <WomenBox>
+            <BoxTitle>
+              <h3>Для неї</h3>
+            </BoxTitle>
+          </WomenBox>
+        </Link>
+      </SectionManWomen>
 
-        <section className="slider_sale_sale">
-          <h1 className="slider_sale">РОЗПРОДАЖ</h1>
-          <SladerSale />
-          <div className="sale_img_line" id="animal">
-            <img
-              className="sale_line animal_line van"
-              src="public/icons/Property 1=Default.png"
-            />
+      <div className="main_vector">
+        <img src="../../../image/Vector%202.png" alt={"vector"} />
+      </div>
+      <div className="main_block_new">
+        <h1>НОВИНКИ</h1>
+        <Slider />
+      </div>
+      <Banner />
 
-            <img
-              className="sale_line_1 move-right"
-              src="public/icons/Property 1=Default.png"
-            />
-          </div>
-        </section>
-
-        {onModalHelp ? (
-          <ModalHelp
-            seeMail={seeMail}
-            seeOnMail={seeOnMail}
-            onModalHelp={seeOnMail}
-            off={seeOfModalHelp}
+      <section className="slider_sale_sale">
+        <h1 className="slider_sale">РОЗПРОДАЖ</h1>
+        <SladerSale />
+        <div className="sale_img_line" id="animal">
+          <img
+            className="sale_line animal_line van"
+            src="public/icons/Property 1=Default.png"
           />
-        ) : (
-          ""
-        )}
-        {modal ? (
-          <ModalAuth modalOn={modalOn} modal={modal} seeOnMail={seeOnMail} />
-        ) : (
-          ""
-        )}
-      </Container>
+
+          <img
+            className="sale_line_1 move-right"
+            src="public/icons/Property 1=Default.png"
+          />
+        </div>
+      </section>
+
+      {onModalHelp ? (
+        <ModalHelp
+          seeMail={seeMail}
+          seeOnMail={seeOnMail}
+          onModalHelp={seeOnMail}
+          off={seeOfModalHelp}
+        />
+      ) : (
+        ""
+      )}
+      {modal ? (
+        <ModalAuth modalOn={modalOn} modal={modal} seeOnMail={seeOnMail} />
+      ) : (
+        ""
+      )}
     </main>
   );
 });
