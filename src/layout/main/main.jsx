@@ -10,8 +10,9 @@ import { host } from "../../http/index.jsx";
 import { Context } from "../../main.jsx";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import Footer from "../footer/footer.jsx";
-import lineIcons from '../../../public/icons/Property 1=Default.png'
+
+import lineIcons from "../../../public/icons/Property 1=Default.png";
+import { Container } from "../../main.styled.js";
 
 const Main = observer(({ modal, modalOn }) => {
   const [seeMail, setSeeMail] = useState(false);
@@ -23,8 +24,6 @@ const Main = observer(({ modal, modalOn }) => {
   const click = () => {
     navigate("/catalog");
   };
-
-
 
   useEffect(() => {
     host.get("/products").then((res) => store.setProducts(res));
@@ -41,37 +40,39 @@ const Main = observer(({ modal, modalOn }) => {
   };
 
   return (
-    <>
-      <div className="main">
-        <div className="main_block">
-          <div className="main_block_text">
-            <h1>ОБИРАЙ КОМФОРТ ТА СВОБОДУ</h1>
-          </div>
-          <button className="button_catalog" onClick={click}>
-            Каталог
-          </button>
-        </div>
-      </div>
-      <div className="main_man_woomen">
-        <div className="main_man_block">
-          <div className="main_man_block_text">
-            Для нього
-            <div className="line"></div>
+    <main>
+      <Container>
+        <div className="main">
+          <div className="main_block">
+            <div className="main_block_text">
+              <h1>ОБИРАЙ КОМФОРТ ТА СВОБОДУ</h1>
+            </div>
+            <button className="button_catalog" onClick={click}>
+              Каталог
+            </button>
           </div>
         </div>
-        <div className="main_woomen_block">
-          <div className="main_man_block_text">
-            Для неї
-            <div className="line_1"></div>
+        <div className="main_man_woomen">
+          <div className="main_man_block">
+            <div className="main_man_block_text">
+              Для нього
+              <div className="line"></div>
+            </div>
+          </div>
+          <div className="main_woomen_block">
+            <div className="main_man_block_text">
+              Для неї
+              <div className="line_1"></div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="main_vector">
-        <img src="../../../image/Vector%202.png" alt={'vector'}/>
-      </div>
-      <div className="main_block_new">
-        <h1>НОВИНКИ</h1>
-        <Slider />
+        <div className="main_vector">
+          <img src="../../../image/Vector%202.png" alt={"vector"} />
+        </div>
+        <div className="main_block_new">
+          <h1>НОВИНКИ</h1>
+          <Slider />
+        </div>
         <Banner />
         <h1 className="slider_sale">РОЗПРОДАЖ</h1>
 
@@ -90,10 +91,8 @@ const Main = observer(({ modal, modalOn }) => {
           ""
         )}
         {modal ? <ModalAuth modalOn={modalOn} modal={modal} seeOnMail={seeOnMail} /> : ""}
-        <Footer />
-      </div>
-
-    </>
+      </Container>
+    </main>
   );
 });
 
