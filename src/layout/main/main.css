@@ -1,5 +1,5 @@
-/* .main {
-  background-image: url('../../../image/Rectangle 17516.png');
+.main {
+  background-image: url("../../../image/Rectangle 17516.png");
   background-size: 100%;
   width: 100%;
   height: 1024px;
@@ -57,7 +57,7 @@
   /* width: 562px;
   height: 280px;
   /* margin-right: 2%; */
-/* background-image: url("../../../image/image 30.png");
+  background-image: url("../../../image/image 30.png");
   cursor: pointer;
 }
 .main_man_block {
@@ -140,7 +140,7 @@
   top: 130px;
 
   /*height: 200px;*/
-  animation: line 3s infinite linear;
+  /* animation: line 3s infinite linear; */
   /*transform: rotate(-12deg);*/
 }
 
@@ -156,7 +156,7 @@
   /*white-space: nowrap;*/
   /*bottom: 550px;*/
   /*transform: rotate(12deg);*/
-  animation: line1 3s infinite linear;
+  /* animation: line1 3s infinite linear; */
 }
 
 .sale_img_line {
