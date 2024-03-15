@@ -25,9 +25,7 @@ export const CheckboxList = (props) => {
 
     if (props.onChanged) props.onChanged([...checked]);
   };
-
-  const getChecked = (i) => checked.has(i);
-
+  console.log(props.items);
   return (
     <CheckboxListConrtainer>
       <CheckboxListTitle>{props.title}</CheckboxListTitle>
@@ -43,7 +41,7 @@ export const CheckboxList = (props) => {
                   type="checkbox"
                   value={item}
                   id={"cbl_" + item}
-                  checked={getChecked(item)}
+                  // checked={getChecked(item)}
                   onChange={(e) => handleInputChange(e, item)}
                 />
                 <label htmlFor={"cbl_" + item} style={{ display: "inline-block", width: "100%" }}>

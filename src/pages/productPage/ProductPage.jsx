@@ -2,7 +2,7 @@ import "./ProductPage.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
-import { fetchOneDevice } from "../../../http/ProductsApi.jsx";
+import { fetchOneDevice } from "../../http/ProductsApi.jsx";
 
 const ProductPage = observer(() => {
   const { id } = useParams();
@@ -29,7 +29,12 @@ const ProductPage = observer(() => {
     <div className="product_page">
       <div>
         {cross.imgGallery?.map((img, i) => (
-          <img className="product_page_img_cross" src={img} key={i} style={{ width: "341px", height: "369px" }} />
+          <img
+            className="product_page_img_cross"
+            src={img}
+            key={i}
+            style={{ width: "341px", height: "369px" }}
+          />
         ))}
       </div>
     </div>

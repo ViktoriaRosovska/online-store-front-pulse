@@ -3,12 +3,13 @@ import brandList from "../../data/brendList.json";
 import season from "../../data/season.json";
 import size from "../../data/size.json";
 
-export const Aside = (props) => {
+export const Aside = () => {
+  console.log(brandList);
   return (
     <div className="manCatalog-aside-list">
-      <CheckboxList items={brandList} onChanged={(items) => props.onChanged("brand", items)} title="Брeнд" />
-      <CheckboxList items={season} onChanged={(items) => props.onChanged("season", items)} title="Сезон" />
-      <CheckboxList items={size} onChanged={(items) => props.onChanged("size", items)} title="Розмір" />
+      <CheckboxList items={brandList} title="Брeнд" />
+      <CheckboxList items={season} title="Сезон" />
+      <CheckboxList items={size} title="Розмір" />
     </div>
   );
 };

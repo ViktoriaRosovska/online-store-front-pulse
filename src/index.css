@@ -1,6 +1,15 @@
+@import-normalize;
+
 @font-face {
   font-family: "Strong";
   src: url("../fonts/Strong-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Beware";
+  src: url("../fonts/Beware.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -71,10 +80,18 @@ a {
   }
 }
 
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .container {
+    min-width: 375px;
+    max-width: 1440px;
+    padding: 0 120px;
+    /* padding???? */
+  }
+}
+
 @media screen and (min-width: 1440px) {
   .container {
-    max-width: 1440px;
-    padding: 0 40px;
+    min-width: 1440px;
   }
 }
 

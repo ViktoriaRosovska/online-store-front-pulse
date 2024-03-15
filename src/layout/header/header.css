@@ -13,12 +13,28 @@
 }
 
 .header__inner {
-  padding: 15px 0px;
+  padding: 23px 0px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.logo__icon {
+  width: 128px;
+  height: 24px;
+}
+
+@media screen and (min-width: 1440px) {
+  .logo__icon {
+    width: 189px;
+    height: 31px;
+  }
+  .header__inner {
+    padding: 15px 0px;
+  }
+}
+
 .logo__icon.fixed {
-  filter: invert(100%) sepia(1%) saturate(5805%) hue-rotate(184deg) brightness(116%) contrast(83%);
+  filter: invert(100%) sepia(1%) saturate(5805%) hue-rotate(184deg)
+    brightness(116%) contrast(83%);
 }

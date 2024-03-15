@@ -1,4 +1,5 @@
 import {host} from "./index.jsx";
+import axios from "axios";
 
 export const fetchOneDevice = async (id) => {
   const {data} = await host.get('products/' + id);
@@ -23,6 +24,11 @@ export const brandSales = async () => {
 
 export const category = async () => {
   const {data} = await host.get('/categories')
+  return data
+}
+
+export const famale = async () => {
+  const {data} = await host.get('/products?sex=female')
   return data
 }
 
