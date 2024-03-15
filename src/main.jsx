@@ -1,31 +1,20 @@
-import ReactDOM from 'react-dom/client'
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import React, {createContext} from 'react';
-import App from './App.jsx'
-import './index.css'
+import ReactDOM from "react-dom/client";
+// import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import React, { createContext } from "react";
+import App from "./App.jsx";
+import "./index.css";
 import ProductStore from "./store/ProductStore.js";
 
+export const Context = createContext(null);
 
-
-export const Context = createContext(null)
-
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-
-
-      <Context.Provider value={{
-        store: new ProductStore()
-      }}>
-
-
-
-
-<App />
-      </Context.Provider>
-
-
-
-  </React.StrictMode>,
-)
+    <Context.Provider
+      value={{
+        store: new ProductStore(),
+      }}
+    >
+      <App />
+    </Context.Provider>
+  </React.StrictMode>
+);
