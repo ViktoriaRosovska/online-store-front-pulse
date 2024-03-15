@@ -1,6 +1,29 @@
-export const CheckboxList = (props) => {
+import {observer} from "mobx-react-lite";
+
+export const CheckboxList = observer( (props) => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const searchArray = [];
+
+
+
+
   const addSearchArray = (value) => {
+    
+    // console.log(store.product.products.filter(el => el.categories.brand.name === value )?.map(el => el.name))
     if (searchArray.includes(value)) {
       let idx = searchArray.findIndex((el) => el === value);
       console.log(idx, value);
@@ -9,13 +32,19 @@ export const CheckboxList = (props) => {
       return;
     }
     if (!searchArray.includes(value)) {
+
       searchArray.push(value);
       console.log(searchArray);
       return;
     }
     console.log(searchArray);
+
   };
-  console.log(props.items);
+  // console.log(props.items);
+
+
+
+
   return (
     <div className="checkboxList-wrapper">
       <h3 className="checkboxList-title">{props.title}</h3>
@@ -32,4 +61,4 @@ export const CheckboxList = (props) => {
       </div>
     </div>
   );
-};
+})

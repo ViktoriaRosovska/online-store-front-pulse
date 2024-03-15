@@ -29,6 +29,8 @@ const Main = observer(({ modal, modalOn }) => {
   useEffect(() => {
     host.get("/products").then((res) => store.setProducts(res));
   }, []);
+  // console.log(store.product.products?.map(el => el.categories.season
+  // ))
 
   const seeOnMail = () => {
     setSeeMail((e) => !e);

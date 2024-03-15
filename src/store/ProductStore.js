@@ -3,6 +3,7 @@ import {makeAutoObservable} from "mobx";
 export default class ProductStore {
   constructor() {
     this.product = [];
+    this.filterMan = []
     this.cross = []
     this.cat = false
     makeAutoObservable(this);
@@ -21,6 +22,11 @@ export default class ProductStore {
   test(bolean) {
     this.cat = bolean;
   }
+
+ filterMans( item) {
+    this.filterMan.push( item );
+ }
+
 
   get products() {
     return this.product;

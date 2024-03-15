@@ -5,6 +5,7 @@ import Cards from "../../components/Cards/Cards.jsx";
 import "./ManCatalog.css";
 import { brand } from "../../http/ProductsApi.jsx";
 import { Aside } from "../../components/Aside/Aside.jsx";
+import {host} from "../../http/index.jsx";
 
 const ManCatalog = observer(() => {
   // const refreshPage = () => {
@@ -14,10 +15,7 @@ const ManCatalog = observer(() => {
 
   const [asyncData, setAsyncData] = useState([]);
 
-  // const brand = async () => {
-  //   const {data} = await host.get('/products')
-  //   return data
-  // }
+
 
   useEffect(() => {
     brand().then((res) => setAsyncData(res));
@@ -32,8 +30,8 @@ const ManCatalog = observer(() => {
 
   // console.log(catProduct)
 
-  // useEffect(() => {fetch('https://pulse-run-api.onrender.com/api/products')
-  //   .then(res => res.json()).then(res => store.setProducts(res))}
+  // useEffect(() => {fetch('https://pulse-run-api.onrender.com/api/products/newest')
+  //   .then(res => res.json()).then(res => console.log(res))}
   //  , [])
 
   return (
