@@ -8,7 +8,7 @@ import { Context } from "./main.jsx";
 import Main from "./pages/main/MainPage";
 import MaleCatalog from "./pages/maleCatalog/MaleCatalog.jsx";
 import FemaleCatalog from "./pages/femaleCatalog/FemaleCatalog.jsx";
-import ProductPage from "./pages/productPage/ProductPage";
+import ProductPage from "./pages/productPage/ProductPage.jsx";
 import Brands from "./pages/brands/Brands.jsx";
 import Catalog from "./pages/catalog/Catalog.jsx";
 import NewBrands from "./pages/newBrands/NewBrands.jsx";
