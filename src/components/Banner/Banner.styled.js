@@ -21,8 +21,8 @@ export const SectionBanner = styled.section`
     background-image: url("../../../public/image/Rectangle 17515.png");
   }
 
-  @media screen and (min-width: 376px) {
-    padding: 192px 36px;
+  @media screen and (min-width: 768px) {
+    padding: 192px 120px;
   }
   @media screen and (min-width: 1440px) {
     padding: 170px 220px;
@@ -44,5 +44,3 @@ export const TitleBox = styled.div`
     }
   }
 `;
-
-

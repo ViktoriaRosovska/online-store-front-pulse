@@ -80,11 +80,11 @@ a {
   }
 }
 
-@media screen and (min-width: 376px) and (max-width: 1439px) {
+@media screen and (min-width: 768px) and (max-width: 1439px) {
   .container {
     min-width: 375px;
     max-width: 1440px;
-    padding: 0 36px;
+    padding: 0 120px;
     /* padding???? */
   }
 }
@@ -92,7 +92,6 @@ a {
 @media screen and (min-width: 1440px) {
   .container {
     min-width: 1440px;
-    padding: 0 120px;
   }
 }
 

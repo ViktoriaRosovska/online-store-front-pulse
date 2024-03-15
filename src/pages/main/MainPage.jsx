@@ -2,9 +2,7 @@ import "./main.css";
 import Banner from "../../components/Banner/Banner.jsx";
 import Slider from "../../components/Slider/Slider.jsx";
 import SladerSale from "../../components/slider_sale/SladerSale.jsx";
-import ModalAuth from "../../layout/modals/ModalAuth.jsx";
-import ModalHelp from "../../layout/modals/modalHelp/ModalHelp.jsx";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { host } from "../../http/index.jsx";
 import { Context } from "../../main.jsx";
 import { Link, useNavigate } from "react-router-dom";
@@ -24,8 +22,6 @@ import {
 } from "./MainPage.styled.js";
 
 const Main = observer(() => {
-
-
   const { store } = useContext(Context);
   const navigate = useNavigate();
 
@@ -36,8 +32,6 @@ const Main = observer(() => {
   useEffect(() => {
     host.get("/products").then((res) => store.setProducts(res));
   }, []);
-
-
 
   return (
     <main>
@@ -94,8 +88,6 @@ const Main = observer(() => {
           />
         </div>
       </SectionSale>
-
-
     </main>
   );
 });
