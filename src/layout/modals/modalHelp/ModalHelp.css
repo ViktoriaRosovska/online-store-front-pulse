@@ -1,6 +1,7 @@
 .container_main {
     position: absolute;
-    bottom: 15%;
+    /*bottom: 15%;*/
+    top: -170px;
     width: 780px;
     height: 581px;
     border-radius: 36px;

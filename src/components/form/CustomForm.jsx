@@ -2,6 +2,7 @@ import './CustomForm.css'
 import {Formik, Form} from 'formik'
 import {initialValues, schemas} from "./helper.js";
 import {InputCustom} from "../inputCustom/InputCustom.jsx";
+import {v4 as uuidv4} from 'uuid'
 
 const CustomForm = ({registr, seeMail}) => {
   return (
@@ -9,19 +10,19 @@ const CustomForm = ({registr, seeMail}) => {
       <Form action={''} className='form'>
 
 
-        {registr && <InputCustom label='Імʼя' name='name' id='name' placeholder='Ваше імʼя' type='text'/>}
+        {registr && <InputCustom label='Імʼя' name='name' id={uuidv4()} placeholder='Ваше імʼя' type='text'/>}
 
         {registr  &&
-          <InputCustom label='Прізвище' name='surname' id='surname' placeholder='Ваше прізвище' type='text'/>
+          <InputCustom label='Прізвище' name='surname' id={uuidv4()} placeholder='Ваше прізвище' type='text'/>
         }
 
 
 
-<InputCustom label='Email' name='email' id='email' placeholder='Ваш Email' type='text'/>
-        {!seeMail &&  <InputCustom label='Пароль' name='password' id='password' placeholder='Пароль' type='password' />}
+<InputCustom label='Email' name='email' id={uuidv4()} placeholder='Ваш Email' type='text'/>
+        {!seeMail &&  <InputCustom label='Пароль' name='password' id={uuidv4()} placeholder='Пароль' type='password' />}
 
 
-        {registr && <InputCustom label='Повторити пароль' name='passwordTwo' id='passwordTwo' placeholder='Пароль' type='password' />}
+        {registr && <InputCustom label='Повторити пароль' name='passwordTwo' id={uuidv4()} placeholder='Пароль' type='password' />}
 <button className='custom_form_button' type='submit'>{registr ? 'Реєстрація' : 'Увійти'}</button>
       </Form>
     </Formik>
