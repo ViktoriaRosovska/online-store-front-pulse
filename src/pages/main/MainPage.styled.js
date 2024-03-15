@@ -161,3 +161,65 @@ export const BoxTitle = styled.div`
     }
   }
 `;
+
+export const SectionNews = styled.section``;
+
+export const VectorBox = styled.div`
+  width: 100%;
+  > img {
+    width: 100%;
+  }
+`;
+
+export const SliderBox = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+  background-image: linear-gradient(
+    to bottom,
+    #d9d9d9,
+    #e7e7e7,
+    #eaeff0,
+    #fbfbfb
+  );
+  width: 100%;
+  height: 643px;
+  margin-top: -10px;
+  text-align: center;
+
+  > h2 {
+    font-family: "Beware";
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 1;
+    color: #232323;
+  }
+
+  @media screen and (min-width: 1440px) {
+    > h2 {
+      font-family: var(--tittle-font);
+      font-size: 64px;
+    }
+  }
+`;
+
+export const SectionSale = styled.section`
+  padding-top: 80px;
+
+  > h2 {
+    font-family: "Beware", sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 1;
+    color: #232323;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding-top: 120px;
+
+    > h2 {
+      font-family: "Strong", sans-serif;
+      font-size: 64px;
+    }
+  }
+`;
