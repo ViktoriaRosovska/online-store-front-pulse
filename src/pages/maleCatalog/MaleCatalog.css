@@ -1,0 +1,9 @@
+.manCatalog-aside-list {
+  min-width: 204px;
+  border: 1px solid green;
+}
+
+.checkboxList-item {
+  display: flex;
+  gap: 7px;
+}
