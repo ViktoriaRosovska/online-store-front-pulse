@@ -9,3 +9,15 @@
     user-select:none;
 
 }
+
+@media (max-width: 768px) {
+    .main_block_carausel {
+        width: 600px;
+    }
+}
+
+/*@media (max-width: 500px) {*/
+/*    .main_block_carausel {*/
+/*        width: 500px;*/
+/*    }*/
+/*}*/

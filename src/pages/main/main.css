@@ -1,5 +1,5 @@
-/* .main {
-  background-image: url("../../../image/Rectangle 17516.png");
+.main {
+  background-image: url("../../../public/image/Rectangle 17515.png");
   background-size: 100%;
   width: 100%;
   height: 1024px;
@@ -58,19 +58,19 @@
   /* width: 562px;
   height: 280px;
   /* margin-right: 2%; */
-/* background-image: url("../../../image/image 30.png");
+  /* background-image: url("../../../image/image 30.png");
   cursor: pointer;
 } */
 
-/* .main_man_block {
+.main_man_block {
   width: 562px;
   height: 280px;
   margin-left: 2%;
   margin-right: 21%;
-  background-image: url("../../../image/image 31.png");
+  background-image: url("../../../public/image/image 31.png");
   border-radius: 36px;
 }
-/*  .main_man_block_text:hover {
+*/ .main_man_block_text:hover {
   color: var(--grey-text-color);
   background: var(--white-dark-bg-color);
 }
@@ -85,9 +85,9 @@
   margin-top: 12px;
   text-align: center;
   cursor: pointer;
-} 
+}
 
-/* .line {
+.line {
   width: 115px;
   height: 2px;
   background-color: black;
@@ -99,18 +99,18 @@
   height: 2px;
   background-color: black;
   margin-left: 49px;
-} */
+}
 
-/* .main_vector {
+.main_vector {
   width: 100%;
   margin-top: 120px;
 }
 
 .main_vector img {
   width: 100%;
-} */
+}
 
-/* .main_block_new {
+.main_block_new {
   background-color: #d9d9d9;
   width: 100%;
   height: 643px;
@@ -120,12 +120,11 @@
 .main_block_new h1 {
   font-size: 45px;
   font-weight: normal;
-} */
-/* .slider_sale {
+}
+.slider_sale {
   margin-top: 120px;
   font-weight: normal;
-} */
-
+}
 .text {
   z-index: 2;
 }
@@ -188,3 +187,9 @@
     transform: translateY(80%) translateX(-26%) rotate(-8deg);
   }
 }
+
+/*@media (max-width: 768px) {*/
+/*  .main_block_new .main_block {*/
+/*    width: 40%;*/
+/*  }*/
+/*}*/
