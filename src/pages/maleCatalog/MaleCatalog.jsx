@@ -7,8 +7,9 @@ import { CatalogHeader } from "../../components/CatalogHeader/CatalogHeader.jsx"
 import { Container, ContentWrapper, PageSection } from "../../main.styled.js";
 import { CatalogNavigation } from "../../components/CatalogNavigation/CatalogNavigation.jsx";
 import { CardsList } from "../../components/CardsList/CardsList.jsx";
+import { observer } from "mobx-react-lite";
 
-const MaleCatalog = () => {
+const MaleCatalog = observer(() => {
   const [brandList, setBrandList] = useState([]);
   const [seasonList, setSeasonList] = useState([]);
   const [sizeList, setSizeList] = useState([]);
@@ -27,14 +28,24 @@ const MaleCatalog = () => {
         break;
     }
   };
-
+  const onClearFiltersButton = () => {
+    setBrandList([]);
+    setSeasonList([]);
+    setSizeList([]);
+  };
   return (
     <PageSection>
       <Container>
         <CatalogNavigation title="Чоловіче взуття" />
 
         {/* Компонент фільтрації */}
-        <CatalogHeader brandList={brandList} seasonList={seasonList} sizeList={sizeList} title={"Чоловіче взуття"} />
+        <CatalogHeader
+          brandList={brandList}
+          seasonList={seasonList}
+          sizeList={sizeList}
+          title={"Чоловіче взуття"}
+          onClearFiltersButton={onClearFiltersButton}
+        />
 
         {/* Компонент сторінки */}
         <ContentWrapper>
@@ -44,6 +55,6 @@ const MaleCatalog = () => {
       </Container>
     </PageSection>
   );
-};
+});
 
 export default MaleCatalog;
