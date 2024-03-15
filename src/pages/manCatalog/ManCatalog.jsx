@@ -5,10 +5,6 @@ import Cards from "../../components/Cards/Cards.jsx";
 import "./ManCatalog.css";
 import { brand } from "../../http/ProductsApi.jsx";
 import { Aside } from "../../components/Aside/Aside.jsx";
-// import { PageTitle } from "../../components/Typography/PageTitle.styled.js";
-// import { FilterButton } from "../../components/Buttons/FilterButton/FilterButton.styled.js";
-import { CatalogHeader } from "../../components/CatalogHeader/CatalogHeader.jsx";
-import { Container } from "../../main.styled.js";
 
 const ManCatalog = observer(() => {
   // const refreshPage = () => {
@@ -17,31 +13,12 @@ const ManCatalog = observer(() => {
   const { store } = useContext(Context);
 
   const [asyncData, setAsyncData] = useState([]);
-  const [brandList, setBrandList] = useState([]);
-  const [seasonList, setSeasonList] = useState([]);
-  const [sizeList, setSizeList] = useState([]);
 
-  const onSelectionChanged = (type, items) => {
-    console.log("onSelectionChanged", type, items);
-    switch (type) {
-      case "brand":
-        setBrandList(items);
-        break;
-      case "season":
-        setSeasonList(items);
-        break;
-      case "size":
-        setSizeList(items);
-        break;
-    }
-  };
   // const brand = async () => {
   //   const {data} = await host.get('/products')
   //   return data
   // }
-  // const onShowFilter = () => {
-  //   setShowFilter(!showFilter);
-  // };
+
   useEffect(() => {
     brand().then((res) => setAsyncData(res));
     store.setProducts(asyncData);
@@ -60,17 +37,20 @@ const ManCatalog = observer(() => {
   //  , [])
 
   return (
-    <Container>
+    <div>
       {/* Компонетн навігації */}
       <div className="manCatalog-navigation">
         <a href="/">Головна</a> / Чоловіче взуття
       </div>
       {/* Компонент фільтрації */}
-      <CatalogHeader brandList={brandList} seasonList={seasonList} sizeList={sizeList} />
-
+      <div className="manCatalog-header">
+        <div>Фільтр</div>
+        <h2>Чоловіче взуття</h2>
+        <div>Сортування</div>
+      </div>
       {/* Компонент сторінки */}
       <div className="manCatalog-mainPage">
-        <Aside onChanged={onSelectionChanged} />
+        <Aside />
         <div>
           {asyncData.products
             ?.filter((el) => el.categories.sex !== "female")
@@ -81,7 +61,7 @@ const ManCatalog = observer(() => {
             ))}
         </div>
       </div>
-    </Container>
+    </div>
   );
 });
 

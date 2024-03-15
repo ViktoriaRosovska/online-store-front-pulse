@@ -5,7 +5,7 @@
     border-radius: 36px;
     background-color: #F2F2F2;
     margin: auto;
-    top: 15%;
+    top: 130px;
     left: 33%;
     overflow: auto;
     z-index: 3;
@@ -16,7 +16,7 @@
 
 .modal_auth_on {
     position: absolute;
-    top: 15%;
+    top: 130px;
     width: 780px;
     height: 1041px;
     border-radius: 36px;

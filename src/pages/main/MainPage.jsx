@@ -23,9 +23,8 @@ import {
   WomenBox,
 } from "./MainPage.styled.js";
 
-const Main = observer(({ modal, modalOn }) => {
-  const [seeMail, setSeeMail] = useState(false);
-  const [onModalHelp, setOnModalHelp] = useState(false);
+const Main = observer(() => {
+
 
   const { store } = useContext(Context);
   const navigate = useNavigate();
@@ -38,15 +37,7 @@ const Main = observer(({ modal, modalOn }) => {
     host.get("/products").then((res) => store.setProducts(res));
   }, []);
 
-  const seeOnMail = () => {
-    setSeeMail((e) => !e);
-    setOnModalHelp((e) => !e);
-    modalOn();
-  };
-  const seeOfModalHelp = () => {
-    setSeeMail((e) => !e);
-    setOnModalHelp((e) => !e);
-  };
+
 
   return (
     <main>
@@ -104,21 +95,7 @@ const Main = observer(({ modal, modalOn }) => {
         </div>
       </SectionSale>
 
-      {onModalHelp ? (
-        <ModalHelp
-          seeMail={seeMail}
-          seeOnMail={seeOnMail}
-          onModalHelp={seeOnMail}
-          off={seeOfModalHelp}
-        />
-      ) : (
-        ""
-      )}
-      {modal ? (
-        <ModalAuth modalOn={modalOn} modal={modal} seeOnMail={seeOnMail} />
-      ) : (
-        ""
-      )}
+
     </main>
   );
 });
