@@ -1,7 +1,7 @@
 import Footer from "../../layout/footer/footer";
 import Header from "../../layout/header/header";
 import { Outlet } from "react-router-dom";
-import { SharedLayoutContainer } from "./SharedLayout.stuled";
+import { SharedLayoutContainer } from "./SharedLayout.styled";
 
 function SharedLayout({ modalOn }) {
   return (

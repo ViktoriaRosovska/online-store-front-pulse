@@ -7,5 +7,20 @@ export const FilterButton = styled.button`
   letter-spacing: 0;
   background-color: transparent;
   border: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  height: 26px;
+
+  stroke: var(--black-text-color);
+
+  &:hover {
+    color: var(--grey-text-color);
+    & svg {
+      stroke: var(--grey-text-color);
+    }
+  }
+
   cursor: pointer;
 `;

@@ -1,12 +1,12 @@
-import { Routes, Route } from 'react-router-dom';
-import ManCatalog from "../layout/manCatalog/ManCatalog.jsx";
+import { Routes, Route } from "react-router-dom";
+import MaleCatalog from "../layout/maleCatalog/MaleCatalog.jsx";
 
 const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/api" element={<ManCatalog />} />
+      <Route path="/api" element={<MaleCatalog />} />
     </Routes>
-  )
-}
+  );
+};
 
-export default AppRouter
+export default AppRouter;
