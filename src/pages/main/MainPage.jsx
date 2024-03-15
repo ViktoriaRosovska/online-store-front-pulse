@@ -2,9 +2,7 @@ import "./main.css";
 import Banner from "../../components/Banner/Banner.jsx";
 import Slider from "../../components/Slider/Slider.jsx";
 import SladerSale from "../../components/slider_sale/SladerSale.jsx";
-import ModalAuth from "../../layout/modals/ModalAuth.jsx";
-import ModalHelp from "../../layout/modals/modalHelp/ModalHelp.jsx";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { host } from "../../http/index.jsx";
 import { Context } from "../../main.jsx";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,12 +14,14 @@ import {
   ManBox,
   SectionHero,
   SectionManWomen,
+  SectionNews,
+  SectionSale,
+  SliderBox,
+  VectorBox,
   WomenBox,
 } from "./MainPage.styled.js";
 
 const Main = observer(() => {
-
-
   const { store } = useContext(Context);
   const navigate = useNavigate();
 
@@ -32,8 +32,6 @@ const Main = observer(() => {
   useEffect(() => {
     host.get("/products").then((res) => store.setProducts(res));
   }, []);
-
-
 
   return (
     <main>
@@ -65,18 +63,18 @@ const Main = observer(() => {
           </WomenBox>
         </Link>
       </SectionManWomen>
-
-      <div className="main_vector">
-        <img src="../../../image/Vector%202.png" alt={"vector"} />
-      </div>
-      <div className="main_block_new">
-        <h1>НОВИНКИ</h1>
-        <Slider />
-      </div>
+      <SectionNews>
+        <VectorBox>
+          <img src="../../../image/Vector%202.png" alt="vector" />
+        </VectorBox>
+        <SliderBox>
+          <h2>НОВИНКИ</h2>
+          <Slider />
+        </SliderBox>
+      </SectionNews>
       <Banner />
-
-      <section className="slider_sale_sale">
-        <h1 className="slider_sale">РОЗПРОДАЖ</h1>
+      <SectionSale>
+        <h2>РОЗПРОДАЖ</h2>
         <SladerSale />
         <div className="sale_img_line" id="animal">
           <img
@@ -89,9 +87,7 @@ const Main = observer(() => {
             src="public/icons/Property 1=Default.png"
           />
         </div>
-      </section>
-
-
+      </SectionSale>
     </main>
   );
 });
