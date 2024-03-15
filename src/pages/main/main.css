@@ -1,5 +1,5 @@
 .main {
-  background-image: url("../../../image/Rectangle 17516.png");
+  background-image: url("../../../public/image/Rectangle 17515.png");
   background-size: 100%;
   width: 100%;
   height: 1024px;
@@ -67,7 +67,7 @@
   height: 280px;
   margin-left: 2%;
   margin-right: 21%;
-  background-image: url("../../../image/image 31.png");
+  background-image: url("../../../public/image/image 31.png");
   border-radius: 36px;
 }
 */ .main_man_block_text:hover {
@@ -187,3 +187,9 @@
     transform: translateY(80%) translateX(-26%) rotate(-8deg);
   }
 }
+
+/*@media (max-width: 768px) {*/
+/*  .main_block_new .main_block {*/
+/*    width: 40%;*/
+/*  }*/
+/*}*/
