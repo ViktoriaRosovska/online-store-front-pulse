@@ -16,6 +16,10 @@ import {
   ManBox,
   SectionHero,
   SectionManWomen,
+  SectionNews,
+  SectionSale,
+  SliderBox,
+  VectorBox,
   WomenBox,
 } from "./MainPage.styled.js";
 
@@ -74,18 +78,18 @@ const Main = observer(({ modal, modalOn }) => {
           </WomenBox>
         </Link>
       </SectionManWomen>
-
-      <div className="main_vector">
-        <img src="../../../image/Vector%202.png" alt={"vector"} />
-      </div>
-      <div className="main_block_new">
-        <h1>НОВИНКИ</h1>
-        <Slider />
-      </div>
+      <SectionNews>
+        <VectorBox>
+          <img src="../../../image/Vector%202.png" alt="vector" />
+        </VectorBox>
+        <SliderBox>
+          <h2>НОВИНКИ</h2>
+          <Slider />
+        </SliderBox>
+      </SectionNews>
       <Banner />
-
-      <section className="slider_sale_sale">
-        <h1 className="slider_sale">РОЗПРОДАЖ</h1>
+      <SectionSale>
+        <h2>РОЗПРОДАЖ</h2>
         <SladerSale />
         <div className="sale_img_line" id="animal">
           <img
@@ -98,7 +102,7 @@ const Main = observer(({ modal, modalOn }) => {
             src="public/icons/Property 1=Default.png"
           />
         </div>
-      </section>
+      </SectionSale>
 
       {onModalHelp ? (
         <ModalHelp

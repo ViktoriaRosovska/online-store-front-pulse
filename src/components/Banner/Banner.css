@@ -1,8 +1,8 @@
-.banner {
+/* .banner {
     width: 100%;
     height: 590px;
     border-radius: 36px;
-    background-image: url("../../../../public/image/Rectangle 17515.png");
+    background-image: url("../../../public/image/Rectangle 17515.png");
     background-size: 100%;
     margin-top: 120px;
 }
@@ -15,18 +15,18 @@
 
     /*display: flex;*/
     /*justify-content: flex-start;*/
-}
+/* } */ */
 
-.banner h1 {
+/* .banner h1 {
     font-size: 75px;
     font-weight: normal;
     padding-top: 176px;
-}
+} */
 
-.banner_1 {
+/* .banner_1 { */
 
 
-}
+/* }
 .banner_2 {
     font-size:75px;
     font-weight: normal;
@@ -37,4 +37,4 @@
 .banner_btn {
     margin-top: 36px;
     margin-left: 223px;
-}
+} */
