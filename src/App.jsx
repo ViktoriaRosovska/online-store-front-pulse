@@ -31,8 +31,8 @@ const App = observer(() => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<SharedLayout modalOn={modalOn} />}>
-          <Route index element={<Main modal={modal} modalOn={modalOn} />} />
+        <Route path="/" element={<SharedLayout modalOn={modalOn} modal={modal} />}>
+          <Route index element={<Main />} />
           <Route path={"/man"} element={<MaleCatalog />} />
           <Route path={"/man/:id"} element={<ProductPage />} />
           <Route path={"/woomans"} element={<FemaleCatalog />} />
