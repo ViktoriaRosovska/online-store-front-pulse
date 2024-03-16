@@ -43,7 +43,7 @@
   color: var(--grey-text-color);
   background: var(--white-dark-bg-color);
 }
-*/
+
 
 /* .main_man_woomen {
   width: 100%;
@@ -70,7 +70,7 @@
   background-image: url("../../../public/image/image 31.png");
   border-radius: 36px;
 }
-*/ .main_man_block_text:hover {
+ .main_man_block_text:hover {
   color: var(--grey-text-color);
   background: var(--white-dark-bg-color);
 }
