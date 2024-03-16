@@ -1,12 +1,13 @@
 import { observer } from "mobx-react-lite";
-import { useContext, useEffect, useState } from "react";
-import { Context } from "../main.jsx";
-import { brand, brandNew } from "../http/ProductsApi.jsx";
-import Cards from "../components/Cards/Card.jsx";
+import { useEffect, useState } from "react";
+// import { Context } from "../main.jsx";
+import { brandNew } from "../http/ProductsApi.jsx";
+import Card_slider from "../components/Card_slider/Card_slider";
 
 const AsyncSlider = observer(() => {
-  const { store } = useContext(Context);
+  // const { store } = useContext(Context);
   const [asyncData, setAsyncData] = useState([]);
+  console.log(asyncData);
 
   useEffect(() => {
     brandNew().then((res) => setAsyncData(res));
@@ -14,9 +15,10 @@ const AsyncSlider = observer(() => {
 
   return (
     <>
-      {asyncData?.map((el) => {
-        return <Cards key={el._id} info={el.name} image={el.imgThumbnail} price={el.price} id={el._id} />;
-      })}
+      {asyncData.products &&
+        asyncData.products.map((el) => {
+          return <Card_slider key={el._id} info={el.name} image={el.imgThumbnail} price={el.price} id={el._id} />;
+        })}
     </>
   );
 });
