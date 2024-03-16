@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Container } from "../../main.styled";
+// import { Container } from "../../main.styled";
 
-const FooterContainer = styled(Container)`
+const FooterContainer = styled.div`
   background-color: var(--black-bg-color);
   background-image: url("src/assets/images/footer-background.png");
   background-repeat: no-repeat;

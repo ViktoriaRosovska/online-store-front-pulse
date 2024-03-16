@@ -1,9 +1,11 @@
 import { useReducer, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 import { CheckboxListConrtainer, CheckboxListItems, CheckboxListTitle } from "./CheckboxList.styled";
+import { ReactComponent as DownArrow } from "../../assets/svg/downArrow.svg";
+import { ShowAllCheckboxButton } from "../Buttons/ShowAllCheckboxButton/ShowAllCheckboxButton.styled";
 
 export const CheckboxList = (props) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
 
   // console.log(searchParams.toString());
 
@@ -17,15 +19,17 @@ export const CheckboxList = (props) => {
   const handleInputChange = (e, item) => {
     if (e.target.checked) {
       checked.add(item);
-      searchParams.set("brand", `${item}`);
-      setSearchParams(searchParams);
+      // searchParams.set("brand", `${item}`);
+      // setSearchParams(searchParams);
     } else checked.delete(item);
 
     forceUpdate();
 
     if (props.onChanged) props.onChanged([...checked]);
   };
-  console.log(props.items);
+
+  const getChecked = (item) => checked.has(item);
+
   return (
     <CheckboxListConrtainer>
       <CheckboxListTitle>{props.title}</CheckboxListTitle>
@@ -41,7 +45,7 @@ export const CheckboxList = (props) => {
                   type="checkbox"
                   value={item}
                   id={"cbl_" + item}
-                  // checked={getChecked(item)}
+                  checked={getChecked(item)}
                   onChange={(e) => handleInputChange(e, item)}
                 />
                 <label htmlFor={"cbl_" + item} style={{ display: "inline-block", width: "100%" }}>
@@ -51,7 +55,19 @@ export const CheckboxList = (props) => {
             );
           })}
         {showAllByDefault ? null : (
-          <button onClick={() => setShowAll((prev) => !prev)}>{showAll ? "Сховати ^" : "Показати все v"}</button>
+          <ShowAllCheckboxButton onClick={() => setShowAll((prev) => !prev)}>
+            {showAll ? (
+              <>
+                <span>Сховати</span>
+                <DownArrow className="rotateIcon" />
+              </>
+            ) : (
+              <>
+                <span>Показати все</span>
+                <DownArrow />
+              </>
+            )}
+          </ShowAllCheckboxButton>
         )}
       </CheckboxListItems>
     </CheckboxListConrtainer>

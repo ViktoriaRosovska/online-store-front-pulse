@@ -7,8 +7,8 @@ function Footer() {
   return (
     <footer>
       <FooterContainer>
-        <FooterTittle />
-        <FooterGlass />
+      <FooterTittle />
+      <FooterGlass />
       </FooterContainer>
     </footer>
   );

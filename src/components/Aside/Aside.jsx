@@ -1,15 +1,16 @@
 import { CheckboxList } from "../CheckboxList/CheckboxList";
 import brandList from "../../data/brendList.json";
-import season from "../../data/season.json";
-import size from "../../data/size.json";
+import seasonList from "../../data/seasonList.json";
+import sizeList from "../../data/sizeList.json";
+import { AsideList } from "./Aside.styled";
 
-export const Aside = () => {
+export const Aside = (props) => {
   console.log(brandList);
   return (
-    <div className="manCatalog-aside-list">
-      <CheckboxList items={brandList} title="Брeнд" />
-      <CheckboxList items={season} title="Сезон" />
-      <CheckboxList items={size} title="Розмір" />
-    </div>
+    <AsideList>
+      <CheckboxList items={brandList} title="Брeнд" onChanged={(items) => props.onChanged("brand", items)} />
+      <CheckboxList items={seasonList} title="Сезон" onChanged={(items) => props.onChanged("season", items)} />
+      <CheckboxList items={sizeList} title="Розмір" onChanged={(items) => props.onChanged("size", items)} />
+    </AsideList>
   );
 };

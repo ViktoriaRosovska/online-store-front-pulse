@@ -8,7 +8,7 @@ import { Context } from "./main.jsx";
 import Main from "./pages/main/MainPage";
 import MaleCatalog from "./pages/maleCatalog/MaleCatalog.jsx";
 import FemaleCatalog from "./pages/femaleCatalog/FemaleCatalog.jsx";
-import ProductPage from "./pages/productPage/ProductPage";
+import ProductPage from "./pages/productPage/ProductPage.jsx";
 import Brands from "./pages/brands/Brands.jsx";
 import Catalog from "./pages/catalog/Catalog.jsx";
 import NewBrands from "./pages/newBrands/NewBrands.jsx";
@@ -31,8 +31,8 @@ const App = observer(() => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<SharedLayout modalOn={modalOn} />}>
-          <Route index element={<Main modal={modal} modalOn={modalOn} />} />
+        <Route path="/" element={<SharedLayout modalOn={modalOn} modal={modal} />}>
+          <Route index element={<Main />} />
           <Route path={"/man"} element={<MaleCatalog />} />
           <Route path={"/man/:id"} element={<ProductPage />} />
           <Route path={"/woomans"} element={<FemaleCatalog />} />

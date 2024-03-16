@@ -1,4 +1,4 @@
-import Button from "../Buttons/Button";
+import Button from "../Buttons/CardButton";
 import { SectionBanner, TitleBox } from "./Banner.styled";
 const MyComponent = () => {
   return (
