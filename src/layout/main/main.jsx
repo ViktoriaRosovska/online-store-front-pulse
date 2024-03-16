@@ -25,9 +25,9 @@ const Main = observer(({ modal, modalOn }) => {
 
 
 
-  useEffect(() => {
-    host.get("/products").then((res) => store.setProducts(res));
-  }, []);
+  // useEffect(() => {
+  //   host.get("/products").then((res) => store.setProducts(res));
+  // }, []);
 
 
 

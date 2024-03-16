@@ -18,7 +18,7 @@ const AsyncSlider = observer( () => {
 
   return (
     <>
-      {  asyncData?.map(el => {
+      {  asyncData.products?.map(el => {
           return (
               <Cards key={el._id}  info={el.name} image={el.imgThumbnail}
                                          price={el.price} id={el._id} />

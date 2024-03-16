@@ -6,10 +6,12 @@ const AsyncSliderSale = () => {
   const [sale, setSale] = useState([]);
   useEffect(() => {
     brandSales().then(res => setSale(res))
-  })
+
+  }, [])
+
   return (
     <>
-      {  sale?.map(el => {
+      {  sale.products?.map(el => {
           return (
             <Cards_sale key={el._id}  info={el.name} image={el.imgThumbnail}
                    price={el.price} id={el._id} sale={el.price - el.price * el.sale / 100} />
