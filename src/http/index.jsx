@@ -1,13 +1,7 @@
-import axios from 'axios';
-
-
-
+import axios from "axios";
 
 const host = axios.create({
-  baseURL: 'https://pulse-run-api.onrender.com/api'
+  baseURL: "https://pulse-run-api.onrender.com/api",
 });
 
-
-
-export {host}
-
+export { host };
