@@ -29,4 +29,5 @@ const CardPrice = styled.p`
   font-weight: 400;
   color: var(--black-text-color);
 `;
+
 export { CardWrapper, CardImage, ImageWrapper, CardTitle, TextWrapper, CardPrice };

@@ -77,15 +77,9 @@ const Main = observer(() => {
         <h2>РОЗПРОДАЖ</h2>
         <SladerSale />
         <div className="sale_img_line" id="animal">
-          <img
-            className="sale_line animal_line van"
-            src="public/icons/Property 1=Default.png"
-          />
+          <img className="sale_line animal_line van" src="public/icons/Property 1=Default.png" />
 
-          <img
-            className="sale_line_1 move-right"
-            src="public/icons/Property 1=Default.png"
-          />
+          <img className="sale_line_1 move-right" src="public/icons/Property 1=Default.png" />
         </div>
       </SectionSale>
     </main>

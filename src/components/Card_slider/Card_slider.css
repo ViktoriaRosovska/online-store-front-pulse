@@ -1,0 +1,16 @@
+.card-slider {
+  min-width: 340px;
+  height: 427px;
+  margin-left: 60px;
+  margin-top: 131px;
+}
+
+.card-slider p {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 6px;
+}
+.card-slider img {
+  width: 100%;
+  border-radius: 36px;
+}

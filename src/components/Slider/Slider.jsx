@@ -6,7 +6,6 @@ import { observer } from "mobx-react-lite";
 import AsyncSlider from "../../asyncSlider/AsyncSlider.jsx";
 
 const Slider = observer(() => {
-
   return (
     <>
       <div className="main_block_carausel">
@@ -16,8 +15,6 @@ const Slider = observer(() => {
           <AsyncSlider />
           <AsyncSlider />
         </Carousel>
-
-
       </div>
     </>
   );
