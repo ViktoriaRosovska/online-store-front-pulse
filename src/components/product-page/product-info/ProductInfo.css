@@ -1,0 +1,136 @@
+.product-info {
+  margin-left: 102px;
+  flex-grow: 1;
+}
+
+.product-title {
+  max-width: 236px;
+}
+
+.product-title,
+.product-price {
+  font-size: 24px;
+  margin-bottom: 16px;
+  line-height: 140%;
+}
+
+.product-code-block {
+  margin-bottom: 26px;
+}
+
+.label {
+  font-size: 14px;
+  font-family: "Montserrat";
+  color: var(--grey-bg-color);
+}
+
+.product-code {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.product-price {
+  margin-bottom: 32px;
+}
+
+.product-size-title {
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0.5px;
+  margin-bottom: 28px;
+  color: var(--grey-bg-color);
+  text-decoration: underline;
+}
+
+.product-sizes {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+
+.product-sizes li {
+  width: calc(23.5% - 11px);
+  height: 40px;
+  margin: 0 22px 26px 0;
+  border: 1px solid #000;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 150%;
+  letter-spacing: 1%;
+}
+
+.product-sizes li:nth-child(4n) {
+  margin-right: 0;
+}
+
+.product-sizes li:nth-last-child(-n + 4) {
+  margin-bottom: 28px;
+}
+
+.product-sizes li.active {
+  background-color: black;
+  color: white;
+}
+
+.btn-block {
+  display: flex;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.button__add-to-cart {
+  width: 73.5%;
+  border: none;
+  outline: none;
+  background-color: var(--black-bg-color);
+  color: var(--white-text-color);
+  padding: 19px 0px;
+  border-radius: 16px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.button__add-to-cart:hover {
+  background-color: var(--grey-bg-color);
+}
+
+.favorite__icon {
+  height: 36px;
+  width: 36px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: var(--grey-bg-icon-color);
+  padding: 6px 6px 1px 6px;
+  margin-left: 44px;
+  font-size: 20px;
+  line-height: 150%;
+  letter-spacing: 1%;
+}
+
+.info-list {
+  margin-top: 20px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 26px;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--grey-bg-color);
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.info-icon {
+  margin-right: 22px;
+}
