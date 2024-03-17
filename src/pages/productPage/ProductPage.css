@@ -1,19 +1,8 @@
-.product_page {
-    display: flex;
-    width: 714px;
-    height: 770px;
-    margin-left: 120px;
-    position: relative;
-    top: 173px;
-
-
+.product-page {
+  margin: 81px 0 120px;
 }
 
-.product_page_img_cross {
-    float: right;
-    margin-right: 10px;
-    margin-top: 10px;
-
-
-    border-radius: 16px;
+.product-сontainer {
+  display: flex;
+  margin-top: 66px;
 }

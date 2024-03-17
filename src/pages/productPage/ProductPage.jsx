@@ -1,41 +1,63 @@
 import "./ProductPage.css";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { fetchOneDevice } from "../../http/ProductsApi.jsx";
+import ProductInfo from "../../components/product-page/product-info/ProductInfo.jsx";
+import ProductGallery from "../../components/product-page/product-gallery/ProductGallery.jsx";
+import ProductDescription from "../../components/product-page/product-description/product-description.jsx";
+import ProductCharacteristics from "../../components/product-page/product-characteristics/product-characteristics.jsx";
+import ProductBreadcrumb from "../../components/product-page/product-link/ProductLink.jsx";
 
 const ProductPage = observer(() => {
   const { id } = useParams();
-  // const {store} = useContext(Context)
-  const [cross, setCross] = useState({});
-
-  console.log(id);
-
-  // const fetchOneDevice = async (id) => {
-  //   const {data} = await host.get('products/' + id);
-  //
-  //   return data;
-  // };
+  const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    fetchOneDevice(id).then((res) => {
-      setCross(res);
-    });
-  }, []);
+    fetchOneDevice(id)
+      .then((res) => {
+        setProduct(res);
+      })
+      .catch((error) => {
+        console.error("Ошибка загрузки данных:", error);
+      });
+  }, [id]);
 
-  // console.log(cross.imgGallery?.map(el => el))
+  if (!product) {
+    return <div>Загрузка данных...</div>;
+  }
+
+  const middleIndex = Math.ceil(product.imgGallery.length / 2);
+  const topPhotos = product.imgGallery.slice(0, middleIndex);
+  const bottomPhotos = product.imgGallery.slice(middleIndex);
 
   return (
-    <div className="product_page">
-      <div>
-        {cross.imgGallery?.map((img, i) => (
-          <img
-            className="product_page_img_cross"
-            src={img}
-            key={i}
-            style={{ width: "341px", height: "369px" }}
+    <div className="product-page">
+      <div className="container">
+        <ProductBreadcrumb
+          category={product.categories.sex}
+          productName={product.name}
+        />{" "}
+        <div className="product-сontainer">
+          <ProductGallery topPhotos={topPhotos} bottomPhotos={bottomPhotos} />
+          <ProductInfo
+            productName={product.name}
+            productCode={product._id}
+            productPrice={product.price}
+            productSizes={[
+              "41",
+              "41.5",
+              "42",
+              "42.5",
+              "43",
+              "43.5",
+              "44",
+              "45",
+            ]}
           />
-        ))}
+        </div>
+        <ProductDescription description={product.description} />{" "}
+        <ProductCharacteristics features={product.features} />{" "}
       </div>
     </div>
   );

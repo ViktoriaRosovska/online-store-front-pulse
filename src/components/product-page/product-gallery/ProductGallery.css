@@ -1,0 +1,30 @@
+.product-gallery {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.product-gallery img {
+  max-width: 341px;
+  max-height: 369px;
+  width: 100%;
+  border-radius: 16px;
+}
+
+.top-photos,
+.bottom-photos {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.top-photos {
+  margin-top: 0;
+}
+
+.top-photos img:not(:last-of-type),
+.bottom-photos img:not(:last-of-type) {
+  margin-right: 32px;
+}
