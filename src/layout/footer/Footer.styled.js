@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const FooterContainer = styled.div`
   background-color: var(--black-bg-color);
-  background-image: url("./image/footer-background.png");
+  background-image: url("../../../public/image/footer-background.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-size: 100%;
