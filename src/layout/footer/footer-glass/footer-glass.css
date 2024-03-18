@@ -4,7 +4,7 @@
   backdrop-filter: blur(30px);
   border-top-left-radius: 36px;
   border-top-right-radius: 36px;
-  padding: 24px;
+  padding: 24px 0;
 }
 
 .footer__glass_inner {
@@ -13,4 +13,6 @@
 
 .footer__glass_logo {
   text-align: start;
+  padding: 0;
+  height: 44px;
 }

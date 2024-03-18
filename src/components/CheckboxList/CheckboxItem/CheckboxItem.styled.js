@@ -16,6 +16,7 @@ const CheckboxItemWrapper = styled.div`
   input:checked {
     & + label::before {
       background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.89571 14L0 7.36383L1.22393 5.70478L4.89571 10.6819L12.7761 0L14 1.65904L4.89571 14Z' fill='%230FA51E'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
     }
   }
   label {
