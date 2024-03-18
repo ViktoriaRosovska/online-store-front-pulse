@@ -4,7 +4,6 @@
 }
 
 .footer__tittle {
-  margin-top: 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,6 +15,8 @@
   line-height: 140%;
   color: var(--white-text-color);
   font-family: var(--tittle-font);
+  line-height: 50px;
+  letter-spacing: 0em;
 }
 
 .secondary__tittle-text {
@@ -48,10 +49,10 @@
   color: var(--black-text-color);
   outline: none;
   border: none;
-  padding: 20px 0px;
   font-size: 16px;
-  letter-spacing: 1%;
-  line-height: 150%;
+  letter-spacing: 0.01em;
+  line-height: 24px;
+  padding: 20px 0px;
 }
 
 @media screen and (max-width: 1439px) {

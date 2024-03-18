@@ -91,3 +91,9 @@ a {
 .rotateIcon {
   transform: rotate(180deg);
 }
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
