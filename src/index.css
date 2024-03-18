@@ -91,16 +91,3 @@ a {
 .rotateIcon {
   transform: rotate(180deg);
 }
-
-/* label {
-  position: relative;
-  left: 10px;
-}
-label::before {
-  content: "";
-  width: 16px;
-  height: 16px;
-  border: 1px solid red;
-  position: absolute;
-  left: -20px;
-} */

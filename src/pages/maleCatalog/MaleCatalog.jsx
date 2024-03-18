@@ -13,9 +13,9 @@ const MaleCatalog = observer(() => {
   const [brandList, setBrandList] = useState([]);
   const [seasonList, setSeasonList] = useState([]);
   const [sizeList, setSizeList] = useState([]);
+  const [colorList, setColorList] = useState([]);
 
   const onSelectionChanged = (type, items) => {
-    console.log("onSelectionChanged", type, items);
     switch (type) {
       case "brand":
         setBrandList(items);
@@ -26,12 +26,18 @@ const MaleCatalog = observer(() => {
       case "size":
         setSizeList(items);
         break;
+      case "color":
+        setColorList(items);
+        break;
+      default:
+        break;
     }
   };
   const onClearFiltersButton = () => {
     setBrandList([]);
     setSeasonList([]);
     setSizeList([]);
+    setColorList([]);
   };
   return (
     <PageSection>
@@ -43,13 +49,14 @@ const MaleCatalog = observer(() => {
           brandList={brandList}
           seasonList={seasonList}
           sizeList={sizeList}
+          colorList={colorList}
           title={"Чоловіче взуття"}
           onClearFiltersButton={onClearFiltersButton}
         />
 
         {/* Компонент сторінки */}
         <ContentWrapper>
-          <Aside onChanged={onSelectionChanged} />
+          <Aside selectedBrands={brandList} onChanged={onSelectionChanged} />
           <CardsList />
         </ContentWrapper>
       </Container>
