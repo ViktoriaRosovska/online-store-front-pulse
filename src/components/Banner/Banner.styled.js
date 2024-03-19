@@ -4,7 +4,7 @@ export const SectionBanner = styled.section`
   width: 100%;
   height: 590px;
   border-radius: 36px;
-  background-image: url("../../../public/image/winter-sale-mobile.jpg");
+  background-image: url("/image/winter-sale-mobile.jpg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
@@ -17,8 +17,8 @@ export const SectionBanner = styled.section`
     margin-right: auto;
   }
 
-  @media screen and (min-width: 500px) {
-    background-image: url("../../../public/image/Rectangle 17515.png");
+  @media screen and (min-width: 378px) {
+    background-image: url("/image/Rectangle 17515.png");
   }
 
   @media screen and (min-width: 768px) {
@@ -43,4 +43,7 @@ export const TitleBox = styled.div`
       font-size: 64px;
     }
   }
+`;
+export const ButtonWrapper = styled.div`
+  width: 277px;
 `;

@@ -12,8 +12,8 @@ import {
   BoxHero,
   BoxHeroTitle,
   BoxTitle,
+  MainContent,
   ManBox,
-  // Ribbon,
   SectionHero,
   SectionManWomen,
   SectionNews,
@@ -36,7 +36,7 @@ const Main = observer(() => {
   }, []);
 
   return (
-    <main>
+    <MainContent>
       <SectionHero>
         <div className="container">
           <BoxHero>
@@ -80,11 +80,9 @@ const Main = observer(() => {
         <SladerSale />
       </SectionSale>
       <section className="marquee-centered">
-        {/* <Ribbon> */}
-
         <div className="marquee marquee-rotate-right">
           <div className="track">
-            <div className="content">
+            <div className="marquee-content">
               {/* &nbsp; */}
               <SaleIcon />
               <SaleIcon />
@@ -121,11 +119,9 @@ const Main = observer(() => {
             </div>
           </div>
         </div>
-        {/* </Ribbon> */}
         <div className="marquee marquee-rotate-left">
           <div className="track">
-            <div className="content">
-              {/* &nbsp; */}
+            <div className="marquee-content">
               <SaleIcon />
               <SaleIcon />
               <SaleIcon />
@@ -161,13 +157,8 @@ const Main = observer(() => {
             </div>
           </div>
         </div>
-        <div className="sale_img_line" id="animal">
-          {/* <img className="sale_line animal_line van" src="public/icons/Property 1=Default.png" /> */}
-
-          {/* <img className="sale_line_1 move-right" src="public/icons/Property 1=Default.png" /> */}
-        </div>
       </section>
-    </main>
+    </MainContent>
   );
 });
 

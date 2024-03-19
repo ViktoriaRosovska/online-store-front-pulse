@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+export const MainContent = styled.main`
+  /* padding-bottom: 369px; */
+`;
 export const SectionHero = styled.section`
   background-image: url("../../../image/Rectangle 17516.png");
   background-repeat: no-repeat;
@@ -216,14 +219,4 @@ export const SectionSale = styled.section`
       font-size: 64px;
     }
   }
-`;
-
-export const Ribbon = styled.div`
-  margin-top: 100px;
-  display: flex;
-  align-items: center;
-  height: 80px;
-  background-color: var(--yellow-ribbon-color);
-  transform: rotate(-8.13deg);
-  width: 1986px;
 `;
