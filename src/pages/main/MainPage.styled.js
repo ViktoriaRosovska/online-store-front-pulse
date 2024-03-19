@@ -174,13 +174,7 @@ export const VectorBox = styled.div`
 export const SliderBox = styled.div`
   margin-left: auto;
   margin-right: auto;
-  background-image: linear-gradient(
-    to bottom,
-    #d9d9d9,
-    #e7e7e7,
-    #eaeff0,
-    #fbfbfb
-  );
+  background-image: linear-gradient(to bottom, #d9d9d9, #e7e7e7, #eaeff0, #fbfbfb);
   width: 100%;
   height: 643px;
   margin-top: -10px;
@@ -222,4 +216,14 @@ export const SectionSale = styled.section`
       font-size: 64px;
     }
   }
+`;
+
+export const Ribbon = styled.div`
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  background-color: var(--yellow-ribbon-color);
+  transform: rotate(-8.13deg);
+  width: 1986px;
 `;
