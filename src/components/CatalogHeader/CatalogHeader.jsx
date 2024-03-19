@@ -11,7 +11,11 @@ export const CatalogHeader = (props) => {
   const [showFilter, setShowFilter] = useState(true);
 
   const hasFilter =
-    props.brandList.length + props.sizeList.length + props.colorList.length + props.seasonList.length > 0;
+    props.selectedBrands.length +
+      props.selectedSeasons.length +
+      props.selectedColors.length +
+      props.selectedSizes.length >
+    0;
   if (!hasFilter && !showFilter) setShowFilter(true);
 
   const onToggleFilter = () => {
@@ -35,28 +39,33 @@ export const CatalogHeader = (props) => {
 
         {hasFilter && showFilter ? (
           <FilterWrapper>
-            {Boolean(props.brandList.length) && (
+            {Boolean(props.selectedBrands.length) && (
               <FilterWrapperButton>
-                <CloseBtn /> Брeнд: {props.brandList.join(", ")}
+                <CloseBtn /> Брeнд: {props.selectedBrands.join(", ")}
               </FilterWrapperButton>
             )}
 
-            {Boolean(props.seasonList.length) && (
+            {Boolean(props.selectedSeasons.length) && (
               <FilterWrapperButton>
-                <CloseBtn /> Сезон: {props.seasonList.join(", ")}
+                <CloseBtn /> Сезон: {props.selectedSeasons.join(", ")}
               </FilterWrapperButton>
             )}
-            {Boolean(props.sizeList.length) && (
+            {Boolean(props.selectedSizes.length) && (
               <FilterWrapperButton>
-                <CloseBtn /> Розмір: {props.sizeList.join(", ")}
+                <CloseBtn /> Розмір: {props.selectedSizes.join(", ")}
               </FilterWrapperButton>
             )}
-            {Boolean(props.colorList.length) && (
+            {Boolean(props.selectedColors.length) && (
               <FilterWrapperButton>
-                <CloseBtn /> Колір: {props.colorList.join(", ")}
+                <CloseBtn /> Колір: {props.selectedColors.join(", ")}
               </FilterWrapperButton>
             )}
-            {Boolean(props.brandList.length || props.seasonList.length || props.sizeList.length) && (
+            {Boolean(
+              props.selectedBrands.length ||
+                props.selectedSeasons.length ||
+                props.selectedSizes.length ||
+                props.selectedColors.length
+            ) && (
               <FilterWrapperButton onClick={props.onClearFiltersButton}>
                 Очистити все <CloseBtn />
               </FilterWrapperButton>
