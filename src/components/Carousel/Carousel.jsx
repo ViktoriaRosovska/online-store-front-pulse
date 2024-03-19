@@ -13,14 +13,14 @@ import img2 from '../../../public/icons/White Circular Buttons.png'
 
    const handleLeftArrowClick = () => {
      setOffset((currentOffset) => {
-       const newOffset = currentOffset + 417
+       const newOffset = currentOffset + 817
        return Math.min( newOffset, 0)
      })
    }
    const handleRightArrowClick = () => {
     setOffset((currentOffset) => {
-      const newOffset = currentOffset - 417
-      const maxOffset = -(417 * (pages.length - 1))
+      const newOffset = currentOffset - 817
+      const maxOffset = -(817 * (pages.length - 1))
       return Math.max( newOffset, maxOffset)
     })
    }
@@ -40,7 +40,7 @@ import img2 from '../../../public/icons/White Circular Buttons.png'
          })
        })
      )
-   }, [])
+   }, [children])
 
   
 

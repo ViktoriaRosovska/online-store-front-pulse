@@ -1,3 +1,4 @@
 .main_block_carausel {
-    z-index: 3;
+    width: 100%;
+    max-width: 1370px;
 }

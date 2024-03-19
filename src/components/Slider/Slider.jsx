@@ -8,14 +8,14 @@ import AsyncSlider from "../../asyncSlider/AsyncSlider.jsx";
 const Slider = observer(() => {
   return (
     <>
-      <div className="main_block_carausel">
+
         <Carousel>
           <AsyncSlider />
           <AsyncSlider />
           <AsyncSlider />
           <AsyncSlider />
         </Carousel>
-      </div>
+
     </>
   );
 });

@@ -1,31 +1,32 @@
 import { useEffect, useState } from "react";
-import { brandSales } from "../../http/ProductsApi.jsx";
-import Cards_sale from "../Cards_sale/Cards_sale.jsx";
+import { brandSales} from "../../http/ProductsApi.jsx";
+import CardsSale from "../Cards_sale/Cards_sale.jsx";
 
-const AsyncSliderSale = () => {
+const AsyncSliderSale =  () => {
   const [sale, setSale] = useState([]);
-  console.log(sale);
+
   useEffect(() => {
     brandSales().then((res) => setSale(res));
   }, []);
 
   return (
-    <div>
-      {sale.products &&
-        sale.products.map((el) => {
-          return (
-            <Cards_sale
+    <>
+      {
+        sale.products?.map((el) => {
+
+          return (   <CardsSale
               key={el._id}
               info={el.name}
               image={el.imgThumbnail}
               price={el.price}
               id={el._id}
-              sale={el.price - (el.price * el.sale) / 100}
+              sale={Math.round(el.price - (el.price * el.sale) / 100)}
+              sales={el.sale}
             />
           );
         })}
-    </div>
+    </>
   );
-};
+}
 
 export default AsyncSliderSale;

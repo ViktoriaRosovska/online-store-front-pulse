@@ -2,9 +2,9 @@ import "./main.css";
 import Banner from "../../components/Banner/Banner.jsx";
 import Slider from "../../components/Slider/Slider.jsx";
 import SladerSale from "../../components/slider_sale/SladerSale.jsx";
-import { useContext, useEffect } from "react";
-import { host } from "../../http/index.jsx";
-import { Context } from "../../main.jsx";
+// import { useContext, useEffect } from "react";
+// import { host } from "../../http/index.jsx";
+// import { Context } from "../../main.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import {
@@ -20,18 +20,19 @@ import {
   VectorBox,
   WomenBox,
 } from "./MainPage.styled.js";
+import Cards_sale from "../../components/Cards_sale/Cards_sale.jsx";
 
 const Main = observer(() => {
-  const { store } = useContext(Context);
+  // const { store } = useContext(Context);
   const navigate = useNavigate();
 
   const navFunc = () => {
     navigate("/catalog");
   };
 
-  useEffect(() => {
-    host.get("/products").then((res) => store.setProducts(res));
-  }, []);
+  // useEffect(() => {
+  //   host.get("/products").then((res) => store.setProducts(res));
+  // }, []);
 
   return (
     <main>
@@ -63,10 +64,11 @@ const Main = observer(() => {
           </WomenBox>
         </Link>
       </SectionManWomen>
+      <VectorBox>
+        <img src="../../../image/Vector%202.png" alt="vector" />
+      </VectorBox>
       <SectionNews>
-        <VectorBox>
-          <img src="../../../image/Vector%202.png" alt="vector" />
-        </VectorBox>
+
         <SliderBox>
           <h2>НОВИНКИ</h2>
           <Slider />
@@ -82,6 +84,7 @@ const Main = observer(() => {
           <img className="sale_line_1 move-right" src="public/icons/Property 1=Default.png" />
         </div>
       </SectionSale>
+
     </main>
   );
 });
