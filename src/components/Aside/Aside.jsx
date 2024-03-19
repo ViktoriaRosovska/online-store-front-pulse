@@ -14,9 +14,24 @@ export const Aside = (props) => {
         checked={props.selectedBrands}
         onChanged={(items) => props.onChanged("brand", items)}
       />
-      <CheckboxList items={seasonList} title="Сезон" onChanged={(items) => props.onChanged("season", items)} />
-      <CheckboxList items={sizeList} title="Розмір" onChanged={(items) => props.onChanged("size", items)} />
-      <CheckboxList items={colorList} title="Колір" onChanged={(items) => props.onChanged("color", items)} />
+      <CheckboxList
+        items={seasonList}
+        title="Сезон"
+        checked={props.selectedSeasons}
+        onChanged={(items) => props.onChanged("season", items)}
+      />
+      <CheckboxList
+        items={sizeList}
+        title="Розмір"
+        checked={props.selectedSizes}
+        onChanged={(items) => props.onChanged("size", items)}
+      />
+      <CheckboxList
+        items={colorList}
+        title="Колір"
+        checked={props.selectedColors}
+        onChanged={(items) => props.onChanged("color", items)}
+      />
     </AsideList>
   );
 };

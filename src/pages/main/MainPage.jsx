@@ -7,10 +7,12 @@ import { host } from "../../http/index.jsx";
 import { Context } from "../../main.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+import { ReactComponent as SaleIcon } from "../../assets/svg/saleIcon.svg";
 import {
   BoxHero,
   BoxHeroTitle,
   BoxTitle,
+  MainContent,
   ManBox,
   SectionHero,
   SectionManWomen,
@@ -34,7 +36,7 @@ const Main = observer(() => {
   }, []);
 
   return (
-    <main>
+    <MainContent>
       <SectionHero>
         <div className="container">
           <BoxHero>
@@ -76,13 +78,87 @@ const Main = observer(() => {
       <SectionSale>
         <h2>РОЗПРОДАЖ</h2>
         <SladerSale />
-        <div className="sale_img_line" id="animal">
-          <img className="sale_line animal_line van" src="public/icons/Property 1=Default.png" />
-
-          <img className="sale_line_1 move-right" src="public/icons/Property 1=Default.png" />
-        </div>
       </SectionSale>
-    </main>
+      <section className="marquee-centered">
+        <div className="marquee marquee-rotate-right">
+          <div className="track">
+            <div className="marquee-content">
+              {/* &nbsp; */}
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+            </div>
+          </div>
+        </div>
+        <div className="marquee marquee-rotate-left">
+          <div className="track">
+            <div className="marquee-content">
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+            </div>
+          </div>
+        </div>
+      </section>
+    </MainContent>
   );
 });
 

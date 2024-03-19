@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+export const MainContent = styled.main`
+  /* padding-bottom: 369px; */
+`;
 export const SectionHero = styled.section`
   background-image: url("../../../image/Rectangle 17516.png");
   background-repeat: no-repeat;
@@ -174,13 +177,7 @@ export const VectorBox = styled.div`
 export const SliderBox = styled.div`
   margin-left: auto;
   margin-right: auto;
-  background-image: linear-gradient(
-    to bottom,
-    #d9d9d9,
-    #e7e7e7,
-    #eaeff0,
-    #fbfbfb
-  );
+  background-image: linear-gradient(to bottom, #d9d9d9, #e7e7e7, #eaeff0, #fbfbfb);
   width: 100%;
   height: 643px;
   margin-top: -10px;
