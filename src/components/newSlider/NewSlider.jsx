@@ -8,7 +8,7 @@ import CardsSale from "../Cards_sale/Cards_sale.jsx";
 
 
 
-
+const resWidth =   window.innerWidth
 
 register()
 const NewSlider = () => {
@@ -31,7 +31,7 @@ const NewSlider = () => {
         pagination={{clickable: true}}
 
 
-        slides-per-view="3"
+        slides-per-view={resWidth < 600 ? 1 : 3}
 
         loading="lazy"
         style={{

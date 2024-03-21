@@ -3,6 +3,7 @@ import {brandNew} from "../../http/ProductsApi.jsx";
 import Card_slider from "../Card_slider/Card_slider.jsx";
 
 const OneSlider = () => {
+  const resWidth =   window.innerWidth
 
 
   const [sale, setSale] = useState([]);
@@ -20,7 +21,7 @@ const OneSlider = () => {
           pagination={{clickable: true}}
 
 
-          slides-per-view="3"
+          slides-per-view={resWidth < 600 ? 1 : 3}
 
           loading="lazy"
           style={{
