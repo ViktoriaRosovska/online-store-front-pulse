@@ -17,7 +17,7 @@ const OneSlider = () => {
         <swiper-container
 
           spaceBetween={10}
-          navigation={{nextEl: 'next'}}
+          navigation={resWidth < 500 ? "false" : "true"}
           pagination={{clickable: true}}
 
 
