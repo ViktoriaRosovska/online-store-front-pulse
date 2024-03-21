@@ -10,28 +10,34 @@ import { CardsList } from "../../components/CardsList/CardsList.jsx";
 import { observer } from "mobx-react-lite";
 
 const MaleCatalog = observer(() => {
-  const [brandList, setBrandList] = useState([]);
-  const [seasonList, setSeasonList] = useState([]);
-  const [sizeList, setSizeList] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedSeasons, setSelectedSeasons] = useState([]);
+  const [selectedSizes, setselectedSizes] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
 
   const onSelectionChanged = (type, items) => {
-    console.log("onSelectionChanged", type, items);
     switch (type) {
       case "brand":
-        setBrandList(items);
+        setSelectedBrands(items);
         break;
       case "season":
-        setSeasonList(items);
+        setSelectedSeasons(items);
         break;
       case "size":
-        setSizeList(items);
+        setselectedSizes(items);
+        break;
+      case "color":
+        setSelectedColors(items);
+        break;
+      default:
         break;
     }
   };
   const onClearFiltersButton = () => {
-    setBrandList([]);
-    setSeasonList([]);
-    setSizeList([]);
+    setSelectedBrands([]);
+    setSelectedSeasons([]);
+    setselectedSizes([]);
+    setSelectedColors([]);
   };
   return (
     <PageSection>
@@ -40,16 +46,23 @@ const MaleCatalog = observer(() => {
 
         {/* Компонент фільтрації */}
         <CatalogHeader
-          brandList={brandList}
-          seasonList={seasonList}
-          sizeList={sizeList}
+          selectedBrands={selectedBrands}
+          selectedSeasons={selectedSeasons}
+          selectedSizes={selectedSizes}
+          selectedColors={selectedColors}
           title={"Чоловіче взуття"}
           onClearFiltersButton={onClearFiltersButton}
         />
 
         {/* Компонент сторінки */}
         <ContentWrapper>
-          <Aside onChanged={onSelectionChanged} />
+          <Aside
+            selectedBrands={selectedBrands}
+            selectedSizes={selectedSizes}
+            selectedSeasons={selectedSeasons}
+            selectedColors={selectedColors}
+            onChanged={onSelectionChanged}
+          />
           <CardsList />
         </ContentWrapper>
       </Container>

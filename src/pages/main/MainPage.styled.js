@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+export const MainContent = styled.main`
+  /* padding-bottom: 369px; */
+`;
 export const SectionHero = styled.section`
   background-image: url("../../../image/Rectangle 17516.png");
   background-repeat: no-repeat;
@@ -162,35 +165,20 @@ export const BoxTitle = styled.div`
   }
 `;
 
-export const SectionNews = styled.section`
-    background-image: linear-gradient(
-      to bottom,
-      #d9d9d9,
-      #e7e7e7,
-      #eaeff0,
-      #fbfbfb
-    );
-   
-   background-size: cover;
-    
-
-`;
+export const SectionNews = styled.section``;
 
 export const VectorBox = styled.div`
   width: 100%;
   > img {
     width: 100%;
   }
-   
 `;
 
 export const SliderBox = styled.div`
   margin-left: auto;
   margin-right: auto;
-  
+  background-image: linear-gradient(to bottom, #d9d9d9, #e7e7e7, #eaeff0, #fbfbfb);
   width: 100%;
-    max-width: 1370px;
-   
   height: 643px;
   margin-top: -10px;
   text-align: center;
@@ -213,14 +201,6 @@ export const SliderBox = styled.div`
 
 export const SectionSale = styled.section`
   padding-top: 80px;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    width: 100%;
-    max-width: 1370px;
-
-    
 
   > h2 {
     font-family: "Beware", sans-serif;

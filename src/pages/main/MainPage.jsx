@@ -2,15 +2,17 @@ import "./main.css";
 import Banner from "../../components/Banner/Banner.jsx";
 import Slider from "../../components/Slider/Slider.jsx";
 import SladerSale from "../../components/slider_sale/SladerSale.jsx";
-// import { useContext, useEffect } from "react";
-// import { host } from "../../http/index.jsx";
-// import { Context } from "../../main.jsx";
+import { useContext, useEffect } from "react";
+import { host } from "../../http/index.jsx";
+import { Context } from "../../main.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+import { ReactComponent as SaleIcon } from "../../assets/svg/saleIcon.svg";
 import {
   BoxHero,
   BoxHeroTitle,
   BoxTitle,
+  MainContent,
   ManBox,
   SectionHero,
   SectionManWomen,
@@ -20,24 +22,21 @@ import {
   VectorBox,
   WomenBox,
 } from "./MainPage.styled.js";
-import Cards_sale from "../../components/Cards_sale/Cards_sale.jsx";
-import NewSlider from "../../components/newSlider/NewSlider.jsx";
-import OneSlider from "../../components/newSlider/OneSlider.jsx";
 
 const Main = observer(() => {
-  // const { store } = useContext(Context);
+  const { store } = useContext(Context);
   const navigate = useNavigate();
 
   const navFunc = () => {
     navigate("/catalog");
   };
 
-  // useEffect(() => {
-  //   host.get("/products").then((res) => store.setProducts(res));
-  // }, []);
+  useEffect(() => {
+    host.get("/products").then((res) => store.setProducts(res));
+  }, []);
 
   return (
-    <main>
+    <MainContent>
       <SectionHero>
         <div className="container">
           <BoxHero>
@@ -66,29 +65,100 @@ const Main = observer(() => {
           </WomenBox>
         </Link>
       </SectionManWomen>
-      <VectorBox>
-        <img src="../../../image/Vector%202.png" alt="vector" />
-      </VectorBox>
       <SectionNews>
-
+        <VectorBox>
+          <img src="../../../image/Vector%202.png" alt="vector" />
+        </VectorBox>
         <SliderBox>
-          <h2>Новинки</h2>
-         <OneSlider/>
+          <h2>НОВИНКИ</h2>
+          <Slider />
         </SliderBox>
       </SectionNews>
       <Banner />
       <SectionSale>
-        <h2>Розпродаж</h2>
-        <NewSlider />
-        {/*<SladerSale />*/}
-        <div className="sale_img_line" id="animal">
-          <img className="sale_line animal_line van" src="public/icons/Property 1=Default.png" />
-
-          <img className="sale_line_1 move-right" src="public/icons/Property 1=Default.png" />
-        </div>
+        <h2>РОЗПРОДАЖ</h2>
+        <SladerSale />
       </SectionSale>
-
-    </main>
+      <section className="marquee-centered">
+        <div className="marquee marquee-rotate-right">
+          <div className="track">
+            <div className="marquee-content">
+              {/* &nbsp; */}
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+            </div>
+          </div>
+        </div>
+        <div className="marquee marquee-rotate-left">
+          <div className="track">
+            <div className="marquee-content">
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+            </div>
+          </div>
+        </div>
+      </section>
+    </MainContent>
   );
 });
 

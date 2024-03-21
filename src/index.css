@@ -39,6 +39,7 @@
   --blue-bg-color: #495c80;
   --red-color: #ed2424;
   --yellow-color: #f5ed1d;
+  --yellow-ribbon-color: #fef746;
   --grey-bg-icon-color: #f5f5f5;
 
   --tittle-font: "Strong", sans-serif;
@@ -92,15 +93,8 @@ a {
   transform: rotate(180deg);
 }
 
-/* label {
-  position: relative;
-  left: 10px;
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
-label::before {
-  content: "";
-  width: 16px;
-  height: 16px;
-  border: 1px solid red;
-  position: absolute;
-  left: -20px;
-} */
