@@ -14,13 +14,13 @@
 .card-slider img {
   width: 100%;
   height: 100%;
-  border-radius: 36px;
+  border-radius: 16px;
   margin-bottom: 12px;
 }
 .loves {
   position: absolute;
   top: 105px;
-  margin-left: -40px;
+  margin-left: 135px;
   margin-top: -35px;
   color: black;
 }
