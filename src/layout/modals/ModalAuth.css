@@ -164,6 +164,7 @@ display: flex;
 }
 
 .modal_auth_container_social {
+    display: flex;
     width: 192px;
     height: 80px;
     margin-left: 323px;
