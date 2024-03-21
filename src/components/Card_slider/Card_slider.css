@@ -1,8 +1,9 @@
 .card-slider {
-  min-width: 340px;
+
+  width: 340px;
   height: 287px;
   margin-left: 60px;
-  margin-top: 131px;
+  margin-top: 50px;
 }
 
 .card-slider p {
@@ -18,7 +19,7 @@
 }
 .loves {
   position: absolute;
-  top: 190px;
+  top: 105px;
   margin-left: -40px;
   margin-top: -35px;
   color: black;

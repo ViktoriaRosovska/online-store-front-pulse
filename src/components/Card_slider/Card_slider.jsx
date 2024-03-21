@@ -20,7 +20,7 @@ const Card_slider = ({ info, image, price, id }) => {
 
       <p>{info}</p>
       <p>{`${price} грн`}</p>
-      <CardButton text={"Купити"} click={aLink} />
+      <CardButton style={{width: "285px", height: "30px"}} text={"Купити"} click={aLink} />
     </div>
   );
 };

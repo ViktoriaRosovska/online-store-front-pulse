@@ -21,6 +21,8 @@ import {
   WomenBox,
 } from "./MainPage.styled.js";
 import Cards_sale from "../../components/Cards_sale/Cards_sale.jsx";
+import NewSlider from "../../components/newSlider/NewSlider.jsx";
+import OneSlider from "../../components/newSlider/OneSlider.jsx";
 
 const Main = observer(() => {
   // const { store } = useContext(Context);
@@ -70,14 +72,15 @@ const Main = observer(() => {
       <SectionNews>
 
         <SliderBox>
-          <h2>НОВИНКИ</h2>
-          <Slider />
+          <h2>Новинки</h2>
+         <OneSlider/>
         </SliderBox>
       </SectionNews>
       <Banner />
       <SectionSale>
-        <h2>РОЗПРОДАЖ</h2>
-        <SladerSale />
+        <h2>Розпродаж</h2>
+        <NewSlider />
+        {/*<SladerSale />*/}
         <div className="sale_img_line" id="animal">
           <img className="sale_line animal_line van" src="public/icons/Property 1=Default.png" />
 

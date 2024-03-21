@@ -22,7 +22,7 @@ const CardsSale = ({ image, info, price, sale, id, sales }) => {
         <p className="card_info">{info}</p>
         <span className="card_price">{`${price} грн`} </span>
         <span className="card_price-sale">{`${sale} грн`}</span>
-        <Button text={"Купити"} click={aLink}/>
+        <Button style={{width: "285px", height: "30px"}} text={"Купити"} click={aLink}/>
       </div>
     </>
   );

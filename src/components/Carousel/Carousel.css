@@ -25,7 +25,8 @@ width: 100%;
 }
 
 .all_pages_container {
-  height: 100%;
+  /*height: 100%;*/
+  height: 500px;
   width: 100%;
   max-width: 1364px;
   display: flex;
@@ -46,6 +47,17 @@ width: 100%;
 .arrow_r {
   cursor: pointer;
   margin-left: 22px;
+}
+
+.indexContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.indexBox {
+  margin: 0 3px;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 /*@media (max-width: 768px) {*/

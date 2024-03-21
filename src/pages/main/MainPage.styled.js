@@ -170,6 +170,7 @@ export const SectionNews = styled.section`
       #eaeff0,
       #fbfbfb
     );
+   
    background-size: cover;
     
 

@@ -41,8 +41,11 @@ import img2 from '../../../public/icons/White Circular Buttons.png'
        })
      )
    }, [children])
+console.log(pages)
+  const clickImageBox = (index) => {
+    setOffset(index )
 
-  
+  }
 
   return (
 <div className='main_container'>
@@ -53,6 +56,12 @@ import img2 from '../../../public/icons/White Circular Buttons.png'
     }}>
       {pages}
   </div>
+    <div className={'indexContainer'}  >
+      {pages.map((img, index) =>  {
+        return <div
+         className={'indexBox'} key={index} onClick={() => clickImageBox(index)}>{index}</div>
+      })}
+    </div>
 
 </div>
   <img src={img} className='arrow_r' onClick={handleRightArrowClick}/>
