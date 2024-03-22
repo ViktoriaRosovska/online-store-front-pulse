@@ -7,36 +7,59 @@ import { CatalogNavigation } from "../../components/CatalogNavigation/CatalogNav
 import { CardsList } from "../../components/CardsList/CardsList.jsx";
 
 const FemaleCatalog = () => {
-  const [brandList, setBrandList] = useState([]);
-  const [seasonList, setSeasonList] = useState([]);
-  const [sizeList, setSizeList] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedSeasons, setSelectedSeasons] = useState([]);
+  const [selectedSizes, setselectedSizes] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
 
   const onSelectionChanged = (type, items) => {
-    console.log("onSelectionChanged", type, items);
     switch (type) {
       case "brand":
-        setBrandList(items);
+        setSelectedBrands(items);
         break;
       case "season":
-        setSeasonList(items);
+        setSelectedSeasons(items);
         break;
       case "size":
-        setSizeList(items);
+        setselectedSizes(items);
+        break;
+      case "color":
+        setSelectedColors(items);
+        break;
+      default:
         break;
     }
   };
-
+  const onClearFiltersButton = () => {
+    setSelectedBrands([]);
+    setSelectedSeasons([]);
+    setselectedSizes([]);
+    setSelectedColors([]);
+  };
   return (
     <PageSection>
       <Container>
         <CatalogNavigation title="Жіноче взуття" />
 
         {/* Компонент фільтрації */}
-        <CatalogHeader brandList={brandList} seasonList={seasonList} sizeList={sizeList} title={"Жіноче взуття"} />
+        <CatalogHeader
+          selectedBrands={selectedBrands}
+          selectedSeasons={selectedSeasons}
+          selectedSizes={selectedSizes}
+          selectedColors={selectedColors}
+          onClearFiltersButton={onClearFiltersButton}
+          title={"Жіноче взуття"}
+        />
 
         {/* Компонент сторінки */}
         <ContentWrapper>
-          <Aside onChanged={onSelectionChanged} />
+          <Aside
+            selectedBrands={selectedBrands}
+            selectedSizes={selectedSizes}
+            selectedSeasons={selectedSeasons}
+            selectedColors={selectedColors}
+            onChanged={onSelectionChanged}
+          />
           {/* дістати жіночі дані */}
           <CardsList />
         </ContentWrapper>

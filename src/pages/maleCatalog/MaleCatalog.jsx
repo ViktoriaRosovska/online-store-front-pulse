@@ -63,6 +63,7 @@ const MaleCatalog = observer(() => {
             selectedColors={selectedColors}
             onChanged={onSelectionChanged}
           />
+          {/* Дістати чоловічі дані */}
           <CardsList />
         </ContentWrapper>
       </Container>
