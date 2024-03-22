@@ -32,9 +32,7 @@ export const famale = async () => {
   return data;
 };
 
-export const querySearch = async (sex = "", brands = "", seasons = "", sizes = "", colors = "") => {
-  const { data } = await host.get(
-    `/products?sex=${sex}&brand=${brands}&season=${seasons}&size=${sizes}&color=${colors}`
-  );
+export const querySearch = async (sex = "", brand = "", season = "", size = "", color = "") => {
+  const { data } = await host.get(`/products?sex=${sex}&brand=${brand}&season=${season}&size=${size}&color=${color}`);
   return data;
 };
