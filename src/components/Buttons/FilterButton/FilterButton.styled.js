@@ -9,12 +9,14 @@ export const FilterButton = styled.button`
   border: none;
   display: flex;
   align-items: center;
-  gap: 12px;
+  /* gap: 12px; */
   padding: 0;
   height: 26px;
 
   stroke: var(--black-text-color);
-
+  & svg {
+    margin-right: 12px;
+  }
   &:hover {
     color: var(--grey-text-color);
     & svg {

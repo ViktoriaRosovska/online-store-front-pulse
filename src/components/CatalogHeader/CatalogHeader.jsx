@@ -5,11 +5,16 @@ import { CatalogHeaderContainer, FilterWrapper, FilterWrapperButton } from "./Ca
 import { ReactComponent as FilterIcon } from "../../assets/svg/filter.svg";
 import { ReactComponent as SortIcon } from "../../assets/svg/sortIcon.svg";
 import { ReactComponent as CloseBtn } from "../../assets/svg/closeBtn.svg";
+import { ReactComponent as DownArrow } from "../../assets/svg/downArrow.svg";
 import { useState } from "react";
-
+import "./sort-select.css";
 export const CatalogHeader = (props) => {
   const [showFilter, setShowFilter] = useState(true);
-
+  const [selectSortValue, setSelectSortValue] = useState("");
+  const [showSelect, setShowSelect] = useState(false);
+  const [showSelectMenu, setShowSelectMenu] = useState(false);
+  console.log(selectSortValue);
+  console.log(showSelect);
   const hasFilter =
     props.selectedBrands.length +
       props.selectedSeasons.length +
@@ -23,56 +28,127 @@ export const CatalogHeader = (props) => {
   };
 
   return (
-    <>
-      <CatalogHeaderContainer>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
-          <FilterButton onClick={onToggleFilter}>
-            <FilterIcon />
-            Фільтр
-          </FilterButton>
-          <PageTitle>{props.title}</PageTitle>
-          <FilterButton>
-            <SortIcon />
-            Сортування
-          </FilterButton>
-        </div>
+    <CatalogHeaderContainer>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "24px",
+          position: "relative",
+        }}
+      >
+        <FilterButton onClick={onToggleFilter}>
+          <FilterIcon />
+          Фільтр
+        </FilterButton>
+        <PageTitle>{props.title}</PageTitle>
+        <FilterButton
+          onClick={() => {
+            setShowSelectMenu(!showSelectMenu);
+          }}
+        >
+          <SortIcon />
+          Сортування
+          {Boolean(showSelect) && (
+            <div className="sort-result">
+              <span>:</span>
+              <div className="sort-result-item">
+                {selectSortValue} <DownArrow />
+              </div>
+              <select
+                onChange={(e) => {
+                  setSelectSortValue(e.target.value);
+                }}
+                onClick={() => {
+                  setShowSelectMenu(!showSelectMenu);
+                }}
+                className="sort-select"
+                value={selectSortValue}
+              >
+                <option value={"Новинки"} className="optionSelect">
+                  Новинки
+                </option>
+                <option value={"Від дешевших"} className="optionSelect">
+                  Від дешевших
+                </option>
+                <option value={"Від дорожчих"} className="optionSelect">
+                  Від дорожчих
+                </option>
+              </select>
+            </div>
+          )}
+        </FilterButton>
+        {Boolean(showSelectMenu) && (
+          <div className="select-menu-wrapper">
+            <ul>
+              <li
+                onClick={() => {
+                  setSelectSortValue("Новинки");
+                  setShowSelectMenu(false);
+                  setShowSelect(true);
+                }}
+              >
+                Новинки
+              </li>
+              <li
+                onClick={() => {
+                  setSelectSortValue("Від дешевших");
+                  setShowSelectMenu(false);
+                  setShowSelect(true);
+                }}
+              >
+                Від дешевших
+              </li>
+              <li
+                onClick={() => {
+                  setSelectSortValue("Від дорожчих");
+                  setShowSelectMenu(false);
+                  setShowSelect(true);
+                }}
+              >
+                Від дорожчих
+              </li>
+            </ul>
+          </div>
+        )}
+      </div>
 
-        {hasFilter && showFilter ? (
-          <FilterWrapper>
-            {Boolean(props.selectedBrands.length) && (
-              <FilterWrapperButton>
-                <CloseBtn /> Брeнд: {props.selectedBrands.join(", ")}
-              </FilterWrapperButton>
-            )}
+      {hasFilter && showFilter ? (
+        <FilterWrapper>
+          {Boolean(props.selectedBrands.length) && (
+            <FilterWrapperButton>
+              <CloseBtn /> Брeнд: {props.selectedBrands.join(", ")}
+            </FilterWrapperButton>
+          )}
 
-            {Boolean(props.selectedSeasons.length) && (
-              <FilterWrapperButton>
-                <CloseBtn /> Сезон: {props.selectedSeasons.join(", ")}
-              </FilterWrapperButton>
-            )}
-            {Boolean(props.selectedSizes.length) && (
-              <FilterWrapperButton>
-                <CloseBtn /> Розмір: {props.selectedSizes.join(", ")}
-              </FilterWrapperButton>
-            )}
-            {Boolean(props.selectedColors.length) && (
-              <FilterWrapperButton>
-                <CloseBtn /> Колір: {props.selectedColors.join(", ")}
-              </FilterWrapperButton>
-            )}
-            {Boolean(
-              props.selectedBrands.length ||
-                props.selectedSeasons.length ||
-                props.selectedSizes.length ||
-                props.selectedColors.length
-            ) && (
-              <FilterWrapperButton onClick={props.onClearFiltersButton}>
-                Очистити все <CloseBtn />
-              </FilterWrapperButton>
-            )}
-          </FilterWrapper>
-        ) : null}
-      </CatalogHeaderContainer>
-    </>
+          {Boolean(props.selectedSeasons.length) && (
+            <FilterWrapperButton>
+              <CloseBtn /> Сезон: {props.selectedSeasons.join(", ")}
+            </FilterWrapperButton>
+          )}
+          {Boolean(props.selectedSizes.length) && (
+            <FilterWrapperButton>
+              <CloseBtn /> Розмір: {props.selectedSizes.join(", ")}
+            </FilterWrapperButton>
+          )}
+          {Boolean(props.selectedColors.length) && (
+            <FilterWrapperButton>
+              <CloseBtn /> Колір: {props.selectedColors.join(", ")}
+            </FilterWrapperButton>
+          )}
+          {Boolean(
+            props.selectedBrands.length ||
+              props.selectedSeasons.length ||
+              props.selectedSizes.length ||
+              props.selectedColors.length
+          ) && (
+            <FilterWrapperButton onClick={props.onClearFiltersButton}>
+              Очистити все <CloseBtn />
+            </FilterWrapperButton>
+          )}
+        </FilterWrapper>
+      ) : null}
+    </CatalogHeaderContainer>
   );
 };

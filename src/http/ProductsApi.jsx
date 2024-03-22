@@ -31,3 +31,8 @@ export const female = async () => {
   const { data } = await host.get("/products?sex=female");
   return data;
 };
+
+export const querySearch = async (sex = "", brand = "", season = "", size = "", color = "") => {
+  const { data } = await host.get(`/products?sex=${sex}&brand=${brand}&season=${season}&size=${size}&color=${color}`);
+  return data;
+};
