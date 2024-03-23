@@ -5,7 +5,7 @@ import { CatalogHeaderContainer, FilterWrapper, FilterWrapperButton } from "./Ca
 import { ReactComponent as FilterIcon } from "../../assets/svg/filter.svg";
 import { ReactComponent as SortIcon } from "../../assets/svg/sortIcon.svg";
 import { ReactComponent as CloseBtn } from "../../assets/svg/closeBtn.svg";
-import { ReactComponent as DownArrow } from "../../assets/svg/downArrow.svg";
+// import { ReactComponent as DownArrow } from "../../assets/svg/downArrow.svg";
 import { useState } from "react";
 import "./sort-select.css";
 export const CatalogHeader = (props) => {
@@ -13,8 +13,9 @@ export const CatalogHeader = (props) => {
   const [selectSortValue, setSelectSortValue] = useState("");
   const [showSelect, setShowSelect] = useState(false);
   const [showSelectMenu, setShowSelectMenu] = useState(false);
-  console.log(selectSortValue);
-  console.log(showSelect);
+  console.log("selectSortValue", selectSortValue);
+  console.log("showSelect", showSelect);
+  console.log("showSelectMenu", showSelectMenu);
   const hasFilter =
     props.selectedBrands.length +
       props.selectedSeasons.length +
@@ -43,26 +44,29 @@ export const CatalogHeader = (props) => {
           Фільтр
         </FilterButton>
         <PageTitle>{props.title}</PageTitle>
-        <FilterButton
-          onClick={() => {
-            setShowSelectMenu(!showSelectMenu);
-          }}
-        >
-          <SortIcon />
-          Сортування
+
+        <div style={{ display: "flex", position: "relative" }}>
+          <FilterButton
+            onClick={() => {
+              setShowSelectMenu(!showSelectMenu);
+            }}
+          >
+            <SortIcon />
+            Сортування
+          </FilterButton>
           {Boolean(showSelect) && (
             <div className="sort-result">
               <span>:</span>
-              <div className="sort-result-item">
+              {/* <div className="sort-result-item">
                 {selectSortValue} <DownArrow />
-              </div>
+              </div> */}
               <select
                 onChange={(e) => {
                   setSelectSortValue(e.target.value);
                 }}
-                onClick={() => {
-                  setShowSelectMenu(!showSelectMenu);
-                }}
+                // onClick={() => {
+                //   setShowSelectMenu(!showSelectMenu);
+                // }}
                 className="sort-select"
                 value={selectSortValue}
               >
@@ -78,8 +82,9 @@ export const CatalogHeader = (props) => {
               </select>
             </div>
           )}
-        </FilterButton>
-        {Boolean(showSelectMenu) && (
+        </div>
+
+        {Boolean(showSelectMenu) && Boolean(!showSelect) && (
           <div className="select-menu-wrapper">
             <ul>
               <li

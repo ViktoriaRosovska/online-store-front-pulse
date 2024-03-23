@@ -1,5 +1,5 @@
 import "./ProductPage.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { fetchOneDevice } from "../../http/ProductsApi.jsx";
@@ -34,30 +34,17 @@ const ProductPage = observer(() => {
   return (
     <div className="product-page">
       <div className="container">
-        <ProductBreadcrumb
-          category={product.categories.sex}
-          productName={product.name}
-        />{" "}
+        <ProductBreadcrumb category={product.categories.sex} productName={product.name} />{" "}
         <div className="product-сontainer">
           <ProductGallery topPhotos={topPhotos} bottomPhotos={bottomPhotos} />
           <ProductInfo
             productName={product.name}
             productCode={product._id}
             productPrice={product.price}
-            productSizes={[
-              "41",
-              "41.5",
-              "42",
-              "42.5",
-              "43",
-              "43.5",
-              "44",
-              "45",
-            ]}
+            productSizes={["41", "41.5", "42", "42.5", "43", "43.5", "44", "45"]}
           />
         </div>
-        <ProductDescription description={product.description} />{" "}
-        <ProductCharacteristics features={product.features} />{" "}
+        <ProductDescription description={product.description} /> <ProductCharacteristics features={product.features} />{" "}
       </div>
     </div>
   );

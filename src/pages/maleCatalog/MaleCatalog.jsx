@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { observer } from "mobx-react-lite";
 
 import "./MaleCatalog.css";
@@ -8,13 +8,28 @@ import { Container, ContentWrapper, PageSection } from "../../main.styled.js";
 import { CatalogNavigation } from "../../components/CatalogNavigation/CatalogNavigation.jsx";
 import { CardsList } from "../../components/CardsList/CardsList.jsx";
 import { observer } from "mobx-react-lite";
+import { querySearch } from "../../http/ProductsApi.jsx";
 
 const MaleCatalog = observer(() => {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedSeasons, setSelectedSeasons] = useState([]);
   const [selectedSizes, setselectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
+  const [selectedSex] = useState(["Чоловік"]);
+  const [asyncData, setAsyncData] = useState([]);
+  console.log(asyncData);
 
+  const filterQuery = {
+    sex: selectedSex.join(","),
+    brand: selectedBrands.join(","),
+  };
+  useEffect(() => {
+    querySearch(filterQuery)
+      .then((res) => setAsyncData(res))
+      .catch((error) => {
+        console.error("Ошибка загрузки данных:", error);
+      });
+  }, []);
   const onSelectionChanged = (type, items) => {
     switch (type) {
       case "brand":
@@ -64,7 +79,7 @@ const MaleCatalog = observer(() => {
             onChanged={onSelectionChanged}
           />
           {/* Дістати чоловічі дані */}
-          <CardsList />
+          <CardsList asyncData={asyncData} />
         </ContentWrapper>
       </Container>
     </PageSection>

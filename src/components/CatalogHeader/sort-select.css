@@ -5,9 +5,9 @@
   background-color: transparent;
   padding: 0px;
   cursor: pointer;
-  visibility: hidden;
-  position: absolute;
-
+  /* visibility: hidden; */
+  /* position: absolute; */
+  right: 0;
   /* appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none; */
@@ -15,8 +15,8 @@
 
 option.optionSelect {
   /* opacity: 0; */
-  visibility: hidden;
-  display: none;
+  /* visibility: hidden; */
+  /* display: none; */
 }
 
 .select-menu-wrapper {
