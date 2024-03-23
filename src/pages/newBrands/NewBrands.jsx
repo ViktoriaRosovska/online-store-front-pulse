@@ -1,10 +1,7 @@
-import './NewBrands.css'
+import { CatalogComponent } from "../../components/CatalogComponent/CatalogComponent";
+
 const NewBrands = () => {
-  return (
-    <div>
-      NewBrands
-    </div>
-  );
+  return <CatalogComponent title={"Новинки"} sex={""} />;
 };
 
 export default NewBrands;

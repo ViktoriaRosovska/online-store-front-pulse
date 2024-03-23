@@ -16,6 +16,7 @@ const CheckboxListItems = styled.div`
 const CheckboxListTitle = styled.h3`
   margin-bottom: 20px;
   font-family: "Roboto";
+  font-weight: 400;
   font-size: 24px;
   line-height: 140%;
   letter-spacing: 0;

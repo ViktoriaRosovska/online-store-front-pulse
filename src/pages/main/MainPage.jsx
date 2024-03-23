@@ -50,14 +50,14 @@ const Main = observer(() => {
         </div>
       </SectionHero>
       <SectionManWomen className="container">
-        <Link to="/man">
+        <Link to="/malecatalog">
           <ManBox>
             <BoxTitle>
               <h3>Для нього</h3>
             </BoxTitle>
           </ManBox>
         </Link>
-        <Link to="/woomans">
+        <Link to="/femalecatalog">
           <WomenBox>
             <BoxTitle>
               <h3>Для неї</h3>
@@ -83,7 +83,38 @@ const Main = observer(() => {
         <div className="marquee marquee-rotate-right">
           <div className="track">
             <div className="marquee-content">
-              {/* &nbsp; */}
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
               <SaleIcon />
               <SaleIcon />
               <SaleIcon />
@@ -122,6 +153,38 @@ const Main = observer(() => {
         <div className="marquee marquee-rotate-left">
           <div className="track">
             <div className="marquee-content">
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
+              <SaleIcon />
               <SaleIcon />
               <SaleIcon />
               <SaleIcon />

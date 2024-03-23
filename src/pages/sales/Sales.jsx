@@ -1,10 +1,7 @@
-import './Sales.css'
+import { CatalogComponent } from "../../components/CatalogComponent/CatalogComponent";
+
 const Sales = () => {
-  return (
-    <div className='sales'>
-      Sales
-    </div>
-  );
+  return <CatalogComponent title={"Розпродаж"} sex={""} />;
 };
 
 export default Sales;

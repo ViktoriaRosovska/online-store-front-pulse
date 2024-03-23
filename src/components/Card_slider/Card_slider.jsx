@@ -7,7 +7,7 @@ const Card_slider = ({ info, image, price, id }) => {
   const navigate = useNavigate();
 
   const aLink = () => {
-    navigate("/man/" + id);
+    navigate("/newbrands/" + id);
   };
 
   return (
