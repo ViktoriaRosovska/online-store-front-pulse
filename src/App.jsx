@@ -1,9 +1,9 @@
 import "./App.css";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { brand } from "./http/ProductsApi.jsx";
-import { Context } from "./main.jsx";
+// import { brand } from "./http/ProductsApi.jsx";
+// import { Context } from "./main.jsx";
 
 import Main from "./pages/main/MainPage";
 import MaleCatalog from "./pages/maleCatalog/MaleCatalog.jsx";
