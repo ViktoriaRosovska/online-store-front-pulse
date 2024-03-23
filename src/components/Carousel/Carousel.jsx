@@ -13,14 +13,14 @@ import img2 from '../../../public/icons/White Circular Buttons.png'
 
    const handleLeftArrowClick = () => {
      setOffset((currentOffset) => {
-       const newOffset = currentOffset + 417
+       const newOffset = currentOffset + 817
        return Math.min( newOffset, 0)
      })
    }
    const handleRightArrowClick = () => {
     setOffset((currentOffset) => {
-      const newOffset = currentOffset - 417
-      const maxOffset = -(417 * (pages.length - 1))
+      const newOffset = currentOffset - 817
+      const maxOffset = -(817 * (pages.length - 1))
       return Math.max( newOffset, maxOffset)
     })
    }
@@ -40,9 +40,12 @@ import img2 from '../../../public/icons/White Circular Buttons.png'
          })
        })
      )
-   }, [])
+   }, [children])
+console.log(pages)
+  const clickImageBox = (index) => {
+    setOffset(index )
 
-  
+  }
 
   return (
 <div className='main_container'>
@@ -53,6 +56,12 @@ import img2 from '../../../public/icons/White Circular Buttons.png'
     }}>
       {pages}
   </div>
+    <div className={'indexContainer'}  >
+      {pages.map((img, index) =>  {
+        return <div
+         className={'indexBox'} key={index} onClick={() => clickImageBox(index)}>{index}</div>
+      })}
+    </div>
 
 </div>
   <img src={img} className='arrow_r' onClick={handleRightArrowClick}/>

@@ -1,4 +1,5 @@
 import "./main.css";
+import './Mains.css'
 
 import Banner from "./Banner/Banner.jsx";
 import Slider from "../../components/Slider/Slider.jsx";
@@ -53,7 +54,7 @@ const Main = observer(() => {
       <div className="main_vector">
         <img src="../../../image/Vector%202.png" alt={"vector"} />
       </div>
-      <div className="main_block_new">
+      <div className="main_block_news">
         <h1>НОВИНКИ</h1>
         <Slider />
       </div>
@@ -72,7 +73,7 @@ const Main = observer(() => {
         <img className="sale_line_1 move-right" src={lineIcons} />
       </div>
 
-      {/* <Footer /> */}
+
     </div>
   );
 });

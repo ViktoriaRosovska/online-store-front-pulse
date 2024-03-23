@@ -1,8 +1,9 @@
 .card-slider {
-  min-width: 340px;
-  height: 427px;
+
+  width: 340px;
+  height: 287px;
   margin-left: 60px;
-  margin-top: 131px;
+  margin-top: 50px;
 }
 
 .card-slider p {
@@ -12,5 +13,30 @@
 }
 .card-slider img {
   width: 100%;
-  border-radius: 36px;
+  height: 100%;
+  border-radius: 16px;
+  margin-bottom: 12px;
 }
+.loves {
+  position: absolute;
+  top: 105px;
+  margin-left: 135px;
+  margin-top: -35px;
+  color: black;
+}
+
+.loves:hover {
+  cursor: pointer;
+
+  fill: turquoise;
+}
+
+
+
+
+
+
+
+
+
+

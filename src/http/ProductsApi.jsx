@@ -27,7 +27,7 @@ export const category = async () => {
   return data;
 };
 
-export const famale = async () => {
+export const female = async () => {
   const { data } = await host.get("/products?sex=female");
   return data;
 };

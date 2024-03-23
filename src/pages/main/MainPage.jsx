@@ -1,10 +1,7 @@
 import "./main.css";
 import Banner from "../../components/Banner/Banner.jsx";
-import Slider from "../../components/Slider/Slider.jsx";
-import SladerSale from "../../components/slider_sale/SladerSale.jsx";
-import { useContext, useEffect } from "react";
-import { host } from "../../http/index.jsx";
-import { Context } from "../../main.jsx";
+// import { useContext, useEffect } from "react";
+// import { Context } from "../../main.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { ReactComponent as SaleIcon } from "../../assets/svg/saleIcon.svg";
@@ -22,18 +19,19 @@ import {
   VectorBox,
   WomenBox,
 } from "./MainPage.styled.js";
+import OneSlider from "../../components/newSlider/OneSlider.jsx";
+import NewSlider from "../../components/newSlider/NewSlider.jsx";
 
 const Main = observer(() => {
-  const { store } = useContext(Context);
   const navigate = useNavigate();
 
   const navFunc = () => {
     navigate("/catalog");
   };
 
-  useEffect(() => {
-    host.get("/products").then((res) => store.setProducts(res));
-  }, []);
+  // useEffect(() => {
+  //   host.get("/products").then((res) => store.setProducts(res));
+  // }, []);
 
   return (
     <MainContent>
@@ -65,19 +63,20 @@ const Main = observer(() => {
           </WomenBox>
         </Link>
       </SectionManWomen>
+      <VectorBox>
+        <img src="../../../image/Vector%202.png" alt="vector" />
+      </VectorBox>
       <SectionNews>
-        <VectorBox>
-          <img src="../../../image/Vector%202.png" alt="vector" />
-        </VectorBox>
+
         <SliderBox>
-          <h2>НОВИНКИ</h2>
-          <Slider />
+          <h2>Новинки</h2>
+          <OneSlider />
         </SliderBox>
       </SectionNews>
       <Banner />
       <SectionSale>
-        <h2>РОЗПРОДАЖ</h2>
-        <SladerSale />
+        <h2>Розпродаж</h2>
+        <NewSlider />
       </SectionSale>
       <section className="marquee-centered">
         <div className="marquee marquee-rotate-right">

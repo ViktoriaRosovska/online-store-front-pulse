@@ -4,10 +4,12 @@ import CustomForm from "../../components/form/CustomForm.jsx";
 import {useState} from "react";
 import icon from '../../../public/icons/Group 47879.png'
 import icon2 from '../../../public/icons/Group 47880.png'
+import CustomLoginForm from "../../components/form/customLogin/CustomLoginForm.jsx";
 const ModalAuth = ({modalOn,seeOnMail }) => {
 
 
   const [registr, setRegistr] = useState(false)
+  const [login, setLoggin] = useState(true)
 
   const registrOn = () => {
     setRegistr((e) =>!e);
@@ -20,7 +22,7 @@ const ModalAuth = ({modalOn,seeOnMail }) => {
   return (<>
 
       <div className={registr ? 'modal_auth_on' : 'modal_auth'}>
-        <img onClick={() => modalOn()} className='modal_auth_close' src={close}/>
+        <img onClick={ modalOn} className='modal_auth_close' src={close}/>
         <div className='modal_auth_text'>
           <p className='modal_auth_text_entrance' onClick={registrOn}
              style={!registr ? {fontWeight: 'normal'} : {fontWeight: 'lighter'}}
@@ -31,8 +33,9 @@ const ModalAuth = ({modalOn,seeOnMail }) => {
         </div>
         <div className='modal_auth_text_line'></div>
 
+        {registr ? <CustomForm registr={registr} /> : <CustomLoginForm /> }
 
-        <CustomForm registr={registr} />
+
 
         <p className='modal_auth_text4' onClick={() => seeOnMail()}>Забули пароль?</p>
 

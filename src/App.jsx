@@ -18,11 +18,11 @@ import SharedLayout from "./components/SharedLayout/SharedLayout.jsx";
 
 const App = observer(() => {
   const [modal, setModal] = useState(false);
-  const { store } = useContext(Context);
+  // const { store } = useContext(Context);
 
-  useEffect(() => {
-    brand().then((res) => store.setProducts(res));
-  }, []);
+  // useEffect(() => {
+  //   brand().then((res) => store.setProducts(res));
+  // }, []);
 
   const modalOn = () => {
     setModal((e) => !e);

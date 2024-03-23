@@ -1,12 +1,18 @@
 .modal_auth {
     position: absolute;
+
     width: 780px;
     height: 804px;
     border-radius: 36px;
     background-color: #F2F2F2;
-    margin: auto;
+
+    margin-right: -380px;
+    margin-top: 114px;
+right: 50%;
     top: 130px;
-    left: 33%;
+
+
+    /*left: 33%;*/
     overflow: auto;
     z-index: 3;
     /*bottom: 50px;*/
@@ -21,8 +27,12 @@
     height: 1041px;
     border-radius: 36px;
     background-color: #F2F2F2;
-    margin: auto;
-    left: 33%;
+    margin-right: -380px;
+    margin-top: 114px;
+    right: 50%;
+    
+
+
     z-index: 3;
 
     /*bottom: 50px;*/
@@ -130,7 +140,7 @@ display: flex;
 
 
 .modal_container_line_text {
-    margin-left: 243px;
+    margin-left: 333px;
     margin-top: -10px;
 }
 
@@ -154,12 +164,16 @@ display: flex;
 }
 
 .modal_auth_container_social {
+    display: flex;
+
     width: 192px;
     height: 80px;
-    margin-left: 294px;
+    margin-left: 323px;
+
     margin-top: 96px;
 }
 .modal_auth_container_social img {
     cursor: pointer;
+
 
 }

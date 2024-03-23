@@ -1,12 +1,26 @@
 .card_sale {
     width: 340px;
-    height:395px;
+    height:289px;
     margin-left: 60px;
-    margin-top: 131px;
+    /*margin-top: 131px;*/
+
 
 
 }
+.love {
 
+    position: absolute;
+    top: 190px;
+    margin-left: 300px;
+    margin-top: -115px;
+}
+.love:hover {
+    cursor: pointer;
+    fill: turquoise;
+
+
+
+}
 
 
 .card_line {
@@ -23,23 +37,54 @@
 }
 .card_line p {
     margin-left: 14px;
-line-height:32px
+line-height:32px;
+
+
 }
 .card_price {
     text-decoration: line-through;
     color: red;
     float: left;
     margin-right: 5px;
+    margin-bottom: 12px;
+    margin-top: 6px;
 
 }
 .card_price-sale {
     float: left;
+    margin-top: 6px;
+
 }
 .card_info {
     display: flex;
+    margin-top: -40px;
     justify-content: flex-start;
 }
 .card_sale img {
     width: 100%;
-    border-radius:36px;
+    border-radius: 0 0 16px 16px;
+    margin-bottom: 12px;
+    height: 100%;
+}
+
+.percent {
+    width: 63px;
+    height: 29px;
+    background-color: #EF5555;
+    text-align: center;
+    color: white;
+    padding: 4px 5px 4px 5px;
+    gap: 10px;
+    border-radius: 4px;
+    position: relative;
+    bottom: 65px;
+    left: 255px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    font-family: 'Roboto','sans-serif';
+
+
+
+
 }
