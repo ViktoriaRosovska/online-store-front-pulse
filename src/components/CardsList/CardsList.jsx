@@ -1,17 +1,9 @@
 import { CardsListContainer } from "./CardsList.styled.js";
-import Cards from "../Cards/Card.jsx";
-import { useContext, useEffect, useState } from "react";
+import Card from "../Cards/Card.jsx";
+// import { useEffect, useState } from "react";
 // import { observer } from "mobx-react-lite"; ?????
-import { brand } from "../../http/ProductsApi.jsx";
-import { Context } from "../../main.jsx";
-
-// const brand = async () => {
-//   const {data} = await host.get('/products')
-//   return data
-// }
-// const onShowFilter = () => {
-//   setShowFilter(!showFilter);
-// };
+// import { querySearch } from "../../http/ProductsApi.jsx";
+// import { Context } from "../../main.jsx";
 
 // const catProduct = store.product.data
 // console.log(asyncData.products?.filter(el => el.categories.sex !== 'male'))
@@ -27,24 +19,25 @@ import { Context } from "../../main.jsx";
 
 // console.log(data.products.map(el => el.name))
 
-export const CardsList = () => {
-  const { store } = useContext(Context);
+export const CardsList = (props) => {
+  // const { store } = useContext(Context);
 
-  const [asyncData, setAsyncData] = useState([]);
-
-  useEffect(() => {
-    brand().then((res) => setAsyncData(res));
-    store.setProducts(asyncData);
-  }, []);
+  // const [asyncData, setAsyncData] = useState([]);
+  console.log(props.asyncData);
+  // useEffect(() => {
+  //   querySearch({ ...props.filterQuery })
+  //     .then((res) => setAsyncData(res))
+  //     .catch((error) => {
+  //       console.error("Ошибка загрузки данных:", error);
+  //     });
+  // }, []);
+  if (!props.asyncData) return <div>Загрузка данных...</div>;
   return (
     <CardsListContainer>
-      {asyncData.products
-        ?.filter((el) => el.categories.sex !== "female")
-        .map((el) => (
-          <div key={el._id} style={{ cursor: "pointer" }}>
-            <Cards info={el.name} image={el.imgThumbnail} price={el.price} id={el._id} />
-          </div>
-        ))}
+      {props.asyncData.products &&
+        props.asyncData.products.map((el) => {
+          return <Card key={el._id} info={el.name} image={el.imgThumbnail} price={el.price} id={el._id} />;
+        })}
     </CardsListContainer>
   );
 };

@@ -6,7 +6,7 @@ const CardsSale = ({ image, info, price, sale, id, sales }) => {
   const navigate = useNavigate();
 
   const aLink = () => {
-    navigate("/man/" + id);
+    navigate("/sales/" + id);
   };
 
   return (

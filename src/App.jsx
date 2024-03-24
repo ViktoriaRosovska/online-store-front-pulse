@@ -1,9 +1,9 @@
 import "./App.css";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { brand } from "./http/ProductsApi.jsx";
-import { Context } from "./main.jsx";
+// import { brand } from "./http/ProductsApi.jsx";
+// import { Context } from "./main.jsx";
 
 import Main from "./pages/main/MainPage";
 import MaleCatalog from "./pages/maleCatalog/MaleCatalog.jsx";
@@ -33,14 +33,18 @@ const App = observer(() => {
       <Routes>
         <Route path="/" element={<SharedLayout modalOn={modalOn} modal={modal} />}>
           <Route index element={<Main />} />
-          <Route path={"/man"} element={<MaleCatalog />} />
-          <Route path={"/man/:id"} element={<ProductPage />} />
-          <Route path={"/woomans"} element={<FemaleCatalog />} />
+          <Route path={"/malecatalog"} element={<MaleCatalog />} />
+          <Route path={"/catalog/:id"} element={<ProductPage />} />
+          <Route path={"/malecatalog/:id"} element={<ProductPage />} />
+          <Route path={"/femalecatalog/:id"} element={<ProductPage />} />
+          <Route path={"/femalecatalog"} element={<FemaleCatalog />} />
 
           <Route path={"/brands"} element={<Brands />} />
           <Route path={"/catalog"} element={<Catalog />} />
-          <Route path={"newBrands"} element={<NewBrands />} />
+          <Route path={"/newbrands"} element={<NewBrands />} />
+          <Route path={"/newbrands/:id"} element={<ProductPage />} />
           <Route path={"/sales"} element={<Sales />} />
+          <Route path={"/sales/:id"} element={<ProductPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -194,27 +194,27 @@
 /*}*/
 
 .marquee {
-  margin: 0;
-  padding: 0;
   color: black;
   font-weight: bold;
-  position: relative;
-  width: 100vw;
-  max-width: 100%;
-  width: 1900px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  z-index: 100;
+  width: 130vw;
   font-family: "Roboto";
   font-size: 24px;
   font-weight: 700;
   line-height: 36px;
   letter-spacing: 0.01em;
+  height: 80px;
+  background-color: var(--yellow-ribbon-color);
+  top: 50%;
 }
 
 .track {
   display: flex;
   align-items: center;
-  height: 80px;
-  background-color: var(--yellow-ribbon-color);
-  position: absolute;
+  width: 6000px;
   white-space: nowrap;
   will-change: transform;
   animation: marquee 15s linear infinite;
@@ -236,26 +236,18 @@
 
 .marquee-centered {
   position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden;
-  max-width: 1440px;
-  height: 369px;
-  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 100%;
+  padding-left: -10px;
+  padding-right: -10px;
+  border: 1px solid red;
+  height: 369px;
 }
 .marquee-rotate-right {
-  /* position: absolute; */
-  top: 10%;
-  right: 10%;
   transform: rotate(-8.13deg);
 }
 .marquee-rotate-left {
-  /* position: absolute; */
-  top: -30%;
-  left: -60%;
-
   transform: rotate(8.13deg);
 }

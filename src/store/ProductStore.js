@@ -1,17 +1,20 @@
-import {makeAutoObservable} from "mobx";
+import { makeAutoObservable } from "mobx";
 
 export default class ProductStore {
   constructor() {
     this.product = [];
-    this.filterMan = []
-    this.cross = []
-    this.cat = false
+    this.filterMan = [];
+    this.filterItem = [];
+    this.cross = [];
+    this.cat = false;
     makeAutoObservable(this);
   }
 
+  filterItem(item) {
+    this.filterItem = item;
+  }
 
-
-   setProducts(product) {
+  setProducts(product) {
     this.product = product;
   }
 
@@ -23,15 +26,15 @@ export default class ProductStore {
     this.cat = bolean;
   }
 
- filterMans( item) {
-    this.filterMan.push( item );
- }
+  filterMans(item) {
+    this.filterMan.push(item);
+  }
 
+  get filters() {
+    return this.filterItem;
+  }
 
   get products() {
     return this.product;
   }
-
 }
-
-

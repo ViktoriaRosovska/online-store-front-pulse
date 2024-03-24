@@ -1,10 +1,10 @@
 [
   {
-    "category": { "name": "Чоловікам", "href": "/man" }
+    "category": { "name": "Чоловікам", "href": "/malecatalog" }
   },
-  { "category": { "name": "Жінкам", "href": "/woomans" } },
+  { "category": { "name": "Жінкам", "href": "/femalecatalog" } },
 
-  { "category": { "name": "Новинки", "href": "/newBrands" } },
+  { "category": { "name": "Новинки", "href": "/newbrands" } },
 
   { "category": { "name": "Бренди", "href": "/brands" } },
 
