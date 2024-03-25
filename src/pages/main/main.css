@@ -242,12 +242,15 @@
   min-width: 100%;
   padding-left: -10px;
   padding-right: -10px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  overflow: hidden;
   height: 369px;
 }
 .marquee-rotate-right {
-  transform: rotate(-8.13deg);
+  top: 120px;
+  transform: rotate(-6.39deg);
 }
 .marquee-rotate-left {
-  transform: rotate(8.13deg);
+  top: 120px;
+  transform: rotate(6.39deg);
 }
