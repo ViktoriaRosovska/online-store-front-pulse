@@ -6,6 +6,7 @@ import { CatalogHeader } from "../CatalogHeader/CatalogHeader";
 import { CatalogNavigation } from "../CatalogNavigation/CatalogNavigation";
 import { brandNew, brandSales, querySearch } from "../../http/ProductsApi";
 import { useLocation } from "react-router-dom";
+import { ScrollToTop } from "../ScrollToTop";
 
 export const CatalogComponent = (props) => {
   const [selectedBrands, setSelectedBrands] = useState([]);
@@ -76,6 +77,7 @@ export const CatalogComponent = (props) => {
   return (
     <PageSection>
       <Container>
+        <ScrollToTop />
         <CatalogNavigation title={props.title} />
         <CatalogHeader
           selectedBrands={selectedBrands}

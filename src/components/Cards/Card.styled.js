@@ -7,6 +7,7 @@ const CardImage = styled.img`
   width: 320px;
 `;
 const ImageWrapper = styled.div`
+  position: relative;
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 12px;
