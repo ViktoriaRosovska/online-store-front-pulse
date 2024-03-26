@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import CardButton from "../Buttons/CardButton";
+import CardButton from "../Buttons/CardButton/CardButton";
 import { ButtonWrapper, SectionBanner, TitleBox } from "./Banner.styled";
 const MyComponent = () => {
   const navigate = useNavigate();

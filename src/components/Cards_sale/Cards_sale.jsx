@@ -1,5 +1,5 @@
 import "./Cards_sale.css";
-import Button from "../Buttons/CardButton.jsx";
+import Button from "../Buttons/CardButton/CardButton.jsx";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as LogoLover } from "./../../../public/icons/favorites-icon.svg";
 const CardsSale = ({ image, info, price, sale, id, sales }) => {

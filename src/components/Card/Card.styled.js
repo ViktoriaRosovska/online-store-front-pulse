@@ -28,7 +28,7 @@ const CardPrice = styled.span`
   font-size: 16px;
   line-height: 20px;
   font-weight: 400;
-  color: ${(props) => (props.sales ? `var(--red-color)` : `var(--black-text-color)`)};
+  color: ${(props) => (props.$sales ? `var(--red-color)` : `var(--black-text-color)`)};
 `;
 
 export { CardWrapper, CardImage, ImageWrapper, CardTitle, TextWrapper, CardPrice };

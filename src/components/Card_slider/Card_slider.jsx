@@ -1,4 +1,4 @@
-import CardButton from "../Buttons/CardButton";
+import CardButton from "../Buttons/CardButton/CardButton";
 import "./Card_slider.css";
 import { ReactComponent as LogoLover } from "./../../../public/icons/favorites-icon.svg";
 import { useNavigate } from "react-router-dom";

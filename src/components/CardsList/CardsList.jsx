@@ -1,5 +1,5 @@
 import { CardsListContainer } from "./CardsList.styled.js";
-import Card from "../Cards/Card.jsx";
+import Card from "../Card/Card.jsx";
 // import { useEffect, useState } from "react";
 // import { observer } from "mobx-react-lite"; ?????
 // import { querySearch } from "../../http/ProductsApi.jsx";
