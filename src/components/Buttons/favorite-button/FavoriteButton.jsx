@@ -2,9 +2,9 @@ import { ReactComponent as LogoLover } from "../../../../public/icons/favorites-
 import { FavoriteBtn } from "./FavoriteButton.styled";
 import "./favorite-button.css";
 
-function FavoriteButton() {
+function FavoriteButton(props) {
   return (
-    <FavoriteBtn>
+    <FavoriteBtn sales={props.sales}>
       <LogoLover />
     </FavoriteBtn>
   );

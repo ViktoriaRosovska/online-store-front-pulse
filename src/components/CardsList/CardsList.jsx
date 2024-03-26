@@ -36,7 +36,9 @@ export const CardsList = (props) => {
     <CardsListContainer>
       {props.asyncData.products &&
         props.asyncData.products.map((el) => {
-          return <Card key={el._id} info={el.name} image={el.imgThumbnail} price={el.price} id={el._id} />;
+          return (
+            <Card key={el._id} info={el.name} image={el.imgThumbnail} price={el.price} id={el._id} sale={el.sale} />
+          );
         })}
     </CardsListContainer>
   );
