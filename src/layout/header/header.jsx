@@ -11,7 +11,7 @@ function Header({ modalOn }) {
 
   const navigate = useNavigate();
   const homeClick = () => {
-    navigate("./");
+    navigate("/");
   };
 
   useEffect(() => {
@@ -30,7 +30,7 @@ function Header({ modalOn }) {
     <header className={`header ${isFixed ? "fixed" : ""}`}>
       <div className="container">
         <div className="header__inner">
-          <a href="/" className="logo">
+          <a href="./" className="logo">
             <img className={`logo__icon ${isFixed ? "fixed" : ""}`} src={logoImg} alt="PulseRun" onClick={homeClick} />
           </a>
           <MediaQuery minWidth={1440}>
