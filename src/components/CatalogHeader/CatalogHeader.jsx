@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import { FilterButton } from "../Buttons/FilterButton/FilterButton.styled";
 import { PageTitle } from "../Typography/PageTitle.styled";
 import { CatalogHeaderContainer, FilterWrapper, FilterWrapperButton } from "./CatalogHeader.styled";
