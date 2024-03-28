@@ -11,7 +11,7 @@ function Header({ modalOn }) {
 
   const navigate = useNavigate();
   const homeClick = () => {
-    navigate("/");
+    navigate("./");
   };
 
   useEffect(() => {
