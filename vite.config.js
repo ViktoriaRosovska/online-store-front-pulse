@@ -13,5 +13,5 @@ export default defineConfig({
     },
   },
 
-  // base: "/online-store-front-pulse/",
+  base: "/online-store-front-pulse/",
 });
