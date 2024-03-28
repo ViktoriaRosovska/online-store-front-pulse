@@ -4,7 +4,7 @@ export const MainContent = styled.main`
   /* padding-bottom: 369px; */
 `;
 export const SectionHero = styled.section`
-  background-image: url("../../../image/Rectangle 17516.png");
+  background-image: url("./image/Rectangle 17516.png");
   background-repeat: no-repeat;
   background-size: cover;
   padding-top: 195px;
@@ -100,14 +100,14 @@ export const SectionManWomen = styled.section`
 `;
 
 export const ManBox = styled.div`
-  background-image: url("../../../image/men-mobile.jpg");
+  background-image: url("./image/men-mobile.jpg");
   width: 327px;
   height: 280px;
   border-radius: 36px;
   padding-top: 12px;
 
   @media screen and (min-width: 1440px) {
-    background-image: url("../../../image/image 31.png");
+    background-image: url("./image/image 31.png");
     width: 562px;
     height: 280px;
   }
@@ -117,11 +117,11 @@ export const WomenBox = styled.div`
   width: 327px;
   height: 280px;
   border-radius: 36px;
-  background-image: url("../../../image/women-mobile.jpg");
+  background-image: url("./image/women-mobile.jpg");
   padding-top: 12px;
 
   @media screen and (min-width: 1440px) {
-    background-image: url("../../../image/image 30.png");
+    background-image: url("./image/image 30.png");
     width: 562px;
     height: 280px;
   }
@@ -166,7 +166,8 @@ export const BoxTitle = styled.div`
 `;
 
 export const SectionNews = styled.section`
-    background-image: linear-gradient(to bottom, #d9d9d9, #e7e7e7, #eaeff0, #fbfbfb);`;
+  background-image: linear-gradient(to bottom, #d9d9d9, #e7e7e7, #eaeff0, #fbfbfb);
+`;
 
 export const VectorBox = styled.div`
   width: 100%;
@@ -180,7 +181,7 @@ export const SliderBox = styled.div`
   margin-right: auto;
   //background-image: linear-gradient(to bottom, #d9d9d9, #e7e7e7, #eaeff0, #fbfbfb);
   width: 100%;
-    max-width: 1370px;
+  max-width: 1370px;
   height: 643px;
   margin-top: -10px;
   text-align: center;
@@ -203,9 +204,9 @@ export const SliderBox = styled.div`
 
 export const SectionSale = styled.section`
   padding-top: 80px;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1370px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1370px;
 
   > h2 {
     font-family: "Beware", sans-serif;
