@@ -1,5 +1,5 @@
 import { CardsListContainer } from "./CardsList.styled.js";
-import Card from "../Cards/Card.jsx";
+import Card from "../Card/Card.jsx";
 // import { useEffect, useState } from "react";
 // import { observer } from "mobx-react-lite"; ?????
 // import { querySearch } from "../../http/ProductsApi.jsx";
@@ -36,7 +36,9 @@ export const CardsList = (props) => {
     <CardsListContainer>
       {props.asyncData.products &&
         props.asyncData.products.map((el) => {
-          return <Card key={el._id} info={el.name} image={el.imgThumbnail} price={el.price} id={el._id} />;
+          return (
+            <Card key={el._id} info={el.name} image={el.imgThumbnail} price={el.price} id={el._id} sale={el.sale} />
+          );
         })}
     </CardsListContainer>
   );

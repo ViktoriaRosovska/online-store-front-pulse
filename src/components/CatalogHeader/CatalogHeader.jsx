@@ -5,7 +5,7 @@ import { CatalogHeaderContainer, FilterWrapper, FilterWrapperButton } from "./Ca
 import { ReactComponent as FilterIcon } from "../../assets/svg/filter.svg";
 import { ReactComponent as SortIcon } from "../../assets/svg/sortIcon.svg";
 import { ReactComponent as CloseBtn } from "../../assets/svg/closeBtn.svg";
-// import { ReactComponent as DownArrow } from "../../assets/svg/downArrow.svg";
+
 import { useState } from "react";
 import "./sort-select.css";
 export const CatalogHeader = (props) => {
