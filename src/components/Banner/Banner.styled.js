@@ -18,7 +18,7 @@ export const SectionBanner = styled.section`
   }
 
   @media screen and (min-width: 378px) {
-    background-image: url("/image/Rectangle 17515.png");
+    background-image: url("./image/Rectangle 17515.png");
   }
 
   @media screen and (min-width: 768px) {
