@@ -27,7 +27,7 @@ const App = observer(() => {
   };
 
   return (
-    <BrowserRouter basename="/online-store-front-pulse/">
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<SharedLayout modalOn={modalOn} modal={modal} />}>
           <Route index element={<Main />} />
