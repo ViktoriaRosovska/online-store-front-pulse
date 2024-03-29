@@ -30,7 +30,7 @@ function Header({ modalOn }) {
     <header className={`header ${isFixed ? "fixed" : ""}`}>
       <div className="container">
         <div className="header__inner">
-          <Link className="logo" to="/">
+          <Link className="logo" to="./">
             <img className={`logo__icon ${isFixed ? "fixed" : ""}`} src={logoImg} alt="PulseRun" onClick={homeClick} />
           </Link>
           <MediaQuery minWidth={1440}>
