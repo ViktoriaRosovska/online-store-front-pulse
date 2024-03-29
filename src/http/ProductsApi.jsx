@@ -12,13 +12,29 @@ export const brand = async () => {
   return data;
 };
 
-export const brandNew = async () => {
-  const { data } = await host.get("/products/newest");
+export const brandNew = async (queryObject) => {
+  const { data } = await host.get(
+    `/products/newest?sex=${queryObject?.sex || ""}` +
+      `&brand=${queryObject?.brand || ""}` +
+      `&season=${queryObject?.season || ""}` +
+      `&size=${queryObject?.size || ""}` +
+      `&color=${queryObject?.color || ""}` +
+      `&sort=${queryObject?.sort || "createdAt"}` +
+      `&order=${queryObject?.order || "desc"}`
+  );
   return data;
 };
 
-export const brandSales = async () => {
-  const { data } = await host.get("/products/sales");
+export const brandSales = async (queryObject) => {
+  const { data } = await host.get(
+    `/products/sales?sex=${queryObject?.sex || ""}` +
+      `&brand=${queryObject?.brand || ""}` +
+      `&season=${queryObject?.season || ""}` +
+      `&size=${queryObject?.size || ""}` +
+      `&color=${queryObject?.color || ""}` +
+      `&sort=${queryObject?.sort || "price"}` +
+      `&order=${queryObject?.order || "asc"}`
+  );
   return data;
 };
 
@@ -35,13 +51,15 @@ export const female = async () => {
 export const querySearch = async (queryObject) => {
   console.log(queryObject);
 
-  console.log("sex", queryObject.sex);
-  // sex = "", brand = "", season = "", size = "", color = "", sort = "", order = ""
   const { data } = await host.get(
-    `/products?sex=${queryObject.sex}&brand=${queryObject?.brand || ""}`
-    // & season=${ queryObject?.season || ""}& size=${
-    //   queryObject?.size || ""
-    // }&color=${queryObject?.color || ""}&sort=${queryObject?.sort || ""}&order=${queryObject?.order || ""}`
+    `/products` +
+      `?sex=${queryObject?.sex || ""}` +
+      `&brand=${queryObject?.brand || ""}` +
+      `&season=${queryObject?.season || ""}` +
+      `&size=${queryObject?.size || ""}` +
+      `&color=${queryObject?.color || ""}` +
+      `&sort=${queryObject?.sort || "createdAt"}` +
+      `&order=${queryObject?.order || "desc"}`
   );
   return data;
 };

@@ -8,6 +8,7 @@ import { SalePercent } from "../salesComponents/SalePercent/SalePercent.jsx";
 const Card = ({ info, image, price, id, sale }) => {
   const navigate = useNavigate();
   const sales = useLocation().pathname === "/sales";
+  const newBrands = useLocation().pathname === "/newbrands";
   const aLink = () => {
     navigate(`/${id}`);
   };
@@ -15,9 +16,10 @@ const Card = ({ info, image, price, id, sale }) => {
   return (
     <CardWrapper>
       <ImageWrapper>
-        {sales ? <SaleBand text={"SALE"} /> : null}
+        {sales ? <SaleBand text={"SALE"} $background={"#fef746"} color={"black"} /> : null}
+        {newBrands ? <SaleBand text={"NEW"} $background={"#495C80"} color={"#E9E9E9"} /> : null}
         <CardImage src={image} $sales={sales} />
-        <FavoriteButton $sales={sales} />
+        <FavoriteButton $sales={sales} $new={newBrands} />
         {sales ? <SalePercent text={sale} /> : null}
       </ImageWrapper>
       <TextWrapper>

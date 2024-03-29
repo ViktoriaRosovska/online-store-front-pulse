@@ -121,23 +121,23 @@ export const CatalogHeader = (props) => {
       {hasFilter && showFilter ? (
         <FilterWrapper>
           {Boolean(props.selectedBrands.length) && (
-            <FilterWrapperButton>
+            <FilterWrapperButton onClick={() => props.onClearOneFilterButton("brand")}>
               <CloseBtn /> Брeнд: {props.selectedBrands.join(", ")}
             </FilterWrapperButton>
           )}
 
           {Boolean(props.selectedSeasons.length) && (
-            <FilterWrapperButton>
+            <FilterWrapperButton onClick={() => props.onClearOneFilterButton("season")}>
               <CloseBtn /> Сезон: {props.selectedSeasons.join(", ")}
             </FilterWrapperButton>
           )}
           {Boolean(props.selectedSizes.length) && (
-            <FilterWrapperButton>
+            <FilterWrapperButton onClick={() => props.onClearOneFilterButton("size")}>
               <CloseBtn /> Розмір: {props.selectedSizes.join(", ")}
             </FilterWrapperButton>
           )}
           {Boolean(props.selectedColors.length) && (
-            <FilterWrapperButton>
+            <FilterWrapperButton onClick={() => props.onClearOneFilterButton("color")}>
               <CloseBtn /> Колір: {props.selectedColors.join(", ")}
             </FilterWrapperButton>
           )}
