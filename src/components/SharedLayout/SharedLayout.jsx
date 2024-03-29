@@ -5,6 +5,7 @@ import { SharedLayoutContainer } from "./SharedLayout.styled";
 import ModalHelp from "../../layout/modals/modalHelp/ModalHelp.jsx";
 import ModalAuth from "../../layout/modals/ModalAuth.jsx";
 import { useState } from "react";
+import { ScrollToTop } from "../../components/ScrollToTop.js";
 
 function SharedLayout({ modalOn, modal }) {
   const [seeMail, setSeeMail] = useState(false);
@@ -21,6 +22,7 @@ function SharedLayout({ modalOn, modal }) {
 
   return (
     <SharedLayoutContainer>
+      <ScrollToTop />
       <Header modalOn={modalOn} />
 
       {onModalHelp ? (

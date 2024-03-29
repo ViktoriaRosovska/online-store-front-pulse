@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const SaleWrapper = styled.div`
   height: 32px;
-  background-color: var(--yellow-ribbon-color);
+  background-color: ${(props) => props.$background};
   position: absolute;
   top: 0;
   width: 100%;
@@ -12,7 +12,7 @@ const SaleWrapper = styled.div`
 `;
 const SaleText = styled.span`
   font-family: "Roboto";
-  color: black;
+  color: ${(props) => props.color};
   font-size: 14px;
   font-weight: 400;
   line-height: 14px;

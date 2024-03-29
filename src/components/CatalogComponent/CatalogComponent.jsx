@@ -4,10 +4,7 @@ import { Aside } from "../Aside/Aside";
 import { CardsList } from "../CardsList/CardsList";
 import { CatalogHeader } from "../CatalogHeader/CatalogHeader";
 import { CatalogNavigation } from "../CatalogNavigation/CatalogNavigation";
-// import { brandNew, brandSales, querySearch } from "../../http/ProductsApi";
-import { useLocation } from "react-router-dom";
-import { ScrollToTop } from "../ScrollToTop";
-// import { brandSales } from "http/ProductsApi";
+// import { useLocation } from "react-router-dom";
 
 export const CatalogComponent = (props) => {
   const [selectedBrands, setSelectedBrands] = useState([]);
@@ -17,11 +14,17 @@ export const CatalogComponent = (props) => {
   // const [selectedSex] = useState([props.sex]);
   const [asyncData, setAsyncData] = useState([]);
   console.log(asyncData);
-  const [filterQuery, setFilterQuery] = useState({ sex: props.sex, brand: "" });
-  console.log(filterQuery);
+  const [filterQuery, setFilterQuery] = useState({
+    sex: props.sex,
+    brand: "",
+    season: "",
+    size: "",
+    color: "",
+  });
+  // console.log(filterQuery);
 
-  const location = useLocation().pathname;
-  console.log(location);
+  // const location = useLocation().pathname;
+  // console.log(location);
   useEffect(() => {
     props
       .loader(filterQuery)
@@ -29,30 +32,8 @@ export const CatalogComponent = (props) => {
       .catch((error) => {
         console.error("Ошибка загрузки данных:", error);
       });
-
-    // if (location === "/newbrands") {
-    //   brandNew()
-    //     .then((res) => setAsyncData(res))
-    //     .catch((error) => {
-    //       console.error("Ошибка загрузки данных:", error);
-    //     });
-    // }
-    // if (location === "/sales") {
-    //   brandSales()
-    //     .then((res) => setAsyncData(res))
-    //     .catch((error) => {
-    //       console.error("Ошибка загрузки данных:", error);
-    //     });
-    // }
-    // if (location === "/malecatalog" || location === "/femalecatalog" || location === "/catalog") {
-    //   querySearch(filterQuery)
-    //     .then((res) => setAsyncData(res))
-    //     .catch((error) => {
-    //       console.error("Ошибка загрузки данных:", error);
-    //     });
-    // }
-    // Для брендів зробити окрему перевірку
   }, [props, filterQuery]);
+
   const onSelectionChanged = (type, items) => {
     switch (type) {
       case "brand":
@@ -80,11 +61,49 @@ export const CatalogComponent = (props) => {
     setSelectedSeasons([]);
     setselectedSizes([]);
     setSelectedColors([]);
+    const newFilter = { ...filterQuery };
+    const newFilterKeys = Object.keys(newFilter);
+    newFilterKeys.forEach((key) => {
+      if (key !== "sex") {
+        newFilter[key] = [].join(",");
+        console.log(`${key}:${newFilter[key]}`);
+      }
+      if (key === "sex") {
+        newFilter[key] = props.sex;
+        console.log(`${key}:${newFilter[key]}`);
+      }
+    });
+    setFilterQuery(newFilter);
+  };
+
+  const onClearOneFilterButton = (type) => {
+    switch (type) {
+      case "brand":
+        setSelectedBrands([]);
+
+        break;
+      case "season":
+        setSelectedSeasons([]);
+
+        break;
+      case "size":
+        setselectedSizes([]);
+
+        break;
+      case "color":
+        setSelectedColors([]);
+
+        break;
+      default:
+        return;
+    }
+    const newFilter = { ...filterQuery };
+    newFilter[type] = [].join(",");
+    setFilterQuery(newFilter);
   };
   return (
     <PageSection>
       <Container>
-        <ScrollToTop />
         <CatalogNavigation title={props.title} />
         <CatalogHeader
           selectedBrands={selectedBrands}
@@ -93,6 +112,7 @@ export const CatalogComponent = (props) => {
           selectedColors={selectedColors}
           title={props.title}
           onClearFiltersButton={onClearFiltersButton}
+          onClearOneFilterButton={onClearOneFilterButton}
         />
         <ContentWrapper>
           <Aside

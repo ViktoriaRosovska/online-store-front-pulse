@@ -8,7 +8,7 @@ const FavoriteBtn = styled.button`
   background-color: var(--grey-bg-icon-color);
   position: absolute;
   right: 10px;
-  top: ${(props) => (props.$sales ? "42px" : "16px")};
+  top: ${(props) => (props.$sales || props.$new ? "42px" : "16px")};
   display: flex;
   justify-content: center;
   align-items: center;

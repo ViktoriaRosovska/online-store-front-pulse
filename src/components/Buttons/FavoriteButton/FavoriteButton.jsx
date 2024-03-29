@@ -4,7 +4,7 @@ import "./favorite-button.css";
 
 function FavoriteButton(props) {
   return (
-    <FavoriteBtn $sales={props.$sales}>
+    <FavoriteBtn $sales={props.$sales} $new={props.$new}>
       <LogoLover />
     </FavoriteBtn>
   );
