@@ -22,38 +22,40 @@ export const CatalogComponent = (props) => {
   const location = useLocation().pathname;
   console.log(location);
   useEffect(() => {
-    if (location === "/newbrands") {
-      brandNew()
-        .then((res) => setAsyncData(res))
-        .catch((error) => {
-          console.error("Ошибка загрузки данных:", error);
-        });
-    }
+    props
+      .loader(filterQuery)
+      .then((res) => setAsyncData(res))
+      .catch((error) => {
+        console.error("Ошибка загрузки данных:", error);
+      });
 
-    if (location === "/sales") {
-      brandSales()
-        .then((res) => setAsyncData(res))
-        .catch((error) => {
-          console.error("Ошибка загрузки данных:", error);
-        });
-    }
-    if (location === "/malecatalog" || location === "/femalecatalog" || location === "/catalog") {
-      querySearch(filterQuery)
-        .then((res) => setAsyncData(res))
-        .catch((error) => {
-          console.error("Ошибка загрузки данных:", error);
-        });
-    }
+    // if (location === "/newbrands") {
+    //   brandNew()
+    //     .then((res) => setAsyncData(res))
+    //     .catch((error) => {
+    //       console.error("Ошибка загрузки данных:", error);
+    //     });
+    // }
+    // if (location === "/sales") {
+    //   brandSales()
+    //     .then((res) => setAsyncData(res))
+    //     .catch((error) => {
+    //       console.error("Ошибка загрузки данных:", error);
+    //     });
+    // }
+    // if (location === "/malecatalog" || location === "/femalecatalog" || location === "/catalog") {
+    //   querySearch(filterQuery)
+    //     .then((res) => setAsyncData(res))
+    //     .catch((error) => {
+    //       console.error("Ошибка загрузки данных:", error);
+    //     });
+    // }
     // Для брендів зробити окрему перевірку
   }, [filterQuery, location]);
   const onSelectionChanged = (type, items) => {
     switch (type) {
       case "brand":
         setSelectedBrands(items);
-        setFilterQuery({
-          sex: selectedSex.join(","),
-          brand: selectedBrands.join(","),
-        });
         break;
       case "season":
         setSelectedSeasons(items);
@@ -65,8 +67,12 @@ export const CatalogComponent = (props) => {
         setSelectedColors(items);
         break;
       default:
-        break;
+        return;
     }
+
+    const newFilter = { ...filterQuery };
+    newFilter[type] = items.join(",");
+    setFilterQuery(newFilter);
   };
   const onClearFiltersButton = () => {
     setSelectedBrands([]);
