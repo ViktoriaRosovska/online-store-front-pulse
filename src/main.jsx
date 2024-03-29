@@ -1,19 +1,17 @@
 import ReactDOM from "react-dom/client";
-import React, { createContext } from "react";
+import { StrictMode } from 'react';
+import { Provider } from 'react-redux';
 import App from "./App.jsx";
+import store from './store/store';
+
 import "./index.css";
-import ProductStore from "./store/ProductStore.js";
 
-export const Context = createContext(null);
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Context.Provider
-      value={{
-        store: new ProductStore(),
-      }}
-    >
+root.render(
+  <StrictMode>
+    <Provider store={store}>
       <App />
-    </Context.Provider>
-  </React.StrictMode>
+    </Provider>
+  </StrictMode>
 );

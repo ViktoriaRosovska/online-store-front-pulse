@@ -4,7 +4,7 @@ import Banner from "../../components/Banner/Banner.jsx";
 // import { Context } from "../../main.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import { ReactComponent as SaleIcon } from "../../assets/svg/saleIcon.svg";
+import SaleIconsMarquee from '../../components/SaleIconsMarquee/SaleIconsMarquee';
 import {
   BoxHero,
   BoxHeroTitle,
@@ -78,147 +78,17 @@ const Main = observer(() => {
         <NewSlider />
       </SectionSale>
       <section className="marquee-centered">
-        <div className="marquee marquee-rotate-right">
-          <div className="track">
-            <div className="marquee-content">
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-            </div>
-          </div>
-        </div>
-        <div className="marquee marquee-rotate-left">
-          <div className="track">
-            <div className="marquee-content">
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-              <SaleIcon />
-            </div>
-          </div>
-        </div>
-      </section>
+  <div className="marquee marquee-rotate-right">
+    <div className="track">
+      <SaleIconsMarquee count={50} />
+    </div>
+  </div>
+  <div className="marquee marquee-rotate-left">
+    <div className="track">
+      <SaleIconsMarquee count={50} />
+    </div>
+  </div>
+</section>
     </MainContent>
   );
 });
