@@ -4,7 +4,7 @@ import { Aside } from "../Aside/Aside";
 import { CardsList } from "../CardsList/CardsList";
 import { CatalogHeader } from "../CatalogHeader/CatalogHeader";
 import { CatalogNavigation } from "../CatalogNavigation/CatalogNavigation";
-import { brandNew, brandSales, querySearch } from "../../http/ProductsApi";
+// import { brandNew, brandSales, querySearch } from "../../http/ProductsApi";
 import { useLocation } from "react-router-dom";
 import { ScrollToTop } from "../ScrollToTop";
 
@@ -13,7 +13,7 @@ export const CatalogComponent = (props) => {
   const [selectedSeasons, setSelectedSeasons] = useState([]);
   const [selectedSizes, setselectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
-  const [selectedSex] = useState([props.sex]);
+  // const [selectedSex] = useState([props.sex]);
   const [asyncData, setAsyncData] = useState([]);
   console.log(asyncData);
   const [filterQuery, setFilterQuery] = useState({ sex: props.sex, brand: "" });
