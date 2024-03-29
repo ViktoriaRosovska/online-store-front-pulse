@@ -64,10 +64,9 @@ const Main = observer(() => {
         </Link>
       </SectionManWomen>
       <VectorBox>
-        <img src="../../../image/Vector%202.png" alt="vector" />
+        <img src="./image/Vector 2.png" alt="vector" />
       </VectorBox>
       <SectionNews>
-
         <SliderBox>
           <h2>Новинки</h2>
           <OneSlider />

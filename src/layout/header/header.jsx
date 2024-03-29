@@ -3,7 +3,7 @@ import logoImg from "./../../../public/logo.svg";
 import Menu from "./../menu/menu.jsx";
 import SearchUserActions from "./search-user-actions/search-user-actions.jsx";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MediaQuery from "react-responsive";
 
 function Header({ modalOn }) {
@@ -30,9 +30,9 @@ function Header({ modalOn }) {
     <header className={`header ${isFixed ? "fixed" : ""}`}>
       <div className="container">
         <div className="header__inner">
-          <a href="/" className="logo">
+          <Link className="logo" to="/">
             <img className={`logo__icon ${isFixed ? "fixed" : ""}`} src={logoImg} alt="PulseRun" onClick={homeClick} />
-          </a>
+          </Link>
           <MediaQuery minWidth={1440}>
             <nav className="menu">
               <Menu />
