@@ -52,7 +52,7 @@ export const CatalogComponent = (props) => {
     //     });
     // }
     // Для брендів зробити окрему перевірку
-  }, [filterQuery, location]);
+  }, [props, filterQuery]);
   const onSelectionChanged = (type, items) => {
     switch (type) {
       case "brand":
