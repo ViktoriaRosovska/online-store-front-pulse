@@ -1,6 +1,6 @@
 import "./footer-glass-info.css";
 import MediaQuery from "react-responsive";
-import List from "../../../../components/list/list";
+// import List from "../../../../components/list/list";
 import Link from "../../../../components/link/link";
 import instagramIcon from "../../../../../public/icons/social-media-icons/instagram-icon.svg";
 import facebookIcon from "../../../../../public/icons/social-media-icons/facebook-icon.svg";
@@ -19,7 +19,7 @@ function FooterGlassInfo() {
     <div className="footer__glass-info">
       <nav className="footer__navbar">
         <MediaQuery maxWidth={1439}>
-          <List className="social__media-list-mobile">
+          <ul className="social__media-list-mobile">
             {iconsArray.map((item, itemIndex) => (
               <li key={itemIndex}>
                 <Link className="list__item">
@@ -27,14 +27,14 @@ function FooterGlassInfo() {
                 </Link>
               </li>
             ))}
-          </List>
+          </ul>
         </MediaQuery>
 
         <MediaQuery minWidth={1440}>
-          <List className="footer__navbar-list">
+          <ul className="footer__navbar-list">
             {footerNavbarItems.map((listItems, index) => (
               <li key={index} className="footer__navbar-item">
-                <List className={`footer__navbar-item ${index === 0 ? "social__media-list" : ""}`}>
+                <ul className={`footer__navbar-item ${index === 0 ? "social__media-list" : ""}`}>
                   {listItems.map((item, itemIndex) => (
                     <li key={itemIndex}>
                       {index === 0 ? (
@@ -46,10 +46,10 @@ function FooterGlassInfo() {
                       )}
                     </li>
                   ))}
-                </List>
+                </ul>
               </li>
             ))}
-          </List>
+          </ul>
         </MediaQuery>
       </nav>
     </div>

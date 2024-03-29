@@ -5,9 +5,6 @@ import svgr from "@svgr/rollup";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  server: {
-    open: true,
-  },
   include: ["src/**/*.jsx", "node_modules/**/*.jsx", "src/**/*.js", "node_modules/**/*.js"],
   plugins: [[react()], [svgr()]],
 
@@ -19,5 +16,5 @@ export default defineConfig({
   },
   extensions: [".js", ".json", ".jsx", ".mjs", ".ts", ".tsx", ".vue"],
 
-  base: "/online-store-front-pulse/",
+  base: "online-store-front-pulse",
 });

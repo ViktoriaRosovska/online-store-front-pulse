@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Container, ContentWrapper, PageSection } from "../../main.styled";
-import { Aside } from "../Aside/Aside";
+import { Aside } from "./Aside/Aside";
 import { CardsList } from "../CardsList/CardsList";
-import { CatalogHeader } from "../CatalogHeader/CatalogHeader";
-import { CatalogNavigation } from "../CatalogNavigation/CatalogNavigation";
+import { CatalogHeader } from "./CatalogHeader/CatalogHeader";
+import { CatalogNavigation } from "./CatalogNavigation/CatalogNavigation";
 // import { useLocation } from "react-router-dom";
 
 export const CatalogComponent = (props) => {

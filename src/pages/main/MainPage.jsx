@@ -1,10 +1,8 @@
 import "./main.css";
 import Banner from "../../components/Banner/Banner.jsx";
-// import { useContext, useEffect } from "react";
-// import { Context } from "../../main.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import SaleIconsMarquee from '../../components/SaleIconsMarquee/SaleIconsMarquee';
+import SaleIconsMarquee from "../../components/SaleIconsMarquee/SaleIconsMarquee";
 import {
   BoxHero,
   BoxHeroTitle,
@@ -19,8 +17,8 @@ import {
   VectorBox,
   WomenBox,
 } from "./MainPage.styled.js";
-import OneSlider from "../../components/newSlider/OneSlider.jsx";
-import NewSlider from "../../components/newSlider/NewSlider.jsx";
+import OneSlider from "../../components/Slider/OneSlider.jsx";
+import NewSlider from "../../components/Slider/NewSlider.jsx";
 
 const Main = observer(() => {
   const navigate = useNavigate();
@@ -78,17 +76,17 @@ const Main = observer(() => {
         <NewSlider />
       </SectionSale>
       <section className="marquee-centered">
-  <div className="marquee marquee-rotate-right">
-    <div className="track">
-      <SaleIconsMarquee count={50} />
-    </div>
-  </div>
-  <div className="marquee marquee-rotate-left">
-    <div className="track">
-      <SaleIconsMarquee count={50} />
-    </div>
-  </div>
-</section>
+        <div className="marquee marquee-rotate-right">
+          <div className="track">
+            <SaleIconsMarquee count={50} />
+          </div>
+        </div>
+        <div className="marquee marquee-rotate-left">
+          <div className="track">
+            <SaleIconsMarquee count={50} />
+          </div>
+        </div>
+      </section>
     </MainContent>
   );
 });

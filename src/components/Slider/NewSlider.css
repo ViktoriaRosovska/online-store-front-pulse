@@ -1,0 +1,9 @@
+.swiper-wrapper {
+  /*margin-right: 90px;*/
+  height: 540px;
+}
+
+.next {
+  background-image: url("../../../public/icons/White Circular Buttons.png");
+  background-size: 100%;
+}

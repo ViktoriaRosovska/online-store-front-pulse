@@ -2,8 +2,8 @@ import Footer from "../../layout/footer/footer";
 import Header from "../../layout/header/header";
 import { Outlet } from "react-router-dom";
 import { SharedLayoutContainer } from "./SharedLayout.styled";
-import ModalHelp from "../../layout/modals/modalHelp/ModalHelp.jsx";
-import ModalAuth from "../../layout/modals/ModalAuth.jsx";
+import ModalHelp from "../Modals/modalHelp/ModalHelp.jsx";
+import ModalAuth from "../Modals/ModalAuth/ModalAuth.jsx";
 import { useState } from "react";
 import { ScrollToTop } from "../../components/ScrollToTop.js";
 

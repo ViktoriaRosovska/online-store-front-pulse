@@ -1,9 +1,9 @@
-import { FilterButton } from "../Buttons/FilterButton/FilterButton.styled";
-import { PageTitle } from "../Typography/PageTitle.styled";
+import { FilterButton } from "../../Buttons/FilterButton/FilterButton.styled";
+import { PageTitle } from "../../Typography/PageTitle.styled";
 import { CatalogHeaderContainer, FilterWrapper, FilterWrapperButton } from "./CatalogHeader.styled";
-import { ReactComponent as FilterIcon } from "../../assets/svg/filter.svg";
-import { ReactComponent as SortIcon } from "../../assets/svg/sortIcon.svg";
-import { ReactComponent as CloseBtn } from "../../assets/svg/closeBtn.svg";
+import { ReactComponent as FilterIcon } from "../../../assets/svg/filter.svg";
+import { ReactComponent as SortIcon } from "../../../assets/svg/sortIcon.svg";
+import { ReactComponent as CloseBtn } from "../../../assets/svg/closeBtn.svg";
 
 import { useState } from "react";
 import "./sort-select.css";
@@ -12,9 +12,7 @@ export const CatalogHeader = (props) => {
   const [selectSortValue, setSelectSortValue] = useState("");
   const [showSelect, setShowSelect] = useState(false);
   const [showSelectMenu, setShowSelectMenu] = useState(false);
-  console.log("selectSortValue", selectSortValue);
-  console.log("showSelect", showSelect);
-  console.log("showSelectMenu", showSelectMenu);
+
   const hasFilter =
     props.selectedBrands.length +
       props.selectedSeasons.length +

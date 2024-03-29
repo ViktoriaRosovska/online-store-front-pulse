@@ -24,8 +24,10 @@ const Card = ({ info, image, price, id, sale }) => {
       </ImageWrapper>
       <TextWrapper>
         <CardTitle>{info}</CardTitle>
-        {sales ? <span style={{ marginRight: "5px", textDecoration: "line-through" }}>{price}грн</span> : null}
-        <CardPrice $sales={sales}>{`${Math.ceil(price - (price * sale) / 100)} грн`}</CardPrice>
+        {sales || sale > 0 ? (
+          <span style={{ marginRight: "5px", textDecoration: "line-through" }}>{price}грн</span>
+        ) : null}
+        <CardPrice $sales={sales || sale > 0}>{`${Math.ceil(price - (price * sale) / 100)} грн`}</CardPrice>
       </TextWrapper>
       <CardButton text={"Купити"} click={aLink} />
     </CardWrapper>

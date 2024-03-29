@@ -1,8 +1,8 @@
-import { CheckboxList } from "../CheckboxList/CheckboxList";
-import brandList from "../../data/brendList.json";
-import seasonList from "../../data/seasonList.json";
-import sizeList from "../../data/sizeList.json";
-import colorList from "../../data/colorList.json";
+import { CheckboxList } from "../../CheckboxList/CheckboxList";
+import brandList from "../../../data/brendList.json";
+import seasonList from "../../../data/seasonList.json";
+import sizeList from "../../../data/sizeList.json";
+import colorList from "../../../data/colorList.json";
 import { AsideList } from "./Aside.styled";
 
 export const Aside = (props) => {
