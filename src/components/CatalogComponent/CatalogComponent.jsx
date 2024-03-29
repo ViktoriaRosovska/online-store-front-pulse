@@ -7,6 +7,7 @@ import { CatalogNavigation } from "../CatalogNavigation/CatalogNavigation";
 // import { brandNew, brandSales, querySearch } from "../../http/ProductsApi";
 import { useLocation } from "react-router-dom";
 import { ScrollToTop } from "../ScrollToTop";
+// import { brandSales } from "http/ProductsApi";
 
 export const CatalogComponent = (props) => {
   const [selectedBrands, setSelectedBrands] = useState([]);
