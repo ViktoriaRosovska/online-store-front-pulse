@@ -245,6 +245,7 @@
   /* border: 1px solid red; */
   overflow: hidden;
   height: 369px;
+  z-index: 0;
 }
 .marquee-rotate-right {
   top: 120px;

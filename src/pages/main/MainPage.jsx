@@ -19,6 +19,8 @@ import {
 } from "./MainPage.styled.js";
 import OneSlider from "../../components/Slider/OneSlider.jsx";
 import NewSlider from "../../components/Slider/NewSlider.jsx";
+import vector2 from "/public/image/Vector 2.png"
+
 
 const Main = observer(() => {
   const navigate = useNavigate();
@@ -62,7 +64,7 @@ const Main = observer(() => {
         </Link>
       </SectionManWomen>
       <VectorBox>
-        <img src="./image/Vector 2.png" alt="vector" />
+        <img src={vector2} alt="vector" />
       </VectorBox>
       <SectionNews>
         <SliderBox>
