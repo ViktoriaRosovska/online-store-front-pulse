@@ -51,25 +51,27 @@ export const CatalogHeader = (props) => {
         </FilterButton>
         <PageTitle>{props.title}</PageTitle>
 
-        <div style={{ display: "flex", position: "relative" }}>
-          <FilterButton
-            onClick={() => {
-              setShowSelectMenu(!showSelectMenu);
-            }}
-          >
-            <SortIcon />
-            Сортування
-          </FilterButton>
-          {Boolean(showSelect) && (
-            <SortSelectWrapper>
-              <span>:</span>
-              <SortCloseBtn onClick={() => props.onSortOrderChanged(null)}>
-                <CloseBtn />
-              </SortCloseBtn>
+        <div style={{ display: "flex", position: "relative", alignItems: "center", width: "300px" }}>
+          <div style={{ position: "absolute", display: "flex", right: 0 }}>
+            <FilterButton
+              onClick={() => {
+                setShowSelectMenu(!showSelectMenu);
+              }}
+            >
+              <SortIcon />
+              Сортування
+            </FilterButton>
+            {Boolean(showSelect) && (
+              <SortSelectWrapper>
+                <span>:</span>
+                <SortCloseBtn onClick={() => props.onSortOrderChanged(null)}>
+                  <CloseBtn />
+                </SortCloseBtn>
 
-              <SortSelect onChange={(e) => props.onSortOrderChanged(e)} value={props.sortOrder} />
-            </SortSelectWrapper>
-          )}
+                <SortSelect onChange={(e) => props.onSortOrderChanged(e)} value={props.sortOrder} />
+              </SortSelectWrapper>
+            )}
+          </div>
         </div>
 
         {Boolean(showSelectMenu) && Boolean(!showSelect) && (
