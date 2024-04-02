@@ -1,0 +1,14 @@
+[
+  {
+    "value": "createdAt",
+    "label": "Новинки"
+  },
+  {
+    "value": "asc",
+    "label": "Від дешевших"
+  },
+  {
+    "value": "desc",
+    "label": "Від дорожчих"
+  }
+]

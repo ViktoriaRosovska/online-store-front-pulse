@@ -9,8 +9,9 @@ import { CatalogNavigation } from "./CatalogNavigation/CatalogNavigation";
 export const CatalogComponent = (props) => {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedSeasons, setSelectedSeasons] = useState([]);
-  const [selectedSizes, setselectedSizes] = useState([]);
+  const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
+  const [sortOrder, setSortOrder] = useState(null);
   // const [selectedSex] = useState([props.sex]);
   const [asyncData, setAsyncData] = useState([]);
   console.log(asyncData);
@@ -34,6 +35,22 @@ export const CatalogComponent = (props) => {
       });
   }, [props, filterQuery]);
 
+  const onSortOrderChanged = (value) => {
+    setSortOrder(value);
+
+    let sortQuery = "";
+    let sortOrder = "";
+    if (value === "createdAt") {
+      sortQuery = value;
+      sortOrder = "";
+    } else {
+      sortQuery = "price";
+      sortOrder = value;
+    }
+    const newFilter = { ...filterQuery, sort: sortQuery, order: sortOrder };
+    setFilterQuery(newFilter);
+  };
+
   const onSelectionChanged = (type, items) => {
     switch (type) {
       case "brand":
@@ -43,7 +60,7 @@ export const CatalogComponent = (props) => {
         setSelectedSeasons(items);
         break;
       case "size":
-        setselectedSizes(items);
+        setSelectedSizes(items);
         break;
       case "color":
         setSelectedColors(items);
@@ -56,51 +73,18 @@ export const CatalogComponent = (props) => {
     newFilter[type] = items.join(",");
     setFilterQuery(newFilter);
   };
+
   const onClearFiltersButton = () => {
     setSelectedBrands([]);
     setSelectedSeasons([]);
-    setselectedSizes([]);
+    setSelectedSizes([]);
     setSelectedColors([]);
-    const newFilter = { ...filterQuery };
-    const newFilterKeys = Object.keys(newFilter);
-    newFilterKeys.forEach((key) => {
-      if (key !== "sex") {
-        newFilter[key] = [].join(",");
-        console.log(`${key}:${newFilter[key]}`);
-      }
-      if (key === "sex") {
-        newFilter[key] = props.sex;
-        console.log(`${key}:${newFilter[key]}`);
-      }
-    });
+    const newFilter = { sex: filterQuery.sex, order: filterQuery.order, sort: filterQuery.sort };
     setFilterQuery(newFilter);
   };
 
-  const onClearOneFilterButton = (type) => {
-    switch (type) {
-      case "brand":
-        setSelectedBrands([]);
+  const onClearOneFilterButton = (type) => onSelectionChanged(type, []);
 
-        break;
-      case "season":
-        setSelectedSeasons([]);
-
-        break;
-      case "size":
-        setselectedSizes([]);
-
-        break;
-      case "color":
-        setSelectedColors([]);
-
-        break;
-      default:
-        return;
-    }
-    const newFilter = { ...filterQuery };
-    newFilter[type] = [].join(",");
-    setFilterQuery(newFilter);
-  };
   return (
     <PageSection>
       <Container>
@@ -113,6 +97,8 @@ export const CatalogComponent = (props) => {
           title={props.title}
           onClearFiltersButton={onClearFiltersButton}
           onClearOneFilterButton={onClearOneFilterButton}
+          sortOrder={sortOrder}
+          onSortOrderChanged={onSortOrderChanged}
         />
         <ContentWrapper>
           <Aside
