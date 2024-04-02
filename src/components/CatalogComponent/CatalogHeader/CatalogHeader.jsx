@@ -4,13 +4,13 @@ import { CatalogHeaderContainer, FilterWrapper, FilterWrapperButton } from "./Ca
 import { ReactComponent as FilterIcon } from "../../../assets/svg/filter.svg";
 import { ReactComponent as SortIcon } from "../../../assets/svg/sortIcon.svg";
 import { ReactComponent as CloseBtn } from "../../../assets/svg/closeBtn.svg";
-
+import { SortSelect } from "./SortSelect";
 import { useState } from "react";
+import options from "../../../data/sortoptions.json";
 import "./sort-select.css";
+
 export const CatalogHeader = (props) => {
   const [showFilter, setShowFilter] = useState(true);
-  const [selectSortValue, setSelectSortValue] = useState("");
-  const [showSelect, setShowSelect] = useState(false);
   const [showSelectMenu, setShowSelectMenu] = useState(false);
 
   const hasFilter =
@@ -24,6 +24,9 @@ export const CatalogHeader = (props) => {
   const onToggleFilter = () => {
     setShowFilter(!showFilter);
   };
+
+  const showSelect = props.sortOrder !== null;
+  if (showSelect && showSelectMenu) setShowSelectMenu(false);
 
   return (
     <CatalogHeaderContainer>
@@ -54,29 +57,8 @@ export const CatalogHeader = (props) => {
           {Boolean(showSelect) && (
             <div className="sort-result">
               <span>:</span>
-              {/* <div className="sort-result-item">
-                {selectSortValue} <DownArrow />
-              </div> */}
-              <select
-                onChange={(e) => {
-                  setSelectSortValue(e.target.value);
-                }}
-                // onClick={() => {
-                //   setShowSelectMenu(!showSelectMenu);
-                // }}
-                className="sort-select"
-                value={selectSortValue}
-              >
-                <option value={"Новинки"} className="optionSelect">
-                  Новинки
-                </option>
-                <option value={"Від дешевших"} className="optionSelect">
-                  Від дешевших
-                </option>
-                <option value={"Від дорожчих"} className="optionSelect">
-                  Від дорожчих
-                </option>
-              </select>
+              <SortSelect onChange={(e) => props.onSortOrderChanged(e)} value={props.sortOrder} />
+              <button onClick={() => props.onSortOrderChanged(null)}>X</button>
             </div>
           )}
         </div>
@@ -84,33 +66,11 @@ export const CatalogHeader = (props) => {
         {Boolean(showSelectMenu) && Boolean(!showSelect) && (
           <div className="select-menu-wrapper">
             <ul>
-              <li
-                onClick={() => {
-                  setSelectSortValue("Новинки");
-                  setShowSelectMenu(false);
-                  setShowSelect(true);
-                }}
-              >
-                Новинки
-              </li>
-              <li
-                onClick={() => {
-                  setSelectSortValue("Від дешевших");
-                  setShowSelectMenu(false);
-                  setShowSelect(true);
-                }}
-              >
-                Від дешевших
-              </li>
-              <li
-                onClick={() => {
-                  setSelectSortValue("Від дорожчих");
-                  setShowSelectMenu(false);
-                  setShowSelect(true);
-                }}
-              >
-                Від дорожчих
-              </li>
+              {options.map((o) => (
+                <li key={o.value} onClick={() => props.onSortOrderChanged(o.value)}>
+                  {o.label}
+                </li>
+              ))}
             </ul>
           </div>
         )}
