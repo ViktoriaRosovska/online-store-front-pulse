@@ -51,8 +51,8 @@ export const CatalogHeader = (props) => {
         </FilterButton>
         <PageTitle>{props.title}</PageTitle>
 
-        <div style={{ display: "flex", position: "relative", alignItems: "center", width: "300px" }}>
-          <div style={{ position: "absolute", display: "flex", right: 0 }}>
+        <div style={{ display: "flex", position: "relative", alignItems: "center" }}>
+          <div style={{ position: "absolute", display: "flex", right: 0, width: "300px", justifyContent: "flex-end" }}>
             <FilterButton
               onClick={() => {
                 setShowSelectMenu(!showSelectMenu);
