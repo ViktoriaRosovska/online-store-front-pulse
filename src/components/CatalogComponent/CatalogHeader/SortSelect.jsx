@@ -5,19 +5,25 @@ export const SortSelect = ({ onChange, value }) => {
   const style = {
     control: (baseStyles) => ({
       ...baseStyles,
-      //   borderRadius: "200px",
       backgroundColor: "transparent",
       boxShadow: "none",
-      border: 0,
-      width: "auto",
-      padding: "14px 24px",
+      border: "1px solid transparent",
+      minHeight: "20px",
+      padding: 0,
+      "&:hover": {
+        border: "1px solid transparent",
+        color: "var(--grey-text-color)",
+      },
     }),
     menu: (baseStyles) => ({
       ...baseStyles,
-      //   borderRadius: "20px",
-      //   backgroundColor: "#161F37",
-      width: "199px",
-      marginTop: "4px",
+      width: "180px",
+      backgroundColor: "white",
+      border: "1px solid var(--black-bg-color)",
+      padding: "5px 12px",
+      borderRadius: "16px",
+      boxShadow: "none",
+      right: 0,
       "&::-webkit-scrollbar": {
         width: "0px",
       },
@@ -28,39 +34,52 @@ export const SortSelect = ({ onChange, value }) => {
         width: "0px",
       },
     }),
-    dropdownIndicator: (baseStyles, { isFocused }) => ({
+    dropdownIndicator: (baseStyles) => ({
       ...baseStyles,
-      color: "var(--white-color)",
+      padding: 0,
+      color: "var(--black-text-color)",
+      width: "11px",
       "&:hover": {
-        color: "var(--white-color)",
+        color: "var(--grey-text-color)",
       },
-      transition: "transform 0.25s ease-out",
-      transform: isFocused && "rotate(180deg)",
+      //   transition: "transform 0.25s ease-out",
+      //   transform: isFocused && "rotate(180deg)",
     }),
     indicatorSeparator: (baseStyles) => ({
       ...baseStyles,
       display: "none",
     }),
-    placeholder: (baseStyles) => ({
-      ...baseStyles,
-      //   color: "white",
-    }),
+
     input: (baseStyles) => ({
       ...baseStyles,
-      //   color: "white",
+      padding: 0,
+      margin: 0,
+      height: "20px",
     }),
     option: (baseStyles) => ({
       ...baseStyles,
-      backgroundColor: "none",
-      color: "var(--white-fifty-color)",
+      fontSize: "14px",
+      padding: "4px 0 10px 0",
 
+      backgroundColor: "none",
+      color: "var(--black-text-color)",
+      borderBottom: "1px solid var(--black-bg-color)",
       "&:hover": {
-        color: "var(--white-color)",
+        color: "var(--grey-text-color)",
       },
     }),
     singleValue: (baseStyles) => ({
       ...baseStyles,
-      //   color: "white",
+      padding: 0,
+      margin: 0,
+      "&:hover": {
+        color: "var(--grey-text-color)",
+      },
+    }),
+    valueContainer: (baseStyles) => ({
+      ...baseStyles,
+      padding: "0 10px 0 0",
+      width: "117px",
     }),
   };
 

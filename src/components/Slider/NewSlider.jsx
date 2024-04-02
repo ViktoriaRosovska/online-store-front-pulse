@@ -41,9 +41,9 @@ const NewSlider = () => {
               <CardsSale
                 info={el.name}
                 image={el.imgThumbnail}
-                price={el.price}
+                basePrice={el.basePrice}
                 id={el._id}
-                sale={Math.round(el.price - (el.price * el.sale) / 100)}
+                sale={Math.round(el.basePrice - (el.basePrice * el.sale) / 100)}
                 sales={el.sale}
               />
             </swiper-slide>
