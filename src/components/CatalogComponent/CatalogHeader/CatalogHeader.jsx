@@ -1,6 +1,12 @@
 import { FilterButton } from "../../Buttons/FilterButton/FilterButton.styled";
 import { PageTitle } from "../../Typography/PageTitle.styled";
-import { CatalogHeaderContainer, FilterWrapper, FilterWrapperButton } from "./CatalogHeader.styled";
+import {
+  CatalogHeaderContainer,
+  FilterWrapper,
+  FilterWrapperButton,
+  SortCloseBtn,
+  SortSelectWrapper,
+} from "./CatalogHeader.styled";
 import { ReactComponent as FilterIcon } from "../../../assets/svg/filter.svg";
 import { ReactComponent as SortIcon } from "../../../assets/svg/sortIcon.svg";
 import { ReactComponent as CloseBtn } from "../../../assets/svg/closeBtn.svg";
@@ -55,11 +61,14 @@ export const CatalogHeader = (props) => {
             Сортування
           </FilterButton>
           {Boolean(showSelect) && (
-            <div className="sort-result">
+            <SortSelectWrapper>
               <span>:</span>
+              <SortCloseBtn onClick={() => props.onSortOrderChanged(null)}>
+                <CloseBtn />
+              </SortCloseBtn>
+
               <SortSelect onChange={(e) => props.onSortOrderChanged(e)} value={props.sortOrder} />
-              <button onClick={() => props.onSortOrderChanged(null)}>X</button>
-            </div>
+            </SortSelectWrapper>
           )}
         </div>
 

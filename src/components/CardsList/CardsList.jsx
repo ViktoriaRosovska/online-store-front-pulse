@@ -12,7 +12,7 @@ export const CardsList = (props) => {
       {props.asyncData.products && props.asyncData.products.length > 0 ? (
         props.asyncData.products.map((el) => {
           return (
-            <Card key={el._id} info={el.name} image={el.imgThumbnail} price={el.price} id={el._id} sale={el.sale} />
+            <Card key={el._id} info={el.name} image={el.imgThumbnail} price={el.basePrice} id={el._id} sale={el.sale} />
           );
         })
       ) : (

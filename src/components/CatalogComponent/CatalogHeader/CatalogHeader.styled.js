@@ -29,4 +29,24 @@ const FilterWrapperButton = styled.button`
     background-color: var(--black-bg-color);
   }
 `;
-export { CatalogHeaderContainer, FilterWrapper, FilterWrapperButton };
+const SortSelectWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 13px;
+`;
+const SortCloseBtn = styled.button`
+  border: 1px solid transparent;
+  padding: 0;
+  display: flex;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: black;
+  stroke: var(--black-text-color);
+  cursor: pointer;
+  &:hover {
+    stroke: var(--grey-text-color);
+  }
+`;
+export { CatalogHeaderContainer, FilterWrapper, FilterWrapperButton, SortCloseBtn, SortSelectWrapper };
