@@ -7,7 +7,7 @@ import { SalePercent } from "../salesComponents/SalePercent/SalePercent.jsx";
 
 const Card = ({ info, image, price, id, sale }) => {
   const navigate = useNavigate();
-  const sales = useLocation().pathname === "/sales";
+  const sales = useLocation().pathname === "/sales" || "/malecatalog" || "femalecatalog";
   const newBrands = useLocation().pathname === "/newbrands";
   const aLink = () => {
     navigate(`/${id}`);
@@ -16,18 +16,18 @@ const Card = ({ info, image, price, id, sale }) => {
   return (
     <CardWrapper>
       <ImageWrapper>
-        {sales ? <SaleBand text={"SALE"} $background={"#fef746"} color={"black"} /> : null}
+        {sales && sale > 0 ? <SaleBand text={"SALE"} $background={"#fef746"} color={"black"} /> : null}
         {newBrands ? <SaleBand text={"NEW"} $background={"#495C80"} color={"#E9E9E9"} /> : null}
         <CardImage src={image} $sales={sales} />
-        <FavoriteButton $sales={sales} $new={newBrands} />
-        {sales ? <SalePercent text={sale} /> : null}
+        <FavoriteButton $sales={sales && sale > 0} $new={newBrands} />
+        {sales && sale > 0 ? <SalePercent text={sale} /> : null}
       </ImageWrapper>
       <TextWrapper>
         <CardTitle>{info}</CardTitle>
-        {sales || sale > 0 ? (
+        {sales && sale > 0 ? (
           <span style={{ marginRight: "5px", textDecoration: "line-through" }}>{price}грн</span>
         ) : null}
-        <CardPrice $sales={sales || sale > 0}>{`${Math.ceil(price - (price * sale) / 100)} грн`}</CardPrice>
+        <CardPrice $sales={sales && sale > 0}>{`${Math.ceil(price - (price * sale) / 100)} грн`}</CardPrice>
       </TextWrapper>
       <CardButton text={"Купити"} click={aLink} />
     </CardWrapper>
