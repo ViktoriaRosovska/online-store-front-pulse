@@ -1,6 +1,12 @@
 {
+  // "compilerOptions": {
+  //   "baseUrl": "src"
+  // },
   "compilerOptions": {
-    "baseUrl": "src"
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["./src/*"]
+    }
   },
   "exclude": ["node_modules"],
   "include": ["src"]
