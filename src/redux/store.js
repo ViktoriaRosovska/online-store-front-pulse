@@ -11,7 +11,6 @@ import {
 } from "redux-persist";
 import { productsApi } from "./products/productsApi";
 // import storage from 'redux-persist/lib/storage';
-// import { noticesApi } from './notices/noticesApi';
 
 //Persisting token from auth slice to localStorage
 // const authPersistConfig = {
@@ -22,7 +21,6 @@ import { productsApi } from "./products/productsApi";
 
 export const store = configureStore({
   reducer: {
-    // [noticesApi.reducerPath]: noticesApi.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
   },
   middleware(getDefaultMiddleware) {
@@ -31,7 +29,6 @@ export const store = configureStore({
         ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(productsApi.middleware);
-    //   .concat(userPetsApi.middleware);
   },
 });
 
