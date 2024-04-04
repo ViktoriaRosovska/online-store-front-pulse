@@ -2,21 +2,21 @@
 
 @font-face {
   font-family: "Strong";
-  src: url("../fonts/Strong-Regular.ttf") format("truetype");
+  src: url("../public/fonts/Strong-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Beware";
-  src: url("../fonts/Beware.ttf") format("truetype");
+  src: url("../public/fonts/Beware.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Roboto";
-  src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+  src: url("../public/fonts/Roboto-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;

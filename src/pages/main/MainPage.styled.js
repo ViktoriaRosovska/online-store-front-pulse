@@ -1,10 +1,15 @@
 import styled from "styled-components";
+import heroBackground from "../../assets/images/hero-background.png";
+import manBoxLg from "../../assets/images/manBox-lg.png";
+import manBoxSm from "../../assets/images/manBox-sm.jpg";
+import womanBoxLg from "../../assets/images/womanBox-lg.png";
+import womanBoxSm from "../../assets/images/womanBox-sm.jpg";
 
 export const MainContent = styled.main`
   /* padding-bottom: 369px; */
 `;
 export const SectionHero = styled.section`
-  background-image: url("./image/Rectangle 17516.png");
+  background-image: url(${heroBackground});
   background-repeat: no-repeat;
   background-size: cover;
   padding-top: 195px;
@@ -100,14 +105,14 @@ export const SectionManWomen = styled.section`
 `;
 
 export const ManBox = styled.div`
-  background-image: url("./image/men-mobile.jpg");
+  background-image: url(${manBoxSm});
   width: 327px;
   height: 280px;
   border-radius: 36px;
   padding-top: 12px;
 
   @media screen and (min-width: 1440px) {
-    background-image: url("./image/image 31.png");
+    background-image: url(${manBoxLg});
     width: 562px;
     height: 280px;
   }
@@ -117,11 +122,11 @@ export const WomenBox = styled.div`
   width: 327px;
   height: 280px;
   border-radius: 36px;
-  background-image: url("./image/women-mobile.jpg");
+  background-image: url(${womanBoxSm});
   padding-top: 12px;
 
   @media screen and (min-width: 1440px) {
-    background-image: url("./image/image 30.png");
+    background-image: url(${womanBoxLg});
     width: 562px;
     height: 280px;
   }

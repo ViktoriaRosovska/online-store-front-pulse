@@ -4,7 +4,7 @@ import { ButtonWrapper, SectionBanner, TitleBox } from "./Banner.styled";
 const MyComponent = () => {
   const navigate = useNavigate();
   const aLink = () => {
-    navigate("/catalog");
+    navigate("/sales");
   };
   return (
     <SectionBanner>
