@@ -11,6 +11,7 @@ import {
   useGetNewestQuery,
   useGetProductByIdQuery,
   useGetSalesQuery,
+  // useLazyGetAllProductsQuery,
 } from "../../redux/products/productsApi";
 // import { useLocation } from "react-router-dom";
 
@@ -38,6 +39,7 @@ export const CatalogComponent = props => {
   //========================================================
   //ANTON===================================================
   const { data: allProducts, isError, isFetching } = useGetAllProductsQuery({});
+  // const [testGet, { data }] = useLazyGetAllProductsQuery();
   const { data: oneProduct } = useGetProductByIdQuery(
     "65f8a68bc11d83d79ea7e89d"
   );
@@ -49,6 +51,7 @@ export const CatalogComponent = props => {
   //========================================================
 
   useEffect(() => {
+    // testGet({});
     props
       .loader(filterQuery)
       .then(res => setAsyncData(res))
@@ -114,13 +117,13 @@ export const CatalogComponent = props => {
   //========================================================
   //ANTON===================================================
   if (isFetching) return <div>Loading...</div>;
+  if (isError) return <div>Some error component</div>;
   if (!allProducts) return;
   if (!oneProduct) return;
   if (!categories) return;
   if (!newest) return;
   if (!sales) return;
   if (!searchedData) return;
-  if (isError) return <div>Some error component</div>;
 
   console.log("RTK_DATA", allProducts);
   console.log("RTK_ONE_PRODUCT", oneProduct);
