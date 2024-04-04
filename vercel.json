@@ -2,5 +2,12 @@
   "rewrites": [
     { "source": "/online-store-front-pulse/assets/:path*", "destination": "/assets/:path*" },
     { "source": "/online-store-front-pulse/(.*)", "destination": "/" }
+  ],
+  "redirects": [
+    {
+      "source": "/:path((?!online-store-front-pulse/).*)",
+      "destination": "/online-store-front-pulse/:path*",
+      "permanent": true
+    }
   ]
 }
