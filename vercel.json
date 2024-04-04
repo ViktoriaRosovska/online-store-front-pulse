@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/"
+      "source": "/online-store-front-pulse/:path*",
+      "destination": "/:path*"
     }
   ]
 }
