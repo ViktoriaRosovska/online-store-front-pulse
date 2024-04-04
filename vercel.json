@@ -1,3 +1,6 @@
 {
-  "rewrites": [{ "source": "/online-store-front-pulse/:path*", "destination": "/:path*" }]
+  "rewrites": [
+    { "source": "/online-store-front-pulse/assets/:path*", "destination": "/assets/:path*" },
+    { "source": "/online-store-front-pulse/(.*)", "destination": "/" }
+  ]
 }
