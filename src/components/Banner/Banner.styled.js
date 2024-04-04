@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import winterSaleLg from "../../assets/images/winter-sale-lg.png";
+import winterSaleSm from "../../assets/images/winter-sale-sm.jpg";
 
 export const SectionBanner = styled.section`
   width: 100%;
   height: 590px;
   border-radius: 36px;
-  background-image: url("/image/winter-sale-mobile.jpg");
+  background-image: url(${winterSaleSm});
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
@@ -18,7 +20,7 @@ export const SectionBanner = styled.section`
   }
 
   @media screen and (min-width: 378px) {
-    background-image: url("./image/Rectangle 17515.png");
+    background-image: url(${winterSaleLg});
   }
 
   @media screen and (min-width: 768px) {

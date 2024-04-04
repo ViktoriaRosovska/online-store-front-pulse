@@ -1,9 +1,9 @@
 import styled from "styled-components";
-// import { Container } from "../../main.styled";
+import footerBackground from "../../assets/images/footer-background.png";
 
 const FooterContainer = styled.div`
   background-color: var(--black-bg-color);
-  background-image: url("./image/footer-background.png");
+  background-image: url(${footerBackground});
   background-repeat: no-repeat;
   background-size: cover;
   background-size: 100%;
