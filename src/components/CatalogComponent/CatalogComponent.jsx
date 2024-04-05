@@ -21,6 +21,8 @@ export const CatalogComponent = props => {
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [sortOrder, setSortOrder] = useState(null);
+  // const [page, setPage] = useState(1);
+
   // const [selectedSex] = useState([props.sex]);
   const [asyncData, setAsyncData] = useState([]);
   console.log(asyncData);
@@ -31,7 +33,6 @@ export const CatalogComponent = props => {
     size: "",
     color: "",
   });
-  // console.log(filterQuery);
 
   // const location = useLocation().pathname;
   // console.log(location);
@@ -56,9 +57,15 @@ export const CatalogComponent = props => {
       .loader(filterQuery)
       .then(res => setAsyncData(res))
       .catch(error => {
-        console.error("Ошибка загрузки данных:", error);
+        console.error("Помилка з завантаженням даних:", error);
       });
   }, [props, filterQuery]);
+
+  // const onPageChange = (page) => {
+  //   setPage(page);
+  //   const newFilter = { ...filterQuery, page: page };
+  //   setFilterQuery(newFilter);
+  // };
 
   const onSortOrderChanged = value => {
     setSortOrder(value);

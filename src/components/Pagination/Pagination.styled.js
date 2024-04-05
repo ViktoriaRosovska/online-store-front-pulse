@@ -8,10 +8,19 @@ const PaginationBtn = styled(Button)`
   border: 1px solid var(--black-bg-color);
   background-color: transparent;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & svg {
+    fill: var(--black-bg-color);
+  }
   &:hover,
   &:focus,
   &:active {
     border-color: var(--pagination-notactive-color);
+    & svg {
+      fill: var(--pagination-notactive-color);
+    }
   }
 `;
 
