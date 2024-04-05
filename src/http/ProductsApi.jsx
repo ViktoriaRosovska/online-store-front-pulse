@@ -53,7 +53,8 @@ export const querySearch = async (queryObject) => {
 
   const { data } = await host.get(
     `/products` +
-      `?sex=${queryObject?.sex || ""}` +
+      `?limit=${3}` +
+      `&sex=${queryObject?.sex || ""}` +
       `&brand=${queryObject?.brand || ""}` +
       `&season=${queryObject?.season || ""}` +
       `&size=${queryObject?.size || ""}` +
