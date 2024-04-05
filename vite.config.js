@@ -5,7 +5,12 @@ import svgr from "@svgr/rollup";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  include: ["src/**/*.jsx", "node_modules/**/*.jsx", "src/**/*.js", "node_modules/**/*.js"],
+  include: [
+    "src/**/*.jsx",
+    "node_modules/**/*.jsx",
+    "src/**/*.js",
+    "node_modules/**/*.js",
+  ],
   plugins: [[react()], [svgr()]],
 
   resolve: {

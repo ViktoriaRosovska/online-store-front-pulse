@@ -23,21 +23,53 @@ const App = observer(() => {
   // }, []);
 
   const modalOn = () => {
-    setModal((e) => !e);
+    setModal(e => !e);
   };
 
   return (
     <BrowserRouter basename="online-store-front-pulse">
       <Routes>
-        <Route path="/" element={<SharedLayout modalOn={modalOn} modal={modal} />}>
-          <Route index element={<Main />} />
-          <Route path={"/malecatalog"} element={<MaleCatalog />} />
-          <Route path={"/:id"} element={<ProductPage />} />
-          <Route path={"/femalecatalog"} element={<FemaleCatalog />} />
-          <Route path={"/brands"} element={<Brands />} />
-          <Route path={"/catalog"} element={<Catalog />} />
-          <Route path={"/newbrands"} element={<NewBrands />} />
-          <Route path={"/sales"} element={<Sales />} />
+        <Route
+          path="/"
+          element={
+            <SharedLayout
+              modalOn={modalOn}
+              modal={modal}
+            />
+          }
+        >
+          <Route
+            index
+            element={<Main />}
+          />
+          <Route
+            path={"/malecatalog"}
+            element={<MaleCatalog />}
+          />
+          <Route
+            path={"/:id"}
+            element={<ProductPage />}
+          />
+          <Route
+            path={"/femalecatalog"}
+            element={<FemaleCatalog />}
+          />
+          <Route
+            path={"/brands"}
+            element={<Brands />}
+          />
+          <Route
+            path={"/catalog"}
+            element={<Catalog />}
+          />
+          <Route
+            path={"/newbrands"}
+            element={<NewBrands />}
+          />
+          <Route
+            path={"/sales"}
+            element={<Sales />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
