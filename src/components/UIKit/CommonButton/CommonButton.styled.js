@@ -13,4 +13,14 @@ export const CommonButton = styled("button")`
 
   background-color: #292929;
   border-radius: 16px;
+
+  transition: all 300ms ease-in-out;
+  &:hover {
+    background-color: var(--grey-bg-color);
+  }
+
+  &:disabled {
+    cursor: auto;
+    background-color: var(--grey-text-color);
+  }
 `;

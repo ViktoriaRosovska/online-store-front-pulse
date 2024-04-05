@@ -26,21 +26,22 @@ export const MobileHeading = styled("div")`
 `;
 
 export const ProductTitle = styled("h2")`
-  font-size: 24px;
-  line-height: 1.4;
-`;
-
-export const ProductSubtitle = styled("p")`
+  max-width: 236px;
   font-size: 24px;
   line-height: 1.4;
 `;
 
 export const ProductArticle = styled("p")`
+  margin-top: 12px;
   font-size: 16px;
   line-height: 1.25;
 
   & > span {
     color: var(--grey-bg-color);
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-top: 16px;
   }
 `;
 

@@ -21,7 +21,6 @@ import {
   ProductDataWrapper,
   ProductInfoItem,
   ProductInfoList,
-  ProductSubtitle,
   ProductTitle,
   SizeGridButton,
   SizeSelectorItem,
@@ -35,15 +34,45 @@ import { ReactComponent as ConditionsIcon } from "/public/icons/product-page-ico
 import { ReactComponent as DeliveryIcon } from "/public/icons/product-page-icons/delivery.svg";
 import { ReactComponent as ExchangeIcon } from "/public/icons/product-page-icons/exchange.svg";
 import { ReactComponent as OriginalIcon } from "/public/icons/product-page-icons/original.svg";
-
-const sizes = [41, 41.5, 42, 42.5, 43, 43.5, 44, 45];
+import { useGetProductByIdQuery } from "../../redux/products/productsApi";
+import { useParams } from "react-router-dom";
 
 const ProductInfo = () => {
-  const [sizeValue, setSizeValue] = useState(41);
+  const [sizeValue, setSizeValue] = useState();
+  const { id } = useParams();
 
   const onChangeHandler = e => {
     setSizeValue(Number(e.target.value));
   };
+
+  const { data, isError, isFetching } = useGetProductByIdQuery(id);
+
+  if (isFetching) return <div>Loading...</div>;
+  if (isError) return <div>Error Component</div>;
+  if (!data) return null;
+
+  console.log(data);
+
+  const {
+    name,
+    price,
+    sale,
+    article,
+    basePrice,
+    description,
+    categories,
+    features,
+    imgGallery,
+  } = data;
+
+  const gallery = imgGallery.filter((_, i) => i < 4);
+  const isDiscounted = sale === 0;
+
+  const sizes = categories.size.reduce(
+    (acc, item) =>
+      !acc.some(({ _id }) => item._id === _id) ? [...acc, item] : acc,
+    []
+  );
 
   return (
     <>
@@ -54,48 +83,49 @@ const ProductInfo = () => {
       </StyledBreadcrumbs>
 
       <MobileHeading>
-        <ProductTitle>Nike Tech Hera Brown</ProductTitle>
-        <ProductSubtitle>Geode Teal</ProductSubtitle>
+        <ProductTitle>{name}</ProductTitle>
         <ProductArticle>
-          <span>Артикул:</span> FJ9532
+          <span>Артикул:</span> {article}
         </ProductArticle>
       </MobileHeading>
 
       <ProductDataWrapper>
         <ImagesGrid>
-          <ImageWraper>Image</ImageWraper>
-          <ImageWraper>Image</ImageWraper>
-          <ImageWraper>Image</ImageWraper>
-          <ImageWraper>Image</ImageWraper>
+          {gallery.map(url => (
+            <ImageWraper key={url}>
+              <img src={url} alt="" />
+            </ImageWraper>
+          ))}
         </ImagesGrid>
 
         <Meta>
           <DesktopHeading>
-            <ProductTitle>Nike Tech Hera Brown</ProductTitle>
-            <ProductSubtitle>Geode Teal</ProductSubtitle>
-            <ProductArticle>Артикул: FJ9532</ProductArticle>
+            <ProductTitle>{name}</ProductTitle>
+            <ProductArticle>
+              <span>Артикул:</span> {article}
+            </ProductArticle>
           </DesktopHeading>
 
           <PriceWrapper>
             <span>
-              <PriceOld>4 990 грн</PriceOld>
-              <PriceNew $sale={true}>4 490 грн.</PriceNew>
+              {!isDiscounted && <PriceOld>{basePrice} грн</PriceOld>}
+              <PriceNew $sale={!isDiscounted}>{price} грн.</PriceNew>
             </span>
-            <PriceDiscount>-10%</PriceDiscount>
+            {!isDiscounted && <PriceDiscount>-{sale}%</PriceDiscount>}
           </PriceWrapper>
 
           <SizeGridButton type="button">Розмірна сітка </SizeGridButton>
 
           <SizeSelectorList>
-            {sizes.map(size => (
-              <SizeSelectorItem key={size}>
-                <SizeSelectorLabel $selected={sizeValue === size}>
-                  {size}
+            {sizes.map(({ _id, value }) => (
+              <SizeSelectorItem key={_id}>
+                <SizeSelectorLabel $selected={sizeValue === value}>
+                  {value}
                   <input
                     hidden
                     type="radio"
                     name="size"
-                    value={size}
+                    value={value}
                     onChange={onChangeHandler}
                   />
                 </SizeSelectorLabel>
@@ -104,7 +134,9 @@ const ProductInfo = () => {
           </SizeSelectorList>
 
           <ButtonWrapper>
-            <AddToCartButton type="button">Додати в кошик</AddToCartButton>
+            <AddToCartButton type="button" disabled={!sizeValue}>
+              Додати в кошик
+            </AddToCartButton>
             <FavoriteButton type="button">
               <LogoLover />
             </FavoriteButton>
@@ -132,32 +164,16 @@ const ProductInfo = () => {
 
       <DescriptionWrapper>
         <DescriptionTitle>Опис</DescriptionTitle>
-        <DescriptionText>
-          Кросівки виготовлені з високоякісних матеріалів, які забезпечують
-          довговічність і зручність протягом тривалого часу. Підошва забезпечує
-          відмінне відшаровування і амортизацію кожного кроку, забезпечуючи вам
-          стабільність та комфорт під час будь-яких активностей. Крім того, їх
-          ергономічний дизайн дозволяє кросівкам ідеально підійти до вашої ноги,
-          надаючи вам найкращий можливий комфорт.
-        </DescriptionText>
+        <DescriptionText>{description}</DescriptionText>
 
         <DescriptionTitle>Характеристики</DescriptionTitle>
 
         <ProductInfoList>
-          <ProductInfoItem>
-            <span>Круглий, прогумований носок.</span>
-          </ProductInfoItem>
-
-          <ProductInfoItem>
-            <span> Гумова підошва міцна і стійка до пошкоджень.</span>
-          </ProductInfoItem>
-
-          <ProductInfoItem>
-            <span>
-              Жорстка п&lsquo;ятка стабілізує каблук і утримує ногу у взутті,
-              щоб вона не вислизала під час руху.
-            </span>
-          </ProductInfoItem>
+          {features.map(feature => (
+            <ProductInfoItem key={feature}>
+              <span>{feature}</span>
+            </ProductInfoItem>
+          ))}
         </ProductInfoList>
       </DescriptionWrapper>
     </>
