@@ -1,4 +1,3 @@
-import Footer from "../../layout/footer/Footer";
 import Header from "../Header/Header";
 import { Outlet } from "react-router-dom";
 import { MainWrapper, SharedLayoutContainer } from "./SharedLayout.styled";
@@ -6,6 +5,7 @@ import ModalHelp from "../Modals/modalHelp/ModalHelp.jsx";
 import ModalAuth from "../Modals/ModalAuth/ModalAuth.jsx";
 import { useState } from "react";
 import { ScrollToTop } from "../../components/ScrollToTop.js";
+import Footer from "../../layout/footer/Footer";
 
 function SharedLayout({ modalOn, modal }) {
   const [seeMail, setSeeMail] = useState(false);
