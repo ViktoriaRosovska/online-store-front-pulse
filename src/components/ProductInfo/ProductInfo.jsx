@@ -79,7 +79,7 @@ const ProductInfo = () => {
           <PriceWrapper>
             <span>
               <PriceOld>4 990 грн</PriceOld>
-              <PriceNew>4 490 грн.</PriceNew>
+              <PriceNew $sale={true}>4 490 грн.</PriceNew>
             </span>
             <PriceDiscount>-10%</PriceDiscount>
           </PriceWrapper>

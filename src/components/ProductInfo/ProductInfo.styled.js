@@ -108,7 +108,13 @@ export const PriceOld = styled("span")`
 export const PriceNew = styled("span")`
   font-size: 20px;
   line-height: 1.25;
-  color: var(--red-color);
+  color: var(--black-text-color);
+
+  ${p =>
+    p.$sale &&
+    css`
+      color: var(--red-color);
+    `};
 `;
 
 export const PriceDiscount = styled("span")`
