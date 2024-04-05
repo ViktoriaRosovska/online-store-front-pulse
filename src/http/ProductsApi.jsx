@@ -1,7 +1,7 @@
 import { host } from "./index.jsx";
 // import axios from "axios";
 
-export const fetchOneDevice = async (id) => {
+export const fetchOneDevice = async id => {
   const { data } = await host.get("products/" + id);
 
   return data;
@@ -12,7 +12,7 @@ export const brand = async () => {
   return data;
 };
 
-export const brandNew = async (queryObject) => {
+export const brandNew = async queryObject => {
   const { data } = await host.get(
     `/products/newest?sex=${queryObject?.sex || ""}` +
       `&brand=${queryObject?.brand || ""}` +
@@ -25,7 +25,7 @@ export const brandNew = async (queryObject) => {
   return data;
 };
 
-export const brandSales = async (queryObject) => {
+export const brandSales = async queryObject => {
   const { data } = await host.get(
     `/products/sales?sex=${queryObject?.sex || ""}` +
       `&brand=${queryObject?.brand || ""}` +
@@ -48,11 +48,12 @@ export const female = async () => {
   return data;
 };
 
-export const querySearch = async (queryObject) => {
+export const querySearch = async queryObject => {
   console.log(queryObject);
 
   const { data } = await host.get(
     `/products` +
+      // `?limit=${3}` +
       `?sex=${queryObject?.sex || ""}` +
       `&brand=${queryObject?.brand || ""}` +
       `&season=${queryObject?.season || ""}` +

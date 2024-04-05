@@ -11,6 +11,7 @@ import {
   useGetNewestQuery,
   useGetProductByIdQuery,
   useGetSalesQuery,
+  // useLazyGetAllProductsQuery,
 } from "../../redux/products/productsApi";
 // import { useLocation } from "react-router-dom";
 
@@ -20,6 +21,8 @@ export const CatalogComponent = props => {
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [sortOrder, setSortOrder] = useState(null);
+  // const [page, setPage] = useState(1);
+
   // const [selectedSex] = useState([props.sex]);
   const [asyncData, setAsyncData] = useState([]);
   console.log(asyncData);
@@ -30,14 +33,10 @@ export const CatalogComponent = props => {
     size: "",
     color: "",
   });
-  // console.log(filterQuery);
 
-  // const location = useLocation().pathname;
-  // console.log(location);
-
-  //========================================================
-  //ANTON===================================================
+  //ANTON===================================================//
   const { data: allProducts, isError, isFetching } = useGetAllProductsQuery({});
+  // const [testGet, { data }] = useLazyGetAllProductsQuery();
   const { data: oneProduct } = useGetProductByIdQuery(
     "65f8a68bc11d83d79ea7e89d"
   );
@@ -45,17 +44,23 @@ export const CatalogComponent = props => {
   const { data: newest } = useGetNewestQuery({});
   const { data: sales } = useGetSalesQuery({});
   const { data: searchedData } = useFindProductsQuery({ name: "Nike" });
-  //ANTON===================================================
-  //========================================================
+  //ANTON===================================================//
 
   useEffect(() => {
+    // testGet({});
     props
       .loader(filterQuery)
       .then(res => setAsyncData(res))
       .catch(error => {
-        console.error("Ошибка загрузки данных:", error);
+        console.error("Помилка з завантаженням даних:", error);
       });
   }, [props, filterQuery]);
+
+  // const onPageChange = (page) => {
+  //   setPage(page);
+  //   const newFilter = { ...filterQuery, page: page };
+  //   setFilterQuery(newFilter);
+  // };
 
   const onSortOrderChanged = value => {
     setSortOrder(value);
@@ -111,16 +116,15 @@ export const CatalogComponent = props => {
 
   const onClearOneFilterButton = type => onSelectionChanged(type, []);
 
-  //========================================================
-  //ANTON===================================================
+  //ANTON===================================================//
   if (isFetching) return <div>Loading...</div>;
+  if (isError) return <div>Some error component</div>;
   if (!allProducts) return;
   if (!oneProduct) return;
   if (!categories) return;
   if (!newest) return;
   if (!sales) return;
   if (!searchedData) return;
-  if (isError) return <div>Some error component</div>;
 
   console.log("RTK_DATA", allProducts);
   console.log("RTK_ONE_PRODUCT", oneProduct);
@@ -128,8 +132,7 @@ export const CatalogComponent = props => {
   console.log("RTK_NEWSET", newest);
   console.log("RTK_SALES", sales);
   console.log("RTK_SEARCH", searchedData);
-  //ANTON===================================================
-  //========================================================
+  //ANTON===================================================//
 
   return (
     <PageSection>

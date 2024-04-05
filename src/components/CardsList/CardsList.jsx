@@ -5,7 +5,7 @@ import { Pagination } from "components/Pagination/Pagination.jsx";
 
 export const CardsList = (props) => {
   console.log(props.asyncData);
-
+  console.log(props.totalPages);
   if (!props.asyncData) return <div>Загрузка данных...</div>;
   return (
     <CardsListContainer>
@@ -19,7 +19,10 @@ export const CardsList = (props) => {
       ) : (
         <div>За вашим запитом нічого не знайдено</div>
       )}
-      <Pagination />
+      <Pagination // onPageChange={onPageChange}
+        // currentPage={page}
+        totalPages={props.asyncData?.totalPages}
+      />
     </CardsListContainer>
   );
 };
