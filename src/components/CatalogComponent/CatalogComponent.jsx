@@ -4,18 +4,17 @@ import { Aside } from "./Aside/Aside";
 import { CardsList } from "../CardsList/CardsList";
 import { CatalogHeader } from "./CatalogHeader/CatalogHeader";
 import { CatalogNavigation } from "./CatalogNavigation/CatalogNavigation";
-import {
-  useFindProductsQuery,
-  useGetAllProductsQuery,
-  useGetCategoriesQuery,
-  useGetNewestQuery,
-  useGetProductByIdQuery,
-  useGetSalesQuery,
-  // useLazyGetAllProductsQuery,
-} from "../../redux/products/productsApi";
-// import { useLocation } from "react-router-dom";
+// import {
+//   useFindProductsQuery,
+//   useGetAllProductsQuery,
+//   useGetCategoriesQuery,
+//   useGetNewestQuery,
+//   useGetProductByIdQuery,
+//   useGetSalesQuery,
+//   // useLazyGetAllProductsQuery,
+// } from "../../redux/products/productsApi";
 
-export const CatalogComponent = props => {
+export const CatalogComponent = ({ loader, title, sex, cardfeature }) => {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedSeasons, setSelectedSeasons] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
@@ -26,8 +25,9 @@ export const CatalogComponent = props => {
   // const [selectedSex] = useState([props.sex]);
   const [asyncData, setAsyncData] = useState([]);
   console.log(asyncData);
+
   const [filterQuery, setFilterQuery] = useState({
-    sex: props.sex,
+    sex: sex,
     brand: "",
     season: "",
     size: "",
@@ -35,26 +35,26 @@ export const CatalogComponent = props => {
   });
 
   //ANTON===================================================//
-  const { data: allProducts, isError, isFetching } = useGetAllProductsQuery({});
-  // const [testGet, { data }] = useLazyGetAllProductsQuery();
-  const { data: oneProduct } = useGetProductByIdQuery(
-    "65f8a68bc11d83d79ea7e89d"
-  );
-  const { data: categories } = useGetCategoriesQuery();
-  const { data: newest } = useGetNewestQuery({});
-  const { data: sales } = useGetSalesQuery({});
-  const { data: searchedData } = useFindProductsQuery({ name: "Nike" });
+  // const { data: allProducts, isError, isFetching } = useGetAllProductsQuery({});
+  // // const [testGet, { data }] = useLazyGetAllProductsQuery();
+  // const { data: oneProduct } = useGetProductByIdQuery(
+  //   "65f8a68bc11d83d79ea7e89d"
+  // );
+  // const { data: categories } = useGetCategoriesQuery();
+  // const { data: newest } = useGetNewestQuery({});
+  // const { data: sales } = useGetSalesQuery({});
+  // const { data: searchedData } = useFindProductsQuery({ name: "Nike" });
   //ANTON===================================================//
 
   useEffect(() => {
     // testGet({});
-    props
-      .loader(filterQuery)
+
+    loader(filterQuery)
       .then(res => setAsyncData(res))
       .catch(error => {
         console.error("Помилка з завантаженням даних:", error);
       });
-  }, [props, filterQuery]);
+  }, [loader, filterQuery]);
 
   // const onPageChange = (page) => {
   //   setPage(page);
@@ -117,33 +117,33 @@ export const CatalogComponent = props => {
   const onClearOneFilterButton = type => onSelectionChanged(type, []);
 
   //ANTON===================================================//
-  if (isFetching) return <div>Loading...</div>;
-  if (isError) return <div>Some error component</div>;
-  if (!allProducts) return;
-  if (!oneProduct) return;
-  if (!categories) return;
-  if (!newest) return;
-  if (!sales) return;
-  if (!searchedData) return;
+  // if (isFetching) return <div>Loading...</div>;
+  // if (isError) return <div>Some error component</div>;
+  // if (!allProducts) return;
+  // if (!oneProduct) return;
+  // if (!categories) return;
+  // if (!newest) return;
+  // if (!sales) return;
+  // if (!searchedData) return;
 
-  console.log("RTK_DATA", allProducts);
-  console.log("RTK_ONE_PRODUCT", oneProduct);
-  console.log("RTK_CATEGORIES", categories);
-  console.log("RTK_NEWSET", newest);
-  console.log("RTK_SALES", sales);
-  console.log("RTK_SEARCH", searchedData);
+  // console.log("RTK_DATA", allProducts);
+  // console.log("RTK_ONE_PRODUCT", oneProduct);
+  // console.log("RTK_CATEGORIES", categories);
+  // console.log("RTK_NEWSET", newest);
+  // console.log("RTK_SALES", sales);
+  // console.log("RTK_SEARCH", searchedData);
   //ANTON===================================================//
 
   return (
     <PageSection>
       <Container>
-        <CatalogNavigation title={props.title} />
+        <CatalogNavigation title={title} />
         <CatalogHeader
           selectedBrands={selectedBrands}
           selectedSeasons={selectedSeasons}
           selectedSizes={selectedSizes}
           selectedColors={selectedColors}
-          title={props.title}
+          title={title}
           onClearFiltersButton={onClearFiltersButton}
           onClearOneFilterButton={onClearOneFilterButton}
           sortOrder={sortOrder}
@@ -158,7 +158,7 @@ export const CatalogComponent = props => {
             onChanged={onSelectionChanged}
           />
 
-          <CardsList asyncData={asyncData} />
+          <CardsList asyncData={asyncData} cardfeature={cardfeature} />
         </ContentWrapper>
       </Container>
     </PageSection>

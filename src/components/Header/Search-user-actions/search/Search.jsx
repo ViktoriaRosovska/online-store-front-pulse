@@ -10,23 +10,53 @@ function Search(props) {
   return (
     <div className="search">
       <MediaQuery minWidth={1440}>
-        <input type="text" placeholder="Пошук" className={`search__input ${props.isFixed ? "fixed" : ""}`} />
+        <input
+          type="text"
+          placeholder="Пошук"
+          className={`search__input ${
+            props.isFixed || !props.location ? "fixed" : ""
+          }`}
+        />
         <button className="basic-button">
-          <img className={`search__icon ${props.isFixed ? "fixed" : ""}`} src={searchIcon} alt="" />
+          <img
+            className={`search__icon ${
+              props.isFixed || !props.location ? "fixed" : ""
+            }`}
+            src={searchIcon}
+            alt=""
+          />
         </button>
       </MediaQuery>
 
       <MediaQuery maxWidth={1439}>
         {isActive ? (
           <>
-            <input type="text" placeholder="Пошук" className={`search__input ${props.isFixed ? "fixed" : ""}`} />
+            <input
+              type="text"
+              placeholder="Пошук"
+              className={`search__input ${
+                props.isFixed || !props.location ? "fixed" : ""
+              }`}
+            />
             <button className="basic-button">
-              <img className={`search__icon ${props.isFixed ? "fixed" : ""}`} src={searchIcon} alt="" />
+              <img
+                className={`search__icon ${
+                  props.isFixed || !props.location ? "fixed" : ""
+                }`}
+                src={searchIcon}
+                alt=""
+              />
             </button>
           </>
         ) : (
           <button className="mobile-button" onClick={() => setIsActive(true)}>
-            <img className={`search__icon ${props.isFixed ? "fixed" : ""}`} src={searchIcon} alt="" />
+            <img
+              className={`search__icon ${
+                props.isFixed || !props.location ? "fixed" : ""
+              }`}
+              src={searchIcon}
+              alt=""
+            />
           </button>
         )}
       </MediaQuery>
