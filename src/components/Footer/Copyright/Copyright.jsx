@@ -1,4 +1,4 @@
-import "./copyright.css";
+import "./Copyright.css";
 
 function Copyright() {
   return (

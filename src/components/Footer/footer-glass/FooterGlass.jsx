@@ -1,12 +1,13 @@
 import logoFooterImg from "../../../../public/logo-footer.svg";
-import FooterGlassInfo from "./footer-glass-info/footer-glass-info";
-import Copyright from "../copyright/copyright";
-import "./footer-glass.css";
+import FooterGlassInfo from "./FooterGlassInfo/FooterGlassInfo";
+import Copyright from "../Copyright/Copyright";
+import "./FooterGlass.css";
+import { Container } from "../../../main.styled";
 
 function FooterGlass() {
   return (
     <div className="footer__glass">
-      <div className="container">
+      <Container>
         <div className="footer__glas-inner">
           <div className="footer__glass-logo">
             <img src={logoFooterImg} alt="" />
@@ -14,7 +15,7 @@ function FooterGlass() {
           <FooterGlassInfo />
           <Copyright />
         </div>
-      </div>
+      </Container>
     </div>
   );
 }

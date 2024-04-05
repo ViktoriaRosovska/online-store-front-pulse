@@ -1,12 +1,11 @@
 import styled from "styled-components";
-// import { Container } from "../../main.styled";
+import footerBackground from "../../assets/images/footer-background.png";
 
-const FooterContainer = styled.div`
+const FooterSection = styled.footer`
   background-color: var(--black-bg-color);
-  background-image: url("./image/footer-background.png");
+  background-image: url(${footerBackground});
   background-repeat: no-repeat;
   background-size: cover;
-  background-size: 100%;
   position: relative;
   border-top-left-radius: 36px;
   border-top-right-radius: 36px;
@@ -25,4 +24,6 @@ const FooterContainer = styled.div`
   }
 `;
 
-export { FooterContainer };
+const FooterContainer = styled.div``;
+
+export { FooterContainer, FooterSection };
