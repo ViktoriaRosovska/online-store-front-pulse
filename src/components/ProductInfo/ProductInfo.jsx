@@ -5,43 +5,29 @@ import {
   DescriptionText,
   DescriptionTitle,
   DescriptionWrapper,
-  DesktopHeading,
   FavoriteButton,
-  ImageWraper,
-  ImagesGrid,
   Meta,
-  MobileHeading,
-  PackageInfoItem,
-  PackageInfoList,
-  PriceDiscount,
-  PriceNew,
-  PriceOld,
   PriceWrapper,
-  ProductArticle,
   ProductDataWrapper,
-  ProductInfoItem,
-  ProductInfoList,
-  ProductTitle,
   SizeGridButton,
-  SizeSelectorItem,
-  SizeSelectorLabel,
-  SizeSelectorList,
   StyledBreadcrumbs,
 } from "./ProductInfo.styled";
 import { useState } from "react";
 import { ReactComponent as LogoLover } from "/public/icons/favorites-icon.svg";
-import { ReactComponent as ConditionsIcon } from "/public/icons/product-page-icons/conditions.svg";
-import { ReactComponent as DeliveryIcon } from "/public/icons/product-page-icons/delivery.svg";
-import { ReactComponent as ExchangeIcon } from "/public/icons/product-page-icons/exchange.svg";
-import { ReactComponent as OriginalIcon } from "/public/icons/product-page-icons/original.svg";
 import { useGetProductByIdQuery } from "../../redux/products/productsApi";
 import { useParams } from "react-router-dom";
+import ProductImageList from "./ProductImageList";
+import ProductHeading from "./ProductHeading";
+import ProductPrice from "./ProductPrice";
+import ProductSizeList from "./ProductSizeList";
+import ProductFeatureList from "./ProductFeatureList";
+import ProductCommonInfo from "./ProductCommonInfo";
 
 const ProductInfo = () => {
   const [sizeValue, setSizeValue] = useState();
   const { id } = useParams();
 
-  const onChangeHandler = e => {
+  const onSizeSelect = e => {
     setSizeValue(Number(e.target.value));
   };
 
@@ -65,15 +51,6 @@ const ProductInfo = () => {
     imgGallery,
   } = data;
 
-  const gallery = imgGallery.filter((_, i) => i < 4);
-  const isDiscounted = sale === 0;
-
-  const sizes = categories.size.reduce(
-    (acc, item) =>
-      !acc.some(({ _id }) => item._id === _id) ? [...acc, item] : acc,
-    []
-  );
-
   return (
     <>
       <h1 hidden> Кроссівки Nike Tech Hera Brown Geode Teal </h1>
@@ -82,83 +59,37 @@ const ProductInfo = () => {
         <CurrentBreadcrumb> Nike Tech Hera Brown Geode Teal</CurrentBreadcrumb>
       </StyledBreadcrumbs>
 
-      <MobileHeading>
-        <ProductTitle>{name}</ProductTitle>
-        <ProductArticle>
-          <span>Артикул:</span> {article}
-        </ProductArticle>
-      </MobileHeading>
+      <ProductHeading device="mobile" article={article} title={name} />
 
       <ProductDataWrapper>
-        <ImagesGrid>
-          {gallery.map(url => (
-            <ImageWraper key={url}>
-              <img src={url} alt="" />
-            </ImageWraper>
-          ))}
-        </ImagesGrid>
+        <ProductImageList images={imgGallery} alt={name} />
 
         <Meta>
-          <DesktopHeading>
-            <ProductTitle>{name}</ProductTitle>
-            <ProductArticle>
-              <span>Артикул:</span> {article}
-            </ProductArticle>
-          </DesktopHeading>
+          <ProductHeading device="desktop" article={article} title={name} />
 
           <PriceWrapper>
-            <span>
-              {!isDiscounted && <PriceOld>{basePrice} грн</PriceOld>}
-              <PriceNew $sale={!isDiscounted}>{price} грн.</PriceNew>
-            </span>
-            {!isDiscounted && <PriceDiscount>-{sale}%</PriceDiscount>}
+            <ProductPrice sale={sale} basePrice={basePrice} price={price} />
           </PriceWrapper>
 
           <SizeGridButton type="button">Розмірна сітка </SizeGridButton>
 
-          <SizeSelectorList>
-            {sizes.map(({ _id, value }) => (
-              <SizeSelectorItem key={_id}>
-                <SizeSelectorLabel $selected={sizeValue === value}>
-                  {value}
-                  <input
-                    hidden
-                    type="radio"
-                    name="size"
-                    value={value}
-                    onChange={onChangeHandler}
-                  />
-                </SizeSelectorLabel>
-              </SizeSelectorItem>
-            ))}
-          </SizeSelectorList>
+          <ProductSizeList
+            sizes={categories.size}
+            currentValue={sizeValue}
+            onSizeSelect={onSizeSelect}
+          />
 
           <ButtonWrapper>
             <AddToCartButton type="button" disabled={!sizeValue}>
               Додати в кошик
             </AddToCartButton>
+
             <FavoriteButton type="button">
               <LogoLover />
             </FavoriteButton>
           </ButtonWrapper>
 
-          <PackageInfoList>
-            <PackageInfoItem>
-              <OriginalIcon /> Тільки оригінал
-            </PackageInfoItem>
-
-            <PackageInfoItem>
-              <DeliveryIcon /> Доставка 1-2 дні
-            </PackageInfoItem>
-
-            <PackageInfoItem>
-              <ExchangeIcon /> Легкий обмін та повернення
-            </PackageInfoItem>
-
-            <PackageInfoItem>
-              <ConditionsIcon /> Умови оплати, доставки та повернення
-            </PackageInfoItem>
-          </PackageInfoList>
+          <ProductCommonInfo />
         </Meta>
       </ProductDataWrapper>
 
@@ -167,14 +98,7 @@ const ProductInfo = () => {
         <DescriptionText>{description}</DescriptionText>
 
         <DescriptionTitle>Характеристики</DescriptionTitle>
-
-        <ProductInfoList>
-          {features.map(feature => (
-            <ProductInfoItem key={feature}>
-              <span>{feature}</span>
-            </ProductInfoItem>
-          ))}
-        </ProductInfoList>
+        <ProductFeatureList features={features} />
       </DescriptionWrapper>
     </>
   );
