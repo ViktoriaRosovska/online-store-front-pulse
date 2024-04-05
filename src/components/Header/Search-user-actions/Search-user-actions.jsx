@@ -5,8 +5,12 @@ import UserActions from "./search/UserActions/UserActions";
 function SearchUserActions(props) {
   return (
     <div className="search-user-actions">
-      <Search isFixed={props.isFixed} />
-      <UserActions isFixed={props.isFixed} modalOn={props.modalOn} />
+      <Search isFixed={props.isFixed} location={props.location} />
+      <UserActions
+        isFixed={props.isFixed}
+        location={props.location}
+        modalOn={props.modalOn}
+      />
     </div>
   );
 }

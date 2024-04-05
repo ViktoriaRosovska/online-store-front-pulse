@@ -3,17 +3,25 @@ import Card from "../Card/Card.jsx";
 import { ScrollToTop } from "../../components/ScrollToTop.js";
 import { Pagination } from "components/Pagination/Pagination.jsx";
 
-export const CardsList = (props) => {
-  console.log(props.asyncData);
-  console.log(props.totalPages);
-  if (!props.asyncData) return <div>Загрузка данных...</div>;
+export const CardsList = ({ asyncData, cardfeature }) => {
+  console.log(asyncData);
+  // console.log(totalPages);
+  if (!asyncData) return <div>Загрузка данных...</div>;
   return (
     <CardsListContainer>
       <ScrollToTop />
-      {props.asyncData.products && props.asyncData.products.length > 0 ? (
-        props.asyncData.products.map((el) => {
+      {asyncData.products && asyncData.products.length > 0 ? (
+        asyncData.products.map(el => {
           return (
-            <Card key={el._id} info={el.name} image={el.imgThumbnail} price={el.basePrice} id={el._id} sale={el.sale} />
+            <Card
+              key={el._id}
+              info={el.name}
+              image={el.imgThumbnail}
+              price={el.basePrice}
+              id={el._id}
+              sale={el.sale}
+              cardfeature={cardfeature}
+            />
           );
         })
       ) : (
@@ -21,7 +29,7 @@ export const CardsList = (props) => {
       )}
       <Pagination // onPageChange={onPageChange}
         // currentPage={page}
-        totalPages={props.asyncData?.totalPages}
+        totalPages={asyncData?.totalPages}
       />
     </CardsListContainer>
   );

@@ -1,4 +1,8 @@
-import { FilterButton } from "../../Buttons/FilterButton/FilterButton.styled";
+import {
+  FilterButton,
+  SortButton,
+  SortWrapper,
+} from "../../Buttons/FilterButton/FilterButton.styled";
 import { PageTitle } from "../../Typography/PageTitle.styled";
 import {
   CatalogHeaderContainer,
@@ -14,8 +18,9 @@ import { SortSelect } from "./SortSelect";
 import { useState } from "react";
 import options from "../../../data/sortoptions.json";
 import "./sort-select.css";
+import { useRef } from "react";
 
-export const CatalogHeader = (props) => {
+export const CatalogHeader = props => {
   const [showFilter, setShowFilter] = useState(true);
   const [showSelectMenu, setShowSelectMenu] = useState(false);
 
@@ -31,8 +36,13 @@ export const CatalogHeader = (props) => {
     setShowFilter(!showFilter);
   };
 
+  const showMenuWrapper = useRef(null);
   const showSelect = props.sortOrder !== null;
   if (showSelect && showSelectMenu) setShowSelectMenu(false);
+
+  const handleBlur = () => {
+    setShowSelectMenu(false);
+  };
 
   return (
     <CatalogHeaderContainer>
@@ -45,22 +55,38 @@ export const CatalogHeader = (props) => {
           position: "relative",
         }}
       >
-        <FilterButton onClick={onToggleFilter}>
+        <FilterButton onClick={onToggleFilter} $hasFilter={hasFilter}>
           <FilterIcon />
           Фільтр
         </FilterButton>
         <PageTitle>{props.title}</PageTitle>
 
-        <div style={{ display: "flex", position: "relative", alignItems: "center" }}>
-          <div style={{ position: "absolute", display: "flex", right: 0, width: "300px", justifyContent: "flex-end" }}>
-            <FilterButton
+        <div
+          style={{
+            display: "flex",
+            position: "relative",
+            alignItems: "center",
+          }}
+        >
+          <SortWrapper
+            style={{
+              position: "absolute",
+              display: "flex",
+              // right: 0,
+              // width: "300px",
+              justifyContent: "flex-end",
+            }}
+          >
+            <SortButton
+              $showSelect={showSelect}
               onClick={() => {
                 setShowSelectMenu(!showSelectMenu);
               }}
+              onBlur={handleBlur}
             >
               <SortIcon />
               Сортування
-            </FilterButton>
+            </SortButton>
             {Boolean(showSelect) && (
               <SortSelectWrapper>
                 <span>:</span>
@@ -68,17 +94,23 @@ export const CatalogHeader = (props) => {
                   <CloseBtn />
                 </SortCloseBtn>
 
-                <SortSelect onChange={(e) => props.onSortOrderChanged(e)} value={props.sortOrder} />
+                <SortSelect
+                  onChange={e => props.onSortOrderChanged(e)}
+                  value={props.sortOrder}
+                />
               </SortSelectWrapper>
             )}
-          </div>
+          </SortWrapper>
         </div>
 
         {Boolean(showSelectMenu) && Boolean(!showSelect) && (
-          <div className="select-menu-wrapper">
+          <div className="select-menu-wrapper" ref={showMenuWrapper}>
             <ul>
-              {options.map((o) => (
-                <li key={o.value} onClick={() => props.onSortOrderChanged(o.value)}>
+              {options.map(o => (
+                <li
+                  key={o.value}
+                  onClick={() => props.onSortOrderChanged(o.value)}
+                >
                   {o.label}
                 </li>
               ))}
@@ -90,23 +122,31 @@ export const CatalogHeader = (props) => {
       {hasFilter && showFilter ? (
         <FilterWrapper>
           {Boolean(props.selectedBrands.length) && (
-            <FilterWrapperButton onClick={() => props.onClearOneFilterButton("brand")}>
+            <FilterWrapperButton
+              onClick={() => props.onClearOneFilterButton("brand")}
+            >
               <CloseBtn /> Брeнд: {props.selectedBrands.join(", ")}
             </FilterWrapperButton>
           )}
 
           {Boolean(props.selectedSeasons.length) && (
-            <FilterWrapperButton onClick={() => props.onClearOneFilterButton("season")}>
+            <FilterWrapperButton
+              onClick={() => props.onClearOneFilterButton("season")}
+            >
               <CloseBtn /> Сезон: {props.selectedSeasons.join(", ")}
             </FilterWrapperButton>
           )}
           {Boolean(props.selectedSizes.length) && (
-            <FilterWrapperButton onClick={() => props.onClearOneFilterButton("size")}>
+            <FilterWrapperButton
+              onClick={() => props.onClearOneFilterButton("size")}
+            >
               <CloseBtn /> Розмір: {props.selectedSizes.join(", ")}
             </FilterWrapperButton>
           )}
           {Boolean(props.selectedColors.length) && (
-            <FilterWrapperButton onClick={() => props.onClearOneFilterButton("color")}>
+            <FilterWrapperButton
+              onClick={() => props.onClearOneFilterButton("color")}
+            >
               <CloseBtn /> Колір: {props.selectedColors.join(", ")}
             </FilterWrapperButton>
           )}

@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   CardImage,
   CardPrice,
@@ -12,11 +12,11 @@ import FavoriteButton from "../Buttons/FavoriteButton/FavoriteButton.jsx";
 import { SaleBand } from "../salesComponents/SaleBand/SaleBand.jsx";
 import { SalePercent } from "../salesComponents/SalePercent/SalePercent.jsx";
 
-const Card = ({ info, image, price, id, sale }) => {
+const Card = ({ info, image, price, id, sale, cardfeature }) => {
   const navigate = useNavigate();
-  const sales =
-    useLocation().pathname === "/sales" || "/malecatalog" || "femalecatalog";
-  const newBrands = useLocation().pathname === "/newbrands";
+  const sales = cardfeature === "sales";
+
+  const newBrands = cardfeature === "newbrands";
   const aLink = () => {
     navigate(`/${id}`);
   };
