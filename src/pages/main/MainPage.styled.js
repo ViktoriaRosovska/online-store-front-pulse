@@ -5,9 +5,6 @@ import manBoxSm from "../../assets/images/manBox-sm.jpg";
 import womanBoxLg from "../../assets/images/womanBox-lg.png";
 import womanBoxSm from "../../assets/images/womanBox-sm.jpg";
 
-export const MainContent = styled.main`
-  /* padding-bottom: 369px; */
-`;
 export const SectionHero = styled.section`
   background-image: url(${heroBackground});
   background-repeat: no-repeat;

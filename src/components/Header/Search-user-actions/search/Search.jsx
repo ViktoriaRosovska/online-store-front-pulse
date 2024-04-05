@@ -1,7 +1,7 @@
 import { useState } from "react";
 // import Input from "../../../../components/input/input";
 import searchIcon from "./../../../../../public/icons/search-icon.svg";
-import "./search.css";
+import "./Search.css";
 import MediaQuery from "react-responsive";
 
 function Search(props) {

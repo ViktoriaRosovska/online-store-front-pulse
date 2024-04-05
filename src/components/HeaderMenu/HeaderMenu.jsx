@@ -1,8 +1,8 @@
-import MenuItem from "./menu-item/menu-item";
+import MenuItem from "./HeaderMenu-Item/HeaderMenu-Item";
 import menuArray from "./../../data/menu.json";
-import "./menu.css";
+import "./HeaderMenu.css";
 
-function Menu() {
+function HeaderMenu() {
   return (
     <ul className="menu__list">
       {menuArray.map((item, index) => (
@@ -18,4 +18,4 @@ function Menu() {
   );
 }
 
-export default Menu;
+export default HeaderMenu;

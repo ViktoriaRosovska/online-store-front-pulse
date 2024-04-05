@@ -1,4 +1,4 @@
-import "./footer-glass-info.css";
+import "./FooterGlassInfo.css";
 import MediaQuery from "react-responsive";
 // import List from "../../../../components/list/list";
 import Link from "../../../../components/link/link";
@@ -18,7 +18,7 @@ function FooterGlassInfo() {
   return (
     <div className="footer__glass-info">
       <nav className="footer__navbar">
-        <MediaQuery maxWidth={1439}>
+        <MediaQuery maxWidth={1439.98}>
           <ul className="social__media-list-mobile">
             {iconsArray.map((item, itemIndex) => (
               <li key={itemIndex}>

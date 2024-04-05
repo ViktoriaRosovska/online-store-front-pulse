@@ -1,7 +1,7 @@
-import Footer from "../../layout/footer/footer";
-import Header from "../../layout/header/header";
+import Footer from "../../layout/footer/Footer";
+import Header from "../Header/Header";
 import { Outlet } from "react-router-dom";
-import { SharedLayoutContainer } from "./SharedLayout.styled";
+import { MainWrapper, SharedLayoutContainer } from "./SharedLayout.styled";
 import ModalHelp from "../Modals/modalHelp/ModalHelp.jsx";
 import ModalAuth from "../Modals/ModalAuth/ModalAuth.jsx";
 import { useState } from "react";
@@ -31,8 +31,10 @@ function SharedLayout({ modalOn, modal }) {
         ""
       )}
       {modal ? <ModalAuth modalOn={modalOn} modal={modal} seeOnMail={seeOnMail} /> : ""}
+      <MainWrapper>
+        <Outlet />
+      </MainWrapper>
 
-      <Outlet />
       <Footer />
     </SharedLayoutContainer>
   );

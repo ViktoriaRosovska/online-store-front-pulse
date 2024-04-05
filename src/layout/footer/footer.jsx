@@ -1,16 +1,14 @@
-import FooterTittle from "./footer-tittle/footer-tittle.jsx";
-import FooterGlass from "./footer-glass/footer-glass.jsx";
+import FooterTittle from "./FooterTittle/FooterTittle.jsx";
+import FooterGlass from "./footer-glass/FooterGlass.jsx";
 
-import { FooterContainer } from "./Footer.styled.js";
+import { FooterSection } from "./Footer.styled.js";
 
 function Footer() {
   return (
-    <footer>
-      <FooterContainer>
-        <FooterTittle />
-        <FooterGlass />
-      </FooterContainer>
-    </footer>
+    <FooterSection>
+      <FooterTittle />
+      <FooterGlass />
+    </FooterSection>
   );
 }
 
