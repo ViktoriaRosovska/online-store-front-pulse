@@ -7,7 +7,6 @@ import {
   BoxHero,
   BoxHeroTitle,
   BoxTitle,
-  MainContent,
   ManBox,
   SectionHero,
   SectionManWomen,
@@ -19,8 +18,7 @@ import {
 } from "./MainPage.styled.js";
 import OneSlider from "../../components/Slider/OneSlider.jsx";
 import NewSlider from "../../components/Slider/NewSlider.jsx";
-import vector2 from "/public/image/Vector 2.png"
-
+import vector2 from "/public/image/Vector 2.png";
 
 const Main = observer(() => {
   const navigate = useNavigate();
@@ -34,7 +32,7 @@ const Main = observer(() => {
   // }, []);
 
   return (
-    <MainContent>
+    <>
       <SectionHero>
         <div className="container">
           <BoxHero>
@@ -89,7 +87,7 @@ const Main = observer(() => {
           </div>
         </div>
       </section>
-    </MainContent>
+    </>
   );
 });
 
