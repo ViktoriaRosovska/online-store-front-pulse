@@ -80,6 +80,13 @@ export const ImageWraper = styled("div")`
     flex-basis: calc((100% - 32px) / 2);
     height: 369px;
   }
+
+  & > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 export const Meta = styled("div")``;
