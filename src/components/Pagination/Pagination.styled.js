@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../../components/Buttons/Button.jsx";
+import Button from "../Buttons/Button.jsx";
 
 const PaginationBtn = styled(Button)`
   width: 22px;
