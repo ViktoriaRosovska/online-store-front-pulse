@@ -1,5 +1,5 @@
 import "./FooterTittle.css";
-import Button from "../../../components/Buttons/button";
+import Button from "../../../components/Buttons/Button";
 import { Container } from "../../../main.styled";
 
 function FooterTittle() {

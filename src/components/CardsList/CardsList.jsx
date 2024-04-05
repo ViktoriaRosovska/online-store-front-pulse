@@ -1,6 +1,7 @@
 import { CardsListContainer } from "./CardsList.styled.js";
 import Card from "../Card/Card.jsx";
 import { ScrollToTop } from "../../components/ScrollToTop.js";
+import { Pagination } from "components/Pagination/Pagimation.jsx";
 
 export const CardsList = (props) => {
   console.log(props.asyncData);
@@ -18,6 +19,7 @@ export const CardsList = (props) => {
       ) : (
         <div>За вашим запитом нічого не знайдено</div>
       )}
+      <Pagination />
     </CardsListContainer>
   );
 };

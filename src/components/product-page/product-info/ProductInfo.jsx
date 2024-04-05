@@ -3,7 +3,7 @@ import originalIcon from "../../../../public/icons/product-page-icons/original.s
 import deliveryIcon from "../../../../public/icons/product-page-icons/delivery.svg";
 import exchangeIcon from "../../../../public/icons/product-page-icons/exchange.svg";
 import conditionsIcon from "../../../../public/icons/product-page-icons/conditions.svg";
-import Button from "../../Buttons/button";
+import Button from "../../Buttons/Button";
 import FavoriteIcon from "../../../../public/icons/favorites-icon.svg";
 
 function formatPrice(price) {
