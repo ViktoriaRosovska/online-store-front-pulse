@@ -1,15 +1,15 @@
+.header.fixed {
+  background-color: var(--black-bg-color);
+  color: var(--white-text-color);
+}
+
 .header {
   background-color: var(--white-bg-header-color);
   border-radius: 0px 0px 36px 36px;
   width: 100%;
   position: fixed;
   top: 0;
-  z-index: 2;
-}
-
-.header.fixed {
-  background-color: var(--black-bg-color);
-  color: var(--white-text-color);
+  z-index: 1000;
 }
 
 .header__inner {

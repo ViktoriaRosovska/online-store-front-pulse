@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FilterButton = styled.button`
+const FilterButton = styled.button`
   font-family: "Roboto";
   font-size: 16px;
   line-height: 20px;
@@ -9,20 +9,41 @@ export const FilterButton = styled.button`
   border: none;
   display: flex;
   align-items: center;
-  /* gap: 12px; */
   padding: 0;
   height: 26px;
-
   stroke: var(--black-text-color);
   & svg {
     margin-right: 12px;
   }
   &:hover {
-    color: var(--grey-text-color);
+    color: ${props =>
+      props.$hasFilter ? "var(--grey-text-color)" : "currentColor"};
     & svg {
-      stroke: var(--grey-text-color);
+      stroke: ${props =>
+        props.$hasFilter ? "var(--grey-text-color)" : "currentColor"};
     }
   }
 
-  cursor: pointer;
+  cursor: ${props => (props.$hasFilter ? "pointer" : "auto")};
 `;
+
+const SortButton = styled(FilterButton)`
+  &:hover {
+    color: ${props =>
+      !props.$showSelect ? "var(--grey-text-color)" : "currentColor"};
+    & svg {
+      stroke: ${props =>
+        !props.$showSelect ? "var(--grey-text-color)" : "currentColor"};
+    }
+  }
+
+  cursor: ${props => (!props.$showSelect ? "pointer" : "auto")};
+`;
+
+const SortWrapper = styled.div`
+  position: "absolute";
+  display: "flex";
+  justify-content: "flex-end";
+  right: 0;
+`;
+export { FilterButton, SortButton, SortWrapper };
