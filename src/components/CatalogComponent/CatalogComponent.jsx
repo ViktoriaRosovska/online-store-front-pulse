@@ -34,11 +34,7 @@ export const CatalogComponent = props => {
     color: "",
   });
 
-  // const location = useLocation().pathname;
-  // console.log(location);
-
-  //========================================================
-  //ANTON===================================================
+  //ANTON===================================================//
   const { data: allProducts, isError, isFetching } = useGetAllProductsQuery({});
   // const [testGet, { data }] = useLazyGetAllProductsQuery();
   const { data: oneProduct } = useGetProductByIdQuery(
@@ -48,8 +44,7 @@ export const CatalogComponent = props => {
   const { data: newest } = useGetNewestQuery({});
   const { data: sales } = useGetSalesQuery({});
   const { data: searchedData } = useFindProductsQuery({ name: "Nike" });
-  //ANTON===================================================
-  //========================================================
+  //ANTON===================================================//
 
   useEffect(() => {
     // testGet({});
@@ -121,8 +116,7 @@ export const CatalogComponent = props => {
 
   const onClearOneFilterButton = type => onSelectionChanged(type, []);
 
-  //========================================================
-  //ANTON===================================================
+  //ANTON===================================================//
   if (isFetching) return <div>Loading...</div>;
   if (isError) return <div>Some error component</div>;
   if (!allProducts) return;
@@ -138,8 +132,7 @@ export const CatalogComponent = props => {
   console.log("RTK_NEWSET", newest);
   console.log("RTK_SALES", sales);
   console.log("RTK_SEARCH", searchedData);
-  //ANTON===================================================
-  //========================================================
+  //ANTON===================================================//
 
   return (
     <PageSection>
