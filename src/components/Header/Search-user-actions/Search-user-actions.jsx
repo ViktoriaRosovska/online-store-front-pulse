@@ -1,6 +1,6 @@
-import "./search-user-actions.css";
-import Search from "./search/search";
-import UserActions from "./search/user-actions/user-actions";
+import "./Search-user-actions.css";
+import Search from "./search/Search";
+import UserActions from "./search/UserActions/UserActions";
 
 function SearchUserActions(props) {
   return (

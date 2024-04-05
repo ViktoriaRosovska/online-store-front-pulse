@@ -1,7 +1,7 @@
-import "./header.css";
+import "./Header.css";
 import logoImg from "./../../../public/logo.svg";
-import Menu from "./../menu/menu.jsx";
-import SearchUserActions from "./search-user-actions/search-user-actions.jsx";
+import Menu from "../HeaderMenu/HeaderMenu.jsx";
+import SearchUserActions from "./Search-user-actions/Search-user-actions.jsx";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MediaQuery from "react-responsive";

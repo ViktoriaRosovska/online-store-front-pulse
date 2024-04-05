@@ -1,9 +1,10 @@
-import "./footer-tittle.css";
-import Button from "../../../components/Buttons/button";
+import "./FooterTittle.css";
+import Button from "../../Buttons/Button";
+import { Container } from "../../../main.styled";
 
 function FooterTittle() {
   return (
-    <div className="container">
+    <Container>
       <div className="footer__inner">
         <div className="footer__tittle">
           <span className="main__tittle-text">ПІДПИШИСЬ</span>
@@ -12,7 +13,9 @@ function FooterTittle() {
           <Button btnText="Підписатися" btnType="submit" className="footer__tittle-btn" />
         </div>
       </div>
-    </div>
+    </Container>
+
+    // </div>
   );
 }
 
