@@ -23,7 +23,7 @@ function SharedLayout({ modalOn, modal }) {
   return (
     <SharedLayoutContainer>
       <ScrollToTop />
-      {/* <Header modalOn={modalOn} /> */}
+      <Header modalOn={modalOn} />
 
       {onModalHelp ? (
         <ModalHelp
@@ -36,17 +36,13 @@ function SharedLayout({ modalOn, modal }) {
         ""
       )}
       {modal ? (
-        <ModalAuth
-          modalOn={modalOn}
-          modal={modal}
-          seeOnMail={seeOnMail}
-        />
+        <ModalAuth modalOn={modalOn} modal={modal} seeOnMail={seeOnMail} />
       ) : (
         ""
       )}
 
       <Outlet />
-      {/* <Footer /> */}
+      <Footer />
     </SharedLayoutContainer>
   );
 }
