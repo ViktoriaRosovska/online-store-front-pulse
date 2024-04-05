@@ -1,7 +1,7 @@
 import { CardsListContainer } from "./CardsList.styled.js";
 import Card from "../Card/Card.jsx";
 import { ScrollToTop } from "../../components/ScrollToTop.js";
-import { Pagination } from "components/Pagination/Pagimation.jsx";
+import { Pagination } from "components/Pagination/Pagination.jsx";
 
 export const CardsList = (props) => {
   console.log(props.asyncData);
