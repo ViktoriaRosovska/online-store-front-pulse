@@ -39,7 +39,7 @@ jobs:
         run: npm install
       - name: Build
         env:
-          VITE_API_URL: ${{secrets.VITE_API_URL}}
+          VITE_API_URL: ${{vars.VITE_API_URL}}
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v3
@@ -51,5 +51,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-    env:
-      VITE_API_URL: ${{vars.VITE_API_URL}}
