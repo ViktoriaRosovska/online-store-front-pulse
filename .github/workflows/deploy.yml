@@ -49,3 +49,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+    env:
+      VITE_API_URL: ${{vars.VITE_API_URL}}
