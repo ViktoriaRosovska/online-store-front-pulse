@@ -1,5 +1,12 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { CardImage, CardPrice, CardTitle, CardWrapper, ImageWrapper, TextWrapper } from "./Card.styled.js";
+import {
+  CardImage,
+  CardPrice,
+  CardTitle,
+  CardWrapper,
+  ImageWrapper,
+  TextWrapper,
+} from "./Card.styled.js";
 import CardButton from "../Buttons/CardButton/CardButton.jsx";
 import FavoriteButton from "../Buttons/FavoriteButton/FavoriteButton.jsx";
 import { SaleBand } from "../salesComponents/SaleBand/SaleBand.jsx";
@@ -7,7 +14,8 @@ import { SalePercent } from "../salesComponents/SalePercent/SalePercent.jsx";
 
 const Card = ({ info, image, price, id, sale }) => {
   const navigate = useNavigate();
-  const sales = useLocation().pathname === "/sales" || "/malecatalog" || "femalecatalog";
+  const sales =
+    useLocation().pathname === "/sales" || "/malecatalog" || "femalecatalog";
   const newBrands = useLocation().pathname === "/newbrands";
   const aLink = () => {
     navigate(`/${id}`);
@@ -16,8 +24,12 @@ const Card = ({ info, image, price, id, sale }) => {
   return (
     <CardWrapper>
       <ImageWrapper>
-        {sales && sale > 0 ? <SaleBand text={"SALE"} $background={"#fef746"} color={"black"} /> : null}
-        {newBrands ? <SaleBand text={"NEW"} $background={"#495C80"} color={"#E9E9E9"} /> : null}
+        {sales && sale > 0 ? (
+          <SaleBand text={"SALE"} $background={"#fef746"} color={"black"} />
+        ) : null}
+        {newBrands ? (
+          <SaleBand text={"NEW"} $background={"#495C80"} color={"#E9E9E9"} />
+        ) : null}
         <CardImage src={image} $sales={sales} />
         <FavoriteButton $sales={sales && sale > 0} $new={newBrands} />
         {sales && sale > 0 ? <SalePercent text={sale} /> : null}
@@ -25,9 +37,13 @@ const Card = ({ info, image, price, id, sale }) => {
       <TextWrapper>
         <CardTitle>{info}</CardTitle>
         {sales && sale > 0 ? (
-          <span style={{ marginRight: "5px", textDecoration: "line-through" }}>{price}грн</span>
+          <span style={{ marginRight: "5px", textDecoration: "line-through" }}>
+            {price}грн
+          </span>
         ) : null}
-        <CardPrice $sales={sales && sale > 0}>{`${Math.ceil(price - (price * sale) / 100)} грн`}</CardPrice>
+        <CardPrice $sales={sales && sale > 0}>{`${Math.ceil(
+          price - (price * sale) / 100
+        )} грн`}</CardPrice>
       </TextWrapper>
       <CardButton text={"Купити"} click={aLink} />
     </CardWrapper>

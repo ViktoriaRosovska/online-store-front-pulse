@@ -11,13 +11,13 @@ function SharedLayout({ modalOn, modal }) {
   const [seeMail, setSeeMail] = useState(false);
   const [onModalHelp, setOnModalHelp] = useState(false);
   const seeOnMail = () => {
-    setSeeMail((e) => !e);
-    setOnModalHelp((e) => !e);
+    setSeeMail(e => !e);
+    setOnModalHelp(e => !e);
     modalOn();
   };
   const seeOfModalHelp = () => {
-    setSeeMail((e) => !e);
-    setOnModalHelp((e) => !e);
+    setSeeMail(e => !e);
+    setOnModalHelp(e => !e);
   };
 
   return (
@@ -26,11 +26,26 @@ function SharedLayout({ modalOn, modal }) {
       <Header modalOn={modalOn} />
 
       {onModalHelp ? (
-        <ModalHelp seeMail={seeMail} seeOnMail={seeOnMail} onModalHelp={onModalHelp} off={seeOfModalHelp} />
+        <ModalHelp
+          seeMail={seeMail}
+          seeOnMail={seeOnMail}
+          onModalHelp={onModalHelp}
+          off={seeOfModalHelp}
+        />
       ) : (
         ""
       )}
-      {modal ? <ModalAuth modalOn={modalOn} modal={modal} seeOnMail={seeOnMail} /> : ""}
+      {modal ? (
+        <ModalAuth modalOn={modalOn} modal={modal} seeOnMail={seeOnMail} />
+      ) : (
+        ""
+      )}
+
+      {modal ? (
+        <ModalAuth modalOn={modalOn} modal={modal} seeOnMail={seeOnMail} />
+      ) : (
+        ""
+      )}
       <MainWrapper>
         <Outlet />
       </MainWrapper>
