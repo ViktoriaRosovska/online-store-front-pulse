@@ -1,6 +1,6 @@
-import ProductInfo from "src/components/ProductInfo";
 import { Container } from "src/main.styled";
 import { PageWrapper } from "./ProductPage.styled";
+import ProductInfo from "components/ProductInfo";
 
 const ProductPage = () => {
   return (

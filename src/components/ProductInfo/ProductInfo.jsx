@@ -1,3 +1,4 @@
+import FavoriteButton from "components/Buttons/FavoriteButton/FavoriteButton";
 import {
   AddToCartButton,
   ButtonWrapper,
@@ -5,7 +6,6 @@ import {
   DescriptionText,
   DescriptionTitle,
   DesktopHeading,
-  FavoriteButton,
   ImageWraper,
   ImagesGrid,
   Meta,
@@ -80,7 +80,8 @@ const ProductInfo = () => {
 
           <ButtonWrapper>
             <AddToCartButton type="button">Додати в кошик</AddToCartButton>
-            <FavoriteButton type="button">heart icon</FavoriteButton>
+            {/* <FavoriteButton type="button">heart icon</FavoriteButton> */}
+            <FavoriteButton />
           </ButtonWrapper>
 
           <PackageInfoList>
