@@ -20,10 +20,9 @@ export const CatalogComponent = ({ loader, title, sex, cardfeature }) => {
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [sortOrder, setSortOrder] = useState(null);
-  // const [page, setPage] = useState(1);
 
   // const [selectedSex] = useState([props.sex]);
-  const [asyncData, setAsyncData] = useState([]);
+  const [asyncData, setAsyncData] = useState(null);
   console.log(asyncData);
 
   const [filterQuery, setFilterQuery] = useState({
@@ -32,6 +31,7 @@ export const CatalogComponent = ({ loader, title, sex, cardfeature }) => {
     season: "",
     size: "",
     color: "",
+    page: 1,
   });
 
   //ANTON===================================================//
@@ -56,11 +56,10 @@ export const CatalogComponent = ({ loader, title, sex, cardfeature }) => {
       });
   }, [loader, filterQuery]);
 
-  // const onPageChange = (page) => {
-  //   setPage(page);
-  //   const newFilter = { ...filterQuery, page: page };
-  //   setFilterQuery(newFilter);
-  // };
+  const onPageChange = page => {
+    const newFilter = { ...filterQuery, page: page };
+    setFilterQuery(newFilter);
+  };
 
   const onSortOrderChanged = value => {
     setSortOrder(value);
@@ -158,7 +157,11 @@ export const CatalogComponent = ({ loader, title, sex, cardfeature }) => {
             onChanged={onSelectionChanged}
           />
 
-          <CardsList asyncData={asyncData} cardfeature={cardfeature} />
+          <CardsList
+            asyncData={asyncData}
+            cardfeature={cardfeature}
+            onPageChange={onPageChange}
+          />
         </ContentWrapper>
       </Container>
     </PageSection>

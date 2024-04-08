@@ -3,7 +3,7 @@ import options from "../../../data/sortoptions.json";
 
 export const SortSelect = ({ onChange, value }) => {
   const style = {
-    control: (baseStyles) => ({
+    control: baseStyles => ({
       ...baseStyles,
       backgroundColor: "transparent",
       boxShadow: "none",
@@ -15,7 +15,7 @@ export const SortSelect = ({ onChange, value }) => {
         color: "var(--grey-text-color)",
       },
     }),
-    menu: (baseStyles) => ({
+    menu: baseStyles => ({
       ...baseStyles,
       width: "180px",
       backgroundColor: "white",
@@ -28,13 +28,13 @@ export const SortSelect = ({ onChange, value }) => {
         width: "0px",
       },
     }),
-    menuList: (baseStyles) => ({
+    menuList: baseStyles => ({
       ...baseStyles,
       "&::-webkit-scrollbar": {
         width: "0px",
       },
     }),
-    dropdownIndicator: (baseStyles) => ({
+    dropdownIndicator: baseStyles => ({
       ...baseStyles,
       padding: 0,
       color: "var(--black-text-color)",
@@ -45,18 +45,18 @@ export const SortSelect = ({ onChange, value }) => {
       //   transition: "transform 0.25s ease-out",
       //   transform: isFocused && "rotate(180deg)",
     }),
-    indicatorSeparator: (baseStyles) => ({
+    indicatorSeparator: baseStyles => ({
       ...baseStyles,
       display: "none",
     }),
 
-    input: (baseStyles) => ({
+    input: baseStyles => ({
       ...baseStyles,
       padding: 0,
       margin: 0,
       height: "20px",
     }),
-    option: (baseStyles) => ({
+    option: baseStyles => ({
       ...baseStyles,
       fontSize: "14px",
       padding: "4px 0 10px 0",
@@ -68,18 +68,20 @@ export const SortSelect = ({ onChange, value }) => {
         color: "var(--grey-text-color)",
       },
     }),
-    singleValue: (baseStyles) => ({
+    singleValue: baseStyles => ({
       ...baseStyles,
       padding: 0,
       margin: 0,
+      width: "110px",
+
       "&:hover": {
         color: "var(--grey-text-color)",
       },
     }),
-    valueContainer: (baseStyles) => ({
+    valueContainer: baseStyles => ({
       ...baseStyles,
       padding: "0 10px 0 0",
-      width: "117px",
+      width: "120px",
     }),
   };
 
@@ -88,10 +90,10 @@ export const SortSelect = ({ onChange, value }) => {
       <Select
         styles={style}
         isSearchable={false}
-        value={options.filter((option) => {
+        value={options.filter(option => {
           return option.value === value;
         })}
-        onChange={(e) => onChange(e.value)}
+        onChange={e => onChange(e.value)}
         options={options}
       />
     </>

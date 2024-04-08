@@ -53,14 +53,15 @@ export const querySearch = async queryObject => {
 
   const { data } = await host.get(
     `/products` +
-      // `?limit=${3}` +
-      `?sex=${queryObject?.sex || ""}` +
+      `?limit=3` +
+      `&sex=${queryObject?.sex || ""}` +
       `&brand=${queryObject?.brand || ""}` +
       `&season=${queryObject?.season || ""}` +
       `&size=${queryObject?.size || ""}` +
       `&color=${queryObject?.color || ""}` +
       `&sort=${queryObject?.sort || "createdAt"}` +
-      `&order=${queryObject?.order || "desc"}`
+      `&order=${queryObject?.order || "desc"}` +
+      `&page=${queryObject?.page || 1}`
   );
   return data;
 };

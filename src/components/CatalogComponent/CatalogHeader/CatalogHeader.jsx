@@ -18,7 +18,6 @@ import { SortSelect } from "./SortSelect";
 import { useState } from "react";
 import options from "../../../data/sortoptions.json";
 import "./sort-select.css";
-import { useRef } from "react";
 
 export const CatalogHeader = props => {
   const [showFilter, setShowFilter] = useState(true);
@@ -36,14 +35,17 @@ export const CatalogHeader = props => {
     setShowFilter(!showFilter);
   };
 
-  const showMenuWrapper = useRef(null);
+  // const showMenuWrapper = useRef(null);
   const showSelect = props.sortOrder !== null;
   if (showSelect && showSelectMenu) setShowSelectMenu(false);
 
   const handleBlur = () => {
+    console.log(showSelectMenu);
     setShowSelectMenu(false);
   };
-
+  const handleFocus = () => {
+    setShowSelectMenu(true);
+  };
   return (
     <CatalogHeaderContainer>
       <div
@@ -63,26 +65,19 @@ export const CatalogHeader = props => {
 
         <div
           style={{
-            display: "flex",
             position: "relative",
+            display: "flex",
             alignItems: "center",
           }}
         >
-          <SortWrapper
-            style={{
-              position: "absolute",
-              display: "flex",
-              // right: 0,
-              // width: "300px",
-              justifyContent: "flex-end",
-            }}
-          >
+          <SortWrapper>
             <SortButton
               $showSelect={showSelect}
               onClick={() => {
                 setShowSelectMenu(!showSelectMenu);
               }}
               onBlur={handleBlur}
+              onFocus={handleFocus}
             >
               <SortIcon />
               Сортування
@@ -104,7 +99,7 @@ export const CatalogHeader = props => {
         </div>
 
         {Boolean(showSelectMenu) && Boolean(!showSelect) && (
-          <div className="select-menu-wrapper" ref={showMenuWrapper}>
+          <div className="select-menu-wrapper">
             <ul>
               {options.map(o => (
                 <li
