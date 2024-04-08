@@ -37,13 +37,14 @@ const SortButton = styled(FilterButton)`
     }
   }
 
-  cursor: ${props => (!props.$showSelect ? "pointer" : "auto")};
+  cursor: ${props => (props.$showSelect ? "auto" : "pointer")};
 `;
 
 const SortWrapper = styled.div`
-  position: "absolute";
-  display: "flex";
-  justify-content: "flex-end";
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
   right: 0;
 `;
 export { FilterButton, SortButton, SortWrapper };
