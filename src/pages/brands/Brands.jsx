@@ -1,7 +1,7 @@
 import BrandsList from "components/brand/brand";
-import {Container} from './Brands.styles'
+import {Container,} from './Brands.styles'
 const Brands = () => {
-  return <Container><BrandsList/></Container>;
+  return <Container><BrandsList title={"Бренди"}/></Container>;
 };
 
 export default Brands;
