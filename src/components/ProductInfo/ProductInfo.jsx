@@ -45,6 +45,7 @@ const ProductInfo = () => {
     sale,
     article,
     basePrice,
+    
     description,
     categories,
     features,
