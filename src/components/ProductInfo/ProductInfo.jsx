@@ -22,6 +22,7 @@ import ProductPrice from "./ProductPrice";
 import ProductSizeList from "./ProductSizeList";
 import ProductFeatureList from "./ProductFeatureList";
 import ProductCommonInfo from "./ProductCommonInfo";
+import DetailsToggler from "components/UIKit/DetailsToggler";
 
 const ProductInfo = () => {
   const [sizeValue, setSizeValue] = useState();
@@ -96,11 +97,15 @@ const ProductInfo = () => {
       </ProductDataWrapper>
 
       <DescriptionWrapper>
-        <DescriptionTitle>Опис</DescriptionTitle>
-        <DescriptionText>{description}</DescriptionText>
+        <DetailsToggler summary={<DescriptionTitle>Опис</DescriptionTitle>}>
+          <DescriptionText>{description}</DescriptionText>
+        </DetailsToggler>
 
-        <DescriptionTitle>Характеристики</DescriptionTitle>
-        <ProductFeatureList features={features} />
+        <DetailsToggler
+          summary={<DescriptionTitle>Характеристики</DescriptionTitle>}
+        >
+          <ProductFeatureList features={features} />
+        </DetailsToggler>
       </DescriptionWrapper>
     </>
   );
