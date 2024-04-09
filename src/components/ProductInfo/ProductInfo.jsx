@@ -73,11 +73,13 @@ const ProductInfo = () => {
 
           <SizeGridButton type="button">Розмірна сітка </SizeGridButton>
 
-          <ProductSizeList
-            sizes={categories.size}
-            currentValue={sizeValue}
-            onSizeSelect={onSizeSelect}
-          />
+          {categories && (
+            <ProductSizeList
+              sizes={categories.size}
+              currentValue={sizeValue}
+              onSizeSelect={onSizeSelect}
+            />
+          )}
 
           <ButtonWrapper>
             <AddToCartButton type="button" disabled={!sizeValue}>
