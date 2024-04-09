@@ -1,5 +1,5 @@
 import "./Header.css";
-import logoImg from "./../../../public/logo.svg";
+import logoImg from "/logo.svg?url";
 import Menu from "../HeaderMenu/HeaderMenu.jsx";
 import SearchUserActions from "./Search-user-actions/Search-user-actions.jsx";
 import { useState, useEffect } from "react";

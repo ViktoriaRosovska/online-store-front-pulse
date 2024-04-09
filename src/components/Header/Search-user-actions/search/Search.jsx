@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import Input from "../../../../components/input/input";
-import searchIcon from "./../../../../../public/icons/search-icon.svg";
+import searchIcon from "/public/icons/search-icon.svg";
 import "./Search.css";
 import MediaQuery from "react-responsive";
 

@@ -30,7 +30,7 @@ const NewSlider = () => {
           "--swiper-pagination-bullet-size": "12px",
 
           "--swiper-pagination-bullet-horizontal-gap": "6px",
-          "--swiper-button-next-background-image": "url(../../../public/icons/White Circular Buttons.png)",
+          "--swiper-button-next-background-image": "url(/icons/White Circular Buttons.png)",
           "--swiper-navigation-color": "black",
         }}
         scrollbar="false"

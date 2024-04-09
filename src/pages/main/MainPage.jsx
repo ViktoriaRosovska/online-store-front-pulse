@@ -18,7 +18,7 @@ import {
 } from "./MainPage.styled.js";
 import OneSlider from "../../components/Slider/OneSlider.jsx";
 import NewSlider from "../../components/Slider/NewSlider.jsx";
-import vector2 from "/public/image/Vector 2.png";
+import vector2 from "/image/Vector 2.png";
 
 const Main = observer(() => {
   const navigate = useNavigate();
