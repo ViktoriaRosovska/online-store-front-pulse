@@ -39,13 +39,11 @@ export const CatalogHeader = props => {
   const showSelect = props.sortOrder !== null;
   if (showSelect && showSelectMenu) setShowSelectMenu(false);
 
-  const handleBlur = () => {
-    console.log(showSelectMenu);
-    setShowSelectMenu(false);
-  };
-  const handleFocus = () => {
-    setShowSelectMenu(true);
-  };
+  // const handleBlur = () => {
+  //   console.log(showSelectMenu);
+  //   setShowSelectMenu(false);
+  // };
+
   return (
     <CatalogHeaderContainer>
       <div
@@ -76,8 +74,7 @@ export const CatalogHeader = props => {
               onClick={() => {
                 setShowSelectMenu(!showSelectMenu);
               }}
-              onBlur={handleBlur}
-              onFocus={handleFocus}
+              // onBlur={handleBlur}
             >
               <SortIcon />
               Сортування
