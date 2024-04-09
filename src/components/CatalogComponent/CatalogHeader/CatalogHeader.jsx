@@ -35,14 +35,8 @@ export const CatalogHeader = props => {
     setShowFilter(!showFilter);
   };
 
-  // const showMenuWrapper = useRef(null);
   const showSelect = props.sortOrder !== null;
   if (showSelect && showSelectMenu) setShowSelectMenu(false);
-
-  // const handleBlur = () => {
-  //   console.log(showSelectMenu);
-  //   setShowSelectMenu(false);
-  // };
 
   return (
     <CatalogHeaderContainer>
