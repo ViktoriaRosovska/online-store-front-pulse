@@ -1,6 +1,6 @@
-import profileIcon from "./../../../../../../public/icons/profile-icon.svg";
-import favoritesIcon from "./../../../../../../public/icons/favorites-icon.svg";
-import cartIcon from "./../../../../../../public/icons/cart-icon.svg";
+import profileIcon from "/public/icons/profile-icon.svg";
+import favoritesIcon from "/public/icons/favorites-icon.svg";
+import cartIcon from "/public/icons/cart-icon.svg";
 import "./UserActions.css";
 import MediaQuery from "react-responsive";
 

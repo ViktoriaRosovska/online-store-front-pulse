@@ -1,4 +1,4 @@
-import logoFooterImg from "../../../../public/logo-footer.svg";
+import logoFooterImg from "/public/logo-footer.svg";
 import FooterGlassInfo from "./FooterGlassInfo/FooterGlassInfo";
 import Copyright from "../Copyright/Copyright";
 import "./FooterGlass.css";
