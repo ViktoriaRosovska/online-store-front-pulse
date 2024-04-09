@@ -1,4 +1,22 @@
-# React + Vite
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm install
+
+# For start development use
+
+npm run dev
+
+# or
+yarn dev
+```
+
+Open  (http://localhost:5173/online-store-front-pulse) with your browser to see the result.
+
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

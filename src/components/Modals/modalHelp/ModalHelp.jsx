@@ -1,6 +1,6 @@
 import "./ModalHelp.css";
 import CustomForm from "../../form/CustomForm.jsx";
-import close from "../../../../public/icons/Group 176.png";
+import close from "/icons/Group 176.png";
 const ModalHelp = ({ seeMail, off }) => {
   return (
     <div className="container_main">

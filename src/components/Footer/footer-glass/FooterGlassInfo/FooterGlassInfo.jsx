@@ -2,10 +2,10 @@ import "./FooterGlassInfo.css";
 import MediaQuery from "react-responsive";
 // import List from "../../../../components/list/list";
 import Link from "../../../../components/link/link";
-import instagramIcon from "../../../../../public/icons/social-media-icons/instagram-icon.svg";
-import facebookIcon from "../../../../../public/icons/social-media-icons/facebook-icon.svg";
-import mailIcon from "../../../../../public/icons/social-media-icons/mail-icon.svg";
-import phoneIcon from "../../../../../public/icons/social-media-icons/phone-icon.svg";
+import instagramIcon from "/public/icons/social-media-icons/instagram-icon.svg";
+import facebookIcon from "/public/icons/social-media-icons/facebook-icon.svg";
+import mailIcon from "/public/icons/social-media-icons/mail-icon.svg";
+import phoneIcon from "/public/icons/social-media-icons/phone-icon.svg";
 
 function FooterGlassInfo() {
   const iconsArray = [instagramIcon, facebookIcon, mailIcon, phoneIcon];
