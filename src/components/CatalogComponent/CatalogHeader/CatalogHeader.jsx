@@ -68,7 +68,6 @@ export const CatalogHeader = props => {
               onClick={() => {
                 setShowSelectMenu(!showSelectMenu);
               }}
-              // onBlur={handleBlur}
             >
               <SortIcon />
               Сортування

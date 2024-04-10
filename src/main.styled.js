@@ -7,7 +7,10 @@ const PageSection = styled.section`
 `;
 
 const ContentWrapper = styled.div`
-  display: flex;
+  display: block;
+  @media screen and (min-width: 376px) {
+    display: flex;
+  }
 `;
 
 const Container = styled.div`

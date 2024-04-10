@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import { Container, ContentWrapper, PageSection } from "../../main.styled";
 import { Aside } from "./Aside/Aside";
 import { CardsList } from "../CardsList/CardsList";
@@ -14,16 +15,19 @@ import { CatalogNavigation } from "./CatalogNavigation/CatalogNavigation";
 //   // useLazyGetAllProductsQuery,
 // } from "../../redux/products/productsApi";
 
-export const CatalogComponent = ({ loader, title, sex, cardfeature }) => {
-  const [selectedBrands, setSelectedBrands] = useState([]);
+export const CatalogComponent = ({
+  loader,
+  title,
+  sex,
+  cardfeature,
+  brand,
+}) => {
+  const [selectedBrands, setSelectedBrands] = useState(brand ? [brand] : []);
   const [selectedSeasons, setSelectedSeasons] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [sortOrder, setSortOrder] = useState(null);
-
-  // const [selectedSex] = useState([props.sex]);
   const [asyncData, setAsyncData] = useState(null);
-  console.log(asyncData);
 
   const [filterQuery, setFilterQuery] = useState({
     sex: sex,
@@ -33,6 +37,8 @@ export const CatalogComponent = ({ loader, title, sex, cardfeature }) => {
     color: "",
     page: 1,
   });
+
+  console.log(asyncData);
 
   //ANTON===================================================//
   // const { data: allProducts, isError, isFetching } = useGetAllProductsQuery({});
@@ -114,6 +120,14 @@ export const CatalogComponent = ({ loader, title, sex, cardfeature }) => {
   };
 
   const onClearOneFilterButton = type => onSelectionChanged(type, []);
+
+  // const onBrandChange = item => {
+  //   setSelectedBrands(item);
+  //   const newFilter = {
+  //     brand: filterQuery.brand,
+  //   };
+  //   setFilterQuery(newFilter);
+  // };
 
   //ANTON===================================================//
   // if (isFetching) return <div>Loading...</div>;
