@@ -3,8 +3,31 @@ import { brandNew } from "../../http/ProductsApi.jsx";
 import Card_slider from "../Card_slider/Card_slider.jsx";
 
 const OneSlider = () => {
-  const resWidth = window.innerWidth;
+  const[slides,setSlides]=useState(3)
 
+  const handleResize = () => {
+    if(typeof window !== 'undefined' && window.innerWidth >= 320 && window.innerWidth < 768){
+      setSlides(1);
+
+    }
+    else {if (typeof window !== 'undefined' && window.innerWidth >= 768 && window.innerWidth < 1200) {
+      setSlides(2);
+    } else {
+      setSlides(3);
+    }}
+  };
+
+  useEffect(() => {
+    handleResize(); // Initial check
+
+    const handleWindowResize = () => {
+      handleResize();
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleWindowResize);
+    }
+  })
   const [sale, setSale] = useState([]);
 
   useEffect(() => {
@@ -14,9 +37,9 @@ const OneSlider = () => {
     <div className="swiper-wrapper ">
       <swiper-container
         spaceBetween={10}
-        navigation={resWidth < 500 ? "false" : "true"}
+        navigation={"true"}
         pagination={{ clickable: true }}
-        slides-per-view={resWidth < 600 ? 1 : 3}
+        slides-per-view={slides}
         loading="lazy"
         style={{
           "--swiper-pagination-color": "black",
@@ -26,7 +49,7 @@ const OneSlider = () => {
           "--swiper-pagination-bullet-size": "12px",
 
           "--swiper-pagination-bullet-horizontal-gap": "6px",
-          "--swiper-button-next-background-image": "url(/icons/White Circular Buttons.png)",
+          "--swiper-button-next-background-image": "url(../../../public/icons/White Circular Buttons.png)",
           "--swiper-navigation-color": "black",
         }}
         scrollbar="false"

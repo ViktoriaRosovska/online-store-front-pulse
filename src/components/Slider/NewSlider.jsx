@@ -4,12 +4,36 @@ import { brandSales } from "../../http/ProductsApi.jsx";
 import { register } from "swiper/element/bundle";
 import CardsSale from "../Cards_sale/Cards_sale.jsx";
 
-const resWidth = window.innerWidth;
-
 register();
+
 const NewSlider = () => {
+  const[slides,setSlides]=useState(3)
   const [sale, setSale] = useState([]);
 
+  const handleResize = () => {
+    if(typeof window !== 'undefined' && window.innerWidth >= 320 && window.innerWidth < 768){
+      setSlides(1);
+
+    }
+    else {if (typeof window !== 'undefined' && window.innerWidth >= 768 && window.innerWidth < 1200) {
+      setSlides(2);
+    } else {
+      setSlides(3);
+    }}
+  };
+
+  useEffect(() => {
+    handleResize(); // Initial check
+
+    const handleWindowResize = () => {
+      handleResize();
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleWindowResize);
+    }
+  })
+  
   useEffect(() => {
     brandSales().then((res) => setSale(res));
   }, []);
@@ -18,9 +42,9 @@ const NewSlider = () => {
     <div className="swiper-wrapper ">
       <swiper-container
         spaceBetween={10}
-        navigation={resWidth < 500 ? "false" : "true"}
+        navigation={"true"}
         pagination={{ clickable: true }}
-        slides-per-view={resWidth < 600 ? 1 : 3}
+        slides-per-view={slides}
         loading="lazy"
         style={{
           "--swiper-pagination-color": "black",
