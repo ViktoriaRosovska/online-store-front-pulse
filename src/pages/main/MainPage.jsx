@@ -1,7 +1,6 @@
 import "./main.css";
 import Banner from "../../components/Banner/Banner.jsx";
 import { Link, useNavigate } from "react-router-dom";
-import { observer } from "mobx-react-lite";
 import SaleIconsMarquee from "../../components/SaleIconsMarquee/SaleIconsMarquee";
 import {
   BoxHero,
@@ -18,18 +17,14 @@ import {
 } from "./MainPage.styled.js";
 import OneSlider from "../../components/Slider/OneSlider.jsx";
 import NewSlider from "../../components/Slider/NewSlider.jsx";
-import vector2 from "/image/Vector 2.png";
+import vector2 from "../../assets/svg/background-element.png";
 
-const Main = observer(() => {
+const Main = () => {
   const navigate = useNavigate();
 
   const navFunc = () => {
     navigate("/catalog");
   };
-
-  // useEffect(() => {
-  //   host.get("/products").then((res) => store.setProducts(res));
-  // }, []);
 
   return (
     <>
@@ -89,6 +84,6 @@ const Main = observer(() => {
       </section>
     </>
   );
-});
+};
 
 export default Main;
