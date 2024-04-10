@@ -1,4 +1,6 @@
+
 import { CheckboxList } from "../../CheckboxList/CheckboxList";
+
 import brandList from "../../data/brendList.json";
 import seasonList from "../../data/seasonList.json";
 import sizeList from "../../data/sizeList.json";
