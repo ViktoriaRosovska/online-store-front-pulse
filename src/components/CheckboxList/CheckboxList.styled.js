@@ -1,18 +1,25 @@
 import styled from "styled-components";
 
-const CheckboxListConrtainer = styled.div``;
+const CheckboxListConrtainer = styled.div`
+  height: fit-content;
+`;
 
 const CheckboxListItems = styled.div`
   display: flex;
-  gap: 13px;
+  row-gap: 10px;
   flex-direction: column;
   flex-wrap: wrap;
-  /* border: 1px solid blue; */
-  margin-bottom: 40px;
+  height: fit-content;
+
+  width: 95px;
   font-family: "Roboto";
   font-size: 14px;
   letter-spacing: 0.01em;
   line-height: 100%;
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 40px;
+    width: 100%;
+  }
 `;
 const CheckboxListTitle = styled.h3`
   font-family: "Roboto";
@@ -20,8 +27,9 @@ const CheckboxListTitle = styled.h3`
   font-weight: 400;
   line-height: 14px;
   letter-spacing: 0.01em;
-  margin-bottom: 10px;
-  @media screen and (min-width: 376px) {
+  margin-bottom: 12px;
+
+  @media screen and (min-width: 1440px) {
     margin-bottom: 20px;
     font-family: "Roboto";
     font-weight: 400;

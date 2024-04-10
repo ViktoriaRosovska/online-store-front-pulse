@@ -1,10 +1,18 @@
 import styled from "styled-components";
 
 const CardWrapper = styled.div`
-  width: 320px;
+  width: 152px;
+
+  @media screen and (min-width: 1440px) {
+    width: 320px;
+  }
 `;
 const CardImage = styled.img`
-  width: 320px;
+  width: 152px;
+  height: auto;
+  @media screen and (min-width: 1440px) {
+    width: 320px;
+  }
 `;
 const ImageWrapper = styled.div`
   position: relative;
@@ -19,6 +27,10 @@ const CardTitle = styled.p`
   font-weight: 400;
   color: var(--black-text-color);
   margin-bottom: 12px;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 const TextWrapper = styled.div`
   margin-bottom: 12px;
@@ -28,7 +40,15 @@ const CardPrice = styled.span`
   font-size: 16px;
   line-height: 20px;
   font-weight: 400;
-  color: ${(props) => (props.$sales ? `var(--red-color)` : `var(--black-text-color)`)};
+  color: ${props =>
+    props.$sales ? `var(--red-color)` : `var(--black-text-color)`};
 `;
 
-export { CardWrapper, CardImage, ImageWrapper, CardTitle, TextWrapper, CardPrice };
+export {
+  CardWrapper,
+  CardImage,
+  ImageWrapper,
+  CardTitle,
+  TextWrapper,
+  CardPrice,
+};

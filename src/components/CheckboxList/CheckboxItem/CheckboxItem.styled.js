@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 const CheckboxItemWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
+
   &:hover {
     &::before {
       color: var(--grey-text-color);
@@ -36,7 +38,7 @@ const CheckboxItemWrapper = styled.div`
         color: var(--grey-text-color);
       }
     }
-    @media screen and (min-width: 376px) {
+    @media screen and (min-width: 1440px) {
       font-size: 14px;
       font-weight: 400;
       line-height: 14px;

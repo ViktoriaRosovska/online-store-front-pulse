@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { useSearchParams } from "react-router-dom";
+
 import {
   CheckboxListConrtainer,
   CheckboxListItems,
@@ -11,12 +11,12 @@ import { CheckboxItem } from "./CheckboxItem/ChechboxItem";
 
 export const CheckboxList = props => {
   const [showAll, setShowAll] = useState(false);
-  const defaultShow = 10;
-  const showAllByDefault = props.items.length <= defaultShow;
+  // const defaultShow = 5;
+  const showAllByDefault = props.items.length <= props.defaultShow;
   const elementsToShow =
     showAll || showAllByDefault
       ? props.items
-      : props.items.slice(0, defaultShow);
+      : props.items.slice(0, props.defaultShow);
 
   const handleInputChange = (e, item) => {
     if (!props.onChanged) return;
@@ -51,7 +51,12 @@ export const CheckboxList = props => {
             );
           })}
         {showAllByDefault ? null : (
-          <ShowAllCheckboxButton onClick={() => setShowAll(prev => !prev)}>
+          <ShowAllCheckboxButton
+            onClick={() => {
+              setShowAll(prev => !prev);
+              props.onChangeShowAll(showAll);
+            }}
+          >
             {showAll ? (
               <>
                 <span>Сховати</span>

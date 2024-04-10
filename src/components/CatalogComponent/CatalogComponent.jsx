@@ -26,9 +26,10 @@ export const CatalogComponent = ({
   const [selectedSeasons, setSelectedSeasons] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
+  const [selectedSex, setSelectedSex] = useState([]);
   const [sortOrder, setSortOrder] = useState(null);
   const [asyncData, setAsyncData] = useState(null);
-
+  const [showAside, setShowAside] = useState(false);
   const [filterQuery, setFilterQuery] = useState({
     sex: sex,
     brand: "",
@@ -85,6 +86,9 @@ export const CatalogComponent = ({
 
   const onSelectionChanged = (type, items) => {
     switch (type) {
+      case "sex":
+        setSelectedSex(items);
+        break;
       case "brand":
         setSelectedBrands(items);
         break;
@@ -107,6 +111,7 @@ export const CatalogComponent = ({
   };
 
   const onClearFiltersButton = () => {
+    setSelectedSex([]);
     setSelectedBrands([]);
     setSelectedSeasons([]);
     setSelectedSizes([]);
@@ -120,15 +125,10 @@ export const CatalogComponent = ({
   };
 
   const onClearOneFilterButton = type => onSelectionChanged(type, []);
-
-  // const onBrandChange = item => {
-  //   setSelectedBrands(item);
-  //   const newFilter = {
-  //     brand: filterQuery.brand,
-  //   };
-  //   setFilterQuery(newFilter);
-  // };
-
+  const onAsideShow = () => {
+    return setShowAside(!showAside);
+  };
+  console.log(showAside);
   //ANTON===================================================//
   // if (isFetching) return <div>Loading...</div>;
   // if (isError) return <div>Some error component</div>;
@@ -156,19 +156,24 @@ export const CatalogComponent = ({
           selectedSeasons={selectedSeasons}
           selectedSizes={selectedSizes}
           selectedColors={selectedColors}
+          selectedSex={selectedSex}
           title={title}
           onClearFiltersButton={onClearFiltersButton}
           onClearOneFilterButton={onClearOneFilterButton}
           sortOrder={sortOrder}
           onSortOrderChanged={onSortOrderChanged}
+          onAsideShow={onAsideShow}
         />
         <ContentWrapper>
           <Aside
+            onAsideShow={showAside}
             selectedBrands={selectedBrands}
             selectedSizes={selectedSizes}
             selectedSeasons={selectedSeasons}
             selectedColors={selectedColors}
+            selectedSex={selectedSex}
             onChanged={onSelectionChanged}
+            sex={sex}
           />
 
           <CardsList

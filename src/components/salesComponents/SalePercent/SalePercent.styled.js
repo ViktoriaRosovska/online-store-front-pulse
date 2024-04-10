@@ -9,11 +9,15 @@ const SalePercentWrapper = styled.div`
   right: 10px;
 `;
 const SalePercentText = styled.span`
-  font-family: "Roboto";
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 28px;
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: 0.01em;
+
   color: var(--white-text-color);
+  @media screen and (min-width: 1440px) {
+    font-size: 20px;
+    line-height: 28px;
+  }
 `;
 
 export { SalePercentWrapper, SalePercentText };

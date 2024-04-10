@@ -9,7 +9,7 @@ const CatalogNavigationWrapper = styled.div`
   & a {
     color: var(--grey-text-color);
   }
-  @media screen and (min-width: 376px) {
+  @media screen and (min-width: 1024px) {
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0;
