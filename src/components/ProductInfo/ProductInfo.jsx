@@ -35,8 +35,8 @@ const ProductInfo = () => {
   const { data, isError, isFetching } = useGetProductByIdQuery(id);
 
   if (isFetching) return <div>Loading...</div>;
-  if (isError) return <div>Error Component</div>;
   if (!data) return null;
+  if (isError || !data.name) return <div>Error Component</div>;
 
   console.log(data);
 
@@ -46,7 +46,7 @@ const ProductInfo = () => {
     sale,
     article,
     basePrice,
-    
+
     description,
     categories,
     features,
