@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import MediaQuery from "react-responsive";
 
-function Header({ modalOn }) {
+function Header() {
   const [isFixed, setIsFixed] = useState(false);
 
   const navigate = useNavigate();
@@ -44,11 +44,7 @@ function Header({ modalOn }) {
               <Menu />
             </nav>
           </MediaQuery>
-          <SearchUserActions
-            isFixed={isFixed}
-            location={location}
-            modalOn={modalOn}
-          />
+          <SearchUserActions isFixed={isFixed} location={location} />
         </div>
       </div>
     </header>

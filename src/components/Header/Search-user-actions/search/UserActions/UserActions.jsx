@@ -3,11 +3,24 @@ import favoritesIcon from "./../../../../../../public/icons/favorites-icon.svg";
 import cartIcon from "./../../../../../../public/icons/cart-icon.svg";
 import "./UserActions.css";
 import MediaQuery from "react-responsive";
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import ReusableModal from "components/Modals/ReusableModal";
+import useScrollLock from "components/Modals/helpersForModal/useScrollLock";
+import ModalAuth from "components/Modals/ModalContent/ModalAuth";
 
 function UserActions(props) {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isLocked, setIsLocked] = useScrollLock(false);
+
+  const toggleVisibility = () => {
+    setIsVisible(prev => !prev);
+    setIsLocked(prev => !prev);
+  };
+
   return (
     <div className="user__actions">
-      <button className="user__actions-profile" onClick={() => props.modalOn()}>
+      <button className="user__actions-profile" onClick={toggleVisibility}>
         <img
           className={`user__actions-icon ${
             props.isFixed || !props.location ? "fixed" : ""
@@ -36,6 +49,13 @@ function UserActions(props) {
           alt=""
         />
       </button>
+      <AnimatePresence>
+        {isVisible && (
+          <ReusableModal onClose={toggleVisibility} locked={isLocked}>
+            <ModalAuth />
+          </ReusableModal>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
