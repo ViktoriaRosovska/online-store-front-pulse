@@ -7,9 +7,10 @@ const PageSection = styled.section`
 `;
 
 const ContentWrapper = styled.div`
-  display: block;
+  display: flex;
+  flex-direction: column;
   @media screen and (min-width: 1440px) {
-    display: flex;
+    flex-direction: row;
   }
 `;
 

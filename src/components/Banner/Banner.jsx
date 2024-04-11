@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import CardButton from "../Buttons/CardButton/CardButton";
 import { ButtonWrapper, SectionBanner, TitleBox } from "./Banner.styled";
-const MyComponent = () => {
+const Banner = () => {
   const navigate = useNavigate();
   const aLink = () => {
     navigate("/sales");
@@ -19,4 +19,4 @@ const MyComponent = () => {
   );
 };
 
-export default MyComponent;
+export default Banner;
