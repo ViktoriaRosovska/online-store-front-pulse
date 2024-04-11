@@ -8,11 +8,9 @@ const CheckboxItem = ({ item, handleInputChange, checked }) => {
         value={item}
         id={"cbl_" + item}
         checked={checked}
-        onChange={(e) => handleInputChange(e, item)}
+        onChange={e => handleInputChange(e, item)}
       />
-      <label htmlFor={"cbl_" + item} style={{ display: "inline-block", width: "100%" }}>
-        {item}
-      </label>
+      <label htmlFor={"cbl_" + item}>{item}</label>
     </CheckboxItemWrapper>
   );
 };

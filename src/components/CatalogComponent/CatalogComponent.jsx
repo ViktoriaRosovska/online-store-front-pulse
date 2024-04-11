@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import { Container, ContentWrapper, PageSection } from "../../main.styled";
 import { Aside } from "./Aside/Aside";
 import { CardsList } from "../CardsList/CardsList";
@@ -14,17 +15,21 @@ import { CatalogNavigation } from "./CatalogNavigation/CatalogNavigation";
 //   // useLazyGetAllProductsQuery,
 // } from "../../redux/products/productsApi";
 
-export const CatalogComponent = ({ loader, title, sex, cardfeature }) => {
-  const [selectedBrands, setSelectedBrands] = useState([]);
+export const CatalogComponent = ({
+  loader,
+  title,
+  sex,
+  cardfeature,
+  brand,
+}) => {
+  const [selectedBrands, setSelectedBrands] = useState(brand ? [brand] : []);
   const [selectedSeasons, setSelectedSeasons] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
+  const [selectedSex, setSelectedSex] = useState([]);
   const [sortOrder, setSortOrder] = useState(null);
-
-  // const [selectedSex] = useState([props.sex]);
   const [asyncData, setAsyncData] = useState(null);
-  console.log(asyncData);
-
+  const [showAside, setShowAside] = useState(false);
   const [filterQuery, setFilterQuery] = useState({
     sex: sex,
     brand: "",
@@ -33,6 +38,8 @@ export const CatalogComponent = ({ loader, title, sex, cardfeature }) => {
     color: "",
     page: 1,
   });
+
+  console.log(asyncData);
 
   //ANTON===================================================//
   // const { data: allProducts, isError, isFetching } = useGetAllProductsQuery({});
@@ -79,6 +86,9 @@ export const CatalogComponent = ({ loader, title, sex, cardfeature }) => {
 
   const onSelectionChanged = (type, items) => {
     switch (type) {
+      case "sex":
+        setSelectedSex(items);
+        break;
       case "brand":
         setSelectedBrands(items);
         break;
@@ -101,6 +111,7 @@ export const CatalogComponent = ({ loader, title, sex, cardfeature }) => {
   };
 
   const onClearFiltersButton = () => {
+    setSelectedSex([]);
     setSelectedBrands([]);
     setSelectedSeasons([]);
     setSelectedSizes([]);
@@ -114,7 +125,10 @@ export const CatalogComponent = ({ loader, title, sex, cardfeature }) => {
   };
 
   const onClearOneFilterButton = type => onSelectionChanged(type, []);
-
+  const onAsideShow = () => {
+    return setShowAside(!showAside);
+  };
+  console.log(showAside);
   //ANTON===================================================//
   // if (isFetching) return <div>Loading...</div>;
   // if (isError) return <div>Some error component</div>;
@@ -142,19 +156,24 @@ export const CatalogComponent = ({ loader, title, sex, cardfeature }) => {
           selectedSeasons={selectedSeasons}
           selectedSizes={selectedSizes}
           selectedColors={selectedColors}
+          selectedSex={selectedSex}
           title={title}
           onClearFiltersButton={onClearFiltersButton}
           onClearOneFilterButton={onClearOneFilterButton}
           sortOrder={sortOrder}
           onSortOrderChanged={onSortOrderChanged}
+          onAsideShow={onAsideShow}
         />
         <ContentWrapper>
           <Aside
+            onAsideShow={showAside}
             selectedBrands={selectedBrands}
             selectedSizes={selectedSizes}
             selectedSeasons={selectedSeasons}
             selectedColors={selectedColors}
+            selectedSex={selectedSex}
             onChanged={onSelectionChanged}
+            sex={sex}
           />
 
           <CardsList

@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 const CardButtonWrapper = styled.button`
-  font-family: "Roboto";
-  letter-spacing: 0.01px;
-  line-height: 30px;
-  font-size: 20px;
+  font-size: 18px;
+  line-height: 20px;
+
   background-color: black;
   color: white;
   display: flex;
@@ -18,6 +17,12 @@ const CardButtonWrapper = styled.button`
   &:hover {
     background-color: var(--white-dark-bg-color);
     color: black;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0.01em;
   }
 `;
 

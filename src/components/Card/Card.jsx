@@ -30,9 +30,8 @@ const Card = ({ info, image, price, id, sale, cardfeature }) => {
         {newBrands ? (
           <SaleBand text={"NEW"} $background={"#495C80"} color={"#E9E9E9"} />
         ) : null}
-        <div style={{ width: "320px", height: "320px" }}>
-          <CardImage src={image} $sales={sales} />
-        </div>
+
+        <CardImage src={image} $sales={sales} />
 
         <FavoriteButton $sales={sales && sale > 0} $new={newBrands} />
         {sales && sale > 0 ? <SalePercent text={sale} /> : null}

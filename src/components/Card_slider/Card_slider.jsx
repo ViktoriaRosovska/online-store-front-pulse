@@ -1,6 +1,6 @@
 import CardButton from "../Buttons/CardButton/CardButton";
 import "./Card_slider.css";
-import { ReactComponent as LogoLover } from "/public/icons/favorites-icon.svg";
+import { ReactComponent as LogoLover } from "../../assets/svg/favorites-icon.svg";
 import { useNavigate } from "react-router-dom";
 
 const Card_slider = ({ info, image, basePrice, id }) => {
@@ -18,7 +18,11 @@ const Card_slider = ({ info, image, basePrice, id }) => {
 
       <p>{info}</p>
       <p>{`${basePrice} грн`}</p>
-      <CardButton style={{ width: "285px", height: "30px" }} text={"Купити"} click={aLink} />
+      <CardButton
+        style={{ width: "285px", height: "30px" }}
+        text={"Купити"}
+        click={aLink}
+      />
     </div>
   );
 };

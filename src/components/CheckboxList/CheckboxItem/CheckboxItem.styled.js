@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 const CheckboxItemWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
+
   &:hover {
     &::before {
       color: var(--grey-text-color);
@@ -22,16 +24,25 @@ const CheckboxItemWrapper = styled.div`
   label {
     cursor: pointer;
     user-select: none;
-    font-family: "Roboto";
-    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    font-size: 11px;
     font-weight: 400;
-    line-height: 14px;
+    line-height: 11px;
     letter-spacing: 0.01em;
+
     &:hover {
       color: var(--grey-text-color);
       &::before {
         color: var(--grey-text-color);
       }
+    }
+    @media screen and (min-width: 1440px) {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 14px;
+      letter-spacing: 0.01em;
     }
   }
   label::before {

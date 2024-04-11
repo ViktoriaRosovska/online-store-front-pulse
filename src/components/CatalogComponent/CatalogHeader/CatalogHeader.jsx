@@ -20,19 +20,21 @@ import options from "../../../data/sortoptions.json";
 import "./sort-select.css";
 
 export const CatalogHeader = props => {
-  const [showFilter, setShowFilter] = useState(true);
+  const [showFilter, setShowFilter] = useState(false);
   const [showSelectMenu, setShowSelectMenu] = useState(false);
 
   const hasFilter =
     props.selectedBrands.length +
       props.selectedSeasons.length +
       props.selectedColors.length +
-      props.selectedSizes.length >
+      props.selectedSizes.length +
+      props.selectedSex.length >
     0;
   if (!hasFilter && !showFilter) setShowFilter(true);
 
   const onToggleFilter = () => {
     setShowFilter(!showFilter);
+    props.onAsideShow(!showFilter);
   };
 
   const showSelect = props.sortOrder !== null;
@@ -68,7 +70,6 @@ export const CatalogHeader = props => {
               onClick={() => {
                 setShowSelectMenu(!showSelectMenu);
               }}
-              // onBlur={handleBlur}
             >
               <SortIcon />
               Сортування
@@ -107,6 +108,13 @@ export const CatalogHeader = props => {
 
       {hasFilter && showFilter ? (
         <FilterWrapper>
+          {Boolean(props.selectedSex.length) && (
+            <FilterWrapperButton
+              onClick={() => props.onClearOneFilterButton("sex")}
+            >
+              <CloseBtn /> Стать: {props.selectedSex.join(", ")}
+            </FilterWrapperButton>
+          )}
           {Boolean(props.selectedBrands.length) && (
             <FilterWrapperButton
               onClick={() => props.onClearOneFilterButton("brand")}
@@ -140,7 +148,8 @@ export const CatalogHeader = props => {
             props.selectedBrands.length ||
               props.selectedSeasons.length ||
               props.selectedSizes.length ||
-              props.selectedColors.length
+              props.selectedColors.length ||
+              props.selectedSex.length
           ) && (
             <FilterWrapperButton onClick={props.onClearFiltersButton}>
               Очистити все <CloseBtn />

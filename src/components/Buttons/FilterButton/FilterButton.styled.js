@@ -16,15 +16,24 @@ const FilterButton = styled.button`
     margin-right: 12px;
   }
   &:hover {
-    color: ${props =>
-      props.$hasFilter ? "var(--grey-text-color)" : "currentColor"};
+    color: var(--grey-text-color);
     & svg {
-      stroke: ${props =>
-        props.$hasFilter ? "var(--grey-text-color)" : "currentColor"};
+      stroke: var(--grey-text-color);
     }
   }
 
-  cursor: ${props => (props.$hasFilter ? "pointer" : "auto")};
+  cursor: pointer;
+  @media screen and (min-width: 1440px) {
+    cursor: ${props => (props.$hasFilter ? "pointer" : "auto")};
+    &:hover {
+      color: ${props =>
+        props.$hasFilter ? "var(--grey-text-color)" : "currentColor"};
+      & svg {
+        stroke: ${props =>
+          props.$hasFilter ? "var(--grey-text-color)" : "currentColor"};
+      }
+    }
+  }
 `;
 
 const SortButton = styled(FilterButton)`

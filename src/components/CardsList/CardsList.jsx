@@ -6,7 +6,7 @@ import { Pagination } from "components/Pagination/Pagination.jsx";
 export const CardsList = ({ asyncData, cardfeature, onPageChange }) => {
   console.log("asyncData", asyncData);
   // console.log(totalPages);
-  if (!asyncData) return <div>Загрузка данных...</div>;
+  if (!asyncData) return <div>Йде завантаження даних...</div>;
   return (
     <CardsListContainer>
       <ScrollToTop />

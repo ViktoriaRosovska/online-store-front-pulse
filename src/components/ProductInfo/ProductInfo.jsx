@@ -13,7 +13,7 @@ import {
   StyledBreadcrumbs,
 } from "./ProductInfo.styled";
 import { useState } from "react";
-import { ReactComponent as LogoLover } from "/public/icons/favorites-icon.svg";
+import { ReactComponent as LogoLover } from "../../assets/svg/favorites-icon.svg";
 import { useGetProductByIdQuery } from "../../redux/products/productsApi";
 import { useParams } from "react-router-dom";
 import ProductImageList from "./ProductImageList";

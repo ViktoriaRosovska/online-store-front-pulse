@@ -1,7 +1,7 @@
 import "./Cards_sale.css";
 import Button from "../Buttons/CardButton/CardButton.jsx";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as LogoLover } from "/public/icons/favorites-icon.svg";
+import { ReactComponent as LogoLover } from "../../assets/svg/favorites-icon.svg";
 const CardsSale = ({ image, info, basePrice, sale, id, sales }) => {
   const navigate = useNavigate();
 
@@ -21,7 +21,11 @@ const CardsSale = ({ image, info, basePrice, sale, id, sales }) => {
         <p className="card_info">{info}</p>
         <span className="card_price">{`${basePrice} грн`} </span>
         <span className="card_price-sale">{`${sale} грн`}</span>
-        <Button style={{ width: "285px", height: "30px" }} text={"Купити"} click={aLink} />
+        <Button
+          style={{ width: "285px", height: "30px" }}
+          text={"Купити"}
+          click={aLink}
+        />
       </div>
     </>
   );
