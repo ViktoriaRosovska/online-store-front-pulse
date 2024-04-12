@@ -1,8 +1,6 @@
-
 import {
   AddToCartButton,
   ButtonWrapper,
-  CurrentBreadcrumb,
   DescriptionText,
   DescriptionTitle,
   DescriptionWrapper,
@@ -11,7 +9,6 @@ import {
   PriceWrapper,
   ProductDataWrapper,
   SizeGridButton,
-  StyledBreadcrumbs,
 } from "./ProductInfo.styled";
 import { useState } from "react";
 import { ReactComponent as LogoLover } from "../../assets/svg/favorites-icon.svg";
@@ -25,9 +22,9 @@ import ProductFeatureList from "./ProductFeatureList";
 import ProductCommonInfo from "./ProductCommonInfo";
 import DetailsToggler from "components/UIKit/DetailsToggler";
 import BasicModal from "components/modal/Modal";
+import Breadcrumbs from "components/Breadcrumbs";
 
 const ProductInfo = () => {
-  //MOdal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
@@ -35,7 +32,7 @@ const ProductInfo = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-//other function
+
   const [sizeValue, setSizeValue] = useState();
   const { id } = useParams();
 
@@ -48,8 +45,6 @@ const ProductInfo = () => {
   if (isFetching) return <div>Loading...</div>;
   if (!data) return null;
   if (isError || !data.name) return <div>Error Component</div>;
-
-  console.log(data);
 
   const {
     name,
@@ -65,11 +60,9 @@ const ProductInfo = () => {
 
   return (
     <>
-      <h1 hidden> Кроссівки Nike Tech Hera Brown Geode Teal </h1>
-      <StyledBreadcrumbs>
-        Головна / Чоловіче взуття /
-        <CurrentBreadcrumb> Nike Tech Hera Brown Geode Teal</CurrentBreadcrumb>
-      </StyledBreadcrumbs>
+      <h1 hidden> {name}</h1>
+
+      <Breadcrumbs current={name} />
 
       <ProductHeading device="mobile" article={article} title={name} />
 
@@ -94,7 +87,11 @@ const ProductInfo = () => {
           )}
 
           <ButtonWrapper>
-            <AddToCartButton type="button" disabled={!sizeValue} onClick={openModal}>
+            <AddToCartButton
+              type="button"
+              disabled={!sizeValue}
+              onClick={openModal}
+            >
               Додати в кошик
             </AddToCartButton>
 
@@ -118,7 +115,13 @@ const ProductInfo = () => {
           <ProductFeatureList features={features} />
         </DetailsToggler>
       </DescriptionWrapper>
-      <BasicModal openModal={isModalOpen} closeModal={closeModal} productData={data} sizeValue={sizeValue}/>
+
+      <BasicModal
+        openModal={isModalOpen}
+        closeModal={closeModal}
+        productData={data}
+        sizeValue={sizeValue}
+      />
     </>
   );
 };
