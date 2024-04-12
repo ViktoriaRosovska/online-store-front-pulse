@@ -17,14 +17,21 @@ const Breadcrumbs = ({ current }) => {
 
   return (
     <StyledBreadcrumbs>
-      <Link to={ROUTES.HOME}>Головна</Link> /
+      <Link to={ROUTES.HOME}>Головна</Link>
+
       {prev && (
         <>
-          {" "}
-          <Link to={pathname}>{prev}</Link> /
+          {" / "}
+          <Link to={pathname}>{prev}</Link>
         </>
-      )}{" "}
-      {current && <CurrentBreadcrumb>{current}</CurrentBreadcrumb>}
+      )}
+
+      {current && (
+        <>
+          {" / "}
+          <CurrentBreadcrumb>{current}</CurrentBreadcrumb>
+        </>
+      )}
     </StyledBreadcrumbs>
   );
 };
