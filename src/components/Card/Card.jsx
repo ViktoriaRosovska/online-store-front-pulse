@@ -12,13 +12,13 @@ import FavoriteButton from "../Buttons/FavoriteButton/FavoriteButton.jsx";
 import { SaleBand } from "../salesComponents/SaleBand/SaleBand.jsx";
 import { SalePercent } from "../salesComponents/SalePercent/SalePercent.jsx";
 
-const Card = ({ info, image, price, id, sale, cardfeature }) => {
+const Card = ({ info, image, price, id, sale, cardfeature, filterQuery }) => {
   const navigate = useNavigate();
   const sales = cardfeature === "sales";
 
   const newBrands = cardfeature === "newbrands";
   const aLink = () => {
-    navigate(`/${id}`);
+    navigate(`/${id}?size=${filterQuery.size}`);
   };
 
   return (
