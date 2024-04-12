@@ -59,5 +59,4 @@ function UserActions(props) {
     </div>
   );
 }
-
 export default UserActions;

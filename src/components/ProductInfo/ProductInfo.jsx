@@ -1,3 +1,4 @@
+
 import {
   AddToCartButton,
   ButtonWrapper,
@@ -23,8 +24,18 @@ import ProductSizeList from "./ProductSizeList";
 import ProductFeatureList from "./ProductFeatureList";
 import ProductCommonInfo from "./ProductCommonInfo";
 import DetailsToggler from "components/UIKit/DetailsToggler";
+import BasicModal from "components/modal/Modal";
 
 const ProductInfo = () => {
+  //MOdal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+//other function
   const [sizeValue, setSizeValue] = useState();
   const { id } = useParams();
 
@@ -46,7 +57,6 @@ const ProductInfo = () => {
     sale,
     article,
     basePrice,
-
     description,
     categories,
     features,
@@ -84,7 +94,7 @@ const ProductInfo = () => {
           )}
 
           <ButtonWrapper>
-            <AddToCartButton type="button" disabled={!sizeValue}>
+            <AddToCartButton type="button" disabled={!sizeValue} onClick={openModal}>
               Додати в кошик
             </AddToCartButton>
 
@@ -108,6 +118,7 @@ const ProductInfo = () => {
           <ProductFeatureList features={features} />
         </DetailsToggler>
       </DescriptionWrapper>
+      <BasicModal openModal={isModalOpen} closeModal={closeModal} productData={data} sizeValue={sizeValue}/>
     </>
   );
 };
