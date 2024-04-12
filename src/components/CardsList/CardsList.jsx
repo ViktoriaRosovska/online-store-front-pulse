@@ -3,7 +3,12 @@ import Card from "../Card/Card.jsx";
 import { ScrollToTop } from "../../components/ScrollToTop.js";
 import { Pagination } from "components/Pagination/Pagination.jsx";
 
-export const CardsList = ({ asyncData, cardfeature, onPageChange }) => {
+export const CardsList = ({
+  asyncData,
+  cardfeature,
+  onPageChange,
+  filterQuery,
+}) => {
   console.log("asyncData", asyncData);
   // console.log(totalPages);
   if (!asyncData) return <div>Йде завантаження даних...</div>;
@@ -22,6 +27,7 @@ export const CardsList = ({ asyncData, cardfeature, onPageChange }) => {
                 id={el._id}
                 sale={el.sale}
                 cardfeature={cardfeature}
+                filterQuery={filterQuery}
               />
             );
           })
@@ -30,11 +36,13 @@ export const CardsList = ({ asyncData, cardfeature, onPageChange }) => {
         )}
       </CardListWrapper>
 
-      <Pagination
-        onChange={onPageChange}
-        page={parseInt(asyncData?.page)}
-        totalPages={asyncData?.totalPages}
-      />
+      {asyncData.products && asyncData.products.length > 0 ? (
+        <Pagination
+          onChange={onPageChange}
+          page={parseInt(asyncData?.page)}
+          totalPages={asyncData?.totalPages}
+        />
+      ) : null}
     </CardsListContainer>
   );
 };

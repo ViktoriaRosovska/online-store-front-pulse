@@ -32,7 +32,7 @@ export const CatalogComponent = ({
   const [showAside, setShowAside] = useState(false);
   const [filterQuery, setFilterQuery] = useState({
     sex: sex,
-    brand: "",
+    brand: brand,
     season: "",
     size: "",
     color: "",
@@ -40,7 +40,7 @@ export const CatalogComponent = ({
   });
 
   console.log(asyncData);
-
+  console.log(filterQuery);
   //ANTON===================================================//
   // const { data: allProducts, isError, isFetching } = useGetAllProductsQuery({});
   // // const [testGet, { data }] = useLazyGetAllProductsQuery();
@@ -180,6 +180,7 @@ export const CatalogComponent = ({
             asyncData={asyncData}
             cardfeature={cardfeature}
             onPageChange={onPageChange}
+            filterQuery={filterQuery}
           />
         </ContentWrapper>
       </Container>

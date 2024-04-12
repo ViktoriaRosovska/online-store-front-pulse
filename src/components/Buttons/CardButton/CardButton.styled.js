@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const CardButtonWrapper = styled.button`
+const CardButtonWrapper = styled.a`
   font-size: 18px;
   line-height: 20px;
 
