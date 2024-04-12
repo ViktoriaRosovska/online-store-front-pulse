@@ -54,5 +54,5 @@ function Header({ modalOn }) {
     </header>
   );
 }
-
+console.log(Header)
 export default Header;
