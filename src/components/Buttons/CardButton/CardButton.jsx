@@ -1,9 +1,11 @@
+import { useLocation } from "react-router-dom";
 import { CardButtonWrapper } from "./CardButton.styled";
 
-// import "./Button.css";
-const CardButton = ({ text, click, style }) => {
+const CardButton = ({ text, style, route }) => {
+  const location = useLocation();
+
   return (
-    <CardButtonWrapper style={style} onClick={click}>
+    <CardButtonWrapper style={style} to={route} state={{ from: location }}>
       {text}
     </CardButtonWrapper>
   );

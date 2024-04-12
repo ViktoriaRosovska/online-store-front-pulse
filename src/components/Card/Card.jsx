@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+// import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   CardImage,
   CardPrice,
@@ -11,15 +11,16 @@ import CardButton from "../Buttons/CardButton/CardButton.jsx";
 import FavoriteButton from "../Buttons/FavoriteButton/FavoriteButton.jsx";
 import { SaleBand } from "../salesComponents/SaleBand/SaleBand.jsx";
 import { SalePercent } from "../salesComponents/SalePercent/SalePercent.jsx";
+import { ROUTES } from "../../utils/routes.js";
 
 const Card = ({ info, image, price, id, sale, cardfeature, filterQuery }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const sales = cardfeature === "sales";
 
   const newBrands = cardfeature === "newbrands";
-  const aLink = () => {
-    navigate(`/${id}?size=${filterQuery.size}`);
-  };
+  // const aLink = () => {
+  //   navigate(`/${id}?size=${filterQuery.size}`);
+  // };
 
   return (
     <CardWrapper>
@@ -47,7 +48,19 @@ const Card = ({ info, image, price, id, sale, cardfeature, filterQuery }) => {
           price - (price * sale) / 100
         )} грн`}</CardPrice>
       </TextWrapper>
-      <CardButton text={"Купити"} click={aLink} />
+      {/* <CardButton text={"Купити"} click={aLink} /> */}
+
+      <CardButton
+        text={"Купити"}
+        route={{
+          pathname: `${ROUTES.HOME}${id}`,
+          ...(filterQuery.size && { search: `size=${filterQuery.size}` }),
+        }}
+      />
+
+      {/* <Link to={{ pathname: `/${id}`, search: `size=${filterQuery.size}` }}>
+        Купити TEST
+      </Link> */}
     </CardWrapper>
   );
 };
