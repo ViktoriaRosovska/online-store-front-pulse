@@ -5,6 +5,7 @@ import { Aside } from "./Aside/Aside";
 import { CardsList } from "../CardsList/CardsList";
 import { CatalogHeader } from "./CatalogHeader/CatalogHeader";
 import { CatalogNavigation } from "./CatalogNavigation/CatalogNavigation";
+import Breadcrumbs from "components/Breadcrumbs";
 // import {
 //   useFindProductsQuery,
 //   useGetAllProductsQuery,
@@ -151,6 +152,7 @@ export const CatalogComponent = ({
     <PageSection>
       <Container>
         <CatalogNavigation title={title} />
+
         <CatalogHeader
           selectedBrands={selectedBrands}
           selectedSeasons={selectedSeasons}
