@@ -3,6 +3,19 @@ import styled from "styled-components";
 const CatalogHeaderContainer = styled.div`
   margin-bottom: 24px;
 `;
+
+const StyledHeaderTitleWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
+  position: relative;
+  height: 74px;
+  /* border: 1px solid red; */
+  @media screen and (min-width: 1440px) {
+    height: 36px;
+  }
+`;
 const FilterWrapper = styled.div`
   display: flex;
   gap: 17px;
@@ -28,6 +41,14 @@ const FilterWrapperButton = styled.button`
     stroke: var(--white-text-color);
     background-color: var(--black-bg-color);
   }
+`;
+
+const StyledSortContainer = styled.div`
+  position: relative;
+
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
 `;
 const SortSelectWrapper = styled.div`
   display: flex;
@@ -59,7 +80,7 @@ const StyledSelectMenuWrapper = styled.div`
   border: 1px solid var(--black-bg-color);
   padding: 9px 12px;
   border-radius: 16px;
-  top: 36px;
+  top: 74px;
   right: 0;
   & ul > li {
     border-bottom: 1px solid var(--black-bg-color);
@@ -77,6 +98,9 @@ const StyledSelectMenuWrapper = styled.div`
   & ul > li:not(:first-child) {
     padding-top: 4px;
   }
+  @media screen and (min-width: 1440px) {
+    top: 36px;
+  }
 `;
 export {
   CatalogHeaderContainer,
@@ -85,4 +109,6 @@ export {
   SortCloseBtn,
   SortSelectWrapper,
   StyledSelectMenuWrapper,
+  StyledHeaderTitleWrapper,
+  StyledSortContainer,
 };

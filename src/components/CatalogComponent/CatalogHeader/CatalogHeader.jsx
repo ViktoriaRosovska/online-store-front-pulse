@@ -10,7 +10,9 @@ import {
   FilterWrapperButton,
   SortCloseBtn,
   SortSelectWrapper,
+  StyledHeaderTitleWrapper,
   StyledSelectMenuWrapper,
+  StyledSortContainer,
 } from "./CatalogHeader.styled";
 import { ReactComponent as FilterIcon } from "../../../assets/svg/filter.svg";
 import { ReactComponent as SortIcon } from "../../../assets/svg/sortIcon.svg";
@@ -53,28 +55,15 @@ export const CatalogHeader = props => {
 
   return (
     <CatalogHeaderContainer>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "24px",
-          position: "relative",
-        }}
-      >
+      <StyledHeaderTitleWrapper>
         <FilterButton onClick={onToggleFilter} $hasFilter={hasFilter}>
           <FilterIcon />
           Фільтр
         </FilterButton>
+
         <PageTitle>{props.title}</PageTitle>
 
-        <div
-          style={{
-            position: "relative",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
+        <StyledSortContainer>
           <SortWrapper>
             <SortButton
               $showSelect={showSelect}
@@ -83,7 +72,7 @@ export const CatalogHeader = props => {
               }}
             >
               <SortIcon />
-              Сортування
+              <span>Сортування</span>
             </SortButton>
             {Boolean(showSelect) && (
               <SortSelectWrapper>
@@ -100,7 +89,7 @@ export const CatalogHeader = props => {
               </SortSelectWrapper>
             )}
           </SortWrapper>
-        </div>
+        </StyledSortContainer>
 
         {Boolean(showSelectMenu) && Boolean(!showSelect) && (
           <StyledSelectMenuWrapper>
@@ -116,7 +105,7 @@ export const CatalogHeader = props => {
             </ul>
           </StyledSelectMenuWrapper>
         )}
-      </div>
+      </StyledHeaderTitleWrapper>
 
       {hasFilter && showFilter ? (
         <FilterWrapper>
