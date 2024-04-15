@@ -22,22 +22,25 @@ export const SectionHero = styled.section`
 `;
 
 export const BoxHero = styled.div`
-  width: 328px;
+  width: 100%;
   height: 391px;
   backdrop-filter: blur(20px);
   border-radius: 16px;
   padding: 70px 24px;
+  margin-left: auto;
+  margin-right: auto;
 
   @media screen and (min-width: 1440px) {
     width: 690px;
-    height: 640px;
+    height: 644px;
     padding: 50px 60px;
+    margin-left: 0;
   }
 
   > button {
     display: block;
-    margin-top: 24px;
-    width: 280px;
+
+    width: 100%;
     height: 48px;
     border-radius: 16px;
     border: none;
@@ -45,7 +48,6 @@ export const BoxHero = styled.div`
     cursor: pointer;
 
     @media screen and (min-width: 1440px) {
-      margin-top: 32px;
       width: 280px;
       height: 64px;
     }
@@ -57,10 +59,10 @@ export const BoxHero = styled.div`
   }
 `;
 
-export const BoxHeroTitle = styled.div`
+export const BoxHeroTitleWrapper = styled.div`
   display: flex;
   align-items: center;
-  width: 280px;
+  width: 100%;
   height: 178px;
 
   @media screen and (min-width: 1440px) {
@@ -74,10 +76,12 @@ export const BoxHeroTitle = styled.div`
     line-height: 1;
     font-weight: 400;
     font-size: 48px;
+    margin-bottom: 24px;
 
     @media screen and (min-width: 1440px) {
       font-size: 90px;
       line-height: 1.5;
+      margin-bottom: 32px;
     }
   }
 `;
@@ -168,40 +172,31 @@ export const BoxTitle = styled.div`
 `;
 
 export const SectionNews = styled.section`
-  background-image: linear-gradient(to bottom, #d9d9d9, #e7e7e7, #eaeff0, #fbfbfb);
+  background-image: linear-gradient(
+    180deg,
+    rgba(229, 229, 229, 1) 0%,
+    rgba(231, 231, 231, 0) 97.9%
+  );
 `;
 
+import grayRibbon from "../../assets/images/grayRibbon.svg";
+
 export const VectorBox = styled.div`
-  width: 100%;
-  > img {
-    width: 100%;
-  }
+  height: 69px;
+  background-image: url(${grayRibbon});
+  background-size: cover;
+  margin-bottom: -2px;
 `;
 
 export const SliderBox = styled.div`
   margin-left: auto;
   margin-right: auto;
-  //background-image: linear-gradient(to bottom, #d9d9d9, #e7e7e7, #eaeff0, #fbfbfb);
+
   width: 100%;
   max-width: 1370px;
   height: 643px;
-  margin-top: -10px;
+
   text-align: center;
-
-  > h2 {
-    font-family: "Beware";
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 1;
-    color: #232323;
-  }
-
-  @media screen and (min-width: 1440px) {
-    > h2 {
-      font-family: var(--tittle-font);
-      font-size: 64px;
-    }
-  }
 `;
 
 export const SectionSale = styled.section`
@@ -210,21 +205,21 @@ export const SectionSale = styled.section`
   margin-right: auto;
   max-width: 1370px;
 
-  > h2 {
-    font-family: "Beware", sans-serif;
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 1;
-    color: #232323;
-    text-align: center;
-  }
-
   @media screen and (min-width: 1440px) {
     padding-top: 120px;
+  }
+`;
 
-    > h2 {
-      font-family: "Strong", sans-serif;
-      font-size: 64px;
-    }
+export const StyledSliderTitle = styled.h2`
+  font-family: "Strong";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 36px;
+  text-align: center;
+  @media screen and (min-width: 1440px) {
+    font-size: 64px;
+
+    line-height: 64px;
   }
 `;

@@ -11,7 +11,8 @@ const CardButtonWrapper = styled(Link)`
   justify-content: center;
   align-items: center;
   border-radius: 16px;
-  padding: 16px 32px;
+  padding-top: 14px;
+  padding-bottom: 14px;
   width: 100%;
   border: none;
   cursor: pointer;
@@ -19,11 +20,13 @@ const CardButtonWrapper = styled(Link)`
     background-color: var(--white-dark-bg-color);
     color: black;
   }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1440px) {
     font-size: 20px;
     font-weight: 400;
     line-height: 30px;
     letter-spacing: 0.01em;
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 `;
 

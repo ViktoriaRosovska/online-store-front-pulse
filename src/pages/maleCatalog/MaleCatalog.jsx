@@ -8,6 +8,7 @@ const MaleCatalog = () => {
       sex={"Чоловік"}
       loader={querySearch}
       cardfeature={"sales"}
+      sortNewest={true}
     />
   );
 };

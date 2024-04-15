@@ -7,11 +7,6 @@ import { host } from "./index.jsx";
 //   return data;
 // };
 
-// export const brand = async () => {
-//   const { data } = await host.get("/products");
-//   return data;
-// };
-
 export const brandNew = async queryObject => {
   const { data } = await host.get(
     `/products/newest` +
@@ -46,11 +41,6 @@ export const category = async () => {
   const { data } = await host.get("/categories");
   return data;
 };
-
-// export const female = async () => {
-//   const { data } = await host.get("/products?sex=female");
-//   return data;
-// };
 
 export const querySearch = async queryObject => {
   console.log(queryObject);

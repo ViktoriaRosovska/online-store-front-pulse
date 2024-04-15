@@ -22,6 +22,7 @@ export const CatalogComponent = ({
   sex,
   cardfeature,
   brand,
+  sortNewest,
 }) => {
   const [selectedBrands, setSelectedBrands] = useState(brand ? [brand] : []);
   const [selectedSeasons, setSelectedSeasons] = useState([]);
@@ -165,6 +166,7 @@ export const CatalogComponent = ({
           sortOrder={sortOrder}
           onSortOrderChanged={onSortOrderChanged}
           onAsideShow={onAsideShow}
+          sortNewest={sortNewest}
         />
         <ContentWrapper>
           <Aside

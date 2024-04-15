@@ -16,6 +16,7 @@ const Catalog = () => {
       loader={querySearch}
       cardfeature={"sales"}
       brand={brand}
+      sortNewest={true}
     />
   );
 };

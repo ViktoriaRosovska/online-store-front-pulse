@@ -5,6 +5,7 @@ import {
   CardTitle,
   CardWrapper,
   ImageWrapper,
+  StyledCardPriceWrapper,
   TextWrapper,
 } from "./Card.styled.js";
 import CardButton from "../Buttons/CardButton/CardButton.jsx";
@@ -13,7 +14,16 @@ import { SaleBand } from "../salesComponents/SaleBand/SaleBand.jsx";
 import { SalePercent } from "../salesComponents/SalePercent/SalePercent.jsx";
 import { ROUTES } from "../../utils/routes.js";
 
-const Card = ({ info, image, price, id, sale, cardfeature, filterQuery }) => {
+const Card = ({
+  info,
+  image,
+  price,
+  id,
+  sale,
+  cardfeature,
+  filterQuery,
+  cardSlider,
+}) => {
   // const navigate = useNavigate();
   const sales = cardfeature === "sales";
 
@@ -23,7 +33,7 @@ const Card = ({ info, image, price, id, sale, cardfeature, filterQuery }) => {
   // };
 
   return (
-    <CardWrapper>
+    <CardWrapper $cardSlider={cardSlider}>
       <ImageWrapper>
         {sales && sale > 0 ? (
           <SaleBand text={"SALE"} $background={"#fef746"} color={"black"} />
@@ -32,21 +42,29 @@ const Card = ({ info, image, price, id, sale, cardfeature, filterQuery }) => {
           <SaleBand text={"NEW"} $background={"#495C80"} color={"#E9E9E9"} />
         ) : null}
 
-        <CardImage src={image} $sales={sales} />
+        <CardImage src={image} $sales={sales} $cardSlider={cardSlider} />
 
         <FavoriteButton $sales={sales && sale > 0} $new={newBrands} />
-        {sales && sale > 0 ? <SalePercent text={sale} /> : null}
+        {sales && sale > 0 ? <SalePercent text={-sale} /> : null}
       </ImageWrapper>
       <TextWrapper>
         <CardTitle className="shoes-title">{info}</CardTitle>
-        {sales && sale > 0 ? (
-          <span style={{ marginRight: "5px", textDecoration: "line-through" }}>
-            {price}грн
-          </span>
-        ) : null}
-        <CardPrice $sales={sales && sale > 0}>{`${Math.ceil(
-          price - (price * sale) / 100
-        )} грн`}</CardPrice>
+        <StyledCardPriceWrapper>
+          {sales && sale > 0 ? (
+            <span
+              style={{
+                marginRight: "5px",
+                textDecoration: "line-through",
+                lineHeight: "20px",
+              }}
+            >
+              {price}грн
+            </span>
+          ) : null}
+          <CardPrice $sales={sales && sale > 0}>{`${Math.ceil(
+            price - (price * sale) / 100
+          )} грн`}</CardPrice>
+        </StyledCardPriceWrapper>
       </TextWrapper>
       {/* <CardButton text={"Купити"} click={aLink} /> */}
 

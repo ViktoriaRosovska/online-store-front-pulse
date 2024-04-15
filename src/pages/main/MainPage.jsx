@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import SaleIconsMarquee from "../../components/SaleIconsMarquee/SaleIconsMarquee";
 import {
   BoxHero,
-  BoxHeroTitle,
+  BoxHeroTitleWrapper,
   BoxTitle,
   ManBox,
   SectionHero,
@@ -12,33 +12,45 @@ import {
   SectionNews,
   SectionSale,
   SliderBox,
+  StyledSliderTitle,
   VectorBox,
   WomenBox,
 } from "./MainPage.styled.js";
-import OneSlider from "../../components/Slider/OneSlider.jsx";
-import NewSlider from "../../components/Slider/NewSlider.jsx";
-import vector2 from "../../assets/svg/background-element.png";
+// import OneSlider from "../../components/Slider/OneSlider.jsx";
+import ProductSlider from "../../components/Slider/ProductSlider.jsx";
+
+import { useEffect, useState } from "react";
+import { brandNew, brandSales } from "../../http/ProductsApi";
+import { Container } from "../../main.styled";
 
 const Main = () => {
+  const [sales, setSales] = useState([]);
+  const [newBrands, setNewBrands] = useState([]);
   const navigate = useNavigate();
 
+  console.log(sales.products);
   const navFunc = () => {
     navigate("/catalog");
   };
 
+  useEffect(() => {
+    brandNew().then(res => setNewBrands(res));
+    brandSales().then(res => setSales(res));
+  }, []);
+
   return (
     <>
       <SectionHero>
-        <div className="container">
+        <Container>
           <BoxHero>
-            <BoxHeroTitle>
+            <BoxHeroTitleWrapper>
               <h1>ОБИРАЙ КОМФОРТ ТА СВОБОДУ</h1>
-            </BoxHeroTitle>
+            </BoxHeroTitleWrapper>
             <button type="button" onClick={navFunc}>
               Каталог
             </button>
           </BoxHero>
-        </div>
+        </Container>
       </SectionHero>
       <SectionManWomen className="container">
         <Link to="/malecatalog">
@@ -56,19 +68,20 @@ const Main = () => {
           </WomenBox>
         </Link>
       </SectionManWomen>
-      <VectorBox>
-        <img src={vector2} alt="vector" />
-      </VectorBox>
+      <VectorBox>{/* <img src={vector2} alt="vector" /> */}</VectorBox>
       <SectionNews>
         <SliderBox>
-          <h2>Новинки</h2>
-          <OneSlider />
+          <StyledSliderTitle>Новинки</StyledSliderTitle>
+          <ProductSlider
+            products={newBrands.products}
+            cardfeature={"newbrands"}
+          />
         </SliderBox>
       </SectionNews>
       <Banner />
       <SectionSale>
-        <h2>Розпродаж</h2>
-        <NewSlider />
+        <StyledSliderTitle>Розпродаж</StyledSliderTitle>
+        <ProductSlider products={sales.products} cardfeature={"sales"} />
       </SectionSale>
       <section className="marquee-centered">
         <div className="marquee marquee-rotate-right">

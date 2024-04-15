@@ -49,4 +49,40 @@ const SortCloseBtn = styled.button`
     stroke: var(--grey-text-color);
   }
 `;
-export { CatalogHeaderContainer, FilterWrapper, FilterWrapperButton, SortCloseBtn, SortSelectWrapper };
+
+const StyledSelectMenuWrapper = styled.div`
+  position: absolute;
+  z-index: 10;
+  opacity: 1;
+  width: 180px;
+  background-color: white;
+  border: 1px solid var(--black-bg-color);
+  padding: 9px 12px;
+  border-radius: 16px;
+  top: 36px;
+  right: 0;
+  & ul > li {
+    border-bottom: 1px solid var(--black-bg-color);
+    padding-bottom: 10px;
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+  }
+  & ul > li:hover {
+    color: var(--grey-text-color);
+  }
+  & ul > li:not(:first-child) {
+    padding-top: 4px;
+  }
+`;
+export {
+  CatalogHeaderContainer,
+  FilterWrapper,
+  FilterWrapperButton,
+  SortCloseBtn,
+  SortSelectWrapper,
+  StyledSelectMenuWrapper,
+};
