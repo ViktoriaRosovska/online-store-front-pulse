@@ -16,46 +16,54 @@ export const Aside = props => {
   };
   return (
     <AsideList $valueSize={valueSize} $onAsideShow={props.onAsideShow}>
-      {props.sex.length == 0 && (
+      <div style={{ display: "flex", gap: "10px", flexDirection: "column" }}>
+        {props.sex.length == 0 && (
+          <CheckboxList
+            items={sexList}
+            title="Стать"
+            checked={props.selectedSex}
+            onChanged={items => props.onChanged("sex", items)}
+            defaultShow={defaultShow}
+          />
+        )}
         <CheckboxList
-          items={sexList}
-          title="Стать"
-          checked={props.selectedSex}
-          onChanged={items => props.onChanged("sex", items)}
+          items={brandList}
+          title="Брeнд"
+          checked={props.selectedBrands}
+          onChanged={items => props.onChanged("brand", items)}
+          onChangeShowAll={onChangeShowAll}
+          defaultShow={5}
+        />
+      </div>
+
+      <div style={{ display: "flex", gap: "10px", flexDirection: "column" }}>
+        <CheckboxList
+          items={seasonList}
+          title="Сезон"
+          checked={props.selectedSeasons}
+          onChanged={items => props.onChanged("season", items)}
           defaultShow={defaultShow}
         />
-      )}
-      <CheckboxList
-        items={brandList}
-        title="Брeнд"
-        checked={props.selectedBrands}
-        onChanged={items => props.onChanged("brand", items)}
-        onChangeShowAll={onChangeShowAll}
-        defaultShow={5}
-      />
-      <CheckboxList
-        items={seasonList}
-        title="Сезон"
-        checked={props.selectedSeasons}
-        onChanged={items => props.onChanged("season", items)}
-        defaultShow={defaultShow}
-      />
-      <CheckboxList
-        items={sizeList}
-        title="Розмір"
-        checked={props.selectedSizes}
-        onChanged={items => props.onChanged("size", items)}
-        onChangeShowAll={onChangeShowAll}
-        defaultShow={4}
-      />
-      <CheckboxList
-        items={colorList}
-        title="Колір"
-        checked={props.selectedColors}
-        onChanged={items => props.onChanged("color", items)}
-        onChangeShowAll={onChangeShowAll}
-        defaultShow={8}
-      />
+        <CheckboxList
+          items={sizeList}
+          title="Розмір"
+          checked={props.selectedSizes}
+          onChanged={items => props.onChanged("size", items)}
+          onChangeShowAll={onChangeShowAll}
+          defaultShow={4}
+        />
+      </div>
+
+      <div>
+        <CheckboxList
+          items={colorList}
+          title="Колір"
+          checked={props.selectedColors}
+          onChanged={items => props.onChanged("color", items)}
+          onChangeShowAll={onChangeShowAll}
+          defaultShow={8}
+        />
+      </div>
     </AsideList>
   );
 };
