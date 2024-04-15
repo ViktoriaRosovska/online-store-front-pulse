@@ -179,7 +179,7 @@ export const SectionNews = styled.section`
   );
 `;
 
-import grayRibbon from "../../assets/svg/grayRibbon.svg";
+import grayRibbon from "../../assets/images/grayRibbon.png";
 
 export const VectorBox = styled.div`
   height: 69px;
