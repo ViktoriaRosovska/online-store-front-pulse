@@ -1,9 +1,22 @@
 .swiper-wrapper {
-  /*margin-right: 90px;*/
-  height: 540px;
+  /* height: 416px; */
 }
-
-.next {
-  background-image: url("/icons/White Circular Buttons.png");
-  background-size: 100%;
+.swiper-slide {
+  height: 400px;
+  /* max-width: 152x; */
+  /* width: 152px; */
+  /* border: 1px solid green; */
+  /* height: 416px; */
+}
+@media screen and (min-width: 1440px) {
+  .swiper-slide {
+    /* max-width: 340px;
+    margin-right: 89px; */
+    height: 486px;
+  }
+}
+.swiper-pagination {
+  border: 1px solid blue;
+  height: 64px;
+  width: 100%;
 }

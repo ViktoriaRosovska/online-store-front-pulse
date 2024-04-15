@@ -1,7 +1,7 @@
 import Select from "react-select";
-import options from "../../../data/sortoptions.json";
+// import options from "../../../data/sortoptions.json";
 
-export const SortSelect = ({ onChange, value }) => {
+export const SortSelect = ({ onChange, value, options }) => {
   const style = {
     control: baseStyles => ({
       ...baseStyles,

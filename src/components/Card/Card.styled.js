@@ -4,14 +4,15 @@ const CardWrapper = styled.div`
   width: 152px;
 
   @media screen and (min-width: 1440px) {
-    width: 320px;
+    width: ${props => (props.$cardSlider ? "340px" : "320px")};
   }
 `;
 const CardImage = styled.img`
   width: 152px;
-  height: auto;
+  height: ${props => (props.$cardSlider ? "167px" : "auto")};
   @media screen and (min-width: 1440px) {
-    width: 320px;
+    width: ${props => (props.$cardSlider ? "340px" : "320px")};
+    height: ${props => (props.$cardSlider ? "287px" : "auto")};
   }
 `;
 const ImageWrapper = styled.div`
@@ -37,11 +38,19 @@ const TextWrapper = styled.div`
 `;
 const CardPrice = styled.span`
   font-family: "Roboto";
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 400;
+
+  font-size: ${props => (props.$sales ? "20px" : "16px")};
+
+  line-height: ${props => (props.$sales ? "28px" : "20px")};
+
   color: ${props =>
     props.$sales ? `var(--red-color)` : `var(--black-text-color)`};
+`;
+
+const StyledCardPriceWrapper = styled.div`
+  height: 24px;
+  display: flex;
+  align-items: center;
 `;
 
 export {
@@ -51,4 +60,5 @@ export {
   CardTitle,
   TextWrapper,
   CardPrice,
+  StyledCardPriceWrapper,
 };

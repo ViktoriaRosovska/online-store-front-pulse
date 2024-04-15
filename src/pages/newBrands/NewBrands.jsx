@@ -8,6 +8,7 @@ const NewBrands = () => {
       sex={""}
       loader={brandNew}
       cardfeature={"newbrands"}
+      sortNewest={false}
     />
   );
 };

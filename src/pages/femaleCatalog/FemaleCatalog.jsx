@@ -8,6 +8,7 @@ const FemaleCatalog = () => {
       sex={"Жінка"}
       loader={querySearch}
       cardfeature={"sales"}
+      sortNewest={true}
     />
   );
 };

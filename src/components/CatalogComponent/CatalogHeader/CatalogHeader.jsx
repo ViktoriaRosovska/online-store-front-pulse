@@ -10,6 +10,7 @@ import {
   FilterWrapperButton,
   SortCloseBtn,
   SortSelectWrapper,
+  StyledSelectMenuWrapper,
 } from "./CatalogHeader.styled";
 import { ReactComponent as FilterIcon } from "../../../assets/svg/filter.svg";
 import { ReactComponent as SortIcon } from "../../../assets/svg/sortIcon.svg";
@@ -17,11 +18,21 @@ import { ReactComponent as CloseBtn } from "../../../assets/svg/closeBtn.svg";
 import { SortSelect } from "./SortSelect";
 import { useState } from "react";
 import options from "../../../data/sortoptions.json";
-import "./sort-select.css";
 
 export const CatalogHeader = props => {
   const [showFilter, setShowFilter] = useState(false);
   const [showSelectMenu, setShowSelectMenu] = useState(false);
+
+  const IsNewest = list => {
+    let arr = [];
+
+    if (!props.sortNewest) {
+      arr = [...list.filter(el => el.value !== "createdAt")];
+    } else {
+      arr = [...list];
+    }
+    return arr;
+  };
 
   const hasFilter =
     props.selectedBrands.length +
@@ -84,6 +95,7 @@ export const CatalogHeader = props => {
                 <SortSelect
                   onChange={e => props.onSortOrderChanged(e)}
                   value={props.sortOrder}
+                  options={IsNewest(options)}
                 />
               </SortSelectWrapper>
             )}
@@ -91,9 +103,9 @@ export const CatalogHeader = props => {
         </div>
 
         {Boolean(showSelectMenu) && Boolean(!showSelect) && (
-          <div className="select-menu-wrapper">
+          <StyledSelectMenuWrapper>
             <ul>
-              {options.map(o => (
+              {IsNewest(options).map(o => (
                 <li
                   key={o.value}
                   onClick={() => props.onSortOrderChanged(o.value)}
@@ -102,7 +114,7 @@ export const CatalogHeader = props => {
                 </li>
               ))}
             </ul>
-          </div>
+          </StyledSelectMenuWrapper>
         )}
       </div>
 
