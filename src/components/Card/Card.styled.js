@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const CardWrapper = styled.div`
@@ -53,6 +54,11 @@ const StyledCardPriceWrapper = styled.div`
   align-items: center;
 `;
 
+const StyledCardLink = styled(Link)`
+  cursor: pointer;
+  display: block;
+`;
+
 export {
   CardWrapper,
   CardImage,
@@ -61,4 +67,5 @@ export {
   TextWrapper,
   CardPrice,
   StyledCardPriceWrapper,
+  StyledCardLink,
 };
