@@ -37,16 +37,30 @@ const FilterButton = styled.button`
 `;
 
 const SortButton = styled(FilterButton)`
+  & span {
+    display: none;
+  }
   &:hover {
     color: ${props =>
       !props.$showSelect ? "var(--grey-text-color)" : "currentColor"};
     & svg {
       stroke: ${props =>
         !props.$showSelect ? "var(--grey-text-color)" : "currentColor"};
-    }
+  
   }
-
+  
+  }
+& svg {
+    margin-right: 0;
+  }
   cursor: ${props => (props.$showSelect ? "auto" : "pointer")};
+  @media screen and (min-width: 1440px) {
+    & span {
+      display: block;
+    }
+     & svg {
+      margin-right: 12px;
+  }
 `;
 
 const SortWrapper = styled.div`

@@ -4,13 +4,14 @@ const AsideList = styled.div`
   background-color: white;
   z-index: 101;
   display: ${props => (props.$onAsideShow ? "flex" : "none")};
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
   flex-wrap: wrap;
   height: 270px;
   width: 327px;
-  height: ${props => (props.$valueSize ? "270px" : "600px")};
+  height: ${props => (props.$valueSize ? "270px" : "fit-content")};
   row-gap: 10px;
   margin-bottom: 24px;
   /* border: 1px solid red; */

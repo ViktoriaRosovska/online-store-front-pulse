@@ -72,7 +72,7 @@ const Card = ({
         text={"Купити"}
         route={{
           pathname: `${ROUTES.HOME}${id}`,
-          ...(filterQuery.size && { search: `size=${filterQuery.size}` }),
+          ...(filterQuery?.size && { search: `size=${filterQuery?.size}` }),
         }}
       />
 
