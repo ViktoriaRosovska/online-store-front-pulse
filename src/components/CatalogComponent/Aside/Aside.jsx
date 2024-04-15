@@ -32,7 +32,7 @@ export const Aside = props => {
           checked={props.selectedBrands}
           onChanged={items => props.onChanged("brand", items)}
           onChangeShowAll={onChangeShowAll}
-          defaultShow={5}
+          defaultShow={props.sex.length == 0 ? 5 : 8}
         />
       </div>
 
