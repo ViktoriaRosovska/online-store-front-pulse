@@ -7,15 +7,20 @@ const api = axios.create({
 });
 
 const axiosBaseQuery =
-  ({ baseUrl } = { baseUrl: "" }) =>
+  () =>
   async ({ url, method, data, params, headers }) => {
     try {
+      const token = localStorage.getItem("token");
       const result = await api({
-        url: baseUrl + url,
+        url,
         method,
         data,
         params,
-        headers,
+        headers: {
+          ...headers,
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
       return { data: result.data };
     } catch (axiosError) {

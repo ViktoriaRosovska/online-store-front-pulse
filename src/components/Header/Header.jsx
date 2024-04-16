@@ -50,5 +50,4 @@ function Header() {
     </header>
   );
 }
-console.log(Header)
 export default Header;

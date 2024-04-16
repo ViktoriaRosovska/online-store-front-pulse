@@ -1,5 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { BASE_URL, axiosBaseQuery } from "../../http/api";
+import { axiosBaseQuery, BASE_URL } from "../../http/api";
 import { DEFAULT_QUERY_LIMIT, DEFAULT_QUERY_PAGE } from "../../http/config";
 
 const commonProductQuery = ({
@@ -27,9 +27,7 @@ const commonProductQuery = ({
 export const productsApi = createApi({
   reducerPath: "products",
 
-  baseQuery: axiosBaseQuery({
-    baseUrl: `${BASE_URL}`,
-  }),
+  baseQuery: axiosBaseQuery(),
 
   endpoints: builder => ({
     getAllProducts: builder.query({

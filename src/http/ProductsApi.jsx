@@ -43,7 +43,7 @@ export const category = async () => {
 };
 
 export const querySearch = async queryObject => {
-  console.log(queryObject);
+  // console.log(queryObject);
 
   const { data } = await host.get(
     `/products` +

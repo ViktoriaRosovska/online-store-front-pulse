@@ -68,13 +68,13 @@ const Card = ({
       </TextWrapper>
       {/* <CardButton text={"Купити"} click={aLink} /> */}
 
-      <CardButton
+      {/* <CardButton
         text={"Купити"}
         route={{
           pathname: `${ROUTES.HOME}${id}`,
           ...(filterQuery.size && { search: `size=${filterQuery.size}` }),
         }}
-      />
+      /> */}
 
       {/* <Link to={{ pathname: `/${id}`, search: `size=${filterQuery.size}` }}>
         Купити TEST

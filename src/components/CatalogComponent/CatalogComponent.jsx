@@ -6,6 +6,7 @@ import { CardsList } from "../CardsList/CardsList";
 import { CatalogHeader } from "./CatalogHeader/CatalogHeader";
 import { CatalogNavigation } from "./CatalogNavigation/CatalogNavigation";
 import Breadcrumbs from "components/Breadcrumbs";
+import { useCreateProductMutation } from "../../redux/products/productsApi";
 // import {
 //   useFindProductsQuery,
 //   useGetAllProductsQuery,
@@ -41,8 +42,11 @@ export const CatalogComponent = ({
     page: 1,
   });
 
-  console.log(asyncData);
-  console.log(filterQuery);
+  // const [createProduct, options] = useCreateProductMutation();
+  // const [createProduct, {}] = useCreateProductMutation();
+
+  // console.log(asyncData);
+  // console.log(filterQuery);
   //ANTON===================================================//
   // const { data: allProducts, isError, isFetching } = useGetAllProductsQuery({});
   // // const [testGet, { data }] = useLazyGetAllProductsQuery();
@@ -130,7 +134,7 @@ export const CatalogComponent = ({
   const onAsideShow = () => {
     return setShowAside(!showAside);
   };
-  console.log(showAside);
+  // console.log(showAside);
   //ANTON===================================================//
   // if (isFetching) return <div>Loading...</div>;
   // if (isError) return <div>Some error component</div>;
