@@ -36,7 +36,7 @@ const CustomForm = ({registr, seeMail}) => {
 
   const click = (e) => {
     e.preventDefault();
-    console.log(name, surname, password, passwordTwo)
+    // console.log(name, surname, password, passwordTwo)
     setEmail('')
     setLogin('')
     setName('')

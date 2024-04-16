@@ -8,6 +8,7 @@ import {
 } from "./Pagination.styled";
 import { ReactComponent as LeftArrow } from "../../assets/svg/leftArrow.svg";
 import { ReactComponent as RightArrow } from "../../assets/svg/rightArrow.svg";
+
 export const Pagination = ({ totalPages, page, onChange, siblings }) => {
   const el = [];
 

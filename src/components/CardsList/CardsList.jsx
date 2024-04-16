@@ -9,7 +9,7 @@ export const CardsList = ({
   onPageChange,
   filterQuery,
 }) => {
-  console.log("asyncData", asyncData);
+  // console.log("asyncData", asyncData);
   // console.log(totalPages);
   if (!asyncData) return <div>Йде завантаження даних...</div>;
   return (

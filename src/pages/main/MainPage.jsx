@@ -28,7 +28,7 @@ const Main = () => {
   const [newBrands, setNewBrands] = useState([]);
   const navigate = useNavigate();
 
-  console.log(sales.products);
+  // console.log(sales.products);
   const navFunc = () => {
     navigate("/catalog");
   };

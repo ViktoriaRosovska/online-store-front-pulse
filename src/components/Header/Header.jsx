@@ -50,5 +50,5 @@ function Header() {
     </header>
   );
 }
-console.log(Header)
+// console.log(Header)
 export default Header;
