@@ -11,7 +11,7 @@ export const Aside = props => {
   let defaultShow = 3;
   const [valueSize, setValueSize] = useState(true);
   const onChangeShowAll = value => {
-    console.log(value);
+    // console.log(value);
     setValueSize(value);
   };
   return (

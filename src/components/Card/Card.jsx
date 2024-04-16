@@ -76,6 +76,7 @@ const Card = ({
         {/* <CardButton text={"Купити"} click={aLink} /> */}
 
         <CardButton
+          type={"button"}
           text={"Купити"}
           route={{
             pathname: `${ROUTES.HOME}${id}`,
