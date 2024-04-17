@@ -5,6 +5,8 @@ import { Aside } from "./Aside/Aside";
 import { CardsList } from "../CardsList/CardsList";
 import { CatalogHeader } from "./CatalogHeader/CatalogHeader";
 import { CatalogNavigation } from "./CatalogNavigation/CatalogNavigation";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFilterQuery } from "../../redux/filterQuery/filterQuerySelector";
 
 // import Breadcrumbs from "components/Breadcrumbs";
 // import { useCreateProductMutation } from "../../redux/products/productsApi";
@@ -44,6 +46,10 @@ export const CatalogComponent = ({
     page: 1,
   });
 
+  const dispatch = useDispatch();
+  dispatch(setFilterQuery());
+  const filter = useSelector(selectFilterQuery());
+  console.log(filter);
   // const [createProduct, options] = useCreateProductMutation();
   // const [createProduct, {}] = useCreateProductMutation();
 
