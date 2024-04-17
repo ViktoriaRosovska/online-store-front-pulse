@@ -1,26 +1,27 @@
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import { Formik } from "formik";
 import { FaEye } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { loginValidationSchema } from "../formHelpers/formValidation";
+import { useLoginUserMutation } from "../../../redux/auth/userAuthApi";
+import { useAuth } from "../../../context/AuthProvider";
+
 const CustomLoginForm = () => {
+  const { login } = useAuth();
+
   const [showPassword, setShowPassword] = useState(false);
+  const [loginUser, { data, isLoading, isSuccess }] = useLoginUserMutation();
+
+  console.log(data);
+
+  useEffect(() => {
+    if (isSuccess) {
+      login(data?.user, data?.token, data?.favoriteProducts);
+    }
+  }, [isSuccess, data, login]);
+
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
-  const validationsShema = Yup.object().shape({
-    email: Yup.string()
-      .email("Введіть коректний email")
-      .required("обовʼязкове поле"),
-    password: Yup.string()
-      .typeError("Повинно бути строкою")
-      .matches(/^(?=.*[a-z])(?=.*\d)/, {
-        message: "Пароль має містити літери та цифри",
-      })
-      .min(6, "Пароль має бути не менш ніж 6 символів")
-      .max(10, "Максимальна кількість 10 символів")
-      .required("обовʼязкове поле"),
-  });
 
   return (
     <>
@@ -30,8 +31,13 @@ const CustomLoginForm = () => {
           password: "",
         }}
         validateOnBlur
-        validationSchema={validationsShema}
-        onSubmit={values => console.log(values)}
+        validationSchema={loginValidationSchema}
+        onSubmit={async values => {
+          console.log(values);
+
+          const result = await loginUser(values);
+          console.log(result);
+        }}
       >
         {({
           values,

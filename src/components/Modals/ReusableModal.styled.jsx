@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 const Backdrop = styled(motion.div)`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -19,7 +19,7 @@ const Modal = styled(motion.div)`
   max-width: 90%;
   max-height: 90%;
 
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
 
