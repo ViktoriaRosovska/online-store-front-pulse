@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [favoriteProducts, setFavoriteProducts] = useState([]);
-  const { data } = token
+  const { data, isLoading, isError, error } = token
     ? useFetchCurrentUserQuery()
     : { data: null, isError: false, isLoading: false };
 
@@ -19,6 +19,16 @@ export const AuthProvider = ({ children }) => {
       setToken(data.token);
       localStorage.setItem("token", data.token);
       setFavoriteProducts(data.favoriteProducts);
+    }
+
+    //поміняти консоль лог
+    if (isError) {
+      console.log(`${error}`);
+    }
+
+    //поміняти консоль лог
+    if (isLoading) {
+      console.log(`Loading`);
     }
   }, [data]);
 
