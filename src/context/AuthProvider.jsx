@@ -9,7 +9,9 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [favoriteProducts, setFavoriteProducts] = useState([]);
-  const { data, isError, isLoading } = useFetchCurrentUserQuery();
+  const { data } = token
+    ? useFetchCurrentUserQuery()
+    : { data: null, isError: false, isLoading: false };
 
   useEffect(() => {
     if (data) {
@@ -19,16 +21,6 @@ export const AuthProvider = ({ children }) => {
       setFavoriteProducts(data.favoriteProducts);
     }
   }, [data]);
-
-  //тут може бути лоадер
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  //тут має бути not found
-  if (isError) {
-    return <div>Error fetching user data</div>;
-  }
 
   const login = (userData, authToken, userFavorites) => {
     setUser(userData);
