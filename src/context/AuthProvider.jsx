@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { useFetchCurrentUserQuery } from "../redux/auth/userAuthApi";
+import { useLazyFetchCurrentUserQuery } from "../redux/auth/userAuthApi";
 
 const AuthContext = createContext();
 
@@ -7,11 +7,13 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const [token, setToken] = useState("");
   const [favoriteProducts, setFavoriteProducts] = useState([]);
-  const { data, isLoading, isError, error } = token
-    ? useFetchCurrentUserQuery()
-    : { data: null, isError: false, isLoading: false };
+
+  const currentToken = localStorage.getItem("token") || "";
+
+  const [fetchCurrentUser, { data, isLoading }] =
+    useLazyFetchCurrentUserQuery();
 
   useEffect(() => {
     if (data) {
@@ -19,18 +21,15 @@ export const AuthProvider = ({ children }) => {
       setToken(data.token);
       localStorage.setItem("token", data.token);
       setFavoriteProducts(data.favoriteProducts);
+    } else if (currentToken) {
+      fetchCurrentUser();
+    } else {
+      setUser(null);
+      setToken("");
+      localStorage.removeItem("token");
+      setFavoriteProducts([]);
     }
-
-    //поміняти консоль лог
-    if (isError) {
-      console.log(`Тут має бути алерт але поки: ${error}`);
-    }
-
-    //поміняти консоль лог
-    if (isLoading) {
-      console.log(`тут має бути спіннер`);
-    }
-  }, [data, isError, isLoading, error]);
+  }, []);
 
   const login = (userData, authToken, userFavorites) => {
     setUser(userData);

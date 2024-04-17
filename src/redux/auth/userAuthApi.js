@@ -57,7 +57,7 @@ export const {
   useCreateUserMutation,
   useLoginUserMutation,
   useLogoutUserMutation,
-  useFetchCurrentUserQuery,
   useLoginUserGoogleQuery,
   useLoginUserFBQuery,
+  useLazyFetchCurrentUserQuery,
 } = userAuthApi;
