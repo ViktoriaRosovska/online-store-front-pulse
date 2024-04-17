@@ -11,8 +11,6 @@ const CustomLoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loginUser, { data, isLoading, isSuccess }] = useLoginUserMutation();
 
-  console.log(data);
-
   useEffect(() => {
     if (isSuccess) {
       login(data?.user, data?.token, data?.favoriteProducts);
@@ -33,10 +31,7 @@ const CustomLoginForm = () => {
         validateOnBlur
         validationSchema={loginValidationSchema}
         onSubmit={async values => {
-          console.log(values);
-
           const result = await loginUser(values);
-          console.log(result);
         }}
       >
         {({

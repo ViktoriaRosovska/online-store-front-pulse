@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { useFetchCurrentUserQuery } from "../redux/auth/userAuthApi";
+import { useLazyFetchCurrentUserQuery } from "../redux/auth/userAuthApi";
 
 const AuthContext = createContext();
 
@@ -7,9 +7,13 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const [token, setToken] = useState("");
   const [favoriteProducts, setFavoriteProducts] = useState([]);
-  const { data, isError, isLoading } = useFetchCurrentUserQuery();
+
+  const currentToken = localStorage.getItem("token") || "";
+
+  const [fetchCurrentUser, { data, isLoading }] =
+    useLazyFetchCurrentUserQuery();
 
   useEffect(() => {
     if (data) {
@@ -17,18 +21,15 @@ export const AuthProvider = ({ children }) => {
       setToken(data.token);
       localStorage.setItem("token", data.token);
       setFavoriteProducts(data.favoriteProducts);
+    } else if (currentToken) {
+      fetchCurrentUser();
+    } else {
+      setUser(null);
+      setToken("");
+      localStorage.removeItem("token");
+      setFavoriteProducts([]);
     }
-  }, [data]);
-
-  //тут може бути лоадер
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  //тут має бути not found
-  if (isError) {
-    return <div>Error fetching user data</div>;
-  }
+  }, []);
 
   const login = (userData, authToken, userFavorites) => {
     setUser(userData);
