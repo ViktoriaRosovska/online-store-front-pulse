@@ -1,12 +1,11 @@
 import "./ModalAuth.css";
-import close from "../../../../public/icons/Group 176.png";
-import CustomForm from "../../form/CustomForm.jsx";
+import CustomForm from "../../form/RegisterForm/CustomForm.jsx";
 import { useState } from "react";
 import icon from "../../../../public/icons/Group 47879.png";
 import icon2 from "../../../../public/icons/Group 47880.png";
-import CustomLoginForm from "../../form/customLogin/CustomLoginForm.jsx";
+import CustomLoginForm from "../../form/LoginForm/CustomLoginForm.jsx";
 
-const ModalAuth = ({ modalOn, seeOnMail }) => {
+const ModalAuth = ({ seeOnMail }) => {
   const [registr, setRegistr] = useState(false);
 
   const registrOn = () => {

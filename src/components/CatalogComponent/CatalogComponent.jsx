@@ -5,7 +5,10 @@ import { Aside } from "./Aside/Aside";
 import { CardsList } from "../CardsList/CardsList";
 import { CatalogHeader } from "./CatalogHeader/CatalogHeader";
 import { CatalogNavigation } from "./CatalogNavigation/CatalogNavigation";
+
 // import Breadcrumbs from "components/Breadcrumbs";
+// import { useCreateProductMutation } from "../../redux/products/productsApi";
+
 // import {
 //   useFindProductsQuery,
 //   useGetAllProductsQuery,
@@ -40,6 +43,9 @@ export const CatalogComponent = ({
     color: "",
     page: 1,
   });
+
+  // const [createProduct, options] = useCreateProductMutation();
+  // const [createProduct, {}] = useCreateProductMutation();
 
   // console.log(asyncData);
   // console.log(filterQuery);

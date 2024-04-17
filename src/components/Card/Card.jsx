@@ -50,6 +50,13 @@ const Card = ({
           ) : null}
 
           <CardImage src={image} $sales={sales} $cardSlider={cardSlider} />
+          <CardButton
+            text={"Купити"}
+            route={{
+              pathname: `${ROUTES.HOME}${id}`,
+              ...(filterQuery?.size && { search: `size=${filterQuery?.size}` }),
+            }}
+          />
 
           <FavoriteButton $sales={sales && sale > 0} $new={newBrands} />
           {sales && sale > 0 ? <SalePercent text={-sale} /> : null}

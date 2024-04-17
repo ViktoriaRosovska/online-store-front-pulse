@@ -1,41 +1,26 @@
 import "./CustomForm.css";
 import { Formik } from "formik";
-import * as Yup from "yup";
 import { FaEye } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useCreateUserMutation } from "../../../redux/auth/userAuthApi";
+import { registerValidationSchema } from "../formHelpers/formValidation";
+import { useAuth } from "../../../context/AuthProvider";
 
 const CustomForm = () => {
+  const { login } = useAuth();
+
   const [showPassword, setShowPassword] = useState(false);
+  const [createUser, { data, isLoading, isSuccess }] = useCreateUserMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      login(data?.user, data?.token, data?.favoriteProducts);
+    }
+  }, [isSuccess, data, login]);
+
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
-  const validationsShema = Yup.object().shape({
-    name: Yup.string()
-      .typeError("Повинно бути строкою")
-      .matches(/([а-яА-яa-zA-z])/, { message: "Повинні бути тільки букви" })
-      .required("обовʼязкове поле"),
-    surname: Yup.string()
-      .typeError("Повинно бути строкою")
-      .matches(/([а-яА-яa-zA-z])/, { message: "Повинні бути тільки букви" })
-      .required("обовʼязкове поле"),
-    email: Yup.string()
-      .email("Введіть коректний email")
-      .required("обовʼязкове поле"),
-    password: Yup.string()
-      .typeError("Повинно бути строкою")
-      .matches(/^(?=.*[a-z])(?=.*\d)/, {
-        message: "Пароль має містити літери та цифри",
-      })
-      .min(6, "Пароль має бути не менш ніж 6 символів")
-      .max(10, "Максимальна кількість 10 символів")
-      .required("обовʼязкове поле"),
-    passwordCheck: Yup.string()
-      .oneOf([Yup.ref("password")], "Паролі не співпадають")
-      .min(6, "Пароль має бути не менш ніж 6 символів")
-      .max(10, "Максимальна кількість 10 символів")
-      .required("обовʼязкове поле"),
-  });
 
   return (
     <>
@@ -48,8 +33,17 @@ const CustomForm = () => {
           passwordCheck: "",
         }}
         validateOnBlur
-        validationSchema={validationsShema}
-        onSubmit={values => console.log(values)}
+        validationSchema={registerValidationSchema}
+        onSubmit={async values => {
+          const newUser = {
+            firstName: values.name,
+            lastName: values.surname,
+            email: values.email,
+            password: values.password,
+          };
+
+          await createUser(newUser);
+        }}
       >
         {({
           values,
@@ -98,7 +92,7 @@ const CustomForm = () => {
               <label htmlFor={"email"}>{"Email"}</label>
               <input
                 id={"email"}
-                placeholder={"email"}
+                placeholder={"Ваш email"}
                 type="text"
                 name={"email"}
                 value={values.email}
