@@ -23,14 +23,14 @@ export const AuthProvider = ({ children }) => {
 
     //поміняти консоль лог
     if (isError) {
-      console.log(`${error}`);
+      console.log(`Тут має бути алерт але поки: ${error}`);
     }
 
     //поміняти консоль лог
     if (isLoading) {
-      console.log(`Loading`);
+      console.log(`тут має бути спіннер`);
     }
-  }, [data]);
+  }, [data, isError, isLoading, error]);
 
   const login = (userData, authToken, userFavorites) => {
     setUser(userData);
