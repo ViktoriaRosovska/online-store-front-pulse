@@ -1,4 +1,4 @@
-import { querySearch } from "../../http/ProductsApi.jsx";
+// import { querySearch } from "../../http/ProductsApi.jsx";
 import { CatalogComponent } from "../../components/CatalogComponent/CatalogComponent.jsx";
 
 const FemaleCatalog = () => {
@@ -6,7 +6,7 @@ const FemaleCatalog = () => {
     <CatalogComponent
       title={"Жіноче взуття"}
       sex={"Жінка"}
-      loader={querySearch}
+      // loader={querySearch}
       cardfeature={"sales"}
       sortNewest={true}
     />

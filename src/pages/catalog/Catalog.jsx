@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { querySearch } from "../../http/ProductsApi.jsx";
+// import { querySearch } from "../../http/ProductsApi.jsx";
 import { CatalogComponent } from "../../components/CatalogComponent/CatalogComponent.jsx";
 const Catalog = () => {
   const params = new URLSearchParams(useLocation().search);
@@ -13,7 +13,7 @@ const Catalog = () => {
     <CatalogComponent
       title={"Каталог"}
       sex={""}
-      loader={querySearch}
+      // loader={querySearch}
       cardfeature={"sales"}
       brand={brand}
       sortNewest={true}

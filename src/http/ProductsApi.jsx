@@ -42,19 +42,19 @@ export const category = async () => {
   return data;
 };
 
-export const querySearch = async queryObject => {
-  // console.log(queryObject);
+// export const querySearch = async queryObject => {
+//   // console.log(queryObject);
 
-  const { data } = await host.get(
-    `/products` +
-      `?sex=${queryObject?.sex || ""}` +
-      `&brand=${queryObject?.brand || ""}` +
-      `&season=${queryObject?.season || ""}` +
-      `&size=${queryObject?.size || ""}` +
-      `&color=${queryObject?.color || ""}` +
-      `&sort=${queryObject?.sort || "createdAt"}` +
-      `&order=${queryObject?.order || "desc"}` +
-      `&page=${queryObject?.page || 1}`
-  );
-  return data;
-};
+//   const { data } = await host.get(
+//     `/products` +
+//       `?sex=${queryObject?.sex || ""}` +
+//       `&brand=${queryObject?.brand || ""}` +
+//       `&season=${queryObject?.season || ""}` +
+//       `&size=${queryObject?.size || ""}` +
+//       `&color=${queryObject?.color || ""}` +
+//       `&sort=${queryObject?.sort || "createdAt"}` +
+//       `&order=${queryObject?.order || "desc"}` +
+//       `&page=${queryObject?.page || 1}`
+//   );
+//   return data;
+// };

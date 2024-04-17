@@ -1,5 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { axiosBaseQuery, BASE_URL } from "../../http/api";
+import { axiosBaseQuery } from "../../http/api";
 import { DEFAULT_QUERY_LIMIT, DEFAULT_QUERY_PAGE } from "../../http/config";
 
 const commonProductQuery = ({
