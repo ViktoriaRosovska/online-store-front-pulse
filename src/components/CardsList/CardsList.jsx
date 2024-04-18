@@ -4,20 +4,29 @@ import { ScrollToTop } from "../../components/ScrollToTop.js";
 import { Pagination } from "components/Pagination/Pagination.jsx";
 
 export const CardsList = ({
-  asyncData,
+  data,
   cardfeature,
   onPageChange,
   filterQuery,
+  isFetching,
+  isError,
 }) => {
-  // console.log("asyncData", asyncData);
+  // console.log("data", data?.products);
   // console.log(totalPages);
-  if (!asyncData) return <div>Йде завантаження даних...</div>;
+  if (isFetching) return <div>Йде завантаження даних...</div>;
+  if (isError)
+    return (
+      <div>
+        Виникла помилка на сервері. Перезавантажте сторінку або зайдіть у
+        магазин пізніше
+      </div>
+    );
   return (
     <CardsListContainer>
       <ScrollToTop />
       <CardListWrapper>
-        {asyncData.products && asyncData.products.length > 0 ? (
-          asyncData.products.map(el => {
+        {!isFetching && data?.products.length > 0 ? (
+          data?.products.map(el => {
             return (
               <Card
                 key={el._id}
@@ -36,11 +45,11 @@ export const CardsList = ({
         )}
       </CardListWrapper>
 
-      {asyncData.products && asyncData.products.length > 0 ? (
+      {!isFetching && data?.products.length > 0 ? (
         <Pagination
           onChange={onPageChange}
-          page={parseInt(asyncData?.page)}
-          totalPages={asyncData?.totalPages}
+          page={parseInt(data?.page)}
+          totalPages={data?.totalPages}
         />
       ) : null}
     </CardsListContainer>

@@ -11,6 +11,7 @@ import {
 } from "redux-persist";
 import { productsApi } from "./products/productsApi";
 import { userAuthApi } from "./auth/userAuthApi";
+import { filterQueryReducer } from "./filterQuery/filterQuerySlice";
 
 // import storage from 'redux-persist/lib/storage';
 
@@ -25,6 +26,7 @@ export const store = configureStore({
   reducer: {
     [productsApi.reducerPath]: productsApi.reducer,
     [userAuthApi.reducerPath]: userAuthApi.reducer,
+    filterQuery: filterQueryReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

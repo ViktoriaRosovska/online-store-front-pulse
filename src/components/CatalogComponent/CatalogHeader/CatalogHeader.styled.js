@@ -20,6 +20,7 @@ const FilterWrapper = styled.div`
   display: flex;
   gap: 17px;
   width: fit-content;
+  flex-wrap: wrap;
 `;
 const FilterWrapperButton = styled.button`
   border: none;

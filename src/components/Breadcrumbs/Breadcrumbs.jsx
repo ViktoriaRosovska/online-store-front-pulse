@@ -8,7 +8,7 @@ const Breadcrumbs = ({ current }) => {
   const location = useLocation();
 
   const [prev, setPrev] = useState(null);
-  const pathname = location.state?.from?.pathname;
+  const pathname = location.state?.from;
 
   useEffect(() => {
     if (!pathname) return;

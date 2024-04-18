@@ -8,17 +8,16 @@ const Backdrop = styled(motion.div)`
   width: 100%;
   height: 100%;
   z-index: 10000;
-
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 `;
 
 const Modal = styled(motion.div)`
-  max-width: 90%;
-  max-height: 90%;
-
+  /* max-width: 90%;
+  max-height: 90%; */
+  overflow: hidden;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -26,26 +25,26 @@ const Modal = styled(motion.div)`
   transform: translate(-50%, -50%);
   z-index: 11000;
 
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: flex-start; */
 
-  padding: 32px 24px 32px 24px;
+  /* padding: 32px 16px 32px 16px; */
 
   border-radius: 36px;
 
   background-color: var(--white-bg-color-favorite-btn);
 
-  @media screen and (min-width: 768px) {
-    padding: 68px 48px 68px 48px;
+  @media screen and (min-width: 1440px) {
+    /* padding: 68px 48px 68px 48px; */
   }
 `;
 
 const Content = styled(motion.div)`
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
   position: relative;
 
   width: 100%;

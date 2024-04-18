@@ -1,31 +1,24 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { Container, ContentWrapper, PageSection } from "../../main.styled";
 import { Aside } from "./Aside/Aside";
 import { CardsList } from "../CardsList/CardsList";
 import { CatalogHeader } from "./CatalogHeader/CatalogHeader";
 import { CatalogNavigation } from "./CatalogNavigation/CatalogNavigation";
+import { useDispatch } from "react-redux";
 
-// import Breadcrumbs from "components/Breadcrumbs";
-// import { useCreateProductMutation } from "../../redux/products/productsApi";
-
-// import {
-//   useFindProductsQuery,
-//   useGetAllProductsQuery,
-//   useGetCategoriesQuery,
-//   useGetNewestQuery,
-//   useGetProductByIdQuery,
-//   useGetSalesQuery,
-//   // useLazyGetAllProductsQuery,
-// } from "../../redux/products/productsApi";
+import { getFilterQuery } from "../../redux/filterQuery/filterQuerySlice";
 
 export const CatalogComponent = ({
-  loader,
   title,
   sex,
   cardfeature,
   brand,
   sortNewest,
+  data,
+  isError,
+  isFetching,
+  filterQuery,
 }) => {
   const [selectedBrands, setSelectedBrands] = useState(brand ? [brand] : []);
   const [selectedSeasons, setSelectedSeasons] = useState([]);
@@ -33,47 +26,25 @@ export const CatalogComponent = ({
   const [selectedColors, setSelectedColors] = useState([]);
   const [selectedSex, setSelectedSex] = useState([]);
   const [sortOrder, setSortOrder] = useState(null);
-  const [asyncData, setAsyncData] = useState(null);
+  // const [asyncData, setAsyncData] = useState(null);
   const [showAside, setShowAside] = useState(false);
-  const [filterQuery, setFilterQuery] = useState({
-    sex: sex,
-    brand: brand,
-    season: "",
-    size: "",
-    color: "",
-    page: 1,
-  });
+  // const [filterQuery, setFilterQuery] = useState({
+  //   sex: sex,
+  //   brand: brand,
+  //   season: "",
+  //   size: "",
+  //   color: "",
+  //   page: 1,
+  // });
 
-  // const [createProduct, options] = useCreateProductMutation();
-  // const [createProduct, {}] = useCreateProductMutation();
-
-  // console.log(asyncData);
-  // console.log(filterQuery);
-  //ANTON===================================================//
-  // const { data: allProducts, isError, isFetching } = useGetAllProductsQuery({});
-  // // const [testGet, { data }] = useLazyGetAllProductsQuery();
-  // const { data: oneProduct } = useGetProductByIdQuery(
-  //   "65f8a68bc11d83d79ea7e89d"
-  // );
-  // const { data: categories } = useGetCategoriesQuery();
-  // const { data: newest } = useGetNewestQuery({});
-  // const { data: sales } = useGetSalesQuery({});
-  // const { data: searchedData } = useFindProductsQuery({ name: "Nike" });
-  //ANTON===================================================//
-
-  useEffect(() => {
-    // testGet({});
-
-    loader(filterQuery)
-      .then(res => setAsyncData(res))
-      .catch(error => {
-        console.error("Помилка з завантаженням даних:", error);
-      });
-  }, [loader, filterQuery]);
+  const dispatch = useDispatch();
 
   const onPageChange = page => {
+    // const newFilter = { ...filterQuery, page: page };
     const newFilter = { ...filterQuery, page: page };
-    setFilterQuery(newFilter);
+
+    // setFilterQuery(newFilter);
+    dispatch(getFilterQuery(newFilter));
   };
 
   const onSortOrderChanged = value => {
@@ -88,8 +59,10 @@ export const CatalogComponent = ({
       sortQuery = "price";
       sortOrder = value;
     }
+    // const newFilter = { ...filterQuery, sort: sortQuery, order: sortOrder };
     const newFilter = { ...filterQuery, sort: sortQuery, order: sortOrder };
-    setFilterQuery(newFilter);
+    // setFilterQuery(newFilter);
+    dispatch(getFilterQuery(newFilter));
   };
 
   const onSelectionChanged = (type, items) => {
@@ -113,9 +86,13 @@ export const CatalogComponent = ({
         return;
     }
 
+    // const newFilter = { ...filterQuery };
+
     const newFilter = { ...filterQuery };
+
     newFilter[type] = items.join(",");
-    setFilterQuery(newFilter);
+    // setFilterQuery(newFilter);
+    dispatch(getFilterQuery(newFilter));
   };
 
   const onClearFiltersButton = () => {
@@ -124,36 +101,24 @@ export const CatalogComponent = ({
     setSelectedSeasons([]);
     setSelectedSizes([]);
     setSelectedColors([]);
+    // const newFilter = {
+    //   sex: filterQuery.sex,
+    //   order: filterQuery.order,
+    //   sort: filterQuery.sort,
+    // };
+    // setFilterQuery(newFilter);
     const newFilter = {
       sex: filterQuery.sex,
       order: filterQuery.order,
       sort: filterQuery.sort,
     };
-    setFilterQuery(newFilter);
+    dispatch(getFilterQuery(newFilter));
   };
 
   const onClearOneFilterButton = type => onSelectionChanged(type, []);
   const onAsideShow = () => {
     return setShowAside(!showAside);
   };
-  // console.log(showAside);
-  //ANTON===================================================//
-  // if (isFetching) return <div>Loading...</div>;
-  // if (isError) return <div>Some error component</div>;
-  // if (!allProducts) return;
-  // if (!oneProduct) return;
-  // if (!categories) return;
-  // if (!newest) return;
-  // if (!sales) return;
-  // if (!searchedData) return;
-
-  // console.log("RTK_DATA", allProducts);
-  // console.log("RTK_ONE_PRODUCT", oneProduct);
-  // console.log("RTK_CATEGORIES", categories);
-  // console.log("RTK_NEWSET", newest);
-  // console.log("RTK_SALES", sales);
-  // console.log("RTK_SEARCH", searchedData);
-  //ANTON===================================================//
 
   return (
     <PageSection>
@@ -187,10 +152,12 @@ export const CatalogComponent = ({
           />
 
           <CardsList
-            asyncData={asyncData}
+            data={data}
             cardfeature={cardfeature}
             onPageChange={onPageChange}
             filterQuery={filterQuery}
+            isFetching={isFetching}
+            isError={isError}
           />
         </ContentWrapper>
       </Container>

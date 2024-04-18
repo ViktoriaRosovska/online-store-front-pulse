@@ -14,6 +14,7 @@ import FavoriteButton from "../Buttons/FavoriteButton/FavoriteButton.jsx";
 import { SaleBand } from "../salesComponents/SaleBand/SaleBand.jsx";
 import { SalePercent } from "../salesComponents/SalePercent/SalePercent.jsx";
 import { ROUTES } from "../../utils/routes.js";
+import { useLocation } from "react-router-dom";
 
 const Card = ({
   info,
@@ -26,19 +27,24 @@ const Card = ({
   cardSlider,
 }) => {
   // const navigate = useNavigate();
+
   const sales = cardfeature === "sales";
 
   const newBrands = cardfeature === "newbrands";
   // const aLink = () => {
   //   navigate(`/${id}?size=${filterQuery.size}`);
   // };
+  const location = useLocation().pathname;
 
   return (
     <StyledCardLink
       to={{
         pathname: `${ROUTES.HOME}${id}`,
-        ...(filterQuery?.size && { search: `size=${filterQuery?.size}` }),
+        ...(filterQuery?.size && {
+          search: `size=${filterQuery?.size}`,
+        }),
       }}
+      state={{ from: location }}
     >
       <CardWrapper $cardSlider={cardSlider}>
         <ImageWrapper>
@@ -50,14 +56,6 @@ const Card = ({
           ) : null}
 
           <CardImage src={image} $sales={sales} $cardSlider={cardSlider} />
-          <CardButton
-            text={"Купити"}
-            route={{
-              pathname: `${ROUTES.HOME}${id}`,
-              ...(filterQuery?.size && { search: `size=${filterQuery?.size}` }),
-            }}
-          />
-
           <FavoriteButton $sales={sales && sale > 0} $new={newBrands} />
           {sales && sale > 0 ? <SalePercent text={-sale} /> : null}
         </ImageWrapper>
@@ -87,7 +85,9 @@ const Card = ({
           text={"Купити"}
           route={{
             pathname: `${ROUTES.HOME}${id}`,
-            ...(filterQuery?.size && { search: `size=${filterQuery?.size}` }),
+            ...(filterQuery?.size && {
+              search: `size: ${filterQuery?.size}`,
+            }),
           }}
         />
 
