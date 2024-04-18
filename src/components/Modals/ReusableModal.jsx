@@ -1,6 +1,7 @@
-import { Backdrop, Modal, Content, CrossButton } from "./ReusableModal.styled";
+// import { Backdrop, Modal, Content, CrossButton } from "./ReusableModal.styled";
+import { Backdrop, Modal } from "./ReusableModal.styled";
 import { Portal } from "./helpersForModal/modalPortal";
-import BlackCross from "./helpersForModal/BlackCross";
+// import BlackCross from "./helpersForModal/BlackCross";
 import useEscapePress from "./helpersForModal/onEscapePress";
 
 const closeVariants = {
@@ -28,16 +29,16 @@ const ReusableModal = ({ onClose, locked, children }) => {
         animate="animate"
         exit="exit"
       >
-        <Content>
+        {/* <Content>
           <CrossButton
             onClick={onClose}
             whileHover={{ scale: 0.9 }}
             whileTap={{ scale: 1 }}
           >
             <BlackCross />
-          </CrossButton>
-          {children}
-        </Content>
+          </CrossButton> */}
+        {children}
+        {/* </Content> */}
       </Modal>
     </Portal>
   );

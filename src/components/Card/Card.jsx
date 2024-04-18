@@ -14,6 +14,7 @@ import FavoriteButton from "../Buttons/FavoriteButton/FavoriteButton.jsx";
 import { SaleBand } from "../salesComponents/SaleBand/SaleBand.jsx";
 import { SalePercent } from "../salesComponents/SalePercent/SalePercent.jsx";
 import { ROUTES } from "../../utils/routes.js";
+import { useLocation } from "react-router-dom";
 
 const Card = ({
   info,
@@ -26,12 +27,14 @@ const Card = ({
   cardSlider,
 }) => {
   // const navigate = useNavigate();
+
   const sales = cardfeature === "sales";
 
   const newBrands = cardfeature === "newbrands";
   // const aLink = () => {
   //   navigate(`/${id}?size=${filterQuery.size}`);
   // };
+  const location = useLocation().pathname;
 
   return (
     <StyledCardLink
@@ -41,6 +44,7 @@ const Card = ({
           search: `size=${filterQuery?.size}`,
         }),
       }}
+      state={{ from: location }}
     >
       <CardWrapper $cardSlider={cardSlider}>
         <ImageWrapper>
@@ -81,7 +85,9 @@ const Card = ({
           text={"Купити"}
           route={{
             pathname: `${ROUTES.HOME}${id}`,
-            ...(filterQuery?.size && { search: `size=${filterQuery?.size}` }),
+            ...(filterQuery?.size && {
+              search: `size: ${filterQuery?.size}`,
+            }),
           }}
         />
 

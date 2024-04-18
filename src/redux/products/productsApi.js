@@ -96,7 +96,9 @@ export const {
   useGetProductByIdQuery,
   useGetCategoriesQuery,
   useGetNewestQuery,
+  useLazyGetNewestQuery,
   useGetSalesQuery,
+  useLazyGetSalesQuery,
   useFindProductsQuery,
   useCreateProductMutation,
 } = productsApi;

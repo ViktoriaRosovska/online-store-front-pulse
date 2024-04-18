@@ -23,8 +23,19 @@ import ProductCommonInfo from "./ProductCommonInfo";
 import DetailsToggler from "components/UIKit/DetailsToggler";
 import BasicModal from "components/modal/Modal";
 import Breadcrumbs from "components/Breadcrumbs";
+import { AnimatePresence } from "framer-motion";
+import ReusableModal from "components/Modals/ReusableModal";
+import useScrollLock from "components/Modals/helpersForModal/useScrollLock";
+import { ModalSizeList } from "../../components/Modals/ModalSizeList/ModalSizeList";
 
 const ProductInfo = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isLocked, setIsLocked] = useScrollLock(false);
+
+  const toggleVisibility = () => {
+    setIsVisible(prev => !prev);
+    setIsLocked(prev => !prev);
+  };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
@@ -76,7 +87,9 @@ const ProductInfo = () => {
             <ProductPrice sale={sale} basePrice={basePrice} price={price} />
           </PriceWrapper>
 
-          <SizeGridButton type="button">Розмірна сітка </SizeGridButton>
+          <SizeGridButton type="button" onClick={toggleVisibility}>
+            Розмірна сітка
+          </SizeGridButton>
 
           {categories && (
             <ProductSizeList
@@ -122,6 +135,13 @@ const ProductInfo = () => {
         productData={data}
         sizeValue={sizeValue}
       />
+      <AnimatePresence>
+        {isVisible && (
+          <ReusableModal locked={isLocked} onClose={toggleVisibility}>
+            <ModalSizeList onClose={toggleVisibility} isVisible={isVisible} />
+          </ReusableModal>
+        )}
+      </AnimatePresence>
     </>
   );
 };
