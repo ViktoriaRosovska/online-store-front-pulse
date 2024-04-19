@@ -1,20 +1,20 @@
 import sizeList from "../../../data/modalSizeList.json";
+import { ReactComponent as ModalCloseBtnIcon } from "../../../assets/svg/modalCloseBtn.svg";
 
 import {
+  StyledCloseBtn,
   StyledModalSizeListContainer,
   StyledSizeListTable,
+  StyledSizeListTableCaption,
 } from "./ModalSizeList.styled";
 export const ModalSizeList = ({ onClose }) => {
   return (
     <StyledModalSizeListContainer>
-      <button
-        onClick={onClose}
-        style={{ position: "absolute", right: "19px", top: "80px" }}
-      >
-        X
-      </button>
+      <StyledCloseBtn onClick={onClose}>
+        <ModalCloseBtnIcon />
+      </StyledCloseBtn>
       <StyledSizeListTable>
-        <caption style={{ marginBottom: "36px" }}>Розмірна сітка</caption>
+        <StyledSizeListTableCaption>Розмірна сітка</StyledSizeListTableCaption>
 
         <thead>
           <tr>
