@@ -21,28 +21,35 @@ import ProductSizeList from "./ProductSizeList";
 import ProductFeatureList from "./ProductFeatureList";
 import ProductCommonInfo from "./ProductCommonInfo";
 import DetailsToggler from "components/UIKit/DetailsToggler";
-import BasicModal from "components/modal/Modal";
+// import BasicModal from "components/modal/Modal";
 import Breadcrumbs from "components/Breadcrumbs";
 import { AnimatePresence } from "framer-motion";
 import ReusableModal from "components/Modals/ReusableModal";
 import useScrollLock from "components/Modals/helpersForModal/useScrollLock";
 import { ModalSizeList } from "../../components/Modals/ModalSizeList/ModalSizeList";
+import { ModalShopCart } from "components/Modals/ModalShopCart/ModalShopCart";
 
 const ProductInfo = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLocked, setIsLocked] = useScrollLock(false);
+  const [isVisibleCart, setIsVisibleCart] = useState(false);
 
-  const toggleVisibility = () => {
-    setIsVisible(prev => !prev);
+  const toggleVisibility = type => {
     setIsLocked(prev => !prev);
+    if (type == "size") {
+      setIsVisible(prev => !prev);
+    }
+    if (type == "cart") {
+      setIsVisibleCart(prev => !prev);
+    }
   };
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const openModal = () => {
+  //   setIsModalOpen(true);
+  // };
+  // const closeModal = () => {
+  //   setIsModalOpen(false);
+  // };
 
   const [sizeValue, setSizeValue] = useState();
   const { id } = useParams();
@@ -87,7 +94,10 @@ const ProductInfo = () => {
             <ProductPrice sale={sale} basePrice={basePrice} price={price} />
           </PriceWrapper>
 
-          <SizeGridButton type="button" onClick={toggleVisibility}>
+          <SizeGridButton
+            type="button"
+            onClick={() => toggleVisibility("size")}
+          >
             Розмірна сітка
           </SizeGridButton>
 
@@ -103,7 +113,7 @@ const ProductInfo = () => {
             <AddToCartButton
               type="button"
               disabled={!sizeValue}
-              onClick={openModal}
+              onClick={() => toggleVisibility("cart")}
             >
               Додати в кошик
             </AddToCartButton>
@@ -129,16 +139,38 @@ const ProductInfo = () => {
         </DetailsToggler>
       </DescriptionWrapper>
 
-      <BasicModal
+      {/* <BasicModal
         openModal={isModalOpen}
         closeModal={closeModal}
         productData={data}
         sizeValue={sizeValue}
-      />
+      /> */}
       <AnimatePresence>
         {isVisible && (
-          <ReusableModal locked={isLocked} onClose={toggleVisibility}>
-            <ModalSizeList onClose={toggleVisibility} isVisible={isVisible} />
+          <ReusableModal
+            locked={isLocked}
+            onClose={() => toggleVisibility("size")}
+          >
+            <ModalSizeList
+              onClose={() => toggleVisibility("size")}
+              isVisible={isVisible}
+            />
+          </ReusableModal>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {isVisibleCart && (
+          <ReusableModal
+            locked={isLocked}
+            onClose={() => toggleVisibility("cart")}
+          >
+            <ModalShopCart
+              onClose={() => toggleVisibility("cart")}
+              // isVisibleCart={isVisibleCart}
+              productData={data}
+              sizeValue={sizeValue}
+            />
           </ReusableModal>
         )}
       </AnimatePresence>
