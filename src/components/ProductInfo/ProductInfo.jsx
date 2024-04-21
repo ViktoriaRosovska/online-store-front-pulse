@@ -53,7 +53,7 @@ const ProductInfo = () => {
 
   const [searchParams] = useSearchParams();
   const [sizeValue, setSizeValue] = useState(() =>
-    Number(searchParams.get("size").split(",")[0])
+    Number(searchParams.get("size")?.split(",")[0] || undefined)
   );
   const { id } = useParams();
 
