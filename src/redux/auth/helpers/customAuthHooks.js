@@ -15,8 +15,8 @@ export const useHandleCurrentUser = () => {
     const fetchUser = async () => {
       try {
         if (localStorage.getItem("token")) {
-          const userData = await fetchCurrentUser();
-          dispatch(setCredentials(userData));
+          await fetchCurrentUser();
+          dispatch(setCredentials(data));
         }
       } catch (error) {
         if (error.code === 401) {
