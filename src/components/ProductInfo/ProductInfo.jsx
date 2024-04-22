@@ -79,7 +79,7 @@ const ProductInfo = () => {
     imgGallery,
   } = data;
 
-  console.log(sizeValue);
+  // console.log(sizeValue);
 
   return (
     <>
