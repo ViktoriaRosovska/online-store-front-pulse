@@ -145,13 +145,7 @@ export const CatalogHeader = props => {
               <CloseBtn /> Колір: {props.selectedColors.join(", ")}
             </FilterWrapperButton>
           )}
-          {Boolean(
-            props.selectedBrands.length ||
-              props.selectedSeasons.length ||
-              props.selectedSizes.length ||
-              props.selectedColors.length ||
-              props.selectedSex.length
-          ) && (
+          {hasFilter && (
             <FilterWrapperButton onClick={props.onClearFiltersButton}>
               Очистити все <CloseBtn />
             </FilterWrapperButton>

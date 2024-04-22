@@ -5,10 +5,51 @@ import { Aside } from "./Aside/Aside";
 import { CardsList } from "../CardsList/CardsList";
 import { CatalogHeader } from "./CatalogHeader/CatalogHeader";
 import { CatalogNavigation } from "./CatalogNavigation/CatalogNavigation";
-// import { useDispatch } from "react-redux";
 
 // import { getFilterQuery } from "../../redux/filterQuery/filterQuerySlice";
 // import { selectFilterQuery } from "../../redux/filterQuery/filterQuerySelector";
+
+function getFromSearchParams(prop, def = [], proj = null) {
+  const params = new URLSearchParams(location.search);
+  const value = params.get(prop);
+  if (!value) return def;
+
+  const arr = value.split(",");
+  if (proj) return arr.map(proj);
+  return arr;
+}
+
+function getSortOrder() {
+  const params = new URLSearchParams(location.search);
+  const sort = params.get("sort");
+  const order = params.get("order");
+  if (!sort) return null;
+  return sort == "createdAt" ? sort : order;
+}
+
+function getInitialFilter(def) {
+  const filter = {
+    sex: "",
+    brand: "",
+    season: "",
+    size: "",
+    color: "",
+    page: 1,
+    sort: "",
+    order: "",
+    ...def,
+  };
+
+  const params = new URLSearchParams(location.search);
+  for (const key of Object.keys(filter)) {
+    if (!params.has(key)) continue;
+    const value = params.get(key);
+    if (!value) continue;
+    filter[key] = value;
+  }
+
+  return filter;
+}
 
 export const CatalogComponent = ({
   title,
@@ -22,45 +63,42 @@ export const CatalogComponent = ({
   // filterQuery,
   loader,
 }) => {
-  const [selectedBrands, setSelectedBrands] = useState(brand ? [brand] : []);
-  const [selectedSeasons, setSelectedSeasons] = useState([]);
-  const [selectedSizes, setSelectedSizes] = useState([]);
-  const [selectedColors, setSelectedColors] = useState([]);
-  const [selectedSex, setSelectedSex] = useState([]);
-  const [sortOrder, setSortOrder] = useState(null);
-  // const [asyncData, setAsyncData] = useState(null);
+  const [selectedBrands, setSelectedBrands] = useState(
+    getFromSearchParams("brand", brand ? [brand] : [])
+  );
+  const [selectedSeasons, setSelectedSeasons] = useState(
+    getFromSearchParams("season")
+  );
+  const [selectedSizes, setSelectedSizes] = useState(
+    getFromSearchParams("size", [], parseFloat)
+  );
+  const [selectedColors, setSelectedColors] = useState(
+    getFromSearchParams("color")
+  );
+  const [selectedSex, setSelectedSex] = useState(getFromSearchParams("sex"));
+  const [sortOrder, setSortOrder] = useState(getSortOrder());
   const [showAside, setShowAside] = useState(false);
-  const [result, setResult] = useState(null);
-  const [filterQuery, setFilterQuery] = useState({
-    sex: sex,
-    brand: brand,
-    season: "",
-    size: "",
-    color: "",
-    page: 1,
-  });
-
-  localStorage.setItem("filterQuery", JSON.stringify(filterQuery));
-  console.log(window.location.href);
-  // const filter = useSelector(selectFilterQuery);
-  // const filterQuery = useMemo(() => {
-  //   return filter;
-  // }, [filter]);
-
-  // const newfilterQuery = { ...filterQuery, sex: "Жінка" };
+  const [filterQuery, setFilterQuery] = useState(
+    getInitialFilter({ sex: sex, brand: brand || "" })
+  );
 
   useEffect(() => {
-    loader(filterQuery).then(res => setResult(res.data));
+    const href = location.href.replace(/\?.+$/, "");
+
+    const params = new URLSearchParams();
+    for (const [key, value] of Object.entries(filterQuery)) {
+      if (!value) continue;
+      params.set(key, value);
+    }
+
+    history.replaceState(history.state, "", href + "?" + params.toString());
+
+    loader(filterQuery);
   }, [loader, filterQuery]);
-  console.log(result);
-  // const dispatch = useDispatch();
 
   const onPageChange = page => {
-    // const newFilter = { ...filterQuery, page: page };
     const newFilter = { ...filterQuery, page: page };
-
     setFilterQuery(newFilter);
-    // dispatch(getFilterQuery(newFilter));
   };
 
   const onSortOrderChanged = value => {
@@ -78,7 +116,6 @@ export const CatalogComponent = ({
 
     const newFilter = { ...filterQuery, sort: sortQuery, order: sortOrder };
     setFilterQuery(newFilter);
-    // dispatch(getFilterQuery(newFilter));
   };
 
   const onSelectionChanged = (type, items) => {
@@ -106,7 +143,6 @@ export const CatalogComponent = ({
 
     newFilter[type] = items.join(",");
     setFilterQuery(newFilter);
-    // dispatch(getFilterQuery(newFilter));
   };
 
   const onClearFiltersButton = () => {
@@ -121,8 +157,6 @@ export const CatalogComponent = ({
       sort: filterQuery.sort,
     };
     setFilterQuery(newFilter);
-
-    // dispatch(getFilterQuery(newFilter));
   };
 
   const onClearOneFilterButton = type => onSelectionChanged(type, []);
@@ -149,6 +183,7 @@ export const CatalogComponent = ({
           onAsideShow={onAsideShow}
           sortNewest={sortNewest}
         />
+
         <ContentWrapper>
           <Aside
             onAsideShow={showAside}

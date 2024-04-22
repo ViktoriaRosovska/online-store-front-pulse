@@ -22,7 +22,10 @@ const Breadcrumbs = ({ current }) => {
       {prev && (
         <>
           {" / "}
-          <Link to={pathname}>{prev}</Link>
+          <a href="#" onClick={() => history.back()}>
+            {prev}
+          </a>
+          {/* <Link to={pathname}>{prev}</Link> */}
         </>
       )}
 
