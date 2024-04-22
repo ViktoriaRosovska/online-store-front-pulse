@@ -3,7 +3,6 @@ import { axiosBaseQuery } from "../../http/api";
 
 export const userAuthApi = createApi({
   reducerPath: "userAuthApi",
-
   baseQuery: axiosBaseQuery(),
 
   endpoints: builder => ({
@@ -60,4 +59,5 @@ export const {
   useLoginUserGoogleQuery,
   useLoginUserFBQuery,
   useLazyFetchCurrentUserQuery,
+  useFetchCurrentUserQuery,
 } = userAuthApi;

@@ -10,7 +10,10 @@ const axiosBaseQuery =
   () =>
   async ({ url, method, data, params, headers }) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token")
+        ? localStorage.getItem("token")
+        : "";
+
       const result = await api({
         url,
         method,
