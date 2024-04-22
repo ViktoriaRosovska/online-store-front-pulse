@@ -1,21 +1,21 @@
 import { Formik } from "formik";
 import { FaEye } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { loginValidationSchema } from "../formHelpers/formValidation";
-import { useLoginUserMutation } from "../../../redux/auth/userAuthApi";
-import { useAuth } from "../../../context/AuthProvider";
+import {
+  useLoginUserMutation,
+  useHandleLoginSuccess,
+  useHandleAuthErrors,
+} from "../../../redux/auth";
 
 const CustomLoginForm = () => {
-  const { login } = useAuth();
-
   const [showPassword, setShowPassword] = useState(false);
-  const [loginUser, { data, isLoading, isSuccess }] = useLoginUserMutation();
+  const [loginUser, { data, isLoading, isSuccess, isError, error }] =
+    useLoginUserMutation();
 
-  useEffect(() => {
-    if (isSuccess) {
-      login(data?.user, data?.token, data?.favoriteProducts);
-    }
-  }, [isSuccess, data, login]);
+  useHandleLoginSuccess(isSuccess, data);
+
+  useHandleAuthErrors(isError, error);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -31,7 +31,7 @@ const CustomLoginForm = () => {
         validateOnBlur
         validationSchema={loginValidationSchema}
         onSubmit={async values => {
-          const result = await loginUser(values);
+          await loginUser(values);
         }}
       >
         {({
@@ -45,53 +45,59 @@ const CustomLoginForm = () => {
           dirty,
         }) => (
           <div className={"input_container form"}>
-            <p>
-              <label htmlFor={"email"}>{"Email"}</label>
-              <input
-                id={"email"}
-                placeholder={"email"}
-                type="text"
-                name={"email"}
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </p>
-            {touched.email && errors.email && (
-              <p style={{ color: "red" }}>{errors.email}</p>
-            )}
+            {isLoading ? (
+              <p>Request is in process, please wait...</p>
+            ) : (
+              <>
+                <p>
+                  <label htmlFor={"email"}>{"Email"}</label>
+                  <input
+                    id={"email"}
+                    placeholder={"email"}
+                    type="text"
+                    name={"email"}
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </p>
+                {touched.email && errors.email && (
+                  <p style={{ color: "red" }}>{errors.email}</p>
+                )}
 
-            <p>
-              <label htmlFor={"password"}>
-                <FaEye
-                  className={"eyes"}
-                  style={{ cursor: "pointer" }}
-                  onClick={handleClickShowPassword}
-                />
-                {"Пароль"}
-              </label>
-              <input
-                id={"password"}
-                placeholder={"Пароль"}
-                type={!showPassword ? "password" : "text"}
-                name={"password"}
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </p>
-            {touched.password && errors.password && (
-              <p style={{ color: "red" }}>{errors.password}</p>
-            )}
+                <p>
+                  <label htmlFor={"password"}>
+                    <FaEye
+                      className={"eyes"}
+                      style={{ cursor: "pointer" }}
+                      onClick={handleClickShowPassword}
+                    />
+                    {"Пароль"}
+                  </label>
+                  <input
+                    id={"password"}
+                    placeholder={"Пароль"}
+                    type={!showPassword ? "password" : "text"}
+                    name={"password"}
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </p>
+                {touched.password && errors.password && (
+                  <p style={{ color: "red" }}>{errors.password}</p>
+                )}
 
-            <button
-              className={"custom_form_button"}
-              onClick={handleSubmit}
-              type={"submit"}
-              disabled={!isValid && !dirty}
-            >
-              Увійти
-            </button>
+                <button
+                  className={"custom_form_button"}
+                  onClick={handleSubmit}
+                  type={"submit"}
+                  disabled={!isValid && !dirty}
+                >
+                  Увійти
+                </button>
+              </>
+            )}
           </div>
         )}
       </Formik>
