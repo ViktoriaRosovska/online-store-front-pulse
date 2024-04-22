@@ -35,10 +35,18 @@ const StyledShopCartPosition = styled.div`
   display: flex;
   gap: 12px;
 `;
+
+const StyledProductName = styled.p`
+  font-family: "Roboto";
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+`;
 export {
   StyledModalShopCartWrapper,
   ModalShopCartTitle,
   StyledShopCartImage,
   StyledShopCartDescription,
   StyledShopCartPosition,
+  StyledProductName,
 };

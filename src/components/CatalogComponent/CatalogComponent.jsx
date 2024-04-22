@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Container, ContentWrapper, PageSection } from "../../main.styled";
 import { Aside } from "./Aside/Aside";
 import { CardsList } from "../CardsList/CardsList";
 import { CatalogHeader } from "./CatalogHeader/CatalogHeader";
 import { CatalogNavigation } from "./CatalogNavigation/CatalogNavigation";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
-import { getFilterQuery } from "../../redux/filterQuery/filterQuerySlice";
+// import { getFilterQuery } from "../../redux/filterQuery/filterQuerySlice";
+// import { selectFilterQuery } from "../../redux/filterQuery/filterQuerySelector";
 
 export const CatalogComponent = ({
   title,
@@ -18,7 +19,8 @@ export const CatalogComponent = ({
   data,
   isError,
   isFetching,
-  filterQuery,
+  // filterQuery,
+  loader,
 }) => {
   const [selectedBrands, setSelectedBrands] = useState(brand ? [brand] : []);
   const [selectedSeasons, setSelectedSeasons] = useState([]);
@@ -28,23 +30,37 @@ export const CatalogComponent = ({
   const [sortOrder, setSortOrder] = useState(null);
   // const [asyncData, setAsyncData] = useState(null);
   const [showAside, setShowAside] = useState(false);
-  // const [filterQuery, setFilterQuery] = useState({
-  //   sex: sex,
-  //   brand: brand,
-  //   season: "",
-  //   size: "",
-  //   color: "",
-  //   page: 1,
-  // });
+  const [result, setResult] = useState(null);
+  const [filterQuery, setFilterQuery] = useState({
+    sex: sex,
+    brand: brand,
+    season: "",
+    size: "",
+    color: "",
+    page: 1,
+  });
 
-  const dispatch = useDispatch();
+  localStorage.setItem("filterQuery", JSON.stringify(filterQuery));
+  console.log(window.location.href);
+  // const filter = useSelector(selectFilterQuery);
+  // const filterQuery = useMemo(() => {
+  //   return filter;
+  // }, [filter]);
+
+  // const newfilterQuery = { ...filterQuery, sex: "Жінка" };
+
+  useEffect(() => {
+    loader(filterQuery).then(res => setResult(res.data));
+  }, [loader, filterQuery]);
+  console.log(result);
+  // const dispatch = useDispatch();
 
   const onPageChange = page => {
     // const newFilter = { ...filterQuery, page: page };
     const newFilter = { ...filterQuery, page: page };
 
-    // setFilterQuery(newFilter);
-    dispatch(getFilterQuery(newFilter));
+    setFilterQuery(newFilter);
+    // dispatch(getFilterQuery(newFilter));
   };
 
   const onSortOrderChanged = value => {
@@ -59,10 +75,10 @@ export const CatalogComponent = ({
       sortQuery = "price";
       sortOrder = value;
     }
-    // const newFilter = { ...filterQuery, sort: sortQuery, order: sortOrder };
+
     const newFilter = { ...filterQuery, sort: sortQuery, order: sortOrder };
-    // setFilterQuery(newFilter);
-    dispatch(getFilterQuery(newFilter));
+    setFilterQuery(newFilter);
+    // dispatch(getFilterQuery(newFilter));
   };
 
   const onSelectionChanged = (type, items) => {
@@ -86,13 +102,11 @@ export const CatalogComponent = ({
         return;
     }
 
-    // const newFilter = { ...filterQuery };
-
     const newFilter = { ...filterQuery };
 
     newFilter[type] = items.join(",");
-    // setFilterQuery(newFilter);
-    dispatch(getFilterQuery(newFilter));
+    setFilterQuery(newFilter);
+    // dispatch(getFilterQuery(newFilter));
   };
 
   const onClearFiltersButton = () => {
@@ -101,18 +115,14 @@ export const CatalogComponent = ({
     setSelectedSeasons([]);
     setSelectedSizes([]);
     setSelectedColors([]);
-    // const newFilter = {
-    //   sex: filterQuery.sex,
-    //   order: filterQuery.order,
-    //   sort: filterQuery.sort,
-    // };
-    // setFilterQuery(newFilter);
     const newFilter = {
       sex: filterQuery.sex,
       order: filterQuery.order,
       sort: filterQuery.sort,
     };
-    dispatch(getFilterQuery(newFilter));
+    setFilterQuery(newFilter);
+
+    // dispatch(getFilterQuery(newFilter));
   };
 
   const onClearOneFilterButton = type => onSelectionChanged(type, []);

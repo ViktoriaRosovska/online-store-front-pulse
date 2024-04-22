@@ -1,6 +1,7 @@
 import {
   ModalShopCartTitle,
   StyledModalShopCartWrapper,
+  StyledProductName,
   StyledShopCartDescription,
   StyledShopCartImage,
   StyledShopCartPosition,
@@ -54,7 +55,7 @@ export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
       <StyledShopCartPosition>
         <StyledShopCartImage src={imgGallery[0]} alt={name} />
         <StyledShopCartDescription>
-          <p>{name}</p>
+          <StyledProductName>{name}</StyledProductName>
           <p>{price} грн</p>
           <p>Color:{categories.color[0].name}</p>
           <p>Розмір:{sizeValue} </p>
