@@ -1,4 +1,21 @@
+import {
+  useLogoutUserMutation,
+  useHandleLogoutSuccess,
+  useHandleAuthErrors,
+} from "../../redux/auth";
+
 const UserAccount = () => {
+  const [loginUser, { isLoading, isSuccess, isError, error }] =
+    useLogoutUserMutation();
+
+  const logout = () => {
+    loginUser();
+  };
+
+  useHandleLogoutSuccess(isSuccess);
+
+  useHandleAuthErrors(isError, error);
+
   return (
     <div
       style={{
@@ -11,7 +28,9 @@ const UserAccount = () => {
     >
       <div>
         <p>Hey! I am your account!</p>
-        <button type="button">LogOut</button>
+        <button type="button" onClick={logout}>
+          LogOut
+        </button>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 export {
   useHandleLoginSuccess,
+  useHandleLogoutSuccess,
   useHandleAuthErrors,
   useHandleCurrentUser,
 } from "./helpers/customAuthHooks";
