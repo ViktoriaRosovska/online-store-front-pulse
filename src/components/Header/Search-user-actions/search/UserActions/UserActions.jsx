@@ -4,18 +4,27 @@ import favoritesIcon from "../../../../../assets/svg/favorites-icon.svg";
 import cartIcon from "/public/icons/cart-icon.svg";
 import "./UserActions.css";
 import MediaQuery from "react-responsive";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import ReusableModal from "components/Modals/ReusableModal";
 import useScrollLock from "components/Modals/helpersForModal/useScrollLock";
 import ModalAuth from "components/Modals/ModalContent/ModalAuth";
+import { useSelector } from "react-redux";
+import { selectUserToken } from "../../../../../redux/auth";
+import { ROUTES } from "../../../../../utils/routes";
 
 function UserActions(props) {
   const [isVisible, setIsVisible] = useState(false);
   const [isLocked, setIsLocked] = useScrollLock(false);
   const navigate = useNavigate();
 
-  const isLoggedIn = localStorage.getItem("token");
+  const isLoggedIn = useSelector(selectUserToken);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      toggleVisibility();
+    }
+  }, [isLoggedIn]);
 
   const toggleVisibility = () => {
     setIsVisible(prev => !prev);
@@ -23,7 +32,7 @@ function UserActions(props) {
   };
 
   const navigateToCabinet = () => {
-    navigate("/account");
+    navigate(ROUTES.ACCOUNT);
   };
 
   return (

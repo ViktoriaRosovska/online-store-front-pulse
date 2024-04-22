@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLazyFetchCurrentUserQuery } from "../userAuthApi";
 import { setCredentials, removeCredentials } from "../auth";
+import { useNavigate } from "react-router";
+import { ROUTES } from "../../../utils/routes";
 
 export const useHandleCurrentUser = () => {
   const dispatch = useDispatch();
@@ -12,8 +14,10 @@ export const useHandleCurrentUser = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const userData = await fetchCurrentUser();
-        dispatch(setCredentials(userData));
+        if (localStorage.getItem("token")) {
+          const userData = await fetchCurrentUser();
+          dispatch(setCredentials(userData));
+        }
       } catch (error) {
         if (error.code === 401) {
           localStorage.removeItem("token");
@@ -32,13 +36,28 @@ export const useHandleCurrentUser = () => {
 
 export const useHandleLoginSuccess = (isSuccess, data) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isSuccess && data) {
       localStorage.setItem("token", data.token);
       dispatch(setCredentials(data));
+      navigate(ROUTES.ACCOUNT);
     }
   }, [isSuccess, data]);
+};
+
+export const useHandleLogoutSuccess = isSuccess => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isSuccess) {
+      localStorage.removeItem("token");
+      dispatch(removeCredentials());
+      navigate(ROUTES.CATALOG);
+    }
+  }, [isSuccess]);
 };
 
 export const useHandleAuthErrors = (isError, error) => {
