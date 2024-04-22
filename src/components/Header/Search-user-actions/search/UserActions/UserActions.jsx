@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import profileIcon from "/public/icons/profile-icon.svg";
 import favoritesIcon from "../../../../../assets/svg/favorites-icon.svg";
 import cartIcon from "/public/icons/cart-icon.svg";
@@ -12,15 +13,25 @@ import ModalAuth from "components/Modals/ModalContent/ModalAuth";
 function UserActions(props) {
   const [isVisible, setIsVisible] = useState(false);
   const [isLocked, setIsLocked] = useScrollLock(false);
+  const navigate = useNavigate();
+
+  const isLoggedIn = localStorage.getItem("token");
 
   const toggleVisibility = () => {
     setIsVisible(prev => !prev);
     setIsLocked(prev => !prev);
   };
 
+  const navigateToCabinet = () => {
+    navigate("/account");
+  };
+
   return (
     <div className="user__actions">
-      <button className="user__actions-profile" onClick={toggleVisibility}>
+      <button
+        className="user__actions-profile"
+        onClick={isLoggedIn ? navigateToCabinet : toggleVisibility}
+      >
         <img
           className={`user__actions-icon ${
             props.isFixed || !props.location ? "fixed" : ""

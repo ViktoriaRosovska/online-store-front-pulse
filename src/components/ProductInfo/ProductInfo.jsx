@@ -13,7 +13,7 @@ import {
 import { useState } from "react";
 import { ReactComponent as LogoLover } from "../../assets/svg/favorites-icon.svg";
 import { useGetProductByIdQuery } from "../../redux/products/productsApi";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import ProductImageList from "./ProductImageList";
 import ProductHeading from "./ProductHeading";
 import ProductPrice from "./ProductPrice";
@@ -51,7 +51,10 @@ const ProductInfo = () => {
   //   setIsModalOpen(false);
   // };
 
-  const [sizeValue, setSizeValue] = useState();
+  const [searchParams] = useSearchParams();
+  const [sizeValue, setSizeValue] = useState(() =>
+    Number(searchParams.get("size")?.split(",")[0] || undefined)
+  );
   const { id } = useParams();
 
   const onSizeSelect = e => {
@@ -75,6 +78,8 @@ const ProductInfo = () => {
     features,
     imgGallery,
   } = data;
+
+  console.log(sizeValue);
 
   return (
     <>
