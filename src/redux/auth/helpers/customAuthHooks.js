@@ -14,8 +14,10 @@ export const useHandleCurrentUser = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const userData = await fetchCurrentUser();
-        dispatch(setCredentials(userData));
+        if (localStorage.getItem("token")) {
+          const userData = await fetchCurrentUser();
+          dispatch(setCredentials(userData));
+        }
       } catch (error) {
         if (error.code === 401) {
           localStorage.removeItem("token");
