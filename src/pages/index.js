@@ -7,6 +7,7 @@ import NewBrands from "./newBrands/NewBrands";
 import ProductPage from "./productPage/ProductPage";
 import Sales from "./sales/Sales";
 import UserAccount from "./user/UserAccount";
+import UserShopCart from "./user/UserShopCart";
 
 export {
   MaleCatalog,
@@ -18,4 +19,5 @@ export {
   ProductPage,
   Sales,
   UserAccount,
+  UserShopCart,
 };

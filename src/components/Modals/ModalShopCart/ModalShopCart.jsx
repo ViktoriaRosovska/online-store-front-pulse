@@ -1,13 +1,24 @@
 import {
+  StyledShopCartButton,
+  StyledShopCartWhiteButton,
+} from "components/Buttons/ShopCartButton/ShopCartButton.styled";
+import {
   ModalShopCartTitle,
   StyledModalShopCartWrapper,
-  StyledProductName,
+  StyledProductTitle,
+  StyledShopCartContainer,
   StyledShopCartDescription,
   StyledShopCartImage,
-  StyledShopCartPosition,
+  StyledShopCartInfo,
+  StyledShopCartRegistration,
+  StyledShopCartTip,
 } from "./ModalShopCart.styled";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../../utils/routes";
 
 export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
+  const navigate = useNavigate();
+  const alink = () => navigate(`${ROUTES.SHOPCART}`);
   const handleAddToCart = () => {
     // Создаем объект с данными о продукте
     const product = {
@@ -51,23 +62,39 @@ export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
       >
         x
       </button>
-      <ModalShopCartTitle>Додати в кошик</ModalShopCartTitle>
-      <StyledShopCartPosition>
-        <StyledShopCartImage src={imgGallery[0]} alt={name} />
-        <StyledShopCartDescription>
-          <StyledProductName>{name}</StyledProductName>
-          <p>{price} грн</p>
-          <p>Color:{categories.color[0].name}</p>
-          <p>Розмір:{sizeValue} </p>
-          <p>Кількість:1</p>
-        </StyledShopCartDescription>
-      </StyledShopCartPosition>
-      <div></div>
-      <p>Кошик</p>
-      <p>Усього товарів:1</p>
-      <p>Вартість:{price} грн</p>
-      <button onClick={handleAddToCart}>Оформити</button>
-      <button onClick={handleAddToCart}>Продовжити покупки</button>
+      <ModalShopCartTitle>Додано в кошик</ModalShopCartTitle>
+      <StyledShopCartContainer>
+        <StyledShopCartInfo>
+          <StyledShopCartImage src={imgGallery[0]} alt={name} />
+          <StyledShopCartDescription>
+            <StyledProductTitle>{name}</StyledProductTitle>
+            <StyledProductTitle>{price} грн</StyledProductTitle>
+
+            <p>Колір:&nbsp;{categories.color[0].name}</p>
+            <p>Розмір:&nbsp;{sizeValue} </p>
+            <p>Кількість:&nbsp;1</p>
+          </StyledShopCartDescription>
+        </StyledShopCartInfo>
+        <StyledShopCartRegistration>
+          <div>
+            <StyledProductTitle>Кошик</StyledProductTitle>
+            <StyledShopCartTip>
+              <span>Усього товарів: </span>
+              <span>1</span>
+            </StyledShopCartTip>
+            <StyledShopCartTip>
+              <span>Вартість:</span>
+              <span>{price}&nbsp;грн</span>
+            </StyledShopCartTip>
+          </div>
+
+          <StyledShopCartButton text={"Оформити"} click={alink} />
+          <StyledShopCartWhiteButton
+            click={onClose}
+            text={"Продовжити покупки"}
+          />
+        </StyledShopCartRegistration>
+      </StyledShopCartContainer>
     </StyledModalShopCartWrapper>
   );
 };

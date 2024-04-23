@@ -8,6 +8,9 @@
   border-radius: 0px 0px 36px 36px;
   width: 100%;
   position: fixed;
+  height: 72px;
+  display: flex;
+  align-items: center;
   top: 0;
   z-index: 1000;
 }
@@ -31,6 +34,9 @@
   }
   .header__inner {
     padding: 15px 0px;
+  }
+  .header {
+    height: 78px;
   }
 }
 
