@@ -6,4 +6,5 @@ export const BREADCRUMBS = {
   [ROUTES.NEWBRANDS]: "Новинки",
   [ROUTES.CATALOG]: "Каталог",
   [ROUTES.SALES]: "Розпродаж",
+  [ROUTES.SHOPCART]: "Корзина",
 };

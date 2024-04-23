@@ -4,6 +4,17 @@ const StyledModalShopCartWrapper = styled.div`
   width: 343px;
   min-width: 320px;
   padding: 32px 24px;
+  @media screen and (min-width: 1440px) {
+    width: 898px;
+    padding: 74px 48px 66px 48px;
+  }
+`;
+const StyledShopCartContainer = styled.div`
+  display: block;
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    gap: 27px;
+  }
 `;
 
 const ModalShopCartTitle = styled.h2`
@@ -13,10 +24,10 @@ const ModalShopCartTitle = styled.h2`
   line-height: 24px;
   text-align: center;
   margin-bottom: 24px;
-  @media screen and (min-width: 1440) {
+  @media screen and (min-width: 1440px) {
     font-size: 36px;
-    font-weight: 400;
     line-height: 36px;
+    margin-bottom: 42px;
   }
 `;
 
@@ -25,28 +36,66 @@ const StyledShopCartImage = styled.img`
   height: 156px;
   border-radius: 16px;
   object-fit: cover;
+  @media screen and (min-width: 1440px) {
+    width: 185px;
+  }
 `;
 
 const StyledShopCartDescription = styled.div`
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+
   width: 156px;
+  @media screen and (min-width: 1440px) {
+    width: auto;
+  }
 `;
 
-const StyledShopCartPosition = styled.div`
+const StyledShopCartInfo = styled.div`
   display: flex;
   gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--black-bg-color);
+  @media screen and (min-width: 1440px) {
+    width: 401px;
+    border-bottom: none;
+    border-right: 1px solid var(--black-bg-color);
+    padding-bottom: 0;
+    gap: 21px;
+    padding-right: 10px;
+  }
 `;
 
-const StyledProductName = styled.p`
+const StyledProductTitle = styled.p`
   font-family: "Roboto";
   font-size: 20px;
   font-weight: 400;
   line-height: 28px;
+  margin-bottom: 8px;
+`;
+
+const StyledShopCartTip = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const StyledShopCartRegistration = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  @media screen and (min-width: 1440px) {
+    width: 374px;
+  }
 `;
 export {
   StyledModalShopCartWrapper,
   ModalShopCartTitle,
   StyledShopCartImage,
   StyledShopCartDescription,
-  StyledShopCartPosition,
-  StyledProductName,
+  StyledShopCartInfo,
+  StyledProductTitle,
+  StyledShopCartTip,
+  StyledShopCartRegistration,
+  StyledShopCartContainer,
 };

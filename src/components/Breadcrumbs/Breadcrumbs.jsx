@@ -5,9 +5,8 @@ import { useEffect, useState } from "react";
 import { ROUTES } from "../../utils/routes";
 
 const Breadcrumbs = ({ current }) => {
-  const location = useLocation();
-
   const [prev, setPrev] = useState(null);
+  const location = useLocation();
   const pathname = location.state?.from;
 
   useEffect(() => {

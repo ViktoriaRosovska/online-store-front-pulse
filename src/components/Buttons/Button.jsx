@@ -7,7 +7,7 @@ function Button(props) {
       onClick={props.click}
       disabled={props.disabled}
     >
-      {props.btnText || props.children}
+      {props.text || props.children}
     </button>
   );
 }

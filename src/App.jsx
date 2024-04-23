@@ -13,6 +13,7 @@ import {
   ProductPage,
   Sales,
   UserAccount,
+  UserShopCart,
 } from "./pages/index";
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
             <Route path={ROUTES.NEWBRANDS} element={<NewBrands />} />
             <Route path={ROUTES.SALES} element={<Sales />} />
             <Route path={ROUTES.ACCOUNT} element={<UserAccount />} />
+            <Route path={ROUTES.SHOPCART} element={<UserShopCart />} />
           </Route>
         </Routes>
       </PersistedAuth>
