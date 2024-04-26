@@ -2,15 +2,20 @@ import styled from "styled-components";
 
 const PageSection = styled.section`
   padding-top: 114px;
-  padding-bottom: 120px;
+  padding-bottom: 80px;
   /* border: 1px solid green; */
+  @media screen and (min-width: 1440px) {
+    padding-bottom: 120px;
+  }
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 80px;
   @media screen and (min-width: 1440px) {
     flex-direction: row;
+    margin-bottom: 120px;
   }
 `;
 
