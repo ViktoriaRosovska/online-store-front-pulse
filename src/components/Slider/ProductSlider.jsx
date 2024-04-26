@@ -30,7 +30,6 @@ const ProductSlider = props => {
         </StyledNavigationNextBtn>
         <swiper-container
           className="swiper-wrapper"
-          slides-per-group={3}
           navigation-next-el=".custom-next-button"
           navigation-prev-el=".custom-prev-button"
           pagination={{
@@ -43,11 +42,13 @@ const ProductSlider = props => {
             320: {
               slidesPerView: 2,
               spaceBetween: 24,
+              slidesPerGroup: 2,
             },
 
             1440: {
               slidesPerView: 3,
               spaceBetween: 89,
+              slidesPerGroup: 3,
             },
           })}
           style={{

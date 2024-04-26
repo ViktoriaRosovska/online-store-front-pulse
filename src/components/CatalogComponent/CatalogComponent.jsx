@@ -6,6 +6,8 @@ import { CardsList } from "../CardsList/CardsList";
 import { CatalogHeader } from "./CatalogHeader/CatalogHeader";
 import { CatalogNavigation } from "./CatalogNavigation/CatalogNavigation";
 
+import { LastView } from "components/LastView/LastView";
+
 // import { getFilterQuery } from "../../redux/filterQuery/filterQuerySlice";
 // import { selectFilterQuery } from "../../redux/filterQuery/filterQuerySelector";
 
@@ -206,6 +208,7 @@ export const CatalogComponent = ({
           />
         </ContentWrapper>
       </Container>
+      <LastView />
     </PageSection>
   );
 };

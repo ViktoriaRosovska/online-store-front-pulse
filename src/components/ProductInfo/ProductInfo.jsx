@@ -29,10 +29,13 @@ import useScrollLock from "components/Modals/helpersForModal/useScrollLock";
 import { ModalSizeList } from "../../components/Modals/ModalSizeList/ModalSizeList";
 import { ModalShopCart } from "components/Modals/ModalShopCart/ModalShopCart";
 
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+
 const ProductInfo = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLocked, setIsLocked] = useScrollLock(false);
   const [isVisibleCart, setIsVisibleCart] = useState(false);
+  const [lastView, setLastView] = useLocalStorage("lastView", []);
 
   const toggleVisibility = type => {
     setIsLocked(prev => !prev);
@@ -43,6 +46,7 @@ const ProductInfo = () => {
       setIsVisibleCart(prev => !prev);
     }
   };
+
   // const [isModalOpen, setIsModalOpen] = useState(false);
   // const openModal = () => {
   //   setIsModalOpen(true);
@@ -79,16 +83,21 @@ const ProductInfo = () => {
     imgGallery,
   } = data;
 
+  if ((!lastView && !lastView.length) || !lastView.includes(data)) {
+    setLastView(prev => [data, ...prev]);
+  }
+
+  console.log(lastView);
+
+  // localStorage.setItem("lastView", JSON.stringify(lastView));
+
   // console.log(sizeValue);
 
   return (
     <>
       <h1 hidden> {name}</h1>
-
       <Breadcrumbs current={name} />
-
       <ProductHeading device="mobile" article={article} title={name} />
-
       <ProductDataWrapper>
         <ProductImageList images={imgGallery} alt={name} />
 
@@ -131,7 +140,6 @@ const ProductInfo = () => {
           <ProductCommonInfo />
         </Meta>
       </ProductDataWrapper>
-
       <DescriptionWrapper>
         <DetailsToggler summary={<DescriptionTitle>Опис</DescriptionTitle>}>
           <DescriptionText>{description}</DescriptionText>
@@ -143,7 +151,6 @@ const ProductInfo = () => {
           <ProductFeatureList features={features} />
         </DetailsToggler>
       </DescriptionWrapper>
-
       {/* <BasicModal
         openModal={isModalOpen}
         closeModal={closeModal}
@@ -163,7 +170,6 @@ const ProductInfo = () => {
           </ReusableModal>
         )}
       </AnimatePresence>
-
       <AnimatePresence>
         {isVisibleCart && (
           <ReusableModal
@@ -178,7 +184,7 @@ const ProductInfo = () => {
             />
           </ReusableModal>
         )}
-      </AnimatePresence>
+      </AnimatePresence>{" "}
     </>
   );
 };
