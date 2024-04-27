@@ -1,6 +1,13 @@
 import styled, { css } from "styled-components";
 import { CommonButton } from "../UIKit/CommonButton/CommonButton.styled";
 
+export const StyledProductInfoWrapper = styled.div`
+  padding-bottom: 80px;
+  @media screen and (min-width: 1440px) {
+    padding-bottom: 120px;
+  }
+`;
+
 export const MobileHeading = styled("div")`
   margin-top: 24px;
 

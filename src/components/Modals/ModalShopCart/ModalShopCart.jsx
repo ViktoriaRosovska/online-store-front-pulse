@@ -18,7 +18,10 @@ import { ROUTES } from "../../../utils/routes";
 
 export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
   const navigate = useNavigate();
-  const alink = () => navigate(`${ROUTES.SHOPCART}`);
+
+  const alink = () => {
+    navigate(`${ROUTES.SHOPCART}`);
+  };
   const handleAddToCart = () => {
     // Создаем объект с данными о продукте
     const product = {
