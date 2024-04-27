@@ -1,16 +1,16 @@
 import { Container } from "src/main.styled";
-import { PageWrapper } from "./ProductPage.styled";
 import ProductInfo from "components/ProductInfo";
 import { LastView } from "components/LastView/LastView";
+import { PageSection } from "../../main.styled";
 
 const ProductPage = () => {
   return (
-    <PageWrapper>
+    <PageSection>
       <Container>
         <ProductInfo />
       </Container>
       <LastView />
-    </PageWrapper>
+    </PageSection>
   );
 };
 

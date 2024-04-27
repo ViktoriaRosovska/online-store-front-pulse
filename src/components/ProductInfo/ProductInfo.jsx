@@ -9,6 +9,7 @@ import {
   PriceWrapper,
   ProductDataWrapper,
   SizeGridButton,
+  StyledProductInfoWrapper,
 } from "./ProductInfo.styled";
 import { useState } from "react";
 import { ReactComponent as LogoLover } from "../../assets/svg/favorites-icon.svg";
@@ -30,13 +31,15 @@ import { ModalSizeList } from "../../components/Modals/ModalSizeList/ModalSizeLi
 import { ModalShopCart } from "components/Modals/ModalShopCart/ModalShopCart";
 
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { useDispatch } from "react-redux";
+import { addShopCartItem } from "../../redux/user/userShopCart/userShopCartSlice";
 
 const ProductInfo = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLocked, setIsLocked] = useScrollLock(false);
   const [isVisibleCart, setIsVisibleCart] = useState(false);
   const [lastView, setLastView] = useLocalStorage("lastView", []);
-
+  const dispatch = useDispatch();
   const toggleVisibility = type => {
     setIsLocked(prev => !prev);
     if (type == "size") {
@@ -87,14 +90,14 @@ const ProductInfo = () => {
     setLastView(prev => [data, ...prev]);
   }
 
-  console.log(lastView);
+  // console.log(lastView);
 
   // localStorage.setItem("lastView", JSON.stringify(lastView));
 
   // console.log(sizeValue);
 
   return (
-    <>
+    <StyledProductInfoWrapper>
       <h1 hidden> {name}</h1>
       <Breadcrumbs current={name} />
       <ProductHeading device="mobile" article={article} title={name} />
@@ -127,7 +130,10 @@ const ProductInfo = () => {
             <AddToCartButton
               type="button"
               disabled={!sizeValue}
-              onClick={() => toggleVisibility("cart")}
+              onClick={() => {
+                dispatch(addShopCartItem(data));
+                toggleVisibility("cart");
+              }}
             >
               Додати в кошик
             </AddToCartButton>
@@ -185,7 +191,7 @@ const ProductInfo = () => {
           </ReusableModal>
         )}
       </AnimatePresence>{" "}
-    </>
+    </StyledProductInfoWrapper>
   );
 };
 
