@@ -1,0 +1,14 @@
+.swiper-slide {
+  height: 600px;
+  /* max-width: 152x; */
+  /* width: 152px; */
+  /* border: 1px solid green; */
+  /* height: 416px; */
+}
+@media screen and (min-width: 1440px) {
+  .swiper-slide {
+    /* max-width: 340px;
+    margin-right: 89px; */
+    height: 300px;
+  }
+}
