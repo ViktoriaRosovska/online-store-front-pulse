@@ -21,7 +21,8 @@ const StyledNavigationPrevBtn = styled(StyledNavigationBtn)`
   bottom: 0px;
   @media screen and (min-width: 1440px) {
     left: -83px;
-    bottom: 272px;
+    bottom: 50%;
+    transform: translateY(50%);
   }
 `;
 const StyledNavigationNextBtn = styled(StyledNavigationBtn)`
@@ -29,7 +30,8 @@ const StyledNavigationNextBtn = styled(StyledNavigationBtn)`
   bottom: 0;
 
   @media screen and (min-width: 1440px) {
-    bottom: 272px;
+    bottom: 50%;
+    transform: translateY(50%);
     right: -83px;
   }
 `;
