@@ -78,11 +78,11 @@ const ProductInfo = () => {
     if (location !== undefined) {
       arr.push(location);
     } else if (location == undefined) {
-      return;
+      break;
     }
   }
 
-  // console.log(arr);
+  console.log(arr);
 
   if (isFetching) return <div>Loading...</div>;
   if (!data) return null;
