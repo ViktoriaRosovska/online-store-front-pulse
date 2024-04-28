@@ -4,6 +4,8 @@ const SwiperContainer = styled.div`
   position: relative;
 
   /* border: 1px solid red; */
+  /* height: 400px; */
+
   @media screen and (min-width: 1440px) {
     /* width: 1198px; */
   }
@@ -22,7 +24,7 @@ const StyledNavigationPrevBtn = styled(StyledNavigationBtn)`
   @media screen and (min-width: 1440px) {
     left: -83px;
     bottom: 50%;
-    transform: translateY(50%);
+    transform: translateY(-50%);
   }
 `;
 const StyledNavigationNextBtn = styled(StyledNavigationBtn)`
@@ -31,7 +33,7 @@ const StyledNavigationNextBtn = styled(StyledNavigationBtn)`
 
   @media screen and (min-width: 1440px) {
     bottom: 50%;
-    transform: translateY(50%);
+    transform: translateY(-50%);
     right: -83px;
   }
 `;

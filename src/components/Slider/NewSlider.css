@@ -1,22 +1,21 @@
 .swiper-wrapper {
-  /* height: 416px; */
+  height: 415px;
 }
-.swiper-slide {
-  height: 400px;
-  /* max-width: 152x; */
-  /* width: 152px; */
-  /* border: 1px solid green; */
-  /* height: 416px; */
-}
+
 @media screen and (min-width: 1440px) {
-  .swiper-slide {
-    /* max-width: 340px;
-    margin-right: 89px; */
+  .swiper-wrapper {
     height: 486px;
   }
 }
 .swiper-pagination {
+  position: relative;
   border: 1px solid blue;
   height: 64px;
   width: 100%;
+  bottom: 0px;
+}
+.swiper-pagination-bullets {
+  background-color: red;
+  width: 10px;
+  height: 10px;
 }
