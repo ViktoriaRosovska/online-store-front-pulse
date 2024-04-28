@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 import "swiper/css/grid";
 import {
   // Container,
