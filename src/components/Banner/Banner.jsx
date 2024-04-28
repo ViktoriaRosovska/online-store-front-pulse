@@ -1,7 +1,13 @@
 // import { useNavigate } from "react-router-dom";
+import { Container } from "../../main.styled";
 import { ROUTES } from "../../utils/routes";
 import CardButton from "../Buttons/CardButton/CardButton";
-import { ButtonWrapper, SectionBanner, TitleBox } from "./Banner.styled";
+import {
+  ButtonWrapper,
+  SectionBanner,
+  StyledBannerWrapper,
+  TitleBox,
+} from "./Banner.styled";
 const Banner = () => {
   // const navigate = useNavigate();
   // const aLink = () => {
@@ -9,14 +15,17 @@ const Banner = () => {
   // };
   return (
     <SectionBanner>
-      <TitleBox>
-        <h1 className="banner_1"> ЗНИЖКА ДО -50% НА ЗИМОВЕ ВЗУТТЯ</h1>
-      </TitleBox>
-
-      <ButtonWrapper className="banner_btn">
-        {/* <CardButton text={"Каталог"} click={aLink} /> */}
-        <CardButton text={"Каталог"} route={ROUTES.SALES} />
-      </ButtonWrapper>
+      <Container>
+        <StyledBannerWrapper>
+          <TitleBox>
+            <h1 className="banner_1"> ЗНИЖКА ДО -50% НА ЗИМОВЕ ВЗУТТЯ</h1>
+          </TitleBox>
+          <ButtonWrapper className="banner_btn">
+            {/* <CardButton text={"Каталог"} click={aLink} /> */}
+            <CardButton text={"Каталог"} route={ROUTES.SALES} />
+          </ButtonWrapper>
+        </StyledBannerWrapper>
+      </Container>
     </SectionBanner>
   );
 };

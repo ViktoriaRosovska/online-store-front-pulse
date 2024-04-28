@@ -4,30 +4,22 @@ import winterSaleSm from "../../assets/images/winter-sale-sm.jpg";
 
 export const SectionBanner = styled.section`
   width: 100%;
-  height: 590px;
+  /* height: 590px; */
   border-radius: 36px;
   background-image: url(${winterSaleSm});
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
-  margin-top: 42px;
-  padding: 192px 24px;
-  margin-top: 120px;
 
-  > div {
-    margin-top: 36px;
-    margin-right: auto;
-  }
-
-  @media screen and (min-width: 378px) {
+  @media screen and (min-width: 1440px) {
     background-image: url(${winterSaleLg});
   }
+`;
 
-  @media screen and (min-width: 768px) {
-    padding: 192px 120px;
-  }
+export const StyledBannerWrapper = styled.div`
+  padding: 202px 0 204px 0;
   @media screen and (min-width: 1440px) {
-    padding: 170px 220px;
+    padding: 170px 0 174px 0;
   }
 `;
 
@@ -35,14 +27,20 @@ export const TitleBox = styled.div`
   max-width: 800px;
 
   > h1 {
-    font-family: "Beware", sans-serif;
-    font-weight: 400;
-    font-size: 36px;
     color: #141414;
 
+    font-family: "Strong";
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 50.4px;
+
+    margin-bottom: 36px;
     @media screen and (min-width: 1440px) {
-      font-family: var(--tittle-font);
       font-size: 64px;
+
+      font-size: 64px;
+
+      line-height: 76.42px;
     }
   }
 `;

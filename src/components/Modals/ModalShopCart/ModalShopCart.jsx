@@ -13,38 +13,38 @@ import {
   StyledShopCartRegistration,
   StyledShopCartTip,
 } from "./ModalShopCart.styled";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../utils/routes";
 
 export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
   const navigate = useNavigate();
-
+  const location = useLocation();
   const alink = () => {
-    navigate(`${ROUTES.SHOPCART}`);
+    navigate(`${ROUTES.SHOPCART}`, { state: { from: location } });
   };
-  const handleAddToCart = () => {
-    // Создаем объект с данными о продукте
-    const product = {
-      id: productData.id, // Уникальный идентификатор продукта
-      name: name,
-      price: price,
-      color: categories.color[0].name,
-      size: sizeValue,
-      quantity: 1, // Количество, в данном случае 1
-      imageUrl: imgGallery[0], // URL изображения
-    };
+  // const handleAddToCart = () => {
+  //   // Создаем объект с данными о продукте
+  //   const product = {
+  //     id: productData.id, // Уникальный идентификатор продукта
+  //     name: name,
+  //     price: price,
+  //     color: categories.color[0].name,
+  //     size: sizeValue,
+  //     quantity: 1, // Количество, в данном случае 1
+  //     imageUrl: imgGallery[0], // URL изображения
+  //   };
 
-    // Получаем текущий список товаров в корзине из localStorage
-    const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
+  //   // Получаем текущий список товаров в корзине из localStorage
+  //   const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // Добавляем новый продукт в корзину
-    const updatedCart = [...currentCart, product];
+  //   // Добавляем новый продукт в корзину
+  //   const updatedCart = [...currentCart, product];
 
-    // Сохраняем обновленный список товаров в localStorage
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  //   // Сохраняем обновленный список товаров в localStorage
+  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
 
-    // Закрываем модальное окно после добавления в корзину
-  };
+  //   // Закрываем модальное окно после добавления в корзину
+  // };
 
   if (!productData) return null;
 

@@ -89,6 +89,7 @@ const Card = ({
               search: `size: ${filterQuery?.size}`,
             }),
           }}
+          state={{ from: location }}
         />
 
         {/* <Link to={{ pathname: `/${id}`, search: `size=${filterQuery.size}` }}>

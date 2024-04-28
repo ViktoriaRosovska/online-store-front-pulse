@@ -11,7 +11,6 @@ import {
   SectionManWomen,
   SectionNews,
   SectionSale,
-  SliderBox,
   StyledSliderTitle,
   VectorBox,
   WomenBox,
@@ -70,18 +69,20 @@ const Main = () => {
       </SectionManWomen>
       <VectorBox>{/* <img src={vector2} alt="vector" /> */}</VectorBox>
       <SectionNews>
-        <SliderBox>
+        <Container>
           <StyledSliderTitle>Новинки</StyledSliderTitle>
           <ProductSlider
             products={newBrands.products}
             cardfeature={"newbrands"}
           />
-        </SliderBox>
+        </Container>
       </SectionNews>
       <Banner />
       <SectionSale>
-        <StyledSliderTitle>Розпродаж</StyledSliderTitle>
-        <ProductSlider products={sales.products} cardfeature={"sales"} />
+        <Container>
+          <StyledSliderTitle>Розпродаж</StyledSliderTitle>
+          <ProductSlider products={sales.products} cardfeature={"sales"} />
+        </Container>
       </SectionSale>
       <section className="marquee-centered">
         <div className="marquee marquee-rotate-right">

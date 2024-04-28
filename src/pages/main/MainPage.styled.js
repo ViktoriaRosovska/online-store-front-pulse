@@ -177,6 +177,10 @@ export const SectionNews = styled.section`
     rgba(229, 229, 229, 1) 0%,
     rgba(231, 231, 231, 0) 97.9%
   );
+  padding-bottom: 80px;
+  @media screen and (min-width: 1440px) {
+    padding-bottom: 120px;
+  }
 `;
 
 import grayRibbon from "../../assets/images/grayRibbon.png";
@@ -188,16 +192,16 @@ export const VectorBox = styled.div`
   margin-bottom: -2px;
 `;
 
-export const SliderBox = styled.div`
-  margin-left: auto;
-  margin-right: auto;
+// export const SliderBox = styled.div`
+//   margin-left: auto;
+//   margin-right: auto;
 
-  width: 100%;
-  max-width: 1370px;
-  height: 643px;
+//   width: 100%;
+//   max-width: 1370px;
+//   /* height: 643px; */
 
-  text-align: center;
-`;
+//   text-align: center;
+// `;
 
 export const SectionSale = styled.section`
   padding-top: 80px;

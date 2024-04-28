@@ -14,7 +14,7 @@ import {
 import { useState } from "react";
 import { ReactComponent as LogoLover } from "../../assets/svg/favorites-icon.svg";
 import { useGetProductByIdQuery } from "../../redux/products/productsApi";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import ProductImageList from "./ProductImageList";
 import ProductHeading from "./ProductHeading";
 import ProductPrice from "./ProductPrice";
@@ -69,6 +69,20 @@ const ProductInfo = () => {
   };
 
   const { data, isError, isFetching } = useGetProductByIdQuery(id);
+
+  let location = useLocation().state.from;
+  const arr = [];
+  arr.push(location.pathname);
+  while (location !== undefined) {
+    location = location?.state?.from;
+    if (location !== undefined) {
+      arr.push(location);
+    } else if (location == undefined) {
+      return;
+    }
+  }
+
+  // console.log(arr);
 
   if (isFetching) return <div>Loading...</div>;
   if (!data) return null;
