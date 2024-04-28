@@ -24,46 +24,6 @@ import { Container, PageSection } from "../../main.styled";
 import { register } from "swiper/element";
 register();
 export default function BrandsList(props) {
-  const [slidesPerView, setSlidesPerView] = useState(5);
-
-  const handleResize = () => {
-    if (
-      typeof window !== "undefined" &&
-      window.innerWidth >= 320 &&
-      window.innerWidth < 768
-    ) {
-      setSlidesPerView(1);
-    } else {
-      if (
-        typeof window !== "undefined" &&
-        window.innerWidth >= 768 &&
-        window.innerWidth < 1200
-      ) {
-        setSlidesPerView(3);
-      } else {
-        setSlidesPerView(5);
-      }
-    }
-  };
-
-  useEffect(() => {
-    handleResize(); // Initial check
-
-    const handleWindowResize = () => {
-      handleResize();
-    };
-
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", handleWindowResize);
-    }
-
-    return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("resize", handleWindowResize);
-      }
-    };
-  }, []);
-
   return (
     <PageSection>
       <Container>
@@ -105,7 +65,6 @@ export default function BrandsList(props) {
 
                 spaceBetween: 23,
                 slidesPerGroup: 2,
-                // vertical: true,
               },
 
               1440: {
