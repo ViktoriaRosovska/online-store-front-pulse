@@ -1,5 +1,5 @@
-// import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
+  CardButtonContainer,
   CardImage,
   CardPrice,
   CardTitle,
@@ -9,7 +9,6 @@ import {
   StyledCardPriceWrapper,
   TextWrapper,
 } from "./Card.styled.js";
-import CardButton from "../Buttons/CardButton/CardButton.jsx";
 import FavoriteButton from "../Buttons/FavoriteButton/FavoriteButton.jsx";
 import { SaleBand } from "../salesComponents/SaleBand/SaleBand.jsx";
 import { SalePercent } from "../salesComponents/SalePercent/SalePercent.jsx";
@@ -26,14 +25,8 @@ const Card = ({
   filterQuery,
   cardSlider,
 }) => {
-  // const navigate = useNavigate();
-
   const sales = cardfeature === "sales";
-
   const newBrands = cardfeature === "newbrands";
-  // const aLink = () => {
-  //   navigate(`/${id}?size=${filterQuery.size}`);
-  // };
   const location = useLocation().pathname;
 
   return (
@@ -78,23 +71,7 @@ const Card = ({
             )} грн`}</CardPrice>
           </StyledCardPriceWrapper>
         </TextWrapper>
-        {/* <CardButton text={"Купити"} click={aLink} /> */}
-
-        <CardButton
-          type={"button"}
-          text={"Купити"}
-          route={{
-            pathname: `${ROUTES.HOME}${id}`,
-            ...(filterQuery?.size && {
-              search: `size: ${filterQuery?.size}`,
-            }),
-          }}
-          state={{ from: location }}
-        />
-
-        {/* <Link to={{ pathname: `/${id}`, search: `size=${filterQuery.size}` }}>
-        Купити TEST
-      </Link> */}
+        <CardButtonContainer>Купити</CardButtonContainer>
       </CardWrapper>
     </StyledCardLink>
   );

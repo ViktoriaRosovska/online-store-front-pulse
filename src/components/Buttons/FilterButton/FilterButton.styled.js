@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const FilterButton = styled.button`
   font-family: "Roboto";
-  font-size: 16px;
+  font-size: 12px;
   line-height: 20px;
   letter-spacing: 0;
   background-color: transparent;
@@ -24,6 +24,7 @@ const FilterButton = styled.button`
 
   cursor: pointer;
   @media screen and (min-width: 1440px) {
+    font-size: 16px;
     cursor: ${props => (props.$hasFilter ? "pointer" : "auto")};
     &:hover {
       color: ${props =>
@@ -46,11 +47,9 @@ const SortButton = styled(FilterButton)`
     & svg {
       stroke: ${props =>
         !props.$showSelect ? "var(--grey-text-color)" : "currentColor"};
-  
+    }
   }
-  
-  }
-& svg {
+  & svg {
     margin-right: 0;
   }
   cursor: ${props => (props.$showSelect ? "auto" : "pointer")};
@@ -58,8 +57,9 @@ const SortButton = styled(FilterButton)`
     & span {
       display: block;
     }
-     & svg {
+    & svg {
       margin-right: 12px;
+    }
   }
 `;
 
