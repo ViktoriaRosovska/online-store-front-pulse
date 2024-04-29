@@ -14,7 +14,7 @@ export const PageTitle = styled.h2`
   text-align: center;
 
   @media screen and (min-width: 1440px) {
-    position: static;
+    /* position: static; */
     font-size: 36px;
     line-height: 100%;
     letter-spacing: 0;

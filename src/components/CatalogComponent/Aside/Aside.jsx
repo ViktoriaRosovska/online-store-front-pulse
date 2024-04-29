@@ -8,6 +8,22 @@ import { AsideList } from "./Aside.styled";
 import { useState } from "react";
 
 export const Aside = props => {
+  // console.log(window.innerWidth);
+
+  const screenWidth = (a, b) => {
+    const screen = window.innerWidth;
+    if (screen < 1440) {
+      if (props.sex.length == 0) {
+        return a;
+      } else {
+        return b;
+      }
+    }
+    if (screen >= 1440) {
+      return 10;
+    }
+  };
+
   let defaultShow = 3;
   const [valueSize, setValueSize] = useState(true);
   const onChangeShowAll = value => {
@@ -32,7 +48,7 @@ export const Aside = props => {
           checked={props.selectedBrands}
           onChanged={items => props.onChanged("brand", items)}
           onChangeShowAll={onChangeShowAll}
-          defaultShow={props.sex.length == 0 ? 5 : 8}
+          defaultShow={screenWidth(5, 8)}
         />
       </div>
 
@@ -50,7 +66,7 @@ export const Aside = props => {
           checked={props.selectedSizes}
           onChanged={items => props.onChanged("size", items)}
           onChangeShowAll={onChangeShowAll}
-          defaultShow={4}
+          defaultShow={screenWidth(4, 4)}
         />
       </div>
 
@@ -61,7 +77,7 @@ export const Aside = props => {
           checked={props.selectedColors}
           onChanged={items => props.onChanged("color", items)}
           onChangeShowAll={onChangeShowAll}
-          defaultShow={8}
+          defaultShow={screenWidth(8, 8)}
         />
       </div>
     </AsideList>

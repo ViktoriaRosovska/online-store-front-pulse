@@ -70,9 +70,9 @@ const ProductInfo = () => {
 
   const { data, isError, isFetching } = useGetProductByIdQuery(id);
 
-  let location = useLocation().state.from;
+  let location = useLocation()?.state?.from;
   const arr = [];
-  arr.push(location.pathname);
+  arr.push(location?.pathname);
   while (location !== undefined) {
     location = location?.state?.from;
     if (location !== undefined) {
@@ -204,7 +204,7 @@ const ProductInfo = () => {
             />
           </ReusableModal>
         )}
-      </AnimatePresence>{" "}
+      </AnimatePresence>
     </StyledProductInfoWrapper>
   );
 };

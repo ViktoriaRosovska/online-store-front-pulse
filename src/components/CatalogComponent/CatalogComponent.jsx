@@ -8,9 +8,6 @@ import { LastView } from "components/LastView/LastView";
 import { useLocation } from "react-router-dom";
 import Breadcrumbs from "components/Breadcrumbs";
 
-// import { getFilterQuery } from "../../redux/filterQuery/filterQuerySlice";
-// import { selectFilterQuery } from "../../redux/filterQuery/filterQuerySelector";
-
 function getFromSearchParams(prop, def = [], proj = null) {
   const params = new URLSearchParams(location.search);
   const value = params.get(prop);
@@ -62,7 +59,6 @@ export const CatalogComponent = ({
   data,
   isError,
   isFetching,
-  // filterQuery,
   loader,
 }) => {
   const [selectedBrands, setSelectedBrands] = useState(
@@ -172,13 +168,13 @@ export const CatalogComponent = ({
   while (locationPath !== undefined) {
     locationPath = locationPath?.state?.from;
     if (locationPath !== undefined) {
-      arr.push(locationPath);
+      arr.push(locationPath.pathname);
     } else if (locationPath == undefined) {
       break;
     }
   }
 
-  console.log(arr);
+  // console.log(arr);
   return (
     <PageSection>
       <Container>

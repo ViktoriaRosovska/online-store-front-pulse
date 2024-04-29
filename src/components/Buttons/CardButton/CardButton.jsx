@@ -1,11 +1,11 @@
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import { CardButtonWrapper } from "./CardButton.styled";
 
-const CardButton = ({ text, style, route }) => {
-  const location = useLocation().pathname;
+const CardButton = ({ text, style, route, state }) => {
+  // const location = useLocation().pathname;
 
   return (
-    <CardButtonWrapper style={style} to={route} state={{ from: location }}>
+    <CardButtonWrapper style={style} to={route} state={state}>
       {text}
     </CardButtonWrapper>
   );

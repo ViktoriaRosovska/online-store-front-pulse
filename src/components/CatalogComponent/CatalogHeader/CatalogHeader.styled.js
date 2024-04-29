@@ -14,6 +14,7 @@ const StyledHeaderTitleWrapper = styled.div`
   /* border: 1px solid red; */
   @media screen and (min-width: 1440px) {
     height: 36px;
+    margin-bottom: 36px;
   }
 `;
 const FilterWrapper = styled.div`

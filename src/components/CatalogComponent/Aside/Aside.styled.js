@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const AsideList = styled.div`
-  background-color: white;
+  /* background-color: white; */
   z-index: 101;
   display: ${props => (props.$onAsideShow ? "flex" : "none")};
 
