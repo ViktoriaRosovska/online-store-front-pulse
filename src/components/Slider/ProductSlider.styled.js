@@ -16,6 +16,14 @@ const StyledNavigationBtn = styled.div`
   width: 64px;
   height: 64px;
   z-index: 100;
+  user-select: none;
+  stroke: var(--black-text-color);
+  cursor: pointer;
+  &:hover {
+    & svg {
+      stroke: var(--grey-text-color);
+    }
+  }
 `;
 
 const StyledNavigationPrevBtn = styled(StyledNavigationBtn)`
@@ -23,7 +31,7 @@ const StyledNavigationPrevBtn = styled(StyledNavigationBtn)`
   bottom: 0px;
   @media screen and (min-width: 1440px) {
     left: -83px;
-    bottom: 50%;
+    top: ${props => (props.card ? "150px" : "50%")};
     transform: translateY(-50%);
   }
 `;
@@ -32,7 +40,7 @@ const StyledNavigationNextBtn = styled(StyledNavigationBtn)`
   bottom: 0;
 
   @media screen and (min-width: 1440px) {
-    bottom: 50%;
+    top: ${props => (props.card ? "150px" : "50%")};
     transform: translateY(-50%);
     right: -83px;
   }

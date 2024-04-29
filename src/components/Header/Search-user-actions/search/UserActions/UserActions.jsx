@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import profileIcon from "/public/icons/profile-icon.svg";
 import favoritesIcon from "../../../../../assets/svg/favorites-icon.svg";
 import cartIcon from "/public/icons/cart-icon.svg";
@@ -17,7 +17,7 @@ function UserActions(props) {
   const [isVisible, setIsVisible] = useState(false);
   const [isLocked, setIsLocked] = useScrollLock(false);
   const navigate = useNavigate();
-
+  const location = useLocation();
   const isLoggedIn = useSelector(selectUserToken);
 
   useEffect(() => {
@@ -35,6 +35,9 @@ function UserActions(props) {
     navigate(ROUTES.ACCOUNT);
   };
 
+  const navigateToShopCart = () => {
+    navigate(ROUTES.SHOPCART, { state: { from: location } });
+  };
   return (
     <div className="user__actions">
       <button
@@ -60,7 +63,7 @@ function UserActions(props) {
           />
         </button>
       </MediaQuery>
-      <button className="user__actions-cart">
+      <button className="user__actions-cart" onClick={navigateToShopCart}>
         <img
           className={`user__actions-icon ${
             props.isFixed || !props.location ? "fixed" : ""

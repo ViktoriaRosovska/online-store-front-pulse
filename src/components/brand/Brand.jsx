@@ -1,12 +1,12 @@
 import "swiper/css/grid";
 import {
-  // Container,
-  NavigationWrapper,
-  Title,
+  // NavigationWrapper,
+  // Title,
   Text,
   StyledBrandCardWrapper,
   StyledBrandImage,
   SliderBrandsWrapper,
+  Title,
 } from "./Brand.styled";
 
 import "./brandSlider.css";
@@ -20,35 +20,39 @@ import { ReactComponent as SwiperLeftArrowIcon } from "../../assets/svg/swiperLe
 import { Link } from "react-router-dom";
 import { Container, PageSection } from "../../main.styled";
 import { register } from "swiper/element";
+import Breadcrumbs from "components/Breadcrumbs";
+
 register();
 export default function BrandsList(props) {
   return (
     <PageSection>
       <Container>
-        <NavigationWrapper>
+        {/* <NavigationWrapper>
           <a href="./">Головна</a> <span>/</span> <span>{props.title}</span>
-        </NavigationWrapper>
-        <Title>Бренди</Title>
+        </NavigationWrapper> */}
+        <Breadcrumbs current={props.title} />
+        <Title>{props.title}</Title>
         <SliderBrandsWrapper>
-          <StyledNavigationPrevBtn className="nav-btn custom-prev-button">
+          <StyledNavigationPrevBtn
+            className="nav-btn custom-prev-button"
+            $card={false}
+          >
             <SwiperLeftArrowIcon />
           </StyledNavigationPrevBtn>
 
-          <StyledNavigationNextBtn className="nav-btn custom-next-button">
+          <StyledNavigationNextBtn
+            className="nav-btn custom-next-button"
+            $card={false}
+          >
             <SwiperRightArrowIcon />
           </StyledNavigationNextBtn>
+
           <swiper-container
-            className="swiper-wrapper"
+            class="swiper-wrapper"
             spaceBetween={10}
             navigation={true}
             loop={true}
-            // slides-per-view={slidesPerView}
             loading="lazy"
-            // pagination={{
-            //   clickable: true,
-            //   bulletClass: `swiper-pagination`,
-            //   el: ".swiper-pagination",
-            // }}
             navigation-next-el=".custom-next-button"
             navigation-prev-el=".custom-prev-button"
             breakpoints={JSON.stringify({
@@ -88,8 +92,6 @@ export default function BrandsList(props) {
                         <StyledBrandImage
                           src={el.img}
                           alt={el.title}
-                          // width={149}
-                          // height={101}
                           loading="eager"
                         />
                         <Text>{el.title}</Text>
