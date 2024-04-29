@@ -17,13 +17,24 @@ import {
 } from "../Slider/ProductSlider.styled.js";
 import { ReactComponent as SwiperRightArrowIcon } from "../../assets/svg/swiperRightArrow.svg";
 import { ReactComponent as SwiperLeftArrowIcon } from "../../assets/svg/swiperLeftArrow.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Container, PageSection } from "../../main.styled";
 import { register } from "swiper/element";
 import Breadcrumbs from "components/Breadcrumbs";
 
 register();
 export default function BrandsList(props) {
+  let locationPath = useLocation()?.state?.from;
+  const arr = [];
+  arr.push(locationPath.pathname);
+  while (locationPath !== undefined) {
+    locationPath = locationPath?.state?.from;
+    if (locationPath !== undefined) {
+      arr.push(locationPath.pathname);
+    } else if (locationPath == undefined) {
+      break;
+    }
+  }
   return (
     <PageSection>
       <Container>
