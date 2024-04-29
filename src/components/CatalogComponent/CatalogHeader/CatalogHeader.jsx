@@ -3,7 +3,7 @@ import {
   SortButton,
   SortWrapper,
 } from "../../Buttons/FilterButton/FilterButton.styled";
-import { PageTitle } from "../../Typography/PageTitle.styled";
+import { PageTitle } from "../../Typography/Typography.styled";
 import {
   CatalogHeaderContainer,
   FilterWrapper,

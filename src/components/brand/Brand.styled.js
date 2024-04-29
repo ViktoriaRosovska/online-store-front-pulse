@@ -1,28 +1,5 @@
 import styled from "styled-components";
 
-// export const Container = styled.div`
-//   padding: 120px 120px;
-// `;
-// export const NavigationWrapper = styled.div`
-//   font-size: 16px;
-//   line-height: 20px;
-//   font-family: "Roboto";
-//   letter-spacing: 0;
-//   margin-bottom: 36px;
-//   & a {
-//     color: var(--grey-text-color);
-//   }
-// `;
-export const Title = styled.h2`
-  font-family: var(--tittle-font);
-  font-weight: 400;
-  font-size: 36px;
-  line-height: 100%;
-  letter-spacing: 0;
-  margin-bottom: 36px;
-  text-align: center;
-`;
-
 export const Text = styled.p`
   font-family: "Roboto";
   font-size: 16px;
@@ -31,7 +8,6 @@ export const Text = styled.p`
   color: var(--black-text-color);
   text-align: center;
 `;
-// export const Links = styled(Link)``;
 
 const StyledBrandCardWrapper = styled.div`
   display: flex;
@@ -55,18 +31,28 @@ const StyledBrandImage = styled.img`
 `;
 
 const SliderBrandsWrapper = styled.div`
-  position: relative;
-  /* display: flex; */
-  /* border: 1px solid red; */
-  /* flex-direction: row; */
-  /* flex-wrap: wrap; */
-  /* width: 327px; */
-
-  height: 550px;
+  display: none;
 
   @media screen and (min-width: 1440px) {
+    display: block;
     height: 147px;
-    /* width: 1198px; */
   }
 `;
-export { StyledBrandCardWrapper, StyledBrandImage, SliderBrandsWrapper };
+
+const StyledMobileBrandList = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 37px;
+
+  @media screen and (min-width: 1440px) {
+    display: none;
+  }
+`;
+export {
+  StyledBrandCardWrapper,
+  StyledBrandImage,
+  SliderBrandsWrapper,
+  StyledMobileBrandList,
+};
