@@ -24,6 +24,7 @@ const Banner = () => {
           </TitleBox>
 
           <CardButton
+            $bannerWidth={true}
             text={"Каталог"}
             route={ROUTES.SALES}
             state={{ from: location }}

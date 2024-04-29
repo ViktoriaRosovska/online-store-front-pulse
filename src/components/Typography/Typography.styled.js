@@ -22,4 +22,17 @@ const PageTitle = styled(Title)`
   transform: translateX(-50%);
 `;
 
-export { PageTitle, Title };
+const StyledSliderTitle = styled.h2`
+  font-family: "Strong";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 36px;
+  text-align: center;
+  @media screen and (min-width: 1440px) {
+    font-size: 64px;
+
+    line-height: 64px;
+  }
+`;
+export { PageTitle, Title, StyledSliderTitle };

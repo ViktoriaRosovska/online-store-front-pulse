@@ -31,6 +31,7 @@ const StyledBrandImage = styled.img`
 `;
 
 const SliderBrandsWrapper = styled.div`
+  position: relative;
   display: none;
 
   @media screen and (min-width: 1440px) {

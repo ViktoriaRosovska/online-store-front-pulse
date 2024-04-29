@@ -11,7 +11,6 @@ import {
   SectionManWomen,
   SectionNews,
   SectionSale,
-  StyledSliderTitle,
   VectorBox,
   WomenBox,
 } from "./MainPage.styled.js";
@@ -21,6 +20,7 @@ import ProductSlider from "../../components/Slider/ProductSlider.jsx";
 import { useEffect, useState } from "react";
 import { brandNew, brandSales } from "../../http/ProductsApi";
 import { Container } from "../../main.styled";
+import { StyledSliderTitle } from "components/Typography/Typography.styled";
 
 const Main = () => {
   const [sales, setSales] = useState([]);

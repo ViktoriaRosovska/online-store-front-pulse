@@ -5,6 +5,14 @@ import { selectUserShopCart } from "../../redux/user/userShopCart/userShopCartSe
 import { deleteUserShopCartItem } from "../../redux/user/userShopCart/userShopCartSlice";
 import { useLocation } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
+import {
+  StyledCard,
+  StyledProductName,
+  StyledShopCartCardWrapper,
+  StyledShopCartImage,
+  StyledShopCartInfo,
+  StyledShopCartListItem,
+} from "./ShopCart.styled";
 
 export const ShopCart = props => {
   let location = useLocation()?.state?.from;
@@ -36,31 +44,41 @@ export const ShopCart = props => {
             {userShopCartItems && userShopCartItems.length > 0
               ? userShopCartItems.map(el => {
                   return (
-                    <li key={el._id}>
-                      <div>
-                        <img src={el.imgGallery[0]} alt={el.name} />
-                        <div>
-                          <div>
-                            <p>{el.name}</p>
-                            <p>{el.price}</p>
-                          </div>
-                          <p>
-                            Колір: <span>{el.categories.color[0].name}</span>
-                          </p>
-                          <p>
-                            Розмір: <span>Розмір</span>
-                          </p>
-                          <div>Кількість: 1</div>
-                        </div>
+                    <StyledShopCartListItem key={el._id}>
+                      <StyledShopCartCardWrapper>
+                        <StyledCard>
+                          <StyledShopCartImage
+                            src={el.imgGallery[0]}
+                            alt={el.name}
+                          />
+                          <StyledShopCartInfo>
+                            <StyledProductName>{el.name}</StyledProductName>
+                            <p>
+                              Колір: <span>{el.categories.color[0].name}</span>
+                            </p>
+                            <p>
+                              Розмір: <span>Розмір</span>
+                            </p>
+                            <div>Кількість: 1</div>
+                          </StyledShopCartInfo>
+                        </StyledCard>
+
+                        <div>Count</div>
+                        <p>{el.price}</p>
                         <button
+                          style={{
+                            position: "absolute",
+                            right: "16px",
+                            top: "10px",
+                          }}
                           onClick={() =>
                             dispatch(deleteUserShopCartItem(el._id))
                           }
                         >
                           X
                         </button>
-                      </div>
-                    </li>
+                      </StyledShopCartCardWrapper>
+                    </StyledShopCartListItem>
                   );
                 })
               : null}
