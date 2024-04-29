@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUserShopCart } from "../../redux/user/userShopCart/userShopCartSelector";
 import { deleteUserShopCartItem } from "../../redux/user/userShopCart/userShopCartSlice";
 import { useLocation } from "react-router-dom";
+import { Title } from "components/Typography/Typography.styled";
 
 export const ShopCart = props => {
-  let location = useLocation().state.from;
+  let location = useLocation()?.state?.from;
   const arr = [];
-  arr.push(location.pathname);
+  arr.push(location?.pathname);
   while (location !== undefined) {
     location = location?.state?.from;
     if (location !== undefined) {
@@ -29,7 +30,7 @@ export const ShopCart = props => {
     <PageSection>
       <Container>
         <Breadcrumbs current={props.title} />
-        <h2>{props.title}</h2>
+        <Title>{props.title}</Title>
         <div>
           <ul>
             {userShopCartItems && userShopCartItems.length > 0
