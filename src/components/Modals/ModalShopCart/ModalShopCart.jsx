@@ -13,15 +13,15 @@ import {
   StyledShopCartRegistration,
   StyledShopCartTip,
 } from "./ModalShopCart.styled";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ROUTES } from "../../../utils/routes";
 
 export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const location = useLocation();
-  const alink = () => {
-    navigate(`${ROUTES.SHOPCART}`, { state: { from: location } });
-  };
+  // const alink = () => {
+  //   navigate(`${ROUTES.SHOPCART}`, { state: { from: location } });
+  // };
   // const handleAddToCart = () => {
   //   // Создаем объект с данными о продукте
   //   const product = {
@@ -91,7 +91,11 @@ export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
             </StyledShopCartTip>
           </div>
 
-          <StyledShopCartButton text={"Оформити"} click={alink} />
+          <StyledShopCartButton
+            text={"Оформити"}
+            route={ROUTES.SHOPCART}
+            state={{ from: location }}
+          />
           <StyledShopCartWhiteButton
             click={onClose}
             text={"Продовжити покупки"}

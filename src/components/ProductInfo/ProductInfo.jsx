@@ -50,14 +50,6 @@ const ProductInfo = () => {
     }
   };
 
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const openModal = () => {
-  //   setIsModalOpen(true);
-  // };
-  // const closeModal = () => {
-  //   setIsModalOpen(false);
-  // };
-
   const [searchParams] = useSearchParams();
   const [sizeValue, setSizeValue] = useState(() =>
     Number(searchParams.get("size")?.split(",")[0] || undefined)
@@ -82,7 +74,7 @@ const ProductInfo = () => {
     }
   }
 
-  console.log(arr);
+  // console.log(arr);
 
   if (isFetching) return <div>Loading...</div>;
   if (!data) return null;
@@ -103,12 +95,6 @@ const ProductInfo = () => {
   if ((!lastView && !lastView.length) || !lastView.includes(data)) {
     setLastView(prev => [data, ...prev]);
   }
-
-  // console.log(lastView);
-
-  // localStorage.setItem("lastView", JSON.stringify(lastView));
-
-  // console.log(sizeValue);
 
   return (
     <StyledProductInfoWrapper>
@@ -171,12 +157,7 @@ const ProductInfo = () => {
           <ProductFeatureList features={features} />
         </DetailsToggler>
       </DescriptionWrapper>
-      {/* <BasicModal
-        openModal={isModalOpen}
-        closeModal={closeModal}
-        productData={data}
-        sizeValue={sizeValue}
-      /> */}
+
       <AnimatePresence>
         {isVisible && (
           <ReusableModal
