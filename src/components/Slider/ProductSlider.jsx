@@ -19,11 +19,17 @@ const ProductSlider = props => {
 
   return (
     <SwiperContainer>
-      <StyledNavigationPrevBtn className="nav-btn custom-prev-button">
+      <StyledNavigationPrevBtn
+        className="nav-btn custom-prev-button"
+        $card={true}
+      >
         <SwiperLeftArrowIcon />
       </StyledNavigationPrevBtn>
 
-      <StyledNavigationNextBtn className="nav-btn custom-next-button">
+      <StyledNavigationNextBtn
+        className="nav-btn custom-next-button"
+        $card={true}
+      >
         <SwiperRightArrowIcon />
       </StyledNavigationNextBtn>
 
@@ -55,7 +61,7 @@ const ProductSlider = props => {
           "--swiper-pagination-bullet-inactive-color": "var(--grey-text-color)",
           "--swiper-pagination-bullet-inactive-opacity": "1",
           // "--swiper-pagination-bullet-width": "5px",
-          "--swiper-pagination-bottom": "27.5px",
+          "--swiper-pagination-bottom": "0px",
           // "--swiper-pagination-bullet-size": "12px",
           // "--swiper-pagination-bullet-horizontal-gap": "6px",
         }}

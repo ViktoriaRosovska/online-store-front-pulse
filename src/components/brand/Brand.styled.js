@@ -1,19 +1,19 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  padding: 120px 120px;
-`;
-export const NavigationWrapper = styled.div`
-  font-size: 16px;
-  line-height: 20px;
-  font-family: "Roboto";
-  letter-spacing: 0;
-  margin-bottom: 36px;
-  & a {
-    color: var(--grey-text-color);
-  }
-`;
-export const Title = styled.h1`
+// export const Container = styled.div`
+//   padding: 120px 120px;
+// `;
+// export const NavigationWrapper = styled.div`
+//   font-size: 16px;
+//   line-height: 20px;
+//   font-family: "Roboto";
+//   letter-spacing: 0;
+//   margin-bottom: 36px;
+//   & a {
+//     color: var(--grey-text-color);
+//   }
+// `;
+export const Title = styled.h2`
   font-family: var(--tittle-font);
   font-weight: 400;
   font-size: 36px;

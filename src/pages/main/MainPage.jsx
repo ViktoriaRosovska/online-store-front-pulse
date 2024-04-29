@@ -1,6 +1,6 @@
 import "./main.css";
 import Banner from "../../components/Banner/Banner.jsx";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SaleIconsMarquee from "../../components/SaleIconsMarquee/SaleIconsMarquee";
 import {
   BoxHero,
@@ -26,10 +26,10 @@ const Main = () => {
   const [sales, setSales] = useState([]);
   const [newBrands, setNewBrands] = useState([]);
   const navigate = useNavigate();
-
+  const location = useLocation();
   // console.log(sales.products);
   const navFunc = () => {
-    navigate("/catalog");
+    navigate("/catalog", { state: { from: location } });
   };
 
   useEffect(() => {
@@ -52,14 +52,14 @@ const Main = () => {
         </Container>
       </SectionHero>
       <SectionManWomen className="container">
-        <Link to="/malecatalog">
+        <Link to="/malecatalog" state={{ from: location }}>
           <ManBox>
             <BoxTitle>
               <h3>Для нього</h3>
             </BoxTitle>
           </ManBox>
         </Link>
-        <Link to="/femalecatalog">
+        <Link to="/femalecatalog" state={{ from: location }}>
           <WomenBox>
             <BoxTitle>
               <h3>Для неї</h3>

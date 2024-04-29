@@ -3,6 +3,11 @@
 }
 
 @media screen and (min-width: 1440px) {
+  .swiper-slide {
+    /* max-width: 340px;
+    margin-right: 89px; */
+    /* height: 486px; */
+  }
   .swiper-wrapper {
     height: 486px;
   }

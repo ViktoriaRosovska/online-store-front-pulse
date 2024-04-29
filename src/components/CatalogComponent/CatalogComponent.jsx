@@ -4,9 +4,9 @@ import { Container, ContentWrapper, PageSection } from "../../main.styled";
 import { Aside } from "./Aside/Aside";
 import { CardsList } from "../CardsList/CardsList";
 import { CatalogHeader } from "./CatalogHeader/CatalogHeader";
-import { CatalogNavigation } from "./CatalogNavigation/CatalogNavigation";
-
 import { LastView } from "components/LastView/LastView";
+import { useLocation } from "react-router-dom";
+import Breadcrumbs from "components/Breadcrumbs";
 
 // import { getFilterQuery } from "../../redux/filterQuery/filterQuerySlice";
 // import { selectFilterQuery } from "../../redux/filterQuery/filterQuerySelector";
@@ -166,10 +166,23 @@ export const CatalogComponent = ({
     return setShowAside(!showAside);
   };
 
+  let locationPath = useLocation().state.from;
+  const arr = [];
+  arr.push(locationPath.pathname);
+  while (locationPath !== undefined) {
+    locationPath = locationPath?.state?.from;
+    if (locationPath !== undefined) {
+      arr.push(locationPath);
+    } else if (locationPath == undefined) {
+      break;
+    }
+  }
+
+  console.log(arr);
   return (
     <PageSection>
       <Container>
-        <CatalogNavigation title={title} />
+        <Breadcrumbs current={title} />
 
         <CatalogHeader
           selectedBrands={selectedBrands}

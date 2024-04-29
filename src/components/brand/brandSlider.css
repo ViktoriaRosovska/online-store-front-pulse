@@ -1,5 +1,5 @@
 .swiper-slide {
-  height: 600px;
+  height: 500px;
   /* max-width: 152x; */
   /* width: 152px; */
   /* border: 1px solid green; */
@@ -9,6 +9,6 @@
   .swiper-slide {
     /* max-width: 340px;
     margin-right: 89px; */
-    height: 300px;
+    height: 147px;
   }
 }
