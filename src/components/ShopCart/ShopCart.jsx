@@ -25,7 +25,7 @@ export const ShopCart = props => {
     }
   }
 
-  console.log(arr);
+  // console.log(arr);
   const userShopCartItems = useSelector(selectUserShopCart);
   const dispatch = useDispatch();
   //   console.log(userShopCartItems);
