@@ -213,17 +213,3 @@ export const SectionSale = styled.section`
     padding-top: 120px;
   }
 `;
-
-export const StyledSliderTitle = styled.h2`
-  font-family: "Strong";
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 24px;
-  margin-bottom: 36px;
-  text-align: center;
-  @media screen and (min-width: 1440px) {
-    font-size: 64px;
-
-    line-height: 64px;
-  }
-`;

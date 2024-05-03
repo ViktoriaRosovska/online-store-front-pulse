@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import Button from "../Button";
 
-const StyledShopCartButton = styled(Button)`
+import CardButton from "../CardButton/CardButton";
+
+const StyledShopCartButton = styled(CardButton)`
   font-family: "Roboto";
   font-size: 20px;
   line-height: 28px;

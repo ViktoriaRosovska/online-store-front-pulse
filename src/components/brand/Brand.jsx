@@ -1,12 +1,10 @@
 import "swiper/css/grid";
 import {
-  // NavigationWrapper,
-  // Title,
   Text,
   StyledBrandCardWrapper,
   StyledBrandImage,
   SliderBrandsWrapper,
-  Title,
+  StyledMobileBrandList,
 } from "./Brand.styled";
 
 import "./brandSlider.css";
@@ -21,28 +19,28 @@ import { Link, useLocation } from "react-router-dom";
 import { Container, PageSection } from "../../main.styled";
 import { register } from "swiper/element";
 import Breadcrumbs from "components/Breadcrumbs";
+import { Title } from "components/Typography/Typography.styled";
 
 register();
 export default function BrandsList(props) {
   let locationPath = useLocation()?.state?.from;
   const arr = [];
-  arr.push(locationPath.pathname);
+  arr.push(locationPath?.pathname);
   while (locationPath !== undefined) {
     locationPath = locationPath?.state?.from;
     if (locationPath !== undefined) {
-      arr.push(locationPath.pathname);
+      arr.push(locationPath?.pathname);
     } else if (locationPath == undefined) {
       break;
     }
   }
+
   return (
     <PageSection>
       <Container>
-        {/* <NavigationWrapper>
-          <a href="./">Головна</a> <span>/</span> <span>{props.title}</span>
-        </NavigationWrapper> */}
         <Breadcrumbs current={props.title} />
         <Title>{props.title}</Title>
+
         <SliderBrandsWrapper>
           <StyledNavigationPrevBtn
             className="nav-btn custom-prev-button"
@@ -66,25 +64,8 @@ export default function BrandsList(props) {
             loading="lazy"
             navigation-next-el=".custom-next-button"
             navigation-prev-el=".custom-prev-button"
-            breakpoints={JSON.stringify({
-              320: {
-                slidesPerView: 2,
-
-                grid: {
-                  rows: 3,
-                  column: 2,
-                  fill: "row",
-                },
-
-                spaceBetween: 23,
-                slidesPerGroup: 2,
-              },
-
-              1440: {
-                slidesPerView: 5,
-                spaceBetween: 87,
-              },
-            })}
+            slides-per-view={5}
+            space-between={87}
             style={{
               "--swiper-button-prev-right": "auto",
               "--swiper-navigation-color": "black",
@@ -116,6 +97,23 @@ export default function BrandsList(props) {
             )}
           </swiper-container>
         </SliderBrandsWrapper>
+
+        <StyledMobileBrandList>
+          {brands.map(el => {
+            return (
+              <Link key={el.title} to={`/catalog?brand=${el.title}`}>
+                <StyledBrandCardWrapper>
+                  <StyledBrandImage
+                    src={el.img}
+                    alt={el.title}
+                    loading="eager"
+                  />
+                  <Text>{el.title}</Text>
+                </StyledBrandCardWrapper>
+              </Link>
+            );
+          })}
+        </StyledMobileBrandList>
       </Container>
     </PageSection>
   );

@@ -14,7 +14,7 @@ const CardButtonWrapper = styled(Link)`
   border-radius: 16px;
   padding-top: 14px;
   padding-bottom: 14px;
-  width: 100%;
+  width: ${props => (props.$bannerWidth ? "227px" : "100%")};
   border: none;
   cursor: pointer;
   &:hover {
