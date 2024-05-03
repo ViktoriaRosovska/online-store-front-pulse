@@ -1,7 +1,7 @@
 // import { useLocation } from "react-router-dom";
 import { CardButtonWrapper } from "./CardButton.styled";
 
-const CardButton = ({ text, style, route, state, $bannerWidth }) => {
+const CardButton = ({ text, style, route, state, $bannerWidth, onClick }) => {
   // const location = useLocation().pathname;
 
   return (
@@ -10,6 +10,7 @@ const CardButton = ({ text, style, route, state, $bannerWidth }) => {
       to={route}
       state={state}
       $bannerWidth={$bannerWidth}
+      onClick={onClick}
     >
       {text}
     </CardButtonWrapper>

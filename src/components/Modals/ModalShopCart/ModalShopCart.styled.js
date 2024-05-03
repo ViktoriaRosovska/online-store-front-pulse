@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { StyledCloseBtn } from "../ModalSizeList/ModalSizeList.styled";
 
 const StyledModalShopCartWrapper = styled.div`
   width: 343px;
@@ -57,10 +58,12 @@ const StyledShopCartInfo = styled.div`
   display: flex;
   gap: 12px;
   padding-bottom: 10px;
+  margin-bottom: 10px;
   border-bottom: 1px solid var(--black-bg-color);
   @media screen and (min-width: 1440px) {
     width: 401px;
     border-bottom: none;
+    margin-bottom: 0;
     border-right: 1px solid var(--black-bg-color);
     padding-bottom: 0;
     gap: 21px;
@@ -88,6 +91,25 @@ const StyledShopCartRegistration = styled.div`
     width: 374px;
   }
 `;
+
+const StyledCloseBtnShopCart = styled(StyledCloseBtn)`
+  top: 32px;
+  right: 24px;
+  width: 24px;
+  height: 24px;
+  & svg {
+    scale: 0.5;
+  }
+  @media screen and (min-width: 1440px) {
+    top: 68px;
+    right: 51px;
+    width: 48px;
+    height: 48px;
+    & svg {
+      scale: 1;
+    }
+  }
+`;
 export {
   StyledModalShopCartWrapper,
   ModalShopCartTitle,
@@ -98,4 +120,5 @@ export {
   StyledShopCartTip,
   StyledShopCartRegistration,
   StyledShopCartContainer,
+  StyledCloseBtnShopCart,
 };

@@ -4,6 +4,7 @@ import {
 } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
 import {
   ModalShopCartTitle,
+  StyledCloseBtnShopCart,
   StyledModalShopCartWrapper,
   StyledProductTitle,
   StyledShopCartContainer,
@@ -15,29 +16,34 @@ import {
 } from "./ModalShopCart.styled";
 import { useLocation } from "react-router-dom";
 import { ROUTES } from "../../../utils/routes";
+import { ReactComponent as ModalCloseBtnIcon } from "../../../assets/svg/modalCloseBtn.svg";
 
 export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
   const location = useLocation();
+  // const alink = () => {
+  //   navigate(`${ROUTES.SHOPCART}`, { state: { from: location } });
+  // };
+
+  // const handleAddToCart = () => {
+  //   // Создаем объект с данными о продукте
+  //   const product = {
+  //     id: productData.id, // Уникальный идентификатор продукта
+  //     name: name,
+  //     price: price,
+  //     color: categories.color[0].name,
+  //     size: sizeValue,
+  //     quantity: 1, // Количество, в данном случае 1
+  //     imageUrl: imgGallery[0], // URL изображения
+  //   };
 
   if (!productData) return null;
 
   const { name, price, categories, imgGallery } = productData;
   return (
     <StyledModalShopCartWrapper>
-      <button
-        onClick={onClose}
-        style={{
-          position: "absolute",
-          top: 10,
-          right: 20,
-          padding: "8px",
-          background: "none",
-          border: "none",
-          fontSize: 36,
-        }}
-      >
-        x
-      </button>
+      <StyledCloseBtnShopCart type="button" onClick={onClose}>
+        <ModalCloseBtnIcon />
+      </StyledCloseBtnShopCart>
       <ModalShopCartTitle>Додано в кошик</ModalShopCartTitle>
       <StyledShopCartContainer>
         <StyledShopCartInfo>
@@ -70,7 +76,7 @@ export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
             state={{ from: location }}
           />
           <StyledShopCartWhiteButton
-            click={onClose}
+            onClick={onClose}
             text={"Продовжити покупки"}
           />
         </StyledShopCartRegistration>

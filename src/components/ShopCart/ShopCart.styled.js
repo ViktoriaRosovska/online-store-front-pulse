@@ -12,13 +12,25 @@ const StyledShopCartCardWrapper = styled.div`
   border: 1px solid var(--black-bg-color);
   border-radius: 16px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: fit-content;
+  /* flex-wrap: wrap; */
+  /* justify-content: space-between; */
+  @media screen and (min-width: 1440px) {
+    width: 612px;
+    flex-direction: row;
+    gap: 38px;
+  }
 `;
 const StyledShopCartImage = styled.img`
   width: 123px;
   height: 161px;
   border-radius: 16px;
+  @media screen and (min-width: 1440px) {
+    width: 185px;
+    height: 166px;
+  }
 `;
 const StyledProductName = styled.p`
   font-family: "Roboto";
@@ -28,22 +40,113 @@ const StyledProductName = styled.p`
 `;
 
 const StyledShopCartInfo = styled.div`
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
   width: auto;
-  height: 161px;
+  /* height: 161px; */
   @media screen and (min-width: 1440px) {
     display: flex;
+    flex-direction: column;
+    width: 185px;
   }
 `;
 
 const StyledCard = styled.div`
   width: 100%;
-  border: 1px solid red;
+  height: fit-content;
+  /* border: 1px solid red; */
   display: flex;
+
   gap: 9px;
   margin-bottom: 6px;
   @media screen and (min-width: 1440px) {
+    display: flex;
+    gap: 31px;
+    width: 401px;
   }
+`;
+
+const StyledCloseBtnCard = styled.button`
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+
+  top: 10px;
+  right: 16px;
+  & svg {
+    fill: var(--black-bg-color);
+  }
+  &:hover {
+    & svg {
+      fill: rgba(122, 124, 127, 1);
+    }
+  }
+  @media screen and (min-width: 1440px) {
+    top: 22px;
+    right: 24px;
+  }
+`;
+
+const StyledPageWrapper = styled.div`
+  display: block;
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    justify-content: space-between;
+  }
+`;
+
+const StyledProductText = styled.p`
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+`;
+
+const StyledProductValue = styled.span``;
+
+const StyledOrderWrapper = styled.div`
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  /* border: 1px solid red; */
+  @media screen and (min-width: 1440px) {
+    width: 384px;
+  }
+`;
+
+const StyledOrderTitle = styled.h3`
+  text-align: left;
+
+  font-family: "Roboto";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 33.6px;
+`;
+
+const StyledOrderText = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const StyledPDVText = styled.p`
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0.01em;
+  color: var(--grey-text-color);
+`;
+
+const StyledOrderPriceTextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 export {
   StyledShopCartListItem,
@@ -52,4 +155,13 @@ export {
   StyledProductName,
   StyledShopCartInfo,
   StyledCard,
+  StyledCloseBtnCard,
+  StyledPageWrapper,
+  StyledProductText,
+  StyledProductValue,
+  StyledOrderWrapper,
+  StyledOrderTitle,
+  StyledOrderText,
+  StyledPDVText,
+  StyledOrderPriceTextWrapper,
 };

@@ -8,37 +8,20 @@ const userShopCartSlice = createSlice({
     isLoggedIn: false,
 
     error: null,
-
-    // extraReducers: builder => {
-    //   builder
-    //     .addCase(addShopCartItem.fulfield,(state, { payload }) => {
-    //       state.userShopCart = [payload, ...state];
-    //       state.isLoading = false;
-    //       state.error = null;
-    //     })
-
-    //     .addMatcher(
-    //       action => action.type.endsWith("/rejected"),
-    //       (state, action) => {
-    //         state.error = action.payload;
-    //         state.isLoading = false;
-    //         state.isLoggedIn = false;
-    //       }
-    //     )
-    //     .addMatcher(
-    //       action => action.type.endsWith("/pending"),
-    //       state => {
-    //         state.isLoading = true;
-    //       }
-    //     );
-    // },
   },
   reducers: {
     addShopCartItem(state, { payload }) {
-      state.userShopCart = [payload, ...state.userShopCart];
+      const item = state.userShopCart.find(
+        el => el._id === payload._id && el.size === payload.size
+      );
+      if (item) item.quantity += payload.quantity;
+      else state.userShopCart = [payload, ...state.userShopCart];
     },
     deleteUserShopCartItem(state, { payload }) {
-      state.userShopCart = state.userShopCart.filter(el => el._id !== payload);
+      state.userShopCart = state.userShopCart.filter(
+        el => el._id !== payload._id || el.size !== payload.size
+      );
+      console.log(payload);
     },
   },
 });
