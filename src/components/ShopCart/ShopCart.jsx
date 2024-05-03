@@ -5,14 +5,25 @@ import { selectUserShopCart } from "../../redux/user/userShopCart/userShopCartSe
 import { deleteUserShopCartItem } from "../../redux/user/userShopCart/userShopCartSlice";
 import { useLocation } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
+import { ReactComponent as CloseBtnSmall } from "../../assets/svg/closeBtnSmall.svg";
 import {
   StyledCard,
+  StyledCloseBtnCard,
+  StyledOrderPriceTextWrapper,
+  StyledOrderText,
+  StyledOrderTitle,
+  StyledOrderWrapper,
+  StyledPDVText,
+  StyledPageWrapper,
   StyledProductName,
+  StyledProductText,
+  StyledProductValue,
   StyledShopCartCardWrapper,
   StyledShopCartImage,
   StyledShopCartInfo,
   StyledShopCartListItem,
 } from "./ShopCart.styled";
+import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
 
 export const ShopCart = props => {
   let location = useLocation()?.state?.from;
@@ -28,7 +39,7 @@ export const ShopCart = props => {
   // console.log(arr);
   const userShopCartItems = useSelector(selectUserShopCart);
   const dispatch = useDispatch();
-  //   console.log(userShopCartItems);
+  console.log(userShopCartItems);
   const countPrice = userShopCartItems.reduce((acc, el) => {
     acc += el.price;
     return acc;
@@ -39,66 +50,78 @@ export const ShopCart = props => {
       <Container>
         <Breadcrumbs current={props.title} />
         <Title>{props.title}</Title>
-        <div>
+        <StyledPageWrapper>
           <ul>
             {userShopCartItems && userShopCartItems.length > 0
-              ? userShopCartItems.map(el => {
+              ? userShopCartItems.map((el, idx) => {
                   return (
-                    <StyledShopCartListItem key={el._id}>
+                    <StyledShopCartListItem key={el._id + "#" + idx}>
                       <StyledShopCartCardWrapper>
+                        <StyledCloseBtnCard
+                          onClick={() => dispatch(deleteUserShopCartItem(el))}
+                        >
+                          <CloseBtnSmall />
+                        </StyledCloseBtnCard>
+
                         <StyledCard>
                           <StyledShopCartImage
-                            src={el.imgGallery[0]}
-                            alt={el.name}
+                            src={el.data.imgGallery[0]}
+                            alt={el.data.name}
                           />
                           <StyledShopCartInfo>
-                            <StyledProductName>{el.name}</StyledProductName>
-                            <p>
-                              Колір: <span>{el.categories.color[0].name}</span>
-                            </p>
-                            <p>
-                              Розмір: <span>Розмір</span>
-                            </p>
-                            <div>Кількість: 1</div>
+                            <StyledProductName>
+                              {el.data.name}
+                            </StyledProductName>
+                            <StyledProductText>
+                              Колір:
+                              <StyledProductValue>
+                                &nbsp;
+                                {el.data.categories.color[0].name}
+                              </StyledProductValue>
+                            </StyledProductText>
+                            <StyledProductText>
+                              Розмір:&nbsp;
+                              <StyledProductValue>{el.size}</StyledProductValue>
+                            </StyledProductText>
+                            <div>Кількість: &nbsp;{el.quantity}</div>
                           </StyledShopCartInfo>
                         </StyledCard>
 
-                        <div>Count</div>
-                        <p>{el.price}</p>
-                        <button
-                          style={{
-                            position: "absolute",
-                            right: "16px",
-                            top: "10px",
-                          }}
-                          onClick={() =>
-                            dispatch(deleteUserShopCartItem(el._id))
-                          }
-                        >
-                          X
-                        </button>
+                        {/* <div>Count</div> */}
+                        <StyledProductName>{el.price} </StyledProductName>
                       </StyledShopCartCardWrapper>
                     </StyledShopCartListItem>
                   );
                 })
               : null}
           </ul>
-          <div>
-            <h3>Твоє замовлення</h3>
-            <div>
-              <span>{userShopCartItems.length || 0} товар/товарів</span>
-              <span>Ціна</span>
-            </div>
-            <div>
-              <div>
-                <span>Усього</span>
-                <span>Включно з ПДВ</span>
-              </div>
-              <span>Ціна: {countPrice}</span>
-            </div>
-            <button>Оформити</button>
-          </div>
-        </div>
+          <StyledOrderWrapper>
+            <StyledOrderTitle>Твоє замовлення</StyledOrderTitle>
+            <StyledOrderPriceTextWrapper>
+              <StyledOrderText>
+                <span>{userShopCartItems.length || 0} товар/товарів</span>
+                <span>{countPrice}</span>
+              </StyledOrderText>
+
+              <StyledOrderText>
+                <div>
+                  <p>Усього</p>
+                  <StyledPDVText>Включно з ПДВ</StyledPDVText>
+                </div>
+                <span>{countPrice}</span>
+              </StyledOrderText>
+            </StyledOrderPriceTextWrapper>
+
+            <form>
+              <input placeholder="Ввести промокод" />
+            </form>
+            <StyledShopCartButton
+              text={"Оформити"}
+              // route={ROUTES.SHOPCART}
+              state={{ from: location }}
+            />
+          </StyledOrderWrapper>
+        </StyledPageWrapper>
       </Container>
     </PageSection>
   );

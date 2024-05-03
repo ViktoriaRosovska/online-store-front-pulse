@@ -76,7 +76,7 @@ export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
             state={{ from: location }}
           />
           <StyledShopCartWhiteButton
-            click={onClose}
+            onClick={onClose}
             text={"Продовжити покупки"}
           />
         </StyledShopCartRegistration>

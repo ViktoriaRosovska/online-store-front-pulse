@@ -92,7 +92,15 @@ const ProductInfo = () => {
     imgGallery,
   } = data;
 
-  if ((!lastView && !lastView.length) || !lastView.includes(data)) {
+  const shopCartProduct = {
+    _id: data._id,
+    data: data,
+    quantity: 1,
+    size: sizeValue,
+    price: data.price,
+  };
+
+  if (lastView.findIndex(e => e._id === data._id) < 0) {
     setLastView(prev => [data, ...prev]);
   }
 
@@ -131,7 +139,7 @@ const ProductInfo = () => {
               type="button"
               disabled={!sizeValue}
               onClick={() => {
-                dispatch(addShopCartItem(data));
+                dispatch(addShopCartItem(shopCartProduct));
                 toggleVisibility("cart");
               }}
             >
