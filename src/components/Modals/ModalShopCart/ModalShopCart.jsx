@@ -4,6 +4,7 @@ import {
 } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
 import {
   ModalShopCartTitle,
+  StyledCloseBtnShopCart,
   StyledModalShopCartWrapper,
   StyledProductTitle,
   StyledShopCartContainer,
@@ -15,6 +16,7 @@ import {
 } from "./ModalShopCart.styled";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../utils/routes";
+import { ReactComponent as ModalCloseBtnIcon } from "../../../assets/svg/modalCloseBtn.svg";
 
 export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
   const navigate = useNavigate();
@@ -34,37 +36,14 @@ export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
   //     imageUrl: imgGallery[0], // URL изображения
   //   };
 
-  //   // Получаем текущий список товаров в корзине из localStorage
-  //   const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  //   // Добавляем новый продукт в корзину
-  //   const updatedCart = [...currentCart, product];
-
-  //   // Сохраняем обновленный список товаров в localStorage
-  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
-
-  //   // Закрываем модальное окно после добавления в корзину
-  // };
-
   if (!productData) return null;
 
   const { name, price, categories, imgGallery } = productData;
   return (
     <StyledModalShopCartWrapper>
-      <button
-        onClick={onClose}
-        style={{
-          position: "absolute",
-          top: 10,
-          right: 20,
-          padding: "8px",
-          background: "none",
-          border: "none",
-          fontSize: 36,
-        }}
-      >
-        x
-      </button>
+      <StyledCloseBtnShopCart type="button" onClick={onClose}>
+        <ModalCloseBtnIcon />
+      </StyledCloseBtnShopCart>
       <ModalShopCartTitle>Додано в кошик</ModalShopCartTitle>
       <StyledShopCartContainer>
         <StyledShopCartInfo>
