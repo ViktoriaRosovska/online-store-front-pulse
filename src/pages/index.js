@@ -8,6 +8,10 @@ import ProductPage from "./productPage/ProductPage";
 import Sales from "./sales/Sales";
 import UserAccount from "./user/UserAccount";
 import UserShopCart from "./user/UserShopCart";
+import UserOrderHistory from "./user/UserOrderHistory";
+import UserFavorites from "./user/UserFavorites";
+import UserWallet from "./user/UserWallet";
+import UserSupport from "./user/UserSupport";
 
 export {
   MaleCatalog,
@@ -20,4 +24,8 @@ export {
   Sales,
   UserAccount,
   UserShopCart,
+  UserOrderHistory,
+  UserFavorites,
+  UserWallet,
+  UserSupport,
 };
