@@ -42,7 +42,11 @@ function UserActions(props) {
     <div className="user__actions">
       <button
         className="user__actions-profile"
-        onClick={isLoggedIn ? navigateToCabinet : toggleVisibility}
+        onClick={
+          // isLoggedIn ?
+          navigateToCabinet
+          // : toggleVisibility
+        }
       >
         <img
           className={`user__actions-icon ${

@@ -5,7 +5,9 @@ import {
 } from "../../redux/auth";
 
 const UserAccount = () => {
-  const [loginUser, { isLoading, isSuccess, isError, error }] =
+  const [loginUser, {
+    // isLoading,
+    isSuccess, isError, error }] =
     useLogoutUserMutation();
 
   const logout = () => {
@@ -27,7 +29,6 @@ const UserAccount = () => {
       }}
     >
       <div>
-        <p>Hey! I am your account!</p>
         <button type="button" onClick={logout}>
           LogOut
         </button>

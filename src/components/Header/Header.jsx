@@ -1,16 +1,20 @@
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import MediaQuery from "react-responsive";
 import "./Header.css";
 import logoImg from "/logo.svg?url";
 import Menu from "../HeaderMenu/HeaderMenu.jsx";
 import SearchUserActions from "./Search-user-actions/Search-user-actions.jsx";
-import { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import MediaQuery from "react-responsive";
+import ProfileMenu from "../../components/ProfileMenu/ProfileMenu";
+import { Portal } from "../../components/Modals/helpersForModal/modalPortal";
+import ModalBurgerMenu from "../../components/Modals/ModalBurgerMenu/ModalBurgerMenu";
 
 function Header() {
   const [isFixed, setIsFixed] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const navigate = useNavigate();
-  const location = useLocation().pathname === "/";
+  const location = useLocation();
   const homeClick = () => {
     navigate("./");
   };
@@ -27,26 +31,68 @@ function Header() {
     };
   }, []);
 
+  const handleOpenMenu = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseMenu = () => {
+    setIsOpen(false);
+  };
+
+  const getMenuItems = () => {
+    if (location.pathname === "/") {
+      return <Menu />;
+    } else if (
+      location.pathname === "/account" ||
+      location.pathname === "/orderhistory" ||
+      location.pathname === "/favorites" ||
+      location.pathname === "/wallet" ||
+      location.pathname === "/support"
+    ) {
+      return <ProfileMenu />;
+    }
+  };
+
   return (
-    <header className={`header ${!location || isFixed ? "fixed" : ""}`}>
-      <div className="container">
-        <div className="header__inner">
-          <Link className="logo" to="./">
-            <img
-              className={`logo__icon ${!location || isFixed ? "fixed" : ""}`}
-              src={logoImg}
-              alt="PulseRun"
-              onClick={homeClick}
-            />
-          </Link>
-          <MediaQuery minWidth={1440}>
-            <nav className="menu">
-              <Menu />
-            </nav>
-          </MediaQuery>
-          <SearchUserActions isFixed={isFixed} location={location} />
-        </div>
+    <header
+      className={`header ${
+        !location.pathname === "/" || isFixed ? "fixed" : ""
+      }`}
+    >
+      {/* <div className="container"> */}
+      <div className="header__inner">
+        <MediaQuery maxWidth={1440}>
+          <div>
+            {!isOpen && <button onClick={handleOpenMenu}>Menu</button>}
+
+            <Portal isOpen={isOpen}>
+              <ModalBurgerMenu onClose={handleCloseMenu}>
+                {getMenuItems(handleCloseMenu)}
+              </ModalBurgerMenu>
+            </Portal>
+          </div>
+        </MediaQuery>
+        <Link className="logo" to="./">
+          <img
+            className={`logo__icon ${
+              !location.pathname === "/" || isFixed ? "fixed" : ""
+            }`}
+            src={logoImg}
+            alt="PulseRun"
+            onClick={homeClick}
+          />
+        </Link>
+        <MediaQuery minWidth={1440}>
+          <nav className="menu">
+            <Menu />
+          </nav>
+        </MediaQuery>
+        <SearchUserActions
+          isFixed={isFixed}
+          location={location.pathname === "/"}
+        />
       </div>
+      {/* </div> */}
     </header>
   );
 }
