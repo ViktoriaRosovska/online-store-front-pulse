@@ -14,7 +14,13 @@ import {
   Sales,
   UserAccount,
   UserShopCart,
+  FooterSupport,
+  FooterConditions,
+  FooterGuarantee,
+  FooterPrivacyPolicy,
+  FooterDelivery,
 } from "./pages/index";
+
 
 const App = () => {
   return (
@@ -32,6 +38,11 @@ const App = () => {
             <Route path={ROUTES.SALES} element={<Sales />} />
             <Route path={ROUTES.ACCOUNT} element={<UserAccount />} />
             <Route path={ROUTES.SHOPCART} element={<UserShopCart />} />
+            <Route path={ROUTES.SUPPORT} element={<FooterSupport />} />
+            <Route path={ROUTES.CONDITIONS} element={<FooterConditions />} />
+            <Route path={ROUTES.GUARANTEE} element={<FooterGuarantee />} />
+            <Route path={ROUTES.POLICY} element={<FooterPrivacyPolicy />} />
+            <Route path={ROUTES.DELIVERY} element={<FooterDelivery />} />
           </Route>
         </Routes>
       </PersistedAuth>

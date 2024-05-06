@@ -8,6 +8,11 @@ import ProductPage from "./productPage/ProductPage";
 import Sales from "./sales/Sales";
 import UserAccount from "./user/UserAccount";
 import UserShopCart from "./user/UserShopCart";
+import FooterSupport from "./footer/FooterSupport.jsx";
+import FooterConditions from "./footer/FooterConditions.jsx";
+import FooterGuarantee from "./footer/FooterGuarantee.jsx";
+import FooterPrivacyPolicy from "./footer/FooterPrivacyPolicy.jsx";
+import FooterDelivery from "./footer/FooterDelivery.jsx";
 
 export {
   MaleCatalog,
@@ -20,4 +25,9 @@ export {
   Sales,
   UserAccount,
   UserShopCart,
+  FooterSupport,
+  FooterConditions,
+  FooterGuarantee,
+  FooterPrivacyPolicy,
+  FooterDelivery,
 };

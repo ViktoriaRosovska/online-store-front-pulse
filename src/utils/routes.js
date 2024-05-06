@@ -8,4 +8,9 @@ export const ROUTES = {
   SALES: "/sales",
   ACCOUNT: "/account",
   SHOPCART: "/shopcart",
+  SUPPORT: "/support",
+  CONDITIONS: "/conditions",
+  GUARANTEE: "/guarantee",
+  POLICY: "/policy",
+  DELIVERY: "/delivery",
 };
