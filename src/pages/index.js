@@ -12,6 +12,11 @@ import UserOrderHistory from "./user/UserOrderHistory";
 import UserFavorites from "./user/UserFavorites";
 import UserWallet from "./user/UserWallet";
 import UserSupport from "./user/UserSupport";
+import FooterSupport from "./footer/FooterSupport.jsx";
+import FooterConditions from "./footer/FooterConditions.jsx";
+import FooterGuarantee from "./footer/FooterGuarantee.jsx";
+import FooterPrivacyPolicy from "./footer/FooterPrivacyPolicy.jsx";
+import FooterDelivery from "./footer/FooterDelivery.jsx";
 
 export {
   MaleCatalog,
@@ -28,4 +33,9 @@ export {
   UserFavorites,
   UserWallet,
   UserSupport,
+  FooterSupport,
+  FooterConditions,
+  FooterGuarantee,
+  FooterPrivacyPolicy,
+  FooterDelivery,
 };

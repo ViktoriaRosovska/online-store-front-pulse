@@ -6,14 +6,16 @@ import instagramIcon from "/public/icons/social-media-icons/instagram-icon.svg";
 import facebookIcon from "/public/icons/social-media-icons/facebook-icon.svg";
 import mailIcon from "/public/icons/social-media-icons/mail-icon.svg";
 import phoneIcon from "/public/icons/social-media-icons/phone-icon.svg";
+import menuArrayFooter from "./../../../../data/footerMenu.json";
 
 function FooterGlassInfo() {
   const iconsArray = [instagramIcon, facebookIcon, mailIcon, phoneIcon];
-  const footerNavbarItem1 = ["Підтримка", "Умови та положення", "Гарантія та повернення", "Політики конфіденційності"];
-  const footerNavbarItem2 = ["Головна", "Про нас", "Профіль", "Доставка"];
-  const footerNavbarItem3 = ["Каталог товарів", "Новинки", "Распродаж", "Бренди"];
+  // const footerNavbarItem1 = ["Підтримка", "Умови та положення", "Гарантія та повернення", "Політики конфіденційності"];
+  // const footerNavbarItem2 = ["Головна", "Про нас", "Профіль", "Доставка"];
+  // const footerNavbarItem3 = ["Каталог товарів", "Новинки", "Распродаж", "Бренди"];
 
-  const footerNavbarItems = [iconsArray, footerNavbarItem1, footerNavbarItem2, footerNavbarItem3];
+  // const footerNavbarItems = [iconsArray, footerNavbarItem1, footerNavbarItem2, footerNavbarItem3];
+  const footerNavbarItems = [iconsArray, menuArrayFooter[0], menuArrayFooter[1], menuArrayFooter[2]];
 
   return (
     <div className="footer__glass-info">
@@ -42,7 +44,8 @@ function FooterGlassInfo() {
                           <img src={item} alt={`Icon ${itemIndex + 1}`} />
                         </Link>
                       ) : (
-                        <Link href={"#"} linkText={item} />
+                        // <Link href={"#"} linkText={item} /> 
+                        <Link href={item.href} linkText={item.name} />
                       )}
                     </li>
                   ))}
