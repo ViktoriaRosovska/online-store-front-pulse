@@ -5,7 +5,7 @@ export const Avatar = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: var(--grey-text-color);
+  background-color: var(--grey-img-bg-color);
   overflow: hidden;
 `;
 
@@ -58,8 +58,8 @@ export const StyledNavLink = styled(NavLink)`
 `;
 
 export const Button = styled.button`
-    display: flex;
-     align-items: center;
+  display: flex;
+  align-items: center;
   width: 210px;
   padding: 10px;
   background-color: var(--white-light-bg-color);
@@ -71,4 +71,4 @@ export const Button = styled.button`
     fill: var(--grey-text-color);
     stroke: var(--grey-text-color);
   }
-`
+`;

@@ -34,6 +34,7 @@
   --grey-text-color: #7a7c7f;
   --grey-bg-color: #444444;
   --grey-filter-btn-color: #dfdfdf;
+  --grey-img-bg-color: #D9D9D9;
   --grey-link-hover-footer-color: #ada9a9;
   --footer-glass-bg-color: rgba(217, 217, 217, 0.05);
   --blue-bg-color: #495c80;
@@ -105,4 +106,5 @@ img {
 button {
   border: none;
   cursor: pointer;
+  background-color: transparent;
 }

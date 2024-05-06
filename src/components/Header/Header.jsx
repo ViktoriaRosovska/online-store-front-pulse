@@ -5,7 +5,7 @@ import "./Header.css";
 import logoImg from "/logo.svg?url";
 import Menu from "../HeaderMenu/HeaderMenu.jsx";
 import SearchUserActions from "./Search-user-actions/Search-user-actions.jsx";
-import ProfileMenu from "../../components/ProfileMenu/ProfileMenu";
+import ProfileMenu from "../UserAccount/ProfileMenu/ProfileMenu";
 import { Portal } from "../../components/Modals/helpersForModal/modalPortal";
 import ModalBurgerMenu from "../../components/Modals/ModalBurgerMenu/ModalBurgerMenu";
 
@@ -63,7 +63,13 @@ function Header() {
       <div className="header__inner">
         <MediaQuery maxWidth={1440}>
           <div>
-            {!isOpen && <button onClick={handleOpenMenu}>Menu</button>}
+            {!isOpen && (
+              <button onClick={handleOpenMenu}>
+                <svg width={26} height={26}>
+                  <use xlinkHref="./icons/profile-icons/profile-icons-sprite.svg#icon-menu"></use>
+                </svg>
+              </button>
+            )}
 
             <Portal isOpen={isOpen}>
               <ModalBurgerMenu onClose={handleCloseMenu}>
