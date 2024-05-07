@@ -167,8 +167,8 @@ const ProductInfo = () => {
       </DescriptionWrapper>
 
       <AnimatePresence>
-        {isVisible && (
-          <ReusableModal
+   
+          <ReusableModal isOpen={isVisible}
             locked={isLocked}
             onClose={() => toggleVisibility("size")}
           >
@@ -177,11 +177,11 @@ const ProductInfo = () => {
               isVisible={isVisible}
             />
           </ReusableModal>
-        )}
+   
       </AnimatePresence>
       <AnimatePresence>
-        {isVisibleCart && (
-          <ReusableModal
+
+          <ReusableModal isOpen={isVisibleCart}
             locked={isLocked}
             onClose={() => toggleVisibility("cart")}
           >
@@ -192,7 +192,7 @@ const ProductInfo = () => {
               sizeValue={sizeValue}
             />
           </ReusableModal>
-        )}
+
       </AnimatePresence>
     </StyledProductInfoWrapper>
   );

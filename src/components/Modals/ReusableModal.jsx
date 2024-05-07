@@ -10,11 +10,11 @@ const closeVariants = {
   exit: { opacity: 0 },
 };
 
-const ReusableModal = ({ onClose, locked, children }) => {
+const ReusableModal = ({ isOpen, onClose, locked, children }) => {
   useEscapePress(onClose);
 
   return (
-    <Portal>
+    <Portal isOpen={isOpen}>
       <Backdrop
         locked={locked}
         onClick={onClose}

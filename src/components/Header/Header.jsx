@@ -8,7 +8,7 @@ import SearchUserActions from "./Search-user-actions/Search-user-actions.jsx";
 import ProfileMenu from "../UserAccount/ProfileMenu/ProfileMenu";
 import { Portal } from "../../components/Modals/helpersForModal/modalPortal";
 import ModalBurgerMenu from "../../components/Modals/ModalBurgerMenu/ModalBurgerMenu";
-import { Container } from "../../main.styled";
+// import { Container } from "../../main.styled";
 
 function Header() {
   const [isFixed, setIsFixed] = useState(false);
@@ -100,7 +100,7 @@ function Header() {
           />
         </div>
         {/* </div> */}
-      </Container>
+      {/* </Container> */}
     </header>
   );
 }
