@@ -7,7 +7,11 @@ export const ROUTES = {
   NEWBRANDS: "/newbrands",
   SALES: "/sales",
   ACCOUNT: "/account",
+
   SHOPCART: "/shopcart",
+  SHOPCARTDELIVERY: "/shopcart/delivery",
+  SHOPCARTPAYMENT: "/shopcart/payment",
+
   ORDERHISTORY: "/orderhistory",
   FAVORITES: "/favorites",
   WALLET: "/wallet",

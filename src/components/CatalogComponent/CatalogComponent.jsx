@@ -7,6 +7,7 @@ import { CatalogHeader } from "./CatalogHeader/CatalogHeader";
 import { LastView } from "components/LastView/LastView";
 import { useLocation } from "react-router-dom";
 import Breadcrumbs from "components/Breadcrumbs";
+import { BREADCRUMBS } from "../../utils/breadcrumbsVocabulary";
 
 function getFromSearchParams(prop, def = [], proj = null) {
   const params = new URLSearchParams(location.search);
@@ -178,7 +179,7 @@ export const CatalogComponent = ({
   return (
     <PageSection>
       <Container>
-        <Breadcrumbs current={title} />
+        <Breadcrumbs current={title} BREADCRUMBS={BREADCRUMBS} />
 
         <CatalogHeader
           selectedBrands={selectedBrands}

@@ -7,7 +7,7 @@ import NewBrands from "./newBrands/NewBrands";
 import ProductPage from "./productPage/ProductPage";
 import Sales from "./sales/Sales";
 import UserAccount from "./user/UserAccount";
-import UserShopCart from "./user/UserShopCart";
+import UserShopCart from "./user/UserShopCart/UserShopCart";
 import UserOrderHistory from "./user/UserOrderHistory";
 import UserFavorites from "./user/UserFavorites";
 import UserWallet from "./user/UserWallet";
@@ -17,6 +17,8 @@ import FooterConditions from "./footer/FooterConditions.jsx";
 import FooterGuarantee from "./footer/FooterGuarantee.jsx";
 import FooterPrivacyPolicy from "./footer/FooterPrivacyPolicy.jsx";
 import FooterDelivery from "./footer/FooterDelivery.jsx";
+import UserShopCartDelivery from "./user/UserShopCart/UserShopCartDelivery";
+import UserShopCartPayment from "./user/UserShopCart/UserShopCartPayment";
 
 export {
   MaleCatalog,
@@ -28,7 +30,6 @@ export {
   ProductPage,
   Sales,
   UserAccount,
-  UserShopCart,
   UserOrderHistory,
   UserFavorites,
   UserWallet,
@@ -38,4 +39,7 @@ export {
   FooterGuarantee,
   FooterPrivacyPolicy,
   FooterDelivery,
+  UserShopCartDelivery,
+  UserShopCart,
+  UserShopCartPayment,
 };
