@@ -194,6 +194,12 @@ const StyledChangeCountBtn = styled.button`
     }
   }
 `;
+
+const StyledNotificationWrapper = styled.p`
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+`;
 export {
   StyledShopCartListItem,
   StyledShopCartCardWrapper,
@@ -216,4 +222,5 @@ export {
   StyledInfoWrapper,
   StyledChangeCountWrapperDesctop,
   StyledChangeCountBtn,
+  StyledNotificationWrapper,
 };

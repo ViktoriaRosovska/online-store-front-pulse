@@ -49,8 +49,8 @@ const App = () => {
             <Route path={ROUTES.WALLET} element={<UserWallet />} />
             <Route path={ROUTES.SUPPORT} element={<UserSupport />} />
 
-            <Route path={ROUTES.SHOPCART} element={<ShopCartLayout />}>
-              <Route path={ROUTES.SHOPCART} element={<UserShopCart />} />
+            <Route path={ROUTES.SHOPCARTLAYOUT} element={<ShopCartLayout />}>
+              <Route index element={<UserShopCart />} />
               <Route
                 path={ROUTES.SHOPCARTDELIVERY}
                 element={<UserShopCartDelivery />}

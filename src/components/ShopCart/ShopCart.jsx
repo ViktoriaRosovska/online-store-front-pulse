@@ -1,4 +1,3 @@
-import { Container, PageSection } from "../../main.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserShopCart } from "../../redux/user/userShopCart/userShopCartSelector";
 import { deleteUserShopCartItem } from "../../redux/user/userShopCart/userShopCartSlice";
@@ -13,6 +12,7 @@ import {
   StyledCloseBtnCard,
   StyledCountANDPriceWrapper,
   StyledInfoWrapper,
+  StyledNotificationWrapper,
   StyledOrderPriceTextWrapper,
   StyledOrderText,
   StyledOrderTitle,
@@ -32,22 +32,12 @@ import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCart
 import { useState } from "react";
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { ROUTES } from "../../utils/routes";
-import { BREADCRUMBS_SHOPCART } from "../../utils/breadcrumbsVocabulary";
-import BreadcrumbsCart from "components/Breadcrumbs/BreadcrumbsCart";
+
 export const ShopCart = props => {
-  const location = useLocation().pathname;
   const userShopCartItems = useSelector(selectUserShopCart);
   const [items, setItems] = useState(userShopCartItems);
   console.log(items);
-  // let location = useLocation()?.state?.from;
-  // const arr = [];
-  // arr.push(location?.pathname);
-  // while (location !== undefined) {
-  //   location = location?.state?.from;
-  //   if (location !== undefined) {
-  //     arr.push(location);
-  //   }
-  // }
+  let location = useLocation();
 
   const onQuantityDecrement = idx => {
     const newItems = [...items];
@@ -110,71 +100,45 @@ export const ShopCart = props => {
   };
   //   console.log(countPrice);
   return (
-    <PageSection>
-      <Container>
-        <BreadcrumbsCart
-          current={props.title}
-          BREADCRUMBS={BREADCRUMBS_SHOPCART}
-        />
-        <Title>{props.title}</Title>
-        <StyledPageWrapper>
-          <ul>
-            {items && items.length > 0
-              ? items.map((el, idx) => {
-                  return (
-                    <StyledShopCartListItem key={el._id + "#" + idx}>
-                      <StyledShopCartCardWrapper>
-                        <StyledCloseBtnCard
-                          onClick={() => dispatch(deleteUserShopCartItem(el))}
-                        >
-                          <CloseBtnSmall />
-                        </StyledCloseBtnCard>
+    <>
+      <Title>{props.title}</Title>
+      <StyledPageWrapper>
+        {items && items.length > 0 ? (
+          <>
+            <ul>
+              {items.map((el, idx) => {
+                return (
+                  <StyledShopCartListItem key={el._id + "#" + idx}>
+                    <StyledShopCartCardWrapper>
+                      <StyledCloseBtnCard
+                        onClick={() => dispatch(deleteUserShopCartItem(el))}
+                      >
+                        <CloseBtnSmall />
+                      </StyledCloseBtnCard>
 
-                        <StyledCard>
-                          <StyledShopCartImage
-                            src={el.data.imgGallery[0]}
-                            alt={el.data.name}
-                          />
-                          <StyledShopCartInfo>
-                            <StyledInfoWrapper>
-                              <StyledProductName>
-                                {el.data.name}
-                              </StyledProductName>
-                              <StyledProductText>
-                                Колір:
-                                <StyledProductValue>
-                                  &nbsp;
-                                  {mergeColor(el.data.categories.color)}
-                                </StyledProductValue>
-                              </StyledProductText>
-                              <StyledProductText>
-                                Розмір:&nbsp;
-                                <StyledProductValue>
-                                  {el.size}
-                                </StyledProductValue>
-                              </StyledProductText>
-                            </StyledInfoWrapper>
-                            <StyledChangeCountWrapperDesctop>
-                              <StyledChangeCountBtn
-                                onClick={() => onQuantityDecrement(idx)}
-                              >
-                                <FiMinus />
-                              </StyledChangeCountBtn>
-                              <StyledShopCartItemCount>
-                                {el.quantity}
-                              </StyledShopCartItemCount>
-
-                              <StyledChangeCountBtn
-                                onClick={() => onQuantityIncrement(idx)}
-                              >
-                                <FiPlus />
-                              </StyledChangeCountBtn>
-                            </StyledChangeCountWrapperDesctop>
-                          </StyledShopCartInfo>
-                        </StyledCard>
-
-                        <StyledCountANDPriceWrapper>
-                          <StyledChangeCountWrapper>
+                      <StyledCard>
+                        <StyledShopCartImage
+                          src={el.data.imgGallery[0]}
+                          alt={el.data.name}
+                        />
+                        <StyledShopCartInfo>
+                          <StyledInfoWrapper>
+                            <StyledProductName>
+                              {el.data.name}
+                            </StyledProductName>
+                            <StyledProductText>
+                              Колір:
+                              <StyledProductValue>
+                                &nbsp;
+                                {mergeColor(el.data.categories.color)}
+                              </StyledProductValue>
+                            </StyledProductText>
+                            <StyledProductText>
+                              Розмір:&nbsp;
+                              <StyledProductValue>{el.size}</StyledProductValue>
+                            </StyledProductText>
+                          </StyledInfoWrapper>
+                          <StyledChangeCountWrapperDesctop>
                             <StyledChangeCountBtn
                               onClick={() => onQuantityDecrement(idx)}
                             >
@@ -189,50 +153,76 @@ export const ShopCart = props => {
                             >
                               <FiPlus />
                             </StyledChangeCountBtn>
-                          </StyledChangeCountWrapper>
-                          <StyledProductName>{el.price} </StyledProductName>
-                        </StyledCountANDPriceWrapper>
-                      </StyledShopCartCardWrapper>
-                    </StyledShopCartListItem>
-                  );
-                })
-              : null}
-          </ul>
-          <StyledOrderWrapper>
-            <StyledOrderTitle>Твоє замовлення</StyledOrderTitle>
-            <StyledOrderPriceTextWrapper>
-              <StyledOrderText>
-                <span>
-                  {countQuantity}&nbsp;
-                  {normalize_count_form(countQuantity, [
-                    "товар",
-                    "товари",
-                    "товарів",
-                  ])}
-                </span>
-                <span>{countPrice}</span>
-              </StyledOrderText>
+                          </StyledChangeCountWrapperDesctop>
+                        </StyledShopCartInfo>
+                      </StyledCard>
 
-              <StyledOrderText>
-                <div>
-                  <p>Усього</p>
-                  <StyledPDVText>Включно з ПДВ</StyledPDVText>
-                </div>
-                <span>{countPrice}</span>
-              </StyledOrderText>
-            </StyledOrderPriceTextWrapper>
+                      <StyledCountANDPriceWrapper>
+                        <StyledChangeCountWrapper>
+                          <StyledChangeCountBtn
+                            onClick={() => onQuantityDecrement(idx)}
+                          >
+                            <FiMinus />
+                          </StyledChangeCountBtn>
+                          <StyledShopCartItemCount>
+                            {el.quantity}
+                          </StyledShopCartItemCount>
 
-            <form>
-              <input placeholder="Ввести промокод" />
-            </form>
-            <StyledShopCartButton
-              text={"Оформити"}
-              route={ROUTES.SHOPCARTDELIVERY}
-              state={{ from: location }}
-            />
-          </StyledOrderWrapper>
-        </StyledPageWrapper>
-      </Container>
-    </PageSection>
+                          <StyledChangeCountBtn
+                            onClick={() => onQuantityIncrement(idx)}
+                          >
+                            <FiPlus />
+                          </StyledChangeCountBtn>
+                        </StyledChangeCountWrapper>
+                        <StyledProductName>
+                          {el.price}&nbsp;грн
+                        </StyledProductName>
+                      </StyledCountANDPriceWrapper>
+                    </StyledShopCartCardWrapper>
+                  </StyledShopCartListItem>
+                );
+              })}
+            </ul>
+            <StyledOrderWrapper>
+              <StyledOrderTitle>Твоє замовлення</StyledOrderTitle>
+              <StyledOrderPriceTextWrapper>
+                <StyledOrderText>
+                  <span>
+                    {countQuantity}&nbsp;
+                    {normalize_count_form(countQuantity, [
+                      "товар",
+                      "товари",
+                      "товарів",
+                    ])}
+                  </span>
+                  <span>{countPrice}&nbsp;грн</span>
+                </StyledOrderText>
+
+                <StyledOrderText>
+                  <div>
+                    <p>Усього</p>
+                    <StyledPDVText>Включно з ПДВ</StyledPDVText>
+                  </div>
+                  <span>{countPrice}&nbsp;грн</span>
+                </StyledOrderText>
+              </StyledOrderPriceTextWrapper>
+
+              <form>
+                <input placeholder="Ввести промокод" />
+              </form>
+              <StyledShopCartButton
+                text={"Оформити"}
+                route={ROUTES.SHOPCARTDELIVERY}
+                state={{ from: location }}
+              />
+            </StyledOrderWrapper>
+          </>
+        ) : (
+          <StyledNotificationWrapper>
+            У вашому кошику ще немає товарів
+          </StyledNotificationWrapper>
+        )}
+      </StyledPageWrapper>
+    </>
   );
 };

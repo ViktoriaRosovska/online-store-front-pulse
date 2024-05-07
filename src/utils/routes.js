@@ -8,6 +8,7 @@ export const ROUTES = {
   SALES: "/sales",
   ACCOUNT: "/account",
 
+  SHOPCARTLAYOUT: "/shopcart",
   SHOPCART: "/shopcart",
   SHOPCARTDELIVERY: "/shopcart/delivery",
   SHOPCARTPAYMENT: "/shopcart/payment",

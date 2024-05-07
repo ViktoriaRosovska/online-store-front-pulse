@@ -5,7 +5,7 @@ import { Aside } from "./Aside/Aside";
 import { CardsList } from "../CardsList/CardsList";
 import { CatalogHeader } from "./CatalogHeader/CatalogHeader";
 import { LastView } from "components/LastView/LastView";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import Breadcrumbs from "components/Breadcrumbs";
 import { BREADCRUMBS } from "../../utils/breadcrumbsVocabulary";
 
@@ -163,17 +163,17 @@ export const CatalogComponent = ({
     return setShowAside(!showAside);
   };
 
-  let locationPath = useLocation()?.state?.from;
-  const arr = [];
-  arr.push(locationPath?.pathname);
-  while (locationPath !== undefined) {
-    locationPath = locationPath?.state?.from;
-    if (locationPath !== undefined) {
-      arr.push(locationPath?.pathname);
-    } else if (locationPath == undefined) {
-      break;
-    }
-  }
+  // let locationPath = useLocation()?.state?.from;
+  // const arr = [];
+  // arr.push(locationPath?.pathname);
+  // while (locationPath !== undefined) {
+  //   locationPath = locationPath?.state?.from;
+  //   if (locationPath !== undefined) {
+  //     arr.push(locationPath?.pathname);
+  //   } else if (locationPath == undefined) {
+  //     break;
+  //   }
+  // }
 
   // console.log(arr);
   return (
