@@ -1,39 +1,33 @@
-import {
-  useLogoutUserMutation,
-  useHandleLogoutSuccess,
-  useHandleAuthErrors,
-} from "../../redux/auth";
+// import { useLocation } from "react-router-dom";
+import { Container, PageSection } from "../../main.styled";
+import // useLogoutUserMutation,
+// useHandleLogoutSuccess,
+// useHandleAuthErrors,
+"../../redux/auth";
+import UserInfoCard from "components/UserAccount/UserInfoCard/UserInfoCard";
 
 const UserAccount = () => {
-  const [loginUser, {
-    // isLoading,
-    isSuccess, isError, error }] =
-    useLogoutUserMutation();
+  // const location = useLocation()
 
-  const logout = () => {
-    loginUser();
-  };
+  // const [loginUser, {
+  //   // isLoading,
+  //   isSuccess, isError, error }] =
+  //   useLogoutUserMutation();
 
-  useHandleLogoutSuccess(isSuccess);
+  // const logout = () => {
+  //   loginUser();
+  // };
 
-  useHandleAuthErrors(isError, error);
+  // useHandleLogoutSuccess(isSuccess);
+
+  // useHandleAuthErrors(isError, error);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        width: "100%",
-      }}
-    >
-      <div>
-        <button type="button" onClick={logout}>
-          LogOut
-        </button>
-      </div>
-    </div>
+    <PageSection>
+      <Container>
+        <UserInfoCard />
+      </Container>
+    </PageSection>
   );
 };
 
