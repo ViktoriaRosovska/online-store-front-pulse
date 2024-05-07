@@ -1,43 +1,80 @@
 import { Formik } from "formik";
-import { UserEditValidationSchema } from "../formHelpers/formValidation";
+import { userEditValidationSchema } from "../formHelpers/formValidation";
 import CustomInput from "../formElements/CustomInput/CustomInput";
-import { SaveButton, StyledForm } from "./UserEditForm.styled";
-import { useSelector } from "react-redux";
-import { selectUserData } from "../../../redux/auth";
+import { Button, StyledForm } from "./UserEditForm.styled";
+import {  useFetchCurrentUserQuery } from "../../../redux/auth";
+import { useUserDeleteMutation, useUserUpdateMutation } from "../../../redux/user/userSlice/userApi";
 
 const UserEditForm = () => {
-  const user = useSelector(selectUserData);
-  console.log("UserEditForm  user", user);
+  const { data, isLoading, refetch } = useFetchCurrentUserQuery(undefined, { refetchOnMountOrArgChange: true });
+  const [userUpdate, { isError }] = useUserUpdateMutation();
+  const [userDelete] = useUserDeleteMutation()
+  console.log("UserEditForm  isError", isError)
+  const user = data?.user
+  
+  const phoneNumber = user?.phone === '0000000000' ? "" : user?.phone
 
   const initialValues = {
-    name: "",
-    surname: "",
-    email: "",
-    phone: "",
+    firstName: user?.firstName || "",
+    lastName: user?.lastName || "",
+    email: user?.email || "",
+    phone: phoneNumber || "",
     password: "",
     checkPassword: "",
   };
 
-  const onSubmit = values => {
-    console.log(values);
+  const onSubmit = async (values) => {
+    const updatedUser = {}
+
+    Object.keys(values).forEach(key => {
+      if (key !== 'checkPassword' && values[key] !== user[key] && values[key] !== '') {
+        updatedUser[key] = values[key]
+      }
+    })
+
+    try {
+      const {data} = await userUpdate(updatedUser)
+      console.log("onSubmit  data", data)
+
+      await refetch()
+    } catch (error) {
+      console.error(error)
+    }
+
   };
+
+  const onDeleteUser = async() => {
+    try {
+      await userDelete()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  if (isLoading) {
     return (
+      <div>Loading...</div>
+    )
+  }
+
+  return (
+      <>
     <Formik
       initialValues={initialValues}
-      validationSchema={UserEditValidationSchema}
+      validationSchema={userEditValidationSchema}
       onSubmit={onSubmit}
     >
       {() => (
         <StyledForm>
           <CustomInput
             label="Ім’я"
-            name="name"
+            name="firstName"
             type="text"
-            placeholder="Ім’я"
+              placeholder="Ім’я"
           />
           <CustomInput
             label="Прізвище"
-            name="surname"
+            name="lastName"
             type="text"
             placeholder="Прізвище"
           />
@@ -65,10 +102,12 @@ const UserEditForm = () => {
             type="password"
             placeholder="Пароль"
           />
-          <SaveButton>Зберегти</SaveButton>
+          <Button type="submit">Зберегти</Button>
         </StyledForm>
       )}
-            </Formik>
+      </Formik>
+       <Button onClick={onDeleteUser} type="button" $whiteButton>Видалити акаунт</Button>
+      </>
   );
 };
 

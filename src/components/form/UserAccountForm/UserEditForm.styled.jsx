@@ -7,12 +7,22 @@ export const StyledForm = styled(Form)`
     gap: 16px;
 `
 
-export const SaveButton = styled.button`
+export const Button = styled.button`
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: center;
     background-color: var( --black-bg-color);
     color: var(--white-text-color);
     border-radius: 16px;
     padding: 10px;
+
+    ${props =>
+    props.$whiteButton &&
+    `
+    background-color: var(--white-bg-color-favorite-btn);
+    color: #000000;
+    border: 1px solid var(--black-bg-color);
+    margin-top: 16px;
+   `}
 `

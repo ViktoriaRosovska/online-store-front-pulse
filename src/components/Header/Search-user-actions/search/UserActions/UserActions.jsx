@@ -43,9 +43,9 @@ function UserActions(props) {
       <button
         className="user__actions-profile"
         onClick={
-          // isLoggedIn ?
+          isLoggedIn ?
           navigateToCabinet
-          // : toggleVisibility
+          : toggleVisibility
         }
       >
         <img
@@ -77,11 +77,11 @@ function UserActions(props) {
         />
       </button>
       <AnimatePresence>
-        {isVisible && (
-          <ReusableModal onClose={toggleVisibility} locked={isLocked}>
+       
+          <ReusableModal onClose={toggleVisibility} locked={isLocked} isOpen={isVisible}>
             <ModalAuth />
           </ReusableModal>
-        )}
+       
       </AnimatePresence>
     </div>
   );
