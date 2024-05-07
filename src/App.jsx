@@ -18,6 +18,11 @@ import {
   UserShopCart,
   UserSupport,
   UserWallet,
+  FooterSupport,
+  FooterConditions,
+  FooterGuarantee,
+  FooterPrivacyPolicy,
+  FooterDelivery,
 } from "./pages/index";
 
 const App = () => {
@@ -34,12 +39,17 @@ const App = () => {
             <Route path={ROUTES.CATALOG} element={<Catalog />} />
             <Route path={ROUTES.NEWBRANDS} element={<NewBrands />} />
             <Route path={ROUTES.SALES} element={<Sales />} />
-            <Route path={ROUTES.SHOPCART} element={<UserShopCart />} />
-            <Route path={ROUTES.ACCOUNT} element={<UserAccount />}/>
+            <Route path={ROUTES.ACCOUNT} element={<UserAccount />} />
             <Route path={ROUTES.ORDERHISTORY} element={<UserOrderHistory />} />
             <Route path={ROUTES.FAVORITES} element={<UserFavorites />} />
             <Route path={ROUTES.WALLET} element={<UserWallet />} />
             <Route path={ROUTES.SUPPORT} element={<UserSupport />} />
+            <Route path={ROUTES.SHOPCART} element={<UserShopCart />} />
+            <Route path={ROUTES.SUPPORT} element={<FooterSupport />} />
+            <Route path={ROUTES.CONDITIONS} element={<FooterConditions />} />
+            <Route path={ROUTES.GUARANTEE} element={<FooterGuarantee />} />
+            <Route path={ROUTES.POLICY} element={<FooterPrivacyPolicy />} />
+            <Route path={ROUTES.DELIVERY} element={<FooterDelivery />} />
           </Route>
         </Routes>
       </PersistedAuth>

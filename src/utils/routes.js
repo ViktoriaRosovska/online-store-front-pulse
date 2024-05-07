@@ -12,4 +12,9 @@ export const ROUTES = {
   FAVORITES: "/favorites",
   WALLET: "/wallet",
   SUPPORT: "/support",
+
+  CONDITIONS: "/conditions",
+  GUARANTEE: "/guarantee",
+  POLICY: "/policy",
+  DELIVERY: "/delivery",
 };

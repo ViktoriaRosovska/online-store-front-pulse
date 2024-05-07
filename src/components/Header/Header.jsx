@@ -8,6 +8,7 @@ import SearchUserActions from "./Search-user-actions/Search-user-actions.jsx";
 import ProfileMenu from "../UserAccount/ProfileMenu/ProfileMenu";
 import { Portal } from "../../components/Modals/helpersForModal/modalPortal";
 import ModalBurgerMenu from "../../components/Modals/ModalBurgerMenu/ModalBurgerMenu";
+import { Container } from "../../main.styled";
 
 function Header() {
   const [isFixed, setIsFixed] = useState(false);
@@ -56,7 +57,7 @@ function Header() {
   return (
     <header
       className={`header ${
-        !location.pathname === "/" || isFixed ? "fixed" : ""
+        location.pathname !== "/" || isFixed ? "fixed" : ""
       }`}
     >
       {/* <div className="container"> */}
@@ -71,34 +72,35 @@ function Header() {
               </button>
             )}
 
-            <Portal isOpen={isOpen}>
-              <ModalBurgerMenu onClose={handleCloseMenu}>
-                {getMenuItems(handleCloseMenu)}
-              </ModalBurgerMenu>
-            </Portal>
-          </div>
-        </MediaQuery>
-        <Link className="logo" to="./">
-          <img
-            className={`logo__icon ${
-              !location.pathname === "/" || isFixed ? "fixed" : ""
-            }`}
-            src={logoImg}
-            alt="PulseRun"
-            onClick={homeClick}
+              <Portal isOpen={isOpen}>
+                <ModalBurgerMenu onClose={handleCloseMenu}>
+                  {getMenuItems(handleCloseMenu)}
+                </ModalBurgerMenu>
+              </Portal>
+            </div>
+          </MediaQuery>
+          <Link className="logo" to="./">
+            <img
+              className={`logo__icon ${
+                location.pathname !== "/" || isFixed ? "fixed" : ""
+              }`}
+              src={logoImg}
+              alt="PulseRun"
+              onClick={homeClick}
+            />
+          </Link>
+          <MediaQuery minWidth={1440}>
+            <nav className="menu">
+              <Menu />
+            </nav>
+          </MediaQuery>
+          <SearchUserActions
+            isFixed={isFixed}
+            location={location.pathname === "/"}
           />
-        </Link>
-        <MediaQuery minWidth={1440}>
-          <nav className="menu">
-            <Menu />
-          </nav>
-        </MediaQuery>
-        <SearchUserActions
-          isFixed={isFixed}
-          location={location.pathname === "/"}
-        />
-      </div>
-      {/* </div> */}
+        </div>
+        {/* </div> */}
+      </Container>
     </header>
   );
 }
