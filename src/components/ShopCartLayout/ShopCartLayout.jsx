@@ -7,51 +7,35 @@ import {
 
 const ShopCartLayout = () => {
   const pathname = useLocation().pathname;
+  const isActive = () =>
+    ["/shopcart", "/shopcart/delivery", "/shopcart/payment"].includes(pathname);
+
   return (
     <>
       <PageSection>
         <Container>
           <StyledNavigationWrapper>
             <StyledNavLink to="/">Головна</StyledNavLink>/
-            <StyledNavLink
-              end
-              to="/shopcart"
-              $isActive={() =>
-                [
-                  "/shopcart",
-                  "/shopcart/delivery",
-                  "/shopcart/payment",
-                ].includes(pathname)
-              }
-            >
+            <StyledNavLink end to="/shopcart" $isActive={isActive}>
               Кошик
             </StyledNavLink>
-            <span>/</span>
-            <StyledNavLink
-              to="/shopcart/delivery"
-              $isActive={() =>
-                [
-                  "/shopcart",
-                  "/shopcart/delivery",
-                  "/shopcart/payment",
-                ].includes(pathname)
-              }
-            >
-              Доставка
-            </StyledNavLink>
-            <span>/</span>
-            <StyledNavLink
-              to="/shopcart/payment"
-              $isActive={() =>
-                [
-                  "/shopcart",
-                  "/shopcart/delivery",
-                  "/shopcart/payment",
-                ].includes(pathname)
-              }
-            >
-              Оплата
-            </StyledNavLink>
+            {(pathname === "/shopcart/delivery" ||
+              pathname === "/shopcart/payment") && (
+              <>
+                <span>/</span>
+                <StyledNavLink to="/shopcart/delivery" $isActive={isActive}>
+                  Доставка
+                </StyledNavLink>
+              </>
+            )}
+            {pathname === "/shopcart/payment" && (
+              <>
+                <span>/</span>
+                <StyledNavLink to="/shopcart/payment" $isActive={isActive}>
+                  Оплата
+                </StyledNavLink>
+              </>
+            )}
           </StyledNavigationWrapper>
           <Outlet />
         </Container>

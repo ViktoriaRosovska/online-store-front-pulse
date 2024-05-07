@@ -22,6 +22,7 @@ const StyledNavigationWrapper = styled.div`
 
 const StyledNavLink = styled(NavLink)`
   color: var(--grey-text-color);
+
   &.active {
     color: var(--black-text-color);
   }
