@@ -36,7 +36,7 @@ function UserActions(props) {
   };
 
   const navigateToShopCart = () => {
-    navigate(ROUTES.SHOPCART, { state: { from: location } });
+    navigate(ROUTES.SHOPCARTLAYOUT, { state: { from: location } });
   };
   return (
     <div className="user__actions">

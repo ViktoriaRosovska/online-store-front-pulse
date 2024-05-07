@@ -33,6 +33,7 @@ import { ModalShopCart } from "components/Modals/ModalShopCart/ModalShopCart";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useDispatch } from "react-redux";
 import { addShopCartItem } from "../../redux/user/userShopCart/userShopCartSlice";
+import { BREADCRUMBS } from "../../utils/breadcrumbsVocabulary";
 
 const ProductInfo = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -99,7 +100,7 @@ const ProductInfo = () => {
     size: sizeValue,
     price: data.price,
   };
-
+  console.log(shopCartProduct);
   if (lastView.findIndex(e => e._id === data._id) < 0) {
     setLastView(prev => [data, ...prev]);
   }
@@ -107,7 +108,7 @@ const ProductInfo = () => {
   return (
     <StyledProductInfoWrapper>
       <h1 hidden> {name}</h1>
-      <Breadcrumbs current={name} />
+      <Breadcrumbs current={name} BREADCRUMBS={BREADCRUMBS} />
       <ProductHeading device="mobile" article={article} title={name} />
       <ProductDataWrapper>
         <ProductImageList images={imgGallery} alt={name} />

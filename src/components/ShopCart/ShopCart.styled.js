@@ -148,6 +148,58 @@ const StyledOrderPriceTextWrapper = styled.div`
   flex-direction: column;
   gap: 16px;
 `;
+
+const StyledShopCartItemCount = styled.span`
+  font-family: "Roboto";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 33.6px;
+  margin-right: 9px;
+  margin-left: 9px;
+`;
+
+const StyledCountANDPriceWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const StyledInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+const StyledChangeCountWrapper = styled.div`
+  display: flex;
+  @media screen and (min-width: 1440px) {
+    display: none;
+  }
+`;
+const StyledChangeCountWrapperDesctop = styled(StyledChangeCountWrapper)`
+  display: none;
+  @media screen and (min-width: 1440px) {
+    display: flex;
+  }
+`;
+
+const StyledChangeCountBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 14px;
+  &:hover {
+    & svg {
+      color: var(--grey-text-color);
+    }
+  }
+`;
+
+const StyledNotificationWrapper = styled.p`
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+`;
 export {
   StyledShopCartListItem,
   StyledShopCartCardWrapper,
@@ -164,4 +216,11 @@ export {
   StyledOrderText,
   StyledPDVText,
   StyledOrderPriceTextWrapper,
+  StyledShopCartItemCount,
+  StyledCountANDPriceWrapper,
+  StyledChangeCountWrapper,
+  StyledInfoWrapper,
+  StyledChangeCountWrapperDesctop,
+  StyledChangeCountBtn,
+  StyledNotificationWrapper,
 };

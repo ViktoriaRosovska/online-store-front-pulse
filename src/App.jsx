@@ -15,7 +15,6 @@ import {
   UserAccount,
   UserFavorites,
   UserOrderHistory,
-  UserShopCart,
   UserSupport,
   UserWallet,
   FooterSupport,
@@ -23,7 +22,12 @@ import {
   FooterGuarantee,
   FooterPrivacyPolicy,
   FooterDelivery,
+  UserShopCartDelivery,
+  UserShopCart,
+  UserShopCartPayment,
 } from "./pages/index";
+
+import ShopCartLayout from "components/ShopCartLayout/ShopCartLayout.jsx";
 
 const App = () => {
   return (
@@ -44,7 +48,18 @@ const App = () => {
             <Route path={ROUTES.FAVORITES} element={<UserFavorites />} />
             <Route path={ROUTES.WALLET} element={<UserWallet />} />
             <Route path={ROUTES.SUPPORT} element={<UserSupport />} />
-            <Route path={ROUTES.SHOPCART} element={<UserShopCart />} />
+
+            <Route path={ROUTES.SHOPCARTLAYOUT} element={<ShopCartLayout />}>
+              <Route index element={<UserShopCart />} />
+              <Route
+                path={ROUTES.SHOPCARTDELIVERY}
+                element={<UserShopCartDelivery />}
+              />
+              <Route
+                path={ROUTES.SHOPCARTPAYMENT}
+                element={<UserShopCartPayment />}
+              />
+            </Route>
             <Route path={ROUTES.SUPPORT} element={<FooterSupport />} />
             <Route path={ROUTES.CONDITIONS} element={<FooterConditions />} />
             <Route path={ROUTES.GUARANTEE} element={<FooterGuarantee />} />

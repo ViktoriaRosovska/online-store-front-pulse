@@ -29,7 +29,9 @@ const Main = () => {
   const location = useLocation();
   // console.log(sales.products);
   const navFunc = () => {
-    navigate("/catalog", { state: { from: location } });
+    navigate("/catalog", {
+      state: { from: location.pathname },
+    });
   };
 
   useEffect(() => {
