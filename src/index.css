@@ -108,3 +108,10 @@ button {
   cursor: pointer;
   background-color: transparent;
 }
+
+input:focus,
+input:active,
+button:focus,
+button:active {
+  outline: none;
+}

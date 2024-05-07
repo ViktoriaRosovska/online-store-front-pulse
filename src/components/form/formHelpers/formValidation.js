@@ -40,3 +40,10 @@ export const registerValidationSchema = Yup.object().shape({
     .max(10, "Максимальна кількість 10 символів")
     .required("обовʼязкове поле"),
 });
+
+export const UserEditValidationSchema = Yup.object().shape({
+  ...registerValidationSchema.fields,
+  phone: Yup.string()
+    .matches(/^\+380\d{9}$/, { message: "Введіть корректний номер телефону" })
+  .nullable()
+})
