@@ -1,18 +1,23 @@
 import { Formik } from "formik";
 import { userEditValidationSchema } from "../formHelpers/formValidation";
 import CustomInput from "../formElements/CustomInput/CustomInput";
-import { Button, StyledForm } from "./UserEditForm.styled";
-import {  useFetchCurrentUserQuery } from "../../../redux/auth";
-import { useUserDeleteMutation, useUserUpdateMutation } from "../../../redux/user/userSlice/userApi";
+import { Box, Button, DeleteButton, StyledForm } from "./UserEditForm.styled";
+import { useFetchCurrentUserQuery } from "../../../redux/auth";
+import {
+  useUserDeleteMutation,
+  useUserUpdateMutation,
+} from "../../../redux/user/userSlice/userApi";
 
 const UserEditForm = () => {
-  const { data, isLoading, refetch } = useFetchCurrentUserQuery(undefined, { refetchOnMountOrArgChange: true });
+  const { data, isLoading, refetch } = useFetchCurrentUserQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
   const [userUpdate, { isError }] = useUserUpdateMutation();
-  const [userDelete] = useUserDeleteMutation()
-  console.log("UserEditForm  isError", isError)
-  const user = data?.user
-  
-  const phoneNumber = user?.phone === '0000000000' ? "" : user?.phone
+  const [userDelete] = useUserDeleteMutation();
+  console.log("UserEditForm  isError", isError);
+  const user = data?.user;
+
+  const phoneNumber = user?.phone === "0000000000" ? "" : user?.phone;
 
   const initialValues = {
     firstName: user?.firstName || "",
@@ -23,91 +28,94 @@ const UserEditForm = () => {
     checkPassword: "",
   };
 
-  const onSubmit = async (values) => {
-    const updatedUser = {}
+  const onSubmit = async values => {
+    const updatedUser = {};
 
     Object.keys(values).forEach(key => {
-      if (key !== 'checkPassword' && values[key] !== user[key] && values[key] !== '') {
-        updatedUser[key] = values[key]
+      if (
+        key !== "checkPassword" &&
+        values[key] !== user[key] &&
+        values[key] !== ""
+      ) {
+        updatedUser[key] = values[key];
       }
-    })
+    });
 
     try {
-      const {data} = await userUpdate(updatedUser)
-      console.log("onSubmit  data", data)
+      const { data } = await userUpdate(updatedUser);
+      console.log("onSubmit  data", data);
 
-      await refetch()
+      await refetch();
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-
   };
 
-  const onDeleteUser = async() => {
+  const onDeleteUser = async () => {
     try {
-      await userDelete()
+      await userDelete();
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   if (isLoading) {
-    return (
-      <div>Loading...</div>
-    )
+    return <div>Loading...</div>;
   }
 
   return (
-      <>
-    <Formik
-      initialValues={initialValues}
-      validationSchema={userEditValidationSchema}
-      onSubmit={onSubmit}
-    >
-      {() => (
-        <StyledForm>
-          <CustomInput
-            label="Ім’я"
-            name="firstName"
-            type="text"
+    <Box>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={userEditValidationSchema}
+        onSubmit={onSubmit}
+      >
+        {() => (
+          <StyledForm>
+            <CustomInput
+              label="Ім’я"
+              name="firstName"
+              type="text"
               placeholder="Ім’я"
-          />
-          <CustomInput
-            label="Прізвище"
-            name="lastName"
-            type="text"
-            placeholder="Прізвище"
-          />
-          <CustomInput
-            label="Email"
-            name="email"
-            type="email"
-            placeholder="Ваш email"
-          />
-          <CustomInput
-            label="Номер телефону"
-            name="phone"
-            type="text"
-            placeholder="+380"
-          />
-          <CustomInput
-            label="Пароль"
-            name="password"
-            type="password"
-            placeholder="**********"
-          />
-          <CustomInput
-            label="Повторити пароль"
-            name="checkPassword"
-            type="password"
-            placeholder="Пароль"
-          />
-          <Button type="submit">Зберегти</Button>
-        </StyledForm>
-      )}
+            />
+            <CustomInput
+              label="Прізвище"
+              name="lastName"
+              type="text"
+              placeholder="Прізвище"
+            />
+            <CustomInput
+              label="Email"
+              name="email"
+              type="email"
+              placeholder="Ваш email"
+            />
+            <CustomInput
+              label="Номер телефону"
+              name="phone"
+              type="text"
+              placeholder="+380"
+            />
+            <CustomInput
+              label="Пароль"
+              name="password"
+              type="password"
+              placeholder="**********"
+            />
+            <CustomInput
+              label="Повторити пароль"
+              name="checkPassword"
+              type="password"
+              placeholder="Пароль"
+            />
+            <Button type="submit">Зберегти</Button>
+          </StyledForm>
+        )}
       </Formik>
-       <Button onClick={onDeleteUser} type="button" $whiteButton>Видалити акаунт</Button>
-      </>
+      <DeleteButton onClick={onDeleteUser} type="button">
+        Видалити акаунт
+      </DeleteButton>
+    </Box>
   );
 };
 

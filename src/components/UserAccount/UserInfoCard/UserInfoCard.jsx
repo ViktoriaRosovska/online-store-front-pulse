@@ -4,6 +4,7 @@ import { Box, Button, Image, Wrapper } from "./UserInfoCard.styled";
 const UserInfoCard = () => {
   const { data, isLoading } = useFetchCurrentUserQuery();
   const user = data?.user
+  console.log("UserInfoCard  user", data)
   
   if (isLoading) {
     return <div>Loading...</div>
@@ -17,7 +18,7 @@ const UserInfoCard = () => {
         </Image>
         <Button type="button">
           <svg width={24} height={24}>
-            <use xlinkHref="./icons/profile-icons/profile-icons-sprite.svg#icon-edit"></use>
+            <use xlinkHref="../icons/profile-icons/profile-icons-sprite.svg#icon-edit"></use>
           </svg>
         </Button>
       </Box>

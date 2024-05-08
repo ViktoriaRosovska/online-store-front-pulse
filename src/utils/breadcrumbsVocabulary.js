@@ -15,3 +15,11 @@ export const BREADCRUMBS_SHOPCART = {
   [ROUTES.SHOPCARTDELIVERY]: "Доставка",
   [ROUTES.SHOPCARTPAYMENT]: "Оплата",
 };
+
+export const BREADCRUMBS_PROFILE = {
+  [ROUTES.ACCOUNT]: "Особистий кабінет",
+  [ROUTES.ORDERHISTORY]: "Історія замовлень",
+  [ROUTES.FAVORITES]: "Улюблене",
+  [ROUTES.WALLET]: "Гаманець",
+  [ROUTES.SUPPORT]: "Підтримка",
+}

@@ -14,6 +14,7 @@ import { SaleBand } from "../salesComponents/SaleBand/SaleBand.jsx";
 import { SalePercent } from "../salesComponents/SalePercent/SalePercent.jsx";
 import { ROUTES } from "../../utils/routes.js";
 import { useLocation } from "react-router-dom";
+import { useAddToFavoritesMutation } from "../../redux/user/userSlice/userApi.js";
 
 const Card = ({
   info,
@@ -25,6 +26,8 @@ const Card = ({
   filterQuery,
   cardSlider,
 }) => {
+  console.log("id", id)
+  const [addToFavorites] = useAddToFavoritesMutation()
   const sales = cardfeature === "sales";
   const newBrands = cardfeature === "newbrands";
   const location = useLocation().pathname;
@@ -49,7 +52,7 @@ const Card = ({
           ) : null}
 
           <CardImage src={image} $sales={sales} $cardSlider={cardSlider} />
-          <FavoriteButton $sales={sales && sale > 0} $new={newBrands} />
+          <FavoriteButton $sales={sales && sale > 0} $new={newBrands} onClick={() => addToFavorites({productId: id})} />
           {sales && sale > 0 ? <SalePercent text={-sale} /> : null}
         </ImageWrapper>
         <TextWrapper>

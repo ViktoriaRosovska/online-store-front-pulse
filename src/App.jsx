@@ -22,16 +22,17 @@ import {
   FooterGuarantee,
   FooterPrivacyPolicy,
   FooterDelivery,
-  UserShopCartDelivery,
   UserShopCart,
+  UserShopCartDelivery,
   UserShopCartPayment,
 } from "./pages/index";
 
 import ShopCartLayout from "components/ShopCartLayout/ShopCartLayout.jsx";
+import ProfileLayout from "components/ProfileLayout/ProfileLayout.jsx";
 
 const App = () => {
   return (
-    <BrowserRouter basename="online-store-front-pulse">
+    <BrowserRouter basename="/online-store-front-pulse">
       <PersistedAuth>
         <Routes>
           <Route path={ROUTES.HOME} element={<SharedLayout />}>
@@ -43,12 +44,6 @@ const App = () => {
             <Route path={ROUTES.CATALOG} element={<Catalog />} />
             <Route path={ROUTES.NEWBRANDS} element={<NewBrands />} />
             <Route path={ROUTES.SALES} element={<Sales />} />
-            <Route path={ROUTES.ACCOUNT} element={<UserAccount />} />
-            <Route path={ROUTES.ORDERHISTORY} element={<UserOrderHistory />} />
-            <Route path={ROUTES.FAVORITES} element={<UserFavorites />} />
-            <Route path={ROUTES.WALLET} element={<UserWallet />} />
-            <Route path={ROUTES.SUPPORT} element={<UserSupport />} />
-
             <Route path={ROUTES.SHOPCARTLAYOUT} element={<ShopCartLayout />}>
               <Route index element={<UserShopCart />} />
               <Route
@@ -65,6 +60,16 @@ const App = () => {
             <Route path={ROUTES.GUARANTEE} element={<FooterGuarantee />} />
             <Route path={ROUTES.POLICY} element={<FooterPrivacyPolicy />} />
             <Route path={ROUTES.DELIVERY} element={<FooterDelivery />} />
+            <Route path={ROUTES.PROFILE} element={<ProfileLayout />}>
+              <Route path={ROUTES.ACCOUNT} element={<UserAccount />} />
+              <Route
+                path={ROUTES.ORDERHISTORY}
+                element={<UserOrderHistory />}
+              />
+              <Route path={ROUTES.FAVORITES} element={<UserFavorites />} />
+              <Route path={ROUTES.WALLET} element={<UserWallet />} />
+              <Route path={ROUTES.SUPPORT} element={<UserSupport />} />
+            </Route>
           </Route>
         </Routes>
       </PersistedAuth>

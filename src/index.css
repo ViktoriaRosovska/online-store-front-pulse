@@ -28,13 +28,16 @@
   --white-light-bg-color: #fbfbfb;
   --white-blue-bg-color: #eaeff0;
   --white-bg-header-color: #e8e5e5;
+  --white-btn-text-color: #faf2f2;
   --white-bg-color-favorite-btn: #ffffff;
   --black-text-color: #232323;
   --black-bg-color: #292929;
   --grey-text-color: #7a7c7f;
   --grey-bg-color: #444444;
+  --grey-btn-bg-color: #a9a9a9;
   --grey-filter-btn-color: #dfdfdf;
-  --grey-img-bg-color: #D9D9D9;
+  --grey-img-bg-color: #d9d9d9;
+  --grey-btn-text-color: #9a9a9a;
   --grey-link-hover-footer-color: #ada9a9;
   --footer-glass-bg-color: rgba(217, 217, 217, 0.05);
   --blue-bg-color: #495c80;
