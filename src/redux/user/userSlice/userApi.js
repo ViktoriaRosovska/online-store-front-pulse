@@ -18,8 +18,15 @@ export const userApi = createApi({
         url: "/users",
         method: "DELETE",
       })
-    })
+    }),
+    addToFavorites: builder.mutation({
+      query: (id) => ({
+        url: "/users/favorites",
+        method: "PATCH",
+        data: id,
+      })
+    }),
   }),
 });
 
-export const {useUserUpdateMutation, useUserDeleteMutation} = userApi
+export const {useUserUpdateMutation, useUserDeleteMutation, useAddToFavoritesMutation} = userApi
