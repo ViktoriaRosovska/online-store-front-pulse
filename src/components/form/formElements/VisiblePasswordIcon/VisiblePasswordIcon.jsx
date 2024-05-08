@@ -5,11 +5,11 @@ const VisiblePasswordIcon = ({ visiblePassword, onClick }) => {
     <Button type="button" onClick={onClick}>
       {visiblePassword ? (
         <svg width={22} height={18}>
-          <use xlinkHref="./icons/profile-icons/profile-icons-sprite.svg#icon-eye"></use>
+          <use xlinkHref="../icons/profile-icons/profile-icons-sprite.svg#icon-eye"></use>
         </svg>
       ) : (
         <svg width={22} height={18}>
-          <use xlinkHref="./icons/profile-icons/profile-icons-sprite.svg#icon-eye-off"></use>
+          <use xlinkHref="../icons/profile-icons/profile-icons-sprite.svg#icon-eye-off"></use>
         </svg>
       )}
     </Button>

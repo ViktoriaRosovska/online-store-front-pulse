@@ -6,17 +6,18 @@ export const ROUTES = {
   CATALOG: "/catalog",
   NEWBRANDS: "/newbrands",
   SALES: "/sales",
-  ACCOUNT: "/account",
-
+  PROFILE: "/profile",
+  
   SHOPCARTLAYOUT: "/shopcart",
   SHOPCART: "/shopcart",
   SHOPCARTDELIVERY: "/shopcart/delivery",
   SHOPCARTPAYMENT: "/shopcart/payment",
-
-  ORDERHISTORY: "/orderhistory",
-  FAVORITES: "/favorites",
-  WALLET: "/wallet",
-  SUPPORT: "/support",
+  
+  ACCOUNT: "account",
+  ORDERHISTORY: "orderhistory",
+  FAVORITES: "favorites",
+  WALLET: "wallet",
+  SUPPORT: "support",
 
   CONDITIONS: "/conditions",
   GUARANTEE: "/guarantee",

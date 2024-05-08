@@ -17,7 +17,7 @@ const UserInfoCard = () => {
         </Image>
         <Button type="button">
           <svg width={24} height={24}>
-            <use xlinkHref="./icons/profile-icons/profile-icons-sprite.svg#icon-edit"></use>
+            <use xlinkHref="../icons/profile-icons/profile-icons-sprite.svg#icon-edit"></use>
           </svg>
         </Button>
       </Box>

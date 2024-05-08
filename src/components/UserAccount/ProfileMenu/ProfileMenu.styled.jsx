@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
+export const Box = styled.div`
+  display: block;
+`
+
 export const Avatar = styled.div`
   width: 40px;
   height: 40px;
@@ -37,6 +41,9 @@ export const StyledNavLink = styled(NavLink)`
   gap: 12px;
   color: var(--grey-text-color);
   p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 125%;
     color: var(--grey-text-color);
   }
 

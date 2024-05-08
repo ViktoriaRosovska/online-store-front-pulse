@@ -32,7 +32,7 @@ function UserActions(props) {
   };
 
   const navigateToCabinet = () => {
-    navigate(ROUTES.ACCOUNT);
+    navigate('profile/account');
   };
 
   const navigateToShopCart = () => {
