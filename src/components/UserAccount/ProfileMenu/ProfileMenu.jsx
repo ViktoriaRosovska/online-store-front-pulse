@@ -1,3 +1,5 @@
+import { redirect } from "react-router-dom";
+import { removeCredentials, useLogoutUserMutation } from "../../../redux/auth";
 import {
   Avatar,
   ListItem,
@@ -6,8 +8,24 @@ import {
   StyledNavLink,
   Button,
 } from "./ProfileMenu.styled";
+import { useDispatch } from "react-redux";
 
-function ProfileMenu(onClose) {
+function ProfileMenu({ onClose }) {
+  const dispatch = useDispatch();
+  const [logoutUser] = useLogoutUserMutation();
+
+  const onLogoutClick = () => {
+    logoutUser()
+      .unwrap()
+      .then(() => {
+        dispatch(removeCredentials());
+
+        redirect("/");
+      })
+      .catch(e => console.log("Error logout", e))
+      .finally(onClose());
+  };
+
   return (
     <>
       <UserCard>
@@ -64,7 +82,7 @@ function ProfileMenu(onClose) {
         </NavList>
       </nav>
 
-      <Button type="button">
+      <Button type="button" onClick={onLogoutClick}>
         <svg width={24} height={24}>
           <use xlinkHref="./icons/profile-icons/profile-icons-sprite.svg#icon-exit"></use>
         </svg>
