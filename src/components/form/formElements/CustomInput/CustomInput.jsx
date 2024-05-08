@@ -8,7 +8,7 @@ const CustomInput = ({ label, ...props }) => {
   const [visiblePassword, setVisiblePassword] = useState(false);
 
   const isError = meta.error && meta.touched;
-  //   const isValid = !!(!meta.error && meta.value.trim());
+
   const isPasswordInput = field.name === "password" || field.name === "checkPassword";
 
   const togglePasswordVisibility = () => {

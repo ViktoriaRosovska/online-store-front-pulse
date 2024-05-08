@@ -50,7 +50,7 @@ function Header() {
       location.pathname === "/wallet" ||
       location.pathname === "/support"
     ) {
-      return <ProfileMenu />;
+      return <ProfileMenu onClose={handleCloseMenu} />;
     }
   };
 
@@ -74,7 +74,7 @@ function Header() {
 
               <Portal isOpen={isOpen}>
                 <ModalBurgerMenu onClose={handleCloseMenu}>
-                  {getMenuItems(handleCloseMenu)}
+                  {getMenuItems()}
                 </ModalBurgerMenu>
               </Portal>
             </div>

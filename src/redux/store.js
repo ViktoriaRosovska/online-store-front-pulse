@@ -15,6 +15,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { userShopCartReducer } from "./user/userShopCart/userShopCartSlice";
+import { userApi } from "./user/userSlice/userApi";
 
 const persistConfig = {
   key: "persistedUserData",
@@ -35,6 +36,7 @@ export const store = configureStore({
   reducer: {
     [productsApi.reducerPath]: productsApi.reducer,
     [userAuthApi.reducerPath]: userAuthApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
     filterQuery: filterQueryReducer,
     userShopCart: persistedUserShopCart,
     userAuthReducer: persistReducer(persistConfig, authReducer),
@@ -44,7 +46,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(productsApi.middleware, userAuthApi.middleware);
+    }).concat(productsApi.middleware, userAuthApi.middleware, userApi.middleware);
   },
 });
 

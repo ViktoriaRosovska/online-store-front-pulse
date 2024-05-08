@@ -1,6 +1,14 @@
+import { useFetchCurrentUserQuery } from "../../../redux/auth";
 import { Box, Button, Image, Wrapper } from "./UserInfoCard.styled";
 
 const UserInfoCard = () => {
+  const { data, isLoading } = useFetchCurrentUserQuery();
+  const user = data?.user
+  
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
   return (
     <Wrapper>
       <Box>
@@ -13,7 +21,7 @@ const UserInfoCard = () => {
           </svg>
         </Button>
       </Box>
-      <h2>Юлія Пономаренко</h2>
+      <h2>{user?.firstName} {user?.lastName}</h2>
     </Wrapper>
   );
 };
