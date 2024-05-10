@@ -150,10 +150,10 @@ const StyledOrderPriceTextWrapper = styled.div`
 `;
 
 const StyledShopCartItemCount = styled.span`
-  font-family: "Roboto";
+  /* font-family: "Roboto";
   font-size: 24px;
   font-weight: 400;
-  line-height: 33.6px;
+  line-height: 33.6px; */
   margin-right: 9px;
   margin-left: 9px;
 `;

@@ -100,7 +100,6 @@ const ProductInfo = () => {
     size: sizeValue,
     price: data.price,
   };
-  console.log(shopCartProduct);
   if (lastView.findIndex(e => e._id === data._id) < 0) {
     setLastView(prev => [data, ...prev]);
   }
@@ -168,32 +167,30 @@ const ProductInfo = () => {
       </DescriptionWrapper>
 
       <AnimatePresence>
-   
-          <ReusableModal isOpen={isVisible}
-            locked={isLocked}
+        <ReusableModal
+          isOpen={isVisible}
+          locked={isLocked}
+          onClose={() => toggleVisibility("size")}
+        >
+          <ModalSizeList
             onClose={() => toggleVisibility("size")}
-          >
-            <ModalSizeList
-              onClose={() => toggleVisibility("size")}
-              isVisible={isVisible}
-            />
-          </ReusableModal>
-   
+            isVisible={isVisible}
+          />
+        </ReusableModal>
       </AnimatePresence>
       <AnimatePresence>
-
-          <ReusableModal isOpen={isVisibleCart}
-            locked={isLocked}
+        <ReusableModal
+          isOpen={isVisibleCart}
+          locked={isLocked}
+          onClose={() => toggleVisibility("cart")}
+        >
+          <ModalShopCart
             onClose={() => toggleVisibility("cart")}
-          >
-            <ModalShopCart
-              onClose={() => toggleVisibility("cart")}
-              // isVisibleCart={isVisibleCart}
-              productData={data}
-              sizeValue={sizeValue}
-            />
-          </ReusableModal>
-
+            // isVisibleCart={isVisibleCart}
+            productData={data}
+            sizeValue={sizeValue}
+          />
+        </ReusableModal>
       </AnimatePresence>
     </StyledProductInfoWrapper>
   );
