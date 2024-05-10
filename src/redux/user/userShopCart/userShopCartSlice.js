@@ -21,11 +21,27 @@ const userShopCartSlice = createSlice({
       state.userShopCart = state.userShopCart.filter(
         el => el._id !== payload._id || el.size !== payload.size
       );
-      console.log(payload);
+      console.log("deleteUserShopCartItem", payload, state.userShopCart);
+    },
+    incrementQuantity(state, { payload }) {
+      const item = state.userShopCart.find(
+        el => el._id === payload._id && el.size === payload.size
+      );
+      if (item) ++item.quantity;
+    },
+    decrementQuantity(state, { payload }) {
+      const item = state.userShopCart.find(
+        el => el._id === payload._id && el.size === payload.size
+      );
+      if (item && item.quantity > 1) --item.quantity;
     },
   },
 });
 
-export const { addShopCartItem, deleteUserShopCartItem } =
-  userShopCartSlice.actions;
+export const {
+  addShopCartItem,
+  deleteUserShopCartItem,
+  incrementQuantity,
+  decrementQuantity,
+} = userShopCartSlice.actions;
 export const userShopCartReducer = userShopCartSlice.reducer;

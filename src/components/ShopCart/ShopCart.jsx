@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserShopCart } from "../../redux/user/userShopCart/userShopCartSelector";
-import { deleteUserShopCartItem } from "../../redux/user/userShopCart/userShopCartSlice";
+import {
+  deleteUserShopCartItem,
+  incrementQuantity,
+  decrementQuantity,
+} from "../../redux/user/userShopCart/userShopCartSlice";
 import { useLocation } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
 import { ReactComponent as CloseBtnSmall } from "../../assets/svg/closeBtnSmall.svg";
@@ -29,16 +33,14 @@ import {
   StyledShopCartListItem,
 } from "./ShopCart.styled";
 import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
-import { useState } from "react";
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { ROUTES } from "../../utils/routes";
 import CustomInput from "components/form/formElements/CustomInput/CustomInput";
 import { Formik } from "formik";
 
 export const ShopCart = props => {
-  const userShopCartItems = useSelector(selectUserShopCart);
-  const [items, setItems] = useState(userShopCartItems);
-  console.log(items);
+  const items = useSelector(selectUserShopCart);
+  // console.log(items);
   let location = useLocation();
 
   const initialValues = {
@@ -49,32 +51,31 @@ export const ShopCart = props => {
     console.log("send promocode", values);
   };
 
-  const onQuantityDecrement = idx => {
-    const newItems = [...items];
-
-    newItems.map((el, index) => {
-      if (idx === index && el.quantity !== 1) {
-        el.quantity -= 1;
-      }
-    });
-
-    setItems(newItems);
-  };
-  const onQuantityIncrement = idx => {
-    const newItems = [...items];
-
-    newItems.map((el, index) => {
-      if (idx === index) {
-        el.quantity += 1;
-      }
-    });
-
-    setItems(newItems);
-  };
-
   const normalize_count_form = (number, words_arr) => {
     number = Math.abs(number);
     if (Number.isInteger(number)) {
+      // const tenth = Math.floor((number / 10) % 10);
+      // if (tenth === 1) return words_arr[2];
+
+      // const ones = number % 10;
+      // switch (ones) {
+      //   case 0:
+      //     return words_arr[2];
+      //   case 1:
+      //     return words_arr[0];
+
+      //   case 2:
+      //   case 3:
+      //   case 4:
+      //     return words_arr[1];
+
+      //   case 5:
+      //   case 6:
+      //   case 7:
+      //   case 8:
+      //   case 9:
+      //     return words_arr[2];
+      // }
       let options = [2, 0, 1, 1, 1, 2];
       return words_arr[
         number % 100 > 4 && number % 100 < 20
@@ -150,7 +151,7 @@ export const ShopCart = props => {
                           </StyledInfoWrapper>
                           <StyledChangeCountWrapperDesctop>
                             <StyledChangeCountBtn
-                              onClick={() => onQuantityDecrement(idx)}
+                              onClick={() => dispatch(decrementQuantity(el))}
                             >
                               <FiMinus />
                             </StyledChangeCountBtn>
@@ -159,7 +160,7 @@ export const ShopCart = props => {
                             </StyledShopCartItemCount>
 
                             <StyledChangeCountBtn
-                              onClick={() => onQuantityIncrement(idx)}
+                              onClick={() => dispatch(incrementQuantity(el))}
                             >
                               <FiPlus />
                             </StyledChangeCountBtn>
@@ -170,16 +171,16 @@ export const ShopCart = props => {
                       <StyledCountANDPriceWrapper>
                         <StyledChangeCountWrapper>
                           <StyledChangeCountBtn
-                            onClick={() => onQuantityDecrement(idx)}
+                            onClick={() => dispatch(decrementQuantity(el))}
                           >
                             <FiMinus />
                           </StyledChangeCountBtn>
                           <StyledShopCartItemCount>
-                            {el.quantity}
+                            <StyledProductName>{el.quantity}</StyledProductName>
                           </StyledShopCartItemCount>
 
                           <StyledChangeCountBtn
-                            onClick={() => onQuantityIncrement(idx)}
+                            onClick={() => dispatch(incrementQuantity(el))}
                           >
                             <FiPlus />
                           </StyledChangeCountBtn>
