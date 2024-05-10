@@ -17,16 +17,28 @@ export const userApi = createApi({
       query: () => ({
         url: "/users",
         method: "DELETE",
-      })
+      }),
     }),
     addToFavorites: builder.mutation({
-      query: (id) => ({
+      query: id => ({
         url: "/users/favorites",
         method: "PATCH",
         data: id,
-      })
+      }),
+    }),
+    userSubscribe: builder.mutation({
+      query: payload => ({
+        url: "/users/subscribe",
+        method: "POST",
+        data: payload,
+      }),
     }),
   }),
 });
 
-export const {useUserUpdateMutation, useUserDeleteMutation, useAddToFavoritesMutation} = userApi
+export const {
+  useUserUpdateMutation,
+  useUserDeleteMutation,
+  useAddToFavoritesMutation,
+  useUserSubscribeMutation,
+} = userApi;

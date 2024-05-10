@@ -70,3 +70,9 @@ export const userEditValidationSchema = Yup.object().shape({
     .matches(/^\d{9}$/, { message: "Введіть корректний номер телефону" })
     .nullable(),
 });
+
+export const userSubscribeValidationSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Введіть коректний email")
+    .required("обовʼязкове поле"),
+});
