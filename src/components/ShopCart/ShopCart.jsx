@@ -32,12 +32,22 @@ import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCart
 import { useState } from "react";
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { ROUTES } from "../../utils/routes";
+import CustomInput from "components/form/formElements/CustomInput/CustomInput";
+import { Formik } from "formik";
 
 export const ShopCart = props => {
   const userShopCartItems = useSelector(selectUserShopCart);
   const [items, setItems] = useState(userShopCartItems);
   console.log(items);
   let location = useLocation();
+
+  const initialValues = {
+    code: "",
+  };
+
+  const onSubmit = async values => {
+    console.log("send promocode", values);
+  };
 
   const onQuantityDecrement = idx => {
     const newItems = [...items];
@@ -207,9 +217,18 @@ export const ShopCart = props => {
                 </StyledOrderText>
               </StyledOrderPriceTextWrapper>
 
-              <form>
-                <input placeholder="Ввести промокод" />
-              </form>
+              <Formik initialValues={initialValues} onSubmit={onSubmit}>
+                {() => (
+                  <form>
+                    <CustomInput
+                      placeholder="Ввести промокод"
+                      type="text"
+                      name="code"
+                      label=""
+                    />
+                  </form>
+                )}
+              </Formik>
               <StyledShopCartButton
                 text={"Оформити"}
                 route={ROUTES.SHOPCARTDELIVERY}
