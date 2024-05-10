@@ -17,7 +17,7 @@ import { useLocation } from "react-router-dom";
 import {
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
-  useGetFavoritesQuery,
+  // useGetFavoritesQuery,
 } from "../../redux/user/userSlice/userApi.js";
 import { useEffect, useState } from "react";
 
@@ -30,11 +30,10 @@ const Card = ({
   cardfeature,
   filterQuery,
   cardSlider,
+  favorites,
 }) => {
-  const { data: favorites } = useGetFavoritesQuery();
   const [addToFavorites] = useAddToFavoritesMutation();
   const [deleteFromFavorites] = useDeleteFromFavoritesMutation();
-  // const isFavorite = favorites?.some(el => el._id === id)
 
   const [favoriteState, setFavoriteState] = useState(false);
 

@@ -1,5 +1,6 @@
 import { useGetFavoritesQuery } from "../../redux/user/userSlice/userApi";
 import { CardsList } from "../../components/CardsList/CardsList";
+import { Title } from "../../components/Typography/Typography.styled";
 
 const UserFavorites = () => {
     const { data, isFetching, isError } = useGetFavoritesQuery();
@@ -7,7 +8,7 @@ const UserFavorites = () => {
     
     return (
         <>
-            <h1>Улюблене</h1>
+            <Title>Улюблене</Title>
             <CardsList
                 data={data}
                 isFetching={isFetching}
