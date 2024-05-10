@@ -8,7 +8,7 @@ const UserFavorites = () => {
     
     return (
         <>
-            <Title>Улюблене</Title>
+            <Title style={{textAlign: "left"}}>Улюблене</Title>
             <CardsList
                 data={data}
                 isFetching={isFetching}
