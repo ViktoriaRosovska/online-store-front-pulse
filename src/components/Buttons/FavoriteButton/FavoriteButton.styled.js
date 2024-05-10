@@ -16,13 +16,19 @@ const FavoriteBtn = styled.button`
   right: 10px;
   top: ${props => (props.$sales || props.$new ? "36px" : "10px")};
 
+  /* svg {
+    fill: ${props =>
+    (props.$isFavorite ? "red" : "black")}
+  
+  } */
+
   &:hover,
   &:focus,
   &:active {
     cursor: pointer;
-    & svg {
+    /* & svg {
       fill: red;
-    }
+    } */
   }
   & svg {
     scale: 0.775;

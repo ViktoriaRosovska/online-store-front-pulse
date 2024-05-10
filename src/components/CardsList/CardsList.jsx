@@ -10,6 +10,7 @@ export const CardsList = ({
   filterQuery,
   isFetching,
   isError,
+  isFavoritePage,
 }) => {
   // console.log("data", data?.products);
   // console.log(totalPages);
@@ -25,8 +26,8 @@ export const CardsList = ({
     <CardsListContainer>
       <ScrollToTop />
       <CardListWrapper>
-        {!isFetching && data?.products.length > 0 ? (
-          data?.products.map(el => {
+        {!isFetching && data?.length > 0 ? (
+          data?.map(el => {
             return (
               <Card
                 key={el._id}
@@ -45,7 +46,7 @@ export const CardsList = ({
         )}
       </CardListWrapper>
 
-      {!isFetching && data?.products.length > 0 ? (
+      {!isFetching && data?.length > 0 && !isFavoritePage ? (
         <Pagination
           onChange={onPageChange}
           page={parseInt(data?.page)}

@@ -26,8 +26,8 @@ const commonProductQuery = ({
 
 export const productsApi = createApi({
   reducerPath: "products",
-
   baseQuery: axiosBaseQuery(),
+  tagTypes: ['Products'],
 
   endpoints: builder => ({
     getAllProducts: builder.query({
@@ -36,6 +36,7 @@ export const productsApi = createApi({
         method: "GET",
         params: { ...commonProductQuery(params) },
       }),
+      providesTags: ['Products'],
     }),
 
     getProductById: builder.query({

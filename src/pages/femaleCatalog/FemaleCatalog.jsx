@@ -12,7 +12,7 @@ const FemaleCatalog = () => {
       loader={getAllProducts}
       cardfeature={"sales"}
       sortNewest={true}
-      data={data}
+      data={data?.products}
       isError={isError}
       isFetching={isFetching}
     />

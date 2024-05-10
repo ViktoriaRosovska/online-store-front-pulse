@@ -39,8 +39,6 @@ export const Button = styled.button`
     left: 0;
     bottom: 0;
     font-size: 16px;
-    color: var(--white-btn-text-color);
-    background-color: var(--grey-btn-bg-color);
   }
 `;
 
@@ -65,7 +63,5 @@ export const DeleteButton = styled.button`
     margin-top: 60px;
     margin-left: auto;
     font-size: 16px;
-    color: var(--grey-btn-text-color);
-    border: 1px solid var(--grey-btn-bg-color);
   }
 `;
