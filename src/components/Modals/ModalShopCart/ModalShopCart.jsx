@@ -53,7 +53,7 @@ export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
             <StyledProductTitle>{price} грн</StyledProductTitle>
 
             <p>
-              Колір:&nbsp;{categories.color.forEach(el => el.name).join(" / ")}
+              Колір:&nbsp;{categories.color.forEach(el => el.name)?.join(" / ")}
             </p>
             <p>Розмір:&nbsp;{sizeValue} </p>
             <p>Кількість:&nbsp;1</p>
