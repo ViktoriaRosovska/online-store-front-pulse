@@ -20,11 +20,15 @@ function FooterTittle() {
     email: "",
   };
 
-  // const onSubmit = async values => {
-  //   console.log("send emeil", values);
-
-  //   userSubscribe(values);
-  // };
+  const onSubmit = async values => {
+    try {
+      const { data } = await userSubscribe(values);
+      console.log("onSubmit  data", data);
+    } catch (error) {
+      console.error(error);
+    }
+    console.log("send email", values);
+  };
   return (
     <Container>
       <div className="footer__inner">
@@ -38,40 +42,27 @@ function FooterTittle() {
             initialValues={initialValues}
             validateOnBlur
             validationSchema={userSubscribeValidationSchema}
-            onSubmit={async values => {
-              await userSubscribe(values);
-              console.log(values);
-            }}
+            onSubmit={onSubmit}
           >
-            {({
-              values,
-              handleChange,
-              handleSubmit,
-              handleBlur,
-              errors,
-              touched,
-            }) => (
-              <form>
-                <CustomInput
-                  name="email"
-                  type="text"
-                  label=""
-                  placeholder="Email"
-                  className="footer__tittle-input"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                {touched.email && errors.email && (
-                  <p style={{ color: "red" }}>{errors.email}</p>
-                )}
-                <Button
-                  text="Підписатися"
-                  type="submit"
-                  className="footer__tittle-btn"
-                  onClick={handleSubmit}
-                />
-              </form>
+            {formik => (
+              console.log(formik.values),
+              (
+                <form>
+                  <CustomInput
+                    name="email"
+                    type="text"
+                    label=""
+                    placeholder="Email"
+                    className="footer__tittle-input"
+                  />
+                  {formik.touched.email && formik.errors.email && (
+                    <p style={{ color: "red" }}>{formik.errors.email}</p>
+                  )}
+                  <Button type="submit" className="footer__tittle-btn">
+                    Підписатися
+                  </Button>
+                </form>
+              )
             )}
           </Formik>
         </div>

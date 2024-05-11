@@ -160,7 +160,8 @@ const StyledShopCartItemCount = styled.span`
 
 const StyledCountANDPriceWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${props =>
+    props.$showCloseBtn ? "space-between" : "center"};
 `;
 const StyledInfoWrapper = styled.div`
   display: flex;
@@ -174,7 +175,7 @@ const StyledChangeCountWrapper = styled.div`
     display: none;
   }
 `;
-const StyledChangeCountWrapperDesctop = styled(StyledChangeCountWrapper)`
+const StyledChangeCountWrapperDesktop = styled(StyledChangeCountWrapper)`
   display: none;
   @media screen and (min-width: 1440px) {
     display: flex;
@@ -220,7 +221,7 @@ export {
   StyledCountANDPriceWrapper,
   StyledChangeCountWrapper,
   StyledInfoWrapper,
-  StyledChangeCountWrapperDesctop,
+  StyledChangeCountWrapperDesktop,
   StyledChangeCountBtn,
   StyledNotificationWrapper,
 };
