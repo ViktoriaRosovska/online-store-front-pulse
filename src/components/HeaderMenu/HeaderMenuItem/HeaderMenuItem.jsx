@@ -1,15 +1,15 @@
-import Links from "../../link/link";
+import Links from "../../link/Link";
+import { MenuItem } from "./HeaderMenuItem.styled";
 
 function HeaderMenuItem(props) {
   return (
-    <li className={props.classNameLi}>
+    <MenuItem>
       <Links
-        className={props.classNameLink}
         href={props.href}
         linkText={props.menuItemText}
         state={{ from: location }}
       />
-    </li>
+    </MenuItem>
   );
 }
 

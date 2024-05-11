@@ -1,7 +1,7 @@
 import "./FooterGlassInfo.css";
 import MediaQuery from "react-responsive";
 // import List from "../../../../components/list/list";
-import Link from "../../../../components/link/link";
+import Link from "../../../link/Link";
 import instagramIcon from "/public/icons/social-media-icons/instagram-icon.svg";
 import facebookIcon from "/public/icons/social-media-icons/facebook-icon.svg";
 import mailIcon from "/public/icons/social-media-icons/mail-icon.svg";

@@ -1,20 +1,19 @@
-import MenuItem from "./HeaderMenu-Item/HeaderMenu-Item";
+import MenuItem from "./HeaderMenuItem/HeaderMenuItem";
 import menuArray from "./../../data/menu.json";
-import "./HeaderMenu.css";
+// import "./HeaderMenu.styled.jsx";
+import { MenuList } from "./HeaderMenu.styled.jsx";
 
 function HeaderMenu() {
   return (
-    <ul className="menu__list">
+    <MenuList >
       {menuArray.map((item, index) => (
         <MenuItem
           key={index}
-          classNameLi="menu__list-item"
-          classNameLink="menu__list-link"
           href={item.category.href}
           menuItemText={item.category.name}
         />
       ))}
-    </ul>
+    </MenuList>
   );
 }
 
