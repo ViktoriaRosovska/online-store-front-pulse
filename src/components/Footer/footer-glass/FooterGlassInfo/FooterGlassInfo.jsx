@@ -1,7 +1,7 @@
 import "./FooterGlassInfo.css";
 import MediaQuery from "react-responsive";
 // import List from "../../../../components/list/list";
-import Link from "../../../link/Link";
+import Links from "../../../Links/Links";
 import instagramIcon from "/public/icons/social-media-icons/instagram-icon.svg";
 import facebookIcon from "/public/icons/social-media-icons/facebook-icon.svg";
 import mailIcon from "/public/icons/social-media-icons/mail-icon.svg";
@@ -15,7 +15,12 @@ function FooterGlassInfo() {
   // const footerNavbarItem3 = ["Каталог товарів", "Новинки", "Распродаж", "Бренди"];
 
   // const footerNavbarItems = [iconsArray, footerNavbarItem1, footerNavbarItem2, footerNavbarItem3];
-  const footerNavbarItems = [iconsArray, menuArrayFooter[0], menuArrayFooter[1], menuArrayFooter[2]];
+  const footerNavbarItems = [
+    iconsArray,
+    menuArrayFooter[0],
+    menuArrayFooter[1],
+    menuArrayFooter[2],
+  ];
 
   return (
     <div className="footer__glass-info">
@@ -24,9 +29,9 @@ function FooterGlassInfo() {
           <ul className="social__media-list-mobile">
             {iconsArray.map((item, itemIndex) => (
               <li key={itemIndex}>
-                <Link className="list__item">
+                <Links className="list__item">
                   <img src={item} alt={`Icon ${itemIndex + 1}`} />
-                </Link>
+                </Links>
               </li>
             ))}
           </ul>
@@ -36,16 +41,20 @@ function FooterGlassInfo() {
           <ul className="footer__navbar-list">
             {footerNavbarItems.map((listItems, index) => (
               <li key={index} className="footer__navbar-item">
-                <ul className={`footer__navbar-item ${index === 0 ? "social__media-list" : ""}`}>
+                <ul
+                  className={`footer__navbar-item ${
+                    index === 0 ? "social__media-list" : ""
+                  }`}
+                >
                   {listItems.map((item, itemIndex) => (
                     <li key={itemIndex}>
                       {index === 0 ? (
-                        <Link className="list__item">
+                        <Links className="list__item">
                           <img src={item} alt={`Icon ${itemIndex + 1}`} />
-                        </Link>
+                        </Links>
                       ) : (
-                        // <Link href={"#"} linkText={item} /> 
-                        <Link href={item.href} linkText={item.name} />
+                        // <Link href={"#"} linkText={item} />
+                        <Links href={item.href} linkText={item.name} />
                       )}
                     </li>
                   ))}

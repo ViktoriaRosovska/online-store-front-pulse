@@ -1,5 +1,5 @@
-import Links from "../../link/Link";
-import {  StyledLi } from "./HeaderMenuItem.styled";
+import Links from "../../Links/Links";
+import { StyledLi } from "./HeaderMenuItem.styled";
 
 function MenuItem(props) {
   return (

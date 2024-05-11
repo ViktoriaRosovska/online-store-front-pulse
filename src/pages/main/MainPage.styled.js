@@ -36,27 +36,6 @@ export const BoxHero = styled.div`
     padding: 50px 60px;
     margin-left: 0;
   }
-
-  > button {
-    display: block;
-
-    width: 100%;
-    height: 48px;
-    border-radius: 16px;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-
-    @media screen and (min-width: 1440px) {
-      width: 280px;
-      height: 64px;
-    }
-
-    &:hover {
-      color: var(--grey-text-color);
-      background: var(--white-dark-bg-color);
-    }
-  }
 `;
 
 export const BoxHeroTitleWrapper = styled.div`
@@ -184,6 +163,7 @@ export const SectionNews = styled.section`
 `;
 
 import grayRibbon from "../../assets/images/grayRibbon.png";
+import Button from "components/Buttons/Button";
 
 export const VectorBox = styled.div`
   height: 69px;
@@ -213,3 +193,24 @@ export const SectionSale = styled.section`
     padding-top: 120px;
   }
 `;
+const HeroButton = styled(Button)`
+  display: block;
+
+  width: 100%;
+  height: 48px;
+  border-radius: 16px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: var(--white-dark-bg-color);
+  &:hover {
+    color: var(--white-text-color);
+    background-color: var(--black-bg-color);
+  }
+  @media screen and (min-width: 1440px) {
+    width: 280px;
+    height: 64px;
+  }
+`;
+
+export { HeroButton };
