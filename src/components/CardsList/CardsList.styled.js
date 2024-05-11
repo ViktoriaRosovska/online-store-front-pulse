@@ -10,7 +10,7 @@ const CardListWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: flex-start;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   row-gap: 24px;
 
   @media screen and (min-width: 1440px) {
