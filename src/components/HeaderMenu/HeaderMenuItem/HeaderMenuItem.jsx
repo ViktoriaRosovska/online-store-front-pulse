@@ -1,16 +1,16 @@
 import Links from "../../link/Link";
-import { MenuItem } from "./HeaderMenuItem.styled";
+import {  StyledLi } from "./HeaderMenuItem.styled";
 
-function HeaderMenuItem(props) {
+function MenuItem(props) {
   return (
-    <MenuItem>
+    <StyledLi onClick={props.onClose}>
       <Links
         href={props.href}
         linkText={props.menuItemText}
         state={{ from: location }}
       />
-    </MenuItem>
+    </StyledLi>
   );
 }
 
-export default HeaderMenuItem;
+export default MenuItem;

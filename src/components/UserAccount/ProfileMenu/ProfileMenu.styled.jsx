@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export const Box = styled.div`
   display: block;
-`
+`;
 
 export const Avatar = styled.div`
   width: 40px;
@@ -23,7 +23,7 @@ export const NavList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 11px;
-  margin-bottom: 54px;
+  margin-bottom: ${props => (props.$isModal ? "11px" : "54px")};
 `;
 
 export const ListItem = styled.li`
@@ -31,8 +31,6 @@ export const ListItem = styled.li`
   align-items: center;
   width: 210px;
   padding: 10px;
-  /* background-color: var(--white-light-bg-color); */
-  /* border-radius: 4px; */
 `;
 
 export const StyledNavLink = styled(NavLink)`

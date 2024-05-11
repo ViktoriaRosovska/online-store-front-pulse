@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MenuItem = styled.li`
+export const StyledLi = styled.li`
   a {
     &:hover {
       color: var(--grey-text-color);
