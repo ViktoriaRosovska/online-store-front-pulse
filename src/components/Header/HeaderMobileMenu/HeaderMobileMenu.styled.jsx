@@ -34,4 +34,13 @@ export const FooterMenuList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-top: 16px;
+
+  p {
+    font-size: 20px;
+    color: var(--black-text-color);
+    line-height: 28px;
+    white-space: nowrap;
+    letter-spacing: -0.5px;
+  }
 `

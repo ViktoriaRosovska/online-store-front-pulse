@@ -12,7 +12,7 @@ export const Modal = styled.div`
   position: relative;
   width: 80%;
   height: auto;
-  padding: 54px 28px 42px;
+  padding: 54px 24px 24px;
   border: 1px solid var(--grey-text-color);
   border-top: none;
   border-bottom-left-radius: 30px;
