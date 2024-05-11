@@ -19,6 +19,7 @@ function UserActions(props) {
   const navigate = useNavigate();
   const location = useLocation();
   const isLoggedIn = useSelector(selectUserToken);
+  console.log(isLoggedIn);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -32,7 +33,7 @@ function UserActions(props) {
   };
 
   const navigateToCabinet = () => {
-    navigate('profile/account');
+    navigate("profile/account");
   };
 
   const navigateToShopCart = () => {
@@ -42,11 +43,7 @@ function UserActions(props) {
     <div className="user__actions">
       <button
         className="user__actions-profile"
-        onClick={
-          isLoggedIn ?
-          navigateToCabinet
-          : toggleVisibility
-        }
+        onClick={isLoggedIn ? navigateToCabinet : toggleVisibility}
       >
         <img
           className={`user__actions-icon ${
@@ -77,11 +74,13 @@ function UserActions(props) {
         />
       </button>
       <AnimatePresence>
-       
-          <ReusableModal onClose={toggleVisibility} locked={isLocked} isOpen={isVisible}>
-            <ModalAuth />
-          </ReusableModal>
-       
+        <ReusableModal
+          onClose={toggleVisibility}
+          locked={isLocked}
+          isOpen={isVisible}
+        >
+          <ModalAuth />
+        </ReusableModal>
       </AnimatePresence>
     </div>
   );

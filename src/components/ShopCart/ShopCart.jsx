@@ -1,21 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectUserShopCart } from "../../redux/user/userShopCart/userShopCartSelector";
-import {
-  deleteUserShopCartItem,
-  incrementQuantity,
-  decrementQuantity,
-} from "../../redux/user/userShopCart/userShopCartSlice";
+
 import { useLocation } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
-import { ReactComponent as CloseBtnSmall } from "../../assets/svg/closeBtnSmall.svg";
+// import { ReactComponent as CloseBtnSmall } from "../../assets/svg/closeBtnSmall.svg";
 import {
-  StyledCard,
-  StyledChangeCountBtn,
-  StyledChangeCountWrapper,
-  StyledChangeCountWrapperDesctop,
-  StyledCloseBtnCard,
-  StyledCountANDPriceWrapper,
-  StyledInfoWrapper,
   StyledNotificationWrapper,
   StyledOrderPriceTextWrapper,
   StyledOrderText,
@@ -23,20 +12,13 @@ import {
   StyledOrderWrapper,
   StyledPDVText,
   StyledPageWrapper,
-  StyledProductName,
-  StyledProductText,
-  StyledProductValue,
-  StyledShopCartCardWrapper,
-  StyledShopCartImage,
-  StyledShopCartInfo,
-  StyledShopCartItemCount,
-  StyledShopCartListItem,
 } from "./ShopCart.styled";
 import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
-import { FiMinus, FiPlus } from "react-icons/fi";
+// import { FiMinus, FiPlus } from "react-icons/fi";
 import { ROUTES } from "../../utils/routes";
 import CustomInput from "components/form/formElements/CustomInput/CustomInput";
 import { Formik } from "formik";
+import { ShopCard } from "./ShopCard/ShopCard";
 
 export const ShopCart = props => {
   const items = useSelector(selectUserShopCart);
@@ -86,10 +68,6 @@ export const ShopCart = props => {
     return words_arr[1];
   };
 
-  // console.log(arr);
-
-  const dispatch = useDispatch();
-  // console.log(userShopCartItems);
   let countQuantity = 0;
   const countPrice = items?.reduce((acc, el) => {
     if (el) {
@@ -100,16 +78,6 @@ export const ShopCart = props => {
     return acc;
   }, 0);
 
-  const mergeColor = arr => {
-    const newArr = [];
-
-    for (let el of arr) {
-      newArr.push(el.name);
-    }
-
-    return newArr.join(" / ");
-  };
-  //   console.log(countPrice);
   return (
     <>
       <Title>{props.title}</Title>
@@ -119,78 +87,11 @@ export const ShopCart = props => {
             <ul>
               {items.map((el, idx) => {
                 return (
-                  <StyledShopCartListItem key={el._id + "#" + idx}>
-                    <StyledShopCartCardWrapper>
-                      <StyledCloseBtnCard
-                        onClick={() => dispatch(deleteUserShopCartItem(el))}
-                      >
-                        <CloseBtnSmall />
-                      </StyledCloseBtnCard>
-
-                      <StyledCard>
-                        <StyledShopCartImage
-                          src={el.data.imgGallery[0]}
-                          alt={el.data.name}
-                        />
-                        <StyledShopCartInfo>
-                          <StyledInfoWrapper>
-                            <StyledProductName>
-                              {el.data.name}
-                            </StyledProductName>
-                            <StyledProductText>
-                              Колір:
-                              <StyledProductValue>
-                                &nbsp;
-                                {mergeColor(el.data.categories.color)}
-                              </StyledProductValue>
-                            </StyledProductText>
-                            <StyledProductText>
-                              Розмір:&nbsp;
-                              <StyledProductValue>{el.size}</StyledProductValue>
-                            </StyledProductText>
-                          </StyledInfoWrapper>
-                          <StyledChangeCountWrapperDesctop>
-                            <StyledChangeCountBtn
-                              onClick={() => dispatch(decrementQuantity(el))}
-                            >
-                              <FiMinus />
-                            </StyledChangeCountBtn>
-                            <StyledShopCartItemCount>
-                              {el.quantity}
-                            </StyledShopCartItemCount>
-
-                            <StyledChangeCountBtn
-                              onClick={() => dispatch(incrementQuantity(el))}
-                            >
-                              <FiPlus />
-                            </StyledChangeCountBtn>
-                          </StyledChangeCountWrapperDesctop>
-                        </StyledShopCartInfo>
-                      </StyledCard>
-
-                      <StyledCountANDPriceWrapper>
-                        <StyledChangeCountWrapper>
-                          <StyledChangeCountBtn
-                            onClick={() => dispatch(decrementQuantity(el))}
-                          >
-                            <FiMinus />
-                          </StyledChangeCountBtn>
-                          <StyledShopCartItemCount>
-                            <StyledProductName>{el.quantity}</StyledProductName>
-                          </StyledShopCartItemCount>
-
-                          <StyledChangeCountBtn
-                            onClick={() => dispatch(incrementQuantity(el))}
-                          >
-                            <FiPlus />
-                          </StyledChangeCountBtn>
-                        </StyledChangeCountWrapper>
-                        <StyledProductName>
-                          {el.price}&nbsp;грн
-                        </StyledProductName>
-                      </StyledCountANDPriceWrapper>
-                    </StyledShopCartCardWrapper>
-                  </StyledShopCartListItem>
+                  <ShopCard
+                    el={el}
+                    key={el._id + "#" + idx}
+                    showCloseBtn={true}
+                  />
                 );
               })}
             </ul>

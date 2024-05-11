@@ -13,7 +13,7 @@ const authSlice = createSlice({
       state.user = payload.user;
       state.favoriteProducts = payload.favoriteProducts;
     },
-    removeCredentials: (state, _) => {
+    removeCredentials: state => {
       state.token = "";
       state.user = null;
       state.favoriteProducts = [];
