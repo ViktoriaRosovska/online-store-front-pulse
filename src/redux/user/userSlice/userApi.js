@@ -3,7 +3,19 @@ import { axiosBaseQuery } from "../../../http/api";
 
 export const userApi = createApi({
   reducerPath: "userApi",
-  baseQuery: axiosBaseQuery(),
+
+  baseQuery: axiosBaseQuery({
+    prepareHeaders: ({ getState }) => {
+      const state = getState();
+      if (state.userAuthReducer.token) {
+        return {
+          Authorization: `Bearer ${state.userAuthReducer.token}`,
+        };
+      }
+      return {};
+    },
+  }),
+
   tagTypes: ["Favorites"],
 
   endpoints: builder => ({
@@ -35,6 +47,7 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["Favorites"],
     }),
+
     deleteFromFavorites: builder.mutation({
       query: id => ({
         url: "/users/favorites",
@@ -61,3 +74,20 @@ export const {
   useDeleteFromFavoritesMutation,
   useUserSubscribeMutation,
 } = userApi;
+
+/*
+useGetFavoritesQuery
+1 
+2
+3
+4
+5
+6
+
+
+
+
+
+
+
+*/
