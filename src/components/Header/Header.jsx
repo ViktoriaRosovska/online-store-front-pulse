@@ -38,6 +38,7 @@ function Header() {
   };
 
   const handleCloseMenu = () => {
+    console.log('close')
     setIsOpen(false);
   };
 

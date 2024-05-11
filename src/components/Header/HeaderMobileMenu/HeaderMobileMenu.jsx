@@ -32,8 +32,8 @@ const HeaderMobileMenu = ({ onClose }) => {
       <nav>
         <FooterMenuList>
           {mobileFooterMenu.map((item, itemIndex) => (
-              <li key={itemIndex} >
-                <Link to={item.href} onClose={onClose}>
+              <li key={itemIndex} onClick={onClose}>
+                <Link to={item.href} >
                 <p>{item.name}</p> 
                 </Link>
               </li>
