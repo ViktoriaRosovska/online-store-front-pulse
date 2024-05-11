@@ -94,7 +94,7 @@ const UserEditForm = () => {
               label="Номер телефону"
               name="phone"
               type="text"
-              placeholder="+380"
+              placeholder="671112233"
             />
             <CustomInput
               label="Пароль"

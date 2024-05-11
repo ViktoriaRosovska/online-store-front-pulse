@@ -10,7 +10,7 @@ const Sales = () => {
       loader={getSales}
       cardfeature={"sales"}
       sortNewest={false}
-      data={data}
+      data={data?.products}
       isError={isError}
       isFetching={isFetching}
     />

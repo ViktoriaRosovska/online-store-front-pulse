@@ -21,7 +21,7 @@ const Catalog = () => {
       cardfeature={"sales"}
       brand={brand}
       sortNewest={true}
-      data={data}
+      data={data?.prodacts}
       isError={isError}
       isFetching={isFetching}
     />

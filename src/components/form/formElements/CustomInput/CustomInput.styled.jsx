@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Box = styled.div`
+position: relative;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -50,3 +51,16 @@ export const InputWrapper = styled.div`
     padding: 18px 16px;
   }
 `;
+
+export const Error = styled.p`
+position: absolute;
+  color: red;
+  left: 0;
+  font-size: 12px;
+  bottom: -16px;
+
+  @media screen and (min-width: 1440px) {
+     font-size: 14px;
+    bottom: -20px;
+  }
+`

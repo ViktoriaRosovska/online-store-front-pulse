@@ -14,7 +14,12 @@ import { SaleBand } from "../salesComponents/SaleBand/SaleBand.jsx";
 import { SalePercent } from "../salesComponents/SalePercent/SalePercent.jsx";
 import { ROUTES } from "../../utils/routes.js";
 import { useLocation } from "react-router-dom";
-import { useAddToFavoritesMutation } from "../../redux/user/userSlice/userApi.js";
+import {
+  useAddToFavoritesMutation,
+  useDeleteFromFavoritesMutation,
+  // useGetFavoritesQuery,
+} from "../../redux/user/userSlice/userApi.js";
+import { useEffect, useState } from "react";
 
 const Card = ({
   info,
@@ -25,12 +30,32 @@ const Card = ({
   cardfeature,
   filterQuery,
   cardSlider,
+  favorites,
 }) => {
-  // console.log("id", id)
   const [addToFavorites] = useAddToFavoritesMutation();
+  const [deleteFromFavorites] = useDeleteFromFavoritesMutation();
+
+  const [favoriteState, setFavoriteState] = useState(false);
+
+  useEffect(() => {
+    setFavoriteState(favorites?.some(el => el._id === id));
+  }, [favorites, id]);
+
   const sales = cardfeature === "sales";
   const newBrands = cardfeature === "newbrands";
   const location = useLocation().pathname;
+
+  const toggleFavorite = event => {
+    event.preventDefault();
+
+    if (favoriteState) {
+      setFavoriteState(false);
+      deleteFromFavorites({ productId: id });
+    } else {
+      setFavoriteState(true);
+      addToFavorites({ productId: id });
+    }
+  };
 
   return (
     <StyledCardLink
@@ -42,7 +67,7 @@ const Card = ({
       }}
       state={{ from: location }}
     >
-      <CardWrapper $cardSlider={cardSlider}>
+      <CardWrapper $isFavorite={favoriteState} $cardSlider={cardSlider}>
         <ImageWrapper>
           {sales && sale > 0 ? (
             <SaleBand text={"SALE"} $background={"#fef746"} color={"black"} />
@@ -55,7 +80,8 @@ const Card = ({
           <FavoriteButton
             $sales={sales && sale > 0}
             $new={newBrands}
-            onClick={() => addToFavorites({ productId: id })}
+            onClick={toggleFavorite}
+            isFavorite={favoriteState}
           />
           {sales && sale > 0 ? <SalePercent text={-sale} /> : null}
         </ImageWrapper>

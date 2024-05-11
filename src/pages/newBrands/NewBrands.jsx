@@ -11,7 +11,7 @@ const NewBrands = () => {
       loader={getNewest}
       cardfeature={"newbrands"}
       sortNewest={false}
-      data={data}
+      data={data?.products}
       isError={isError}
       isFetching={isFetching}
     />

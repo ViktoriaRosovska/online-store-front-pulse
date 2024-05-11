@@ -2,6 +2,7 @@ import { CardListWrapper, CardsListContainer } from "./CardsList.styled.js";
 import Card from "../Card/Card.jsx";
 import { ScrollToTop } from "../../components/ScrollToTop.js";
 import { Pagination } from "components/Pagination/Pagination.jsx";
+import { useGetFavoritesQuery } from "../../redux/user/userSlice/userApi.js";
 
 export const CardsList = ({
   data,
@@ -10,9 +11,10 @@ export const CardsList = ({
   filterQuery,
   isFetching,
   isError,
+  isFavoritePage,
 }) => {
-  // console.log("data", data?.products);
-  // console.log(totalPages);
+  const { data: favorites } = useGetFavoritesQuery();
+
   if (isFetching) return <div>Йде завантаження даних...</div>;
   if (isError)
     return (
@@ -25,8 +27,8 @@ export const CardsList = ({
     <CardsListContainer>
       <ScrollToTop />
       <CardListWrapper>
-        {!isFetching && data?.products.length > 0 ? (
-          data?.products.map(el => {
+        {!isFetching && data?.length > 0 ? (
+          data?.map(el => {
             return (
               <Card
                 key={el._id}
@@ -37,6 +39,7 @@ export const CardsList = ({
                 sale={el.sale}
                 cardfeature={cardfeature}
                 filterQuery={filterQuery}
+                favorites={favorites}
               />
             );
           })
@@ -45,7 +48,7 @@ export const CardsList = ({
         )}
       </CardListWrapper>
 
-      {!isFetching && data?.products.length > 0 ? (
+      {!isFetching && data?.length > 0 && !isFavoritePage ? (
         <Pagination
           onChange={onPageChange}
           page={parseInt(data?.page)}

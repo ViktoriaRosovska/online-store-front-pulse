@@ -3,11 +3,11 @@ import { Box, Button, Image, Wrapper } from "./UserInfoCard.styled";
 
 const UserInfoCard = () => {
   const { data, isLoading } = useFetchCurrentUserQuery();
-  const user = data?.user
-  console.log("UserInfoCard  user", data)
-  
+  const user = data?.user;
+  console.log("UserInfoCard  user", data);
+
   if (isLoading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   return (
@@ -22,7 +22,9 @@ const UserInfoCard = () => {
           </svg>
         </Button>
       </Box>
-      <h2>{user?.firstName} {user?.lastName}</h2>
+      <h2>
+        {user?.firstName} {user?.lastName}
+      </h2>
     </Wrapper>
   );
 };

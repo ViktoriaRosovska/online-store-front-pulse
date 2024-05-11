@@ -1,7 +1,7 @@
 import { useField } from "formik";
 import { useState } from "react";
 import VisiblePasswordIcon from "../VisiblePasswordIcon/VisiblePasswordIcon";
-import { Box, Input, InputField, InputWrapper } from "./CustomInput.styled";
+import { Box, Error, Input, InputField, InputWrapper } from "./CustomInput.styled";
 
 const CustomInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -42,7 +42,7 @@ const CustomInput = ({ label, ...props }) => {
           </div>
         </InputWrapper>
       </InputField>
-      {isError && <div>{meta.error}</div>}
+      {isError && <Error>{meta.error}</Error>}
     </Box>
   );
 };
