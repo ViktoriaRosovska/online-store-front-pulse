@@ -6,6 +6,7 @@ import {
   BoxHero,
   BoxHeroTitleWrapper,
   BoxTitle,
+  HeroButton,
   ManBox,
   SectionHero,
   SectionManWomen,
@@ -47,9 +48,9 @@ const Main = () => {
             <BoxHeroTitleWrapper>
               <h1>ОБИРАЙ КОМФОРТ ТА СВОБОДУ</h1>
             </BoxHeroTitleWrapper>
-            <button type="button" onClick={navFunc}>
+            <HeroButton type="button" onClick={navFunc}>
               Каталог
-            </button>
+            </HeroButton>
           </BoxHero>
         </Container>
       </SectionHero>
