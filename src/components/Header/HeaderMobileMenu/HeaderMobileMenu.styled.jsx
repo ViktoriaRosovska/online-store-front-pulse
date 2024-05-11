@@ -1,9 +1,14 @@
 import styled from "styled-components";
 
+export const Wrapper = styled.div`
+  max-height: 666px;
+  overflow: hidden;
+`
+
 export const Button = styled.button`
-    display: flex;
-    align-items: center;
- text-align: left;
+  display: flex;
+  align-items: center;
+  text-align: left;
   font-size: 20px;
   line-height: 28px;
   margin-top: 16px;
@@ -23,4 +28,10 @@ export const Button = styled.button`
     height: 24px;
     margin-left: 5px;
   }
+`;
+
+export const FooterMenuList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `

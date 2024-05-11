@@ -9,7 +9,7 @@ export const Backdrop = styled.div`
 `;
 
 export const Modal = styled.div`
-position: relative;
+  position: relative;
   width: 80%;
   height: auto;
   padding: 54px 28px 42px;
