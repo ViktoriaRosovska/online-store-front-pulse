@@ -23,7 +23,7 @@ export const NavList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 11px;
-  margin-bottom: 54px;
+  margin-bottom: ${props => props.$isModal ? '11px' : '54px'};
 `;
 
 export const ListItem = styled.li`

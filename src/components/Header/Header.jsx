@@ -2,13 +2,17 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import MediaQuery from "react-responsive";
 import "./Header.css";
+// import { ReactComponent as BurgerMenu } from "../../assets/svg/burger-menu.svg";
+// import { ReactComponent as CloseMenu } from "../../assets/svg/closeBtnSmall.svg";
 import logoImg from "/logo.svg?url";
 import Menu from "../HeaderMenu/HeaderMenu.jsx";
 import SearchUserActions from "./Search-user-actions/Search-user-actions.jsx";
-import ProfileMenu from "../UserAccount/ProfileMenu/ProfileMenu";
+// import ProfileMenu from "../UserAccount/ProfileMenu/ProfileMenu";
 import { Portal } from "../../components/Modals/helpersForModal/modalPortal";
 import ModalBurgerMenu from "../../components/Modals/ModalBurgerMenu/ModalBurgerMenu";
 import { Container } from "../../main.styled";
+import HeaderMobileMenu from "./HeaderMobileMenu/HeaderMobileMenu";
+import HeaderMenuSvg from "./HeaderMenuSvg/HeaderMenuSvg";
 
 function Header() {
   const [isFixed, setIsFixed] = useState(false);
@@ -40,19 +44,19 @@ function Header() {
     setIsOpen(false);
   };
 
-  const getMenuItems = () => {
-    if (location.pathname === "/") {
-      return <Menu />;
-    } else if (
-      location.pathname === "/profile/account" ||
-      location.pathname === "/profile/orderhistory" ||
-      location.pathname === "/profile/favorites" ||
-      location.pathname === "/profile/wallet" ||
-      location.pathname === "/profile/support"
-    ) {
-      return <ProfileMenu onClose={handleCloseMenu} isProfile />;
-    }
-  };
+  // const getMenuItems = () => {
+  //   if (location.pathname === "/") {
+  //     return <Menu />;
+  //   } else if (
+  //     location.pathname === "/profile/account" ||
+  //     location.pathname === "/profile/orderhistory" ||
+  //     location.pathname === "/profile/favorites" ||
+  //     location.pathname === "/profile/wallet" ||
+  //     location.pathname === "/profile/support"
+  //   ) {
+  //     return <ProfileMenu onClose={handleCloseMenu} isProfile />;
+  //   }
+  // };
 
   return (
     <header
@@ -64,17 +68,16 @@ function Header() {
         <div className="header__inner">
           <MediaQuery maxWidth={1440}>
             <div>
-              {!isOpen && (
-                <button onClick={handleOpenMenu}>
-                  <svg width={26} height={26}>
-                    <use xlinkHref="../icons/profile-icons/profile-icons-sprite.svg#icon-menu"></use>
-                  </svg>
-                </button>
-              )}
+              <HeaderMenuSvg
+                isOpen={isOpen}
+                onClose={handleCloseMenu}
+                onOpen={handleOpenMenu}
+                isFixed={location.pathname !== "/" || isFixed ? true : false}
+              />
 
               <Portal isOpen={isOpen}>
                 <ModalBurgerMenu onClose={handleCloseMenu}>
-                  {getMenuItems()}
+                  <HeaderMobileMenu onClose={handleCloseMenu} />
                 </ModalBurgerMenu>
               </Portal>
             </div>
