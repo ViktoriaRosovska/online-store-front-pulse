@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import footerBackground from "../../assets/images/footer-background.png";
+import { Form } from "formik";
 
 const FooterSection = styled.footer`
   background-color: var(--black-bg-color);
@@ -24,6 +25,12 @@ const FooterSection = styled.footer`
   }
 `;
 
+const StyledFooterForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+
 const FooterContainer = styled.div``;
 
-export { FooterContainer, FooterSection };
+export { FooterContainer, FooterSection, StyledFooterForm };

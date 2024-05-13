@@ -4,17 +4,13 @@ import { Container } from "../../../main.styled";
 import { Formik } from "formik";
 import { useUserSubscribeMutation } from "../../../redux/user/userSlice/userApi";
 // import { useState } from "react";
-import CustomInput from "components/form/formElements/CustomInput/CustomInput";
+
 import { userSubscribeValidationSchema } from "components/form/formHelpers/formValidation";
+import { CustomInputWhite } from "components/form/formElements/CustomInput/CustomInput.styled";
+import { StyledFooterForm } from "../Footer.styled";
 
 function FooterTittle() {
   const [userSubscribe] = useUserSubscribeMutation();
-
-  // const [userEmail, setUserEmail] = useState("");
-
-  //  useHandleLoginSuccess(isSuccess, data);
-
-  //  useHandleAuthErrors(isError, error);
 
   const initialValues = {
     email: "",
@@ -45,26 +41,26 @@ function FooterTittle() {
             onSubmit={onSubmit}
           >
             {formik => (
-
               console.log(formik.values),
               (
-                <form onSubmit={formik.handleSubmit}>
-                  <CustomInput
+                <StyledFooterForm>
+                  <CustomInputWhite
                     name="email"
                     type="text"
                     label=""
                     placeholder="Email"
-                    className="footer__tittle-input"
+                    // className="footer__tittle-input"
                   />
-                  {formik.touched.email && formik.errors.email && (
-                    <p style={{ color: "red" }}>{formik.errors.email}</p>
-                  )}
+                  {/* {formik.touched.email &&
+                    formik.errors.email &&
+                    {
+                      <p style={{ color: "red" }}>{formik.errors.email}</p> 
+                    }} */}
                   <Button type="submit" className="footer__tittle-btn">
                     Підписатися
                   </Button>
-                </form>
+                </StyledFooterForm>
               )
-
             )}
           </Formik>
         </div>
