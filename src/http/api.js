@@ -7,12 +7,17 @@ const api = axios.create({
 });
 
 const axiosBaseQuery =
-  () =>
-  async ({ url, method, data, params, headers }) => {
+  options =>
+  async ({ url, method, data, params, headers }, reduxApi) => {
+    let preparedHeaders = {};
+    if (options?.prepareHeaders) {
+      preparedHeaders = options?.prepareHeaders(reduxApi);
+    }
+
     try {
-      const token = localStorage.getItem("token")
-        ? localStorage.getItem("token")
-        : "";
+      // const token = localStorage.getItem("token")
+      //   ? localStorage.getItem("token")
+      //   : "";
 
       const result = await api({
         url,
@@ -21,8 +26,9 @@ const axiosBaseQuery =
         params,
         headers: {
           ...headers,
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          ...preparedHeaders,
+          // "Content-Type": "application/json",
+          // Authorization: `Bearer ${token}`,
         },
       });
       return { data: result.data };

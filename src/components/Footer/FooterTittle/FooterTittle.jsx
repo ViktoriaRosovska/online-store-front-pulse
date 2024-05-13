@@ -45,6 +45,7 @@ function FooterTittle() {
             onSubmit={onSubmit}
           >
             {formik => (
+
               console.log(formik.values),
               (
                 <form onSubmit={formik.handleSubmit}>
@@ -63,6 +64,7 @@ function FooterTittle() {
                   </Button>
                 </form>
               )
+
             )}
           </Formik>
         </div>

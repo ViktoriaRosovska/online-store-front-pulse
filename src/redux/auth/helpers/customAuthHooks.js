@@ -1,12 +1,15 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLazyFetchCurrentUserQuery } from "../userAuthApi";
 import { setCredentials, removeCredentials } from "../auth";
 import { useNavigate } from "react-router";
 import { ROUTES } from "../../../utils/routes";
+import { selectUserToken } from "../selectors";
 
 export const useHandleCurrentUser = () => {
   const dispatch = useDispatch();
+
+  const token = useSelector(selectUserToken);
 
   const [fetchCurrentUser, { data, isError, error }] =
     useLazyFetchCurrentUserQuery();
@@ -14,17 +17,18 @@ export const useHandleCurrentUser = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        if (localStorage.getItem("token")) {
+        // if (localStorage.getItem("token")) {
+        if (token) {
           await fetchCurrentUser();
           dispatch(setCredentials(data));
         }
       } catch (error) {
         if (error.code === 401) {
-          localStorage.removeItem("token");
+          // localStorage.removeItem("token");
           dispatch(removeCredentials());
         }
 
-        console.log(`Ups, error: ${error}`);
+        // console.log(`Ups, error: ${error}`);
       }
     };
 
