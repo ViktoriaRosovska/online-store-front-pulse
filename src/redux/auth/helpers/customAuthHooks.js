@@ -17,14 +17,14 @@ export const useHandleCurrentUser = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        // if (localStorage.getItem("token")) {
-        if (token) {
+        if (localStorage.getItem("token")) {
+          // if (token) {
           await fetchCurrentUser();
           dispatch(setCredentials(data));
         }
       } catch (error) {
         if (error.code === 401) {
-          // localStorage.removeItem("token");
+          localStorage.removeItem("token");
           dispatch(removeCredentials());
         }
 
