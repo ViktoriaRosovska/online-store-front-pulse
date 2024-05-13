@@ -47,7 +47,7 @@ function FooterTittle() {
             {formik => (
               console.log(formik.values),
               (
-                <form>
+                <form onSubmit={formik.handleSubmit}>
                   <CustomInput
                     name="email"
                     type="text"
