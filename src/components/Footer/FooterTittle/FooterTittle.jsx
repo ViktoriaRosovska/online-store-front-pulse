@@ -45,22 +45,26 @@ function FooterTittle() {
             onSubmit={onSubmit}
           >
             {formik => (
-              // console.log(formik.values),
-              <form onSubmit={formik.handleSubmit}>
-                <CustomInput
-                  name="email"
-                  type="text"
-                  label=""
-                  placeholder="Email"
-                  className="footer__tittle-input"
-                />
-                {formik.touched.email && formik.errors.email && (
-                  <p style={{ color: "red" }}>{formik.errors.email}</p>
-                )}
-                <Button type="submit" className="footer__tittle-btn">
-                  Підписатися
-                </Button>
-              </form>
+
+              console.log(formik.values),
+              (
+                <form onSubmit={formik.handleSubmit}>
+                  <CustomInput
+                    name="email"
+                    type="text"
+                    label=""
+                    placeholder="Email"
+                    className="footer__tittle-input"
+                  />
+                  {formik.touched.email && formik.errors.email && (
+                    <p style={{ color: "red" }}>{formik.errors.email}</p>
+                  )}
+                  <Button type="submit" className="footer__tittle-btn">
+                    Підписатися
+                  </Button>
+                </form>
+              )
+
             )}
           </Formik>
         </div>
