@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import CustomInput from "./CustomInput";
 
 export const Box = styled.div`
-position: relative;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -20,47 +21,81 @@ export const InputField = styled.div`
 `;
 
 export const Input = styled.input`
-  border: none;
+  /* border: none; */
   flex-grow: 1;
   font-size: 16px;
   line-height: 125%;
-
-  &::placeholder {
-    font-size: 16px;
-    line-height: 125%;
-  }
-`;
-
-export const InputWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
   height: 48px;
+  width: 100%;
   border: 1px solid var(--black-text-color);
   border-radius: 16px;
   padding: 14px 16px;
   ${props =>
     props.$isPassword &&
     `
-    padding: 12px 10px;
+     padding-right: 38px;
    `}
-
-    @media screen and (min-width: 1440px) {
+  &::placeholder {
+    font-size: 16px;
+    line-height: 125%;
+  }
+  @media screen and (min-width: 1440px) {
     height: 60px;
     width: 384px;
     padding: 18px 16px;
+    ${props =>
+      props.$isPassword &&
+      `
+     padding-right: 38px;
+   `}
   }
 `;
 
+export const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  /* height: 48px; */
+  /* border: 1px solid var(--black-text-color); */
+  /* border-radius: 16px; */
+  /* padding: 14px 16px; */
+  /* ${props =>
+    props.$isPassword &&
+    `
+    padding: 12px 10px;
+   `} */
+
+  @media screen and (min-width: 1440px) {
+    /* height: 60px;
+    width: 384px;
+    padding: 18px 16px; */
+  }
+`;
+
+export const StyledPassIconWrapper = styled.div`
+  position: absolute;
+  right: 16px;
+`;
+
 export const Error = styled.p`
-position: absolute;
+  position: absolute;
   color: red;
   left: 0;
   font-size: 12px;
   bottom: -16px;
 
   @media screen and (min-width: 1440px) {
-     font-size: 14px;
+    font-size: 14px;
     bottom: -20px;
   }
-`
+`;
+
+export const CustomInputWhite = styled(CustomInput)`
+  border: 1px solid var(--white-dark-bg-color);
+  background-color: transparent;
+  color: var(--white-text-color);
+  &::placeholder {
+    color: var(--white-text-color);
+  }
+`;

@@ -118,3 +118,6 @@ button:focus,
 button:active {
   outline: none;
 }
+input[type="password"]::-ms-reveal {
+  display: none;
+}

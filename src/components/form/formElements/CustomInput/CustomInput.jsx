@@ -1,7 +1,14 @@
 import { useField } from "formik";
 import { useState } from "react";
 import VisiblePasswordIcon from "../VisiblePasswordIcon/VisiblePasswordIcon";
-import { Box, Error, Input, InputField, InputWrapper } from "./CustomInput.styled";
+import {
+  Box,
+  Error,
+  Input,
+  InputField,
+  InputWrapper,
+  StyledPassIconWrapper,
+} from "./CustomInput.styled";
 
 const CustomInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -9,7 +16,8 @@ const CustomInput = ({ label, ...props }) => {
 
   const isError = meta.error && meta.touched;
 
-  const isPasswordInput = field.name === "password" || field.name === "checkPassword";
+  const isPasswordInput =
+    field.name === "password" || field.name === "checkPassword";
 
   const togglePasswordVisibility = () => {
     setVisiblePassword(!visiblePassword);
@@ -17,12 +25,13 @@ const CustomInput = ({ label, ...props }) => {
 
   return (
     <Box>
-      <InputField >
+      <InputField>
         <label>{label}</label>
         <InputWrapper $isPassword={isPasswordInput}>
           <Input
             {...field}
             {...props}
+            $isPassword={isPasswordInput}
             type={
               isPasswordInput
                 ? visiblePassword
@@ -32,14 +41,14 @@ const CustomInput = ({ label, ...props }) => {
             }
             autoComplete="off"
           />
-          <div>
+          <StyledPassIconWrapper>
             {isPasswordInput && (
               <VisiblePasswordIcon
                 visiblePassword={visiblePassword}
                 onClick={togglePasswordVisibility}
               />
             )}
-          </div>
+          </StyledPassIconWrapper>
         </InputWrapper>
       </InputField>
       {isError && <Error>{meta.error}</Error>}
