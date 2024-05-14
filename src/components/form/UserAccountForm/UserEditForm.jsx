@@ -16,6 +16,7 @@ const UserEditForm = () => {
   const [userDelete] = useUserDeleteMutation();
   console.log("UserEditForm  isError", isError);
   const user = data?.user;
+  console.log("UserEditForm  user", user)
 
   const phoneNumber = user?.phone === "0000000000" ? "" : user?.phone;
 

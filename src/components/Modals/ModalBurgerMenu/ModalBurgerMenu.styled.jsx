@@ -9,8 +9,10 @@ export const Backdrop = styled.div`
 `;
 
 export const Modal = styled.div`
-  position: relative;
-  width: 80%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: clamp(299px, 80%, 320px);
   height: auto;
   padding: 54px 24px 24px;
   border: 1px solid var(--grey-text-color);

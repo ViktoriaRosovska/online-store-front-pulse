@@ -16,7 +16,7 @@ export const userApi = createApi({
     },
   }),
 
-  tagTypes: ["Favorites"],
+  tagTypes: ["Favorites"] ['Payments'],
 
   endpoints: builder => ({
     userUpdate: builder.mutation({
