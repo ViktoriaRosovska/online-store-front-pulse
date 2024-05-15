@@ -76,3 +76,31 @@ export const userSubscribeValidationSchema = Yup.object().shape({
     .email("Введіть коректний email")
     .required("обовʼязкове поле"),
 });
+
+export const validationUserCardSchema = Yup.object().shape({
+  cardNumber: Yup.string()
+    .transform(value => value.replace(/\s/g, "")) // Удалить пробелы
+    .matches(/^[45]/, "Visa або MasterCard")
+    .test("is-valid", "Невірний номер карти", value => /^\d{16}$/.test(value)) // Проверка на 16 цифр
+    .required("Поле обов'язкове"),
+  cardDate: Yup.string()
+    .matches(/^\d{2}\/\d{2}$/, {
+      message: "Формат дати ММ/YY.",
+      excludeEmptyString: true,
+    })
+    .test("is-future-date", "Термін дії закінчився.", function (value) {
+      if (!value) return false;
+      const currentDate = new Date();
+      const [month, year] = value.split("/");
+      const cardExpireDate = new Date(`20${year}`, month - 1);
+      return cardExpireDate >= currentDate;
+    })
+    .required("Поле обов'язкове"),
+  cardCVC: Yup.string()
+    .matches(/^\d{3}$/, {
+      message: "CVV - три цифри.",
+      excludeEmptyString: true,
+    })
+    .required("Поле обов'язкове"),
+  cardName: Yup.string().required("Поле обов'язкове"),
+});
