@@ -16,7 +16,7 @@ export const userApi = createApi({
     },
   }),
 
-  tagTypes: ["Favorites"],
+  tagTypes: ["Favorites"]["Payments"],
 
   endpoints: builder => ({
     userUpdate: builder.mutation({
@@ -63,6 +63,21 @@ export const userApi = createApi({
         data: payload,
       }),
     }),
+    getUserCards: builder.query({
+      query: () => ({
+        url: "/users/payments",
+        method: "GET",
+      }),
+      providesTags: ["Payments"],
+    }),
+    addUserCard: builder.mutation({
+      query: payload => ({
+        url: "/users/payments",
+        method: "POST",
+        data: payload,
+      }),
+      invalidatesTags: ["Payments"],
+    }),
   }),
 });
 
@@ -73,6 +88,8 @@ export const {
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
   useUserSubscribeMutation,
+  useAddUserCardMutation,
+  useGetUserCardsQuery,
 } = userApi;
 
 /*

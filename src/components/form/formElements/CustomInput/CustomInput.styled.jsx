@@ -41,7 +41,7 @@ export const Input = styled.input`
   }
   @media screen and (min-width: 1440px) {
     height: 60px;
-    width: 384px;
+    /* width: 384px; */
     padding: 18px 16px;
     ${props =>
       props.$isPassword &&

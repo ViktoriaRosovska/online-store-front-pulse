@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Backdrop, Modal } from './ModalBurgerMenu.styled';
+import { Container } from '../../../main.styled';
 
 const ModalBurgerMenu = ({ onClose, children }) => {
   const handleKeyDown = event => {
@@ -22,7 +23,7 @@ const ModalBurgerMenu = ({ onClose, children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onClose]);
 
-  return <Backdrop onClick={handleBackdropClick}><Modal>{children}</Modal></Backdrop>;
+  return <Backdrop onClick={handleBackdropClick}><Container><Modal>{children}</Modal></Container></Backdrop>;
 };
 
 export default ModalBurgerMenu;
