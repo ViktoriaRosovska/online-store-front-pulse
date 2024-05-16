@@ -29,6 +29,7 @@ import {
 
 import ShopCartLayout from "components/ShopCartLayout/ShopCartLayout.jsx";
 import ProfileLayout from "components/ProfileLayout/ProfileLayout.jsx";
+import PrivateRoute from "components/routs/PrivateRout.jsx";
 
 const App = () => {
   return (
@@ -60,7 +61,7 @@ const App = () => {
             <Route path={ROUTES.GUARANTEE} element={<FooterGuarantee />} />
             <Route path={ROUTES.POLICY} element={<FooterPrivacyPolicy />} />
             <Route path={ROUTES.DELIVERY} element={<FooterDelivery />} />
-            <Route path={ROUTES.PROFILE} element={<ProfileLayout />}>
+            <Route path={ROUTES.PROFILE} element={<PrivateRoute><ProfileLayout /></PrivateRoute>}>
               <Route path={ROUTES.ACCOUNT} element={<UserAccount />} />
               <Route
                 path={ROUTES.ORDERHISTORY}

@@ -9,7 +9,7 @@ import {
 } from "../../../redux/auth";
 import { registerValidationSchema } from "../formHelpers/formValidation";
 
-const CustomForm = () => {
+const CustomRegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [createUser, { data, isLoading, isSuccess, isError, error }] =
     useCreateUserMutation();
@@ -171,4 +171,4 @@ const CustomForm = () => {
   );
 };
 
-export default CustomForm;
+export default CustomRegisterForm;

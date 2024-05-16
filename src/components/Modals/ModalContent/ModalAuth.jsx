@@ -1,5 +1,5 @@
 import "./ModalAuth.css";
-import CustomForm from "../../form/RegisterForm/CustomForm.jsx";
+import CustomForm from "../../form/RegisterForm/CustomRegisterForm.jsx/index.js";
 import { useState } from "react";
 import icon from "../../../../public/icons/Group 47879.png";
 import icon2 from "../../../../public/icons/Group 47880.png";

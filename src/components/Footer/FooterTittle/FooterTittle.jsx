@@ -6,7 +6,7 @@ import { useUserSubscribeMutation } from "../../../redux/user/userSlice/userApi"
 // import { useState } from "react";
 
 import { userSubscribeValidationSchema } from "components/form/formHelpers/formValidation";
-import { CustomInputWhite } from "components/form/formElements/CustomInput/CustomInput.styled";
+// import { CustomInputWhite } from "components/form/formElements/CustomInput/CustomInput.styled";
 import { StyledFooterForm } from "../Footer.styled";
 
 function FooterTittle() {
@@ -44,13 +44,13 @@ function FooterTittle() {
               console.log(formik.values),
               (
                 <StyledFooterForm>
-                  <CustomInputWhite
+                  {/* <CustomInputWhite
                     name="email"
                     type="text"
                     label=""
                     placeholder="Email"
                     // className="footer__tittle-input"
-                  />
+                  /> */}
                   {/* {formik.touched.email &&
                     formik.errors.email &&
                     {

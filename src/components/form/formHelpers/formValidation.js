@@ -113,8 +113,6 @@ export const userSupportValidationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Введіть коректний email")
     .required("Oбовʼязкове поле"),
-  subject: Yup.string()
-    .required("Oбовʼязкове поле"),
-  message: Yup.string()
-    .required("Oбовʼязкове поле"),
-})
+  subject: Yup.string().required("Oбовʼязкове поле"),
+  message: Yup.string().required("Oбовʼязкове поле"),
+});

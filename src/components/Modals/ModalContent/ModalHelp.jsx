@@ -1,5 +1,5 @@
 import "./ModalHelp.css";
-import CustomForm from "../../form/RegisterForm/CustomForm.jsx";
+import CustomForm from "../../form/RegisterForm/CustomRegisterForm.jsx/index.js";
 import close from "/icons/Group 176.png";
 const ModalHelp = ({ seeMail, off }) => {
   return (

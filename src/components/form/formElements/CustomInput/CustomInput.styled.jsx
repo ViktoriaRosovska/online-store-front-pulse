@@ -113,11 +113,11 @@ export const Error = styled.p`
   }
 `;
 
-export const CustomInputWhite = styled(CustomInput)`
-  border: 1px solid var(--white-dark-bg-color);
-  background-color: transparent;
-  color: var(--white-text-color);
-  &::placeholder {
-    color: var(--white-text-color);
-  }
-`;
+// export const CustomInputWhite = styled(CustomInput)`
+//   border: 1px solid var(--white-dark-bg-color);
+//   background-color: transparent;
+//   color: var(--white-text-color);
+//   &::placeholder {
+//     color: var(--white-text-color);
+//   }
+// `;
