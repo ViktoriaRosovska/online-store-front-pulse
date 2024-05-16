@@ -2,11 +2,13 @@ import { Formik } from "formik";
 import { loginValidationSchema } from "../formHelpers/formValidation";
 import {
   useLoginUserMutation,
-  useHandleLoginSuccess,
   useHandleAuthErrors,
+  setCredentials,
 } from "../../../redux/auth";
 import CustomInput from "../formElements/CustomInput/CustomInput";
-import { StyledForm } from "./CustomLoginForm.styled";
+import { Button, StyledForm } from "./CustomLoginForm.styled";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 // const CustomLoginForm = () => {
 //   const [showPassword, setShowPassword] = useState(false);
@@ -105,11 +107,13 @@ import { StyledForm } from "./CustomLoginForm.styled";
 //   );
 // };
 
-const CustomLoginForm = () => {
-  const [loginUser, { data, isSuccess, isError, error }] =
+const CustomLoginForm = ({ onClose }) => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [loginUser, { data, isError, error }] =
     useLoginUserMutation();
 
-  useHandleLoginSuccess(isSuccess, data);
+  // useHandleLoginSuccess(isSuccess, data);
 
   useHandleAuthErrors(isError, error);
 
@@ -122,8 +126,14 @@ const CustomLoginForm = () => {
         }}
         validateOnBlur
         validationSchema={loginValidationSchema}
-        onSubmit={async values => {
-          await loginUser(values);
+        onSubmit={values => {
+          loginUser(values).unwrap().then((res) => {
+            dispatch(setCredentials(res))
+            console.log('SUCCESS')
+            navigate('/profile/account')
+          })
+            console.log("loginUser  data", data)
+          onClose()
         }}
       >
         {() => (
@@ -140,7 +150,8 @@ const CustomLoginForm = () => {
               type="password"
               placeholder="**********"
             />
-            <button type="submit">Увійти</button>
+            <button type="button">Забули пароль?</button>
+            <Button type="submit">Увійти</Button>
           </StyledForm>
         )}
       </Formik>

@@ -18,9 +18,11 @@ const UserEditForm = () => {
   const { data, isLoading, refetch } = useFetchCurrentUserQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
+  
   const [userUpdate] = useUserUpdateMutation();
   const [userDelete] = useUserDeleteMutation();
   const user = data?.user;
+  console.log("UserEditForm  user", data)
 
   const phoneNumber = user?.phone === "0000000000" ? "" : user?.phone;
 

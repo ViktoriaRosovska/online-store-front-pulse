@@ -18,8 +18,9 @@ import { userShopCartReducer } from "./user/userShopCart/userShopCartSlice";
 import { userApi } from "./user/userSlice/userApi";
 
 const persistConfig = {
-  key: "persistedUserData",
+  key: "userToken",
   storage,
+  whitelist: ["token"],
 };
 const userPersistConfig = {
   key: "user",

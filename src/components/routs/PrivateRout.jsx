@@ -1,10 +1,16 @@
 import { Navigate } from "react-router-dom";
-import { useFetchCurrentUserQuery } from "../../redux/auth";
+import {
+  selectUserToken,
+  // useFetchCurrentUserQuery
+} from "../../redux/auth";
+import { useSelector } from "react-redux";
 
 const PrivateRoute = ({ children }) => {
-  const { data } = useFetchCurrentUserQuery();
+  // const { data } = useFetchCurrentUserQuery();
 
-  const isLoggedIn = data ? true : false
+  // const isLoggedIn = data ? true : false
+  const isLoggedIn = useSelector(selectUserToken);
+  console.log("PrivateRoute  isLoggedIn", isLoggedIn)
 
   return isLoggedIn ? children : <Navigate to="/" />;
 };

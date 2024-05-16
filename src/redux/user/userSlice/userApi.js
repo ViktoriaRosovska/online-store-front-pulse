@@ -8,6 +8,7 @@ export const userApi = createApi({
     prepareHeaders: ({ getState }) => {
       const state = getState();
       if (state.userAuthReducer.token) {
+        console.log("state.userAuthReducer.token", state.userAuthReducer.token)
         return {
           Authorization: `Bearer ${state.userAuthReducer.token}`,
         };

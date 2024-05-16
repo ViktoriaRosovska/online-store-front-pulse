@@ -11,25 +11,27 @@ import { useState } from "react";
 // import ModalAuth from "components/Modals/ModalContent/ModalAuth";
 // import { useSelector } from "react-redux";
 import {
+  selectUserToken,
   // selectUserToken,
-  useFetchCurrentUserQuery
+  // useFetchCurrentUserQuery
 } from "../../../../../redux/auth";
 import { ROUTES } from "../../../../../utils/routes";
 import { Portal } from "components/Modals/helpersForModal/modalPortal";
 import CommonModal from "components/Modals/CommonModal";
 import ModalAuth from "components/Modals/ModalAuth/ModalAuth";
+import { useSelector } from "react-redux";
 
 function UserActions(props) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   // const [isLocked, setIsLocked] = useScrollLock(false);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log("UserActions  location", location.pathname)
-  // const isLoggedIn = useSelector(selectUserToken);
-  const { data } = useFetchCurrentUserQuery();
-  const isLoggedIn = data ? true : false
+  // console.log("UserActions  location", location.pathname)
+  const isLoggedIn = useSelector(selectUserToken);
+  // const { data } = useFetchCurrentUserQuery();
+  // const isLoggedIn = data ? true : false
 
-  console.log(isLoggedIn);
+  console.log(!!isLoggedIn);
 
   // useEffect(() => {
   //   if (isLoggedIn) {
@@ -101,7 +103,7 @@ function UserActions(props) {
       </AnimatePresence> */}
       <Portal isOpen={isOpenModal}>
         <CommonModal onClose={handleCloseModal} padding='68px 164px' top='68px'>
-          <ModalAuth/>
+          <ModalAuth onClose={handleCloseModal} />
         </CommonModal>
       </Portal>
     </div>

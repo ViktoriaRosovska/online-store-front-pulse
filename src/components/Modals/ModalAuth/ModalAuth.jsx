@@ -3,7 +3,7 @@ import CustomRegisterForm from "components/form/RegisterForm/CustomRegisterForm"
 import { useState } from "react"
 import { Button, Navigation } from "./ModalAuth.styled"
 
-const ModalAuth = () => {
+const ModalAuth = ({onClose}) => {
     const [mode, setMode] = useState('login')
 
     const switchToLogin = () => {
@@ -20,7 +20,7 @@ const ModalAuth = () => {
                 <Button $login $active={mode === 'login'} type="button" onClick={switchToLogin}>Вхід</Button>
                 <Button $active={mode === 'register'} type="button" onClick={switchToRegister}>Реєстрація</Button>
             </Navigation>
-           {mode === 'login' ? (<CustomLoginForm/>) : (<CustomRegisterForm/>)}
+            {mode === 'login' ? (<CustomLoginForm onClose={onClose} />) : (<CustomRegisterForm/>)}
             
         </>
    )
