@@ -21,6 +21,7 @@
 
 .footer__navbar-item li {
   margin-bottom: 20px;
+  justify-content: space-between;
 }
 
 .footer__navbar-item a:hover {
@@ -44,4 +45,8 @@
 .social__media-list a:hover {
   filter: invert(0%) sepia(50%) saturate(7494%) hue-rotate(200deg) brightness(127%) contrast(99%);
   cursor: pointer;
+}
+
+.list__item__left {
+  text-align: start;
 }

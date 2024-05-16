@@ -17,6 +17,7 @@ import FooterConditions from "./footer/FooterConditions.jsx";
 import FooterGuarantee from "./footer/FooterGuarantee.jsx";
 import FooterPrivacyPolicy from "./footer/FooterPrivacyPolicy.jsx";
 import FooterDelivery from "./footer/FooterDelivery.jsx";
+import FooterAboutUs from "./footer/FooterAboutUs.jsx";
 import UserShopCartDelivery from "./user/UserShopCart/UserShopCartDelivery";
 import UserShopCartPayment from "./user/UserShopCart/UserShopCartPayment";
 
@@ -39,6 +40,7 @@ export {
   FooterGuarantee,
   FooterPrivacyPolicy,
   FooterDelivery,
+  FooterAboutUs,
   UserShopCartDelivery,
   UserShopCart,
   UserShopCartPayment,
