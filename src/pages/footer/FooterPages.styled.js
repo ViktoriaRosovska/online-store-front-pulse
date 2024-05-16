@@ -93,8 +93,47 @@ export const FooterItem = styled.li`
   }
 `;
 
+export const FooterItemText = styled.p`
+  > p {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 240px;
+    margin-top: 8px;
+  }
+`;
+
 export const HighlightedWord = styled.span`
   font-weight: bold;
+`;
+
+export const FooterSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 36px;
+`;
+
+export const FooterSectionColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+  margin-left: 61px;
+
+  > a {
+    margin-top: 60px;
+  }
+`;
+
+export const FooterSectionAboutUs = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  > img {
+    margin-bottom: 24px;
+  }
+
+  > a {
+    margin-top: 60px;
+  }
 `;
 
 // const FooterPages = styled.footer`
