@@ -78,6 +78,13 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["Payments"],
     }),
+    sendSupportMessage: builder.mutation({
+      query: payload => ({
+        url: "/users/supports",
+        method: "POST",
+        data: payload,
+      }),
+    })
   }),
 });
 
@@ -90,6 +97,7 @@ export const {
   useUserSubscribeMutation,
   useAddUserCardMutation,
   useGetUserCardsQuery,
+  useSendSupportMessageMutation,
 } = userApi;
 
 /*

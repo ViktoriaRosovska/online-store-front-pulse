@@ -32,6 +32,7 @@ const CustomInput = ({ label, ...props }) => {
             {...field}
             {...props}
             $isPassword={isPasswordInput}
+            as={props.$textarea ? 'textarea' : 'input'}
             type={
               isPasswordInput
                 ? visiblePassword
