@@ -20,25 +20,48 @@ import { useGetCitiesMutation } from "../../redux/novaPoshta/novaPoshtaAPI";
 import { useState } from "react";
 
 import { CitySelect } from "./CitySelect";
+import {
+  StyledChoiceBtnWrapper,
+  StyledChoiceDeliveryBtn,
+  StyledChoiseVariant,
+  StyledDeliveryForm,
+  StyledDeliveryTitle,
+} from "./ShopCartDelivery.styled";
+import { useFetchCurrentUserQuery } from "../../redux/auth";
 
 export const ShopCartDelivery = props => {
   // let location = useLocation();
   const items = useSelector(selectUserShopCart);
   const [selectSearch, setSelectSearch] = useState("");
+  const [isSelectedBtn, setIsSelectedBtn] = useState(
+    "Доставка на відділення “Нова пошта”"
+  );
   const [findCities, setFindCities] = useState([]);
-  console.log(selectSearch);
   const [getCities, { data, isError, isLoading }] = useGetCitiesMutation();
+
+  const userData = useFetchCurrentUserQuery();
+  console.log(userData);
 
   if (data) {
     if (data.data !== findCities) {
       setFindCities(data.data);
     }
 
-    console.log(data.data);
+    //console.log(data.data);
   }
 
-  // const dataArr = data?.data;
-  // console.log(dataArr);
+  const onSelectSearch = value => {
+    //setSelectSearch(value);
+    getCities(value);
+  };
+
+  const onSelectChange = value => {
+    console.log("onSelectChange", value);
+    setSelectSearch(value);
+
+    //getCities(value);
+  };
+
   // setSelectSearch("Ірпінь");
   const normalize_count_form = (number, words_arr) => {
     number = Math.abs(number);
@@ -111,100 +134,227 @@ export const ShopCartDelivery = props => {
                 department: "",
                 surname: "",
                 code: "",
+                policy: "",
               }}
             >
-              <form>
-                <CustomInput
-                  placeholder="Ввести промокод"
-                  type="text"
-                  name="code"
-                  label=""
-                />
-                <h3>Обери адресу доставки</h3>
-                <CustomInput
-                  type="text"
-                  label="Місто"
-                  placeholder="м.Київ"
-                  name="city"
-                  value={selectSearch}
-                  onChange={e => {
-                    setSelectSearch(e.target.value);
-                    getCities(selectSearch);
-                  }}
-                />
-                <select
-                  style={{ width: "300px" }}
-                  value={selectSearch}
-                  defaultValue=""
-                  onChange={() => {
-                    setSelectSearch(data.data);
-                  }}
-                >
-                  {findCities?.length &&
-                    findCities.map(opt => {
-                      return (
-                        <option key={opt.Ref}>
-                          {opt.Description +
-                            ", " +
-                            opt.AreaDescription +
-                            ", обл."}
-                        </option>
-                      );
-                    })}
-                </select>
-
-                <CitySelect
-                  options={findCities}
-                  // findCities ?? findCities?.length > 0
-                  //   ? findCities.map(opt => {
-                  //       opt.Description +
-                  //         ", " +
-                  //         opt.AreaDescription +
-                  //         ", обл.";
-                  //     })
-                  //   : []
-                />
-                <h3>Адреса відділення</h3>
-                <CustomInput
-                  type="text"
-                  label="Оберіть номер відділення"
-                  placeholder="Номер відділення"
-                  name="department"
-                />
-                <h3>Особисті дані</h3>
-                <CustomInput
-                  type="text"
-                  label="Ім'я"
-                  placeholder="Ім'я"
-                  name="name"
-                />
-                <CustomInput
-                  type="text"
-                  label="Прізвище"
-                  placeholder="Прізвище"
-                  name="surname"
-                />
-                <CustomInput
-                  type="text"
-                  label="Номер телефону"
-                  placeholder="+380"
-                  name="phone"
-                />
-                <div>
-                  <label>
-                    <input type="checkbox" />Я приймаю Політику конфіденцийності
-                    і Умови продажу
-                  </label>
-                </div>
-                <div>
-                  <label>
-                    <input type="checkbox" />Я хочу отримувати інформацію про
-                    новинки, акції
-                  </label>
-                </div>
-              </form>
+              {formik => (
+                console.log(formik.values),
+                (
+                  <StyledDeliveryForm>
+                    <CustomInput
+                      placeholder="Ввести промокод"
+                      type="text"
+                      name="code"
+                      label=""
+                    />
+                    <StyledDeliveryTitle>
+                      Обери адресу доставки
+                    </StyledDeliveryTitle>
+                    <label htmlFor="city">Населений пункт</label>
+                    <CitySelect
+                      options={findCities}
+                      onChange={e => {
+                        onSelectChange(e);
+                        formik.setFieldValue("city", e.label);
+                      }}
+                      onSearch={e => onSelectSearch(e)}
+                      value={formik.values.city}
+                      name="city"
+                    />
+                    <StyledChoiceBtnWrapper>
+                      <StyledChoiceDeliveryBtn
+                        type="button"
+                        onClick={() =>
+                          setIsSelectedBtn(
+                            "Доставка на відділення “Нова пошта”"
+                          )
+                        }
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <StyledChoiseVariant
+                            $isSelectedBtn={
+                              isSelectedBtn ===
+                              "Доставка на відділення “Нова пошта”"
+                            }
+                          >
+                            Доставка на відділення “Нова пошта”
+                          </StyledChoiseVariant>
+                          <p>
+                            {countPrice >= 4000
+                              ? "Безкоштовно"
+                              : "По тарифам перевізника"}
+                          </p>
+                        </div>
+                        <p>Безкоштовна доставка від 4000 грн</p>
+                      </StyledChoiceDeliveryBtn>
+                      <StyledChoiceDeliveryBtn
+                        type="button"
+                        onClick={() => setIsSelectedBtn("Кур’єрська доставка")}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <StyledChoiseVariant
+                            $isSelectedBtn={
+                              isSelectedBtn === "Кур’єрська доставка"
+                            }
+                          >
+                            Кур’єрська доставка
+                          </StyledChoiseVariant>
+                          <p>
+                            {countPrice >= 4000
+                              ? "Безкоштовно"
+                              : "По тарифам перевізника"}
+                          </p>
+                        </div>
+                        <p>Безкоштовна доставка від 4000 грн</p>
+                      </StyledChoiceDeliveryBtn>
+                      <StyledChoiceDeliveryBtn
+                        type="button"
+                        onClick={() =>
+                          setIsSelectedBtn("Доставка в поштомат “Нова пошта”")
+                        }
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <StyledChoiseVariant
+                            $isSelectedBtn={
+                              isSelectedBtn ===
+                              "Доставка в поштомат “Нова пошта”"
+                            }
+                          >
+                            Доставка в поштомат “Нова пошта”
+                          </StyledChoiseVariant>
+                          <p>
+                            {countPrice >= 4000
+                              ? "Безкоштовно"
+                              : "По тарифам перевізника"}
+                          </p>
+                        </div>
+                        <p>Безкоштовна доставка від 4000 грн</p>
+                      </StyledChoiceDeliveryBtn>
+                    </StyledChoiceBtnWrapper>
+                    {isSelectedBtn ===
+                      "Доставка на відділення “Нова пошта”" && (
+                      <>
+                        <StyledDeliveryTitle>
+                          Адреса відділення
+                        </StyledDeliveryTitle>
+                        <CustomInput
+                          type="text"
+                          label="Оберіть номер відділення"
+                          placeholder="Номер відділення"
+                          name="department"
+                        />
+                      </>
+                    )}
+                    {isSelectedBtn === "Кур’єрська доставка" && (
+                      <>
+                        <StyledDeliveryTitle>
+                          Адреса доставки
+                        </StyledDeliveryTitle>
+                        <CustomInput
+                          type="text"
+                          label="Оберіть вулицю"
+                          placeholder="Оберіть вулицю"
+                          name="street"
+                        />
+                        <CustomInput
+                          type="text"
+                          label="Оберіть номер будинку"
+                          placeholder="Номер будинку"
+                          name="house"
+                        />
+                        <CustomInput
+                          type="text"
+                          label="Оберіть номер квартири"
+                          placeholder="Номер квартири"
+                          name="flat"
+                        />
+                        <label htmlFor="comments">
+                          Коментарі для кур&apos;єра
+                        </label>
+                        <CustomInput
+                          as="textarea"
+                          name="comments"
+                          // type="text"
+                          placeholder="Напишіть коментар"
+                        />
+                      </>
+                    )}
+                    {isSelectedBtn === "Доставка в поштомат “Нова пошта”" && (
+                      <>
+                        <StyledDeliveryTitle>
+                          Номер поштомату
+                        </StyledDeliveryTitle>
+                        <CustomInput
+                          type="text"
+                          label="Оберіть номер поштомату"
+                          placeholder="Номер поштомату"
+                          name="department"
+                        />
+                      </>
+                    )}
+                    <StyledDeliveryTitle>Особисті дані</StyledDeliveryTitle>
+                    <CustomInput
+                      type="text"
+                      label="Ім'я"
+                      placeholder="Ім'я"
+                      name="name"
+                    />
+                    <CustomInput
+                      type="text"
+                      label="Прізвище"
+                      placeholder="Прізвище"
+                      name="surname"
+                    />
+                    <CustomInput
+                      type="text"
+                      label="Номер телефону"
+                      placeholder="+380"
+                      name="phone"
+                    />
+                    <div>
+                      <label>
+                        <input
+                          type="checkbox"
+                          required
+                          name="policy"
+                          onChange={formik.handleChange}
+                          value={true}
+                        />
+                        Я приймаю Політику конфіденційності і Умови продажу
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        <input
+                          type="checkbox"
+                          name="subscribe"
+                          onChange={formik.handleChange}
+                          value={true}
+                        />
+                        Я хочу отримувати інформацію про новинки, акції
+                      </label>
+                    </div>
+                    <button type="submit">Форма</button>
+                  </StyledDeliveryForm>
+                )
+              )}
             </Formik>
-            <button onClick={() => getCities("Рівне")}>Запит за містом</button>
+
             <StyledShopCartButton
               text={"Продовжити оформлення"}
               route={ROUTES.SHOPCARTPAYMENT}

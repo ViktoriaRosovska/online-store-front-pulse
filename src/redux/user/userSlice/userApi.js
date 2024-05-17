@@ -1,21 +1,24 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { axiosBaseQuery } from "../../../http/api";
+import { api, axiosBaseQuery } from "../../../http/api";
 
 export const userApi = createApi({
   reducerPath: "userApi",
 
-  baseQuery: axiosBaseQuery({
-    prepareHeaders: ({ getState }) => {
-      const state = getState();
-      if (state.userAuthReducer.token) {
-        console.log("state.userAuthReducer.token", state.userAuthReducer.token)
-        return {
-          Authorization: `Bearer ${state.userAuthReducer.token}`,
-        };
-      }
-      return {};
-    },
-  }),
+  baseQuery: axiosBaseQuery(
+    api
+    //   , {
+    //   prepareHeaders: ({ getState }) => {
+    //     const state = getState();
+    //     if (state.userAuthReducer.token) {
+    //       console.log("state.userAuthReducer.token", state.userAuthReducer.token);
+    //       return {
+    //         Authorization: `Bearer ${state.userAuthReducer.token}`,
+    //       };
+    //     }
+    //     return {};
+    //   },
+    // }
+  ),
 
   tagTypes: ["Favorites"]["Payments"],
 
@@ -85,7 +88,7 @@ export const userApi = createApi({
         method: "POST",
         data: payload,
       }),
-    })
+    }),
   }),
 });
 
