@@ -38,7 +38,7 @@ function Header() {
   };
 
   const handleCloseMenu = () => {
-    console.log('close')
+    console.log("close");
     setIsOpen(false);
   };
 

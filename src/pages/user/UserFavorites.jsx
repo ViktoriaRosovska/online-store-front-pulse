@@ -4,7 +4,6 @@ import { Title } from "../../components/Typography/Typography.styled";
 
 const UserFavorites = () => {
   const { data, isFetching, isError } = useGetFavoritesQuery();
-  console.log("UserFavorites  data", data);
 
   return (
     <>

@@ -19,8 +19,9 @@ import { userApi } from "./user/userSlice/userApi";
 import { novaPoshtaAPI } from "./novaPoshta/novaPoshtaAPI";
 
 const persistConfig = {
-  key: "persistedUserData",
+  key: "userToken",
   storage,
+  whitelist: ["token"],
 };
 const userPersistConfig = {
   key: "user",

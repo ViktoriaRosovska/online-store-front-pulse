@@ -8,6 +8,7 @@ export const userApi = createApi({
     prepareHeaders: ({ getState }) => {
       const state = getState();
       if (state.userAuthReducer.token) {
+        console.log("state.userAuthReducer.token", state.userAuthReducer.token)
         return {
           Authorization: `Bearer ${state.userAuthReducer.token}`,
         };
@@ -16,7 +17,7 @@ export const userApi = createApi({
     },
   }),
 
-  tagTypes: ["Favorites"],
+  tagTypes: ["Favorites"]["Payments"],
 
   endpoints: builder => ({
     userUpdate: builder.mutation({
@@ -63,6 +64,28 @@ export const userApi = createApi({
         data: payload,
       }),
     }),
+    getUserCards: builder.query({
+      query: () => ({
+        url: "/users/payments",
+        method: "GET",
+      }),
+      providesTags: ["Payments"],
+    }),
+    addUserCard: builder.mutation({
+      query: payload => ({
+        url: "/users/payments",
+        method: "POST",
+        data: payload,
+      }),
+      invalidatesTags: ["Payments"],
+    }),
+    sendSupportMessage: builder.mutation({
+      query: payload => ({
+        url: "/users/supports",
+        method: "POST",
+        data: payload,
+      }),
+    })
   }),
 });
 
@@ -73,6 +96,9 @@ export const {
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
   useUserSubscribeMutation,
+  useAddUserCardMutation,
+  useGetUserCardsQuery,
+  useSendSupportMessageMutation,
 } = userApi;
 
 /*
