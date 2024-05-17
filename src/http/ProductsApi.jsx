@@ -1,4 +1,12 @@
-import { host } from "./index.jsx";
+// import { host } from "./index.jsx";
+
+import axios from "axios";
+
+const host = axios.create({
+  baseURL: "https://pulse-run-api.onrender.com/api",
+});
+
+// export { host };
 
 export const brandNew = async queryObject => {
   const { data } = await host.get(
