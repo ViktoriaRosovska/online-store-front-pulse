@@ -23,4 +23,5 @@ export const ROUTES = {
   GUARANTEE: "/guarantee",
   POLICY: "/policy",
   DELIVERY: "/delivery",
+  ABOUTUS: "/aboutus",
 };

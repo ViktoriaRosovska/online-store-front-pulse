@@ -22,6 +22,7 @@ import {
   FooterGuarantee,
   FooterPrivacyPolicy,
   FooterDelivery,
+  FooterAboutUs,
   UserShopCart,
   UserShopCartDelivery,
   UserShopCartPayment,
@@ -61,7 +62,8 @@ const App = () => {
             <Route path={ROUTES.GUARANTEE} element={<FooterGuarantee />} />
             <Route path={ROUTES.POLICY} element={<FooterPrivacyPolicy />} />
             <Route path={ROUTES.DELIVERY} element={<FooterDelivery />} />
-            <Route path={ROUTES.PROFILE} element={<PrivateRoute><ProfileLayout /></PrivateRoute>}>
+            <Route path={ROUTES.ABOUTUS} element={<FooterAboutUs />} />
+            <Route path={ROUTES.PROFILE} element={<ProfileLayout />}>
               <Route path={ROUTES.ACCOUNT} element={<UserAccount />} />
               <Route
                 path={ROUTES.ORDERHISTORY}

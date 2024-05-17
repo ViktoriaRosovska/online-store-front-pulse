@@ -49,7 +49,7 @@ function FooterGlassInfo() {
                   {listItems.map((item, itemIndex) => (
                     <li key={itemIndex}>
                       {index === 0 ? (
-                        <Links className="list__item">
+                        <Links className="list__item list__item__left">
                           <img src={item} alt={`Icon ${itemIndex + 1}`} />
                         </Links>
                       ) : (
