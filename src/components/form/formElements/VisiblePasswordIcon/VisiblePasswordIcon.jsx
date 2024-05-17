@@ -1,16 +1,14 @@
 import { Button } from "./VisiblePasswordIcon.styled";
+import { ReactComponent as EyeSvg } from '../../../../assets/svg/open-eye.svg'
+import {ReactComponent as ClosedEyeSvg} from '../../../../assets/svg/closed-eye.svg'
 
 const VisiblePasswordIcon = ({ visiblePassword, onClick }) => {
   return (
     <Button type="button" onClick={onClick}>
       {visiblePassword ? (
-        <svg width={22} height={18}>
-          <use xlinkHref="../icons/profile-icons/profile-icons-sprite.svg#icon-eye"></use>
-        </svg>
+        <EyeSvg/>
       ) : (
-        <svg width={22} height={18}>
-          <use xlinkHref="../icons/profile-icons/profile-icons-sprite.svg#icon-eye-off"></use>
-        </svg>
+        <ClosedEyeSvg/>
       )}
     </Button>
   );

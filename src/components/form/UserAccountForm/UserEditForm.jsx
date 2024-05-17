@@ -32,7 +32,7 @@ const UserEditForm = () => {
     
     Object.keys(values).forEach(key => {
       if (
-        key !== "checkPassword" &&
+        key !== "passwordCheck" &&
         values[key] !== user[key] &&
         values[key] !== ""
       ) {
@@ -76,7 +76,7 @@ const UserEditForm = () => {
     email: user?.email || "",
     phone: phoneNumber || "",
     password: "",
-    checkPassword: "",
+    passwordCheck: "",
   };
 
   return (
@@ -120,7 +120,7 @@ const UserEditForm = () => {
             />
             <CustomInput
               label="Повторити пароль"
-              name="checkPassword"
+              name="passwordCheck"
               type="password"
               placeholder="Пароль"
             />

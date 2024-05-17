@@ -1,6 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import { CancelButton, DeleteButton, Text, Wrapper } from "./ModalDeleteUser.styled";
 
 const ModalDeleteUser = ({ onDeleteUser, onClose }) => {
+  const navigate = useNavigate()
+
+  const handleDelete = () => {
+    onDeleteUser()
+    onClose()
+    navigate('/')
+  }
+
   return (
     <>
       <Text>Ви впевнені, що хочете видалити акаунт?</Text>
@@ -8,7 +17,7 @@ const ModalDeleteUser = ({ onDeleteUser, onClose }) => {
         <CancelButton type="button" onClick={onClose}>
           Відмінити
         </CancelButton>
-        <DeleteButton type="submit" onClick={onDeleteUser}>
+        <DeleteButton type="submit" onClick={handleDelete}>
           Видалити
         </DeleteButton>
       </Wrapper>

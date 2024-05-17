@@ -15,11 +15,11 @@ export const loginValidationSchema = Yup.object().shape({
 });
 
 export const registerValidationSchema = Yup.object().shape({
-  name: Yup.string()
+  firstName: Yup.string()
     .typeError("Повинно бути строкою")
     .matches(/([а-яА-яa-zA-z])/, { message: "Повинні бути тільки букви" })
     .required("Oбовʼязкове поле"),
-  surname: Yup.string()
+  lastName: Yup.string()
     .typeError("Повинно бути строкою")
     .matches(/([а-яА-яa-zA-z])/, { message: "Повинні бути тільки букви" })
     .required("Oбовʼязкове поле"),
@@ -61,7 +61,7 @@ export const userEditValidationSchema = Yup.object().shape({
     .min(6, "Пароль має бути не менш ніж 6 символів")
     .max(10, "Максимальна кількість 10 символів")
     .nullable(),
-  checkPassword: Yup.string()
+  passwordCheck: Yup.string()
     .oneOf([Yup.ref("password")], "Паролі не співпадають")
     .min(6, "Пароль має бути не менш ніж 6 символів")
     .max(10, "Максимальна кількість 10 символів")
