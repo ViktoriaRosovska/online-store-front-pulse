@@ -32,7 +32,7 @@ const CustomInput = ({ label, ...props }) => {
             {...field}
             {...props}
             $isPassword={isPasswordInput}
-            as={props.$textarea ? 'textarea' : 'input'}
+            as={props.$textarea ? "textarea" : "input"}
             type={
               isPasswordInput
                 ? visiblePassword
@@ -41,7 +41,8 @@ const CustomInput = ({ label, ...props }) => {
                 : props.type
             }
             autoComplete="off"
-            onChange={props.onChange}
+            // onChange={props.onChange}
+            // defaultValue=""
           />
           <StyledPassIconWrapper>
             {isPasswordInput && (

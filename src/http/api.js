@@ -13,13 +13,13 @@ const apiPost = axios.create({
 });
 
 const axiosBaseQuery =
-  host =>
+  (host, options) =>
   // options =>
   async ({ url, method, data, params, headers }, reduxApi) => {
-    // let preparedHeaders = {};
-    // if (options?.prepareHeaders) {
-    //   preparedHeaders = options?.prepareHeaders(reduxApi);
-    // }
+    let preparedHeaders = {};
+    if (options?.prepareHeaders) {
+      preparedHeaders = options?.prepareHeaders(reduxApi);
+    }
 
     try {
       const persistedData = localStorage.getItem("persist:userToken");
@@ -37,9 +37,10 @@ const axiosBaseQuery =
         params,
         headers: {
           ...headers,
-          // ...preparedHeaders,
-          // "Content-Type": "application/json",
-          // Authorization: `Bearer ${token}` ,
+
+          ...preparedHeaders,
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
       });
       return { data: result.data };
