@@ -30,6 +30,7 @@ import {
 
 import ShopCartLayout from "components/ShopCartLayout/ShopCartLayout.jsx";
 import ProfileLayout from "components/ProfileLayout/ProfileLayout.jsx";
+import PrivateRoute from "components/routs/PrivateRout.jsx";
 
 const App = () => {
   return (

@@ -25,7 +25,7 @@ export const ModalContant = styled.div`
   @media screen and (min-width: 1440px) {
     padding: ${props => props.$padding};
     width: auto;
-  max-width: 80%;
+    max-width: 80%;
   }
 `;
 
@@ -38,13 +38,13 @@ export const CloseButton = styled.button`
 
   @media screen and (min-width: 1440px) {
     width: 48px;
-  height: 48px;
-  top: 37px;
-  right: 70px;
-  svg {
-    width: 24px;
-    height: 24px;
-    transform: scale(1.5);
-  }
+    height: 48px;
+    top: ${props => props.$top};
+    right: 70px;
+    svg {
+      width: 24px;
+      height: 24px;
+      transform: scale(1.5);
+    }
   }
 `;

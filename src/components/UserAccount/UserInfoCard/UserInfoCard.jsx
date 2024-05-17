@@ -4,7 +4,6 @@ import { Box, Button, Image, Wrapper } from "./UserInfoCard.styled";
 const UserInfoCard = () => {
   const { data, isLoading } = useFetchCurrentUserQuery();
   const user = data?.user;
-  console.log("UserInfoCard  user", data);
 
   if (isLoading) {
     return <div>Loading...</div>;

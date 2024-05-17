@@ -4,36 +4,55 @@ import favoritesIcon from "../../../../../assets/svg/favorites-icon.svg";
 import cartIcon from "/public/icons/cart-icon.svg";
 import "./UserActions.css";
 import MediaQuery from "react-responsive";
-import { useEffect, useState } from "react";
-import { AnimatePresence } from "framer-motion";
-import ReusableModal from "components/Modals/ReusableModal";
-import useScrollLock from "components/Modals/helpersForModal/useScrollLock";
-import ModalAuth from "components/Modals/ModalContent/ModalAuth";
-import { useSelector } from "react-redux";
-import { selectUserToken } from "../../../../../redux/auth";
+import { useState } from "react";
+// import { AnimatePresence } from "framer-motion";
+// import ReusableModal from "components/Modals/ReusableModal";
+// import useScrollLock from "components/Modals/helpersForModal/useScrollLock";
+// import ModalAuth from "components/Modals/ModalContent/ModalAuth";
+// import { useSelector } from "react-redux";
+import {
+  selectUserToken,
+  // selectUserToken,
+  // useFetchCurrentUserQuery
+} from "../../../../../redux/auth";
 import { ROUTES } from "../../../../../utils/routes";
+import { Portal } from "components/Modals/helpersForModal/modalPortal";
+import CommonModal from "components/Modals/CommonModal";
+import ModalAuth from "components/Modals/ModalAuth/ModalAuth";
+import { useSelector } from "react-redux";
 
 function UserActions(props) {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isLocked, setIsLocked] = useScrollLock(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  // const [isLocked, setIsLocked] = useScrollLock(false);
   const navigate = useNavigate();
   const location = useLocation();
+  // console.log("UserActions  location", location.pathname)
   const isLoggedIn = useSelector(selectUserToken);
-  console.log(isLoggedIn);
+  // const { data } = useFetchCurrentUserQuery();
+  // const isLoggedIn = data ? true : false
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      toggleVisibility();
-    }
-  }, [isLoggedIn]);
+  console.log(!!isLoggedIn);
 
-  const toggleVisibility = () => {
-    setIsVisible(prev => !prev);
-    setIsLocked(prev => !prev);
-  };
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     toggleVisibility();
+  //   }
+  // }, [isLoggedIn]);
+
+  // const toggleVisibility = () => {
+  //   setIsVisible(prev => !prev);
+  //   setIsLocked(prev => !prev);
+  // };
+  const handleOpenModal = () => {
+    setIsOpenModal(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsOpenModal(false)
+  }
 
   const navigateToCabinet = () => {
-    navigate("profile/account");
+    navigate("/profile/account");
   };
 
   const navigateToShopCart = () => {
@@ -43,7 +62,7 @@ function UserActions(props) {
     <div className="user__actions">
       <button
         className="user__actions-profile"
-        onClick={isLoggedIn ? navigateToCabinet : toggleVisibility}
+        onClick={isLoggedIn ? navigateToCabinet : handleOpenModal}
       >
         <img
           className={`user__actions-icon ${
@@ -73,7 +92,7 @@ function UserActions(props) {
           alt=""
         />
       </button>
-      <AnimatePresence>
+      {/* <AnimatePresence>
         <ReusableModal
           onClose={toggleVisibility}
           locked={isLocked}
@@ -81,7 +100,12 @@ function UserActions(props) {
         >
           <ModalAuth />
         </ReusableModal>
-      </AnimatePresence>
+      </AnimatePresence> */}
+      <Portal isOpen={isOpenModal}>
+        <CommonModal onClose={handleCloseModal} padding='68px 164px' top='68px'>
+          <ModalAuth onClose={handleCloseModal} />
+        </CommonModal>
+      </Portal>
     </div>
   );
 }

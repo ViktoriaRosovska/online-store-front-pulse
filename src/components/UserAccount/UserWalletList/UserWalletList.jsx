@@ -32,7 +32,7 @@ const UserWalletList = () => {
       </Button>
 
       <Portal isOpen={isOpen}>
-        <CommonModal onClose={handleCloseMenu} padding="35px 70px">
+        <CommonModal onClose={handleCloseMenu} padding="35px 70px" top='37px'>
           <StyledTitle>
             Введіть номер вашої картки для зручної оплати
           </StyledTitle>

@@ -39,6 +39,8 @@ export const useHandleCurrentUser = () => {
 };
 
 export const useHandleLoginSuccess = (isSuccess, data) => {
+  console.log("useHandleLoginSuccess  data", data)
+  console.log("useHandleLoginSuccess  isSuccess", isSuccess)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

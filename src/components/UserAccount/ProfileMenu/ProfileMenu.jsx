@@ -1,4 +1,4 @@
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   removeCredentials,
@@ -22,6 +22,7 @@ import {
 } from "./ProfileMenu.styled";
 
 function ProfileMenu({ onClose, isProfile }) {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const [logoutUser] = useLogoutUserMutation();
   const { data, isLoading } = useFetchCurrentUserQuery();
@@ -34,11 +35,10 @@ function ProfileMenu({ onClose, isProfile }) {
       .unwrap()
       .then(() => {
         dispatch(removeCredentials());
-
-        redirect("/");
+        navigate("/");
       })
       .catch(e => console.log("Error logout", e))
-      .finally(onClose());
+      .finally(onClose);
   };
 
   if (isLoading) {

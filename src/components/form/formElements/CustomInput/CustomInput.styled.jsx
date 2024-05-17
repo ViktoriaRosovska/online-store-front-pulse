@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CustomInput from "./CustomInput";
+// import CustomInput from "./CustomInput";
 
 export const Box = styled.div`
   position: relative;
@@ -56,6 +56,27 @@ export const InputWrapper = styled.div`
   align-items: center;
   position: relative;
   width: 100%;
+
+  textarea {
+    font-family: "Roboto";
+    color: var(--black-bg-color);
+    font-size: 16px;
+    height: 107px;
+    padding: 12px 16px;
+    outline: none;
+    flex-grow: 1;
+    font-size: 16px;
+    line-height: 125%;
+    width: 100%;
+    border: 1px solid var(--black-text-color);
+    border-radius: 16px;
+
+    &::placeholder {
+      font-family: "Roboto";
+      font-size: 16px;
+      line-height: 125%;
+    }
+  }
   /* height: 48px; */
   /* border: 1px solid var(--black-text-color); */
   /* border-radius: 16px; */
@@ -67,9 +88,10 @@ export const InputWrapper = styled.div`
    `} */
 
   @media screen and (min-width: 1440px) {
-    /* height: 60px;
-    width: 384px;
-    padding: 18px 16px; */
+    textarea {
+      height: 144px;
+      padding: 11px;
+    }
   }
 `;
 
@@ -91,11 +113,11 @@ export const Error = styled.p`
   }
 `;
 
-export const CustomInputWhite = styled(CustomInput)`
-  border: 1px solid var(--white-dark-bg-color);
-  background-color: transparent;
-  color: var(--white-text-color);
-  &::placeholder {
-    color: var(--white-text-color);
-  }
-`;
+// export const CustomInputWhite = styled(CustomInput)`
+//   border: 1px solid var(--white-dark-bg-color);
+//   background-color: transparent;
+//   color: var(--white-text-color);
+//   &::placeholder {
+//     color: var(--white-text-color);
+//   }
+// `;
