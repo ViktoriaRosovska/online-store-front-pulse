@@ -16,6 +16,7 @@ import {
 import storage from "redux-persist/lib/storage";
 import { userShopCartReducer } from "./user/userShopCart/userShopCartSlice";
 import { userApi } from "./user/userSlice/userApi";
+import { novaPoshtaAPI } from "./novaPoshta/novaPoshtaAPI";
 
 const persistConfig = {
   key: "persistedUserData",
@@ -37,6 +38,7 @@ export const store = configureStore({
     [productsApi.reducerPath]: productsApi.reducer,
     [userAuthApi.reducerPath]: userAuthApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
+    [novaPoshtaAPI.reducerPath]: novaPoshtaAPI.reducer,
     filterQuery: filterQueryReducer,
     userShopCart: persistedUserShopCart,
     userAuthReducer: persistReducer(persistConfig, authReducer),
@@ -46,7 +48,12 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(productsApi.middleware, userAuthApi.middleware, userApi.middleware);
+    }).concat(
+      productsApi.middleware,
+      userAuthApi.middleware,
+      userApi.middleware,
+      novaPoshtaAPI.middleware
+    );
   },
 });
 

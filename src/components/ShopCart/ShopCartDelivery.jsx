@@ -1,6 +1,6 @@
 import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
 import { ROUTES } from "../../utils/routes";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
 import CustomInput from "components/form/formElements/CustomInput/CustomInput";
 import { Formik } from "formik";
@@ -16,10 +16,30 @@ import {
 } from "./ShopCart.styled";
 import { ShopCard } from "./ShopCard/ShopCard";
 
-export const ShopCartDelivery = props => {
-  let location = useLocation();
-  const items = useSelector(selectUserShopCart);
+import { useGetCitiesMutation } from "../../redux/novaPoshta/novaPoshtaAPI";
+import { useState } from "react";
 
+import { CitySelect } from "./CitySelect";
+
+export const ShopCartDelivery = props => {
+  // let location = useLocation();
+  const items = useSelector(selectUserShopCart);
+  const [selectSearch, setSelectSearch] = useState("");
+  const [findCities, setFindCities] = useState([]);
+  console.log(selectSearch);
+  const [getCities, { data, isError, isLoading }] = useGetCitiesMutation();
+
+  if (data) {
+    if (data.data !== findCities) {
+      setFindCities(data.data);
+    }
+
+    console.log(data.data);
+  }
+
+  // const dataArr = data?.data;
+  // console.log(dataArr);
+  // setSelectSearch("Ірпінь");
   const normalize_count_form = (number, words_arr) => {
     number = Math.abs(number);
     if (Number.isInteger(number)) {
@@ -106,6 +126,43 @@ export const ShopCartDelivery = props => {
                   label="Місто"
                   placeholder="м.Київ"
                   name="city"
+                  value={selectSearch}
+                  onChange={e => {
+                    setSelectSearch(e.target.value);
+                    getCities(selectSearch);
+                  }}
+                />
+                <select
+                  style={{ width: "300px" }}
+                  value={selectSearch}
+                  defaultValue=""
+                  onChange={() => {
+                    setSelectSearch(data.data);
+                  }}
+                >
+                  {findCities?.length &&
+                    findCities.map(opt => {
+                      return (
+                        <option key={opt.Ref}>
+                          {opt.Description +
+                            ", " +
+                            opt.AreaDescription +
+                            ", обл."}
+                        </option>
+                      );
+                    })}
+                </select>
+
+                <CitySelect
+                  options={findCities}
+                  // findCities ?? findCities?.length > 0
+                  //   ? findCities.map(opt => {
+                  //       opt.Description +
+                  //         ", " +
+                  //         opt.AreaDescription +
+                  //         ", обл.";
+                  //     })
+                  //   : []
                 />
                 <h3>Адреса відділення</h3>
                 <CustomInput
@@ -147,7 +204,7 @@ export const ShopCartDelivery = props => {
                 </div>
               </form>
             </Formik>
-
+            <button onClick={() => getCities("Рівне")}>Запит за містом</button>
             <StyledShopCartButton
               text={"Продовжити оформлення"}
               route={ROUTES.SHOPCARTPAYMENT}

@@ -40,6 +40,7 @@ const CustomInput = ({ label, ...props }) => {
                 : props.type
             }
             autoComplete="off"
+            onChange={props.onChange}
           />
           <StyledPassIconWrapper>
             {isPasswordInput && (
