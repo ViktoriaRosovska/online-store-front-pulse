@@ -27,7 +27,6 @@ const UserPaymentForm = ({onClose}) => {
   const onSubmit = (values, option) => {
     values.cardNumber = values.cardNumber.replace(/\s/g, "");
     values.cardDate = formatDate(values.cardDate);
-    console.log("onSubmit  values", values);
     addUserCard(values);
       option.resetForm();
       onClose()

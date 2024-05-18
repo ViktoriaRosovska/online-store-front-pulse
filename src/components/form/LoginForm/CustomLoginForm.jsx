@@ -10,8 +10,8 @@ const CustomLoginForm = ({ onClose }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginUser, { data }] = useLoginUserMutation();
+  console.log("CustomLoginForm  data", data)
 
-  console.log(data);
   return (
     <>
       <Formik
@@ -26,10 +26,9 @@ const CustomLoginForm = ({ onClose }) => {
             .unwrap()
             .then(res => {
               dispatch(setCredentials(res));
-              console.log("SUCCESS");
               navigate("/profile/account");
             });
-          console.log("loginUser  data", data);
+
           onClose();
         }}
       >
@@ -54,6 +53,7 @@ const CustomLoginForm = ({ onClose }) => {
       </Formik>
     </>
   );
+          
 };
 
 export default CustomLoginForm;

@@ -63,7 +63,7 @@ const App = () => {
             <Route path={ROUTES.POLICY} element={<FooterPrivacyPolicy />} />
             <Route path={ROUTES.DELIVERY} element={<FooterDelivery />} />
             <Route path={ROUTES.ABOUTUS} element={<FooterAboutUs />} />
-            <Route path={ROUTES.PROFILE} element={<ProfileLayout />}>
+            <Route path={ROUTES.PROFILE} element={<PrivateRoute><ProfileLayout /></PrivateRoute>}>
               <Route path={ROUTES.ACCOUNT} element={<UserAccount />} />
               <Route
                 path={ROUTES.ORDERHISTORY}
