@@ -70,6 +70,9 @@ export const Button = styled.button`
   background-color: var(--white-light-bg-color);
   border-radius: 4px;
   gap: 12px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
   color: var(--grey-text-color);
 
   svg {

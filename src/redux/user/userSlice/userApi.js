@@ -79,6 +79,14 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["Payments"],
     }),
+    deleteUserCard: builder.mutation({
+      query: id => ({
+        url: `/users/payments/${id}`,
+        method: "DELETE",
+        data: id,
+      }),
+      invalidatesTags: ["Payments"],
+    }),
     sendSupportMessage: builder.mutation({
       query: payload => ({
         url: "/users/supports",
@@ -98,6 +106,7 @@ export const {
   useUserSubscribeMutation,
   useAddUserCardMutation,
   useGetUserCardsQuery,
+  useDeleteUserCardMutation,
   useSendSupportMessageMutation,
 } = userApi;
 
