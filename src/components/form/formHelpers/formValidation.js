@@ -88,6 +88,12 @@ export const validationUserCardSchema = Yup.object().shape({
       message: "Формат дати ММ/YY.",
       excludeEmptyString: true,
     })
+    .test('is-valid-month', 'Місяць від 01 до 12', function (value) {
+      if (!value) return false;
+      const [month, year] = value.split('/');
+      const monthNumber = parseInt(month, 10);
+      return monthNumber >= 1 && monthNumber <= 12;
+    })
     .test("is-future-date", "Термін дії закінчився.", function (value) {
       if (!value) return false;
       const currentDate = new Date();

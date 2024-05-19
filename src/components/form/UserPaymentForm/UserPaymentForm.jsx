@@ -50,6 +50,7 @@ const UserPaymentForm = ({onClose}) => {
               label="Номер карти"
               name="cardNumber"
               type="text"
+              maxLength='19'
               placeholder="0000 0000 0000 0000"
               onChange={event => {
                 const formattedValue = editCardNumberInInput(
@@ -83,6 +84,7 @@ const UserPaymentForm = ({onClose}) => {
                 name="cardCVC"
                 type="text"
                 placeholder="CVV"
+                maxLength='3'
               />
             </InputWrapper>
             <CustomInput
