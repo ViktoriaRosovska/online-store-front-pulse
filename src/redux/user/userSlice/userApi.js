@@ -83,7 +83,6 @@ export const userApi = createApi({
       query: id => ({
         url: `/users/payments/${id}`,
         method: "DELETE",
-        data: id,
       }),
       invalidatesTags: ["Payments"],
     }),

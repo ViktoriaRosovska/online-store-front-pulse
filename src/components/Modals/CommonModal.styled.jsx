@@ -5,13 +5,15 @@ export const Backdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 0;
+  top: 45px;
   left: 0;
   width: 100%;
   height: 100%;
   padding-left: 16px;
   padding-right: 16px;
   background-color: var(--modal-backdrop-color);
+  overflow: auto;
+  /* z-index: 1001; */
 `;
 
 export const ModalContant = styled.div`

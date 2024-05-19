@@ -42,7 +42,7 @@ const UserWalletCard = ({ card }) => {
       </CardInfo>
       
       {checkedCard ? <CheckedBox><CheckedSvg /></CheckedBox> : null}
-      <DeleteButton onClick={()=>handleDeleteCard(card?._id.replace(/["\\/]/g, ''))}>Видалити <TrashSvg/></DeleteButton>
+      <DeleteButton onClick={()=>handleDeleteCard(card?._id)}>Видалити <TrashSvg/></DeleteButton>
         
     </Box>
   );

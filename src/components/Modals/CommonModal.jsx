@@ -16,6 +16,14 @@ const CommonModal = ({ onClose, children, padding, top }) => {
   };
 
   useEffect(() => {
+    document.body.classList.add('no-scroll')
+
+    return () => {
+      document.body.classList.remove('no-scroll')
+    }
+  }, [])
+
+  useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
