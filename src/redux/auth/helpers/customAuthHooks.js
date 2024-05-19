@@ -1,15 +1,18 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {
+  useDispatch,
+  // useSelector
+} from "react-redux";
 import { useLazyFetchCurrentUserQuery } from "../userAuthApi";
 import { setCredentials, removeCredentials } from "../auth";
 import { useNavigate } from "react-router";
 import { ROUTES } from "../../../utils/routes";
-import { selectUserToken } from "../selectors";
+// import { selectUserToken } from "../selectors";
 
 export const useHandleCurrentUser = () => {
   const dispatch = useDispatch();
 
-  const token = useSelector(selectUserToken);
+  // const token = useSelector(selectUserToken);
 
   const [fetchCurrentUser, { data, isError, error }] =
     useLazyFetchCurrentUserQuery();
@@ -17,18 +20,21 @@ export const useHandleCurrentUser = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        if (localStorage.getItem("token")) {
-          // if (token) {
-          await fetchCurrentUser();
-          dispatch(setCredentials(data));
+        const persistedData = localStorage.getItem("persist:userToken");
+        console.log("fetchUser  persistedData", persistedData)
+      const token = persistedData
+        ? JSON.parse(persistedData).token?.replace(/"/g, "")
+        : "";
+        if (token) {
+          const res = await fetchCurrentUser();
+          console.log("fetchUser  res", res)
+          dispatch(setCredentials(res?.data));
         }
       } catch (error) {
         if (error.code === 401) {
           localStorage.removeItem("token");
           dispatch(removeCredentials());
         }
-
-        // console.log(`Ups, error: ${error}`);
       }
     };
 

@@ -16,7 +16,6 @@ const UserWalletList = () => {
   };
 
   const handleCloseMenu = () => {
-    console.log("close");
     setIsOpen(false);
   };
 

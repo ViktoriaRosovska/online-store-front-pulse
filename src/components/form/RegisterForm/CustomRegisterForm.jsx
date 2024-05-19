@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 const CustomRegisterForm = ({onClose}) => {
  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [createUser, {data}] = useCreateUserMutation()
+  const [createUser] = useCreateUserMutation()
 
   return (
     <>
@@ -34,11 +34,9 @@ const CustomRegisterForm = ({onClose}) => {
         onSubmit={({firstName, lastName, email, password}) => {
           createUser({firstName, lastName, email, password}).unwrap().then((res) => {
             dispatch(setCredentials(res))
-            console.log('SUCCESS')
             navigate('/profile/account')
           })
-           onClose()
-        console.log("CustomRegisterForm  data", data)   
+           onClose()  
         }}
       >
         {() => (

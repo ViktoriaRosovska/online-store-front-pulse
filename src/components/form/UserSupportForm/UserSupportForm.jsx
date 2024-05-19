@@ -7,7 +7,6 @@ import { userSupportValidationSchema } from "../formHelpers/formValidation";
 const UserSupportForm = ({ user }) => {
   const [sendSupportMessage] = useSendSupportMessageMutation();
   const onSubmit = (values, options) => {
-    console.log("onSubmit  values", values);
     sendSupportMessage(values);
     options.resetForm();
   };

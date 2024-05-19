@@ -23,12 +23,9 @@ const axiosBaseQuery =
 
     try {
       const persistedData = localStorage.getItem("persist:userToken");
-      console.log("persistedData", persistedData);
       const token = persistedData
-        ? JSON.parse(persistedData).token.replace(/"/g, "")
+        ? JSON.parse(persistedData).token?.replace(/"/g, "")
         : "";
-
-      console.log("token", token);
 
       const result = await host({
         url,
@@ -45,7 +42,7 @@ const axiosBaseQuery =
       });
       return { data: result.data };
     } catch (axiosError) {
-      let err = axiosError;
+      let err = axiosError;  
 
       return {
         error: {

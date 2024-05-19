@@ -122,3 +122,7 @@ button:active {
 input[type="password"]::-ms-reveal {
   display: none;
 }
+
+.no-scroll {
+  overflow: hidden;
+}
