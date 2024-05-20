@@ -1,19 +1,20 @@
-[[ 
-  {"name": "Підтримка", "href": "/support"}, 
-  {"name": "Умови та положення", "href": "/conditions"},
-  {"name": "Гарантія та повернення", "href": "/guarantee"},
-  {"name": "Політики конфіденційності", "href": "/policy"}
-],
-[ 
-  {"name": "Головна", "href": "/"}, 
-  {"name": "Про нас", "href": "/aboutus"},
-  {"name": "Профіль", "href": "/profile"},
-  {"name": "Доставка", "href": "/delivery"}
-],
-[ 
-  {"name": "Каталог товарів", "href": "/catalog"}, 
-  {"name": "Новинки", "href": "/newbrands"},
-  {"name": "Розпродаж", "href": "/sales"},
-  {"name": "Бренди", "href": "/brands"}
-]
+[
+  [
+    { "name": "Підтримка", "href": "/support" },
+    { "name": "Умови та положення", "href": "/conditions" },
+    { "name": "Гарантія та повернення", "href": "/guarantee" },
+    { "name": "Політика конфіденційності", "href": "/policy" }
+  ],
+  [
+    { "name": "Головна", "href": "/" },
+    { "name": "Про нас", "href": "/aboutus" },
+    { "name": "Профіль", "href": "/profile/account" },
+    { "name": "Доставка", "href": "/delivery" }
+  ],
+  [
+    { "name": "Каталог товарів", "href": "/catalog" },
+    { "name": "Новинки", "href": "/newbrands" },
+    { "name": "Розпродаж", "href": "/sales" },
+    { "name": "Бренди", "href": "/brands" }
+  ]
 ]

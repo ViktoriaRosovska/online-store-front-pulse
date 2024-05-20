@@ -10,11 +10,7 @@ import menuArrayFooter from "./../../../../data/footerMenu.json";
 
 function FooterGlassInfo() {
   const iconsArray = [instagramIcon, facebookIcon, mailIcon, phoneIcon];
-  // const footerNavbarItem1 = ["Підтримка", "Умови та положення", "Гарантія та повернення", "Політики конфіденційності"];
-  // const footerNavbarItem2 = ["Головна", "Про нас", "Профіль", "Доставка"];
-  // const footerNavbarItem3 = ["Каталог товарів", "Новинки", "Распродаж", "Бренди"];
 
-  // const footerNavbarItems = [iconsArray, footerNavbarItem1, footerNavbarItem2, footerNavbarItem3];
   const footerNavbarItems = [
     iconsArray,
     menuArrayFooter[0],

@@ -1,13 +1,15 @@
 import "./FooterTittle.css";
-import Button from "../../Buttons/Button";
+
 import { Container } from "../../../main.styled";
 import { Formik } from "formik";
 import { useUserSubscribeMutation } from "../../../redux/user/userSlice/userApi";
 // import { useState } from "react";
 
 import { userSubscribeValidationSchema } from "components/form/formHelpers/formValidation";
-// import { CustomInputWhite } from "components/form/formElements/CustomInput/CustomInput.styled";
-import { StyledFooterForm } from "../Footer.styled";
+
+import { StyledCustomInputWhite, StyledFooterForm } from "../Footer.styled";
+
+import { HeroButton } from "../../../pages/main/MainPage.styled";
 
 function FooterTittle() {
   const [userSubscribe] = useUserSubscribeMutation();
@@ -44,21 +46,15 @@ function FooterTittle() {
               console.log(formik.values),
               (
                 <StyledFooterForm>
-                  {/* <CustomInputWhite
+                  <StyledCustomInputWhite
                     name="email"
                     type="text"
                     label=""
                     placeholder="Email"
                     // className="footer__tittle-input"
-                  /> */}
-                  {/* {formik.touched.email &&
-                    formik.errors.email &&
-                    {
-                      <p style={{ color: "red" }}>{formik.errors.email}</p> 
-                    }} */}
-                  <Button type="submit" className="footer__tittle-btn">
-                    Підписатися
-                  </Button>
+                  />
+
+                  <HeroButton type="submit">Підписатися</HeroButton>
                 </StyledFooterForm>
               )
             )}
