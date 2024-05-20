@@ -12,9 +12,13 @@ export const CardsList = ({
   isFetching,
   isError,
   isFavoritePage,
+  totalPages,
+  page,
 }) => {
+  // console.log("data", data);
   const { data: favorites } = useGetFavoritesQuery();
 
+  // console.log("favorites", favorites);
   if (isFetching) return <div>Йде завантаження даних...</div>;
   if (isError)
     return (
@@ -51,8 +55,8 @@ export const CardsList = ({
       {!isFetching && data?.length > 0 && !isFavoritePage ? (
         <Pagination
           onChange={onPageChange}
-          page={parseInt(data?.page)}
-          totalPages={data?.totalPages}
+          page={parseInt(page)}
+          totalPages={totalPages}
         />
       ) : null}
     </CardsListContainer>

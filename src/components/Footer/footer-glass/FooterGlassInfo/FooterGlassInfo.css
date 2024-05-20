@@ -21,7 +21,10 @@
 
 .footer__navbar-item li {
   margin-bottom: 20px;
-  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* justify-content: space-between; */
 }
 
 .footer__navbar-item a:hover {
@@ -31,7 +34,13 @@
 .social__media-list {
   display: flex;
   align-items: center;
-  gap: 20px;
+
+  gap: 18px;
+  width: 246px;
+}
+
+.social__media-list li {
+  width: 48px;
 }
 
 .social__media-list-mobile {
@@ -41,12 +50,15 @@
   justify-content: start;
   cursor: pointer;
 }
-
+.social__media-list-mobile li {
+  width: 48px;
+}
 .social__media-list a:hover {
-  filter: invert(0%) sepia(50%) saturate(7494%) hue-rotate(200deg) brightness(127%) contrast(99%);
+  filter: invert(0%) sepia(50%) saturate(7494%) hue-rotate(200deg)
+    brightness(127%) contrast(99%);
   cursor: pointer;
 }
 
 .list__item__left {
-  text-align: start;
+  text-align: left;
 }

@@ -4,19 +4,21 @@ import { Title } from "../../components/Typography/Typography.styled";
 
 const UserFavorites = () => {
   const { data, isFetching, isError } = useGetFavoritesQuery();
-  console.log("UserFavorites  data", data)
+  console.log("UserFavorites  data", data);
 
   return (
     <>
       <Title style={{ textAlign: "left" }}>Улюблене</Title>
-      {data ? <CardsList
-        data={data}
-        isFetching={isFetching}
-        isError={isError}
-        isFavoritePage
-      />
-        : <div>Ваш список улюбленого пустий.</div>}
-      
+      {data ? (
+        <CardsList
+          data={data}
+          isFetching={isFetching}
+          isError={isError}
+          isFavoritePage={true}
+        />
+      ) : (
+        <div>Ваш список улюбленого пустий.</div>
+      )}
     </>
   );
 };
