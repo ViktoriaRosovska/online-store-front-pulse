@@ -8,22 +8,36 @@ import mobileFooterMenu from "../../../data/mobileFooterMenu.json";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUserToken } from "../../../redux/auth";
-import CommonModal from "components/Modals/CommonModal";
-import { Portal } from "components/Modals/helpersForModal/modalPortal";
-import ModalAuth from "components/Modals/ModalAuth/ModalAuth";
+// import CommonModal from "components/Modals/CommonModal";
+// import { Portal } from "components/Modals/helpersForModal/modalPortal";
+// import ModalAuth from "components/Modals/ModalAuth/ModalAuth";
+import ParenModalForAuth from "components/Modals/ParentModalForAuth/ParentModalForAuth";
 
 const HeaderMobileMenu = ({ onClose }) => {
   const isLoggedIn = useSelector(selectUserToken);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] = useState(false)
 
   const handleOpenLoginModal = () => {
     setIsLoginModalOpen(true);
+    setIsForgotPasswordModalOpen(false)
   };
 
   const handleCloseLoginModal = () => {
     setIsLoginModalOpen(false);
   };
+
+  const openForgotPasswordModal = () => {
+        setIsForgotPasswordModalOpen(true)
+        setIsLoginModalOpen(false)
+    }
+
+    const closeForgotPasswordModal = () => {
+        setIsForgotPasswordModalOpen(false)
+        setIsLoginModalOpen(true)
+    }
+
 
   const arrowSvg = isProfileMenuOpen ? <UpSvg /> : <DownSvg />;
   const toggleProfileMenu = () => {
@@ -38,15 +52,16 @@ const HeaderMobileMenu = ({ onClose }) => {
       {isProfileMenuOpen && isLoggedIn ? (
         <ProfileMenu onClose={onClose} isProfile />
       ) : (
-        <Portal isOpen={isLoginModalOpen}>
-          <CommonModal
-            onClose={handleCloseLoginModal}
-            padding="68px 164px"
-            top="68px"
-          >
-            <ModalAuth onClose={handleCloseLoginModal} />
-          </CommonModal>
-        </Portal>
+          <ParenModalForAuth isAuthModalOpen={isLoginModalOpen} closeAuthModal={handleCloseLoginModal} openForgotPasswordModal={openForgotPasswordModal} closeForgotPasswordModal={closeForgotPasswordModal} isForgotPasswordModalOpen={isForgotPasswordModalOpen} />
+        // <Portal isOpen={isLoginModalOpen}>
+        //   <CommonModal
+        //     onClose={handleCloseLoginModal}
+        //     padding="68px 164px"
+        //     top="68px"
+        //   >
+        //     <ModalAuth onClose={handleCloseLoginModal} />
+        //   </CommonModal>
+        // </Portal>
       )}
       <hr
         style={{

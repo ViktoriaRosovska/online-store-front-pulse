@@ -16,13 +16,16 @@ import {
   // useFetchCurrentUserQuery
 } from "../../../../../redux/auth";
 import { ROUTES } from "../../../../../utils/routes";
-import { Portal } from "components/Modals/helpersForModal/modalPortal";
-import CommonModal from "components/Modals/CommonModal";
-import ModalAuth from "components/Modals/ModalAuth/ModalAuth";
+// import { Portal } from "components/Modals/helpersForModal/modalPortal";
+// import CommonModal from "components/Modals/CommonModal";
+// import ModalAuth from "components/Modals/ModalAuth/ModalAuth";
 import { useSelector } from "react-redux";
+import ParenModalForAuth from "components/Modals/ParentModalForAuth/ParentModalForAuth";
 
 function UserActions(props) {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+ const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] = useState(false)
+
   // const [isLocked, setIsLocked] = useScrollLock(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -30,6 +33,25 @@ function UserActions(props) {
   const isLoggedIn = useSelector(selectUserToken);
   // const { data } = useFetchCurrentUserQuery();
   // const isLoggedIn = data ? true : false
+
+  const handleOpenLoginModal = () => {
+    setIsLoginModalOpen(true);
+    setIsForgotPasswordModalOpen(false)
+  };
+
+  const handleCloseLoginModal = () => {
+    setIsLoginModalOpen(false);
+  };
+
+  const openForgotPasswordModal = () => {
+        setIsForgotPasswordModalOpen(true)
+        setIsLoginModalOpen(false)
+    }
+
+    const closeForgotPasswordModal = () => {
+        setIsForgotPasswordModalOpen(false)
+        setIsLoginModalOpen(true)
+    }
 
   console.log(!!isLoggedIn);
 
@@ -43,13 +65,7 @@ function UserActions(props) {
   //   setIsVisible(prev => !prev);
   //   setIsLocked(prev => !prev);
   // };
-  const handleOpenModal = () => {
-    setIsOpenModal(true)
-  }
 
-  const handleCloseModal = () => {
-    setIsOpenModal(false)
-  }
 
   const navigateToCabinet = () => {
     navigate("/profile/account");
@@ -62,7 +78,7 @@ function UserActions(props) {
     <div className="user__actions">
       <button
         className="user__actions-profile"
-        onClick={isLoggedIn ? navigateToCabinet : handleOpenModal}
+        onClick={isLoggedIn ? navigateToCabinet : handleOpenLoginModal}
       >
         <img
           className={`user__actions-icon ${
@@ -101,11 +117,7 @@ function UserActions(props) {
           <ModalAuth />
         </ReusableModal>
       </AnimatePresence> */}
-      <Portal isOpen={isOpenModal}>
-        <CommonModal onClose={handleCloseModal} padding='68px 164px' top='68px'>
-          <ModalAuth onClose={handleCloseModal} />
-        </CommonModal>
-      </Portal>
+      <ParenModalForAuth isAuthModalOpen={isLoginModalOpen} closeAuthModal={handleCloseLoginModal} openForgotPasswordModal={openForgotPasswordModal} closeForgotPasswordModal={closeForgotPasswordModal} isForgotPasswordModalOpen={isForgotPasswordModalOpen} />
     </div>
   );
 }
