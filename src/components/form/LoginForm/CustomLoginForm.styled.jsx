@@ -32,3 +32,11 @@ export const Button = styled.button`
     font-size: 20px;
   }
 `;
+
+export const ForgotPasswordButton = styled.button`
+  margin-left: auto;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+  text-decoration: underline;
+`

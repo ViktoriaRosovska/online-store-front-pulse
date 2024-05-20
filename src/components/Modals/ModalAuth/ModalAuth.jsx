@@ -16,18 +16,18 @@ import {
 } from "./ModalAuth.styled";
 // import { useLoginUserGoogleQuery } from "../../../redux/auth";
 
-const ModalAuth = ({ onClose }) => {
-    // const loginUserGoogle = useLoginUserGoogleQuery();
-    const [mode, setMode] = useState("login");
-    
-    // const handleGoogleLogin = async() => {
-    //     try {
-    //         await loginUserGoogle.refetch()
-    //     } catch (error) {
-    //         console.log("handleGoogleLogin  error", error)
-            
-    //     }
-    // }
+const ModalAuth = ({ onClose, openForgotPasswordModal }) => {
+  // const loginUserGoogle = useLoginUserGoogleQuery();
+  const [mode, setMode] = useState("login");
+
+  // const handleGoogleLogin = async() => {
+  //     try {
+  //         await loginUserGoogle.refetch()
+  //     } catch (error) {
+  //         console.log("handleGoogleLogin  error", error)
+
+  //     }
+  // }
 
   const switchToLogin = () => {
     setMode("login");
@@ -57,9 +57,9 @@ const ModalAuth = ({ onClose }) => {
         </Button>
       </Navigation>
       {mode === "login" ? (
-        <CustomLoginForm onClose={onClose} />
+        <CustomLoginForm onClose={onClose} openForgotPasswordModal={openForgotPasswordModal} />
       ) : (
-        <CustomRegisterForm onClose={onClose}/>
+        <CustomRegisterForm onClose={onClose} />
       )}
       {mode === "login" ? (
         <Wrapper>
