@@ -6,14 +6,14 @@ export const ROUTES = {
   CATALOG: "/catalog",
   NEWBRANDS: "/newbrands",
   SALES: "/sales",
-  PROFILE: "/profile",
-  
+
   SHOPCARTLAYOUT: "/shopcart",
   SHOPCART: "/shopcart",
   SHOPCARTDELIVERY: "/shopcart/delivery",
   SHOPCARTPAYMENT: "/shopcart/payment",
-  
+
   ACCOUNT: "account",
+  PROFILE: "profile",
   ORDERHISTORY: "orderhistory",
   FAVORITES: "favorites",
   WALLET: "wallet",

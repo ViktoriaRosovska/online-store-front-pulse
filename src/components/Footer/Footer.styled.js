@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import footerBackground from "../../assets/images/footer-background.png";
 import { Form } from "formik";
+import CustomInput from "components/form/formElements/CustomInput/CustomInput";
 
 const FooterSection = styled.footer`
   background-color: var(--black-bg-color);
@@ -33,4 +34,22 @@ const StyledFooterForm = styled(Form)`
 
 const FooterContainer = styled.div``;
 
-export { FooterContainer, FooterSection, StyledFooterForm };
+const StyledCustomInputWhite = styled(CustomInput)`
+  & div {
+    border: 1px solid var(--white-dark-bg-color);
+    background-color: transparent;
+    color: var(--white-text-color);
+    & input {
+      &::placeholder {
+        color: var(--white-text-color);
+      }
+    }
+  }
+`;
+
+export {
+  FooterContainer,
+  FooterSection,
+  StyledFooterForm,
+  StyledCustomInputWhite,
+};
