@@ -25,7 +25,9 @@ function ProfileMenu({ onClose, isProfile }) {
   const navigate = useNavigate()
   const dispatch = useDispatch();
   const [logoutUser] = useLogoutUserMutation();
-  const { data, isLoading } = useFetchCurrentUserQuery();
+  const { data,
+    // isLoading
+  } = useFetchCurrentUserQuery();
   const user = data?.user;
 
   const basePath = isProfile ? "profile/" : "";
@@ -41,9 +43,9 @@ function ProfileMenu({ onClose, isProfile }) {
       .finally(onClose);
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <Box>
