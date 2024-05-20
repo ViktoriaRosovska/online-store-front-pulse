@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import CustomInput from "./CustomInput";
 
 export const Box = styled.div`
   position: relative;
@@ -27,7 +26,8 @@ export const Input = styled.input`
   line-height: 125%;
   height: 48px;
   width: 100%;
-  border: 1px solid ${props => props.$isError ? 'red' : 'var(--black-text-color)'};
+  border: 1px solid
+    ${props => (props.$isError ? "red" : "var(--black-text-color)")};
   border-radius: 16px;
   padding: 14px 16px;
   ${props =>
@@ -112,12 +112,3 @@ export const Error = styled.p`
     bottom: -20px;
   }
 `;
-
-// export const CustomInputWhite = styled(CustomInput)`
-//   border: 1px solid var(--white-dark-bg-color);
-//   background-color: transparent;
-//   color: var(--white-text-color);
-//   &::placeholder {
-//     color: var(--white-text-color);
-//   }
-// `;

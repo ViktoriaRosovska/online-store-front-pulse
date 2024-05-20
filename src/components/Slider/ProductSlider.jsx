@@ -3,7 +3,7 @@ import "swiper/css/pagination";
 import "./NewSlider.css";
 import { ReactComponent as SwiperRightArrowIcon } from "../../assets/svg/swiperRightArrow.svg";
 import { ReactComponent as SwiperLeftArrowIcon } from "../../assets/svg/swiperLeftArrow.svg";
-
+// import { Pagination, Navigation } from "swiper/modules";
 import { register } from "swiper/element/bundle";
 import Card from "components/Card/Card";
 import {
@@ -14,6 +14,9 @@ import {
 
 register();
 
+// import "swiper/css";
+// import "swiper/css/pagination";
+// import "swiper/css/navigation";
 const ProductSlider = props => {
   const cardSlider = true;
 
@@ -35,6 +38,7 @@ const ProductSlider = props => {
 
       <swiper-container
         class="swiper-wrapper"
+        // modules={[Pagination, Navigation]}
         navigation-next-el=".custom-next-button"
         navigation-prev-el=".custom-prev-button"
         pagination={{
@@ -42,6 +46,7 @@ const ProductSlider = props => {
           clickable: true,
           bulletClass: ".swiper-pagination-bullets",
         }}
+        loop={"true"}
         loading="lazy"
         breakpoints={JSON.stringify({
           320: {
