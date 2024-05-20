@@ -39,4 +39,4 @@ export const ForgotPasswordButton = styled.button`
   line-height: 16px;
   letter-spacing: 0.5px;
   text-decoration: underline;
-`
+`;
