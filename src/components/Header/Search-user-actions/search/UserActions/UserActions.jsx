@@ -5,20 +5,12 @@ import cartIcon from "/public/icons/cart-icon.svg";
 import "./UserActions.css";
 import MediaQuery from "react-responsive";
 import { useState } from "react";
-// import { AnimatePresence } from "framer-motion";
-// import ReusableModal from "components/Modals/ReusableModal";
-// import useScrollLock from "components/Modals/helpersForModal/useScrollLock";
-// import ModalAuth from "components/Modals/ModalContent/ModalAuth";
-// import { useSelector } from "react-redux";
 import {
   selectUserToken,
   // selectUserToken,
   // useFetchCurrentUserQuery
 } from "../../../../../redux/auth";
 import { ROUTES } from "../../../../../utils/routes";
-// import { Portal } from "components/Modals/helpersForModal/modalPortal";
-// import CommonModal from "components/Modals/CommonModal";
-// import ModalAuth from "components/Modals/ModalAuth/ModalAuth";
 import { useSelector } from "react-redux";
 import ParenModalForAuth from "components/Modals/ParentModalForAuth/ParentModalForAuth";
 
@@ -108,15 +100,7 @@ function UserActions(props) {
           alt=""
         />
       </button>
-      {/* <AnimatePresence>
-        <ReusableModal
-          onClose={toggleVisibility}
-          locked={isLocked}
-          isOpen={isVisible}
-        >
-          <ModalAuth />
-        </ReusableModal>
-      </AnimatePresence> */}
+
       <ParenModalForAuth isAuthModalOpen={isLoginModalOpen} closeAuthModal={handleCloseLoginModal} openForgotPasswordModal={openForgotPasswordModal} closeForgotPasswordModal={closeForgotPasswordModal} isForgotPasswordModalOpen={isForgotPasswordModalOpen} />
     </div>
   );
