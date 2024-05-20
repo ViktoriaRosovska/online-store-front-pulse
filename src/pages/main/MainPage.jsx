@@ -48,7 +48,7 @@ const Main = () => {
             <BoxHeroTitleWrapper>
               <h1>ОБИРАЙ КОМФОРТ ТА СВОБОДУ</h1>
             </BoxHeroTitleWrapper>
-            <HeroButton type="button" onClick={navFunc}>
+            <HeroButton btnType="button" click={navFunc}>
               Каталог
             </HeroButton>
           </BoxHero>
