@@ -93,6 +93,13 @@ export const userApi = createApi({
         data: payload,
       }),
     }),
+    userForgotPassword: builder.mutation({
+      query: email => ({
+        url: "/users/forgot-password",
+        method: "POST",
+        data: email,
+      }),
+    }),
   }),
 });
 
@@ -107,6 +114,7 @@ export const {
   useGetUserCardsQuery,
   useDeleteUserCardMutation,
   useSendSupportMessageMutation,
+  useUserForgotPasswordMutation,
 } = userApi;
 
 /*

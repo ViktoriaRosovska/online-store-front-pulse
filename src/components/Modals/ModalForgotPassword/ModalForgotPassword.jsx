@@ -2,7 +2,12 @@ import UserForgotPasswordForm from "components/form/UserForgotPasswordForm/UserF
 import { ReturnButton, StyledTitle, Text } from "./ModalForgotPassword.styled";
 import { Line, OrText, OrWrapper } from "../ModalAuth/ModalAuth.styled";
 
-const ModalForgotPassword = () => {
+const ModalForgotPassword = ({ onClose, openLoginModal }) => {
+  const handleOpenAuthModal = () => {
+    onClose()
+    openLoginModal()
+  }
+
   return (
     <>
       <StyledTitle>Забули пароль?</StyledTitle>
@@ -10,7 +15,7 @@ const ModalForgotPassword = () => {
         Вкажіть адресу електронної пошти, до якого прив&#39;язаний аккаунт, і ми
         надішлемо посилання для відновлення пароля.
       </Text>
-      <UserForgotPasswordForm />
+      <UserForgotPasswordForm onClose={onClose} />
 
       <OrWrapper>
         <Line />
@@ -18,7 +23,7 @@ const ModalForgotPassword = () => {
         <Line />
       </OrWrapper>
 
-      <ReturnButton>Повернутися до авторизації</ReturnButton>
+      <ReturnButton onClick={handleOpenAuthModal}>Повернутися до авторизації</ReturnButton>
     </>
   );
 };

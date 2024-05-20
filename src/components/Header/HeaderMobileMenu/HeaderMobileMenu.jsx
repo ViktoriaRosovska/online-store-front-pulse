@@ -55,7 +55,8 @@ const HeaderMobileMenu = ({ onClose }) => {
         <ParenModalForAuth
           isAuthModalOpen={isLoginModalOpen}
           closeAuthModal={handleCloseLoginModal}
-          openForgotPasswordModal={openForgotPasswordModal}
+            openForgotPasswordModal={openForgotPasswordModal}
+            openLoginModal={handleOpenLoginModal}
           closeForgotPasswordModal={closeForgotPasswordModal}
           isForgotPasswordModalOpen={isForgotPasswordModalOpen}
         />

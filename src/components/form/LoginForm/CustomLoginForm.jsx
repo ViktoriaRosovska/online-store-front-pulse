@@ -15,7 +15,6 @@ import { useDispatch } from "react-redux";
 // import ModalForgotPassword from "components/Modals/ModalForgotPassword/ModalForgotPassword";
 
 const CustomLoginForm = ({ onClose, openForgotPasswordModal }) => {
-  console.log("CustomLoginForm  openForgotPasswordModal", openForgotPasswordModal)
   // const [isOpenForgotPasswordModal, setIsOpenForgotPasswordModal] =
   // useState(false);
   // console.log("CustomLoginForm  isOpenForgotPasswordModal", isOpenForgotPasswordModal)
@@ -76,12 +75,6 @@ const CustomLoginForm = ({ onClose, openForgotPasswordModal }) => {
           </StyledForm>
         )}
       </Formik>
-{/* 
-      <Portal isOpen={isOpenForgotPasswordModal}>
-        <CommonModal onClose={handleCloseForgotPasswordModal} padding='68px 165px'>
-          <ModalForgotPassword/>
-        </CommonModal>
-      </Portal> */}
     </>
   );
 };

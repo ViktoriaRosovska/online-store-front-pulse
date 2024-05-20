@@ -2,7 +2,7 @@ import { Formik } from "formik";
 import { userEditValidationSchema } from "../formHelpers/formValidation";
 import CustomInput from "../formElements/CustomInput/CustomInput";
 import { Box, Button, DeleteButton, StyledForm } from "./UserEditForm.styled";
-import { useFetchCurrentUserQuery } from "../../../redux/auth";
+import { removeCredentials, useFetchCurrentUserQuery } from "../../../redux/auth";
 import {
   useUserDeleteMutation,
   useUserUpdateMutation,
@@ -12,8 +12,10 @@ import { Portal } from "components/Modals/helpersForModal/modalPortal";
 import CommonModal from "components/Modals/CommonModal";
 import { Title } from "components/Typography/Typography.styled";
 import ModalDeleteUser from "components/Modals/ModalDeleteUser/ModalDeleteUser";
+import { useDispatch } from "react-redux";
 
 const UserEditForm = () => {
+  const dispatch = useDispatch()
   const [isOpenModal, setIsOpenModal] = useState(false)
   const { data, isLoading, refetch } = useFetchCurrentUserQuery(undefined, {
     refetchOnMountOrArgChange: true,
@@ -52,6 +54,7 @@ const UserEditForm = () => {
    const onDeleteUser = async () => {
     try {
       await userDelete();
+      dispatch(removeCredentials())
     } catch (error) {
       console.error(error);
     }

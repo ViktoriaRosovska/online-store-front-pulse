@@ -111,6 +111,7 @@ button {
   border: none;
   cursor: pointer;
   background-color: transparent;
+  color: inherit;
 }
 
 input:focus,
