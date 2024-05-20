@@ -13,6 +13,8 @@ const Sales = () => {
       data={data?.products}
       isError={isError}
       isFetching={isFetching}
+      totalPages={data?.totalPages}
+      page={data?.page}
     />
   );
 };

@@ -15,6 +15,7 @@ const CardListWrapper = styled.div`
   @media screen and (min-width: 1440px) {
     column-gap: 18px;
     width: 996px;
+    justify-content: flex-start;
   }
 `;
 export { CardsListContainer, CardListWrapper };

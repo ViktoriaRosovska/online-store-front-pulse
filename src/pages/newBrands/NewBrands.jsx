@@ -14,6 +14,8 @@ const NewBrands = () => {
       data={data?.products}
       isError={isError}
       isFetching={isFetching}
+      totalPages={data?.totalPages}
+      page={data?.page}
     />
   );
 };

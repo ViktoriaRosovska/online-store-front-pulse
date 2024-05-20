@@ -21,9 +21,11 @@ const Catalog = () => {
       cardfeature={"sales"}
       brand={brand}
       sortNewest={true}
-      data={data?.prodacts}
+      data={data?.products}
       isError={isError}
       isFetching={isFetching}
+      page={data?.page}
+      totalPages={data?.totalPages}
     />
   );
 };

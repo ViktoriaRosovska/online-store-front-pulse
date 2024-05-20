@@ -61,6 +61,8 @@ export const CatalogComponent = ({
   isError,
   isFetching,
   loader,
+  page,
+  totalPages,
 }) => {
   const [selectedBrands, setSelectedBrands] = useState(
     getFromSearchParams("brand", brand ? [brand] : [])
@@ -215,6 +217,9 @@ export const CatalogComponent = ({
             filterQuery={filterQuery}
             isFetching={isFetching}
             isError={isError}
+            isFavoritePage={false}
+            totalPages={totalPages}
+            page={page}
           />
         </ContentWrapper>
       </Container>
