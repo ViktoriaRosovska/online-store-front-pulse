@@ -66,6 +66,7 @@ const ProductSlider = props => {
           // "--swiper-pagination-bullet-horizontal-gap": "6px",
         }}
         scrollbar="false"
+        loop="true"
       >
         {props.products && props.products.length > 0 ? (
           props.products.map(el => {
