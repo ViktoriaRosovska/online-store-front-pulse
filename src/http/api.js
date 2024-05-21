@@ -14,7 +14,6 @@ const apiPost = axios.create({
 
 const axiosBaseQuery =
   (host, options) =>
-  // options =>
   async ({ url, method, data, params, headers }, reduxApi) => {
     let preparedHeaders = {};
     if (options?.prepareHeaders) {
@@ -22,11 +21,6 @@ const axiosBaseQuery =
     }
 
     try {
-      const persistedData = localStorage.getItem("persist:userToken");
-      const token = persistedData
-        ? JSON.parse(persistedData).token?.replace(/"/g, "")
-        : "";
-
       const result = await host({
         url,
         method,
@@ -36,13 +30,11 @@ const axiosBaseQuery =
           ...headers,
 
           ...preparedHeaders,
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
         },
       });
       return { data: result.data };
     } catch (axiosError) {
-      let err = axiosError;  
+      let err = axiosError;
 
       return {
         error: {

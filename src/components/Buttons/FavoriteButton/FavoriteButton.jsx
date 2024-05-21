@@ -4,8 +4,13 @@ import { FavoriteBtn } from "./FavoriteButton.styled";
 
 function FavoriteButton(props) {
   return (
-    <FavoriteBtn $sales={props.$sales} $new={props.$new} type={"button"} onClick={props.onClick} >
-      {props.isFavorite ? <LogoLoverRed/> : <LogoLover /> }
+    <FavoriteBtn
+      $sales={props.$sales}
+      $new={props.$new}
+      type={"button"}
+      onClick={props.onClick}
+    >
+      {props.isFavorite ? <LogoLoverRed /> : <LogoLover />}
     </FavoriteBtn>
   );
 }
