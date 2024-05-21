@@ -56,8 +56,8 @@ const Basic = () => (
           {errors.password && touched.password && errors.password}
 
           <button className='button_modal' type="submit" disabled={isSubmitting}>
-            Увійти
-          </button>
+            УвійтиУвійти
+            Увійти          </button>
 
 
         </form>
