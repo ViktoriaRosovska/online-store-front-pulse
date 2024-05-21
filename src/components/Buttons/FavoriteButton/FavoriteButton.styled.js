@@ -4,22 +4,20 @@ const FavoriteBtn = styled.button`
   border: none;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   width: 24px;
   height: 24px;
 
-  border-radius: 50%;
+  /* border-radius: 50%; */
 
-  background-color: var(--grey-bg-icon-color);
+  /* background-color: var(--grey-bg-icon-color); */
   padding: 0;
   position: absolute;
   right: 10px;
   top: ${props => (props.$sales || props.$new ? "36px" : "10px")};
 
   /* svg {
-    fill: ${props =>
-    (props.$isFavorite ? "red" : "black")}
-  
+    fill: ${props => (props.$isFavorite ? "red" : "black")};
   } */
 
   &:hover,

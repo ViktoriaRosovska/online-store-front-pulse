@@ -3,7 +3,18 @@ import { api, axiosBaseQuery } from "../../http/api";
 
 export const userAuthApi = createApi({
   reducerPath: "userAuthApi",
-  baseQuery: axiosBaseQuery(api),
+  baseQuery: axiosBaseQuery(api, {
+    prepareHeaders: ({ getState }) => {
+      const state = getState();
+      if (state.userAuthReducer.token) {
+        console.log("state.userAuthReducer.token", state.userAuthReducer.token);
+        return {
+          Authorization: `Bearer ${state.userAuthReducer.token}`,
+        };
+      }
+      return {};
+    },
+  }),
 
   endpoints: builder => ({
     createUser: builder.mutation({
