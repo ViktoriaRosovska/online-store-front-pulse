@@ -38,7 +38,6 @@ h4 {
 
 export const FooterListNoBottom = styled.ul`
 li {
-
   margin-bottom: 0px; 
   list-style-type: disc;
   list-style-position: outside; 
@@ -93,6 +92,9 @@ export const FooterItem = styled.li`
   }
 `;
 
+export const FooterItemBottom = styled.div`
+  margin-bottom: 23px;
+`;
 export const FooterItemText = styled.p`
   > p {
     font-size: 16px;
@@ -110,6 +112,7 @@ export const FooterSection = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 36px;
+  gap: 24px;
 `;
 
 export const FooterSectionColumn = styled.div`
@@ -123,6 +126,11 @@ export const FooterSectionColumn = styled.div`
   }
 `;
 
+export const FooterSectionDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 23px;
+`;
 export const FooterSectionAboutUs = styled.div`
   display: flex;
   flex-direction: column;
@@ -134,6 +142,11 @@ export const FooterSectionAboutUs = styled.div`
   > a {
     margin-top: 60px;
   }
+`;
+
+export const FooterSectionCenter = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 // const FooterPages = styled.footer`
