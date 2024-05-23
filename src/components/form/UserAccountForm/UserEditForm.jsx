@@ -154,7 +154,7 @@ const UserEditForm = () => {
               label="Номер телефону"
               name="phone"
               type="text"
-              placeholder="671112233"
+              placeholder="Номер телефону"
               mask={[
                 "+",
                 "3",
