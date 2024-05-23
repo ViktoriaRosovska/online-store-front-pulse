@@ -33,6 +33,7 @@ const CustomRegisterForm = ({onClose}) => {
         validationSchema={registerValidationSchema}
         onSubmit={({firstName, lastName, email, password}) => {
           createUser({firstName, lastName, email, password}).unwrap().then((res) => {
+            console.log("createUser  res", res)
             dispatch(setCredentials(res))
             navigate('/profile/account')
           })

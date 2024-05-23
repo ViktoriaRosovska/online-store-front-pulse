@@ -1,3 +1,4 @@
+import MaskedInput from "react-text-mask";
 import styled from "styled-components";
 
 export const Box = styled.div`
@@ -50,6 +51,37 @@ export const Input = styled.input`
    `}
   }
 `;
+
+export const StyledMaskedInput = styled(MaskedInput)`
+  flex-grow: 1;
+  font-size: 16px;
+  line-height: 125%;
+  height: 48px;
+  width: 100%;
+  border: 1px solid
+    ${props => (props.$isError ? "red" : "var(--black-text-color)")};
+  border-radius: 16px;
+  padding: 14px 16px;
+  ${props =>
+    props.$isPassword &&
+    `
+     padding-right: 38px;
+   `}
+  &::placeholder {
+    font-size: 16px;
+    line-height: 125%;
+  }
+  @media screen and (min-width: 1440px) {
+    height: 60px;
+    /* width: 384px; */
+    padding: 18px 16px;
+    ${props =>
+      props.$isPassword &&
+      `
+     padding-right: 38px;
+   `}
+  }
+`
 
 export const InputWrapper = styled.div`
   display: flex;

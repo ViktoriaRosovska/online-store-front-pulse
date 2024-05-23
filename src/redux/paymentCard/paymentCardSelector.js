@@ -1,0 +1,1 @@
+export const selectPaymentCard = state => state.paymentCard.selectedCard

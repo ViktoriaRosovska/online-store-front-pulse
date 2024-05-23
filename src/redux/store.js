@@ -17,6 +17,7 @@ import storage from "redux-persist/lib/storage";
 import { userShopCartReducer } from "./user/userShopCart/userShopCartSlice";
 import { userApi } from "./user/userSlice/userApi";
 import { novaPoshtaAPI } from "./novaPoshta/novaPoshtaAPI";
+import paymentCardReducer from './paymentCard/paymentCardSlice'
 
 const persistConfig = {
   key: "userToken",
@@ -28,6 +29,11 @@ const userPersistConfig = {
   storage,
   whitelist: ["userShopCart"],
 };
+
+const cardPersistConfig = {
+  key: 'card',
+  storage,
+}
 
 const persistedUserShopCart = persistReducer(
   userPersistConfig,
@@ -43,6 +49,7 @@ export const store = configureStore({
     filterQuery: filterQueryReducer,
     userShopCart: persistedUserShopCart,
     userAuthReducer: persistReducer(persistConfig, authReducer),
+    paymentCard: persistReducer(cardPersistConfig,paymentCardReducer),
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
