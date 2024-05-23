@@ -16,6 +16,7 @@ import CommonModal from "components/Modals/CommonModal";
 import { Title } from "components/Typography/Typography.styled";
 import ModalDeleteUser from "components/Modals/ModalDeleteUser/ModalDeleteUser";
 import { useDispatch } from "react-redux";
+import { formatPhoneNumber } from "../formHelpers/formatPhoneNumber";
 
 const UserEditForm = () => {
   const dispatch = useDispatch();
@@ -31,10 +32,7 @@ const UserEditForm = () => {
   const phoneNumber =
     user?.phone === "0000000000"
       ? ""
-      : user?.phone.replace(
-          /^(\+38)(\d{3})(\d{3})(\d{2})(\d{2})$/,
-          "$1($2)$3-$4-$5"
-        );
+      : formatPhoneNumber(user?.phone);
 
   const onSubmit = async values => {
     if (values.phone !== "") {
@@ -61,10 +59,7 @@ const UserEditForm = () => {
       const updatedPhoneNumber =
         data?.user?.phone === "0000000000"
           ? ""
-          : data?.user?.phone.replace(
-              /^(\+38)(\d{3})(\d{3})(\d{2})(\d{2})$/,
-              "$1($2)$3-$4-$5"
-            );
+          : formatPhoneNumber(data?.user?.phone);
       values.phone = updatedPhoneNumber;
     } catch (error) {
       console.error(error);
@@ -100,7 +95,6 @@ const UserEditForm = () => {
     password: "",
     passwordCheck: "",
   };
-  console.log("UserEditForm  initialValues", initialValues.phone);
 
   return (
     <Box>
