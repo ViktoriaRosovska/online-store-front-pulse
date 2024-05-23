@@ -29,7 +29,8 @@ export const useHandleCurrentUser = () => {
           await fetchCurrentUser()
             .unwrap()
             .then(res => {
-              dispatch(setCredentials(res?.data));
+               console.log("fetchUser  res", res)
+              dispatch(setCredentials(res));
               return res;
             })
             .catch(error => {
@@ -50,6 +51,7 @@ export const useHandleCurrentUser = () => {
 
     fetchUser();
   }, []);
+           
 
   return { data, isError, error };
 };
