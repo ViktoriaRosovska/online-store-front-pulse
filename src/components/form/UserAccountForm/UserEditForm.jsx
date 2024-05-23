@@ -17,6 +17,7 @@ import { Title } from "components/Typography/Typography.styled";
 import ModalDeleteUser from "components/Modals/ModalDeleteUser/ModalDeleteUser";
 import { useDispatch } from "react-redux";
 import { formatPhoneNumber } from "../formHelpers/formatPhoneNumber";
+import { Notify } from "notiflix";
 
 const UserEditForm = () => {
   const dispatch = useDispatch();
@@ -30,15 +31,14 @@ const UserEditForm = () => {
   const user = data?.user;
 
   const phoneNumber =
-    user?.phone === "0000000000"
-      ? ""
-      : formatPhoneNumber(user?.phone);
+    user?.phone === "0000000000" ? "" : formatPhoneNumber(user?.phone);
 
   const onSubmit = async values => {
+    const updatedUser = {};
+
     if (values.phone !== "") {
       values.phone = values.phone.replace(/[\s()-]/g, "");
     }
-    const updatedUser = {};
 
     Object.keys(values).forEach(key => {
       if (
@@ -51,15 +51,31 @@ const UserEditForm = () => {
     });
 
     try {
-      const { data } = await userUpdate(updatedUser);
-      console.log("onSubmit  data", data);
-
+      const { data } = await userUpdate(updatedUser)
+        .unwrap()
+        .then(res => {
+          Notify.success("Особисті данні оновлені", {
+            position: "center-center",
+          });
+          return res;
+        })
+        .catch(error => {
+          console.log(error);
+          if (error?.status === 400) {
+            return Notify.warning("Ви не внесли ніяких змін", {
+              position: "center-center",
+            });
+          }
+        });
       await refetch();
 
       const updatedPhoneNumber =
         data?.user?.phone === "0000000000"
           ? ""
-          : formatPhoneNumber(data?.user?.phone);
+          : data?.user?.phone.replace(
+              /^(\+38)(\d{3})(\d{3})(\d{2})(\d{2})$/,
+              "$1($2)$3-$4-$5"
+            );
       values.phone = updatedPhoneNumber;
     } catch (error) {
       console.error(error);
@@ -68,7 +84,18 @@ const UserEditForm = () => {
 
   const onDeleteUser = async () => {
     try {
-      await userDelete();
+      await userDelete()
+        .unwrap()
+        .then(() =>
+          Notify.success("Аккаун успішно видалений", {
+            position: "center-center",
+          })
+        )
+        .catch(() =>
+          Notify.failure("Помилка серверу. Спробуйте ще раз", {
+            position: "center-center",
+          })
+        );
       dispatch(removeCredentials());
     } catch (error) {
       console.error(error);
