@@ -31,7 +31,7 @@ export const registerValidationSchema = Yup.object().shape({
     .matches(/^(?=.*[a-z])(?=.*\d)/, {
       message: "Пароль має містити літери та цифри",
     })
-    .min(6, "Пароль має бути не менш ніж 6 символів")
+    .min(8, "Пароль має бути не менш ніж 8 символів")
     .max(10, "Максимальна кількість 10 символів")
     .required("Oбовʼязкове поле"),
   passwordCheck: Yup.string()
@@ -67,7 +67,7 @@ export const userEditValidationSchema = Yup.object().shape({
     .max(10, "Максимальна кількість 10 символів")
     .nullable(),
   phone: Yup.string()
-    .matches(/^\d{9}$/, { message: "Введіть корректний номер телефону" })
+    .matches(/^\+38\(\d{3}\)\d{3}-\d{2}-\d{2}$/, { message: "Введіть корректний номер телефону" })
     .nullable(),
 });
 

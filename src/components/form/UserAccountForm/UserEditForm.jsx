@@ -2,7 +2,10 @@ import { Formik } from "formik";
 import { userEditValidationSchema } from "../formHelpers/formValidation";
 import CustomInput from "../formElements/CustomInput/CustomInput";
 import { Box, Button, DeleteButton, StyledForm } from "./UserEditForm.styled";
-import { removeCredentials, useFetchCurrentUserQuery } from "../../../redux/auth";
+import {
+  removeCredentials,
+  useFetchCurrentUserQuery,
+} from "../../../redux/auth";
 import {
   useUserDeleteMutation,
   useUserUpdateMutation,
@@ -15,22 +18,30 @@ import ModalDeleteUser from "components/Modals/ModalDeleteUser/ModalDeleteUser";
 import { useDispatch } from "react-redux";
 
 const UserEditForm = () => {
-  const dispatch = useDispatch()
-  const [isOpenModal, setIsOpenModal] = useState(false)
+  const dispatch = useDispatch();
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const { data, isLoading, refetch } = useFetchCurrentUserQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
-  
+
   const [userUpdate] = useUserUpdateMutation();
   const [userDelete] = useUserDeleteMutation();
   const user = data?.user;
 
-  const phoneNumber = user?.phone === "0000000000" ? "" : user?.phone;
+  const phoneNumber =
+    user?.phone === "0000000000"
+      ? ""
+      : user?.phone.replace(
+          /^(\+38)(\d{3})(\d{3})(\d{2})(\d{2})$/,
+          "$1($2)$3-$4-$5"
+        );
 
-  
   const onSubmit = async values => {
+    if (values.phone !== "") {
+      values.phone = values.phone.replace(/[\s()-]/g, "");
+    }
     const updatedUser = {};
-    
+
     Object.keys(values).forEach(key => {
       if (
         key !== "passwordCheck" &&
@@ -40,21 +51,30 @@ const UserEditForm = () => {
         updatedUser[key] = values[key];
       }
     });
-    
+
     try {
       const { data } = await userUpdate(updatedUser);
       console.log("onSubmit  data", data);
-      
+
       await refetch();
+
+      const updatedPhoneNumber =
+        data?.user?.phone === "0000000000"
+          ? ""
+          : data?.user?.phone.replace(
+              /^(\+38)(\d{3})(\d{3})(\d{2})(\d{2})$/,
+              "$1($2)$3-$4-$5"
+            );
+      values.phone = updatedPhoneNumber;
     } catch (error) {
       console.error(error);
     }
   };
 
-   const onDeleteUser = async () => {
+  const onDeleteUser = async () => {
     try {
       await userDelete();
-      dispatch(removeCredentials())
+      dispatch(removeCredentials());
     } catch (error) {
       console.error(error);
     }
@@ -65,21 +85,22 @@ const UserEditForm = () => {
   }
 
   const handleOpenMobile = () => {
-    setIsOpenModal(true)
-  }
+    setIsOpenModal(true);
+  };
 
   const handleCloseModal = () => {
-    setIsOpenModal(false)
-  }
-  
+    setIsOpenModal(false);
+  };
+
   const initialValues = {
     firstName: user?.firstName || "",
     lastName: user?.lastName || "",
     email: user?.email || "",
-    phone: phoneNumber || "",
+    phone: phoneNumber,
     password: "",
     passwordCheck: "",
   };
+  console.log("UserEditForm  initialValues", initialValues.phone);
 
   return (
     <Box>
@@ -113,6 +134,25 @@ const UserEditForm = () => {
               name="phone"
               type="text"
               placeholder="671112233"
+              mask={[
+                "+",
+                "3",
+                "8",
+                "(",
+                "0",
+                /[0-9]/,
+                /[0-9]/,
+                ")",
+                /[0-9]/,
+                /[0-9]/,
+                /[0-9]/,
+                "-",
+                /[0-9]/,
+                /[0-9]/,
+                "-",
+                /[0-9]/,
+                /[0-9]/,
+              ]}
             />
             <CustomInput
               label="Пароль"
@@ -135,9 +175,16 @@ const UserEditForm = () => {
       </DeleteButton>
 
       <Portal isOpen={isOpenModal}>
-        <CommonModal onClose={handleCloseModal} padding='57px 105px 50px' top='50px'>
+        <CommonModal
+          onClose={handleCloseModal}
+          padding="57px 105px 50px"
+          top="50px"
+        >
           <Title>Видалити акаунт?</Title>
-          <ModalDeleteUser onDeleteUser={onDeleteUser} onClose={handleCloseModal} />
+          <ModalDeleteUser
+            onDeleteUser={onDeleteUser}
+            onClose={handleCloseModal}
+          />
         </CommonModal>
       </Portal>
     </Box>

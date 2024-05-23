@@ -1,4 +1,4 @@
-import { useField } from "formik";
+import { useField} from "formik";
 import { useState } from "react";
 import VisiblePasswordIcon from "../VisiblePasswordIcon/VisiblePasswordIcon";
 import {
@@ -7,10 +7,11 @@ import {
   Input,
   InputField,
   InputWrapper,
+  StyledMaskedInput,
   StyledPassIconWrapper,
 } from "./CustomInput.styled";
 
-const CustomInput = ({ label, ...props }) => {
+const CustomInput = ({ label, mask, ...props }) => {
   const [field, meta] = useField(props);
   const [visiblePassword, setVisiblePassword] = useState(false);
 
@@ -22,27 +23,36 @@ const CustomInput = ({ label, ...props }) => {
   const togglePasswordVisibility = () => {
     setVisiblePassword(!visiblePassword);
   };
-
+  
   return (
     <Box>
       <InputField>
         <label>{label}</label>
         <InputWrapper $isPassword={isPasswordInput}>
-          <Input
+          {mask ? <StyledMaskedInput
             {...field}
             {...props}
-            $isPassword={isPasswordInput}
-            as={props.$textarea ? "textarea" : "input"}
-            type={
-              isPasswordInput
-                ? visiblePassword
-                  ? "text"
-                  : "password"
-                : props.type
-            }
+            mask={mask}
             autoComplete="off"
-            $isError={isError}
+            showMask={true}
           />
+            :
+            <Input
+              {...field}
+              {...props}
+              $isPassword={isPasswordInput}
+              as={props.$textarea ? "textarea" : "input"}
+              type={
+                isPasswordInput
+                  ? visiblePassword
+                    ? "text"
+                    : "password"
+                  : props.type
+              }
+              autoComplete="off"
+              $isError={isError}
+            />
+          }
           <StyledPassIconWrapper>
             {isPasswordInput && (
               <VisiblePasswordIcon
