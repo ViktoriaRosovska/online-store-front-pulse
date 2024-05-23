@@ -67,8 +67,7 @@ const UserEditForm = () => {
             });
           }
         });
-      await refetch();
-
+      
       const updatedPhoneNumber =
         data?.user?.phone === "0000000000"
           ? ""
@@ -77,6 +76,8 @@ const UserEditForm = () => {
               "$1($2)$3-$4-$5"
             );
       values.phone = updatedPhoneNumber;
+
+      await refetch();
     } catch (error) {
       console.error(error);
     }
