@@ -22,12 +22,28 @@ import { useEffect, useState } from "react";
 import { brandNew, brandSales } from "../../http/ProductsApi";
 import { Container } from "../../main.styled";
 import { StyledSliderTitle } from "components/Typography/Typography.styled";
+import { Portal } from "components/Modals/helpersForModal/modalPortal";
+import CommonModal from "components/Modals/CommonModal";
+import ModalAuth from "components/Modals/ModalAuth/ModalAuth";
 
 const Main = () => {
   const [sales, setSales] = useState([]);
   const [newBrands, setNewBrands] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] = useState(false)
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+  
+  const handleCloseResetPasswordModal = () => {
+    setIsResetPasswordModalOpen(false)
+    navigate("/")
+    setIsLoginModalOpen(true)
+  }
+
+  const handleCloseLoginModal = () => {
+    setIsLoginModalOpen(false)
+  }
   // console.log(sales.products);
   const navFunc = () => {
     navigate("/catalog", {
@@ -39,6 +55,17 @@ const Main = () => {
     brandNew().then(res => setNewBrands(res));
     brandSales().then(res => setSales(res));
   }, []);
+
+ 
+
+  useEffect(() => {
+    const query = new URLSearchParams(location.search)
+    const resetToken = query.get('resetToken')
+   
+    if (resetToken) {
+      setIsResetPasswordModalOpen(true)
+    }
+  }, [location])
 
   return (
     <>
@@ -99,6 +126,18 @@ const Main = () => {
           </div>
         </div>
       </section>
+
+      <Portal isOpen={isResetPasswordModalOpen}>
+        <CommonModal onClose={handleCloseResetPasswordModal} padding="68px 164px" top="68px">
+          <ModalAuth onClose={handleCloseResetPasswordModal} resetPassword={true} />
+        </CommonModal>
+      </Portal>
+
+      <Portal isOpen={isLoginModalOpen}>
+        <CommonModal onClose={handleCloseLoginModal} padding="68px 164px" top="68px">
+          <ModalAuth onClose={handleCloseLoginModal} />
+        </CommonModal>
+      </Portal>
     </>
   );
 };

@@ -39,6 +39,7 @@ const App = () => {
         <Routes>
           <Route path={ROUTES.HOME} element={<SharedLayout />}>
             <Route index element={<Main />} />
+            <Route path="/reset-password" element={<Main />} />
             <Route path={":id"} element={<ProductPage />} />
             <Route path={ROUTES.MALE} element={<MaleCatalog />} />
             <Route path={ROUTES.FEMALE} element={<FemaleCatalog />} />
@@ -75,6 +76,7 @@ const App = () => {
             </Route>
           </Route>
         </Routes>
+        {/* <PasswordResetHandler/> */}
       </PersistedAuth>
     </BrowserRouter>
   );
