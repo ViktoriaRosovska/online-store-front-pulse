@@ -3,6 +3,11 @@ import styled from "styled-components";
 
 const StyledChoiceDeliveryBtn = styled.button`
   border: 1px solid var(--black-bg-color);
+
+  border: ${props =>
+    props.$isSelectedBtn
+      ? "2px solid var(--black-bg-color)"
+      : "1px solid var(--black-bg-color)"};
   border-radius: 16px;
   height: 109px;
   width: 100%;
