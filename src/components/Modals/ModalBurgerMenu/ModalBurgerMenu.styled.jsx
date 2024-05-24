@@ -7,6 +7,7 @@ export const Backdrop = styled.div`
   width: 100%;
   height: 100%;
   z-index: 999;
+  overflow: auto;
 `;
 
 export const Modal = styled.div`
