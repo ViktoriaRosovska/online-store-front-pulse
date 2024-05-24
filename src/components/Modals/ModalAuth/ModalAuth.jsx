@@ -14,9 +14,10 @@ import {
   SocialBox,
   Wrapper,
 } from "./ModalAuth.styled";
+import UserResetPasswordForm from "components/form/UserResetPasswordForm/UserResetPasswordForm";
 // import { useLoginUserGoogleQuery } from "../../../redux/auth";
 
-const ModalAuth = ({ onClose, openForgotPasswordModal }) => {
+const ModalAuth = ({ onClose, openForgotPasswordModal, resetPassword }) => {
   // const loginUserGoogle = useLoginUserGoogleQuery();
   const [mode, setMode] = useState("login");
 
@@ -56,7 +57,7 @@ const ModalAuth = ({ onClose, openForgotPasswordModal }) => {
           Реєстрація
         </Button>
       </Navigation>
-      {mode === "login" ? (
+      {mode === "login" ? (resetPassword ? <UserResetPasswordForm onClose={onClose}/> :
         <CustomLoginForm onClose={onClose} openForgotPasswordModal={openForgotPasswordModal} />
       ) : (
         <CustomRegisterForm onClose={onClose} />

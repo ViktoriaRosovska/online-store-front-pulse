@@ -128,3 +128,19 @@ export const forgotPasswordValidationSchema = Yup.object().shape({
     .email("Введіть коректний email")
     .required("Oбовʼязкове поле"),
 })
+
+export const resetPasswordValidationSchema = Yup.object().shape({
+  password: Yup.string()
+    .typeError("Повинно бути строкою")
+    .matches(/^(?=.*[a-z])(?=.*\d)/, {
+      message: "Пароль має містити літери та цифри",
+    })
+    .min(8, "Пароль має бути не менш ніж 8 символів")
+    .max(10, "Максимальна кількість 10 символів")
+    .required("Oбовʼязкове поле"),
+  passwordCheck: Yup.string()
+    .oneOf([Yup.ref("password")], "Паролі не співпадають")
+    .min(6, "Пароль має бути не менш ніж 6 символів")
+    .max(10, "Максимальна кількість 10 символів")
+    .required("Oбовʼязкове поле"),
+})

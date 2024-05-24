@@ -100,6 +100,13 @@ export const userApi = createApi({
         data: email,
       }),
     }),
+    userResetPassword: builder.mutation({
+      query: ({ resetToken, password }) => ({
+        url: `users/reset-password?resetToken=${resetToken}`,
+        method: "PATCH",
+        data: {password},
+      })
+    })
   }),
 });
 
@@ -115,6 +122,7 @@ export const {
   useDeleteUserCardMutation,
   useSendSupportMessageMutation,
   useUserForgotPasswordMutation,
+  useUserResetPasswordMutation,
 } = userApi;
 
 /*
