@@ -103,7 +103,7 @@ export const CitySelect = ({ options, onChange, onSearch, value }) => {
         options={modifiedOptions}
         onChange={onChange}
         onInputChange={onSearch}
-        value={value}
+        // value={value}
       />
     </>
   );

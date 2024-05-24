@@ -33,6 +33,8 @@ export const ShopCartDelivery = props => {
   // let location = useLocation();
   const items = useSelector(selectUserShopCart);
   const [selectSearch, setSelectSearch] = useState("");
+
+  console.log(selectSearch);
   const [isSelectedBtn, setIsSelectedBtn] = useState(
     "Доставка на відділення “Нова пошта”"
   );
@@ -158,7 +160,7 @@ export const ShopCartDelivery = props => {
                         formik.setFieldValue("city", e.label);
                       }}
                       onSearch={e => onSelectSearch(e)}
-                      value={formik.values.city}
+                      value={selectSearch}
                       name="city"
                     />
                     <StyledChoiceBtnWrapper>
