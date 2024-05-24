@@ -88,6 +88,13 @@ export const productsApi = createApi({
         data,
       }),
     }),
+
+    checkPromoCode: builder.query({
+      query: code => ({
+        url: `/products/orders/${code}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -102,4 +109,6 @@ export const {
   useLazyGetSalesQuery,
   useFindProductsQuery,
   useCreateProductMutation,
+  useCheckPromoCodeQuery,
+  useLazyCheckPromoCodeQuery,
 } = productsApi;
