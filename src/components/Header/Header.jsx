@@ -59,7 +59,7 @@ function Header() {
                 isFixed={location.pathname !== "/" || isFixed ? true : false}
               />
 
-              <Portal isOpen={isOpen}>
+              <Portal isOpen={isOpen} burgerModal={true}>
                 <ModalBurgerMenu onClose={handleCloseMenu}>
                   <HeaderMobileMenu onClose={handleCloseMenu} />
                 </ModalBurgerMenu>
