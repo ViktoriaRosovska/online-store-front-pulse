@@ -14,7 +14,7 @@ import { useDispatch } from "react-redux";
 // import CommonModal from "components/Modals/CommonModal";
 // import ModalForgotPassword from "components/Modals/ModalForgotPassword/ModalForgotPassword";
 
-const CustomLoginForm = ({ onClose, openForgotPasswordModal }) => {
+const CustomLoginForm = ({ onClose, openForgotPasswordModal, redirectPath }) => {
   // const [isOpenForgotPasswordModal, setIsOpenForgotPasswordModal] =
   // useState(false);
   // console.log("CustomLoginForm  isOpenForgotPasswordModal", isOpenForgotPasswordModal)
@@ -45,7 +45,7 @@ const CustomLoginForm = ({ onClose, openForgotPasswordModal }) => {
             .unwrap()
             .then(res => {
               dispatch(setCredentials(res));
-              navigate("/profile/account");
+              navigate(redirectPath);
             });
 
           onClose();

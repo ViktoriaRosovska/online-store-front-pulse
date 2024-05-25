@@ -16,7 +16,9 @@ import ParenModalForAuth from "components/Modals/ParentModalForAuth/ParentModalF
 
 function UserActions(props) {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
- const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] = useState(false)
+  const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
+    useState(false);
+  const [redirectPath, setRedirectPath] = useState("/profile/account");
 
   // const [isLocked, setIsLocked] = useScrollLock(false);
   const navigate = useNavigate();
@@ -26,9 +28,10 @@ function UserActions(props) {
   // const { data } = useFetchCurrentUserQuery();
   // const isLoggedIn = data ? true : false
 
-  const handleOpenLoginModal = () => {
+  const handleOpenLoginModal = redirectPath => {
+    setRedirectPath(redirectPath);
     setIsLoginModalOpen(true);
-    setIsForgotPasswordModalOpen(false)
+    setIsForgotPasswordModalOpen(false);
   };
 
   const handleCloseLoginModal = () => {
@@ -36,14 +39,14 @@ function UserActions(props) {
   };
 
   const openForgotPasswordModal = () => {
-        setIsForgotPasswordModalOpen(true)
-        setIsLoginModalOpen(false)
-    }
+    setIsForgotPasswordModalOpen(true);
+    setIsLoginModalOpen(false);
+  };
 
-    const closeForgotPasswordModal = () => {
-        setIsForgotPasswordModalOpen(false)
-        setIsLoginModalOpen(true)
-    }
+  const closeForgotPasswordModal = () => {
+    setIsForgotPasswordModalOpen(false);
+    setIsLoginModalOpen(true);
+  };
 
   console.log(!!isLoggedIn);
 
@@ -58,9 +61,12 @@ function UserActions(props) {
   //   setIsLocked(prev => !prev);
   // };
 
-
   const navigateToCabinet = () => {
     navigate("/profile/account");
+  };
+
+  const navigateToFavorites = () => {
+    navigate("/profile/favorites");
   };
 
   const navigateToShopCart = () => {
@@ -70,7 +76,11 @@ function UserActions(props) {
     <div className="user__actions">
       <button
         className="user__actions-profile"
-        onClick={isLoggedIn ? navigateToCabinet : handleOpenLoginModal}
+        onClick={
+          isLoggedIn
+            ? navigateToCabinet
+            : ()=>handleOpenLoginModal("/profile/account")
+        }
       >
         <img
           className={`user__actions-icon ${
@@ -81,7 +91,14 @@ function UserActions(props) {
         />
       </button>
       <MediaQuery minWidth={1440}>
-        <button className="user__actions-favorites">
+        <button
+          className="user__actions-favorites"
+          onClick={
+            isLoggedIn
+              ? navigateToFavorites
+              : ()=>handleOpenLoginModal("/profile/favorites")
+          }
+        >
           <img
             className={`user__actions-icon ${
               props.isFixed || !props.location ? "fixed" : ""
@@ -101,7 +118,14 @@ function UserActions(props) {
         />
       </button>
 
-      <ParenModalForAuth isAuthModalOpen={isLoginModalOpen} closeAuthModal={handleCloseLoginModal} openForgotPasswordModal={openForgotPasswordModal} closeForgotPasswordModal={closeForgotPasswordModal} isForgotPasswordModalOpen={isForgotPasswordModalOpen} />
+      <ParenModalForAuth
+        isAuthModalOpen={isLoginModalOpen}
+        closeAuthModal={handleCloseLoginModal}
+        openForgotPasswordModal={openForgotPasswordModal}
+        closeForgotPasswordModal={closeForgotPasswordModal}
+        isForgotPasswordModalOpen={isForgotPasswordModalOpen}
+        redirectPath={redirectPath}
+      />
     </div>
   );
 }

@@ -12,6 +12,16 @@ export default defineConfig({
     "node_modules/**/*.js",
   ],
   plugins: [[react()], [svgr()]],
+  
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://pulse-run-api.onrender.com',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 
   resolve: {
     alias: {
