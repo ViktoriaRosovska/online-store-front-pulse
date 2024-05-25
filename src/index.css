@@ -127,3 +127,8 @@ input[type="password"]::-ms-reveal {
 .no-scroll {
   overflow: hidden;
 }
+
+#modal {
+  position: relative;
+  z-index: 2000;
+}

@@ -22,7 +22,6 @@ const UserForgotPasswordForm = ({ onClose }) => {
           );
         })
         .catch(error => {
-          console.log("onCatch error", error);
           if (error.status === 404) {
             return Notify.warning(
               "Такої пошти не існує. Перевірте email або зареєструйтесь",

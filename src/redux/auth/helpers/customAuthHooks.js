@@ -21,7 +21,6 @@ export const useHandleCurrentUser = () => {
     const fetchUser = async () => {
       try {
         const persistedData = localStorage.getItem("persist:userToken");
-        console.log("fetchUser  persistedData", persistedData);
         const token = persistedData
           ? JSON.parse(persistedData).token?.replace(/"/g, "")
           : "";
@@ -29,12 +28,10 @@ export const useHandleCurrentUser = () => {
           await fetchCurrentUser()
             .unwrap()
             .then(res => {
-               console.log("fetchUser  res", res)
               dispatch(setCredentials(res));
               return res;
             })
             .catch(error => {
-              console.log("fetchUser  error", error);
               if (error.status === 401)
                 localStorage.removeItem("persist:userToken");
               dispatch(removeCredentials());
@@ -57,8 +54,6 @@ export const useHandleCurrentUser = () => {
 };
 
 export const useHandleLoginSuccess = (isSuccess, data) => {
-  console.log("useHandleLoginSuccess  data", data);
-  console.log("useHandleLoginSuccess  isSuccess", isSuccess);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

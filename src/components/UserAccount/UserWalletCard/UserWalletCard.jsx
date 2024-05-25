@@ -7,7 +7,6 @@ import { Box, CardInfo, CheckedBox, DeleteButton } from "./UserWalletCard.styled
 import { useDeleteUserCardMutation } from "../../../redux/user/userSlice/userApi";
 
 const UserWalletCard = ({ card, isSelected, onSelect, onDeselect }) => {
-  console.log("UserWalletCard  card", card._id)
   // const [checkedCard, setCheckedCard] = useState()
   const [deleteUserCard] = useDeleteUserCardMutation()
   const formatCardNumber = cardNumber => {

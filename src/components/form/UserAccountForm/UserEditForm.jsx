@@ -60,7 +60,6 @@ const UserEditForm = () => {
           return res;
         })
         .catch(error => {
-          console.log(error);
           if (error?.status === 400) {
             return Notify.warning("Ви не внесли ніяких змін", {
               position: "center-center",
