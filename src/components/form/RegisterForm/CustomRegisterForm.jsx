@@ -15,7 +15,7 @@ import { setCredentials, useCreateUserMutation } from "../../../redux/auth";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const CustomRegisterForm = ({onClose}) => {
+const CustomRegisterForm = ({onClose, redirectPath}) => {
  const dispatch = useDispatch()
   const navigate = useNavigate()
   const [createUser] = useCreateUserMutation()
@@ -34,7 +34,7 @@ const CustomRegisterForm = ({onClose}) => {
         onSubmit={({firstName, lastName, email, password}) => {
           createUser({firstName, lastName, email, password}).unwrap().then((res) => {
             dispatch(setCredentials(res))
-            navigate('/profile/account')
+            navigate(redirectPath)
           })
            onClose()  
         }}
