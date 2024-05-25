@@ -21,7 +21,7 @@ const CustomLoginForm = ({ onClose, openForgotPasswordModal }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginUser, { data }] = useLoginUserMutation();
-  console.log("CustomLoginForm  data", data);
+  console.log("CustomLoginForm  data", data)
 
   // const handleOpenForgotPasswordModal = () => {
   //   setIsOpenForgotPasswordModal(true);
