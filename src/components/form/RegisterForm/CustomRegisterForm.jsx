@@ -21,6 +21,23 @@ const CustomRegisterForm = ({ onClose, redirectPath }) => {
   const navigate = useNavigate();
   const [createUser] = useCreateUserMutation();
 
+  const onSubmit = ({ firstName, lastName, email, password }) => {
+    createUser({ firstName, lastName, email, password })
+      .unwrap()
+      .then(res => {
+        dispatch(setCredentials(res));
+        navigate(redirectPath);
+        onClose();
+      })
+      .catch(error => {
+        if (error.status === 409) {
+          Notify.warning("Користувач з таким email вже існує.", {
+            position: "center-center",
+          });
+        }
+      });
+  };
+
   return (
     <>
       <Formik
@@ -32,22 +49,7 @@ const CustomRegisterForm = ({ onClose, redirectPath }) => {
           passwordCheck: "",
         }}
         validationSchema={registerValidationSchema}
-        onSubmit={({ firstName, lastName, email, password }) => {
-          createUser({ firstName, lastName, email, password })
-            .unwrap()
-            .then(res => {
-              dispatch(setCredentials(res));
-              navigate(redirectPath);
-              onClose();
-            })
-            .catch(error => {
-              if (error.status === 409) {
-                Notify.warning("Користувач з таким email вже існує.", {
-                  position: "center-center",
-                });
-              }
-            });
-        }}
+        onSubmit={onSubmit}
       >
         {() => (
           <StyledForm>

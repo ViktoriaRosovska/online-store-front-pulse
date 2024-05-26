@@ -20,21 +20,33 @@ const CustomLoginForm = ({
   openForgotPasswordModal,
   redirectPath,
 }) => {
-  // const [isOpenForgotPasswordModal, setIsOpenForgotPasswordModal] =
-  // useState(false);
-  // console.log("CustomLoginForm  isOpenForgotPasswordModal", isOpenForgotPasswordModal)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginUser, { data }] = useLoginUserMutation();
   console.log("CustomLoginForm  data", data);
 
-  // const handleOpenForgotPasswordModal = () => {
-  //   setIsOpenForgotPasswordModal(true);
-  // };
-
-  // const handleCloseForgotPasswordModal = () => {
-  //   setIsOpenForgotPasswordModal(false);
-  // };
+  const onSubmit = values => {
+    loginUser(values)
+      .unwrap()
+      .then(res => {
+        dispatch(setCredentials(res));
+        navigate(redirectPath);
+        onClose();
+      })
+      .catch(error => {
+        console.log("CustomLoginForm  error", error);
+        if (error.status === 404) {
+          Notify.failure(
+            "Користувача з таким email не існує. Запеєструйтесь або перевірте email.",
+            { position: "center-center" }
+          );
+        } else {
+          Notify.failure("Невірний пароль або email. Спробуйте ще раз", {
+            position: "center-center",
+          });
+        }
+      });
+  };
 
   return (
     <>
@@ -45,29 +57,7 @@ const CustomLoginForm = ({
         }}
         validateOnBlur
         validationSchema={loginValidationSchema}
-        onSubmit={values => {
-          loginUser(values)
-            .unwrap()
-            .then(res => {
-              dispatch(setCredentials(res));
-              navigate(redirectPath);
-              onClose();
-            })
-            .catch(error => {
-              console.log("CustomLoginForm  error", error);
-              if (error.status === 404) {
-                Notify.failure(
-                  "Користувача з таким email не існує. Запеєструйтесь або перевірте email.",
-                  { position: "center-center" }
-                );
-              } else {
-                Notify.failure(
-                  "Невірний пароль або email. Спробуйте ще раз",
-                  { position: "center-center" }
-                );
-              }
-            });
-        }}
+        onSubmit={onSubmit}
       >
         {() => (
           <StyledForm>

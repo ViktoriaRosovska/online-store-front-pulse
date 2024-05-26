@@ -17,7 +17,7 @@ import storage from "redux-persist/lib/storage";
 import { userShopCartReducer } from "./user/userShopCart/userShopCartSlice";
 import { userApi } from "./user/userSlice/userApi";
 import { novaPoshtaAPI } from "./novaPoshta/novaPoshtaAPI";
-import paymentCardReducer from './paymentCard/paymentCardSlice'
+import paymentCardReducer, { deselectCard } from './paymentCard/paymentCardSlice'
 
 const persistConfig = {
   key: "userToken",
@@ -40,6 +40,15 @@ const persistedUserShopCart = persistReducer(
   userShopCartReducer
 );
 
+const logoutMiddleware = store => next => action => {
+  if (action.type === 'usersAuth/removeCredentials') {
+    const result = next(action)
+    store.dispatch(deselectCard())
+    return result
+  }
+  return next(action)
+}
+
 export const store = configureStore({
   reducer: {
     [productsApi.reducerPath]: productsApi.reducer,
@@ -60,7 +69,8 @@ export const store = configureStore({
       productsApi.middleware,
       userAuthApi.middleware,
       userApi.middleware,
-      novaPoshtaAPI.middleware
+      novaPoshtaAPI.middleware,
+      logoutMiddleware
     );
   },
 });
