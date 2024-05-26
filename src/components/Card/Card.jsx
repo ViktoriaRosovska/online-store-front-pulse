@@ -20,6 +20,8 @@ import {
   // useGetFavoritesQuery,
 } from "../../redux/user/userSlice/userApi.js";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectUserToken } from "../../redux/auth/selectors.js";
 
 const Card = ({
   info,
@@ -35,6 +37,8 @@ const Card = ({
   const [addToFavorites] = useAddToFavoritesMutation();
   const [deleteFromFavorites] = useDeleteFromFavoritesMutation();
 
+const isLoggedIn = useSelector(selectUserToken)
+
   const [favoriteState, setFavoriteState] = useState(false);
 
   useEffect(() => {
@@ -48,13 +52,28 @@ const Card = ({
   const toggleFavorite = event => {
     event.preventDefault();
 
-    if (favoriteState) {
-      setFavoriteState(false);
-      deleteFromFavorites({ productId: id });
+    if (isLoggedIn) {
+      if (favoriteState) {
+        setFavoriteState(false)
+        deleteFromFavorites({productId: id})
+      } else {
+        setFavoriteState(true)
+        addToFavorites({productId: id})
+      }
     } else {
-      setFavoriteState(true);
-      addToFavorites({ productId: id });
+      const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || []
+      const updatedFavorites = favoriteState ? storedFavorites.filter(favId => favId !== id) : [...storedFavorites, id]
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites))
+      setFavoriteState(!favoriteState)
     }
+
+    // if (favoriteState) {
+    //   setFavoriteState(false);
+    //   deleteFromFavorites({ productId: id });
+    // } else {
+    //   setFavoriteState(true);
+    //   addToFavorites({ productId: id });
+    // }
   };
 
   return (
