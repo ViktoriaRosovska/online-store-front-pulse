@@ -9,27 +9,44 @@ import {
 } from "./CustomLoginForm.styled";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { Notify } from "notiflix";
 // import { useState } from "react";
 // import { Portal } from "components/Modals/helpersForModal/modalPortal";
 // import CommonModal from "components/Modals/CommonModal";
 // import ModalForgotPassword from "components/Modals/ModalForgotPassword/ModalForgotPassword";
 
-const CustomLoginForm = ({ onClose, openForgotPasswordModal, redirectPath }) => {
-  // const [isOpenForgotPasswordModal, setIsOpenForgotPasswordModal] =
-  // useState(false);
-  // console.log("CustomLoginForm  isOpenForgotPasswordModal", isOpenForgotPasswordModal)
+const CustomLoginForm = ({
+  onClose,
+  openForgotPasswordModal,
+  redirectPath,
+}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginUser, { data }] = useLoginUserMutation();
-  console.log("CustomLoginForm  data", data)
+  console.log("CustomLoginForm  data", data);
 
-  // const handleOpenForgotPasswordModal = () => {
-  //   setIsOpenForgotPasswordModal(true);
-  // };
-
-  // const handleCloseForgotPasswordModal = () => {
-  //   setIsOpenForgotPasswordModal(false);
-  // };
+  const onSubmit = values => {
+    loginUser(values)
+      .unwrap()
+      .then(res => {
+        dispatch(setCredentials(res));
+        navigate(redirectPath);
+        onClose();
+      })
+      .catch(error => {
+        console.log("CustomLoginForm  error", error);
+        if (error.status === 404) {
+          Notify.failure(
+            "Користувача з таким email не існує. Запеєструйтесь або перевірте email.",
+            { position: "center-center" }
+          );
+        } else {
+          Notify.failure("Невірний пароль або email. Спробуйте ще раз", {
+            position: "center-center",
+          });
+        }
+      });
+  };
 
   return (
     <>
@@ -40,16 +57,7 @@ const CustomLoginForm = ({ onClose, openForgotPasswordModal, redirectPath }) => 
         }}
         validateOnBlur
         validationSchema={loginValidationSchema}
-        onSubmit={values => {
-          loginUser(values)
-            .unwrap()
-            .then(res => {
-              dispatch(setCredentials(res));
-              navigate(redirectPath);
-            });
-
-          onClose();
-        }}
+        onSubmit={onSubmit}
       >
         {() => (
           <StyledForm>

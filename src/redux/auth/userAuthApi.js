@@ -30,6 +30,9 @@ export const userAuthApi = createApi({
         method: "POST",
         data: user,
       }),
+      // async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+      //   const {data} = await queryFulfilled
+      // }
     }),
 
     logoutUser: builder.mutation({

@@ -24,6 +24,9 @@ export const ModalContant = styled.div`
   width: 100%;
   max-width: 343px;
   z-index: 1400;
+  margin-top: 16px;
+  max-height: calc(100% - 16px);
+  overflow-y: auto;
 
   @media screen and (min-width: 1440px) {
     padding: ${props => props.$padding};

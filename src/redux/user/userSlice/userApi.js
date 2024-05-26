@@ -47,7 +47,6 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["Favorites"],
     }),
-
     deleteFromFavorites: builder.mutation({
       query: id => ({
         url: "/users/favorites",
