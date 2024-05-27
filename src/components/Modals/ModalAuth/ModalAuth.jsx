@@ -15,22 +15,23 @@ import {
   Wrapper,
 } from "./ModalAuth.styled";
 import UserResetPasswordForm from "components/form/UserResetPasswordForm/UserResetPasswordForm";
-// import { useLoginUserGoogleQuery } from "../../../redux/auth";
+import { useLoginUserGoogleQuery } from "../../../redux/auth";
 
 const ModalAuth = ({ onClose, openForgotPasswordModal, resetPassword, redirectPath }) => {
-  // const loginUserGoogle = useLoginUserGoogleQuery();
+  const {data, isLoading, error, refetch} = useLoginUserGoogleQuery();
+  console.log("ModalAuth  isLoading", isLoading)
+  console.log("ModalAuth  error", error)
+  console.log("ModalAuth  data", data)
   const [mode, setMode] = useState("login");
 
-  // const handleGoogleLogin = async() => {
-  //     try {
-  //         await loginUserGoogle.refetch()
-  //     } catch (error) {
-  //         console.log("handleGoogleLogin  error", error)
+  const handleGoogleLogin = async() => {
+      refetch()
+  }
+//   const handleGoogleLogin = async() => {window.location.href = "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=http://localhost:5173/online-store-front-pulse&scope=profile%20email&client_id=978298121964-08iv7n2kehtn2iin4hjph7h2cjjnaige.apps.googleusercontent.com"
+//     // ;
+//     // window.location.href = "https://pulse-run-api.onrender.com/api/auth/google?clientId=978298121964-08iv7n2kehtn2iin4hjph7h2cjjnaige.apps.googleusercontent.com";
+//     // await loginUserGoogle()
 
-  //     }
-  // }
-//   const handleGoogleLogin = () => {
-//   window.location.href = "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=https%3A%2F%2Fpulse-run-api.onrender.com%2Fapi%2Fauth%2Fgoogle%2Fcallback&scope=profile%20email&client_id=YOUR_GOOGLE_CLIENT_ID";
 // };
 
   const switchToLogin = () => {
@@ -79,7 +80,7 @@ const ModalAuth = ({ onClose, openForgotPasswordModal, resetPassword, redirectPa
       </OrWrapper>
 
       <SocialBox>
-        <button>
+        <button onClick={handleGoogleLogin}>
           <GoogleSvg />
         </button>
         <button>
