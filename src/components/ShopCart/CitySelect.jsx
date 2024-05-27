@@ -1,6 +1,6 @@
 import Select from "react-select";
 
-export const CitySelect = ({ options, onChange, onSearch, value }) => {
+export const CitySelect = ({ options, onChange, onSearch, placeholder }) => {
   const style = {
     control: baseStyles => ({
       ...baseStyles,
@@ -103,7 +103,7 @@ export const CitySelect = ({ options, onChange, onSearch, value }) => {
         options={modifiedOptions}
         onChange={onChange}
         onInputChange={onSearch}
-        value={value}
+        placeholder={placeholder}
       />
     </>
   );

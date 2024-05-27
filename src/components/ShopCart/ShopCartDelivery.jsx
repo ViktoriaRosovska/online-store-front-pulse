@@ -1,6 +1,6 @@
 import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
 import { ROUTES } from "../../utils/routes";
-// import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
 import CustomInput from "components/form/formElements/CustomInput/CustomInput";
 import { Formik } from "formik";
@@ -28,11 +28,19 @@ import {
   StyledDeliveryTitle,
 } from "./ShopCartDelivery.styled";
 import { useFetchCurrentUserQuery } from "../../redux/auth";
+import { useLazyCheckPromoCodeQuery } from "../../redux/products/productsApi";
+import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
+
+import { ReactComponent as CheckedSvg } from "../../assets/svg/done.svg";
 
 export const ShopCartDelivery = props => {
-  // let location = useLocation();
+  let location = useLocation();
   const items = useSelector(selectUserShopCart);
   const [selectSearch, setSelectSearch] = useState("");
+  const [promoCode, setPromoCode] = useState("");
+
+  // console.log(promoCode);
+  // console.log(selectSearch);
   const [isSelectedBtn, setIsSelectedBtn] = useState(
     "Доставка на відділення “Нова пошта”"
   );
@@ -40,7 +48,37 @@ export const ShopCartDelivery = props => {
   const [getCities, { data, isError, isLoading }] = useGetCitiesMutation();
 
   const userData = useFetchCurrentUserQuery();
-  console.log(userData);
+
+  const [
+    checkPromoCode,
+    {
+      data: promoData,
+      isError: isErrorCode,
+      isFetching: isFetchingCode,
+      error: errorCode,
+    },
+  ] = useLazyCheckPromoCodeQuery();
+  // console.log(userData);
+
+  // console.log("promodata", promoData);
+  // console.log(isErrorCode, errorCode?.status);
+
+  const handleErrorPromoCode = error => {
+    if (error && error.status === 404) {
+      return "Невірний промокод";
+    }
+
+    if (error && error.status === 400) {
+      return "Промокод вже недійсний";
+    }
+    return;
+  };
+
+  const handleChangePromo = e => {
+    // console.log(e.target.value);
+    setPromoCode(e.target.value);
+    checkPromoCode(e.target.value);
+  };
 
   if (data) {
     if (data.data !== findCities) {
@@ -122,7 +160,12 @@ export const ShopCartDelivery = props => {
                   <p>Усього</p>
                   <StyledPDVText>Включно з ПДВ</StyledPDVText>
                 </div>
-                <span>{countPrice}&nbsp;грн</span>
+                <span>
+                  {promoData && !errorCode
+                    ? countPrice - (promoData.discount * countPrice) / 100
+                    : countPrice}
+                  &nbsp;грн
+                </span>
               </StyledOrderText>
             </StyledOrderPriceTextWrapper>
 
@@ -138,32 +181,67 @@ export const ShopCartDelivery = props => {
               }}
             >
               {formik => (
-                console.log(formik.values),
+                {
+                  /* console.log(formik.values) */
+                },
                 (
                   <StyledDeliveryForm>
-                    <CustomInput
-                      placeholder="Ввести промокод"
-                      type="text"
-                      name="code"
-                      label=""
-                    />
+                    <div style={{ position: "relative" }}>
+                      <CustomInput
+                        placeholder="Ввести промокод"
+                        type="text"
+                        name="code"
+                        label=""
+                        onChange={handleChangePromo}
+                        value={promoCode}
+                      />
+                      {errorCode && (
+                        <Error>{handleErrorPromoCode(errorCode)}</Error>
+                      )}
+                      {!errorCode && promoData ? (
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: "20px",
+                            right: "15px",
+                          }}
+                        >
+                          <CheckedSvg />
+                        </div>
+                      ) : null}
+                    </div>
+
                     <StyledDeliveryTitle>
                       Обери адресу доставки
                     </StyledDeliveryTitle>
-                    <label htmlFor="city">Населений пункт</label>
-                    <CitySelect
-                      options={findCities}
-                      onChange={e => {
-                        onSelectChange(e);
-                        formik.setFieldValue("city", e.label);
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "8px",
                       }}
-                      onSearch={e => onSelectSearch(e)}
-                      value={formik.values.city}
-                      name="city"
-                    />
+                    >
+                      <label htmlFor="city">Населений пункт</label>
+                      <CitySelect
+                        options={findCities}
+                        placeholder={"Введіть населений пункт"}
+                        onChange={e => {
+                          onSelectChange(e);
+                          formik.setFieldValue("city", e.label);
+                        }}
+                        onSearch={e => onSelectSearch(e)}
+                        value={selectSearch}
+                        name="city"
+                      />
+                    </div>
+
                     <StyledChoiceBtnWrapper>
                       <StyledChoiceDeliveryBtn
                         type="button"
+                        $isSelectedBtn={
+                          isSelectedBtn ===
+                          "Доставка на відділення “Нова пошта”"
+                        }
                         onClick={() =>
                           setIsSelectedBtn(
                             "Доставка на відділення “Нова пошта”"
@@ -193,6 +271,7 @@ export const ShopCartDelivery = props => {
                         <p>Безкоштовна доставка від 4000 грн</p>
                       </StyledChoiceDeliveryBtn>
                       <StyledChoiceDeliveryBtn
+                        $isSelectedBtn={isSelectedBtn === "Кур’єрська доставка"}
                         type="button"
                         onClick={() => setIsSelectedBtn("Кур’єрська доставка")}
                       >
@@ -218,6 +297,9 @@ export const ShopCartDelivery = props => {
                         <p>Безкоштовна доставка від 4000 грн</p>
                       </StyledChoiceDeliveryBtn>
                       <StyledChoiceDeliveryBtn
+                        $isSelectedBtn={
+                          isSelectedBtn === "Доставка в поштомат “Нова пошта”"
+                        }
                         type="button"
                         onClick={() =>
                           setIsSelectedBtn("Доставка в поштомат “Нова пошта”")
@@ -267,30 +349,36 @@ export const ShopCartDelivery = props => {
                         </StyledDeliveryTitle>
                         <CustomInput
                           type="text"
-                          label="Оберіть вулицю"
-                          placeholder="Оберіть вулицю"
+                          label="Введіть вулицю"
+                          placeholder="Вулиця"
                           name="street"
                         />
                         <CustomInput
                           type="text"
-                          label="Оберіть номер будинку"
+                          label="Введіть номер будинку"
                           placeholder="Номер будинку"
                           name="house"
                         />
                         <CustomInput
                           type="text"
-                          label="Оберіть номер квартири"
+                          label="Введіть номер під'їзду"
+                          placeholder="Номер під'їзду"
+                          name="numberHoll"
+                        />
+                        <CustomInput
+                          type="text"
+                          label="Введіть номер квартири"
                           placeholder="Номер квартири"
                           name="flat"
                         />
-                        <label htmlFor="comments">
-                          Коментарі для кур&apos;єра
-                        </label>
+
                         <CustomInput
                           as="textarea"
                           name="comments"
-                          // type="text"
+                          type="text"
+                          $textarea
                           placeholder="Напишіть коментар"
+                          label={"Коментарі для кур'єра"}
                         />
                       </>
                     )}

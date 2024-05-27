@@ -1,4 +1,4 @@
-import { useField} from "formik";
+import { useField } from "formik";
 import { useState } from "react";
 import VisiblePasswordIcon from "../VisiblePasswordIcon/VisiblePasswordIcon";
 import {
@@ -23,20 +23,21 @@ const CustomInput = ({ label, mask, ...props }) => {
   const togglePasswordVisibility = () => {
     setVisiblePassword(!visiblePassword);
   };
-  
+
   return (
     <Box>
       <InputField>
         <label>{label}</label>
         <InputWrapper $isPassword={isPasswordInput}>
-          {mask ? <StyledMaskedInput
-            {...field}
-            {...props}
-            mask={mask}
-            autoComplete="off"
-            showMask={true}
-          />
-            :
+          {mask ? (
+            <StyledMaskedInput
+              {...field}
+              {...props}
+              mask={mask}
+              autoComplete="off"
+              showMask={true}
+            />
+          ) : (
             <Input
               {...field}
               {...props}
@@ -52,7 +53,7 @@ const CustomInput = ({ label, mask, ...props }) => {
               autoComplete="off"
               $isError={isError}
             />
-          }
+          )}
           <StyledPassIconWrapper>
             {isPasswordInput && (
               <VisiblePasswordIcon
