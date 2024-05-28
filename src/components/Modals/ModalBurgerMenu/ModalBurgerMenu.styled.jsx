@@ -8,7 +8,6 @@ export const Backdrop = styled.div`
   width: 100%;
   height: 100%;
   z-index: 1400;
-  /* overflow: auto; */
 `;
 
 export const Modal = styled.div`
@@ -17,7 +16,6 @@ export const Modal = styled.div`
   left: 0;
   width: clamp(299px, 80%, 320px);
   height: auto;
-  overflow-y: auto;
   padding: 24px;
   padding-bottom: 24px;
   border: 1px solid var(--grey-text-color);

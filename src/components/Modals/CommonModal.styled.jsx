@@ -31,7 +31,8 @@ export const ModalContant = styled.div`
   @media screen and (min-width: 1440px) {
     padding: ${props => props.$padding};
     width: auto;
-    max-width: 80%;
+    max-width: fit-content;
+    /* max-width: 80%; */
   }
 `;
 
