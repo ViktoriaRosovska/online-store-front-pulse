@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUserShopCart } from "../../redux/user/userShopCart/userShopCartSelector";
 
 import { useLocation } from "react-router-dom";
@@ -12,6 +12,8 @@ import {
   StyledOrderWrapper,
   StyledPDVText,
   StyledPageWrapper,
+  StyledPromocodeCheckWrapper,
+  StyledPromocodeWrapper,
 } from "./ShopCart.styled";
 import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
 // import { FiMinus, FiPlus } from "react-icons/fi";
@@ -19,19 +21,27 @@ import { ROUTES } from "../../utils/routes";
 import CustomInput from "components/form/formElements/CustomInput/CustomInput";
 import { Formik } from "formik";
 import { ShopCard } from "./ShopCard/ShopCard";
-
+import { useLazyCheckPromoCodeQuery } from "../../redux/products/productsApi";
+import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
+import { ReactComponent as CheckedSvg } from "../../assets/svg/done.svg";
+import {
+  PromoExpired,
+  PromoInvalid,
+  PromoValid,
+  setPromoCode,
+  setPromoStatus,
+} from "../../redux/promoCode/promoCodeSlice";
+import {
+  selectPromoCode,
+  selectPromoExpired,
+  selectPromoInvalid,
+  selectPromoValid,
+} from "../../redux/promoCode/promoCodeSelector";
 export const ShopCart = props => {
   const items = useSelector(selectUserShopCart);
   // console.log(items);
   let location = useLocation();
-
-  const initialValues = {
-    code: "",
-  };
-
-  const onSubmit = async values => {
-    console.log("send promocode", values);
-  };
+  const dispatch = useDispatch();
 
   const normalize_count_form = (number, words_arr) => {
     number = Math.abs(number);
@@ -68,6 +78,13 @@ export const ShopCart = props => {
     return words_arr[1];
   };
 
+  // let totalQuantity = 0;
+  // let totalPrice = 0;
+  // for (const el of items) {
+  //   totalQuantity += el.quantity;
+  //   totalPrice += el.price * el.quantity;
+  // }
+
   let countQuantity = 0;
   const countPrice = items?.reduce((acc, el) => {
     if (el) {
@@ -77,6 +94,31 @@ export const ShopCart = props => {
 
     return acc;
   }, 0);
+
+  const [checkPromoCode] = useLazyCheckPromoCodeQuery({
+    selectFromResult: ({ data, error }) => {
+      if (error) {
+        if (error.status === 404) {
+          dispatch(setPromoStatus(PromoInvalid));
+        } else if (error.status === 400) {
+          dispatch(setPromoStatus(PromoExpired));
+        }
+      } else if (data) {
+        dispatch(setPromoStatus(PromoValid));
+      }
+    },
+  });
+
+  const handleChangePromo = e => {
+    // console.log(e.target.value);
+    dispatch(setPromoCode(e.target.value));
+    checkPromoCode(e.target.value);
+  };
+
+  const isPromoExpired = useSelector(selectPromoExpired);
+  const isPromoInvalid = useSelector(selectPromoInvalid);
+  const isPromoValid = useSelector(selectPromoValid);
+  const promoCode = useSelector(selectPromoCode);
 
   return (
     <>
@@ -119,18 +161,30 @@ export const ShopCart = props => {
                 </StyledOrderText>
               </StyledOrderPriceTextWrapper>
 
-              <Formik initialValues={initialValues} onSubmit={onSubmit}>
+              <Formik>
                 {() => (
                   <form>
-                    <CustomInput
-                      placeholder="Ввести промокод"
-                      type="text"
-                      name="code"
-                      label=""
-                    />
+                    <StyledPromocodeWrapper>
+                      <CustomInput
+                        placeholder="Ввести промокод"
+                        type="text"
+                        name="code"
+                        label=""
+                        onChange={handleChangePromo}
+                        value={promoCode}
+                      />
+                      {isPromoInvalid && <Error>Невірний промокод</Error>}
+                      {isPromoExpired && <Error>Промокод вже недійсний</Error>}
+                      {isPromoValid ? (
+                        <StyledPromocodeCheckWrapper>
+                          <CheckedSvg />
+                        </StyledPromocodeCheckWrapper>
+                      ) : null}
+                    </StyledPromocodeWrapper>
                   </form>
                 )}
               </Formik>
+
               <StyledShopCartButton
                 text={"Оформити"}
                 route={ROUTES.SHOPCARTDELIVERY}

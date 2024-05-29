@@ -13,10 +13,15 @@ import {
   StyledOrderTitle,
   StyledOrderWrapper,
   StyledPDVText,
+  StyledPromocodeCheckWrapper,
+  StyledPromocodeWrapper,
 } from "./ShopCart.styled";
 import { ShopCard } from "./ShopCard/ShopCard";
 
-import { useGetCitiesMutation } from "../../redux/novaPoshta/novaPoshtaAPI";
+import {
+  useGetCitiesMutation,
+  useGetDepartmentsMutation,
+} from "../../redux/novaPoshta/novaPoshtaAPI";
 import { useState } from "react";
 
 import { CitySelect } from "./CitySelect";
@@ -32,20 +37,36 @@ import { useLazyCheckPromoCodeQuery } from "../../redux/products/productsApi";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
 
 import { ReactComponent as CheckedSvg } from "../../assets/svg/done.svg";
+import { selectPromoCode } from "../../redux/promoCode/promoCodeSelector";
 
 export const ShopCartDelivery = props => {
   let location = useLocation();
   const items = useSelector(selectUserShopCart);
-  const [selectSearch, setSelectSearch] = useState("");
-  const [promoCode, setPromoCode] = useState("");
+  const [selectCitySearch, setSelectCitySearch] = useState("");
+  const [departments, setDepartments] = useState([]);
+  const [promoCode, setPromoCode] = useState(
+    useSelector(selectPromoCode) || ""
+  );
 
-  // console.log(promoCode);
-  // console.log(selectSearch);
+  console.log(promoCode);
+
+  // console.log(selectCitySearch);
   const [isSelectedBtn, setIsSelectedBtn] = useState(
     "Доставка на відділення “Нова пошта”"
   );
   const [findCities, setFindCities] = useState([]);
   const [getCities, { data, isError, isLoading }] = useGetCitiesMutation();
+  const [
+    getDepartments,
+    {
+      data: departmentData,
+      isError: departmentIsError,
+      isLoading: departmentIsLoading,
+    },
+  ] = useGetDepartmentsMutation();
+
+  // getDepartments("8d5a980d-391c-11dd-90d9-001a92567626");
+  console.log(departmentData);
 
   const userData = useFetchCurrentUserQuery();
 
@@ -88,15 +109,31 @@ export const ShopCartDelivery = props => {
     //console.log(data.data);
   }
 
-  const onSelectSearch = value => {
+  if (departmentData) {
+    if (departmentData.data !== departments) {
+      console.log(departmentData);
+      const departmentsList = [
+        ...departmentData.data.filter(
+          el => el.CategoryOfWarehouse === "Branch"
+        ),
+      ];
+      console.log(departmentsList);
+      setDepartments(departmentsList);
+    }
+  }
+  console.log("departments", departments);
+
+  const onSelectCitySearch = value => {
     //setSelectSearch(value);
     getCities(value);
   };
 
   const onSelectChange = value => {
     console.log("onSelectChange", value);
-    setSelectSearch(value);
-
+    setSelectCitySearch(value);
+    if (selectCitySearch && selectCitySearch.Ref) {
+      getDepartments(selectCitySearch?.Ref);
+    }
     //getCities(value);
   };
 
@@ -186,7 +223,7 @@ export const ShopCartDelivery = props => {
                 },
                 (
                   <StyledDeliveryForm>
-                    <div style={{ position: "relative" }}>
+                    <StyledPromocodeWrapper>
                       <CustomInput
                         placeholder="Ввести промокод"
                         type="text"
@@ -199,17 +236,11 @@ export const ShopCartDelivery = props => {
                         <Error>{handleErrorPromoCode(errorCode)}</Error>
                       )}
                       {!errorCode && promoData ? (
-                        <div
-                          style={{
-                            position: "absolute",
-                            top: "20px",
-                            right: "15px",
-                          }}
-                        >
+                        <StyledPromocodeCheckWrapper>
                           <CheckedSvg />
-                        </div>
+                        </StyledPromocodeCheckWrapper>
                       ) : null}
-                    </div>
+                    </StyledPromocodeWrapper>
 
                     <StyledDeliveryTitle>
                       Обери адресу доставки
@@ -229,8 +260,8 @@ export const ShopCartDelivery = props => {
                           onSelectChange(e);
                           formik.setFieldValue("city", e.label);
                         }}
-                        onSearch={e => onSelectSearch(e)}
-                        value={selectSearch}
+                        onSearch={e => onSelectCitySearch(e)}
+                        value={selectCitySearch}
                         name="city"
                       />
                     </div>

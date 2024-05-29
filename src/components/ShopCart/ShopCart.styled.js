@@ -201,6 +201,17 @@ const StyledNotificationWrapper = styled.p`
   margin-right: auto;
   text-align: center;
 `;
+
+const StyledPromocodeWrapper = styled.div`
+  position: relative;
+`;
+
+const StyledPromocodeCheckWrapper = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 15px;
+`;
+
 export {
   StyledShopCartListItem,
   StyledShopCartCardWrapper,
@@ -224,4 +235,6 @@ export {
   StyledChangeCountWrapperDesktop,
   StyledChangeCountBtn,
   StyledNotificationWrapper,
+  StyledPromocodeWrapper,
+  StyledPromocodeCheckWrapper,
 };
