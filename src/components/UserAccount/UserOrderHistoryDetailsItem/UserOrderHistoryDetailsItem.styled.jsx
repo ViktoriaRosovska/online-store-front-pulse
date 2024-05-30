@@ -8,6 +8,7 @@ export const Item = styled.li`
   border-bottom: 1px solid var(--grey-text-color);
 
   h3 {
+    font-size: 12px;
     font-weight: 400;
     margin-bottom: 8px;
   }
@@ -18,6 +19,7 @@ export const Item = styled.li`
     padding-bottom: 10px;
     h3 {
       margin-bottom: 10px;
+      font-size: 14px;
     }
   }
 `;
