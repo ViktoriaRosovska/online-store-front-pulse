@@ -8,7 +8,6 @@ export const userApi = createApi({
     prepareHeaders: ({ getState }) => {
       const state = getState();
       if (state.userAuthReducer.token) {
-        console.log("state.userAuthReducer.token", state.userAuthReducer.token);
         return {
           Authorization: `Bearer ${state.userAuthReducer.token}`,
         };
@@ -48,7 +47,6 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["Favorites"],
     }),
-
     deleteFromFavorites: builder.mutation({
       query: id => ({
         url: "/users/favorites",
@@ -104,9 +102,9 @@ export const userApi = createApi({
       query: ({ resetToken, password }) => ({
         url: `users/reset-password?resetToken=${resetToken}`,
         method: "PATCH",
-        data: {password},
-      })
-    })
+        data: { password },
+      }),
+    }),
   }),
 });
 

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  max-height: 666px;
-  overflow: hidden;
+  max-height: 634px;
+  overflow-y: auto;
 `
 
 export const Button = styled.button`
@@ -15,6 +15,7 @@ export const Button = styled.button`
   margin-bottom: 4px;
 
   svg {
+    stroke: var(--black-bg-color);
     width: 20px;
     height: 20px;
     line-height: 0;

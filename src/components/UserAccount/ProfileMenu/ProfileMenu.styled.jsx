@@ -67,7 +67,7 @@ export const Button = styled.button`
   align-items: center;
   width: 210px;
   padding: 10px;
-  background-color: var(--white-light-bg-color);
+  /* background-color: var(--white-light-bg-color); */
   border-radius: 4px;
   gap: 12px;
   font-weight: 400;

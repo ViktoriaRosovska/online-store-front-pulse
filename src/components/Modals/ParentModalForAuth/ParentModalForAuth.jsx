@@ -10,6 +10,7 @@ const ParenModalForAuth = ({
   openLoginModal,
   closeForgotPasswordModal,
   isForgotPasswordModalOpen,
+  redirectPath,
 }) => {
   return (
     <>
@@ -18,6 +19,7 @@ const ParenModalForAuth = ({
           <ModalAuth
             onClose={closeAuthModal}
             openForgotPasswordModal={openForgotPasswordModal}
+            redirectPath={redirectPath}
           />
         </CommonModal>
       </Portal>

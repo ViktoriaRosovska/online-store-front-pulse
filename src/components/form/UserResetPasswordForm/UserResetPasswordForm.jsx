@@ -9,9 +9,7 @@ const UserResetPasswordForm = ({ onClose }) => {
   const [userResetPassword] = useUserResetPasswordMutation();
 
   const query = new URLSearchParams(location.search);
-  console.log("UserResetPasswordForm  query", query);
   const resetToken = query.get("resetToken");
-  console.log("UserResetPasswordForm  resetToken", resetToken);
 
   const onSubmit = async ({ password }) => {
     try {

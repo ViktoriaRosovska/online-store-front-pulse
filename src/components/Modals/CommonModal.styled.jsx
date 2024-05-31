@@ -5,7 +5,7 @@ export const Backdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 45px;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
@@ -23,11 +23,16 @@ export const ModalContant = styled.div`
   border-radius: 36px;
   width: 100%;
   max-width: 343px;
+  z-index: 1400;
+  margin-top: 16px;
+  max-height: calc(100% - 16px);
+  overflow-y: auto;
 
   @media screen and (min-width: 1440px) {
     padding: ${props => props.$padding};
     width: auto;
-    max-width: 80%;
+    max-width: fit-content;
+    /* max-width: 80%; */
   }
 `;
 

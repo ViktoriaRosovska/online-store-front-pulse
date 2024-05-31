@@ -82,10 +82,14 @@ export const FooterItem = styled.li`
     font-size: 16px;
     font-weight: 500;
     margin-bottom: 240px;
+    outline: 2px solid green;
+    color: blue;
   }
 
   > p {
     margin-top: 8px;
+    outline: 2px solid red;
+    color: blue;
   }
   > span {
     weigth: 700;
@@ -95,13 +99,10 @@ export const FooterItem = styled.li`
 export const FooterItemBottom = styled.div`
   margin-bottom: 23px;
 `;
+
 export const FooterItemText = styled.p`
-  > p {
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 240px;
-    margin-top: 8px;
-  }
+  font-size: 16px;
+  font-weight: 500;
 `;
 
 export const HighlightedWord = styled.span`
@@ -118,8 +119,16 @@ export const FooterSection = styled.div`
 export const FooterSectionColumn = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 60px;
+  margin-top: 35px;
   margin-left: 61px;
+
+  @media (max-width: 1440px) {
+    margin-left: 0px; 
+  }
+
+  > img {
+    margin-bottom: 24px;
+  }
 
   > a {
     margin-top: 60px;
@@ -131,46 +140,9 @@ export const FooterSectionDiv = styled.div`
   flex-direction: column;
   margin-bottom: 23px;
 `;
-export const FooterSectionAboutUs = styled.div`
-  display: flex;
-  flex-direction: column;
 
-  > img {
-    margin-bottom: 24px;
-  }
-
-  > a {
-    margin-top: 60px;
-  }
-`;
 
 export const FooterSectionCenter = styled.div`
   display: flex;
   justify-content: center;
 `;
-
-// const FooterPages = styled.footer`
-//   background-color: var(--black-bg-color);
-//   background-image: url(${footerBackground});
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   position: relative;
-//   border-top-left-radius: 36px;
-//   border-top-right-radius: 36px;
-//   overflow: hidden;
-
-//   &::before {
-//     content: "";
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     background: rgba(0, 0, 0, 0.2);
-//     border-top-left-radius: 36px;
-//     border-top-right-radius: 36px;
-//   }
-// `;
-// const FooterContainer = styled.div``;
-
-// export default FooterPages;

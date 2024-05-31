@@ -14,31 +14,42 @@ import CustomInput from "../formElements/CustomInput/CustomInput.jsx";
 import { setCredentials, useCreateUserMutation } from "../../../redux/auth";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Notify } from "notiflix";
 
-const CustomRegisterForm = ({onClose}) => {
- const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const [createUser] = useCreateUserMutation()
+const CustomRegisterForm = ({ onClose, redirectPath }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [createUser] = useCreateUserMutation();
+
+  const onSubmit = ({ firstName, lastName, email, password }) => {
+    createUser({ firstName, lastName, email, password })
+      .unwrap()
+      .then(res => {
+        dispatch(setCredentials(res));
+        navigate(redirectPath);
+        onClose();
+      })
+      .catch(error => {
+        if (error.status === 409) {
+          Notify.warning("Користувач з таким email вже існує.", {
+            position: "center-center",
+          });
+        }
+      });
+  };
 
   return (
     <>
       <Formik
         initialValues={{
-          firstName: '',
-          lastName: '',
+          firstName: "",
+          lastName: "",
           email: "",
           password: "",
-          passwordCheck: '',
+          passwordCheck: "",
         }}
         validationSchema={registerValidationSchema}
-        onSubmit={({firstName, lastName, email, password}) => {
-          createUser({firstName, lastName, email, password}).unwrap().then((res) => {
-            console.log("createUser  res", res)
-            dispatch(setCredentials(res))
-            navigate('/profile/account')
-          })
-           onClose()  
-        }}
+        onSubmit={onSubmit}
       >
         {() => (
           <StyledForm>
