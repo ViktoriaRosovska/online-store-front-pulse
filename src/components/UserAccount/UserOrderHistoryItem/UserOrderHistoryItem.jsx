@@ -26,11 +26,11 @@ const UserOrderHistoryItem = ({ item }) => {
 
   const imageCount = item?.products.length;
 
-//   const calculateTotalPrice = products => {
-//     return products.reduce((total, product) => {
-//       return total + product.quantity * product.priceByOne;
-//     }, 0);
-//   };
+  //   const calculateTotalPrice = products => {
+  //     return products.reduce((total, product) => {
+  //       return total + product.quantity * product.priceByOne;
+  //     }, 0);
+  //   };
 
   return (
     <>
@@ -52,7 +52,8 @@ const UserOrderHistoryItem = ({ item }) => {
                 key={product.productId._id}
                 src={product.productId.imgThumbnail}
                 alt={product.productId.name}
-                $count={imageCount}
+                    $count={imageCount}
+                    style={{width: '43'}}
               />
             ))}
           </ImageThumb>
@@ -60,8 +61,8 @@ const UserOrderHistoryItem = ({ item }) => {
         <Button type="button" onClick={toggleOrderDetailsMenu}>
           {arrowSvg}
         </Button>
-          </Item>
-          {isOrderDetailsOpen && <UserOrderHistoryDetailsList item={item} />}
+      </Item>
+      {isOrderDetailsOpen && <UserOrderHistoryDetailsList item={item} />}
     </>
   );
 };

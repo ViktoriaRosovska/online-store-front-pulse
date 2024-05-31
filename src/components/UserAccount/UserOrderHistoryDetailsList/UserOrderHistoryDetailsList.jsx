@@ -1,10 +1,16 @@
 import { calculateTotalPrice } from "../../../utils/calculateTotalPrice";
 import UserOrderHistoryDetailsItem from "../UserOrderHistoryDetailsItem/UserOrderHistoryDetailsItem";
-import { List, SumUpBox, TotalPrice } from "./UserOrderHistoryDetailsList.styled";
+import {
+  Address,
+  List,
+  SumUpBox,
+  TotalPrice,
+  Wrapper,
+} from "./UserOrderHistoryDetailsList.styled";
 
 const UserOrderHistoryDetailsList = ({ item }) => {
   return (
-    <div>
+    <Wrapper>
       <List>
         {item?.products.map(product => (
           <UserOrderHistoryDetailsItem key={item._id} product={product} />
@@ -25,7 +31,13 @@ const UserOrderHistoryDetailsList = ({ item }) => {
           <p>{calculateTotalPrice(item?.products) + 0} грн.</p>
         </TotalPrice>
       </SumUpBox>
-    </div>
+
+      <Address>
+        <p>тел. +380 96 452 31 45</p>
+        <p>м. Київ</p>
+        <p>Відділення №2: вул. Бережанська, 9</p>
+      </Address>
+    </Wrapper>
   );
 };
 

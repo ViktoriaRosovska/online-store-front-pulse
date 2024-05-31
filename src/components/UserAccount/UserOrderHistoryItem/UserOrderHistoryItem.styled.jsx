@@ -87,7 +87,6 @@ export const ImageThumb = styled.div`
   align-items: center;
   width: 43px;
   gap: 2px;
-  /* overflow: hidden; */
   overflow-y: auto;
 
   @media screen and (min-width: 1440px) {
@@ -96,6 +95,7 @@ export const ImageThumb = styled.div`
    width: 139px;
    gap: 5px;
    overflow-x: auto;
+   /* overflow-y: hidden; */
   }  
 `;
 
@@ -104,10 +104,12 @@ export const Image = styled.img`
   height: ${({ $count }) => ($count === 1 ? "35px" : "25px")};
   margin-bottom: ${({ $count }) => ($count > 1 ? "2px" : "0")};
   border-radius: 10px;
+  object-fit: cover;
 
    @media screen and (min-width: 1440px) {
    width: 43px;
    height: 35px;
+   margin-bottom: 0;
   }  
 `;
 
