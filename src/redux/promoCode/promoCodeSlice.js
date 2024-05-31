@@ -9,6 +9,7 @@ export const promoCodeSlice = createSlice({
   initialState: {
     promoCode: "",
     status: "unknown",
+    discount: 0,
   },
   reducers: {
     setPromoCode(state, action) {
@@ -17,7 +18,11 @@ export const promoCodeSlice = createSlice({
     setPromoStatus(state, action) {
       return { ...state, status: action.payload };
     },
+    setPromoCodeDiscount(state, action) {
+      return { ...state, discount: Number(action.payload) };
+    },
   },
 });
-export const { setPromoCode, setPromoStatus } = promoCodeSlice.actions;
+export const { setPromoCode, setPromoStatus, setPromoCodeDiscount } =
+  promoCodeSlice.actions;
 export const promoCodeReducer = promoCodeSlice.reducer;

@@ -6,3 +6,4 @@ export const selectPromoInvalid = state =>
   state.promoCode.status === PromoInvalid;
 export const selectPromoExpired = state =>
   state.promoCode.status === PromoExpired;
+export const selectPromoCodeDiscount = state => state.promoCode.discount;

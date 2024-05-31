@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 const StyledShopCartListItem = styled.li`
+  display: ${props => (props.$device === "mobile" ? "block" : "none")};
   margin-bottom: 24px;
   @media screen and (min-width: 1440px) {
+    display: ${props => (props.$device === "desktop" ? "block" : "none")};
     margin-bottom: 36px;
   }
 `;
@@ -11,14 +13,16 @@ const StyledShopCartCardWrapper = styled.div`
   padding: 34px 16px 10px 16px;
   border: 1px solid var(--black-bg-color);
   border-radius: 16px;
-  display: flex;
+  display: ${props => (props.$device === "desktop" ? "none" : "flex")};
   justify-content: flex-start;
   flex-direction: column;
   height: fit-content;
+  width: 100%;
   /* flex-wrap: wrap; */
   /* justify-content: space-between; */
   @media screen and (min-width: 1440px) {
-    width: 612px;
+    display: ${props => (props.$device === "mobile" ? "none" : "flex")};
+    width: ${props => (props.$showDeliveryPrice ? "486px" : "612px")};
     flex-direction: row;
     gap: 38px;
   }
@@ -118,6 +122,7 @@ const StyledOrderWrapper = styled.div`
   /* border: 1px solid red; */
   @media screen and (min-width: 1440px) {
     width: 384px;
+    /* flex-direction: row; */
   }
 `;
 
@@ -128,6 +133,7 @@ const StyledOrderTitle = styled.h3`
   font-size: 24px;
   font-weight: 400;
   line-height: 33.6px;
+  margin-bottom: 24px;
 `;
 
 const StyledOrderText = styled.div`
@@ -204,6 +210,10 @@ const StyledNotificationWrapper = styled.p`
 
 const StyledPromocodeWrapper = styled.div`
   position: relative;
+  /* margin-bottom: 24px; */
+  @media screen and (min-width: 1440px) {
+    /* margin-bottom: 0; */
+  }
 `;
 
 const StyledPromocodeCheckWrapper = styled.div`

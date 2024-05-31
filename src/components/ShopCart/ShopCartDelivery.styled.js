@@ -1,5 +1,6 @@
 import { Form } from "formik";
 import styled from "styled-components";
+import { StyledOrderWrapper } from "./ShopCart.styled";
 
 const StyledChoiceDeliveryBtn = styled.button`
   border: 1px solid var(--black-bg-color);
@@ -46,12 +47,45 @@ const StyledDeliveryTitle = styled.h3`
   letter-spacing: 0.01em;
   text-transform: uppercase;
   text-align: center;
+  @media screen and (min-width: 1440px) {
+    font-size: 24px;
+    line-height: 33.6px;
+    text-align: left;
+  }
 `;
 
 const StyledDeliveryForm = styled(Form)`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  @media screen and (min-width: 1440px) {
+    width: 587px;
+  }
+`;
+
+const StyledOrderDeliveryWrapper = styled(StyledOrderWrapper)`
+  flex-direction: column-reverse;
+  @media screen and (min-width: 1440px) {
+    flex-direction: row;
+    gap: 126px;
+  }
+`;
+
+const StyledDeliveryOrderWrapper = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  @media screen and (min-width: 1440px) {
+    flex-direction: column;
+    gap: 24px;
+    width: 385px;
+  }
+`;
+
+const StyledPromoCodeForm = styled.form`
+  margin-bottom: 24px;
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 0;
+  }
 `;
 export {
   StyledChoiceDeliveryBtn,
@@ -59,4 +93,7 @@ export {
   StyledChoiceBtnWrapper,
   StyledDeliveryTitle,
   StyledDeliveryForm,
+  StyledOrderDeliveryWrapper,
+  StyledDeliveryOrderWrapper,
+  StyledPromoCodeForm,
 };

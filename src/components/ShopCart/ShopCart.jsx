@@ -29,10 +29,12 @@ import {
   PromoInvalid,
   PromoValid,
   setPromoCode,
+  setPromoCodeDiscount,
   setPromoStatus,
 } from "../../redux/promoCode/promoCodeSlice";
 import {
   selectPromoCode,
+  selectPromoCodeDiscount,
   selectPromoExpired,
   selectPromoInvalid,
   selectPromoValid,
@@ -105,10 +107,13 @@ export const ShopCart = props => {
         }
       } else if (data) {
         dispatch(setPromoStatus(PromoValid));
+        console.log(data);
+        dispatch(setPromoCodeDiscount(data.discount));
       }
     },
   });
-
+  const discount = useSelector(selectPromoCodeDiscount);
+  console.log(discount);
   const handleChangePromo = e => {
     // console.log(e.target.value);
     dispatch(setPromoCode(e.target.value));
@@ -129,37 +134,55 @@ export const ShopCart = props => {
             <ul>
               {items.map((el, idx) => {
                 return (
-                  <ShopCard
-                    el={el}
-                    key={el._id + "#" + idx}
-                    showCloseBtn={true}
-                  />
+                  <>
+                    <ShopCard
+                      el={el}
+                      key={el._id + "#" + idx}
+                      showCloseBtn={true}
+                      showDeliveryPrice={false}
+                      device={"desktop"}
+                    />
+                    <ShopCard
+                      el={el}
+                      key={el._id + "#" + idx}
+                      showCloseBtn={true}
+                      showDeliveryPrice={false}
+                      device={"mobile"}
+                    />
+                  </>
                 );
               })}
             </ul>
             <StyledOrderWrapper>
-              <StyledOrderTitle>Твоє замовлення</StyledOrderTitle>
-              <StyledOrderPriceTextWrapper>
-                <StyledOrderText>
-                  <span>
-                    {countQuantity}&nbsp;
-                    {normalize_count_form(countQuantity, [
-                      "товар",
-                      "товари",
-                      "товарів",
-                    ])}
-                  </span>
-                  <span>{countPrice}&nbsp;грн</span>
-                </StyledOrderText>
+              <div>
+                <StyledOrderTitle>Твоє замовлення</StyledOrderTitle>
+                <StyledOrderPriceTextWrapper>
+                  <StyledOrderText>
+                    <span>
+                      {countQuantity}&nbsp;
+                      {normalize_count_form(countQuantity, [
+                        "товар",
+                        "товари",
+                        "товарів",
+                      ])}
+                    </span>
+                    <span>{countPrice}&nbsp;грн</span>
+                  </StyledOrderText>
 
-                <StyledOrderText>
-                  <div>
-                    <p>Усього</p>
-                    <StyledPDVText>Включно з ПДВ</StyledPDVText>
-                  </div>
-                  <span>{countPrice}&nbsp;грн</span>
-                </StyledOrderText>
-              </StyledOrderPriceTextWrapper>
+                  <StyledOrderText>
+                    <div>
+                      <p>Усього</p>
+                      <StyledPDVText>Включно з ПДВ</StyledPDVText>
+                    </div>
+                    <span>
+                      {isPromoValid
+                        ? countPrice - (discount * countPrice) / 100
+                        : countPrice}
+                      &nbsp;грн
+                    </span>
+                  </StyledOrderText>
+                </StyledOrderPriceTextWrapper>
+              </div>
 
               <Formik>
                 {() => (

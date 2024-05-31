@@ -4,14 +4,13 @@ import { useLocation } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
 import CustomInput from "components/form/formElements/CustomInput/CustomInput";
 import { Formik } from "formik";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUserShopCart } from "../../redux/user/userShopCart/userShopCartSelector";
 import {
   StyledNotificationWrapper,
   StyledOrderPriceTextWrapper,
   StyledOrderText,
   StyledOrderTitle,
-  StyledOrderWrapper,
   StyledPDVText,
   StyledPromocodeCheckWrapper,
   StyledPromocodeWrapper,
@@ -30,25 +29,42 @@ import {
   StyledChoiceDeliveryBtn,
   StyledChoiseVariant,
   StyledDeliveryForm,
+  StyledDeliveryOrderWrapper,
   StyledDeliveryTitle,
+  StyledOrderDeliveryWrapper,
+  StyledPromoCodeForm,
 } from "./ShopCartDelivery.styled";
 import { useFetchCurrentUserQuery } from "../../redux/auth";
 import { useLazyCheckPromoCodeQuery } from "../../redux/products/productsApi";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
 
 import { ReactComponent as CheckedSvg } from "../../assets/svg/done.svg";
-import { selectPromoCode } from "../../redux/promoCode/promoCodeSelector";
+import {
+  selectPromoCode,
+  selectPromoCodeDiscount,
+  selectPromoExpired,
+  selectPromoInvalid,
+  selectPromoValid,
+} from "../../redux/promoCode/promoCodeSelector";
+import {
+  PromoExpired,
+  PromoInvalid,
+  PromoValid,
+  setPromoCode,
+  setPromoCodeDiscount,
+  setPromoStatus,
+} from "../../redux/promoCode/promoCodeSlice";
 
 export const ShopCartDelivery = props => {
   let location = useLocation();
   const items = useSelector(selectUserShopCart);
   const [selectCitySearch, setSelectCitySearch] = useState("");
   const [departments, setDepartments] = useState([]);
-  const [promoCode, setPromoCode] = useState(
-    useSelector(selectPromoCode) || ""
-  );
+  // const [promoCode, setPromoCode] = useState(
+  //   useSelector(selectPromoCode) || ""
+  // );
 
-  console.log(promoCode);
+  // console.log(promoCode);
 
   // console.log(selectCitySearch);
   const [isSelectedBtn, setIsSelectedBtn] = useState(
@@ -69,35 +85,36 @@ export const ShopCartDelivery = props => {
   console.log(departmentData);
 
   const userData = useFetchCurrentUserQuery();
-
-  const [
-    checkPromoCode,
-    {
-      data: promoData,
-      isError: isErrorCode,
-      isFetching: isFetchingCode,
-      error: errorCode,
-    },
-  ] = useLazyCheckPromoCodeQuery();
+  const dispatch = useDispatch();
+  // const [
+  //   checkPromoCode,
+  //   {
+  //     data: promoData,
+  //     isError: isErrorCode,
+  //     isFetching: isFetchingCode,
+  //     error: errorCode,
+  //   },
+  // ] = useLazyCheckPromoCodeQuery();
   // console.log(userData);
 
   // console.log("promodata", promoData);
   // console.log(isErrorCode, errorCode?.status);
 
-  const handleErrorPromoCode = error => {
-    if (error && error.status === 404) {
-      return "Невірний промокод";
-    }
+  // const handleErrorPromoCode = error => {
+  //   if (error && error.status === 404) {
+  //     return "Невірний промокод";
+  //   }
 
-    if (error && error.status === 400) {
-      return "Промокод вже недійсний";
-    }
-    return;
-  };
+  //   if (error && error.status === 400) {
+  //     return "Промокод вже недійсний";
+  //   }
+  //   return;
+  // };
 
   const handleChangePromo = e => {
     // console.log(e.target.value);
-    setPromoCode(e.target.value);
+    // setPromoCode(e.target.value);
+    dispatch(setPromoCode(e.target.value));
     checkPromoCode(e.target.value);
   };
 
@@ -161,51 +178,32 @@ export const ShopCartDelivery = props => {
     return acc;
   }, 0);
 
+  const [checkPromoCode] = useLazyCheckPromoCodeQuery({
+    selectFromResult: ({ data, error }) => {
+      if (error) {
+        if (error.status === 404) {
+          dispatch(setPromoStatus(PromoInvalid));
+        } else if (error.status === 400) {
+          dispatch(setPromoStatus(PromoExpired));
+        }
+      } else if (data) {
+        dispatch(setPromoStatus(PromoValid));
+        console.log(data);
+        dispatch(setPromoCodeDiscount(data.discount));
+      }
+    },
+  });
+  const discount = useSelector(selectPromoCodeDiscount);
+  const isPromoExpired = useSelector(selectPromoExpired);
+  const isPromoInvalid = useSelector(selectPromoInvalid);
+  const isPromoValid = useSelector(selectPromoValid);
+  const promoCode = useSelector(selectPromoCode);
   return (
     <>
       <Title>{props.title}</Title>
       {items && items.length > 0 ? (
-        <>
-          <ul>
-            {items.map((el, idx) => {
-              return (
-                <ShopCard
-                  el={el}
-                  key={el._id + "#" + idx}
-                  showCloseBtn={false}
-                />
-              );
-            })}
-          </ul>
-          <StyledOrderWrapper>
-            <StyledOrderTitle>Твоє замовлення</StyledOrderTitle>
-            <StyledOrderPriceTextWrapper>
-              <StyledOrderText>
-                <span>
-                  {countQuantity}&nbsp;
-                  {normalize_count_form(countQuantity, [
-                    "товар",
-                    "товари",
-                    "товарів",
-                  ])}
-                </span>
-                <span>{countPrice}&nbsp;грн</span>
-              </StyledOrderText>
-
-              <StyledOrderText>
-                <div>
-                  <p>Усього</p>
-                  <StyledPDVText>Включно з ПДВ</StyledPDVText>
-                </div>
-                <span>
-                  {promoData && !errorCode
-                    ? countPrice - (promoData.discount * countPrice) / 100
-                    : countPrice}
-                  &nbsp;грн
-                </span>
-              </StyledOrderText>
-            </StyledOrderPriceTextWrapper>
-
+        <StyledOrderDeliveryWrapper>
+          <div>
             <Formik
               initialValues={{
                 name: "",
@@ -223,25 +221,6 @@ export const ShopCartDelivery = props => {
                 },
                 (
                   <StyledDeliveryForm>
-                    <StyledPromocodeWrapper>
-                      <CustomInput
-                        placeholder="Ввести промокод"
-                        type="text"
-                        name="code"
-                        label=""
-                        onChange={handleChangePromo}
-                        value={promoCode}
-                      />
-                      {errorCode && (
-                        <Error>{handleErrorPromoCode(errorCode)}</Error>
-                      )}
-                      {!errorCode && promoData ? (
-                        <StyledPromocodeCheckWrapper>
-                          <CheckedSvg />
-                        </StyledPromocodeCheckWrapper>
-                      ) : null}
-                    </StyledPromocodeWrapper>
-
                     <StyledDeliveryTitle>
                       Обери адресу доставки
                     </StyledDeliveryTitle>
@@ -468,7 +447,7 @@ export const ShopCartDelivery = props => {
                         Я хочу отримувати інформацію про новинки, акції
                       </label>
                     </div>
-                    <button type="submit">Форма</button>
+                    {/* <button type="submit">Форма</button> */}
                   </StyledDeliveryForm>
                 )
               )}
@@ -479,8 +458,87 @@ export const ShopCartDelivery = props => {
               route={ROUTES.SHOPCARTPAYMENT}
               state={{ from: location }}
             />
-          </StyledOrderWrapper>
-        </>
+          </div>
+
+          <StyledDeliveryOrderWrapper>
+            <div>
+              <StyledOrderTitle>Твоє замовлення</StyledOrderTitle>
+              <StyledOrderPriceTextWrapper>
+                <StyledOrderText>
+                  <span>
+                    {countQuantity}&nbsp;
+                    {normalize_count_form(countQuantity, [
+                      "товар",
+                      "товари",
+                      "товарів",
+                    ])}
+                  </span>
+                  <span>{countPrice}&nbsp;грн</span>
+                </StyledOrderText>
+
+                <StyledOrderText>
+                  <div>
+                    <p>Усього</p>
+                    <StyledPDVText>Включно з ПДВ</StyledPDVText>
+                  </div>
+                  <span>
+                    {isPromoValid
+                      ? countPrice - (discount * countPrice) / 100
+                      : countPrice}
+                    &nbsp;грн
+                  </span>
+                </StyledOrderText>
+              </StyledOrderPriceTextWrapper>
+            </div>
+            <Formik
+              initialValues={{
+                code: "",
+              }}
+            >
+              <StyledPromoCodeForm>
+                <StyledPromocodeWrapper>
+                  <CustomInput
+                    placeholder="Ввести промокод"
+                    type="text"
+                    name="code"
+                    label=""
+                    onChange={handleChangePromo}
+                    value={promoCode}
+                  />
+                  {isPromoInvalid && <Error>Невірний промокод</Error>}
+                  {isPromoExpired && <Error>Промокод вже недійсний</Error>}
+                  {isPromoValid ? (
+                    <StyledPromocodeCheckWrapper>
+                      <CheckedSvg />
+                    </StyledPromocodeCheckWrapper>
+                  ) : null}
+                </StyledPromocodeWrapper>
+              </StyledPromoCodeForm>
+            </Formik>
+            <ul>
+              {items.map((el, idx) => {
+                return (
+                  <>
+                    <ShopCard
+                      el={el}
+                      key={el._id + "#" + idx}
+                      showCloseBtn={false}
+                      showDeliveryPrice={true}
+                      device={"desktop"}
+                    />
+                    <ShopCard
+                      el={el}
+                      key={el._id + "#" + idx}
+                      showCloseBtn={false}
+                      showDeliveryPrice={false}
+                      device={"mobile"}
+                    />
+                  </>
+                );
+              })}
+            </ul>
+          </StyledDeliveryOrderWrapper>
+        </StyledOrderDeliveryWrapper>
       ) : (
         <StyledNotificationWrapper>
           У вашому кошику ще немає товарів
