@@ -29,6 +29,10 @@ export const Button = styled.button`
     height: 24px;
     margin-left: 5px;
   }
+
+  &:hover {
+    color: var(--grey-text-color);
+  }
 `;
 
 export const FooterMenuList = styled.ul`
@@ -43,5 +47,9 @@ export const FooterMenuList = styled.ul`
     line-height: 28px;
     white-space: nowrap;
     letter-spacing: -0.5px;
+
+    &:hover {
+      color: var(--grey-text-color);
+    }
   }
 `

@@ -60,6 +60,16 @@ export const StyledNavLink = styled(NavLink)`
       stroke: var(--black-text-color);
     }
   }
+
+  &:hover {
+    p {
+      color: var(--black-text-color);
+    }
+    svg {
+      fill: var(--black-text-color);
+      stroke: var(--black-text-color);
+    }
+  }
 `;
 
 export const Button = styled.button`
@@ -78,5 +88,15 @@ export const Button = styled.button`
   svg {
     fill: var(--grey-text-color);
     stroke: var(--grey-text-color);
+  }
+
+  &:hover {
+    p {
+      color: var(--black-text-color);
+    }
+    svg {
+      fill: var(--black-text-color);
+      stroke: var(--black-text-color);
+    }
   }
 `;
