@@ -24,7 +24,7 @@ import { useDispatch } from "react-redux";
 import { ReactComponent as CloseBtnSmall } from "../../../assets/svg/closeBtnSmall.svg";
 import { FiMinus, FiPlus } from "react-icons/fi";
 
-export const ShopCard = ({ el, showCloseBtn }) => {
+export const ShopCard = ({ el, showCloseBtn, showDeliveryPrice, device }) => {
   const mergeColor = arr => {
     const newArr = [];
 
@@ -36,8 +36,11 @@ export const ShopCard = ({ el, showCloseBtn }) => {
   };
   const dispatch = useDispatch();
   return (
-    <StyledShopCartListItem>
-      <StyledShopCartCardWrapper>
+    <StyledShopCartListItem $device={device}>
+      <StyledShopCartCardWrapper
+        $showDeliveryPrice={showDeliveryPrice}
+        $device={device}
+      >
         {showCloseBtn && (
           <StyledCloseBtnCard
             onClick={() => dispatch(deleteUserShopCartItem(el))}
@@ -62,6 +65,24 @@ export const ShopCard = ({ el, showCloseBtn }) => {
                 Розмір:&nbsp;
                 <StyledProductValue>{el.size}</StyledProductValue>
               </StyledProductText>
+              {device === "mobile" && (
+                <StyledProductText>
+                  Кількість:&nbsp;
+                  <StyledProductValue>{el.quantity}</StyledProductValue>
+                </StyledProductText>
+              )}
+              {showDeliveryPrice && (
+                <>
+                  <StyledProductText>
+                    Ціна:&nbsp;
+                    <StyledProductValue>{el.price}&nbsp;грн</StyledProductValue>
+                  </StyledProductText>
+                  <StyledProductText>
+                    Кількість:&nbsp;
+                    <StyledProductValue>{el.quantity}</StyledProductValue>
+                  </StyledProductText>
+                </>
+              )}
             </StyledInfoWrapper>
             {showCloseBtn && (
               <StyledChangeCountWrapperDesktop>
@@ -101,7 +122,9 @@ export const ShopCard = ({ el, showCloseBtn }) => {
               </StyledChangeCountBtn>
             </StyledChangeCountWrapper>
           )}
-          <StyledProductName>{el.price}&nbsp;грн</StyledProductName>
+          {!showDeliveryPrice && (
+            <StyledProductName>{el.price}&nbsp;грн</StyledProductName>
+          )}
         </StyledCountANDPriceWrapper>
       </StyledShopCartCardWrapper>
     </StyledShopCartListItem>

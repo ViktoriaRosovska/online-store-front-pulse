@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { productsApi } from "./products/productsApi";
 import { userAuthApi } from "./auth/userAuthApi";
-import { filterQueryReducer } from "./filterQuery/filterQuerySlice";
+import { promoCodeReducer } from "./promoCode/promoCodeSlice";
 import { authReducer } from "./auth/auth";
 import {
   persistStore,
@@ -17,7 +17,8 @@ import storage from "redux-persist/lib/storage";
 import { userShopCartReducer } from "./user/userShopCart/userShopCartSlice";
 import { userApi } from "./user/userSlice/userApi";
 import { novaPoshtaAPI } from "./novaPoshta/novaPoshtaAPI";
-import paymentCardReducer from './paymentCard/paymentCardSlice'
+
+import paymentCardReducer from "./paymentCard/paymentCardSlice";
 import { logoutMiddleware } from "./middlewares/logoutMiddleware";
 
 const persistConfig = {
@@ -32,9 +33,9 @@ const userPersistConfig = {
 };
 
 const cardPersistConfig = {
-  key: 'card',
+  key: "card",
   storage,
-}
+};
 
 const persistedUserShopCart = persistReducer(
   userPersistConfig,
@@ -47,10 +48,10 @@ export const store = configureStore({
     [userAuthApi.reducerPath]: userAuthApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     [novaPoshtaAPI.reducerPath]: novaPoshtaAPI.reducer,
-    filterQuery: filterQueryReducer,
+    promoCode: promoCodeReducer,
     userShopCart: persistedUserShopCart,
     userAuthReducer: persistReducer(persistConfig, authReducer),
-    paymentCard: persistReducer(cardPersistConfig,paymentCardReducer),
+    paymentCard: persistReducer(cardPersistConfig, paymentCardReducer),
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

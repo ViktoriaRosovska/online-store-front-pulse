@@ -52,6 +52,20 @@ const warehouseSettlementsRequest = search => ({
   methodProperties: { Page: "1", FindByString: search, Limit: "20" },
 });
 
+const warehouseDepartmentsRequest = ref => ({
+  apiKey: NOVA_POSHTA_API_KEY,
+  modelName: "Address",
+  calledMethod: "getWarehouses",
+
+  methodProperties: {
+    Page: "1",
+    // FindByString: search,
+    Limit: "100",
+    CityRef: ref,
+    // CategoryOfWarehouse: "Branch",
+  },
+});
+
 export {
   BASE_URL,
   api,
@@ -59,4 +73,5 @@ export {
   axiosBaseQuery,
   NOVA_POSHTA_BASE_URL,
   warehouseSettlementsRequest,
+  warehouseDepartmentsRequest,
 };
