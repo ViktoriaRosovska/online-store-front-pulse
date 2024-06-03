@@ -1,16 +1,16 @@
 import { CheckboxItemWrapper } from "./CheckboxItem.styled";
 
-const CheckboxItem = ({ item, handleInputChange, checked }) => {
+const CheckboxItem = ({ name, item, handleInputChange, checked }) => {
   return (
-    <CheckboxItemWrapper key={item} className="checkboxList-item">
+    <CheckboxItemWrapper key={name} className="checkboxList-item">
       <input
         type="checkbox"
         value={item}
-        id={"cbl_" + item}
+        id={"cbl_" + name}
         checked={checked}
-        onChange={e => handleInputChange(e, item)}
+        onChange={e => handleInputChange(e, name)}
       />
-      <label htmlFor={"cbl_" + item}>{item}</label>
+      <label htmlFor={"cbl_" + name}>{item}</label>
     </CheckboxItemWrapper>
   );
 };

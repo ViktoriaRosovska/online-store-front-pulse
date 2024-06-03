@@ -39,16 +39,11 @@ export const useHandleCurrentUser = () => {
         }
       } catch (error) {
         console.log("fetchUser  error", error);
-        // if (error.code === 401) {
-        //   localStorage.removeItem("persist:userToken");
-        //   dispatch(removeCredentials());
-        // }
       }
     };
 
     fetchUser();
   }, []);
-           
 
   return { data, isError, error };
 };
@@ -59,7 +54,7 @@ export const useHandleLoginSuccess = (isSuccess, data) => {
 
   useEffect(() => {
     if (isSuccess && data) {
-      localStorage.setItem("token", data.token);
+      // localStorage.setItem("token", data.token);
       dispatch(setCredentials(data));
       navigate(ROUTES.ACCOUNT);
     }
@@ -72,7 +67,7 @@ export const useHandleLogoutSuccess = isSuccess => {
 
   useEffect(() => {
     if (isSuccess) {
-      localStorage.removeItem("token");
+      // localStorage.removeItem("token");
       dispatch(removeCredentials());
       navigate(ROUTES.CATALOG);
     }

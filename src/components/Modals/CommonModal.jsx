@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Backdrop, CloseButton, ModalContant } from "./CommonModal.styled";
-import {ReactComponent as CloseSvg} from '../../assets/svg/closeBtnSmall.svg'
+import { ReactComponent as CloseSvg } from "../../assets/svg/closeBtnSmall.svg";
 
 const CommonModal = ({ onClose, children, padding, top }) => {
   const handleKeyDown = event => {
@@ -16,12 +16,12 @@ const CommonModal = ({ onClose, children, padding, top }) => {
   };
 
   useEffect(() => {
-    document.body.classList.add('no-scroll')
+    document.body.classList.add("no-scroll");
 
     return () => {
-      document.body.classList.remove('no-scroll')
-    }
-  }, [])
+      document.body.classList.remove("no-scroll");
+    };
+  }, []);
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
@@ -35,7 +35,7 @@ const CommonModal = ({ onClose, children, padding, top }) => {
     <Backdrop onClick={handleBackdropClick}>
       <ModalContant $padding={padding}>
         <CloseButton type="button" onClick={onClose} $top={top}>
-          <CloseSvg/>
+          <CloseSvg />
         </CloseButton>
         {children}
       </ModalContant>

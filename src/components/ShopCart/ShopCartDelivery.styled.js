@@ -8,7 +8,7 @@ const StyledChoiceDeliveryBtn = styled.button`
   border: ${props =>
     props.$isSelectedBtn
       ? "2px solid var(--black-bg-color)"
-      : "1px solid var(--black-bg-color)"};
+      : "1px solid var(--grey-text-color)"};
   border-radius: 16px;
   height: 109px;
   width: 100%;
@@ -87,6 +87,29 @@ const StyledPromoCodeForm = styled.form`
     margin-bottom: 0;
   }
 `;
+
+const StyledCheckboxLabel = styled.label`
+  display: flex;
+  height: 30px;
+  align-items: center;
+  gap: 3px;
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0.01em;
+`;
+
+const StyledCheckboxWrapper = styled.div`
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 300px;
+  @media screen and (min-width: 1440px) {
+    width: 100%;
+  }
+`;
 export {
   StyledChoiceDeliveryBtn,
   StyledChoiseVariant,
@@ -96,4 +119,6 @@ export {
   StyledOrderDeliveryWrapper,
   StyledDeliveryOrderWrapper,
   StyledPromoCodeForm,
+  StyledCheckboxLabel,
+  StyledCheckboxWrapper,
 };
