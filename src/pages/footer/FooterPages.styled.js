@@ -102,7 +102,7 @@ export const FooterItemBottom = styled.div`
 
 export const FooterItemText = styled.p`
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
 `;
 
 export const HighlightedWord = styled.span`
