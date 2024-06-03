@@ -39,6 +39,7 @@ import {
   selectPromoInvalid,
   selectPromoValid,
 } from "../../redux/promoCode/promoCodeSelector";
+import useMediaQuery from "../../hooks/useMediaQuery";
 export const ShopCart = props => {
   const items = useSelector(selectUserShopCart);
   // console.log(items);
@@ -125,6 +126,7 @@ export const ShopCart = props => {
   const isPromoValid = useSelector(selectPromoValid);
   const promoCode = useSelector(selectPromoCode);
 
+  const isDeskctop = useMediaQuery("(min-width: 1440px)");
   return (
     <>
       <Title>{props.title}</Title>
@@ -134,22 +136,13 @@ export const ShopCart = props => {
             <ul>
               {items.map((el, idx) => {
                 return (
-                  <>
-                    <ShopCard
-                      el={el}
-                      key={el._id + "#" + idx}
-                      showCloseBtn={true}
-                      showDeliveryPrice={false}
-                      device={"desktop"}
-                    />
-                    <ShopCard
-                      el={el}
-                      key={el._id + "#" + idx}
-                      showCloseBtn={true}
-                      showDeliveryPrice={false}
-                      device={"mobile"}
-                    />
-                  </>
+                  <ShopCard
+                    el={el}
+                    key={el._id + "#" + idx}
+                    showCloseBtn={true}
+                    showDeliveryPrice={false}
+                    device={isDeskctop ? "desktop" : "mobile"}
+                  />
                 );
               })}
             </ul>

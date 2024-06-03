@@ -15,3 +15,18 @@ export const StyledLink = styled(Link)`
     text-align: left;
   }
 `;
+
+export const StyledConditionsLinks = styled(Link)`
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0.01em;
+
+  text-decoration: underline;
+
+  & a {
+    padding: 0;
+    margin: 0;
+  }
+`;

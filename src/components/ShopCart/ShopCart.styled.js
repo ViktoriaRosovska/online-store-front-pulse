@@ -222,6 +222,12 @@ const StyledPromocodeCheckWrapper = styled.div`
   right: 15px;
 `;
 
+const StyledChoiceBtnParagraphWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 export {
   StyledShopCartListItem,
   StyledShopCartCardWrapper,
@@ -247,4 +253,5 @@ export {
   StyledNotificationWrapper,
   StyledPromocodeWrapper,
   StyledPromocodeCheckWrapper,
+  StyledChoiceBtnParagraphWrapper,
 };

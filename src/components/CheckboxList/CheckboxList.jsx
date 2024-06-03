@@ -44,6 +44,7 @@ export const CheckboxList = props => {
             return (
               <CheckboxItem
                 key={item}
+                name={item}
                 item={item}
                 checked={getChecked(item)}
                 handleInputChange={handleInputChange}

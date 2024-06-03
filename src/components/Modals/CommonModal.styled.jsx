@@ -12,7 +12,7 @@ export const Backdrop = styled.div`
   padding-left: 16px;
   padding-right: 16px;
   background-color: var(--modal-backdrop-color);
-  overflow: auto;
+  overflow: hidden;
   /* z-index: 1001; */
 `;
 
@@ -25,13 +25,15 @@ export const ModalContant = styled.div`
   max-width: 343px;
   z-index: 1400;
   margin-top: 16px;
-  max-height: calc(100% - 16px);
+  margin-bottom: 16px;
+  max-height: calc(100% - 32px);
   overflow-y: auto;
 
   @media screen and (min-width: 1440px) {
     padding: ${props => props.$padding};
-    width: auto;
-    max-width: fit-content;
+    width: fit-content;
+    max-width: 792px;
+    overflow-x: hidden;
     /* max-width: 80%; */
   }
 `;

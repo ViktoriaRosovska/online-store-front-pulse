@@ -8,8 +8,8 @@ export const StyledForm = styled(Form)`
   max-width: 295px;
 
   @media screen and (min-width: 1440px) {
-    width: 483px;
-    max-width: 483px;
+    width: 450px;
+    max-width: 450px;
     gap: 22px;
   }
 `;
