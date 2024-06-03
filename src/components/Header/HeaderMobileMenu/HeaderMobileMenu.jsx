@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ProfileMenu from "../../../components/UserAccount/ProfileMenu/ProfileMenu";
 import Menu from "../../HeaderMenu/HeaderMenu.jsx";
-import { Button, FooterMenuList, Wrapper } from "./HeaderMobileMenu.styled";
+import { Button, FooterMenuList } from "./HeaderMobileMenu.styled";
 import { ReactComponent as UpSvg } from "../../../assets/svg/up.svg";
 import { ReactComponent as DownSvg } from "../../../assets/svg/down.svg";
 import mobileFooterMenu from "../../../data/mobileFooterMenu.json";
@@ -36,12 +36,12 @@ const HeaderMobileMenu = ({ onClose }) => {
     setIsLoginModalOpen(true);
   };
 
-  const arrowSvg = isProfileMenuOpen ? <UpSvg /> : <DownSvg />;
+  const arrowSvg = isProfileMenuOpen ? <DownSvg /> :<UpSvg /> ;
   const toggleProfileMenu = () => {
     setIsProfileMenuOpen(!isProfileMenuOpen);
   };
   return (
-    <Wrapper>
+    <>
       <Menu onClose={onClose} />
       <Button
         type="button"
@@ -80,7 +80,7 @@ const HeaderMobileMenu = ({ onClose }) => {
           ))}
         </FooterMenuList>
       </nav>
-    </Wrapper>
+    </>
   );
 };
 
