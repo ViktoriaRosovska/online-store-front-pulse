@@ -61,23 +61,19 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 import { CheckboxItem } from "components/CheckboxList/CheckboxItem/ChechboxItem";
 
 import { StyledConditionsLinks } from "components/Links/Links.styled";
-
-const DELIVERY = {
-  department: "Доставка на відділення “Нова пошта”",
-  poshtomat: "Доставка в поштомат “Нова пошта”",
-  courier: "Кур’єрська доставка",
-};
+import { normalize_count_form } from "../../utils/normalize_count_form";
+import { deliveryPrice } from "../../utils/deliveryPrice";
+import { discountPrice } from "../../utils/discountPrice";
+import { DELIVERY } from "../../utils/DELIVERY";
 
 export const ShopCartDelivery = props => {
   let location = useLocation();
   const items = useSelector(selectUserShopCart);
-  console.log(items);
+  // console.log(items);
   const [selectCitySearch, setSelectCitySearch] = useState("");
   const [departments, setDepartments] = useState([]);
 
-  const [isSelectedBtn, setIsSelectedBtn] = useState(
-    "Доставка на відділення “Нова пошта”"
-  );
+  const [isSelectedBtn, setIsSelectedBtn] = useState(DELIVERY.department);
   const [findCities, setFindCities] = useState([]);
 
   const [deliveryType, setDeliveryType] = useState(DELIVERY.department);
@@ -137,20 +133,6 @@ export const ShopCartDelivery = props => {
       getDepartments(selectCitySearch?.Ref);
     }
     //getCities(value);
-  };
-
-  // setSelectSearch("Ірпінь");
-  const normalize_count_form = (number, words_arr) => {
-    number = Math.abs(number);
-    if (Number.isInteger(number)) {
-      let options = [2, 0, 1, 1, 1, 2];
-      return words_arr[
-        number % 100 > 4 && number % 100 < 20
-          ? 2
-          : options[number % 10 < 5 ? number % 10 : 5]
-      ];
-    }
-    return words_arr[1];
   };
 
   let countQuantity = 0;
@@ -250,11 +232,7 @@ export const ShopCartDelivery = props => {
                             >
                               Доставка на відділення “Нова пошта”
                             </StyledChoiseVariant>
-                            <p>
-                              {countPrice >= 4000
-                                ? "Безкоштовно"
-                                : "По тарифам перевізника"}
-                            </p>
+                            <p>{deliveryPrice(countPrice)}</p>
                           </StyledChoiceBtnParagraphWrapper>
                           <p>Безкоштовна доставка від 4000 грн</p>
                         </StyledChoiceDeliveryBtn>
@@ -271,11 +249,7 @@ export const ShopCartDelivery = props => {
                             >
                               Кур’єрська доставка
                             </StyledChoiseVariant>
-                            <p>
-                              {countPrice >= 4000
-                                ? "Безкоштовно"
-                                : "По тарифам перевізника"}
-                            </p>
+                            <p>{deliveryPrice(countPrice)}</p>
                           </StyledChoiceBtnParagraphWrapper>
                           <p>Безкоштовна доставка від 4000 грн</p>
                         </StyledChoiceDeliveryBtn>
@@ -292,11 +266,7 @@ export const ShopCartDelivery = props => {
                             >
                               Доставка в поштомат “Нова пошта”
                             </StyledChoiseVariant>
-                            <p>
-                              {countPrice >= 4000
-                                ? "Безкоштовно"
-                                : "По тарифам перевізника"}
-                            </p>
+                            <p>{deliveryPrice(countPrice)}</p>
                           </StyledChoiceBtnParagraphWrapper>
 
                           <p>Безкоштовна доставка від 4000 грн</p>
@@ -390,7 +360,6 @@ export const ShopCartDelivery = props => {
                       <StyledCheckboxWrapper>
                         <StyledCheckboxLabel>
                           <CheckboxItem
-                            // type="checkbox"
                             required
                             name="policy"
                             item=""
@@ -398,8 +367,6 @@ export const ShopCartDelivery = props => {
                             handleInputChange={e =>
                               formik.setFieldValue("policy", e.target.checked)
                             }
-
-                            // checked={e => getChecked(e.target)}
                           />
                           <div
                             style={{
@@ -479,7 +446,7 @@ export const ShopCartDelivery = props => {
                   </div>
                   <span>
                     {isPromoValid
-                      ? countPrice - (discount * countPrice) / 100
+                      ? discountPrice(countPrice, discount)
                       : countPrice}
                     &nbsp;грн
                   </span>
