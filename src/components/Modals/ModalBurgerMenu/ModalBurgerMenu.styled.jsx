@@ -25,4 +25,14 @@ export const Modal = styled.div`
   background-color: #ffff;
   z-index: 999;
   overflow-y: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--grey-text-color);
+  &::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-clip: padding-box;
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
 `;

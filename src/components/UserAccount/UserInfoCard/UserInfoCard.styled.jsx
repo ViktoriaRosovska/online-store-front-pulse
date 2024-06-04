@@ -21,6 +21,7 @@ export const Image = styled.div`
   height: 80px;
   border-radius: 50%;
   background-color: var(--grey-img-bg-color);
+  overflow: hidden;
 `;
 
 export const Button = styled.button`

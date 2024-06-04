@@ -19,7 +19,7 @@ import { useDispatch } from "react-redux";
 import { formatPhoneNumber } from "../formHelpers/formatPhoneNumber";
 import { Notify } from "notiflix";
 
-const UserEditForm = () => {
+const UserEditForm = ({ selectedFile }) => {
   const dispatch = useDispatch();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { data, isLoading, refetch } = useFetchCurrentUserQuery(undefined, {
@@ -34,10 +34,10 @@ const UserEditForm = () => {
     user?.phone === "0000000000" ? "" : formatPhoneNumber(user?.phone);
 
   const onSubmit = async values => {
-    const updatedUser = {};
+    const formData = new FormData();
 
     if (values.phone !== "") {
-      values.phone = values.phone.replace(/[\s()-]/g, "");
+      values.phone = values?.phone?.replace(/[\s()-]/g, "");
     }
 
     Object.keys(values).forEach(key => {
@@ -46,12 +46,16 @@ const UserEditForm = () => {
         values[key] !== user[key] &&
         values[key] !== ""
       ) {
-        updatedUser[key] = values[key];
+        formData.append(key, values[key]);
       }
     });
 
+    if (selectedFile) {
+      formData.append("avatar", selectedFile);
+    }
+
     try {
-      const { data } = await userUpdate(updatedUser)
+      const { data } = await userUpdate(formData)
         .unwrap()
         .then(res => {
           Notify.success("Особисті данні оновлені", {
@@ -66,7 +70,7 @@ const UserEditForm = () => {
             });
           }
         });
-      
+
       const updatedPhoneNumber =
         data?.user?.phone === "0000000000"
           ? ""
@@ -122,6 +126,10 @@ const UserEditForm = () => {
     password: "",
     passwordCheck: "",
   };
+
+  // const handleFileChange = (event) => {
+  //   setSelectedFile(event.target.files[0])
+  // }
 
   return (
     <Box>
@@ -187,6 +195,7 @@ const UserEditForm = () => {
               type="password"
               placeholder="Пароль"
             />
+            {/* <input type="file" accept="image/*" onChange={handleFileChange} /> */}
             <Button type="submit">Зберегти</Button>
           </StyledForm>
         )}

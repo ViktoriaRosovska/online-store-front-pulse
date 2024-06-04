@@ -16,12 +16,12 @@ const ModalBurgerMenu = ({ onClose, children }) => {
   };
 
   useEffect(() => {
-    document.body.classList.add('no-scroll')
+    document.body.classList.add("no-scroll");
 
     return () => {
-      document.body.classList.remove('no-scroll')
-    }
-  }, [])
+      document.body.classList.remove("no-scroll");
+    };
+  }, []);
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
