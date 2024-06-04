@@ -1,4 +1,7 @@
 import { Formik } from "formik";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { Notify } from "notiflix";
 import { userEditValidationSchema } from "../formHelpers/formValidation";
 import CustomInput from "../formElements/CustomInput/CustomInput";
 import { Box, Button, DeleteButton, StyledForm } from "./UserEditForm.styled";
@@ -10,14 +13,11 @@ import {
   useUserDeleteMutation,
   useUserUpdateMutation,
 } from "../../../redux/user/userSlice/userApi";
-import { useState } from "react";
 import { Portal } from "components/Modals/helpersForModal/modalPortal";
 import CommonModal from "components/Modals/CommonModal";
 import { Title } from "components/Typography/Typography.styled";
 import ModalDeleteUser from "components/Modals/ModalDeleteUser/ModalDeleteUser";
-import { useDispatch } from "react-redux";
 import { formatPhoneNumber } from "../formHelpers/formatPhoneNumber";
-import { Notify } from "notiflix";
 
 const UserEditForm = ({ selectedFile }) => {
   const dispatch = useDispatch();

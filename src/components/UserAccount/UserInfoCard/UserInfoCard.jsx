@@ -1,6 +1,13 @@
 import { useRef, useState } from "react";
 import { useFetchCurrentUserQuery } from "../../../redux/auth";
-import { Box, Button, Image, Wrapper } from "./UserInfoCard.styled";
+import {
+  Box,
+  Button,
+  GeneratedAvatar,
+  Image,
+  Wrapper,
+} from "./UserInfoCard.styled";
+import { generateAvatarFromName } from "../../../utils/generateAvatarFromName";
 
 const UserInfoCard = ({ onFileSelect }) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -27,13 +34,17 @@ const UserInfoCard = ({ onFileSelect }) => {
       <Box>
         <Image>
           {selectedFile ? (
-            <img src={URL.createObjectURL(selectedFile)} />
+            <img src={URL.createObjectURL(selectedFile)} alt="user avatar" />
+          ) : user?.avatar ? (
+            <img src={user?.avatar || ""} alt="user avatar" />
           ) : (
-            <img src={user?.avatar || ""} alt="" />
+            <GeneratedAvatar>
+              {generateAvatarFromName(user?.firstName, user?.lastName)}
+            </GeneratedAvatar>
           )}
         </Image>
         <Button type="button" onClick={handleFileClick}>
-          <svg width={24} height={24}>
+          <svg>
             <use xlinkHref="../icons/profile-icons/profile-icons-sprite.svg#icon-edit"></use>
           </svg>
           <input
