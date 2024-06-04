@@ -17,23 +17,17 @@ import { Formik } from "formik";
 import CustomInput from "components/form/formElements/CustomInput/CustomInput";
 import { useSelector } from "react-redux";
 import { selectUserShopCart } from "../../redux/user/userShopCart/userShopCartSelector";
+import { normalize_count_form } from "../../utils/normalize_count_form";
+import useMediaQuery from "../../hooks/useMediaQuery";
+import { PaymentRadioGroup } from "components/PaymentRadioGroup";
+import { StyledDeliveryTitle } from "./ShopCartDelivery.styled";
 
 export const ShopCartPayment = props => {
+  const isDesktop = useMediaQuery("(min-width: 1440px)");
   const location = useLocation();
-  const items = useSelector(selectUserShopCart);
-
-  const normalize_count_form = (number, words_arr) => {
-    number = Math.abs(number);
-    if (Number.isInteger(number)) {
-      let options = [2, 0, 1, 1, 1, 2];
-      return words_arr[
-        number % 100 > 4 && number % 100 < 20
-          ? 2
-          : options[number % 10 < 5 ? number % 10 : 5]
-      ];
-    }
-    return words_arr[1];
-  };
+  const items = useSelector(selectUserShopCart).products;
+  const shopCart = useSelector(selectUserShopCart);
+  console.log(shopCart);
 
   let countQuantity = 0;
   const countPrice = items?.reduce((acc, el) => {
@@ -57,6 +51,8 @@ export const ShopCartPayment = props => {
                   el={el}
                   key={el._id + "#" + idx}
                   showCloseBtn={false}
+                  showDeliveryPrice={isDesktop}
+                  device={isDesktop ? "desktop" : "mobile"}
                 />
               );
             })}
@@ -98,36 +94,20 @@ export const ShopCartPayment = props => {
                 />
               </form>
             </Formik>
-            <h3>Адреса доставки</h3>
-            <p>Відділення №2: вул. Бережанська, 9 (Оболонь Лугова)</p>
-            <p>м. Київ</p>
-            <p>+380 96 452 31 45</p>
-            <h3>Умови доставки</h3>
-            <p>09.03 - 10.03</p>
-            <p>Доставка на відділення «Нова пошта»</p>
-            <p>Безкоштовно</p>
-            <h3>Оплата та підтвердження замовлення</h3>
+            <StyledOrderTitle>Адреса доставки</StyledOrderTitle>
+            <p>{shopCart.address}</p>
+            <p>{shopCart.city}</p>
+            <p style={{ color: "red" }}>+380 96 452 31 45</p>
+            <StyledOrderTitle>Умови доставки</StyledOrderTitle>
+            <p style={{ color: "red" }}>09.03 - 10.03</p>
+            <p>{shopCart.deliveryType}</p>
+            <p style={{ color: "red" }}>Безкоштовно</p>
+            <StyledDeliveryTitle>
+              Оплата та підтвердження замовлення
+            </StyledDeliveryTitle>
             <p>Вибери зручний спосіб оплати</p>
-            <label>
-              <input type="checkbox" />
-              Оплатити карткою онлайн
-            </label>
-            aбо
-            <label>
-              <input type="checkbox" />
-              Обрати збережену картку
-            </label>
-            <Formik>
-              <form>
-                <CustomInput
-                  type="text"
-                  label="Номер картки"
-                  name="cardNumber"
-                />
-                <CustomInput type="text" label="Термін дії" name="validity" />
-                <CustomInput type="text" label="CVV" name="cardCVV" />
-              </form>
-            </Formik>
+            <PaymentRadioGroup />
+
             <StyledShopCartButton
               text={"Сплатити"}
               route={ROUTES.SHOPCARTPAYMENT}
