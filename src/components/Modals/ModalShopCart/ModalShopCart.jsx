@@ -24,18 +24,6 @@ export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
   //   navigate(`${ROUTES.SHOPCART}`, { state: { from: location } });
   // };
 
-  // const handleAddToCart = () => {
-  //   // Создаем объект с данными о продукте
-  //   const product = {
-  //     id: productData.id, // Уникальный идентификатор продукта
-  //     name: name,
-  //     price: price,
-  //     color: categories.color[0].name,
-  //     size: sizeValue,
-  //     quantity: 1, // Количество, в данном случае 1
-  //     imageUrl: imgGallery[0], // URL изображения
-  //   };
-
   if (!productData) return null;
 
   const { name, price, categories, imgGallery } = productData;

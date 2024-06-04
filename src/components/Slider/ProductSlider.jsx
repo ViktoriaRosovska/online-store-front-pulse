@@ -49,7 +49,12 @@ const ProductSlider = props => {
         loop={"true"}
         loading="lazy"
         breakpoints={JSON.stringify({
-          320: {
+          310: {
+            slidesPerView: 2,
+            spaceBetween: 12,
+            slidesPerGroup: 2,
+          },
+          375: {
             slidesPerView: 2,
             spaceBetween: 24,
             slidesPerGroup: 2,

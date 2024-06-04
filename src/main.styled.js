@@ -20,11 +20,15 @@ const ContentWrapper = styled.div`
 `;
 
 const Container = styled.div`
-position: relative;
+  position: relative;
   width: 100%;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 0 5px;
   /* border: 1px solid red; */
+  @media screen and (min-width: 320px) {
+    width: 320px;
+    padding: 0 10px;
+  }
   @media screen and (min-width: 375px) {
     width: 375px;
     padding: 0 24px;
