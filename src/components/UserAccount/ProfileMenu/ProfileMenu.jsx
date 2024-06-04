@@ -25,9 +25,7 @@ function ProfileMenu({ onClose, isProfile }) {
   const navigate = useNavigate()
   const dispatch = useDispatch();
   const [logoutUser] = useLogoutUserMutation();
-  const { data,
-    // isLoading
-  } = useFetchCurrentUserQuery();
+  const { data} = useFetchCurrentUserQuery();
   const user = data?.user;
 
   const basePath = isProfile ? "profile/" : "";
@@ -43,20 +41,16 @@ function ProfileMenu({ onClose, isProfile }) {
       .finally(onClose);
   };
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-
   return (
     <Box>
       {!isProfile && (
         <UserCard>
           <Avatar>
-            <img src="" alt="" />
+            <img src={user?.avatar || ""} alt="" />
           </Avatar>
           <div>
             <p>
-              {user?.firstNane} {user?.lastName}
+              {user?.firstName} {user?.lastName}
             </p>
             <p>{user?.email}</p>
           </div>

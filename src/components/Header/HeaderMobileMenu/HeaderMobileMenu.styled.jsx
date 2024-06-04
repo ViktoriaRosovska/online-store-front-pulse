@@ -1,10 +1,5 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
-  max-height: 634px;
-  overflow-y: auto;
-`
-
 export const Button = styled.button`
   display: flex;
   align-items: center;

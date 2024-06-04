@@ -15,7 +15,7 @@ export const Modal = styled.div`
   top: 72px;
   left: 0;
   width: clamp(299px, 80%, 320px);
-  height: auto;
+  max-height: calc(100vh - 88px);
   padding: 24px;
   padding-bottom: 24px;
   border: 1px solid var(--grey-text-color);
@@ -24,4 +24,15 @@ export const Modal = styled.div`
   border-bottom-right-radius: 30px;
   background-color: #ffff;
   z-index: 999;
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--grey-text-color);
+  &::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-clip: padding-box;
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
 `;
