@@ -59,9 +59,9 @@ export const Button = styled.button`
   }
 
   @media screen and (min-width: 1440px) {
-     svg {
-    width: 32px;
-    height: 32px;
-  }
+    svg {
+      width: 32px;
+      height: 32px;
+    }
   }
 `;
