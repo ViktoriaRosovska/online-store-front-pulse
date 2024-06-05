@@ -1,6 +1,6 @@
 import Select from "react-select";
 
-export const CitySelect = ({ options, onChange, onSearch, placeholder }) => {
+export const StreetSelect = ({ options, onChange, onSearch, placeholder }) => {
   const style = {
     control: baseStyles => ({
       ...baseStyles,
@@ -88,13 +88,7 @@ export const CitySelect = ({ options, onChange, onSearch, placeholder }) => {
       modifiedOptions.push({
         ...option,
         value: option.Ref,
-        label:
-          option.SettlementTypeDescription +
-          " " +
-          option.Description +
-          ", " +
-          option.AreaDescription +
-          " обл",
+        label: option.StreetsType + " " + option.Description,
       });
     }
   }

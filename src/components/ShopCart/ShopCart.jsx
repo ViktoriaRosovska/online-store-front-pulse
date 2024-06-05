@@ -40,8 +40,12 @@ import {
   selectPromoValid,
 } from "../../redux/promoCode/promoCodeSelector";
 import useMediaQuery from "../../hooks/useMediaQuery";
+import { discountPrice } from "../../utils/discountPrice";
+import { addShopCartPromoCode } from "../../redux/user/userShopCart/userShopCartSlice";
 export const ShopCart = props => {
-  const items = useSelector(selectUserShopCart);
+  const items = useSelector(selectUserShopCart).products;
+  const userShopCart = useSelector(selectUserShopCart);
+  console.log("userShopCart", userShopCart);
   // console.log(items);
   let location = useLocation();
   const dispatch = useDispatch();
@@ -81,13 +85,6 @@ export const ShopCart = props => {
     return words_arr[1];
   };
 
-  // let totalQuantity = 0;
-  // let totalPrice = 0;
-  // for (const el of items) {
-  //   totalQuantity += el.quantity;
-  //   totalPrice += el.price * el.quantity;
-  // }
-
   let countQuantity = 0;
   const countPrice = items?.reduce((acc, el) => {
     if (el) {
@@ -113,20 +110,27 @@ export const ShopCart = props => {
       }
     },
   });
-  const discount = useSelector(selectPromoCodeDiscount);
-  console.log(discount);
-  const handleChangePromo = e => {
-    // console.log(e.target.value);
-    dispatch(setPromoCode(e.target.value));
-    checkPromoCode(e.target.value);
-  };
-
   const isPromoExpired = useSelector(selectPromoExpired);
   const isPromoInvalid = useSelector(selectPromoInvalid);
   const isPromoValid = useSelector(selectPromoValid);
   const promoCode = useSelector(selectPromoCode);
 
-  const isDeskctop = useMediaQuery("(min-width: 1440px)");
+  const isDesktop = useMediaQuery("(min-width: 1440px)");
+  const discount = useSelector(selectPromoCodeDiscount);
+  console.log(discount);
+  const handleChangePromo = e => {
+    // console.log(e.target.value);
+    dispatch(setPromoCode(e.target.value));
+
+    checkPromoCode(e.target.value);
+
+    if (isPromoValid) {
+      dispatch(addShopCartPromoCode(e.target.value));
+    } else {
+      dispatch(addShopCartPromoCode(""));
+    }
+  };
+
   return (
     <>
       <Title>{props.title}</Title>
@@ -141,7 +145,7 @@ export const ShopCart = props => {
                     key={el._id + "#" + idx}
                     showCloseBtn={true}
                     showDeliveryPrice={false}
-                    device={isDeskctop ? "desktop" : "mobile"}
+                    device={isDesktop ? "desktop" : "mobile"}
                   />
                 );
               })}
@@ -169,7 +173,7 @@ export const ShopCart = props => {
                     </div>
                     <span>
                       {isPromoValid
-                        ? countPrice - (discount * countPrice) / 100
+                        ? discountPrice(countPrice, discount)
                         : countPrice}
                       &nbsp;грн
                     </span>

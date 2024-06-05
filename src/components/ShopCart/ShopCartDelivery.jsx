@@ -21,6 +21,7 @@ import { ShopCard } from "./ShopCard/ShopCard";
 import {
   useGetCitiesMutation,
   useGetDepartmentsMutation,
+  useGetStreetsMutation,
 } from "../../redux/novaPoshta/novaPoshtaAPI";
 import { useState } from "react";
 
@@ -36,8 +37,10 @@ import {
   StyledDeliveryTitle,
   StyledOrderDeliveryWrapper,
   StyledPromoCodeForm,
+  StyledSelectLabel,
+  StyledSelectWrapper,
 } from "./ShopCartDelivery.styled";
-import { useFetchCurrentUserQuery } from "../../redux/auth";
+// import { useFetchCurrentUserQuery } from "../../redux/auth";
 import { useLazyCheckPromoCodeQuery } from "../../redux/products/productsApi";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
 
@@ -65,74 +68,96 @@ import { normalize_count_form } from "../../utils/normalize_count_form";
 import { deliveryPrice } from "../../utils/deliveryPrice";
 import { discountPrice } from "../../utils/discountPrice";
 import { DELIVERY } from "../../utils/DELIVERY";
+import { DepartmentSelect } from "./DepartmentSelect";
+import { StreetSelect } from "./StreetSelect";
+import {
+  addDeliveryType,
+  addShopCartAddress,
+  addShopCartCity,
+  addShopCartPriceSum,
+  addShopCartPromoCode,
+  addShopCartStreet,
+} from "../../redux/user/userShopCart/userShopCartSlice";
 
 export const ShopCartDelivery = props => {
   let location = useLocation();
-  const items = useSelector(selectUserShopCart);
+  const items = useSelector(selectUserShopCart).products;
   // console.log(items);
+  const userShopCart = useSelector(selectUserShopCart);
+  console.log(userShopCart);
   const [selectCitySearch, setSelectCitySearch] = useState("");
-  const [departments, setDepartments] = useState([]);
+  // const [departments, setDepartments] = useState([]);
 
   const [isSelectedBtn, setIsSelectedBtn] = useState(DELIVERY.department);
-  const [findCities, setFindCities] = useState([]);
+  // const [findCities, setFindCities] = useState([]);
+  const [selectDepartmentSearch, setSelectDepartmentSearch] = useState("");
 
   const [deliveryType, setDeliveryType] = useState(DELIVERY.department);
 
-  const [getCities, { data, isError, isLoading }] = useGetCitiesMutation();
+  const [
+    getCities,
+    {
+      data,
+      // isError, isLoading
+    },
+  ] = useGetCitiesMutation();
   const [
     getDepartments,
     {
       data: departmentData,
-      isError: departmentIsError,
-      isLoading: departmentIsLoading,
+      // isError: departmentIsError,
+      // isLoading: departmentIsLoading,
     },
   ] = useGetDepartmentsMutation();
 
-  // getDepartments("8d5a980d-391c-11dd-90d9-001a92567626");
-  console.log(departmentData);
-
-  const userData = useFetchCurrentUserQuery();
+  const [getStreets, { data: streetsData }] = useGetStreetsMutation();
+  console.log("streets", streetsData);
+  // const userData = useFetchCurrentUserQuery();
   const dispatch = useDispatch();
 
   const handleChangePromo = e => {
     dispatch(setPromoCode(e.target.value));
     checkPromoCode(e.target.value);
+    if (isPromoValid) {
+      dispatch(addShopCartPromoCode(promoCode));
+    } else {
+      dispatch(addShopCartPromoCode(""));
+    }
   };
 
-  if (data) {
-    if (data.data !== findCities) {
-      setFindCities(data.data);
-    }
+  const departmentTypeFilter = (data, type) => {
+    const departmentsList = data?.data?.filter(
+      el => el.CategoryOfWarehouse === type
+    );
+    // console.log(departmentsList);
+    return departmentsList;
+  };
 
-    //console.log(data.data);
-  }
-
-  if (departmentData) {
-    if (departmentData.data !== departments) {
-      console.log(departmentData);
-      const departmentsList = [
-        ...departmentData.data.filter(
-          el => el.CategoryOfWarehouse === "Branch"
-        ),
-      ];
-      console.log(departmentsList);
-      setDepartments(departmentsList);
-    }
-  }
-  console.log("departments", departments);
-
+  // console.log("cities", data);
   const onSelectCitySearch = value => {
-    //setSelectSearch(value);
     getCities(value);
+  };
+
+  const onSelectDepartmentSearch = (ref, value) => {
+    getDepartments(ref, value);
   };
 
   const onSelectChange = value => {
     console.log("onSelectChange", value);
     setSelectCitySearch(value);
-    if (selectCitySearch && selectCitySearch.Ref) {
-      getDepartments(selectCitySearch?.Ref);
-    }
-    //getCities(value);
+    dispatch(addShopCartCity(value?.label));
+    getDepartments(value?.Ref, "");
+    getStreets(value?.Ref, "");
+  };
+
+  const onSelectDepartmentsChange = value => {
+    // console.log("onSelectDepartmentChange", value);
+    setSelectDepartmentSearch(value);
+    dispatch(addShopCartAddress(value.label));
+  };
+
+  const onSelectStreetSearch = value => {
+    dispatch(addShopCartStreet(value.label));
   };
 
   let countQuantity = 0;
@@ -155,7 +180,7 @@ export const ShopCartDelivery = props => {
         }
       } else if (data) {
         dispatch(setPromoStatus(PromoValid));
-        console.log(data);
+        // console.log(data);
         dispatch(setPromoCodeDiscount(data.discount));
       }
     },
@@ -168,6 +193,14 @@ export const ShopCartDelivery = props => {
 
   const isDesktop = useMediaQuery("(min-width: 1440px)");
 
+  // const countPriceSum = price => {
+  //   let priceSum = 0;
+  //   if (PromoValid) {
+  //     priceSum = discountPrice(price, discount);
+  //   } else priceSum = price;
+  //   dispatch(addShopCartPriceSum(priceSum));
+  //   return priceSum;
+  // };
   return (
     <>
       <Title>{props.title}</Title>
@@ -179,7 +212,12 @@ export const ShopCartDelivery = props => {
                 name: "",
                 city: "",
                 phone: "",
-                department: "",
+                address: "",
+                street: "",
+                house: "",
+                numberHoll: "",
+                comments: "",
+                flat: "",
                 surname: "",
                 code: "",
                 policy: false,
@@ -194,16 +232,12 @@ export const ShopCartDelivery = props => {
                       <StyledDeliveryTitle>
                         Обери адресу доставки
                       </StyledDeliveryTitle>
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          gap: "8px",
-                        }}
-                      >
-                        <label htmlFor="city">Населений пункт</label>
+                      <StyledSelectWrapper>
+                        <StyledSelectLabel htmlFor="city">
+                          Населений пункт
+                        </StyledSelectLabel>
                         <CitySelect
-                          options={findCities}
+                          options={data?.data}
                           placeholder={"Введіть населений пункт"}
                           onChange={e => {
                             onSelectChange(e);
@@ -213,7 +247,7 @@ export const ShopCartDelivery = props => {
                           value={selectCitySearch}
                           name="city"
                         />
-                      </div>
+                      </StyledSelectWrapper>
 
                       <StyledChoiceBtnWrapper>
                         <StyledChoiceDeliveryBtn
@@ -221,7 +255,8 @@ export const ShopCartDelivery = props => {
                           $isSelectedBtn={isSelectedBtn === DELIVERY.department}
                           onClick={() => {
                             setIsSelectedBtn(DELIVERY.department);
-                            setDeliveryType(DELIVERY.department);
+                            // setDeliveryType(DELIVERY.department);
+                            dispatch(addDeliveryType(DELIVERY.department));
                           }}
                         >
                           <StyledChoiceBtnParagraphWrapper>
@@ -239,7 +274,10 @@ export const ShopCartDelivery = props => {
                         <StyledChoiceDeliveryBtn
                           $isSelectedBtn={isSelectedBtn === DELIVERY.courier}
                           type="button"
-                          onClick={() => setIsSelectedBtn(DELIVERY.courier)}
+                          onClick={() => {
+                            setIsSelectedBtn(DELIVERY.courier);
+                            dispatch(addDeliveryType(DELIVERY.courier));
+                          }}
                         >
                           <StyledChoiceBtnParagraphWrapper>
                             <StyledChoiseVariant
@@ -256,7 +294,10 @@ export const ShopCartDelivery = props => {
                         <StyledChoiceDeliveryBtn
                           $isSelectedBtn={isSelectedBtn === DELIVERY.poshtomat}
                           type="button"
-                          onClick={() => setIsSelectedBtn(DELIVERY.poshtomat)}
+                          onClick={() => {
+                            setIsSelectedBtn(DELIVERY.poshtomat);
+                            dispatch(addDeliveryType(DELIVERY.poshtomat));
+                          }}
                         >
                           <StyledChoiceBtnParagraphWrapper>
                             <StyledChoiseVariant
@@ -277,12 +318,31 @@ export const ShopCartDelivery = props => {
                           <StyledDeliveryTitle>
                             Адреса відділення
                           </StyledDeliveryTitle>
-                          <CustomInput
-                            type="text"
-                            label="Оберіть номер відділення"
-                            placeholder="Номер відділення"
-                            name="department"
-                          />
+
+                          <StyledSelectWrapper>
+                            <StyledSelectLabel htmlFor="address">
+                              Оберіть номер відділення
+                            </StyledSelectLabel>
+                            <DepartmentSelect
+                              options={departmentTypeFilter(
+                                departmentData,
+                                "Branch"
+                              )}
+                              placeholder="Номер відділення"
+                              onChange={e => {
+                                onSelectDepartmentsChange(e);
+                                formik.setFieldValue("address", e.label);
+                              }}
+                              onSearch={e =>
+                                onSelectDepartmentSearch(
+                                  selectCitySearch?.Ref,
+                                  e
+                                )
+                              }
+                              value={selectDepartmentSearch}
+                              name="address"
+                            />
+                          </StyledSelectWrapper>
                         </>
                       )}
                       {isSelectedBtn === DELIVERY.courier && (
@@ -290,27 +350,39 @@ export const ShopCartDelivery = props => {
                           <StyledDeliveryTitle>
                             Адреса доставки
                           </StyledDeliveryTitle>
+
+                          <StyledSelectWrapper>
+                            <StyledSelectLabel htmlFor="street">
+                              Вкажіть назву вулиці
+                            </StyledSelectLabel>
+                            <StreetSelect
+                              options={streetsData?.data}
+                              placeholder="Вулиця"
+                              onChange={e => {
+                                onSelectChange(e);
+                                formik.setFieldValue("street", e.label);
+                              }}
+                              onSearch={e => onSelectStreetSearch(e)}
+                              // value={selectStreetSearch}
+                              name="street"
+                            />
+                          </StyledSelectWrapper>
+
                           <CustomInput
                             type="text"
-                            label="Введіть вулицю"
-                            placeholder="Вулиця"
-                            name="street"
-                          />
-                          <CustomInput
-                            type="text"
-                            label="Введіть номер будинку"
+                            label="Вкажіть номер будинку"
                             placeholder="Номер будинку"
                             name="house"
                           />
                           <CustomInput
                             type="text"
-                            label="Введіть номер під'їзду"
+                            label="Вкажіть номер під'їзду"
                             placeholder="Номер під'їзду"
                             name="numberHoll"
                           />
                           <CustomInput
                             type="text"
-                            label="Введіть номер квартири"
+                            label="Вкажіть номер квартири"
                             placeholder="Номер квартири"
                             name="flat"
                           />
@@ -321,21 +393,36 @@ export const ShopCartDelivery = props => {
                             type="text"
                             $textarea
                             placeholder="Напишіть коментар"
-                            label={"Коментарі для кур'єра"}
+                            label="Коментарі для кур'єра"
                           />
                         </>
                       )}
                       {isSelectedBtn === DELIVERY.poshtomat && (
                         <>
-                          <StyledDeliveryTitle>
-                            Номер поштомату
-                          </StyledDeliveryTitle>
-                          <CustomInput
-                            type="text"
-                            label="Оберіть номер поштомату"
-                            placeholder="Номер поштомату"
-                            name="poshtomat"
-                          />
+                          <StyledSelectWrapper>
+                            <StyledSelectLabel htmlFor="address">
+                              Оберіть номер поштомату
+                            </StyledSelectLabel>
+                            <DepartmentSelect
+                              options={departmentTypeFilter(
+                                departmentData,
+                                "Postomat"
+                              )}
+                              placeholder="Номер поштомату"
+                              onChange={e => {
+                                onSelectDepartmentsChange(e);
+                                formik.setFieldValue("address", e.label);
+                              }}
+                              onSearch={e =>
+                                onSelectDepartmentSearch(
+                                  selectCitySearch?.Ref,
+                                  e
+                                )
+                              }
+                              value={selectDepartmentSearch}
+                              name="address"
+                            />
+                          </StyledSelectWrapper>
                         </>
                       )}
                       <StyledDeliveryTitle>Особисті дані</StyledDeliveryTitle>
@@ -445,6 +532,7 @@ export const ShopCartDelivery = props => {
                     <StyledPDVText>Включно з ПДВ</StyledPDVText>
                   </div>
                   <span>
+                    {/* {countPriceSum(countPrice) + " грн"} */}
                     {isPromoValid
                       ? discountPrice(countPrice, discount)
                       : countPrice}

@@ -110,6 +110,19 @@ const StyledCheckboxWrapper = styled.div`
     width: 100%;
   }
 `;
+
+const StyledSelectLabel = styled.label`
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+`;
+
+const StyledSelectWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
 export {
   StyledChoiceDeliveryBtn,
   StyledChoiseVariant,
@@ -121,4 +134,6 @@ export {
   StyledPromoCodeForm,
   StyledCheckboxLabel,
   StyledCheckboxWrapper,
+  StyledSelectLabel,
+  StyledSelectWrapper,
 };

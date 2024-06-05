@@ -2,14 +2,23 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const CardWrapper = styled.div`
-  width: 152px;
-
+  @media screen and (max-width: 374.98px) {
+    width: 145px;
+  }
+  @media screen and (min-width: 375px) {
+    width: 152px;
+  }
   @media screen and (min-width: 1440px) {
     width: ${props => (props.$cardSlider ? "340px" : "320px")};
   }
 `;
 const CardImage = styled.img`
-  width: 152px;
+  @media screen and (max-width: 374.98px) {
+    width: 145px;
+  }
+  @media screen and (min-width: 375px) {
+    width: 152px;
+  }
   height: ${props => (props.$cardSlider ? "167px" : "auto")};
   @media screen and (min-width: 1440px) {
     width: ${props => (props.$cardSlider ? "340px" : "320px")};
@@ -17,6 +26,9 @@ const CardImage = styled.img`
   }
 `;
 const ImageWrapper = styled.div`
+  /* @media screen and (max-width: 374.98px) {
+    width: 145px;
+  } */
   position: relative;
   border-radius: 16px;
   overflow: hidden;
