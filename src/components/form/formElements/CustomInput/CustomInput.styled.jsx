@@ -81,7 +81,7 @@ export const StyledMaskedInput = styled(MaskedInput)`
      padding-right: 38px;
    `}
   }
-`
+`;
 
 export const InputWrapper = styled.div`
   display: flex;

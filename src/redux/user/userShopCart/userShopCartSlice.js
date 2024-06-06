@@ -11,6 +11,7 @@ const userShopCartSlice = createSlice({
       address: "",
       deliveryType: DELIVERY.department,
       priceSum: 0,
+      countQuantity: 0,
     },
     isLoading: true,
     isLoggedIn: false,
@@ -25,11 +26,15 @@ const userShopCartSlice = createSlice({
       if (item) item.quantity += payload.quantity;
       else
         state.userShopCart.products = [payload, ...state.userShopCart.products];
+      state.userShopCart.priceSum += payload.price;
+      state.userShopCart.countQuantity += 1;
     },
     deleteUserShopCartItem(state, { payload }) {
       state.userShopCart.products = state.userShopCart.products.filter(
         el => el._id !== payload._id || el.size !== payload.size
       );
+      state.userShopCart.priceSum -= payload.price;
+      state.userShopCart.countQuantity -= 1;
       console.log("deleteUserShopCartItem", payload, state.userShopCart);
     },
     incrementQuantity(state, { payload }) {
@@ -37,12 +42,16 @@ const userShopCartSlice = createSlice({
         el => el._id === payload._id && el.size === payload.size
       );
       if (item) ++item.quantity;
+      state.userShopCart.priceSum += payload.price;
+      state.userShopCart.countQuantity += 1;
     },
     decrementQuantity(state, { payload }) {
       const item = state.userShopCart.products.find(
         el => el._id === payload._id && el.size === payload.size
       );
       if (item && item.quantity > 1) --item.quantity;
+      state.userShopCart.priceSum -= payload.price;
+      state.userShopCart.countQuantity -= 1;
     },
     addShopCartPromoCode(state, { payload }) {
       state.userShopCart.code = payload;
@@ -53,9 +62,7 @@ const userShopCartSlice = createSlice({
     addDeliveryType(state, { payload }) {
       state.userShopCart.deliveryType = payload;
     },
-    addShopCartPriceSum(state, { payload }) {
-      state.userShopCart.priceSum = +payload;
-    },
+
     addShopCartAddress(state, { payload }) {
       state.userShopCart.address = payload;
     },

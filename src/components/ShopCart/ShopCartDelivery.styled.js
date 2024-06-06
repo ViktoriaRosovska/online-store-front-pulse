@@ -123,6 +123,21 @@ const StyledSelectWrapper = styled.div`
   flex-direction: column;
   gap: 8px;
 `;
+
+const StyledNameWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  /* width: 100%; */
+  @media screen and (min-width: 1440px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    & div {
+      width: 280px;
+    }
+  }
+`;
+
 export {
   StyledChoiceDeliveryBtn,
   StyledChoiseVariant,
@@ -136,4 +151,5 @@ export {
   StyledCheckboxWrapper,
   StyledSelectLabel,
   StyledSelectWrapper,
+  StyledNameWrapper,
 };

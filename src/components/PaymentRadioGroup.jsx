@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { CustomRadioButton } from "./CustomRadioButton/CustomRadioButton";
 import { Formik } from "formik";
 import CustomInput from "./form/formElements/CustomInput/CustomInput";
@@ -6,13 +7,17 @@ import { ReactComponent as Visa } from "../assets/svg/visa.svg";
 import { ReactComponent as Mastercard } from "../assets/svg/master.svg";
 import { ReactComponent as ApplePay } from "../assets/svg/applePay.svg";
 import { ReactComponent as GooglePay } from "../assets/svg/googlePay.svg";
+import { ReactComponent as GooglePayBtn } from "../assets/svg/googlePay_btn.svg";
 import {
+  StyledCardForm,
   StyledCardIconWrapper,
+  StyledOnlinePaymentWrapper,
   StyledPayButton,
 } from "./CustomRadioButton/CustomRadioButton.styled";
 
 export const PaymentRadioGroup = () => {
   const [selected, setSelected] = useState("card");
+
   return (
     <>
       <CustomRadioButton
@@ -21,7 +26,7 @@ export const PaymentRadioGroup = () => {
         text="Оплатити карткою онлайн"
         onChange={setSelected}
       >
-        <div>
+        <StyledOnlinePaymentWrapper>
           <StyledCardIconWrapper>
             <button>
               <Visa />
@@ -36,8 +41,11 @@ export const PaymentRadioGroup = () => {
               <GooglePay />
             </button>
           </StyledCardIconWrapper>
-          <StyledPayButton>PAY</StyledPayButton>
-        </div>
+
+          <StyledPayButton>
+            <GooglePayBtn />
+          </StyledPayButton>
+        </StyledOnlinePaymentWrapper>
       </CustomRadioButton>
       <CustomRadioButton
         value="card"
@@ -46,11 +54,12 @@ export const PaymentRadioGroup = () => {
         text="Обрати збережену картку"
       >
         <Formik>
-          <form>
+          <StyledCardForm>
             <CustomInput type="text" label="Номер картки" name="cardNumber" />
             <CustomInput type="text" label="Термін дії" name="validity" />
             <CustomInput type="text" label="CVV" name="cardCVV" />
-          </form>
+            <StyledPayButton>Оплатити</StyledPayButton>
+          </StyledCardForm>
         </Formik>
       </CustomRadioButton>
       <CustomRadioButton

@@ -35,15 +35,15 @@ const StyledFooterForm = styled(Form)`
 const FooterContainer = styled.div``;
 
 const StyledCustomInputWhite = styled(CustomInput)`
-  & div {
-    border: 1px solid var(--white-dark-bg-color);
-    background-color: transparent;
-    color: var(--white-text-color);
-    & input {
-      &::placeholder {
-        color: var(--white-text-color);
-      }
-    }
+  border: 1px solid var(--white-dark-bg-color);
+  background-color: transparent !important;
+  color: var(--white-text-color) !important;
+
+  & .whiteInput::placeholder {
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
   }
 `;
 

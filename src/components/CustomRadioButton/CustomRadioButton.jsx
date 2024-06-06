@@ -14,7 +14,11 @@ export const CustomRadioButton = ({
   return (
     <div
       onClick={() => onChange(value)}
-      style={{ display: "flex", flexDirection: "column" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        position: "relative",
+      }}
     >
       <StyledChoosePaymentWrapper>
         <StyledOuterCircle>
@@ -22,7 +26,6 @@ export const CustomRadioButton = ({
         </StyledOuterCircle>
         <div>{text}</div>
       </StyledChoosePaymentWrapper>
-
       {children}
     </div>
   );
