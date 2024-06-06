@@ -1,8 +1,18 @@
+import { Form } from "formik";
 import styled from "styled-components";
 
 const StyledCardIconWrapper = styled.div`
   display: flex;
   gap: 12px;
+  margin-bottom: 24px;
+  & button {
+    cursor: auto;
+  }
+  @media screen and (min-width: 1440px) {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 `;
 
 const StyledPayButton = styled.button`
@@ -12,34 +22,50 @@ const StyledPayButton = styled.button`
   color: var(--white-text-color);
   border-radius: 16px;
   padding: 16px, 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const StyledOuterCircle = styled.div`
   border: 2px solid var(--black-bg-color);
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const StyledInnerCircle = styled.div`
-  width: 15px;
-  height: 15px;
+  width: 13px;
+  height: 13px;
+  border: none;
   border-radius: 50%;
   background-color: var(--black-bg-color);
   display: ${props => (props.$selected ? "block" : "none")};
 `;
 const StyledChoosePaymentWrapper = styled.div`
   display: flex;
+  align-items: center;
   gap: 28px;
   margin-bottom: 24px;
+  cursor: pointer;
+  height: 40px;
 `;
+
+const StyledCardForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+const StyledOnlinePaymentWrapper = styled.div``;
 export {
   StyledCardIconWrapper,
   StyledPayButton,
   StyledInnerCircle,
   StyledOuterCircle,
   StyledChoosePaymentWrapper,
+  StyledOnlinePaymentWrapper,
+  StyledCardForm,
 };

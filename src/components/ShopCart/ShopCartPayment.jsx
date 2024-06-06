@@ -1,63 +1,56 @@
-import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
-
-import { useLocation } from "react-router-dom";
-
-import { ROUTES } from "../../utils/routes";
+// import { useLocation } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
 import {
   StyledNotificationWrapper,
   StyledOrderPriceTextWrapper,
   StyledOrderText,
   StyledOrderTitle,
-  StyledOrderWrapper,
   StyledPDVText,
 } from "./ShopCart.styled";
 import { ShopCard } from "./ShopCard/ShopCard";
-import { Formik } from "formik";
-import CustomInput from "components/form/formElements/CustomInput/CustomInput";
 import { useSelector } from "react-redux";
 import { selectUserShopCart } from "../../redux/user/userShopCart/userShopCartSelector";
 import { normalize_count_form } from "../../utils/normalize_count_form";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { PaymentRadioGroup } from "components/PaymentRadioGroup";
 import { StyledDeliveryTitle } from "./ShopCartDelivery.styled";
+import { PromoCode } from "components/PromoCode";
+import {
+  StyledOrderPaymentWrapper,
+  StyledPaymentWrapper,
+  StyledRadioGroupWrapper,
+} from "./ShopCartPayment.styled";
 
 export const ShopCartPayment = props => {
   const isDesktop = useMediaQuery("(min-width: 1440px)");
-  const location = useLocation();
+  // const location = useLocation();
   const items = useSelector(selectUserShopCart).products;
   const shopCart = useSelector(selectUserShopCart);
+  const priceSum = shopCart?.priceSum;
+  const countQuantity = shopCart?.countQuantity;
   console.log(shopCart);
 
-  let countQuantity = 0;
-  const countPrice = items?.reduce((acc, el) => {
-    if (el) {
-      acc += el.price * el.quantity;
-      countQuantity += el.quantity;
-    }
-
-    return acc;
-  }, 0);
   return (
     <>
       <Title>{props.title}</Title>
 
       {items && items.length > 0 ? (
-        <>
-          <ul>
-            {items.map((el, idx) => {
-              return (
-                <ShopCard
-                  el={el}
-                  key={el._id + "#" + idx}
-                  showCloseBtn={false}
-                  showDeliveryPrice={isDesktop}
-                  device={isDesktop ? "desktop" : "mobile"}
-                />
-              );
-            })}
-          </ul>
-          <StyledOrderWrapper>
+        <StyledOrderPaymentWrapper>
+          <div>
+            <ul>
+              {items.map((el, idx) => {
+                return (
+                  <ShopCard
+                    el={el}
+                    key={el._id + "#" + idx}
+                    showCloseBtn={false}
+                    showDeliveryPrice={isDesktop}
+                    device={isDesktop ? "desktop" : "mobile"}
+                  />
+                );
+              })}
+            </ul>
+
             <StyledOrderTitle>Твоє замовлення</StyledOrderTitle>
             <StyledOrderPriceTextWrapper>
               <StyledOrderText>
@@ -69,7 +62,7 @@ export const ShopCartPayment = props => {
                     "товарів",
                   ])}
                 </span>
-                <span>{countPrice}&nbsp;грн</span>
+                <span>{priceSum}&nbsp;грн</span>
               </StyledOrderText>
 
               <StyledOrderText>
@@ -77,23 +70,11 @@ export const ShopCartPayment = props => {
                   <p>Усього</p>
                   <StyledPDVText>Включно з ПДВ</StyledPDVText>
                 </div>
-                <span>{countPrice}&nbsp;грн</span>
+                <span>{priceSum}&nbsp;грн</span>
               </StyledOrderText>
             </StyledOrderPriceTextWrapper>
-            <Formik
-              initialValues={{
-                code: "",
-              }}
-            >
-              <form>
-                <CustomInput
-                  placeholder="Ввести промокод"
-                  type="text"
-                  name="code"
-                  label=""
-                />
-              </form>
-            </Formik>
+
+            <PromoCode />
             <StyledOrderTitle>Адреса доставки</StyledOrderTitle>
             <p>{shopCart.address}</p>
             <p>{shopCart.city}</p>
@@ -102,19 +83,24 @@ export const ShopCartPayment = props => {
             <p style={{ color: "red" }}>09.03 - 10.03</p>
             <p>{shopCart.deliveryType}</p>
             <p style={{ color: "red" }}>Безкоштовно</p>
+          </div>
+
+          <StyledPaymentWrapper>
             <StyledDeliveryTitle>
               Оплата та підтвердження замовлення
             </StyledDeliveryTitle>
-            <p>Вибери зручний спосіб оплати</p>
-            <PaymentRadioGroup />
+            <StyledRadioGroupWrapper>
+              <p>Вибери зручний спосіб оплати</p>
+              <PaymentRadioGroup />
+            </StyledRadioGroupWrapper>
 
-            <StyledShopCartButton
+            {/* <StyledShopCartButton
               text={"Сплатити"}
               route={ROUTES.SHOPCARTPAYMENT}
               state={{ from: location }}
-            />
-          </StyledOrderWrapper>
-        </>
+            /> */}
+          </StyledPaymentWrapper>
+        </StyledOrderPaymentWrapper>
       ) : (
         <StyledNotificationWrapper>
           У вашому кошику ще немає товарів
