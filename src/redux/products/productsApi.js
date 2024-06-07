@@ -108,6 +108,7 @@ export const {
   useGetSalesQuery,
   useLazyGetSalesQuery,
   useFindProductsQuery,
+  useLazyFindProductsQuery,
   useCreateProductMutation,
   useCheckPromoCodeQuery,
   useLazyCheckPromoCodeQuery,

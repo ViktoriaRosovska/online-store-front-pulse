@@ -2,20 +2,28 @@ import { useState } from "react";
 import MediaQuery from "react-responsive";
 import searchIcon from "/public/icons/search-icon.svg";
 import { Button, MobileButton, SearchBox, SearchIcon, SearchInput } from "./Search.styled";
-import { useFindProductsQuery } from "../../../../redux/products/productsApi";
+// import { useFindProductsQuery } from "../../../../redux/products/productsApi";
+import { useNavigate } from "react-router-dom";
 
 function Search({ isFixed, location }) {
   const [isActive, setIsActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState('')
+  const navigate = useNavigate()
 
-  const { data, error } = useFindProductsQuery({ name: searchQuery }, {
-    skip: !searchQuery,
-  })
-  console.log("Search  data", data)
-  console.log("Search  error", error)
+  // const { data, error } = useFindProductsQuery({ name: searchQuery }, {
+  //   skip: !searchQuery,
+  // })
+  // console.log("Search  data", data)
+  // console.log("Search  error", error)
 
   const handleInputChange = (event) => {
     setSearchQuery(event.target.value)
+  }
+
+  const handleSearch = () => {
+    if (searchQuery) {
+      navigate(`/search?query=${searchQuery}&page=1&limit=12`)
+    }
   }
 
   return (
@@ -29,7 +37,7 @@ function Search({ isFixed, location }) {
           value={searchQuery}
           onChange={handleInputChange}
         />
-        <Button>
+        <Button onClick={handleSearch}>
           <SearchIcon
             $isFixed={isFixed}
               $location={location}
@@ -48,7 +56,7 @@ function Search({ isFixed, location }) {
               $isFixed={isFixed}
               $location={location}
             />
-            <Button>
+            <Button onClick={handleSearch}>
               <SearchIcon
                 $isFixed={isFixed}
               $location={location}

@@ -26,6 +26,7 @@ import {
   UserShopCart,
   UserShopCartDelivery,
   UserShopCartPayment,
+  SearchPage,
 } from "./pages/index";
 
 import ShopCartLayout from "components/ShopCartLayout/ShopCartLayout.jsx";
@@ -47,6 +48,7 @@ const App = () => {
             <Route path={ROUTES.CATALOG} element={<Catalog />} />
             <Route path={ROUTES.NEWBRANDS} element={<NewBrands />} />
             <Route path={ROUTES.SALES} element={<Sales />} />
+            <Route path={ROUTES.SEARCH} element={<SearchPage />} />
             <Route path={ROUTES.SHOPCARTLAYOUT} element={<ShopCartLayout />}>
               <Route index element={<UserShopCart />} />
               <Route

@@ -6,6 +6,7 @@ export const ROUTES = {
   CATALOG: "/catalog",
   NEWBRANDS: "/newbrands",
   SALES: "/sales",
+  SEARCH: "/search",
 
   SHOPCARTLAYOUT: "/shopcart",
   SHOPCART: "/shopcart",
