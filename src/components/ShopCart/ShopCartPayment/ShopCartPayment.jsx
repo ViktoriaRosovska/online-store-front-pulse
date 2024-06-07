@@ -6,14 +6,14 @@ import {
   StyledOrderText,
   StyledOrderTitle,
   StyledPDVText,
-} from "./ShopCart.styled";
-import { ShopCard } from "./ShopCard/ShopCard";
+} from "../ShopCart/ShopCart.styled";
+import { ShopCard } from "../ShopCard/ShopCard";
 import { useSelector } from "react-redux";
-import { selectUserShopCart } from "../../redux/user/userShopCart/userShopCartSelector";
-import { normalize_count_form } from "../../utils/normalize_count_form";
-import useMediaQuery from "../../hooks/useMediaQuery";
+import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
+import { normalize_count_form } from "../../../utils/normalize_count_form";
+import useMediaQuery from "../../../hooks/useMediaQuery";
 import { PaymentRadioGroup } from "components/PaymentRadioGroup";
-import { StyledDeliveryTitle } from "./ShopCartDelivery.styled";
+import { StyledDeliveryTitle } from "../ShopCartDelivery/ShopCartDelivery.styled";
 import { PromoCode } from "components/PromoCode";
 import {
   StyledOrderPaymentWrapper,

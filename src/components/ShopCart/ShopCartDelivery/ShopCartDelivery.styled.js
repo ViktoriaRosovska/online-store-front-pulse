@@ -1,6 +1,6 @@
 import { Form } from "formik";
 import styled from "styled-components";
-import { StyledOrderWrapper } from "./ShopCart.styled";
+import { StyledOrderWrapper } from "../ShopCart/ShopCart.styled";
 
 const StyledChoiceDeliveryBtn = styled.button`
   border: 1px solid var(--black-bg-color);
