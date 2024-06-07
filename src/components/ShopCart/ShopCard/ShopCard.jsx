@@ -19,7 +19,7 @@ import {
   StyledShopCartInfo,
   StyledShopCartItemCount,
   StyledShopCartListItem,
-} from "../ShopCart.styled";
+} from "../ShopCart/ShopCart.styled";
 import { useDispatch } from "react-redux";
 import { ReactComponent as CloseBtnSmall } from "../../../assets/svg/closeBtnSmall.svg";
 import { FiMinus, FiPlus } from "react-icons/fi";

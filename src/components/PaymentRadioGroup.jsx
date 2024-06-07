@@ -67,7 +67,19 @@ export const PaymentRadioGroup = () => {
         selected={selected === "offline"}
         text="Оплата при отриманні"
         onChange={setSelected}
-      />
+      >
+        {selected === "offline" && (
+          <div>
+            <p>
+              При отриманні замовлення у відділенні “Нова пошта“, а також при
+              виборі кур&apos;єрської доставки “Нова пошта”, можна оплатити
+              карткою або готівкою. Додаткова комісія за грошовий переказ: 20
+              грн. + 2% від суми переказу.
+            </p>
+            <StyledPayButton>Підтвердити замовлення</StyledPayButton>
+          </div>
+        )}
+      </CustomRadioButton>
     </>
   );
 };

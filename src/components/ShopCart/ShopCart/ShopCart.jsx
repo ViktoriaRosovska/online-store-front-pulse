@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectUserShopCart } from "../../redux/user/userShopCart/userShopCartSelector";
+import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 
 import { useLocation } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
@@ -12,21 +12,21 @@ import {
   StyledOrderWrapper,
   StyledPDVText,
   StyledPageWrapper,
-} from "./ShopCart.styled";
+} from "../ShopCart/ShopCart.styled";
 import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
 
-import { ROUTES } from "../../utils/routes";
+import { ROUTES } from "../../../utils/routes";
 
-import { ShopCard } from "./ShopCard/ShopCard";
+import { ShopCard } from "../ShopCard/ShopCard";
 
 import {
   selectPromoCodeDiscount,
   selectPromoValid,
-} from "../../redux/promoCode/promoCodeSelector";
-import useMediaQuery from "../../hooks/useMediaQuery";
-import { discountPrice } from "../../utils/discountPrice";
+} from "../../../redux/promoCode/promoCodeSelector";
+import useMediaQuery from "../../../hooks/useMediaQuery";
+import { discountPrice } from "../../../utils/discountPrice";
 
-import { normalize_count_form } from "../../utils/normalize_count_form";
+import { normalize_count_form } from "../../../utils/normalize_count_form";
 import { PromoCode } from "components/PromoCode";
 // import { useState } from "react";
 export const ShopCart = props => {

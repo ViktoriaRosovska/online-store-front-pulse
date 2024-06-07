@@ -1,9 +1,9 @@
 import { Formik } from "formik";
-import { StyledPromoCodeForm } from "./ShopCart/ShopCartDelivery.styled";
+import { StyledPromoCodeForm } from "./ShopCart/ShopCartDelivery/ShopCartDelivery.styled";
 import {
   StyledPromocodeCheckWrapper,
   StyledPromocodeWrapper,
-} from "./ShopCart/ShopCart.styled";
+} from "./ShopCart/ShopCart/ShopCart.styled";
 import CustomInput from "./form/formElements/CustomInput/CustomInput";
 import { Error } from "./form/formElements/CustomInput/CustomInput.styled";
 import { useDispatch, useSelector } from "react-redux";

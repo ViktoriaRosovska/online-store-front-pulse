@@ -1,11 +1,11 @@
 import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
-import { ROUTES } from "../../utils/routes";
+import { ROUTES } from "../../../utils/routes";
 import { useLocation } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
 import CustomInput from "components/form/formElements/CustomInput/CustomInput";
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserShopCart } from "../../redux/user/userShopCart/userShopCartSelector";
+import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import {
   StyledChoiceBtnParagraphWrapper,
   StyledNotificationWrapper,
@@ -15,17 +15,17 @@ import {
   StyledPDVText,
   // StyledPromocodeCheckWrapper,
   // StyledPromocodeWrapper,
-} from "./ShopCart.styled";
-import { ShopCard } from "./ShopCard/ShopCard";
+} from "../ShopCart/ShopCart.styled";
+import { ShopCard } from "../ShopCard/ShopCard";
 
 import {
   useGetCitiesMutation,
   useGetDepartmentsMutation,
   useGetStreetsMutation,
-} from "../../redux/novaPoshta/novaPoshtaAPI";
+} from "../../../redux/novaPoshta/novaPoshtaAPI";
 import { useState } from "react";
 
-import { CitySelect } from "./CitySelect";
+import { CitySelect } from "../SelectComponents/CitySelect";
 import {
   StyledCheckboxLabel,
   StyledCheckboxWrapper,
@@ -39,23 +39,23 @@ import {
   StyledOrderDeliveryWrapper,
   StyledSelectLabel,
   StyledSelectWrapper,
-} from "./ShopCartDelivery.styled";
+} from "../ShopCartDelivery/ShopCartDelivery.styled";
 
 import {
   selectPromoCodeDiscount,
   selectPromoValid,
-} from "../../redux/promoCode/promoCodeSelector";
+} from "../../../redux/promoCode/promoCodeSelector";
 
-import useMediaQuery from "../../hooks/useMediaQuery";
+import useMediaQuery from "../../../hooks/useMediaQuery";
 import { CheckboxItem } from "components/CheckboxList/CheckboxItem/ChechboxItem";
 
 import { StyledConditionsLinks } from "components/Links/Links.styled";
-import { normalize_count_form } from "../../utils/normalize_count_form";
-import { deliveryPrice } from "../../utils/deliveryPrice";
-import { discountPrice } from "../../utils/discountPrice";
-import { DELIVERY } from "../../utils/DELIVERY";
-import { DepartmentSelect } from "./DepartmentSelect";
-import { StreetSelect } from "./StreetSelect";
+import { normalize_count_form } from "../../../utils/normalize_count_form";
+import { deliveryPrice } from "../../../utils/deliveryPrice";
+import { discountPrice } from "../../../utils/discountPrice";
+import { DELIVERY } from "../../../utils/DELIVERY";
+import { DepartmentSelect } from "../SelectComponents/DepartmentSelect";
+import { StreetSelect } from "../SelectComponents/StreetSelect";
 import {
   addDeliveryType,
   addShopCartAddress,
@@ -66,7 +66,7 @@ import {
   addShopCartPhone,
   addShopCartStreet,
   addShopCartSurname,
-} from "../../redux/user/userShopCart/userShopCartSlice";
+} from "../../../redux/user/userShopCart/userShopCartSlice";
 import { PromoCode } from "components/PromoCode";
 
 export const ShopCartDelivery = props => {

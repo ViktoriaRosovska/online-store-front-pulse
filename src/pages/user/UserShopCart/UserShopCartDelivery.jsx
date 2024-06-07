@@ -1,4 +1,4 @@
-import { ShopCartDelivery } from "components/ShopCart/ShopCartDelivery";
+import { ShopCartDelivery } from "components/ShopCart/ShopCartDelivery/ShopCartDelivery";
 
 const UserShopCart = () => {
   return <ShopCartDelivery title="Доставка" />;
