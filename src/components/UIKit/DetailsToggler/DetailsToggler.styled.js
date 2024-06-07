@@ -16,8 +16,12 @@ export const DetailsToggleButton = styled("button")`
   width: 26px;
   height: 26px;
 
-  font-size: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  font-family: "Roboto";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 33.6px;
 `;

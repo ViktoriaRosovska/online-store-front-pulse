@@ -31,6 +31,7 @@ const StyledShopCartImage = styled.img`
   width: 123px;
   height: 161px;
   border-radius: 16px;
+  object-fit: cover;
   @media screen and (min-width: 1440px) {
     width: 185px;
     height: 166px;

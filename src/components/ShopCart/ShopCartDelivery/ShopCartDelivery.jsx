@@ -1,11 +1,11 @@
 import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
-import { ROUTES } from "../../utils/routes";
+import { ROUTES } from "../../../utils/routes";
 import { useLocation } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
 import CustomInput from "components/form/formElements/CustomInput/CustomInput";
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserShopCart } from "../../redux/user/userShopCart/userShopCartSelector";
+import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import {
   StyledChoiceBtnParagraphWrapper,
   StyledNotificationWrapper,
@@ -13,19 +13,19 @@ import {
   StyledOrderText,
   StyledOrderTitle,
   StyledPDVText,
-  StyledPromocodeCheckWrapper,
-  StyledPromocodeWrapper,
-} from "./ShopCart.styled";
-import { ShopCard } from "./ShopCard/ShopCard";
+  // StyledPromocodeCheckWrapper,
+  // StyledPromocodeWrapper,
+} from "../ShopCart/ShopCart.styled";
+import { ShopCard } from "../ShopCard/ShopCard";
 
 import {
   useGetCitiesMutation,
   useGetDepartmentsMutation,
   useGetStreetsMutation,
-} from "../../redux/novaPoshta/novaPoshtaAPI";
+} from "../../../redux/novaPoshta/novaPoshtaAPI";
 import { useState } from "react";
 
-import { CitySelect } from "./CitySelect";
+import { CitySelect } from "../SelectComponents/CitySelect";
 import {
   StyledCheckboxLabel,
   StyledCheckboxWrapper,
@@ -35,64 +35,56 @@ import {
   StyledDeliveryForm,
   StyledDeliveryOrderWrapper,
   StyledDeliveryTitle,
+  StyledNameWrapper,
   StyledOrderDeliveryWrapper,
-  StyledPromoCodeForm,
   StyledSelectLabel,
   StyledSelectWrapper,
-} from "./ShopCartDelivery.styled";
-// import { useFetchCurrentUserQuery } from "../../redux/auth";
-import { useLazyCheckPromoCodeQuery } from "../../redux/products/productsApi";
-import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
+} from "../ShopCartDelivery/ShopCartDelivery.styled";
 
-import { ReactComponent as CheckedSvg } from "../../assets/svg/done.svg";
 import {
-  selectPromoCode,
   selectPromoCodeDiscount,
-  selectPromoExpired,
-  selectPromoInvalid,
   selectPromoValid,
-} from "../../redux/promoCode/promoCodeSelector";
-import {
-  PromoExpired,
-  PromoInvalid,
-  PromoValid,
-  setPromoCode,
-  setPromoCodeDiscount,
-  setPromoStatus,
-} from "../../redux/promoCode/promoCodeSlice";
-import useMediaQuery from "../../hooks/useMediaQuery";
+} from "../../../redux/promoCode/promoCodeSelector";
+
+import useMediaQuery from "../../../hooks/useMediaQuery";
 import { CheckboxItem } from "components/CheckboxList/CheckboxItem/ChechboxItem";
 
 import { StyledConditionsLinks } from "components/Links/Links.styled";
-import { normalize_count_form } from "../../utils/normalize_count_form";
-import { deliveryPrice } from "../../utils/deliveryPrice";
-import { discountPrice } from "../../utils/discountPrice";
-import { DELIVERY } from "../../utils/DELIVERY";
-import { DepartmentSelect } from "./DepartmentSelect";
-import { StreetSelect } from "./StreetSelect";
+import { normalize_count_form } from "../../../utils/normalize_count_form";
+import { deliveryPrice } from "../../../utils/deliveryPrice";
+import { discountPrice } from "../../../utils/discountPrice";
+import { DELIVERY } from "../../../utils/DELIVERY";
+import { DepartmentSelect } from "../SelectComponents/DepartmentSelect";
+import { StreetSelect } from "../SelectComponents/StreetSelect";
 import {
   addDeliveryType,
   addShopCartAddress,
   addShopCartCity,
-  addShopCartPriceSum,
-  addShopCartPromoCode,
+  addShopCartCondition,
+  addShopCartIsMailing,
+  addShopCartName,
+  addShopCartPhone,
   addShopCartStreet,
-} from "../../redux/user/userShopCart/userShopCartSlice";
+  addShopCartSurname,
+} from "../../../redux/user/userShopCart/userShopCartSlice";
+import { PromoCode } from "components/PromoCode";
 
 export const ShopCartDelivery = props => {
+  const dispatch = useDispatch();
+
   let location = useLocation();
   const items = useSelector(selectUserShopCart).products;
   // console.log(items);
   const userShopCart = useSelector(selectUserShopCart);
+  console.log("userShopCart", userShopCart);
+  const priceSum = userShopCart?.priceSum;
+  const countQuantity = userShopCart?.countQuantity;
   console.log(userShopCart);
   const [selectCitySearch, setSelectCitySearch] = useState("");
-  // const [departments, setDepartments] = useState([]);
 
   const [isSelectedBtn, setIsSelectedBtn] = useState(DELIVERY.department);
-  // const [findCities, setFindCities] = useState([]);
-  const [selectDepartmentSearch, setSelectDepartmentSearch] = useState("");
 
-  const [deliveryType, setDeliveryType] = useState(DELIVERY.department);
+  const [selectDepartmentSearch, setSelectDepartmentSearch] = useState("");
 
   const [
     getCities,
@@ -113,27 +105,14 @@ export const ShopCartDelivery = props => {
   const [getStreets, { data: streetsData }] = useGetStreetsMutation();
   console.log("streets", streetsData);
   // const userData = useFetchCurrentUserQuery();
-  const dispatch = useDispatch();
-
-  const handleChangePromo = e => {
-    dispatch(setPromoCode(e.target.value));
-    checkPromoCode(e.target.value);
-    if (isPromoValid) {
-      dispatch(addShopCartPromoCode(promoCode));
-    } else {
-      dispatch(addShopCartPromoCode(""));
-    }
-  };
 
   const departmentTypeFilter = (data, type) => {
     const departmentsList = data?.data?.filter(
       el => el.CategoryOfWarehouse === type
     );
-    // console.log(departmentsList);
     return departmentsList;
   };
 
-  // console.log("cities", data);
   const onSelectCitySearch = value => {
     getCities(value);
   };
@@ -151,7 +130,6 @@ export const ShopCartDelivery = props => {
   };
 
   const onSelectDepartmentsChange = value => {
-    // console.log("onSelectDepartmentChange", value);
     setSelectDepartmentSearch(value);
     dispatch(addShopCartAddress(value.label));
   };
@@ -160,47 +138,20 @@ export const ShopCartDelivery = props => {
     dispatch(addShopCartStreet(value.label));
   };
 
-  let countQuantity = 0;
-  const countPrice = items?.reduce((acc, el) => {
-    if (el) {
-      acc += el.price * el.quantity;
-      countQuantity += el.quantity;
-    }
-
-    return acc;
-  }, 0);
-
-  const [checkPromoCode] = useLazyCheckPromoCodeQuery({
-    selectFromResult: ({ data, error }) => {
-      if (error) {
-        if (error.status === 404) {
-          dispatch(setPromoStatus(PromoInvalid));
-        } else if (error.status === 400) {
-          dispatch(setPromoStatus(PromoExpired));
-        }
-      } else if (data) {
-        dispatch(setPromoStatus(PromoValid));
-        // console.log(data);
-        dispatch(setPromoCodeDiscount(data.discount));
-      }
-    },
-  });
   const discount = useSelector(selectPromoCodeDiscount);
-  const isPromoExpired = useSelector(selectPromoExpired);
-  const isPromoInvalid = useSelector(selectPromoInvalid);
+
   const isPromoValid = useSelector(selectPromoValid);
-  const promoCode = useSelector(selectPromoCode);
+  // const promoCode = useSelector(selectPromoCode);
 
   const isDesktop = useMediaQuery("(min-width: 1440px)");
 
-  // const countPriceSum = price => {
-  //   let priceSum = 0;
-  //   if (PromoValid) {
-  //     priceSum = discountPrice(price, discount);
-  //   } else priceSum = price;
-  //   dispatch(addShopCartPriceSum(priceSum));
-  //   return priceSum;
+  // const [check, setCheck] = useState(false);
+  // const onCheckPromo = condition => {
+  //   setCheck(condition);
+  //   console.log(condition);
   // };
+
+  // console.log(check);
   return (
     <>
       <Title>{props.title}</Title>
@@ -219,9 +170,9 @@ export const ShopCartDelivery = props => {
                 comments: "",
                 flat: "",
                 surname: "",
-                code: "",
                 policy: false,
                 isMailing: false,
+                deliveryType: DELIVERY.department,
               }}
             >
               {formik => (
@@ -255,7 +206,6 @@ export const ShopCartDelivery = props => {
                           $isSelectedBtn={isSelectedBtn === DELIVERY.department}
                           onClick={() => {
                             setIsSelectedBtn(DELIVERY.department);
-                            // setDeliveryType(DELIVERY.department);
                             dispatch(addDeliveryType(DELIVERY.department));
                           }}
                         >
@@ -267,7 +217,7 @@ export const ShopCartDelivery = props => {
                             >
                               Доставка на відділення “Нова пошта”
                             </StyledChoiseVariant>
-                            <p>{deliveryPrice(countPrice)}</p>
+                            <p>{deliveryPrice(priceSum)}</p>
                           </StyledChoiceBtnParagraphWrapper>
                           <p>Безкоштовна доставка від 4000 грн</p>
                         </StyledChoiceDeliveryBtn>
@@ -287,7 +237,7 @@ export const ShopCartDelivery = props => {
                             >
                               Кур’єрська доставка
                             </StyledChoiseVariant>
-                            <p>{deliveryPrice(countPrice)}</p>
+                            <p>{deliveryPrice(priceSum)}</p>
                           </StyledChoiceBtnParagraphWrapper>
                           <p>Безкоштовна доставка від 4000 грн</p>
                         </StyledChoiceDeliveryBtn>
@@ -307,7 +257,7 @@ export const ShopCartDelivery = props => {
                             >
                               Доставка в поштомат “Нова пошта”
                             </StyledChoiseVariant>
-                            <p>{deliveryPrice(countPrice)}</p>
+                            <p>{deliveryPrice(priceSum)}</p>
                           </StyledChoiceBtnParagraphWrapper>
 
                           <p>Безкоштовна доставка від 4000 грн</p>
@@ -426,24 +376,39 @@ export const ShopCartDelivery = props => {
                         </>
                       )}
                       <StyledDeliveryTitle>Особисті дані</StyledDeliveryTitle>
-                      <CustomInput
-                        type="text"
-                        label="Ім'я"
-                        placeholder="Ім'я"
-                        name="name"
-                      />
-                      <CustomInput
-                        type="text"
-                        label="Прізвище"
-                        placeholder="Прізвище"
-                        name="surname"
-                      />
-                      <CustomInput
-                        type="text"
-                        label="Номер телефону"
-                        placeholder="+380"
-                        name="phone"
-                      />
+                      <StyledNameWrapper>
+                        <CustomInput
+                          type="text"
+                          label="Ім'я"
+                          placeholder="Ім'я"
+                          name="name"
+                          onChange={e => {
+                            dispatch(addShopCartName(e.target.value));
+                            formik.setFieldValue("name", e.target.value);
+                          }}
+                        />
+                        <CustomInput
+                          type="text"
+                          label="Прізвище"
+                          placeholder="Прізвище"
+                          name="surname"
+                          onChange={e => {
+                            dispatch(addShopCartSurname(e.target.value));
+                            formik.setFieldValue("surname", e.target.value);
+                          }}
+                        />
+                        <CustomInput
+                          type="text"
+                          label="Номер телефону"
+                          placeholder="+380"
+                          name="phone"
+                          onChange={e => {
+                            dispatch(addShopCartPhone(e.target.value));
+                            formik.setFieldValue("phone", e.target.value);
+                          }}
+                        />
+                      </StyledNameWrapper>
+
                       <StyledCheckboxWrapper>
                         <StyledCheckboxLabel>
                           <CheckboxItem
@@ -451,9 +416,10 @@ export const ShopCartDelivery = props => {
                             name="policy"
                             item=""
                             checked={formik.values.policy}
-                            handleInputChange={e =>
-                              formik.setFieldValue("policy", e.target.checked)
-                            }
+                            onChange={e => {
+                              formik.setFieldValue("policy", e.target.checked);
+                              dispatch(addShopCartCondition(e.target.checked));
+                            }}
                           />
                           <div
                             style={{
@@ -485,12 +451,13 @@ export const ShopCartDelivery = props => {
                             name="isMailing"
                             item=""
                             checked={formik.values.isMailing}
-                            handleInputChange={e =>
+                            onChange={e => {
                               formik.setFieldValue(
                                 "isMailing",
                                 e.target.checked
-                              )
-                            }
+                              );
+                              dispatch(addShopCartIsMailing(e.target.checked));
+                            }}
                           />
                           Я хочу отримувати інформацію про новинки, акції
                         </StyledCheckboxLabel>
@@ -523,7 +490,7 @@ export const ShopCartDelivery = props => {
                       "товарів",
                     ])}
                   </span>
-                  <span>{countPrice}&nbsp;грн</span>
+                  <span>{priceSum}&nbsp;грн</span>
                 </StyledOrderText>
 
                 <StyledOrderText>
@@ -532,40 +499,17 @@ export const ShopCartDelivery = props => {
                     <StyledPDVText>Включно з ПДВ</StyledPDVText>
                   </div>
                   <span>
-                    {/* {countPriceSum(countPrice) + " грн"} */}
                     {isPromoValid
-                      ? discountPrice(countPrice, discount)
-                      : countPrice}
+                      ? discountPrice(priceSum, discount)
+                      : priceSum}
                     &nbsp;грн
                   </span>
                 </StyledOrderText>
               </StyledOrderPriceTextWrapper>
             </div>
-            <Formik
-              initialValues={{
-                code: "",
-              }}
-            >
-              <StyledPromoCodeForm>
-                <StyledPromocodeWrapper>
-                  <CustomInput
-                    placeholder="Ввести промокод"
-                    type="text"
-                    name="code"
-                    label=""
-                    onChange={handleChangePromo}
-                    value={promoCode}
-                  />
-                  {isPromoInvalid && <Error>Невірний промокод</Error>}
-                  {isPromoExpired && <Error>Промокод вже недійсний</Error>}
-                  {isPromoValid ? (
-                    <StyledPromocodeCheckWrapper>
-                      <CheckedSvg />
-                    </StyledPromocodeCheckWrapper>
-                  ) : null}
-                </StyledPromocodeWrapper>
-              </StyledPromoCodeForm>
-            </Formik>
+
+            {/* <PromoCode onCheckPromo={() => onCheckPromo()} /> */}
+            <PromoCode />
             <ul>
               {items.map((el, idx) => {
                 return (

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import footerBackground from "../../assets/images/footer-background.png";
 import { Form } from "formik";
 import CustomInput from "components/form/formElements/CustomInput/CustomInput";
+import { HeroButton } from "../../pages/main/MainPage.styled";
 
 const FooterSection = styled.footer`
   background-color: var(--black-bg-color);
@@ -30,21 +31,29 @@ const StyledFooterForm = styled(Form)`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  width: 100%;
+  @media screen and (min-width: 1440px) {
+    width: 343px;
+  }
 `;
 
 const FooterContainer = styled.div``;
 
 const StyledCustomInputWhite = styled(CustomInput)`
-  & div {
-    border: 1px solid var(--white-dark-bg-color);
-    background-color: transparent;
-    color: var(--white-text-color);
-    & input {
-      &::placeholder {
-        color: var(--white-text-color);
-      }
-    }
+  border: 1px solid var(--white-dark-bg-color);
+  background-color: transparent !important;
+  color: var(--white-text-color) !important;
+
+  & .whiteInput::placeholder {
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
   }
+`;
+
+const StyledFooterButton = styled(HeroButton)`
+  width: 100%;
 `;
 
 export {
@@ -52,4 +61,5 @@ export {
   FooterSection,
   StyledFooterForm,
   StyledCustomInputWhite,
+  StyledFooterButton,
 };

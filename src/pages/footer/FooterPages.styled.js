@@ -82,14 +82,10 @@ export const FooterItem = styled.li`
     font-size: 16px;
     font-weight: 500;
     margin-bottom: 240px;
-    outline: 2px solid green;
-    color: blue;
   }
 
   > p {
     margin-top: 8px;
-    outline: 2px solid red;
-    color: blue;
   }
   > span {
     weigth: 700;
@@ -116,6 +112,18 @@ export const FooterSection = styled.div`
   gap: 24px;
 `;
 
+export const FooterSectionSupport = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 36px;
+  
+
+  @media screen and (min-width: 1440px) {
+    flex-direction: row;
+    gap: 20px;
+  }
+`;
+
 export const FooterSectionColumn = styled.div`
   display: flex;
   flex-direction: column;
@@ -123,7 +131,7 @@ export const FooterSectionColumn = styled.div`
   margin-left: 61px;
 
   @media (max-width: 1440px) {
-    margin-left: 0px; 
+    margin-left: 0px;
   }
 
   > img {
@@ -136,13 +144,25 @@ export const FooterSectionColumn = styled.div`
 `;
 
 export const FooterSectionDiv = styled.div`
+  &:nth-child(2) {
+    margin-bottom: 23px;
+  }
+
   display: flex;
   flex-direction: column;
-  margin-bottom: 23px;
 `;
-
 
 export const FooterSectionCenter = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+export const PhoneNumber = styled.a`
+  font-weight: 500;
+`;
+
+export const Link = styled.a`
+  font-weight: 500;
+  text-decoration: underline;
+`;
+

@@ -132,3 +132,7 @@ input[type="password"]::-ms-reveal {
   position: relative;
   z-index: 2000;
 }
+
+.whiteInput::placeholder {
+  color: var(--white-text-color);
+}

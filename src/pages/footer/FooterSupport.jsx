@@ -4,18 +4,18 @@ import {useFetchCurrentUserQuery} from "../../redux/auth/userAuthApi"
 import {
   FooterListNoBottom,
   FooterPages,
-  FooterSection,
+  FooterSectionSupport,
   FooterItemBottom,
   FooterItem,
   FooterSectionDiv,
   FooterSectionCenter,
+  PhoneNumber,
+  Link,
 } from "./FooterPages.styled";
 
 const FooterSupport = () => {
   const { data } = useFetchCurrentUserQuery();
   const user = data?.user;
-
-  // console.log("user my", user);
 
   return (
     <PageSection>
@@ -24,11 +24,12 @@ const FooterSupport = () => {
           <h3>Підтримка</h3>
           <FooterListNoBottom>
             <h4>Зв'язатися з нами ви завжди можете за допомогою:</h4>
-            <FooterSection>
+            <FooterSectionSupport>
               <FooterSectionDiv>
                 <FooterItem>
                   <FooterItemBottom>
-                    контактних телефонів (0(800) 23 75 56, (044) 23 75 568)
+                    контактних телефонів <PhoneNumber href="tel:0800237556">(0(800) 23 75 56</PhoneNumber>,{" "}
+            <PhoneNumber href="tel:0442375568">(044) 23 75 568)</PhoneNumber>
                   </FooterItemBottom>
                 </FooterItem>
                 <FooterItem>
@@ -41,14 +42,14 @@ const FooterSupport = () => {
               <FooterSectionDiv>
                 <FooterItem>
                   <FooterItemBottom>
-                    написати нам на пошту pulseRun@gmail.com{" "}
+                    написати нам на пошту <Link href="mailto:pulseRun@gmail.com">pulseRun@gmail.com</Link>
                   </FooterItemBottom>
                 </FooterItem>
                 <FooterItem>
-                  <FooterItemBottom>чат-боту Telegram</FooterItemBottom>
+                  <FooterItemBottom>чат-боту <Link href="https://t.me/example_user">Telegram</Link></FooterItemBottom>
                 </FooterItem>
               </FooterSectionDiv>
-            </FooterSection>
+            </FooterSectionSupport>
           </FooterListNoBottom>
           <FooterSectionCenter>
            { user ? <UserSupportForm  

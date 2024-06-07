@@ -261,8 +261,11 @@ export const DescriptionTitle = styled("h3")`
 
 export const DescriptionText = styled("p")`
   margin-top: 24px;
-  font-size: 24px;
-  line-height: 1.5;
+
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
   letter-spacing: 0.01em;
 `;
 
@@ -274,9 +277,13 @@ export const ProductInfoList = styled("ul")`
 
 export const ProductInfoItem = styled("li")`
   margin-top: 24px;
-  font-size: 24px;
-  line-height: 1.5;
+
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
   letter-spacing: 0.01em;
+  text-align: left;
 
   &:first-child {
     margin-top: 0;
