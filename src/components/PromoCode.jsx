@@ -44,6 +44,7 @@ export const PromoCode = () => {
   const isPromoExpired = useSelector(selectPromoExpired);
   const isPromoInvalid = useSelector(selectPromoInvalid);
   const isPromoValid = useSelector(selectPromoValid);
+
   const promoCode = useSelector(selectPromoCode);
 
   const handleChangePromo = e => {
@@ -51,8 +52,10 @@ export const PromoCode = () => {
     checkPromoCode(e.target.value);
     if (isPromoValid) {
       dispatch(addShopCartPromoCode(promoCode));
+      // onCheckPromo(true);
     } else {
       dispatch(addShopCartPromoCode(""));
+      // onCheckPromo(false);
     }
   };
 

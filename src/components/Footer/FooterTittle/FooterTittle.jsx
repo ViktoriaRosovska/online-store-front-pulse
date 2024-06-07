@@ -3,13 +3,14 @@ import "./FooterTittle.css";
 import { Container } from "../../../main.styled";
 import { Formik } from "formik";
 import { useUserSubscribeMutation } from "../../../redux/user/userSlice/userApi";
-// import { useState } from "react";
 
 import { userSubscribeValidationSchema } from "components/form/formHelpers/formValidation";
 
-import { StyledCustomInputWhite, StyledFooterForm } from "../Footer.styled";
-
-import { HeroButton } from "../../../pages/main/MainPage.styled";
+import {
+  StyledCustomInputWhite,
+  StyledFooterButton,
+  StyledFooterForm,
+} from "../Footer.styled";
 
 function FooterTittle() {
   const [userSubscribe] = useUserSubscribeMutation();
@@ -54,7 +55,9 @@ function FooterTittle() {
                     // className="footer__tittle-input"
                   />
 
-                  <HeroButton type="submit">Підписатися</HeroButton>
+                  <StyledFooterButton type="submit">
+                    Підписатися
+                  </StyledFooterButton>
                 </StyledFooterForm>
               )
             )}

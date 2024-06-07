@@ -13,8 +13,8 @@ import {
   StyledOrderText,
   StyledOrderTitle,
   StyledPDVText,
-  StyledPromocodeCheckWrapper,
-  StyledPromocodeWrapper,
+  // StyledPromocodeCheckWrapper,
+  // StyledPromocodeWrapper,
 } from "./ShopCart.styled";
 import { ShopCard } from "./ShopCard/ShopCard";
 
@@ -60,7 +60,12 @@ import {
   addDeliveryType,
   addShopCartAddress,
   addShopCartCity,
+  addShopCartCondition,
+  addShopCartIsMailing,
+  addShopCartName,
+  addShopCartPhone,
   addShopCartStreet,
+  addShopCartSurname,
 } from "../../redux/user/userShopCart/userShopCartSlice";
 import { PromoCode } from "components/PromoCode";
 
@@ -71,6 +76,7 @@ export const ShopCartDelivery = props => {
   const items = useSelector(selectUserShopCart).products;
   // console.log(items);
   const userShopCart = useSelector(selectUserShopCart);
+  console.log("userShopCart", userShopCart);
   const priceSum = userShopCart?.priceSum;
   const countQuantity = userShopCart?.countQuantity;
   console.log(userShopCart);
@@ -139,6 +145,13 @@ export const ShopCartDelivery = props => {
 
   const isDesktop = useMediaQuery("(min-width: 1440px)");
 
+  // const [check, setCheck] = useState(false);
+  // const onCheckPromo = condition => {
+  //   setCheck(condition);
+  //   console.log(condition);
+  // };
+
+  // console.log(check);
   return (
     <>
       <Title>{props.title}</Title>
@@ -369,18 +382,30 @@ export const ShopCartDelivery = props => {
                           label="Ім'я"
                           placeholder="Ім'я"
                           name="name"
+                          onChange={e => {
+                            dispatch(addShopCartName(e.target.value));
+                            formik.setFieldValue("name", e.target.value);
+                          }}
                         />
                         <CustomInput
                           type="text"
                           label="Прізвище"
                           placeholder="Прізвище"
                           name="surname"
+                          onChange={e => {
+                            dispatch(addShopCartSurname(e.target.value));
+                            formik.setFieldValue("surname", e.target.value);
+                          }}
                         />
                         <CustomInput
                           type="text"
                           label="Номер телефону"
                           placeholder="+380"
                           name="phone"
+                          onChange={e => {
+                            dispatch(addShopCartPhone(e.target.value));
+                            formik.setFieldValue("phone", e.target.value);
+                          }}
                         />
                       </StyledNameWrapper>
 
@@ -391,9 +416,10 @@ export const ShopCartDelivery = props => {
                             name="policy"
                             item=""
                             checked={formik.values.policy}
-                            handleInputChange={e =>
-                              formik.setFieldValue("policy", e.target.checked)
-                            }
+                            onChange={e => {
+                              formik.setFieldValue("policy", e.target.checked);
+                              dispatch(addShopCartCondition(e.target.checked));
+                            }}
                           />
                           <div
                             style={{
@@ -425,12 +451,13 @@ export const ShopCartDelivery = props => {
                             name="isMailing"
                             item=""
                             checked={formik.values.isMailing}
-                            handleInputChange={e =>
+                            onChange={e => {
                               formik.setFieldValue(
                                 "isMailing",
                                 e.target.checked
-                              )
-                            }
+                              );
+                              dispatch(addShopCartIsMailing(e.target.checked));
+                            }}
                           />
                           Я хочу отримувати інформацію про новинки, акції
                         </StyledCheckboxLabel>
@@ -481,6 +508,7 @@ export const ShopCartDelivery = props => {
               </StyledOrderPriceTextWrapper>
             </div>
 
+            {/* <PromoCode onCheckPromo={() => onCheckPromo()} /> */}
             <PromoCode />
             <ul>
               {items.map((el, idx) => {

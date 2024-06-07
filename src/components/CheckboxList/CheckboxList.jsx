@@ -18,7 +18,7 @@ export const CheckboxList = props => {
       ? props.items
       : props.items.slice(0, props.defaultShow);
 
-  const handleInputChange = (e, item) => {
+  const onChange = (e, item) => {
     if (!props.onChanged) return;
 
     let selected;
@@ -47,7 +47,7 @@ export const CheckboxList = props => {
                 name={item}
                 item={item}
                 checked={getChecked(item)}
-                handleInputChange={handleInputChange}
+                onChange={onChange}
               />
             );
           })}

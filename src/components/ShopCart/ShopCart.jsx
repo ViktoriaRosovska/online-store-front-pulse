@@ -28,6 +28,7 @@ import { discountPrice } from "../../utils/discountPrice";
 
 import { normalize_count_form } from "../../utils/normalize_count_form";
 import { PromoCode } from "components/PromoCode";
+// import { useState } from "react";
 export const ShopCart = props => {
   const items = useSelector(selectUserShopCart).products;
   const userShopCart = useSelector(selectUserShopCart);
@@ -43,7 +44,13 @@ export const ShopCart = props => {
   const isDesktop = useMediaQuery("(min-width: 1440px)");
   const discount = useSelector(selectPromoCodeDiscount);
   console.log(discount);
+  // const [check, setCheck] = useState(false);
+  // const onCheckPromo = condition => {
+  //   setCheck(condition);
+  //   console.log(condition);
+  // };
 
+  // console.log(check);
   return (
     <>
       <Title>{props.title}</Title>
@@ -95,6 +102,7 @@ export const ShopCart = props => {
               </div>
 
               <PromoCode />
+              {/* <PromoCode onCheckPromo={() => onCheckPromo()} /> */}
               <StyledShopCartButton
                 text={"Оформити"}
                 route={ROUTES.SHOPCARTDELIVERY}
