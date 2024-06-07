@@ -9,6 +9,11 @@ const userShopCartSlice = createSlice({
       code: "",
       city: "",
       address: "",
+      name: "",
+      surname: "",
+      phone: "",
+      isMailing: false,
+      condition: false,
       deliveryType: DELIVERY.department,
       priceSum: 0,
       countQuantity: 0,
@@ -69,6 +74,21 @@ const userShopCartSlice = createSlice({
     addShopCartStreet(state, { payload }) {
       state.userShopCart.street = payload;
     },
+    addShopCartName(state, { payload }) {
+      state.userShopCart.name = payload;
+    },
+    addShopCartSurname(state, { payload }) {
+      state.userShopCart.surname = payload;
+    },
+    addShopCartPhone(state, { payload }) {
+      state.userShopCart.phone = payload;
+    },
+    addShopCartIsMailing(state, { payload }) {
+      state.userShopCart.isMailing = payload;
+    },
+    addShopCartCondition(state, { payload }) {
+      state.userShopCart.condition = payload;
+    },
   },
 });
 
@@ -83,5 +103,10 @@ export const {
   addShopCartPriceSum,
   addShopCartAddress,
   addShopCartStreet,
+  addShopCartName,
+  addShopCartSurname,
+  addShopCartPhone,
+  addShopCartIsMailing,
+  addShopCartCondition,
 } = userShopCartSlice.actions;
 export const userShopCartReducer = userShopCartSlice.reducer;

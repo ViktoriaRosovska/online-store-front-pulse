@@ -78,7 +78,8 @@ export const ShopCartPayment = props => {
             <StyledOrderTitle>Адреса доставки</StyledOrderTitle>
             <p>{shopCart.address}</p>
             <p>{shopCart.city}</p>
-            <p style={{ color: "red" }}>+380 96 452 31 45</p>
+            <p>{shopCart.surname + " " + shopCart.name}</p>
+            <p>{shopCart.phone}</p>
             <StyledOrderTitle>Умови доставки</StyledOrderTitle>
             <p style={{ color: "red" }}>09.03 - 10.03</p>
             <p>{shopCart.deliveryType}</p>
