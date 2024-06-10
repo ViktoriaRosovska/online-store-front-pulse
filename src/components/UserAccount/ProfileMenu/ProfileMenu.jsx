@@ -20,12 +20,14 @@ import {
   Button,
   Box,
 } from "./ProfileMenu.styled";
+import { generateAvatarFromName } from "../../../utils/generateAvatarFromName";
+import { GeneratedAvatar } from "../UserInfoCard/UserInfoCard.styled";
 
 function ProfileMenu({ onClose, isProfile }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [logoutUser] = useLogoutUserMutation();
-  const { data} = useFetchCurrentUserQuery();
+  const { data } = useFetchCurrentUserQuery();
   const user = data?.user;
 
   const basePath = isProfile ? "profile/" : "";
@@ -46,7 +48,13 @@ function ProfileMenu({ onClose, isProfile }) {
       {!isProfile && (
         <UserCard>
           <Avatar>
-            <img src={user?.avatar || ""} alt="" />
+            {user?.avatar ? (
+              <img src={user?.avatar || ""} alt="user avatar" />
+            ) : (
+              <GeneratedAvatar style={{ fontSize: "16px" }}>
+                {generateAvatarFromName(user?.firstName, user?.lastName)}
+              </GeneratedAvatar>
+            )}
           </Avatar>
           <div>
             <p>

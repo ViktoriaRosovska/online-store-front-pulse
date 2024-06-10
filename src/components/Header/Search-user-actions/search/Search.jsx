@@ -1,66 +1,82 @@
 import { useState } from "react";
-// import Input from "../../../../components/input/input";
-import searchIcon from "/public/icons/search-icon.svg";
-import "./Search.css";
 import MediaQuery from "react-responsive";
+import searchIcon from "/public/icons/search-icon.svg";
+import { Button, MobileButton, SearchBox, SearchIcon, SearchInput } from "./Search.styled";
+// import { useFindProductsQuery } from "../../../../redux/products/productsApi";
+import { useNavigate } from "react-router-dom";
 
-function Search(props) {
+function Search({ isFixed, location }) {
   const [isActive, setIsActive] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('')
+  const navigate = useNavigate()
+
+  // const { data, error } = useFindProductsQuery({ name: searchQuery }, {
+  //   skip: !searchQuery,
+  // })
+  // console.log("Search  data", data)
+  // console.log("Search  error", error)
+
+  const handleInputChange = (event) => {
+    setSearchQuery(event.target.value)
+  }
+
+  const handleSearch = () => {
+    if (searchQuery) {
+      navigate(`/search?query=${searchQuery}&page=1&limit=12`)
+    }
+  }
 
   return (
-    <div className="search">
+    <SearchBox>
       <MediaQuery minWidth={1440}>
-        <input
+        <SearchInput
           type="text"
           placeholder="Пошук"
-          className={`search__input ${
-            props.isFixed || !props.location ? "fixed" : ""
-          }`}
+          $isFixed={isFixed}
+          $location={location}
+          value={searchQuery}
+          onChange={handleInputChange}
         />
-        <button className="basic-button">
-          <img
-            className={`search__icon ${
-              props.isFixed || !props.location ? "fixed" : ""
-            }`}
+        <Button onClick={handleSearch}>
+          <SearchIcon
+            $isFixed={isFixed}
+              $location={location}
             src={searchIcon}
             alt=""
           />
-        </button>
+        </Button>
       </MediaQuery>
 
       <MediaQuery maxWidth={1439}>
         {isActive ? (
           <>
-            <input
+            <SearchInput
               type="text"
               placeholder="Пошук"
-              className={`search__input ${
-                props.isFixed || !props.location ? "fixed" : ""
-              }`}
+              $isFixed={isFixed}
+              $location={location}
             />
-            <button className="basic-button">
-              <img
-                className={`search__icon ${
-                  props.isFixed || !props.location ? "fixed" : ""
-                }`}
+            <Button onClick={handleSearch}>
+              <SearchIcon
+                $isFixed={isFixed}
+              $location={location}
                 src={searchIcon}
                 alt=""
               />
-            </button>
+            </Button>
           </>
         ) : (
-          <button className="mobile-button" onClick={() => setIsActive(true)}>
-            <img
-              className={`search__icon ${
-                props.isFixed || !props.location ? "fixed" : ""
-              }`}
+          <MobileButton onClick={() => setIsActive(true)}>
+            <SearchIcon
+              $isFixed={isFixed}
+              $location={location}
               src={searchIcon}
               alt=""
             />
-          </button>
+          </MobileButton>
         )}
       </MediaQuery>
-    </div>
+    </SearchBox>
   );
 }
 
