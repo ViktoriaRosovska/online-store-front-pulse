@@ -14,11 +14,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 function Search({ isFixed, location }) {
   const [isActive, setIsActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState(() => {
-    const savedQuery = localStorage.getItem('searchQuery')
-    return window.location.pathname.includes('/search') ? savedQuery : ''
+    const savedQuery = localStorage.getItem("searchQuery");
+    return window.location.pathname.includes("/search") ? savedQuery : "";
   });
   const navigate = useNavigate();
-  const currentLocation = useLocation()
+  const currentLocation = useLocation();
 
   // const { data, error } = useFindProductsQuery({ name: searchQuery }, {
   //   skip: !searchQuery,
@@ -28,7 +28,7 @@ function Search({ isFixed, location }) {
 
   const handleInputChange = event => {
     setSearchQuery(event.target.value);
-    localStorage.setItem('searchQuery', event.target.value)
+    localStorage.setItem("searchQuery", event.target.value);
   };
 
   const handleSearch = () => {
@@ -38,11 +38,11 @@ function Search({ isFixed, location }) {
   };
 
   useEffect(() => {
-    if (!currentLocation.pathname.includes('/search')) {
-      setSearchQuery('')
-      localStorage.removeItem('searchQuery')
+    if (!currentLocation.pathname.includes("/search")) {
+      setSearchQuery("");
+      localStorage.removeItem("searchQuery");
     }
-  }, [currentLocation])
+  }, [currentLocation]);
 
   return (
     <SearchBox>

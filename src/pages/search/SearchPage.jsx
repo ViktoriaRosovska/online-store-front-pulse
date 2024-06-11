@@ -6,6 +6,7 @@ import {
 import { CardsList } from "components/CardsList/CardsList";
 import { useEffect, useState } from "react";
 import { Container, PageSection } from "../../main.styled";
+import { Title } from "components/Typography/Typography.styled";
 
 const SearchPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,6 +44,7 @@ const SearchPage = () => {
   return (
     <PageSection>
       <Container>
+        <Title>Результат пошуку &quot;{searchQuery}&quot;</Title>
         <CardsList
           onPageChange={handlePageChange}
           data={data?.products}
