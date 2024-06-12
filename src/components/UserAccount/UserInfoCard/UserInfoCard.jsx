@@ -11,7 +11,7 @@ import { generateAvatarFromName } from "../../../utils/generateAvatarFromName";
 
 const UserInfoCard = ({ onFileSelect }) => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const { data, isLoading } = useFetchCurrentUserQuery();
+  const { data} = useFetchCurrentUserQuery();
   const user = data?.user;
 
   const fileInputRef = useRef(null);
@@ -25,9 +25,9 @@ const UserInfoCard = ({ onFileSelect }) => {
     setSelectedFile(event.target.files[0]);
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <Wrapper>

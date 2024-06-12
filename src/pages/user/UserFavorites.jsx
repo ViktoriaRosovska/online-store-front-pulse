@@ -21,7 +21,7 @@ const UserFavorites = () => {
   return (
     <>
       <Title style={{ textAlign: "left" }}>Улюблене</Title>
-      {data ? (
+      {data && data.length > 0 ? (
         <CardsList
           data={data}
           isFetching={isFetching}

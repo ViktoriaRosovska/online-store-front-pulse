@@ -51,7 +51,8 @@ const CustomInput = ({ label, mask, ...props }) => {
                   : props.type
               }
               autoComplete="off"
-              $isError={isError}
+                $isError={isError}
+                onChange={field.onChange}
             />
           )}
           <StyledPassIconWrapper>
