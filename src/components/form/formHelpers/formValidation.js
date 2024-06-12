@@ -32,7 +32,7 @@ export const registerValidationSchema = Yup.object().shape({
       message: "Пароль має містити літери та цифри",
     })
     .min(8, "Пароль має бути не менш ніж 8 символів")
-    .max(16, "Максимальна кількість 10 символів")
+    .max(16, "Максимальна кількість 16 символів")
     .required("Oбовʼязкове поле"),
   passwordCheck: Yup.string()
     .oneOf([Yup.ref("password")], "Паролі не співпадають")

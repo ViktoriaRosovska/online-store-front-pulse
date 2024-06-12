@@ -57,7 +57,7 @@ const UserInfoCard = ({ onFileSelect }) => {
         </Button>
       </Box>
       <h2>
-        {user?.firstName} {user?.lastName}
+        {user?.firstName}{' '}{user?.lastName}
       </h2>
     </Wrapper>
   );

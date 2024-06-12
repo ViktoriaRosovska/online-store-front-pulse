@@ -22,6 +22,7 @@ import {
 } from "./ProfileMenu.styled";
 import { generateAvatarFromName } from "../../../utils/generateAvatarFromName";
 import { GeneratedAvatar } from "../UserInfoCard/UserInfoCard.styled";
+import { userAuthApi } from "../../../redux/auth/userAuthApi";
 
 function ProfileMenu({ onClose, isProfile }) {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ function ProfileMenu({ onClose, isProfile }) {
       .unwrap()
       .then(() => {
         dispatch(removeCredentials());
+        dispatch(userAuthApi.util.resetApiState())
         navigate("/");
       })
       .catch(e => console.log("Error logout", e))
