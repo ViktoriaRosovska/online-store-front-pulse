@@ -9,15 +9,19 @@ import {
 import { ReactComponent as LeftArrow } from "../../assets/svg/leftArrow.svg";
 import { ReactComponent as RightArrow } from "../../assets/svg/rightArrow.svg";
 
-export const Pagination = ({ totalPages, page, onChange, siblings }) => {
+export const Pagination = ({ totalPages, page, onChange, siblings = 1 }) => {
   const el = [];
 
-  if (!siblings) siblings = 1;
+  const handlePageClick = newPage => {
+    onChange(newPage)
+  }
+
+  // if (!siblings) siblings = 1;
 
   el.push(
     <li key="left">
       <PrevBtn
-        click={() => onChange(page - 1)}
+        click={() => handlePageClick(page - 1)}
         disabled={page === 1}
         $current={false}
       >
@@ -29,7 +33,7 @@ export const Pagination = ({ totalPages, page, onChange, siblings }) => {
   if (page > 1) {
     el.push(
       <li key="first">
-        <PaginationBtn click={() => onChange(1)}>1</PaginationBtn>
+        <PaginationBtn click={() => handlePageClick(1)}>1</PaginationBtn>
       </li>
     );
   }
@@ -47,7 +51,7 @@ export const Pagination = ({ totalPages, page, onChange, siblings }) => {
   for (let i = startPage; i < page; i += 1) {
     el.push(
       <li key={i}>
-        <PaginationBtn click={() => onChange(i)}>{i}</PaginationBtn>
+        <PaginationBtn click={() => handlePageClick(i)}>{i}</PaginationBtn>
       </li>
     );
   }
@@ -79,7 +83,7 @@ export const Pagination = ({ totalPages, page, onChange, siblings }) => {
   if (page < totalPages) {
     el.push(
       <li key="last">
-        <PaginationBtn click={() => onChange(totalPages)} $lastpage={true}>
+        <PaginationBtn click={() => handlePageClick(totalPages)} $lastpage={true}>
           {totalPages}
         </PaginationBtn>
       </li>
@@ -89,7 +93,7 @@ export const Pagination = ({ totalPages, page, onChange, siblings }) => {
   el.push(
     <li key="right">
       <NextBtn
-        click={() => onChange(page + 1)}
+        click={() => handlePageClick(page + 1)}
         disabled={page === totalPages}
         $current={false}
       >

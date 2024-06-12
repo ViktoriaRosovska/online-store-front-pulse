@@ -1,14 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MediaQuery from "react-responsive";
 import searchIcon from "/public/icons/search-icon.svg";
-import { Button, MobileButton, SearchBox, SearchIcon, SearchInput } from "./Search.styled";
+import {
+  Button,
+  MobileButton,
+  SearchBox,
+  SearchIcon,
+  SearchInput,
+} from "./Search.styled";
 // import { useFindProductsQuery } from "../../../../redux/products/productsApi";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Search({ isFixed, location }) {
   const [isActive, setIsActive] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('')
-  const navigate = useNavigate()
+  const [searchQuery, setSearchQuery] = useState(() => {
+    const savedQuery = localStorage.getItem("searchQuery");
+    return window.location.pathname.includes("/search") ? savedQuery : "";
+  });
+  const navigate = useNavigate();
+  const currentLocation = useLocation();
 
   // const { data, error } = useFindProductsQuery({ name: searchQuery }, {
   //   skip: !searchQuery,
@@ -16,15 +26,23 @@ function Search({ isFixed, location }) {
   // console.log("Search  data", data)
   // console.log("Search  error", error)
 
-  const handleInputChange = (event) => {
-    setSearchQuery(event.target.value)
-  }
+  const handleInputChange = event => {
+    setSearchQuery(event.target.value);
+    localStorage.setItem("searchQuery", event.target.value);
+  };
 
   const handleSearch = () => {
     if (searchQuery) {
-      navigate(`/search?query=${searchQuery}&page=1&limit=12`)
+      navigate(`/search?query=${searchQuery}`);
     }
-  }
+  };
+
+  useEffect(() => {
+    if (!currentLocation.pathname.includes("/search")) {
+      setSearchQuery("");
+      localStorage.removeItem("searchQuery");
+    }
+  }, [currentLocation]);
 
   return (
     <SearchBox>
@@ -40,7 +58,7 @@ function Search({ isFixed, location }) {
         <Button onClick={handleSearch}>
           <SearchIcon
             $isFixed={isFixed}
-              $location={location}
+            $location={location}
             src={searchIcon}
             alt=""
           />
@@ -59,7 +77,7 @@ function Search({ isFixed, location }) {
             <Button onClick={handleSearch}>
               <SearchIcon
                 $isFixed={isFixed}
-              $location={location}
+                $location={location}
                 src={searchIcon}
                 alt=""
               />
