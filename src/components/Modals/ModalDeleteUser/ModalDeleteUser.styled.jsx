@@ -30,6 +30,12 @@ export const CancelButton = styled.button`
   line-height: 20px;
   color: var(--white-text-color);
 
+  &:hover {
+    background-color: transparent;
+    color: var(--black-bg-color);
+    border: 1px solid var(--black-bg-color);
+  }
+
   @media screen and (min-width: 1440px) {
     font-size: 20px;
     line-height: 30px;
@@ -43,6 +49,11 @@ export const DeleteButton = styled.button`
   font-size: 16px;
   line-height: 20px;
   border: 1px solid var(--black-bg-color);
+
+  &:hover {
+    background-color: var(--black-bg-color);
+    color: var(--white-text-color);
+  }
 
   @media screen and (min-width: 1440px) {
     font-size: 20px;

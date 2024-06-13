@@ -26,6 +26,13 @@ export const Button = styled.button`
   font-size: 18px;
   line-height: 150%;
   letter-spacing: 0.01em;
+  transition: background-color 200ms ease-out, color 200ms ease-out, border 200ms ease-out;
+
+  &:hover {
+    background-color: transparent;
+    color: var(--black-bg-color);
+    border: 1px solid var(--black-bg-color);
+  }
 
   @media screen and (min-width: 1440px) {
     height: 62px;
@@ -39,4 +46,8 @@ export const ForgotPasswordButton = styled.button`
   line-height: 16px;
   letter-spacing: 0.5px;
   text-decoration: underline;
+
+  &:hover {
+    color: var(--grey-text-color);
+  }
 `;

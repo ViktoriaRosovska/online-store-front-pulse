@@ -10,10 +10,22 @@ import ModalBurgerMenu from "../../components/Modals/ModalBurgerMenu/ModalBurger
 import { Container } from "../../main.styled";
 import HeaderMobileMenu from "./HeaderMobileMenu/HeaderMobileMenu";
 import HeaderMenuSvg from "./HeaderMenuSvg/HeaderMenuSvg";
+import {
+  MobileInput,
+  SearchMobileBox,
+  Box,
+  MobileSearchIcon,
+} from "./Search-user-actions/search/Search.styled";
+import { ReactComponent as CloseSearcSvg } from "../../assets/svg/close-mobile-search.svg";
 
 function Header() {
   const [isFixed, setIsFixed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(() => {
+    const savedQuery = localStorage.getItem("searchQuery");
+    return window.location.pathname.includes("/search") ? savedQuery : "";
+  });
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,12 +45,44 @@ function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!location.pathname.includes("/search")) {
+      setSearchQuery("");
+      localStorage.removeItem("searchQuery");
+    }
+  }, [location]);
+
   const handleOpenMenu = () => {
     setIsOpen(true);
   };
 
   const handleCloseMenu = () => {
     setIsOpen(false);
+  };
+
+  const handleOpenMobileSearch = () => {
+    setIsActive(true);
+  };
+
+  const handleCloseMobileSearch = () => {
+    setIsActive(false);
+  };
+
+  const handleSearchInputChange = query => {
+    setSearchQuery(query);
+    localStorage.setItem("searchQuery", query);
+  };
+
+  const handleDeleteSearchQuery = () => {
+    setSearchQuery("");
+    localStorage.removeItem("searchQuery");
+  };
+
+  const handleSearch = () => {
+    if (searchQuery) {
+      navigate(`/search?query=${searchQuery}`);
+    }
+    handleCloseMobileSearch();
   };
 
   return (
@@ -81,11 +125,33 @@ function Header() {
             </nav>
           </MediaQuery>
           <SearchUserActions
+            openSearch={handleOpenMobileSearch}
             isFixed={isFixed}
             location={location.pathname === "/"}
+            searchQuery={searchQuery}
+            onSearchInputChange={handleSearchInputChange}
+            isActive={isActive}
+            closeSearch={handleCloseMobileSearch}
           />
         </div>
       </Container>
+      <MediaQuery maxWidth={1439}>
+        {isActive && (
+          <SearchMobileBox>
+            <Box>
+              <MobileSearchIcon onClick={handleSearch} />
+              <MobileInput
+                placeholder="Пошук"
+                value={searchQuery}
+                onChange={e => handleSearchInputChange(e.target.value)}
+              />
+              {searchQuery && (
+                <CloseSearcSvg onClick={handleDeleteSearchQuery}/>
+              )}
+            </Box>
+          </SearchMobileBox>
+        )}
+      </MediaQuery>
     </header>
   );
 }

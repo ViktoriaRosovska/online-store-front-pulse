@@ -10,10 +10,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Notify } from "notiflix";
-// import { useState } from "react";
-// import { Portal } from "components/Modals/helpersForModal/modalPortal";
-// import CommonModal from "components/Modals/CommonModal";
-// import ModalForgotPassword from "components/Modals/ModalForgotPassword/ModalForgotPassword";
 
 const CustomLoginForm = ({
   onClose,
@@ -56,11 +52,12 @@ const CustomLoginForm = ({
           password: "",
         }}
         validateOnBlur
+        validateOnChange={true}
         validationSchema={loginValidationSchema}
         onSubmit={onSubmit}
       >
         {() => (
-          <StyledForm>
+          <StyledForm >
             <CustomInput
               label="Email"
               name="email"

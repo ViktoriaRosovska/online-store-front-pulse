@@ -17,6 +17,11 @@ export const CheckboxList = props => {
     showAll || showAllByDefault
       ? props.items
       : props.items.slice(0, props.defaultShow);
+  
+  const toggleShowAll = () => {
+    setShowAll(prev => !prev)
+    props.onChangeShowAll(!showAll)
+  }
 
   const onChange = (e, item) => {
     if (!props.onChanged) return;
@@ -51,12 +56,9 @@ export const CheckboxList = props => {
               />
             );
           })}
-        {showAllByDefault ? null : (
+        {!showAllByDefault && (
           <ShowAllCheckboxButton
-            onClick={() => {
-              setShowAll(prev => !prev);
-              props.onChangeShowAll(showAll);
-            }}
+            onClick={toggleShowAll}
           >
             {showAll ? (
               <>

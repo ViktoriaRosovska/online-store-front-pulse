@@ -21,13 +21,21 @@ export const Button = styled.button`
   color: var(--white-text-color);
   border-radius: 16px;
   padding: 10px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 150%;
   letter-spacing: 0.01em;
+
+  transition: background-color 200ms ease-out, color 200ms ease-out, border 200ms ease-out;
+
+  &:hover {
+    background-color: transparent;
+    color: var(--black-bg-color);
+    border: 1px solid var(--black-bg-color);
+  }
 
   @media screen and (min-width: 1440px) {
     /* width: 384px; */
     height: 64px;
-    font-size: 16px;
+    font-size: 20px;
   }
 `;

@@ -31,6 +31,10 @@ export const ReturnButton = styled.button`
   margin-left: auto;
   margin-right: auto;
 
+  &:hover {
+    color: var(--grey-text-color);
+  }
+
   @media screen and (min-width: 1440px) {
     margin-top: 36px;
   }

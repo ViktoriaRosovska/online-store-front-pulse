@@ -1,4 +1,29 @@
 import styled, { css } from "styled-components";
+import { ReactComponent as SearchMobileIcon } from "/public/icons/search-icon.svg";
+import { ReactComponent as CloseSearcSvg } from "../../../../assets/svg/close-mobile-search.svg";
+
+export const CloseSearchIcon = styled(CloseSearcSvg)`
+  width: 24px;
+  height: 24px;
+  stroke: var(--black-text-color);
+  ${props =>
+    props.$isFixed || !props.$location
+      ? css`
+          filter: invert(100%) sepia(1%) saturate(5805%) hue-rotate(184deg)
+            brightness(116%) contrast(83%);
+        `
+      : ""}
+`;
+
+export const MobileSearchIcon = styled(SearchMobileIcon)`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  stroke: var(--grey-text-color);
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+`;
 
 export const SearchBox = styled.div`
   position: relative;
@@ -46,7 +71,8 @@ export const SearchInput = styled.input`
   }
 `;
 
-export const SearchIcon = styled.img`
+export const SearchIcon = styled(SearchMobileIcon)`
+  stroke: var(--black-text-color);
   ${props =>
     props.$isFixed || !props.$location
       ? css`
@@ -69,4 +95,45 @@ export const MobileButton = styled.button`
   border: none;
   background: transparent;
   cursor: pointer;
+`;
+
+export const SearchMobileBox = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 72px;
+  left: 0;
+  padding-top: 10px;
+  border-radius: 26px;
+  padding-bottom: 10px;
+  background-color: var(--white-bg-color-favorite-btn);
+  border-bottom: 0.2px solid var(--white-dark-bg-color);
+  width: 100%;
+
+  svg {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    stroke: var(--grey-text-color);
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+`;
+
+export const Box = styled.div`
+  position: relative;
+`;
+
+export const MobileInput = styled.input`
+  display: block;
+  width: calc(100vw - 48px);
+  max-width: 326px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  padding-left: 42px;
+  padding-right: 36px;
+  border-radius: 16px;
+  border: 1px solid var(--white-dark-bg-color);
+  font-size: 12px;
 `;
