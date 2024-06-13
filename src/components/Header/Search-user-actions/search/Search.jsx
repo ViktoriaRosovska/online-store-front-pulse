@@ -1,4 +1,5 @@
 import MediaQuery from "react-responsive";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   CloseSearchIcon,
@@ -7,7 +8,6 @@ import {
   SearchIcon,
   SearchInput,
 } from "./Search.styled";
-import { useNavigate } from "react-router-dom";
 
 function Search({
   isFixed,

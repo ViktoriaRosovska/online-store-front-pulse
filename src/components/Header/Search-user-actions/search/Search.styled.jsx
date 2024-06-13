@@ -3,8 +3,8 @@ import { ReactComponent as SearchMobileIcon } from "/public/icons/search-icon.sv
 import { ReactComponent as CloseSearcSvg } from "../../../../assets/svg/close-mobile-search.svg";
 
 export const CloseSearchIcon = styled(CloseSearcSvg)`
-width: 24px;
-height: 24px;
+  width: 24px;
+  height: 24px;
   stroke: var(--black-text-color);
   ${props =>
     props.$isFixed || !props.$location
@@ -13,17 +13,17 @@ height: 24px;
             brightness(116%) contrast(83%);
         `
       : ""}
-`
+`;
 
 export const MobileSearchIcon = styled(SearchMobileIcon)`
-   position: absolute;
-    width: 20px;
-    height: 20px;
-    stroke: var(--grey-text-color);
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  stroke: var(--grey-text-color);
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+`;
 
 export const SearchBox = styled.div`
   position: relative;
@@ -72,7 +72,7 @@ export const SearchInput = styled.input`
 `;
 
 export const SearchIcon = styled(SearchMobileIcon)`
-stroke: var(--black-text-color);
+  stroke: var(--black-text-color);
   ${props =>
     props.$isFixed || !props.$location
       ? css`
@@ -123,7 +123,7 @@ export const SearchMobileBox = styled.div`
 
 export const Box = styled.div`
   position: relative;
-`
+`;
 
 export const MobileInput = styled.input`
   display: block;
@@ -137,5 +137,3 @@ export const MobileInput = styled.input`
   border: 1px solid var(--white-dark-bg-color);
   font-size: 12px;
 `;
-
-
