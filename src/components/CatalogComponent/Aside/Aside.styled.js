@@ -9,9 +9,9 @@ const AsideList = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  height: 270px;
+  /* height: 270px; */
   width: 327px;
-  height: ${props => (props.$valueSize ? "270px" : "fit-content")};
+  height: ${props => (props.$valueSize ? "fit-content" : "270px")};
   row-gap: 10px;
   margin-bottom: 24px;
   /* border: 1px solid red; */

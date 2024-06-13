@@ -25,10 +25,13 @@ export const Aside = props => {
   };
 
   let defaultShow = 3;
-  const [valueSize, setValueSize] = useState(true);
-  const onChangeShowAll = value => {
+  const [valueSize, setValueSize] = useState(false);
+  const onChangeShowAll = () => {
+    const anyCollapsed = props.selectedBrands.length > defaultShow ||
+      props.selectedSizes.length > defaultShow ||
+      props.selectedColors.length > defaultShow
     // console.log(value);
-    setValueSize(value);
+    setValueSize(!anyCollapsed);
   };
   return (
     <AsideList $valueSize={valueSize} $onAsideShow={props.onAsideShow}>
@@ -47,7 +50,7 @@ export const Aside = props => {
           title="Брeнд"
           checked={props.selectedBrands}
           onChanged={items => props.onChanged("brand", items)}
-          onChangeShowAll={onChangeShowAll}
+          // onChangeShowAll={onChangeShowAll}
           defaultShow={screenWidth(5, 8)}
         />
       </div>
