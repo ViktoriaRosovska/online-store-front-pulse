@@ -66,7 +66,22 @@ function Search({ isFixed, location }) {
       </MediaQuery>
 
       <MediaQuery maxWidth={1439}>
-        {isActive ? (
+        <MobileButton onClick={() => setIsActive(true)}>
+            <SearchIcon
+              $isFixed={isFixed}
+              $location={location}
+              src={searchIcon}
+              alt=""
+            />
+        </MobileButton>
+        {isActive && (
+          <>
+          <input
+            placeholder="Пошук"
+          />
+            </>
+        )}
+        {/* {isActive ? (
           <>
             <SearchInput
               type="text"
@@ -92,7 +107,7 @@ function Search({ isFixed, location }) {
               alt=""
             />
           </MobileButton>
-        )}
+        )} */}
       </MediaQuery>
     </SearchBox>
   );

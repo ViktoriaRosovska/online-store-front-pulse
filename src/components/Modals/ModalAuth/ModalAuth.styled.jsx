@@ -48,10 +48,14 @@ export const QuestionText = styled.p`
   line-height: 20px;
 `;
 
-export const Register = styled.p`
+export const Register = styled.button`
   font-size: 16px;
   line-height: 20px;
   text-decoration: underline;
+
+  &:hover {
+    color: var(--grey-text-color);
+  }
 `;
 
 export const OrWrapper = styled.div`

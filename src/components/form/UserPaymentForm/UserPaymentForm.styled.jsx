@@ -48,6 +48,13 @@ export const Button = styled.button`
   line-height: 150%;
   letter-spacing: 0.01em;
   margin-top: 8px;
+  transition: background-color 200ms ease-out, color 200ms ease-out, border 200ms ease-out;
+
+  &:hover {
+    background-color: transparent;
+    color: var(--black-bg-color);
+    border: 1px solid var(--black-bg-color);
+  }
 
   @media screen and (min-width: 1440px) {
     /* width: 384px; */

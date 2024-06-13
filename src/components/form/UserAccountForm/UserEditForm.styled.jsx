@@ -27,9 +27,16 @@ export const Button = styled.button`
   color: var(--white-text-color);
   border-radius: 16px;
   padding: 10px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 150%;
   letter-spacing: 0.01em;
+  transition: background-color 200ms ease-out, color 200ms ease-out, border 200ms ease-out;
+
+  &:hover {
+    background-color: transparent;
+    color: var(--black-bg-color);
+    border: 1px solid var(--black-bg-color);
+  }
 
   @media screen and (min-width: 1440px) {
     width: 384px;
@@ -38,7 +45,7 @@ export const Button = styled.button`
     position: absolute;
     left: 0;
     bottom: 0;
-    font-size: 16px;
+    font-size: 20px;
   }
 `;
 
@@ -49,19 +56,25 @@ export const DeleteButton = styled.button`
   justify-content: center;
   border-radius: 16px;
   padding: 10px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 150%;
   letter-spacing: 0.01em;
-  background-color: var(--white-bg-color-favorite-btn);
+  background-color: transparent;
   color: #000000;
   border: 1px solid var(--black-bg-color);
   margin-top: 16px;
+  transition: background-color 200ms ease-out, color 200ms ease-out;
+
+  &:hover {
+    background-color: var(--black-bg-color);
+    color: var(--white-text-color);
+  }
 
   @media screen and (min-width: 1440px) {
     width: 384px;
     height: 64px;
     margin-top: 60px;
     margin-left: auto;
-    font-size: 16px;
+    font-size: 20px;
   }
 `;
