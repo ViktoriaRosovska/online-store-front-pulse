@@ -7,6 +7,8 @@ import { CardsList } from "components/CardsList/CardsList";
 import { useEffect, useState } from "react";
 import { Container, PageSection } from "../../main.styled";
 import { Title } from "components/Typography/Typography.styled";
+import Breadcrumbs from "components/Breadcrumbs";
+import { BREADCRUMBS } from "../../utils/breadcrumbsVocabulary";
 
 const SearchPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -44,6 +46,7 @@ const SearchPage = () => {
   return (
     <PageSection>
       <Container>
+        <Breadcrumbs current={`Результат пошуку "${searchQuery}"`} BREADCRUMBS={BREADCRUMBS} />
         <Title>Результат пошуку &quot;{searchQuery}&quot;</Title>
         <CardsList
           onPageChange={handlePageChange}

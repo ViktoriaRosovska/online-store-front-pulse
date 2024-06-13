@@ -1,34 +1,27 @@
-import { useEffect, useState } from "react";
 import MediaQuery from "react-responsive";
-import searchIcon from "/public/icons/search-icon.svg";
 import {
   Button,
+  CloseSearchIcon,
   MobileButton,
   SearchBox,
   SearchIcon,
   SearchInput,
 } from "./Search.styled";
-// import { useFindProductsQuery } from "../../../../redux/products/productsApi";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Search({ isFixed, location }) {
-  const [isActive, setIsActive] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(() => {
-    const savedQuery = localStorage.getItem("searchQuery");
-    return window.location.pathname.includes("/search") ? savedQuery : "";
-  });
+function Search({
+  isFixed,
+  location,
+  openSearch,
+  onSearchInputChange,
+  searchQuery,
+  isActive,
+  closeSearch,
+}) {
   const navigate = useNavigate();
-  const currentLocation = useLocation();
-
-  // const { data, error } = useFindProductsQuery({ name: searchQuery }, {
-  //   skip: !searchQuery,
-  // })
-  // console.log("Search  data", data)
-  // console.log("Search  error", error)
 
   const handleInputChange = event => {
-    setSearchQuery(event.target.value);
-    localStorage.setItem("searchQuery", event.target.value);
+    onSearchInputChange(event.target.value);
   };
 
   const handleSearch = () => {
@@ -37,12 +30,9 @@ function Search({ isFixed, location }) {
     }
   };
 
-  useEffect(() => {
-    if (!currentLocation.pathname.includes("/search")) {
-      setSearchQuery("");
-      localStorage.removeItem("searchQuery");
-    }
-  }, [currentLocation]);
+  const handleOpenMobileSearch = () => {
+    openSearch();
+  };
 
   return (
     <SearchBox>
@@ -56,58 +46,20 @@ function Search({ isFixed, location }) {
           onChange={handleInputChange}
         />
         <Button onClick={handleSearch}>
-          <SearchIcon
-            $isFixed={isFixed}
-            $location={location}
-            src={searchIcon}
-            alt=""
-          />
+          <SearchIcon $isFixed={isFixed} $location={location} />
         </Button>
       </MediaQuery>
 
       <MediaQuery maxWidth={1439}>
-        <MobileButton onClick={() => setIsActive(true)}>
-            <SearchIcon
-              $isFixed={isFixed}
-              $location={location}
-              src={searchIcon}
-              alt=""
-            />
-        </MobileButton>
-        {isActive && (
-          <>
-          <input
-            placeholder="Пошук"
-          />
-            </>
-        )}
-        {/* {isActive ? (
-          <>
-            <SearchInput
-              type="text"
-              placeholder="Пошук"
-              $isFixed={isFixed}
-              $location={location}
-            />
-            <Button onClick={handleSearch}>
-              <SearchIcon
-                $isFixed={isFixed}
-                $location={location}
-                src={searchIcon}
-                alt=""
-              />
-            </Button>
-          </>
-        ) : (
-          <MobileButton onClick={() => setIsActive(true)}>
-            <SearchIcon
-              $isFixed={isFixed}
-              $location={location}
-              src={searchIcon}
-              alt=""
-            />
+        {isActive ? (
+          <MobileButton onClick={closeSearch}>
+            <CloseSearchIcon $isFixed={isFixed} $location={location} />
           </MobileButton>
-        )} */}
+        ) : (
+          <MobileButton onClick={handleOpenMobileSearch}>
+            <SearchIcon $isFixed={isFixed} $location={location} />
+          </MobileButton>
+        )}
       </MediaQuery>
     </SearchBox>
   );
