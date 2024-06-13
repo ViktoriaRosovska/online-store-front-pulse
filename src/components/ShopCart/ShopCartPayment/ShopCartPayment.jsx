@@ -26,6 +26,7 @@ export const ShopCartPayment = props => {
   // const location = useLocation();
   const items = useSelector(selectUserShopCart).products;
   const shopCart = useSelector(selectUserShopCart);
+
   const priceSum = shopCart?.priceSum;
   const countQuantity = shopCart?.countQuantity;
   console.log(shopCart);

@@ -14,10 +14,13 @@ import {
   StyledOnlinePaymentWrapper,
   StyledPayButton,
 } from "./CustomRadioButton/CustomRadioButton.styled";
+import { useSelector } from "react-redux";
+import { selectPaymentCard } from "../redux/paymentCard/paymentCardSelector";
+import { editCardDateInInput } from "./form/formHelpers/formUserCardEdit";
 
 export const PaymentRadioGroup = () => {
   const [selected, setSelected] = useState("card");
-
+  const selectedCard = useSelector(selectPaymentCard);
   return (
     <>
       <CustomRadioButton
@@ -51,13 +54,28 @@ export const PaymentRadioGroup = () => {
         value="card"
         selected={selected === "card"}
         onChange={setSelected}
-        text="Обрати збережену картку"
+        text="Оплатити банківською карткою"
       >
         <Formik>
           <StyledCardForm>
-            <CustomInput type="text" label="Номер картки" name="cardNumber" />
-            <CustomInput type="text" label="Термін дії" name="validity" />
-            <CustomInput type="text" label="CVV" name="cardCVV" />
+            <CustomInput
+              type="text"
+              label="Номер картки"
+              name="cardNumber"
+              defaultValue={selectedCard?.cardNumber || ""}
+            />
+            <CustomInput
+              type="text"
+              label="Термін дії"
+              name="validity"
+              defaultValue={editCardDateInInput(selectedCard?.cardDate) || ""}
+            />
+            <CustomInput
+              type="text"
+              label="CVV"
+              name="cardCVС"
+              defaultValue={selectedCard?.cardCVC || ""}
+            />
             <StyledPayButton>Оплатити</StyledPayButton>
           </StyledCardForm>
         </Formik>
@@ -65,7 +83,7 @@ export const PaymentRadioGroup = () => {
       <CustomRadioButton
         value="offline"
         selected={selected === "offline"}
-        text="Оплата при отриманні"
+        text="Оплатити при отриманні"
         onChange={setSelected}
       >
         {selected === "offline" && (
