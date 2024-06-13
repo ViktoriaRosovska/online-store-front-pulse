@@ -20,6 +20,7 @@ export const CheckboxList = props => {
   
   const toggleShowAll = () => {
     setShowAll(prev => !prev)
+    props.onChangeShowAll(!showAll)
   }
 
   const onChange = (e, item) => {

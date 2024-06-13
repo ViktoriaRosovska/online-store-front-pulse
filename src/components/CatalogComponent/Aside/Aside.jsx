@@ -50,7 +50,7 @@ export const Aside = props => {
           title="Брeнд"
           checked={props.selectedBrands}
           onChanged={items => props.onChanged("brand", items)}
-          // onChangeShowAll={onChangeShowAll}
+          onChangeShowAll={onChangeShowAll}
           defaultShow={screenWidth(5, 8)}
         />
       </div>
