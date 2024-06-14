@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 const CardsListContainer = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 const CardListWrapper = styled.div`
   margin-bottom: 24px;

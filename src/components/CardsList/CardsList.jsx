@@ -55,7 +55,8 @@ export const CardsList = ({
       {!isFetching && data?.length > 0 && !isFavoritePage ? (
         <Pagination
           onChange={onPageChange}
-          page={parseInt(page)}
+          // page={parseInt(page)}
+          page={page}
           totalPages={totalPages}
         />
       ) : null}

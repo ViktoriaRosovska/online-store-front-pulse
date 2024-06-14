@@ -1,41 +1,61 @@
-import { CatalogComponent } from "components/CatalogComponent/CatalogComponent"
-import { useLocation } from "react-router-dom"
-import { useFindProductsQuery, useLazyFindProductsQuery } from "../../redux/products/productsApi"
-import { CardsList } from "components/CardsList/CardsList"
-import { useEffect } from "react"
+import { useSearchParams } from "react-router-dom";
+import {
+  //   useFindProductsQuery,
+  useLazyFindProductsQuery,
+} from "../../redux/products/productsApi";
+import { CardsList } from "components/CardsList/CardsList";
+import { useEffect, useState } from "react";
+import { Container, PageSection } from "../../main.styled";
+import { Title } from "components/Typography/Typography.styled";
 
 const SearchPage = () => {
-    const location = useLocation()
-    const params = new URLSearchParams(location.search)
-    const searchQuery = params.get('query')
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get("query");
+  const page = parseInt(searchParams.get("page") || "1");
 
-    const [findProducts, { data, isError, isFetching }] = useLazyFindProductsQuery()
-    
-    useEffect(() => {
-        if (searchQuery) {
-            findProducts({name: searchQuery})
-        }
-    }, [searchQuery, findProducts])
+  const [currentPage, setCurrentPage] = useState(page);
 
-    return (
-        <CatalogComponent
-            title={`Результат пошуку "${searchQuery}"`}
-            data={data?.products}
-            sex={""}
-           loader={findProducts}
-            isError={isError}
-            page={data?.page}
-            totalPages={data?.totalPages}
-            isFetching={isFetching}
+  const [findProducts, { data, isError, isFetching }] =
+    useLazyFindProductsQuery();
+
+  useEffect(() => {
+    if (!searchParams.get("page")) {
+      searchParams.set("page", "1");
+      setSearchParams(searchParams, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
+
+  useEffect(() => {
+    if (searchQuery) {
+      findProducts({ name: searchQuery, page: currentPage });
+    }
+  }, [searchQuery, findProducts, currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(page);
+  }, [page]);
+
+  const handlePageChange = newPage => {
+    searchParams.set("page", newPage);
+    setSearchParams(searchParams);
+    // setCurrentPage(newPage);
+  };
+
+  return (
+    <PageSection>
+      <Container>
+        <Title>Результат пошуку &quot;{searchQuery}&quot;</Title>
+        <CardsList
+          onPageChange={handlePageChange}
+          data={data?.products}
+          isFetching={isFetching}
+          isError={isError}
+          totalPages={data?.totalPages}
+          page={currentPage}
         />
-        // <CardsList
-        //     data={data?.products}
-        //     isFetching={isFetching}
-        //     isError={isError}
-        //     totalPages={data?.totalPages}
-        //     page={data?.page}
-        // />
-    )
-}
+      </Container>
+    </PageSection>
+  );
+};
 
-export default SearchPage
+export default SearchPage;
