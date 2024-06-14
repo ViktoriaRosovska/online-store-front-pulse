@@ -28,7 +28,7 @@ import { discountPrice } from "../../../utils/discountPrice";
 
 import { normalize_count_form } from "../../../utils/normalize_count_form";
 import { PromoCode } from "components/PromoCode";
-// import { useState } from "react";
+
 export const ShopCart = props => {
   const items = useSelector(selectUserShopCart).products;
   const userShopCart = useSelector(selectUserShopCart);
@@ -51,6 +51,7 @@ export const ShopCart = props => {
   // };
 
   // console.log(check);
+
   return (
     <>
       <Title>{props.title}</Title>

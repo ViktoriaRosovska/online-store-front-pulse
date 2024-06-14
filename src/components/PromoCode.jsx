@@ -23,9 +23,10 @@ import {
   setPromoStatus,
 } from "../redux/promoCode/promoCodeSlice";
 import { ReactComponent as CheckedSvg } from "../assets/svg/done.svg";
-import { addShopCartPromoCode } from "../redux/user/userShopCart/userShopCartSlice";
+
 export const PromoCode = () => {
   const dispatch = useDispatch();
+
   const [checkPromoCode] = useLazyCheckPromoCodeQuery({
     selectFromResult: ({ data, error }) => {
       if (error) {
@@ -41,22 +42,15 @@ export const PromoCode = () => {
       }
     },
   });
+
   const isPromoExpired = useSelector(selectPromoExpired);
   const isPromoInvalid = useSelector(selectPromoInvalid);
   const isPromoValid = useSelector(selectPromoValid);
-
   const promoCode = useSelector(selectPromoCode);
 
-  const handleChangePromo = e => {
-    dispatch(setPromoCode(e.target.value));
-    checkPromoCode(e.target.value);
-    if (isPromoValid) {
-      dispatch(addShopCartPromoCode(promoCode));
-      // onCheckPromo(true);
-    } else {
-      dispatch(addShopCartPromoCode(""));
-      // onCheckPromo(false);
-    }
+  const handleChangePromo = code => {
+    dispatch(setPromoCode(code));
+    checkPromoCode(code);
   };
 
   return (
@@ -72,7 +66,7 @@ export const PromoCode = () => {
             type="text"
             name="code"
             label=""
-            onChange={handleChangePromo}
+            onChange={e => handleChangePromo(e.target.value)}
             value={promoCode}
           />
           {isPromoInvalid && <Error>Невірний промокод</Error>}
