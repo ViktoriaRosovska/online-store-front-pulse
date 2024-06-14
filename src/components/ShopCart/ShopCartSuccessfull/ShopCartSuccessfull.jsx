@@ -1,41 +1,28 @@
-// import { useLocation } from "react-router-dom";
-import { Title } from "components/Typography/Typography.styled";
+import { useSelector } from "react-redux";
+import { Title } from "../../../components/Typography/Typography.styled";
 import {
-  StyledNotificationWrapper,
   StyledOrderPriceTextWrapper,
   StyledOrderText,
   StyledOrderTitle,
   StyledPDVText,
 } from "../ShopCart/ShopCart.styled";
-import { ShopCard } from "../ShopCard/ShopCard";
-import { useSelector } from "react-redux";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
+import { StyledOrderPaymentWrapper } from "../ShopCartPayment/ShopCartPayment.styled";
 import { normalize_count_form } from "../../../utils/normalize_count_form";
+import { ShopCard } from "../ShopCard/ShopCard";
 import useMediaQuery from "../../../hooks/useMediaQuery";
-import { PaymentRadioGroup } from "components/PaymentRadioGroup";
-import { StyledDeliveryTitle } from "../ShopCartDelivery/ShopCartDelivery.styled";
-import { PromoCode } from "components/PromoCode";
-import {
-  StyledOrderPaymentWrapper,
-  StyledPaymentWrapper,
-  StyledRadioGroupWrapper,
-} from "./ShopCartPayment.styled";
 
-export const ShopCartPayment = props => {
+export const ShopCartSuccessfull = ({ title }) => {
   const isDesktop = useMediaQuery("(min-width: 1440px)");
-  // const location = useLocation();
-  const items = useSelector(selectUserShopCart).products;
   const shopCart = useSelector(selectUserShopCart);
-  const dayNow = new Date();
+  const items = useSelector(selectUserShopCart).products;
   const priceSum = shopCart?.priceSum;
   const countQuantity = shopCart?.countQuantity;
-  console.log(shopCart);
-
   return (
     <>
-      <Title>{props.title}</Title>
+      <Title>{title}</Title>
 
-      {items && items.length > 0 ? (
+      {items && items.length > 0 && (
         <StyledOrderPaymentWrapper>
           <div>
             <ul>
@@ -74,33 +61,28 @@ export const ShopCartPayment = props => {
                 <span>{priceSum}&nbsp;грн</span>
               </StyledOrderText>
             </StyledOrderPriceTextWrapper>
-
-            <PromoCode />
-            <StyledOrderTitle>Адреса доставки</StyledOrderTitle>
-            <p>{shopCart.address}</p>
-            <p>{shopCart.city}</p>
-            <p>{shopCart.surname + " " + shopCart.name}</p>
-            <p>{shopCart.phone}</p>
+          </div>
+          <div>
+            <p>Вітаю, {shopCart.name}, дякую, що купуєте у нас!</p>
+            <p>
+              Ви отримаєте лист на email та СМС, коли ваше замовлення буде
+              відправлене зі складу.
+            </p>
+            <div>
+              <StyledOrderTitle>Адреса доставки</StyledOrderTitle>
+              <div>
+                <p>{shopCart.address}</p>
+                <p>{shopCart.city}</p>
+                <p>{shopCart.surname + " " + shopCart.name}</p>
+                <p>{shopCart.phone}</p>
+              </div>
+            </div>
             <StyledOrderTitle>Умови доставки</StyledOrderTitle>
-
+            <p style={{ color: "red" }}>09.03 - 10.03</p>
             <p>{shopCart.deliveryType}</p>
             <p style={{ color: "red" }}>Безкоштовно</p>
           </div>
-
-          <StyledPaymentWrapper>
-            <StyledDeliveryTitle>
-              Оплата та підтвердження замовлення
-            </StyledDeliveryTitle>
-            <StyledRadioGroupWrapper>
-              <p>Вибери зручний спосіб оплати</p>
-              <PaymentRadioGroup />
-            </StyledRadioGroupWrapper>
-          </StyledPaymentWrapper>
         </StyledOrderPaymentWrapper>
-      ) : (
-        <StyledNotificationWrapper>
-          У вашому кошику ще немає товарів
-        </StyledNotificationWrapper>
       )}
     </>
   );

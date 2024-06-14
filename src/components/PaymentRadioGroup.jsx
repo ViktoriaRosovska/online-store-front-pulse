@@ -11,16 +11,21 @@ import { ReactComponent as GooglePayBtn } from "../assets/svg/googlePay_btn.svg"
 import {
   StyledCardForm,
   StyledCardIconWrapper,
+  StyledOfflinePaymentText,
   StyledOnlinePaymentWrapper,
   StyledPayButton,
+  StypedOfflinePaymentWrapper,
 } from "./CustomRadioButton/CustomRadioButton.styled";
 import { useSelector } from "react-redux";
 import { selectPaymentCard } from "../redux/paymentCard/paymentCardSelector";
 import { editCardDateInInput } from "./form/formHelpers/formUserCardEdit";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../utils/routes";
 
 export const PaymentRadioGroup = () => {
   const [selected, setSelected] = useState("card");
   const selectedCard = useSelector(selectPaymentCard);
+  const navigate = useNavigate();
   return (
     <>
       <CustomRadioButton
@@ -87,15 +92,19 @@ export const PaymentRadioGroup = () => {
         onChange={setSelected}
       >
         {selected === "offline" && (
-          <div>
-            <p>
+          <StypedOfflinePaymentWrapper>
+            <StyledOfflinePaymentText>
               При отриманні замовлення у відділенні “Нова пошта“, а також при
               виборі кур&apos;єрської доставки “Нова пошта”, можна оплатити
               карткою або готівкою. Додаткова комісія за грошовий переказ: 20
               грн. + 2% від суми переказу.
-            </p>
-            <StyledPayButton>Підтвердити замовлення</StyledPayButton>
-          </div>
+            </StyledOfflinePaymentText>
+            <StyledPayButton
+              onClick={() => navigate(`${ROUTES.SHOPCARTSUCCESSFULL}`)}
+            >
+              Підтвердити замовлення
+            </StyledPayButton>
+          </StypedOfflinePaymentWrapper>
         )}
       </CustomRadioButton>
     </>
