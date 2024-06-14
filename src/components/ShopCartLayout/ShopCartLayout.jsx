@@ -7,8 +7,14 @@ import {
 
 const ShopCartLayout = () => {
   const pathname = useLocation().pathname;
+  console.log(pathname);
   const isActive = () =>
-    ["/shopcart", "/shopcart/delivery", "/shopcart/payment"].includes(pathname);
+    [
+      "/shopcart",
+      "/shopcart/delivery",
+      "/shopcart/payment",
+      "/shopcart/successfull",
+    ].includes(pathname);
 
   return (
     <>
@@ -20,7 +26,8 @@ const ShopCartLayout = () => {
               Кошик
             </StyledNavLink>
             {(pathname === "/shopcart/delivery" ||
-              pathname === "/shopcart/payment") && (
+              pathname === "/shopcart/payment" ||
+              pathname === "/shopcart/successfull") && (
               <>
                 <span>/</span>
                 <StyledNavLink to="/shopcart/delivery" $isActive={isActive}>
@@ -28,11 +35,20 @@ const ShopCartLayout = () => {
                 </StyledNavLink>
               </>
             )}
-            {pathname === "/shopcart/payment" && (
+            {(pathname === "/shopcart/payment" ||
+              pathname === "/shopcart/successfull") && (
               <>
                 <span>/</span>
                 <StyledNavLink to="/shopcart/payment" $isActive={isActive}>
                   Оплата
+                </StyledNavLink>
+              </>
+            )}
+            {pathname === "/shopcart/successfull" && (
+              <>
+                <span>/</span>
+                <StyledNavLink to="/shopcart/successfull" $isActive={isActive}>
+                  Замовлення оформлено
                 </StyledNavLink>
               </>
             )}

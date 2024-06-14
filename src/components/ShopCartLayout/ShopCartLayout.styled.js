@@ -12,6 +12,7 @@ const StyledNavigationWrapper = styled.div`
   line-height: 12px;
   letter-spacing: 0.01em;
   margin-bottom: 24px;
+  flex-wrap: wrap;
   @media screen and (min-width: 1440px) {
     font-size: 16px;
     font-weight: 400;
@@ -22,7 +23,7 @@ const StyledNavigationWrapper = styled.div`
 
 const StyledNavLink = styled(NavLink)`
   color: var(--grey-text-color);
-
+  -webkit-text-wrap: nowrap;
   &.active {
     color: var(--black-text-color);
   }

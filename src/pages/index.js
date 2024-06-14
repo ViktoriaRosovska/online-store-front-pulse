@@ -21,7 +21,7 @@ import FooterAboutUs from "./footer/FooterAboutUs.jsx";
 import UserShopCartDelivery from "./user/UserShopCart/UserShopCartDelivery";
 import UserShopCartPayment from "./user/UserShopCart/UserShopCartPayment";
 import SearchPage from "./search/SearchPage";
-
+import UserShopCartSuccessfull from "./user/UserShopCart/UserShopCartSuccessfull";
 export {
   MaleCatalog,
   FemaleCatalog,
@@ -45,5 +45,6 @@ export {
   UserShopCartDelivery,
   UserShopCart,
   UserShopCartPayment,
+  UserShopCartSuccessfull,
   SearchPage,
 };

@@ -25,6 +25,12 @@ const StyledPayButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  font-family: "Roboto";
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0.01em;
 `;
 
 const StyledOuterCircle = styled.div`
@@ -59,6 +65,19 @@ const StyledCardForm = styled(Form)`
   flex-direction: column;
   gap: 24px;
 `;
+
+const StyledOfflinePaymentText = styled.p`
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 24px;
+`;
+
+const StypedOfflinePaymentWrapper = styled.div`
+  /* margin-bottom: 80px; */
+`;
+
 const StyledOnlinePaymentWrapper = styled.div``;
 export {
   StyledCardIconWrapper,
@@ -68,4 +87,6 @@ export {
   StyledChoosePaymentWrapper,
   StyledOnlinePaymentWrapper,
   StyledCardForm,
+  StyledOfflinePaymentText,
+  StypedOfflinePaymentWrapper,
 };
