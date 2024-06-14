@@ -1,16 +1,19 @@
-import "./FooterTittle.css";
-
-import { Container } from "../../../main.styled";
 import { Formik } from "formik";
+import { Container } from "../../../main.styled";
 import { useUserSubscribeMutation } from "../../../redux/user/userSlice/userApi";
-
 import { userSubscribeValidationSchema } from "components/form/formHelpers/formValidation";
-
 import {
   StyledCustomInputWhite,
   StyledFooterButton,
   StyledFooterForm,
 } from "../Footer.styled";
+import {
+  FooterInner,
+  FooterWrapper,
+  MainText,
+  SecondaryText,
+} from "./FooterTitle.styled";
+import { Notify } from "notiflix";
 
 function FooterTittle() {
   const [userSubscribe] = useUserSubscribeMutation();
@@ -21,21 +24,36 @@ function FooterTittle() {
 
   const onSubmit = async values => {
     try {
-      const { data } = await userSubscribe(values);
-      console.log("onSubmit  data", data);
+      await userSubscribe(values)
+        .unwrap()
+        .then(() =>
+          Notify.success("Ви успішно підписались", {
+            position: "center-center",
+          })
+        )
+        .catch(error => {
+          if (error.status === 409) {
+            return Notify.warning("Користувач з таким email вже підписаний", {
+              position: "center-center",
+            });
+          }
+          return Notify.failure("Виникла помилка. Спробуйте пізніше", {
+            position: "center-center",
+          });
+        });
     } catch (error) {
       console.error(error);
     }
-    console.log("send email", values);
   };
+  
   return (
     <Container>
-      <div className="footer__inner">
-        <div className="footer__tittle">
-          <span className="main__tittle-text">ПІДПИШИСЬ</span>
-          <span className="secondary__tittle-text">
+      <FooterInner>
+        <FooterWrapper>
+          <MainText>ПІДПИШИСЬ</MainText>
+          <SecondaryText>
             Підпишись та отримай знижку -10% на першу покупку
-          </span>
+          </SecondaryText>
 
           <Formik
             initialValues={initialValues}
@@ -52,7 +70,6 @@ function FooterTittle() {
                     type="text"
                     placeholder="Email"
                     className="whiteInput"
-                    // className="footer__tittle-input"
                   />
 
                   <StyledFooterButton type="submit">
@@ -62,11 +79,9 @@ function FooterTittle() {
               )
             )}
           </Formik>
-        </div>
-      </div>
+        </FooterWrapper>
+      </FooterInner>
     </Container>
-
-    // </div>
   );
 }
 

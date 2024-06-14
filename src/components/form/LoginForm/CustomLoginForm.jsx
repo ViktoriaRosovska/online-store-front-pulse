@@ -51,7 +51,7 @@ const CustomLoginForm = ({
           email: "",
           password: "",
         }}
-        validateOnBlur
+        validateOnBlur={false}
         validateOnChange={true}
         validationSchema={loginValidationSchema}
         onSubmit={onSubmit}

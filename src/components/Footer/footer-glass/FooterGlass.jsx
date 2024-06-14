@@ -1,22 +1,30 @@
+import { Link, useLocation } from "react-router-dom";
 import logoFooterImg from "/public/logo-footer.svg";
 import FooterGlassInfo from "./FooterGlassInfo/FooterGlassInfo";
 import Copyright from "../Copyright/Copyright";
-import "./FooterGlass.css";
 import { Container } from "../../../main.styled";
+import { FooterBox } from "./FooterGlass.styled";
 
 function FooterGlass() {
+  const location = useLocation();
+
+  const handleLinkClick = e => {
+    if (location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo(0, 0);
+    }
+  };
+
   return (
-    <div className="footer__glass">
+    <FooterBox>
       <Container>
-        <div className="footer__glas-inner">
-          <div className="footer__glass-logo">
-            <img src={logoFooterImg} alt="" />
-          </div>
-          <FooterGlassInfo />
-          <Copyright />
-        </div>
+        <Link to="/" onClick={e => handleLinkClick(e)}>
+          <img src={logoFooterImg} alt="" />
+        </Link>
+        <FooterGlassInfo />
+        <Copyright />
       </Container>
-    </div>
+    </FooterBox>
   );
 }
 
