@@ -54,6 +54,8 @@ const StyledCustomInputWhite = styled(CustomInput)`
 
 const StyledFooterButton = styled(HeroButton)`
   width: 100%;
+  font-size: 16px;
+  line-height: 24px;
 `;
 
 export {

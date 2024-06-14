@@ -1,15 +1,27 @@
-import "./FooterGlassInfo.css";
+import { Link, useLocation } from "react-router-dom";
 import MediaQuery from "react-responsive";
-// import List from "../../../../components/list/list";
-import Links from "../../../Links/Links";
 import instagramIcon from "/public/icons/social-media-icons/instagram-icon.svg";
 import facebookIcon from "/public/icons/social-media-icons/facebook-icon.svg";
 import mailIcon from "/public/icons/social-media-icons/mail-icon.svg";
 import phoneIcon from "/public/icons/social-media-icons/phone-icon.svg";
 import menuArrayFooter from "./../../../../data/footerMenu.json";
+import {
+  DesktopList,
+  FooterBox,
+  FooterLinksList,
+  MobileSocialMediaList,
+} from "./FooterGlassInfo.styled";
 
 function FooterGlassInfo() {
+  const location = useLocation();
   const iconsArray = [instagramIcon, facebookIcon, mailIcon, phoneIcon];
+
+  const handleLinkClick = (e, href) => {
+    if (location.pathname === href) {
+      e.preventDefault();
+      window.scrollTo(0, 0);
+    }
+  };
 
   const footerNavbarItems = [
     iconsArray,
@@ -19,48 +31,79 @@ function FooterGlassInfo() {
   ];
 
   return (
-    <div className="footer__glass-info">
-      <nav className="footer__navbar">
+    <FooterBox>
+      <nav>
         <MediaQuery maxWidth={1439.98}>
-          <ul className="social__media-list-mobile">
+          <MobileSocialMediaList>
             {iconsArray.map((item, itemIndex) => (
               <li key={itemIndex}>
-                <Links className="list__item">
+                <a href="#">
                   <img src={item} alt={`Icon ${itemIndex + 1}`} />
-                </Links>
+                </a>
               </li>
             ))}
-          </ul>
+          </MobileSocialMediaList>
         </MediaQuery>
 
         <MediaQuery minWidth={1440}>
-          <ul className="footer__navbar-list">
-            {footerNavbarItems.map((listItems, index) => (
-              <li key={index} className="footer__navbar-item">
-                <ul
-                  className={`footer__navbar-item ${
-                    index === 0 ? "social__media-list" : ""
-                  }`}
-                >
-                  {listItems.map((item, itemIndex) => (
-                    <li key={itemIndex}>
-                      {index === 0 ? (
-                        <Links className="list__item list__item__left">
-                          <img src={item} alt={`Icon ${itemIndex + 1}`} />
-                        </Links>
-                      ) : (
-                        // <Link href={"#"} linkText={item} />
-                        <Links href={item.href} linkText={item.name} />
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
+          <DesktopList>
+            <li>
+              <MobileSocialMediaList>
+                {iconsArray.map((item, itemIndex) => (
+                  <li key={itemIndex}>
+                    <a href="#">
+                      <img src={item} alt={`Icon ${itemIndex + 1}`} />
+                    </a>
+                  </li>
+                ))}
+              </MobileSocialMediaList>
+            </li>
+            <li>
+              <FooterLinksList>
+                {footerNavbarItems[1].map((item, index) => (
+                  <li key={index}>
+                    <Link
+                      to={item.href}
+                      onClick={e => handleLinkClick(e, item.href)}
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </FooterLinksList>
+            </li>
+            <li>
+              <FooterLinksList>
+                {footerNavbarItems[2].map((item, index) => (
+                  <li key={index}>
+                    <Link
+                      to={item.href}
+                      onClick={e => handleLinkClick(e, item.href)}
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </FooterLinksList>
+            </li>
+            <li>
+              <FooterLinksList>
+                {footerNavbarItems[3].map((item, index) => (
+                  <li key={index}>
+                    <Link
+                      to={item.href}
+                      onClick={e => handleLinkClick(e, item.href)}
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </FooterLinksList>
+            </li>
+          </DesktopList>
         </MediaQuery>
       </nav>
-    </div>
+    </FooterBox>
   );
 }
 
