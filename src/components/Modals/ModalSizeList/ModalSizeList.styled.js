@@ -9,10 +9,9 @@ const StyledModalSizeListContainer = styled.div`
   justify-content: center;
   position: relative;
   @media screen and (min-width: 1440px) {
-    padding: 80px 55px 68px 55px;
+    /* padding: 80px 55px 68px 55px; */
     width: 906px;
     max-width: 906px;
-    height: 1029px;
   }
 `;
 
