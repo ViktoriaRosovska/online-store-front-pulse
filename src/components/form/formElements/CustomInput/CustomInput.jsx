@@ -39,6 +39,7 @@ const CustomInput = ({ label, mask, ...props }) => {
             />
           ) : (
             <Input
+              onChange={field.onChange}
               {...field}
               {...props}
               $isPassword={isPasswordInput}
