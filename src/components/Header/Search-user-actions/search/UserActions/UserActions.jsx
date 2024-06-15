@@ -5,11 +5,7 @@ import cartIcon from "/public/icons/cart-icon.svg";
 import "./UserActions.css";
 import MediaQuery from "react-responsive";
 import { useState } from "react";
-import {
-  selectUserToken,
-  // selectUserToken,
-  // useFetchCurrentUserQuery
-} from "../../../../../redux/auth";
+import { selectUserToken } from "../../../../../redux/auth";
 import { ROUTES } from "../../../../../utils/routes";
 import { useSelector } from "react-redux";
 import ParenModalForAuth from "components/Modals/ParentModalForAuth/ParentModalForAuth";
@@ -20,13 +16,10 @@ function UserActions(props) {
     useState(false);
   const [redirectPath, setRedirectPath] = useState("/profile/account");
 
-  // const [isLocked, setIsLocked] = useScrollLock(false);
   const navigate = useNavigate();
   const location = useLocation();
-  // console.log("UserActions  location", location.pathname)
+
   const isLoggedIn = useSelector(selectUserToken);
-  // const { data } = useFetchCurrentUserQuery();
-  // const isLoggedIn = data ? true : false
 
   const handleOpenLoginModal = redirectPath => {
     setRedirectPath(redirectPath);
@@ -79,7 +72,7 @@ function UserActions(props) {
         onClick={
           isLoggedIn
             ? navigateToCabinet
-            : ()=>handleOpenLoginModal("/profile/account")
+            : () => handleOpenLoginModal("/profile/account")
         }
       >
         <img
@@ -96,7 +89,7 @@ function UserActions(props) {
           onClick={
             isLoggedIn
               ? navigateToFavorites
-              : ()=>handleOpenLoginModal("/profile/favorites")
+              : () => handleOpenLoginModal("/profile/favorites")
           }
         >
           <img

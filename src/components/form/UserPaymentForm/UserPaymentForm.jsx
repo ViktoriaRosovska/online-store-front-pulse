@@ -13,9 +13,10 @@ import {
   formatDate,
 } from "../formHelpers/formUserCardEdit";
 import { useAddUserCardMutation } from "../../../redux/user/userSlice/userApi";
+import { Notify } from "notiflix";
 
-const UserPaymentForm = ({onClose}) => {
-  const [addUserCard, {isLoading}] = useAddUserCardMutation();
+const UserPaymentForm = ({ onClose }) => {
+  const [addUserCard, { isLoading }] = useAddUserCardMutation();
 
   const initialValues = {
     cardNumber: "",
@@ -27,14 +28,30 @@ const UserPaymentForm = ({onClose}) => {
   const onSubmit = (values, option) => {
     values.cardNumber = values.cardNumber.replace(/\s/g, "");
     values.cardDate = formatDate(values.cardDate);
-    addUserCard(values);
+    try {
+      addUserCard(values)
+        .unwrap()
+        .catch(error => {
+          if (error.status === 409) {
+            return Notify.failure("Платіжна карта вже існує", {
+              position: "center-center",
+            });
+          } else {
+            return Notify.warning("Виникла помилка. Спробуйте пізніше", {
+              position: "center-center",
+            });
+          }
+        });
       option.resetForm();
-      onClose()
-    };
-    
-    if (isLoading) {
-        return <div>Loading...</div>
+      onClose();
+    } catch (error) {
+      console.log(error);
     }
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Box>
@@ -50,7 +67,7 @@ const UserPaymentForm = ({onClose}) => {
               label="Номер карти"
               name="cardNumber"
               type="text"
-              maxLength='19'
+              maxLength="19"
               placeholder="0000 0000 0000 0000"
               onChange={event => {
                 const formattedValue = editCardNumberInInput(
@@ -84,7 +101,7 @@ const UserPaymentForm = ({onClose}) => {
                 name="cardCVC"
                 type="text"
                 placeholder="CVV"
-                maxLength='3'
+                maxLength="3"
               />
             </InputWrapper>
             <CustomInput
