@@ -4,7 +4,7 @@ import { DELIVERY } from "../../../utils/DELIVERY";
 const userShopCartSlice = createSlice({
   name: "userShopCart",
   initialState: {
-    userShopCart: {
+  
       products: [],
       code: "",
       city: "",
@@ -17,7 +17,7 @@ const userShopCartSlice = createSlice({
       deliveryType: DELIVERY.department,
       priceSum: 0,
       countQuantity: 0,
-    },
+    
     isLoading: true,
     isLoggedIn: false,
 
@@ -25,69 +25,69 @@ const userShopCartSlice = createSlice({
   },
   reducers: {
     addShopCartItem(state, { payload }) {
-      const item = state.userShopCart.products.find(
+      const item = state.products.find(
         el => el._id === payload._id && el.size === payload.size
       );
       if (item) item.quantity += payload.quantity;
       else
-        state.userShopCart.products = [payload, ...state.userShopCart.products];
-      state.userShopCart.priceSum += payload.price;
-      state.userShopCart.countQuantity += 1;
+        state.products = [payload, ...state.products];
+      state.priceSum += payload.price;
+      state.countQuantity += 1;
     },
     deleteUserShopCartItem(state, { payload }) {
-      state.userShopCart.products = state.userShopCart.products.filter(
+      state.products = state.products.filter(
         el => el._id !== payload._id || el.size !== payload.size
       );
-      state.userShopCart.priceSum -= payload.price;
-      state.userShopCart.countQuantity -= 1;
-      console.log("deleteUserShopCartItem", payload, state.userShopCart);
+      state.priceSum -= payload.price;
+      state.countQuantity -= 1;
+      // console.log("deleteUserShopCartItem", payload, state.userShopCart);
     },
     incrementQuantity(state, { payload }) {
-      const item = state.userShopCart.products.find(
+      const item = state.products.find(
         el => el._id === payload._id && el.size === payload.size
       );
       if (item) ++item.quantity;
-      state.userShopCart.priceSum += payload.price;
-      state.userShopCart.countQuantity += 1;
+      state.priceSum += payload.price;
+      state.countQuantity += 1;
     },
     decrementQuantity(state, { payload }) {
-      const item = state.userShopCart.products.find(
+      const item = state.products.find(
         el => el._id === payload._id && el.size === payload.size
       );
       if (item && item.quantity > 1) --item.quantity;
-      state.userShopCart.priceSum -= payload.price;
-      state.userShopCart.countQuantity -= 1;
+      state.priceSum -= payload.price;
+      state.countQuantity -= 1;
     },
     addShopCartPromoCode(state, { payload }) {
-      state.userShopCart.code = payload;
+      state.code = payload;
     },
     addShopCartCity(state, { payload }) {
-      state.userShopCart.city = payload;
+      state.city = payload;
     },
     addDeliveryType(state, { payload }) {
-      state.userShopCart.deliveryType = payload;
+      state.deliveryType = payload;
     },
 
     addShopCartAddress(state, { payload }) {
-      state.userShopCart.address = payload;
+      state.address = payload;
     },
     addShopCartStreet(state, { payload }) {
-      state.userShopCart.street = payload;
+      state.street = payload;
     },
     addShopCartName(state, { payload }) {
-      state.userShopCart.name = payload;
+      state.name = payload;
     },
     addShopCartSurname(state, { payload }) {
-      state.userShopCart.surname = payload;
+      state.surname = payload;
     },
     addShopCartPhone(state, { payload }) {
-      state.userShopCart.phone = payload;
+      state.phone = payload;
     },
     addShopCartIsMailing(state, { payload }) {
-      state.userShopCart.isMailing = payload;
+      state.isMailing = payload;
     },
     addShopCartCondition(state, { payload }) {
-      state.userShopCart.condition = payload;
+      state.condition = payload;
     },
   },
 });

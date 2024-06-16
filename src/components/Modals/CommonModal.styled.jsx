@@ -32,7 +32,7 @@ export const ModalContant = styled.div`
   @media screen and (min-width: 1440px) {
     padding: ${props => props.$padding};
     width: fit-content;
-    max-width: ${props => props.$isSizeModal ? 'fit-content' : '792px'} ;
+    max-width: ${props => props.$isSizeModal ? 'fit-content' : '898px'} ;
     overflow-x: hidden;
     /* max-width: 80%; */
   }

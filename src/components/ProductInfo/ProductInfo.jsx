@@ -24,9 +24,9 @@ import ProductCommonInfo from "./ProductCommonInfo";
 import DetailsToggler from "components/UIKit/DetailsToggler";
 // import BasicModal from "components/modal/Modal";
 import Breadcrumbs from "components/Breadcrumbs";
-import { AnimatePresence } from "framer-motion";
-import ReusableModal from "components/Modals/ReusableModal";
-import useScrollLock from "components/Modals/helpersForModal/useScrollLock";
+// import { AnimatePresence } from "framer-motion";
+// import ReusableModal from "components/Modals/ReusableModal";
+// import useScrollLock from "components/Modals/helpersForModal/useScrollLock";
 import { ModalSizeList } from "../../components/Modals/ModalSizeList/ModalSizeList";
 import { ModalShopCart } from "components/Modals/ModalShopCart/ModalShopCart";
 
@@ -39,13 +39,13 @@ import CommonModal from "components/Modals/CommonModal";
 
 const ProductInfo = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isLocked, setIsLocked] = useScrollLock(false);
+  // const [isLocked, setIsLocked] = useScrollLock(false);
   const [isVisibleCart, setIsVisibleCart] = useState(false);
   const [lastView, setLastView] = useLocalStorage("lastView", []);
   const dispatch = useDispatch();
   
   const toggleVisibility = type => {
-    setIsLocked(prev => !prev);
+    // setIsLocked(prev => !prev);
     if (type == "size") {
       setIsVisible(prev => !prev);
     }
@@ -65,7 +65,6 @@ const ProductInfo = () => {
   };
 
   const { data, isError, isFetching } = useGetProductByIdQuery(id);
-  console.log("ProductInfo  data", data)
 
   let location = useLocation()?.state?.from;
   const arr = [];
@@ -185,20 +184,19 @@ const ProductInfo = () => {
         </CommonModal>
       </Portal>
 
-      <AnimatePresence>
-        <ReusableModal
-          isOpen={isVisibleCart}
-          locked={isLocked}
+      <Portal isOpen={isVisibleCart}>
+        <CommonModal
           onClose={() => toggleVisibility("cart")}
+          padding="68px 48px 66px"
+          top="68px"
         >
           <ModalShopCart
-            onClose={() => toggleVisibility("cart")}
-            // isVisibleCart={isVisibleCart}
+            onClose={()=>toggleVisibility("cart")}
             productData={data}
             sizeValue={sizeValue}
           />
-        </ReusableModal>
-      </AnimatePresence>
+        </CommonModal>
+      </Portal>
     </StyledProductInfoWrapper>
   );
 };

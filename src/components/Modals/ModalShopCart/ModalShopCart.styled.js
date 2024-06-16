@@ -2,12 +2,12 @@ import styled from "styled-components";
 // import { StyledCloseBtn } from "../ModalSizeList/ModalSizeList.styled";
 
 const StyledModalShopCartWrapper = styled.div`
-  width: 343px;
-  min-width: 320px;
-  padding: 32px 24px;
+  width: 100%;
+  /* min-width: 320px;  */
+  /* padding: 32px 24px; */
   @media screen and (min-width: 1440px) {
-    width: 898px;
-    padding: 74px 48px 66px 48px;
+    width: 803px;
+    /* padding: 74px 48px 66px 48px; */
   }
 `;
 const StyledShopCartContainer = styled.div`

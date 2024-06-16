@@ -125,7 +125,7 @@ input[type="password"]::-ms-reveal {
 }
 
 .no-scroll {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 #modal {
