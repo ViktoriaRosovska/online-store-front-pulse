@@ -1,6 +1,6 @@
 import CommonModal from "components/Modals/CommonModal";
 import { Portal } from "components/Modals/helpersForModal/modalPortal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, List, StyledTitle } from "./UserWalletList.styled";
 import UserPaymentForm from "components/form/UserPaymentForm/UserPaymentForm";
 import { useGetUserCardsQuery } from "../../../redux/user/userSlice/userApi";
@@ -16,6 +16,7 @@ import {
 const UserWalletList = () => {
   const dispatch = useDispatch();
   const selectedCard = useSelector(selectPaymentCard);
+  // console.log("UserWalletList  selectedCard", selectedCard)
 
   const [isOpen, setIsOpen] = useState(false);
   const { data } = useGetUserCardsQuery();
@@ -36,17 +37,30 @@ const UserWalletList = () => {
     dispatch(deselectCard());
   };
 
+  useEffect(() => {
+    if (data?.length === 0) {
+      handleDeselectCard();
+    } else if (
+      data?.length &&
+      (!selectedCard || !data?.find(card => card._id === selectedCard._id))
+    ) {
+      handleSelectCard(data[0]);
+    }
+  }, [data, selectedCard]);
+
   return (
     <>
       <List>
         {data?.length
-          ? data.map(card => (
+          ? data.map((card, index) => (
               <UserWalletCard
                 key={card._id}
                 card={card}
                 onSelect={handleSelectCard}
                 onDeselect={handleDeselectCard}
-                isSelected={selectedCard?._id === card._id}
+                isSelected={
+                  selectedCard ? selectedCard?._id === card._id : index === 0
+                }
               />
             ))
           : null}
