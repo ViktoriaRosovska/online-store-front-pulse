@@ -1,6 +1,6 @@
 import { Formik } from "formik";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Notify } from "notiflix";
 import { userEditValidationSchema } from "../formHelpers/formValidation";
 import CustomInput from "../formElements/CustomInput/CustomInput";
@@ -30,9 +30,13 @@ const UserEditForm = ({ selectedFile }) => {
   const [userDelete] = useUserDeleteMutation();
   const user = data?.user;
 
-  const phoneNumber =
-    user?.phone === "0000000000" ? "" : formatPhoneNumber(user?.phone);
+  useEffect(() => {
+    refetch()
+  }, [refetch])
 
+  const phoneNumber =
+  user?.phone === "0000000000" ? "" : formatPhoneNumber(user?.phone);
+  
   const onSubmit = async values => {
     const formData = new FormData();
 
@@ -134,6 +138,7 @@ const UserEditForm = ({ selectedFile }) => {
   return (
     <Box>
       <Formik
+        enableReinitialize
         initialValues={initialValues}
         validationSchema={userEditValidationSchema}
         onSubmit={onSubmit}
