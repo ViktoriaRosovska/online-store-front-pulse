@@ -34,9 +34,12 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useDispatch } from "react-redux";
 import { addShopCartItem } from "../../redux/user/userShopCart/userShopCartSlice";
 import { BREADCRUMBS } from "../../utils/breadcrumbsVocabulary";
+import { Portal } from "components/Modals/helpersForModal/modalPortal";
+import CommonModal from "components/Modals/CommonModal";
 
 const ProductInfo = () => {
   const [isVisible, setIsVisible] = useState(false);
+  console.log("ProductInfo  isVisible", isVisible);
   const [isLocked, setIsLocked] = useScrollLock(false);
   const [isVisibleCart, setIsVisibleCart] = useState(false);
   const [lastView, setLastView] = useLocalStorage("lastView", []);
@@ -166,18 +169,17 @@ const ProductInfo = () => {
         </DetailsToggler>
       </DescriptionWrapper>
 
-      <AnimatePresence>
-        <ReusableModal
-          isOpen={isVisible}
-          locked={isLocked}
+      <Portal isOpen={isVisible}>
+        <CommonModal
           onClose={() => toggleVisibility("size")}
+          isSizeModal={true}
+          padding="80px 55px"
+          top="80px"
         >
-          <ModalSizeList
-            onClose={() => toggleVisibility("size")}
-            isVisible={isVisible}
-          />
-        </ReusableModal>
-      </AnimatePresence>
+          <ModalSizeList isVisible={isVisible} />
+        </CommonModal>
+      </Portal>
+
       <AnimatePresence>
         <ReusableModal
           isOpen={isVisibleCart}
