@@ -27,6 +27,7 @@ import {
   UserShopCartDelivery,
   UserShopCartPayment,
   SearchPage,
+  UserShopCartSuccessfull,
 } from "./pages/index";
 
 import ShopCartLayout from "components/ShopCartLayout/ShopCartLayout.jsx";
@@ -59,6 +60,10 @@ const App = () => {
                 path={ROUTES.SHOPCARTPAYMENT}
                 element={<UserShopCartPayment />}
               />
+              <Route
+                path={ROUTES.SHOPCARTSUCCESSFULL}
+                element={<UserShopCartSuccessfull />}
+              />
             </Route>
             <Route path={ROUTES.SUPPORT} element={<FooterSupport />} />
             <Route path={ROUTES.CONDITIONS} element={<FooterConditions />} />
@@ -66,7 +71,14 @@ const App = () => {
             <Route path={ROUTES.POLICY} element={<FooterPrivacyPolicy />} />
             <Route path={ROUTES.DELIVERY} element={<FooterDelivery />} />
             <Route path={ROUTES.ABOUTUS} element={<FooterAboutUs />} />
-            <Route path={ROUTES.PROFILE} element={<PrivateRoute><ProfileLayout /></PrivateRoute>}>
+            <Route
+              path={ROUTES.PROFILE}
+              element={
+                <PrivateRoute>
+                  <ProfileLayout />
+                </PrivateRoute>
+              }
+            >
               <Route path={ROUTES.ACCOUNT} element={<UserAccount />} />
               <Route
                 path={ROUTES.ORDERHISTORY}

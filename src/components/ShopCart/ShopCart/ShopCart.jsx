@@ -103,7 +103,7 @@ export const ShopCart = props => {
               </div>
 
               <PromoCode />
-              {/* <PromoCode onCheckPromo={() => onCheckPromo()} /> */}
+
               <StyledShopCartButton
                 text={"Оформити"}
                 route={ROUTES.SHOPCARTDELIVERY}

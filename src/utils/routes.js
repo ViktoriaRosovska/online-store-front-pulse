@@ -12,6 +12,7 @@ export const ROUTES = {
   SHOPCART: "/shopcart",
   SHOPCARTDELIVERY: "/shopcart/delivery",
   SHOPCARTPAYMENT: "/shopcart/payment",
+  SHOPCARTSUCCESSFULL: "/shopcart/successfull",
 
   ACCOUNT: "account",
   PROFILE: "profile",

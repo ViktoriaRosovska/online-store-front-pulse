@@ -119,7 +119,11 @@ const ProductInfo = () => {
           <ProductHeading device="desktop" article={article} title={name} />
 
           <PriceWrapper>
-            <ProductPrice sale={sale} basePrice={basePrice} price={price} />
+            <ProductPrice
+              sale={sale}
+              basePrice={basePrice}
+              price={price.toFixed(2)}
+            />
           </PriceWrapper>
 
           <SizeGridButton
