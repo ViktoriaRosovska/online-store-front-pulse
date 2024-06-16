@@ -4,7 +4,7 @@ import {
 } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
 import {
   ModalShopCartTitle,
-  StyledCloseBtnShopCart,
+  // StyledCloseBtnShopCart,
   StyledModalShopCartWrapper,
   StyledProductTitle,
   StyledShopCartContainer,
@@ -16,7 +16,7 @@ import {
 } from "./ModalShopCart.styled";
 import { useLocation } from "react-router-dom";
 import { ROUTES } from "../../../utils/routes";
-import { ReactComponent as ModalCloseBtnIcon } from "../../../assets/svg/modalCloseBtn.svg";
+// import { ReactComponent as ModalCloseBtnIcon } from "../../../assets/svg/modalCloseBtn.svg";
 
 export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
   const location = useLocation();
@@ -29,9 +29,9 @@ export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
   const { name, price, categories, imgGallery } = productData;
   return (
     <StyledModalShopCartWrapper>
-      <StyledCloseBtnShopCart type="button" onClick={onClose}>
+      {/* <StyledCloseBtnShopCart type="button" onClick={onClose}>
         <ModalCloseBtnIcon />
-      </StyledCloseBtnShopCart>
+      </StyledCloseBtnShopCart> */}
       <ModalShopCartTitle>Додано в кошик</ModalShopCartTitle>
       <StyledShopCartContainer>
         <StyledShopCartInfo>

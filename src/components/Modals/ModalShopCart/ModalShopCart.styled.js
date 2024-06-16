@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyledCloseBtn } from "../ModalSizeList/ModalSizeList.styled";
+// import { StyledCloseBtn } from "../ModalSizeList/ModalSizeList.styled";
 
 const StyledModalShopCartWrapper = styled.div`
   width: 343px;
@@ -92,24 +92,24 @@ const StyledShopCartRegistration = styled.div`
   }
 `;
 
-const StyledCloseBtnShopCart = styled(StyledCloseBtn)`
-  top: 32px;
-  right: 24px;
-  width: 24px;
-  height: 24px;
-  & svg {
-    scale: 0.5;
-  }
-  @media screen and (min-width: 1440px) {
-    top: 68px;
-    right: 51px;
-    width: 48px;
-    height: 48px;
-    & svg {
-      scale: 1;
-    }
-  }
-`;
+// const StyledCloseBtnShopCart = styled(StyledCloseBtn)`
+//   top: 32px;
+//   right: 24px;
+//   width: 24px;
+//   height: 24px;
+//   & svg {
+//     scale: 0.5;
+//   }
+//   @media screen and (min-width: 1440px) {
+//     top: 68px;
+//     right: 51px;
+//     width: 48px;
+//     height: 48px;
+//     & svg {
+//       scale: 1;
+//     }
+//   }
+// `;
 export {
   StyledModalShopCartWrapper,
   ModalShopCartTitle,
@@ -120,5 +120,5 @@ export {
   StyledShopCartTip,
   StyledShopCartRegistration,
   StyledShopCartContainer,
-  StyledCloseBtnShopCart,
+  // StyledCloseBtnShopCart,
 };

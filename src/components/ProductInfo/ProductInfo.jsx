@@ -39,11 +39,11 @@ import CommonModal from "components/Modals/CommonModal";
 
 const ProductInfo = () => {
   const [isVisible, setIsVisible] = useState(false);
-  console.log("ProductInfo  isVisible", isVisible);
   const [isLocked, setIsLocked] = useScrollLock(false);
   const [isVisibleCart, setIsVisibleCart] = useState(false);
   const [lastView, setLastView] = useLocalStorage("lastView", []);
   const dispatch = useDispatch();
+  
   const toggleVisibility = type => {
     setIsLocked(prev => !prev);
     if (type == "size") {
@@ -65,6 +65,7 @@ const ProductInfo = () => {
   };
 
   const { data, isError, isFetching } = useGetProductByIdQuery(id);
+  console.log("ProductInfo  data", data)
 
   let location = useLocation()?.state?.from;
   const arr = [];
