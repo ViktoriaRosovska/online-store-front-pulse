@@ -112,6 +112,7 @@ export const {
   useUserUpdateMutation,
   useUserDeleteMutation,
   useGetFavoritesQuery,
+  useLazyGetFavoritesQuery,
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
   useUserSubscribeMutation,
