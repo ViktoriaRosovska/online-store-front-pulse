@@ -2,7 +2,7 @@ import { CardListWrapper, CardsListContainer } from "./CardsList.styled.js";
 import Card from "../Card/Card.jsx";
 import { ScrollToTop } from "../../components/ScrollToTop.js";
 import { Pagination } from "components/Pagination/Pagination.jsx";
-import { useGetFavoritesQuery } from "../../redux/user/userSlice/userApi.js";
+import { useAddToFavoritesMutation, useDeleteFromFavoritesMutation, useGetFavoritesQuery} from "../../redux/user/userSlice/userApi.js";
 
 export const CardsList = ({
   data,
@@ -15,10 +15,21 @@ export const CardsList = ({
   totalPages,
   page,
 }) => {
-  // console.log("data", data);
+
   const { data: favorites } = useGetFavoritesQuery();
-  // let newPage = new URLSearchParams(document.location.search).get("page");
-  // console.log("favorites", favorites);
+
+  const { data: favorites, isError: isFavoriteError } = useGetFavoritesQuery();
+  const [addToFavorites] = useAddToFavoritesMutation();
+  const [deleteFromFavorites] = useDeleteFromFavoritesMutation();
+
+  const deletFav = async ({productId}) => {
+    await deleteFromFavorites({ productId })
+  }
+
+  const addFav = ({productId}) => {
+    addToFavorites({productId})
+  }
+
   if (isFetching) return <div>Йде завантаження даних...</div>;
   if (isError)
     return (
@@ -43,7 +54,9 @@ export const CardsList = ({
                 sale={el.sale}
                 cardfeature={cardfeature}
                 filterQuery={filterQuery}
-                favorites={favorites}
+                favorites={isFavoriteError ? [] : favorites}
+                deleteFromFavorites={deletFav}
+                addToFavorites={addFav}
               />
             );
           })

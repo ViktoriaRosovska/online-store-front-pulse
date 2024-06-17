@@ -23,23 +23,29 @@ import {
 
 export const ShopCartPayment = props => {
   const isDesktop = useMediaQuery("(min-width: 1440px)");
-  // const location = useLocation();
-  const items = useSelector(selectUserShopCart).products;
-  const shopCart = useSelector(selectUserShopCart);
-  const dayNow = new Date();
-  const priceSum = shopCart?.priceSum;
-  const countQuantity = shopCart?.countQuantity;
-  console.log(shopCart);
+  const {
+    products,
+    priceSum,
+    countQuantity,
+    city,
+    address,
+    surname,
+    name: userName,
+    phone,
+    deliveryType,
+  } = useSelector(selectUserShopCart)
+
+  // const dayNow = new Date();
 
   return (
     <>
       <Title>{props.title}</Title>
 
-      {items && items.length > 0 ? (
+      {products && products.length > 0 ? (
         <StyledOrderPaymentWrapper>
           <div>
             <ul>
-              {items.map((el, idx) => {
+              {products.map((el, idx) => {
                 return (
                   <ShopCard
                     el={el}
@@ -77,13 +83,13 @@ export const ShopCartPayment = props => {
 
             <PromoCode />
             <StyledOrderTitle>Адреса доставки</StyledOrderTitle>
-            <p>{shopCart.address}</p>
-            <p>{shopCart.city}</p>
-            <p>{shopCart.surname + " " + shopCart.name}</p>
-            <p>{shopCart.phone}</p>
+            <p>{address}</p>
+            <p>{city}</p>
+            <p>{surname + " " + userName}</p>
+            <p>{phone}</p>
             <StyledOrderTitle>Умови доставки</StyledOrderTitle>
 
-            <p>{shopCart.deliveryType}</p>
+            <p>{deliveryType}</p>
             <p style={{ color: "red" }}>Безкоштовно</p>
           </div>
 

@@ -1,16 +1,11 @@
 import styled from "styled-components";
 const StyledModalSizeListContainer = styled.div`
-  padding: 80px 8px;
-  width: 100vw;
+  width: 100%;
   max-width: 375px;
-  height: calc(100vh - 140px);
-  overflow-y: auto;
+  height: fit-content;
   display: flex;
   justify-content: center;
-  position: relative;
   @media screen and (min-width: 1440px) {
-    /* padding: 80px 55px 68px 55px; */
-    width: 906px;
     max-width: 906px;
   }
 `;
@@ -52,42 +47,8 @@ const StyledSizeListTableCaption = styled.caption`
   }
 `;
 
-const StyledCloseBtn = styled.button`
-  position: absolute;
-  right: 19px;
-  top: 80px;
-  width: 36px;
-  height: 36px;
-  background-color: transparent;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  & svg {
-    scale: 0.75;
-    fill: var(--black-text-color);
-  }
-  @media screen and (min-width: 1440px) {
-    top: 74px;
-    right: 55px;
-    width: 48px;
-    height: 48px;
-    & svg {
-      scale: 1;
-      fill: var(--black-text-color);
-    }
-  }
-  &:hover,
-  &:focus {
-    & svg {
-      fill: rgba(122, 124, 127, 1);
-    }
-  }
-`;
 export {
   StyledModalSizeListContainer,
   StyledSizeListTable,
   StyledSizeListTableCaption,
-  StyledCloseBtn,
 };

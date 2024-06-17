@@ -14,11 +14,6 @@ import { SaleBand } from "../salesComponents/SaleBand/SaleBand.jsx";
 import { SalePercent } from "../salesComponents/SalePercent/SalePercent.jsx";
 import { ROUTES } from "../../utils/routes.js";
 import { useLocation } from "react-router-dom";
-import {
-  useAddToFavoritesMutation,
-  useDeleteFromFavoritesMutation,
-  // useGetFavoritesQuery,
-} from "../../redux/user/userSlice/userApi.js";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectUserToken } from "../../redux/auth/selectors.js";
@@ -33,10 +28,9 @@ const Card = ({
   filterQuery,
   cardSlider,
   favorites,
+  deleteFromFavorites,
+  addToFavorites,
 }) => {
-  const [addToFavorites] = useAddToFavoritesMutation();
-  const [deleteFromFavorites] = useDeleteFromFavoritesMutation();
-
 const isLoggedIn = useSelector(selectUserToken)
 
   const [favoriteState, setFavoriteState] = useState(false);
@@ -49,16 +43,16 @@ const isLoggedIn = useSelector(selectUserToken)
   const newBrands = cardfeature === "newbrands";
   const location = useLocation().pathname;
 
-  const toggleFavorite = event => {
+  const toggleFavorite = (event) => {
     event.preventDefault();
 
     if (isLoggedIn) {
       if (favoriteState) {
         setFavoriteState(false)
-        deleteFromFavorites({productId: id})
+        deleteFromFavorites({ productId: id })
       } else {
         setFavoriteState(true)
-        addToFavorites({productId: id})
+        addToFavorites({ productId: id })
       }
     } else {
       const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || []
@@ -66,14 +60,6 @@ const isLoggedIn = useSelector(selectUserToken)
       localStorage.setItem('favorites', JSON.stringify(updatedFavorites))
       setFavoriteState(!favoriteState)
     }
-
-    // if (favoriteState) {
-    //   setFavoriteState(false);
-    //   deleteFromFavorites({ productId: id });
-    // } else {
-    //   setFavoriteState(true);
-    //   addToFavorites({ productId: id });
-    // }
   };
 
   return (
