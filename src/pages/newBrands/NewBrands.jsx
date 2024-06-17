@@ -4,6 +4,8 @@ import { useLazyGetNewestQuery } from "../../redux/products/productsApi";
 const NewBrands = () => {
   const [getNewest, { data, isError, isFetching }] = useLazyGetNewestQuery();
 
+  const newestProducts = data?.products?.filter(el => el?.sale === 0);
+
   return (
     <CatalogComponent
       title={"Новинки"}
@@ -11,7 +13,7 @@ const NewBrands = () => {
       loader={getNewest}
       cardfeature={"newbrands"}
       sortNewest={false}
-      data={data?.products}
+      data={newestProducts}
       isError={isError}
       isFetching={isFetching}
       totalPages={data?.totalPages}
