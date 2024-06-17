@@ -14,7 +14,8 @@ export const SectionHero = styled.section`
   height: 812px;
   bottom: 20px;
   position: relative;
-
+  border-bottom-left-radius: 36px;
+  border-bottom-right-radius: 36px;
   @media screen and (min-width: 1440px) {
     height: 1024px;
     padding-top: 185px;
