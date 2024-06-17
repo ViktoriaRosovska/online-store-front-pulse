@@ -32,18 +32,19 @@ const Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] = useState(false)
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
-  
+  const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] =
+    useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
   const handleCloseResetPasswordModal = () => {
-    setIsResetPasswordModalOpen(false)
-    navigate("/")
-    setIsLoginModalOpen(true)
-  }
+    setIsResetPasswordModalOpen(false);
+    navigate("/");
+    setIsLoginModalOpen(true);
+  };
 
   const handleCloseLoginModal = () => {
-    setIsLoginModalOpen(false)
-  }
+    setIsLoginModalOpen(false);
+  };
   // console.log(sales.products);
   const navFunc = () => {
     navigate("/catalog", {
@@ -56,16 +57,14 @@ const Main = () => {
     brandSales().then(res => setSales(res));
   }, []);
 
- 
-
   useEffect(() => {
-    const query = new URLSearchParams(location.search)
-    const resetToken = query.get('resetToken')
-   
+    const query = new URLSearchParams(location.search);
+    const resetToken = query.get("resetToken");
+
     if (resetToken) {
-      setIsResetPasswordModalOpen(true)
+      setIsResetPasswordModalOpen(true);
     }
-  }, [location])
+  }, [location]);
 
   return (
     <>
@@ -128,13 +127,24 @@ const Main = () => {
       </section>
 
       <Portal isOpen={isResetPasswordModalOpen}>
-        <CommonModal onClose={handleCloseResetPasswordModal} padding="68px 164px" top="68px">
-          <ModalAuth onClose={handleCloseResetPasswordModal} resetPassword={true} />
+        <CommonModal
+          onClose={handleCloseResetPasswordModal}
+          padding="68px 164px"
+          top="68px"
+        >
+          <ModalAuth
+            onClose={handleCloseResetPasswordModal}
+            resetPassword={true}
+          />
         </CommonModal>
       </Portal>
 
       <Portal isOpen={isLoginModalOpen}>
-        <CommonModal onClose={handleCloseLoginModal} padding="68px 164px" top="68px">
+        <CommonModal
+          onClose={handleCloseLoginModal}
+          padding="68px 164px"
+          top="68px"
+        >
           <ModalAuth onClose={handleCloseLoginModal} />
         </CommonModal>
       </Portal>
