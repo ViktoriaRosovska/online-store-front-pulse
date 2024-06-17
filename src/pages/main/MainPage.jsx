@@ -83,16 +83,12 @@ const Main = () => {
       <SectionManWomen className="container">
         <Link to="/malecatalog" state={{ from: location }}>
           <ManBox>
-            <BoxTitle>
-              <h3>Для нього</h3>
-            </BoxTitle>
+            <BoxTitle>Для нього</BoxTitle>
           </ManBox>
         </Link>
         <Link to="/femalecatalog" state={{ from: location }}>
           <WomenBox>
-            <BoxTitle>
-              <h3>Для неї</h3>
-            </BoxTitle>
+            <BoxTitle>Для неї</BoxTitle>
           </WomenBox>
         </Link>
       </SectionManWomen>

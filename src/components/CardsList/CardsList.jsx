@@ -15,6 +15,9 @@ export const CardsList = ({
   totalPages,
   page,
 }) => {
+
+  const { data: favorites } = useGetFavoritesQuery();
+
   const { data: favorites, isError: isFavoriteError } = useGetFavoritesQuery();
   const [addToFavorites] = useAddToFavoritesMutation();
   const [deleteFromFavorites] = useDeleteFromFavoritesMutation();

@@ -87,6 +87,7 @@ export const CatalogComponent = ({
     const href = location.href.replace(/\?.+$/, "");
 
     const params = new URLSearchParams();
+
     for (const [key, value] of Object.entries(filterQuery)) {
       if (!value) continue;
       params.set(key, value);

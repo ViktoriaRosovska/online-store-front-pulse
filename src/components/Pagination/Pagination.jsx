@@ -13,8 +13,8 @@ export const Pagination = ({ totalPages, page, onChange, siblings = 1 }) => {
   const el = [];
 
   const handlePageClick = newPage => {
-    onChange(newPage)
-  }
+    onChange(newPage);
+  };
 
   // if (!siblings) siblings = 1;
 
@@ -83,7 +83,10 @@ export const Pagination = ({ totalPages, page, onChange, siblings = 1 }) => {
   if (page < totalPages) {
     el.push(
       <li key="last">
-        <PaginationBtn click={() => handlePageClick(totalPages)} $lastpage={true}>
+        <PaginationBtn
+          click={() => handlePageClick(totalPages)}
+          $lastpage={true}
+        >
           {totalPages}
         </PaginationBtn>
       </li>
