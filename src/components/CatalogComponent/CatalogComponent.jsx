@@ -140,7 +140,7 @@ export const CatalogComponent = ({
         return;
     }
 
-    const newFilter = { ...filterQuery };
+    const newFilter = { ...filterQuery, page: 1 };
 
     newFilter[type] = items.join(",");
     setFilterQuery(newFilter);
