@@ -120,7 +120,7 @@ function Header() {
             />
           </Link>
           <MediaQuery minWidth={1440}>
-            <nav className="menu">
+            <nav>
               <Menu />
             </nav>
           </MediaQuery>
@@ -146,7 +146,7 @@ function Header() {
                 onChange={e => handleSearchInputChange(e.target.value)}
               />
               {searchQuery && (
-                <CloseSearcSvg onClick={handleDeleteSearchQuery}/>
+                <CloseSearcSvg onClick={handleDeleteSearchQuery} />
               )}
             </Box>
           </SearchMobileBox>

@@ -6,7 +6,7 @@ export const StyledLink = styled(Link)`
   text-align: left;
   font-size: 20px;
   line-height: 28px;
-  min-width: 111px;
+  /* min-width: 111px; */
 
   @media screen and (min-width: 1440px) {
     font-size: 16px;
