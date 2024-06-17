@@ -17,7 +17,7 @@ export const CardsList = ({
 }) => {
   // console.log("data", data);
   const { data: favorites } = useGetFavoritesQuery();
-
+  // let newPage = new URLSearchParams(document.location.search).get("page");
   // console.log("favorites", favorites);
   if (isFetching) return <div>Йде завантаження даних...</div>;
   if (isError)

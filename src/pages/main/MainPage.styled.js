@@ -90,8 +90,17 @@ export const ManBox = styled.div`
   width: 327px;
   height: 280px;
   border-radius: 36px;
-  padding-top: 12px;
+  padding-top: 14px;
+  padding-left: 14px;
+  position: relative;
 
+  &:hover {
+    & div {
+      background-color: var(--black-bg-color);
+      color: var(--white-text-color);
+      filter: none;
+    }
+  }
   @media screen and (min-width: 1440px) {
     background-image: url(${manBoxLg});
     width: 562px;
@@ -104,8 +113,15 @@ export const WomenBox = styled.div`
   height: 280px;
   border-radius: 36px;
   background-image: url(${womanBoxSm});
-  padding-top: 12px;
+  padding-top: 14px;
+  padding-left: 14px;
 
+  &:hover {
+    & div {
+      background-color: var(--black-bg-color);
+      color: var(--white-text-color);
+    }
+  }
   @media screen and (min-width: 1440px) {
     background-image: url(${womanBoxLg});
     width: 562px;
@@ -114,40 +130,28 @@ export const WomenBox = styled.div`
 `;
 
 export const BoxTitle = styled.div`
-  width: 186px;
-  height: 48px;
-  background-color: #e4e4e4;
+  width: fit-content;
+  background-color: var(--white-dark-bg-color);
   border-radius: 36px;
-  padding-top: 6px;
-  padding-bottom: 6px;
+  padding: 7px 21.5px;
   display: flex;
   justify-content: center;
+  font-family: "Roboto";
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0.01em;
+  text-decoration: underline;
 
   @media screen and (min-width: 1440px) {
-    height: 70px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-  }
-
-  > h3 {
-    line-height: 1;
-    display: inline;
-    font-weight: 400;
+    padding: 16.5px 37px;
     font-size: 32px;
-    text-align: center;
-    color: #232323;
-    position: relative;
-
-    &::after {
-      content: "";
-      position: absolute;
-      display: block;
-      width: 100%;
-      height: 2.5px;
-      background-color: #232323;
-      border-radius: 2px;
-      bottom: -3px;
-    }
+    font-weight: 400;
+    line-height: 32px;
+  }
+  &:hover {
+    background-color: var(--black-bg-color);
+    color: var(--white-text-color);
   }
 `;
 
