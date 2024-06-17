@@ -52,12 +52,16 @@ const TextWrapper = styled.div`
 const CardPrice = styled.span`
   font-family: "Roboto";
 
-  font-size: ${props => (props.$sales ? "20px" : "16px")};
+  font-size: ${props => (props.$sales ? "18px" : "16px")};
 
   line-height: ${props => (props.$sales ? "28px" : "20px")};
 
   color: ${props =>
-    props.$sales ? `var(--red-color)` : `var(--black-text-color)`};
+  props.$sales ? `var(--red-color)` : `var(--black-text-color)`};
+    
+    @media screen and (min-width: 1440px) {
+      font-size: ${props => (props.$sales ? "20px" : "16px")};
+    }
 `;
 
 const StyledCardPriceWrapper = styled.div`

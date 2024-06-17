@@ -5,7 +5,7 @@ import { Title } from "components/Typography/Typography.styled";
 import CustomInput from "components/form/formElements/CustomInput/CustomInput";
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
+// import { selectUserShopCartPriceSum, selectUserShopCartProducts, selectUserShopCartQuantity } from "../../../redux/user/userShopCart/userShopCartSelector";
 import {
   StyledChoiceBtnParagraphWrapper,
   StyledNotificationWrapper,
@@ -68,18 +68,18 @@ import {
   addShopCartSurname,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { PromoCode } from "components/PromoCode";
+import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 
 export const ShopCartDelivery = props => {
   const dispatch = useDispatch();
 
   let location = useLocation();
-  const items = useSelector(selectUserShopCart).products;
-  // console.log(items);
-  const userShopCart = useSelector(selectUserShopCart);
-  console.log("userShopCart", userShopCart);
-  const priceSum = userShopCart?.priceSum;
-  const countQuantity = userShopCart?.countQuantity;
-  console.log(userShopCart);
+   const {
+    products,
+    priceSum,
+    countQuantity,
+  } = useSelector(selectUserShopCart)
+  
   const [selectCitySearch, setSelectCitySearch] = useState("");
 
   const [isSelectedBtn, setIsSelectedBtn] = useState(DELIVERY.department);
@@ -155,7 +155,7 @@ export const ShopCartDelivery = props => {
   return (
     <>
       <Title>{props.title}</Title>
-      {items && items.length > 0 ? (
+      {products && products.length > 0 ? (
         <StyledOrderDeliveryWrapper>
           <div>
             <Formik
@@ -511,7 +511,7 @@ export const ShopCartDelivery = props => {
             {/* <PromoCode onCheckPromo={() => onCheckPromo()} /> */}
             <PromoCode />
             <ul>
-              {items.map((el, idx) => {
+              {products.map((el, idx) => {
                 return (
                   <ShopCard
                     el={el}

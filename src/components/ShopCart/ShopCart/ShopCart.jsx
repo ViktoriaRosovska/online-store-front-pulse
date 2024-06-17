@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 
 import { useLocation } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
@@ -28,22 +27,22 @@ import { discountPrice } from "../../../utils/discountPrice";
 
 import { normalize_count_form } from "../../../utils/normalize_count_form";
 import { PromoCode } from "components/PromoCode";
+import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 
 export const ShopCart = props => {
-  const items = useSelector(selectUserShopCart).products;
-  const userShopCart = useSelector(selectUserShopCart);
-  const priceSum = userShopCart?.priceSum;
-  const countQuantity = userShopCart?.countQuantity;
+ const {
+    products,
+    priceSum,
+    countQuantity,
+  } = useSelector(selectUserShopCart)
 
-  console.log("userShopCart", userShopCart);
-  // console.log(items);
   let location = useLocation();
 
   const isPromoValid = useSelector(selectPromoValid);
 
   const isDesktop = useMediaQuery("(min-width: 1440px)");
   const discount = useSelector(selectPromoCodeDiscount);
-  console.log(discount);
+  // console.log(discount);
   // const [check, setCheck] = useState(false);
   // const onCheckPromo = condition => {
   //   setCheck(condition);
@@ -56,10 +55,10 @@ export const ShopCart = props => {
     <>
       <Title>{props.title}</Title>
       <StyledPageWrapper>
-        {items && items.length > 0 ? (
+        {products && products.length > 0 ? (
           <>
             <ul>
-              {items.map((el, idx) => {
+              {products.map((el, idx) => {
                 return (
                   <ShopCard
                     el={el}

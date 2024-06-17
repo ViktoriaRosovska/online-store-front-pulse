@@ -2,7 +2,7 @@ import * as Yup from "yup";
 
 const nameRegex = /^[A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+(-[A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+)?$/;
 const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,})*$/;
-const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])[A-Za-z\d]{8,16}$/;
+const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])[A-Za-z\d]*$/;
 const phoneRegex = /^\+38\(\d{3}\)\d{3}-\d{2}-\d{2}$/;
 const cardNameRegex = /^[A-Za-z ]+$/;
 
@@ -14,7 +14,7 @@ export const loginValidationSchema = Yup.object().shape({
     .required("Oбовʼязкове поле"),
   password: Yup.string()
     .typeError("Повинно бути строкою")
-    .matches(passwordRegex, "Пароль має містити великі та малі літери і цифри")
+    .matches(passwordRegex, "Пароль має містити великі, малі літери і цифри. Без пробілів.")
     .min(8, "Пароль має бути не менш ніж 8 символів")
     .max(16, "Максимальна кількість 16 символів")
     .required("Oбовʼязкове поле"),
@@ -41,7 +41,7 @@ export const registerValidationSchema = Yup.object().shape({
     .required("Oбовʼязкове поле"),
   password: Yup.string()
     .typeError("Повинно бути строкою")
-    .matches(passwordRegex, "Пароль має містити великі та малі літери і цифри")
+    .matches(passwordRegex, "Пароль має містити великі, малі літери і цифри. Без пробілів.")
     .min(8, "Пароль має бути не менш ніж 8 символів")
     .max(16, "Максимальна кількість 16 символів")
     .required("Oбовʼязкове поле"),
@@ -73,7 +73,7 @@ export const userEditValidationSchema = Yup.object().shape({
     .required("Oбовʼязкове поле"),
   password: Yup.string()
     .typeError("Повинно бути строкою")
-    .matches(passwordRegex, "Пароль має містити великі та малі літери і цифри")
+    .matches(passwordRegex, "Пароль має містити великі, малі літери і цифри. Без пробілів.")
     .min(8, "Пароль має бути не менш ніж 8 символів")
     .max(16, "Максимальна кількість 16 символів")
     .nullable(),
@@ -166,9 +166,7 @@ export const forgotPasswordValidationSchema = Yup.object().shape({
 export const resetPasswordValidationSchema = Yup.object().shape({
   password: Yup.string()
     .typeError("Повинно бути строкою")
-    .matches(/^(?=.*[a-z])(?=.*\d)/, {
-      message: "Пароль має містити літери та цифри",
-    })
+    .matches(passwordRegex, "Пароль має містити великі, малі літери і цифри. Без пробілів.")
     .min(8, "Пароль має бути не менш ніж 8 символів")
     .max(16, "Максимальна кількість 16 символів")
     .required("Oбовʼязкове поле"),

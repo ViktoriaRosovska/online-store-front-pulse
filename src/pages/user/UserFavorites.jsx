@@ -5,6 +5,7 @@ import { useEffect } from "react";
 
 const UserFavorites = () => {
   const { data, isFetching, isError } = useGetFavoritesQuery();
+  console.log("UserFavorites  data", data)
   const [addToFavorites] = useAddToFavoritesMutation();
 
   useEffect(() => {
@@ -14,7 +15,6 @@ const UserFavorites = () => {
           addToFavorites({productId})
       })
       localStorage.removeItem('favorites')
-
     }
   }, [addToFavorites])
 
