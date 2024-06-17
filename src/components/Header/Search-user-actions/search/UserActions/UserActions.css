@@ -13,6 +13,11 @@
   background: transparent;
   border: none;
   cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .user__actions-icon.fixed {
@@ -23,4 +28,11 @@
 .user__actions-icon:hover {
   filter: invert(53%) sepia(0%) saturate(798%) hue-rotate(256deg)
     brightness(92%) contrast(86%);
+}
+.user__actions-profile {
+  stroke: var(--black-text-color);
+  stroke-width: 1.33333px;
+}
+.user__actions-cart {
+  fill: var(--black-text-color);
 }

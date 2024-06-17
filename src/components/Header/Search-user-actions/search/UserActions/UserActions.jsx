@@ -1,13 +1,13 @@
 import { useNavigate, useLocation } from "react-router";
-import profileIcon from "/public/icons/profile-icon.svg";
-import favoritesIcon from "../../../../../assets/svg/favorites-icon.svg";
-import cartIcon from "/public/icons/cart-icon.svg";
 import "./UserActions.css";
 import MediaQuery from "react-responsive";
 import { useState } from "react";
 import { selectUserToken } from "../../../../../redux/auth";
 import { ROUTES } from "../../../../../utils/routes";
 import { useSelector } from "react-redux";
+import { ReactComponent as BasketIcon } from "../../../../../assets/svg/basket_icon.svg";
+import { ReactComponent as ProfileIcon } from "../../../../../assets/svg/profile_icon.svg";
+import { ReactComponent as FavoriteIcon } from "../../../../../assets/svg/heart_lg.svg";
 import ParenModalForAuth from "components/Modals/ParentModalForAuth/ParentModalForAuth";
 
 function UserActions(props) {
@@ -68,47 +68,38 @@ function UserActions(props) {
   return (
     <div className="user__actions">
       <button
-        className="user__actions-profile"
+        className={`user__actions-profile user__actions-icon ${
+          props.isFixed || !props.location ? "fixed" : ""
+        }`}
         onClick={
           isLoggedIn
             ? navigateToCabinet
             : () => handleOpenLoginModal("/profile/account")
         }
       >
-        <img
-          className={`user__actions-icon ${
-            props.isFixed || !props.location ? "fixed" : ""
-          }`}
-          src={profileIcon}
-          alt=""
-        />
+        <ProfileIcon />
       </button>
       <MediaQuery minWidth={1440}>
         <button
-          className="user__actions-favorites"
+          className={`user__actions-favorites user__actions-icon ${
+            props.isFixed || !props.location ? "fixed" : ""
+          }`}
           onClick={
             isLoggedIn
               ? navigateToFavorites
               : () => handleOpenLoginModal("/profile/favorites")
           }
         >
-          <img
-            className={`user__actions-icon ${
-              props.isFixed || !props.location ? "fixed" : ""
-            }`}
-            src={favoritesIcon}
-            alt=""
-          />
+          <FavoriteIcon />
         </button>
       </MediaQuery>
-      <button className="user__actions-cart" onClick={navigateToShopCart}>
-        <img
-          className={`user__actions-icon ${
-            props.isFixed || !props.location ? "fixed" : ""
-          }`}
-          src={cartIcon}
-          alt=""
-        />
+      <button
+        className={`user__actions-cart user__actions-icon ${
+          props.isFixed || !props.location ? "fixed" : ""
+        }`}
+        onClick={navigateToShopCart}
+      >
+        <BasketIcon />
       </button>
 
       <ParenModalForAuth
