@@ -6,7 +6,7 @@ const CardsListContainer = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-const CardListWrapper = styled.div`
+const CardListWrapper = styled.ul`
   margin-bottom: 24px;
   display: flex;
   flex-direction: row;

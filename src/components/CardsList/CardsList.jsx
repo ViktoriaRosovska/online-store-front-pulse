@@ -46,10 +46,10 @@ export const CardsList = ({
       <ScrollToTop />
       <CardListWrapper>
         {!isFetching && data?.length > 0 ? (
-          data?.map(el => {
+          data?.map((el, idx) => {
             return (
               <Card
-                key={el._id}
+                key={el._id + "#" + idx}
                 info={el.name}
                 image={el.imgThumbnail}
                 price={el.basePrice}

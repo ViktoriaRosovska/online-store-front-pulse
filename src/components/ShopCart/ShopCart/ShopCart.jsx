@@ -27,29 +27,25 @@ import { discountPrice } from "../../../utils/discountPrice";
 
 import { normalize_count_form } from "../../../utils/normalize_count_form";
 import { PromoCode } from "components/PromoCode";
-import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
+import {
+  selectUserShopCart,
+  selectUserShopCartState,
+} from "../../../redux/user/userShopCart/userShopCartSelector";
 
 export const ShopCart = props => {
- const {
-    products,
-    priceSum,
-    countQuantity,
-  } = useSelector(selectUserShopCart)
+  const { products, priceSum, countQuantity, code } =
+    useSelector(selectUserShopCart);
+
+  const shopcart = useSelector(selectUserShopCartState);
+  console.log(shopcart);
+  console.log(code);
 
   let location = useLocation();
 
   const isPromoValid = useSelector(selectPromoValid);
-
+  console.log(isPromoValid);
   const isDesktop = useMediaQuery("(min-width: 1440px)");
   const discount = useSelector(selectPromoCodeDiscount);
-  // console.log(discount);
-  // const [check, setCheck] = useState(false);
-  // const onCheckPromo = condition => {
-  //   setCheck(condition);
-  //   console.log(condition);
-  // };
-
-  // console.log(check);
 
   return (
     <>
@@ -107,6 +103,7 @@ export const ShopCart = props => {
                 text={"Оформити"}
                 route={ROUTES.SHOPCARTDELIVERY}
                 state={{ from: location }}
+                // onClick={() => dispatch(addShopCartPromoCode("code"))}
               />
             </StyledOrderWrapper>
           </>

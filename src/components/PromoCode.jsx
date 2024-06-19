@@ -23,8 +23,13 @@ import {
   setPromoStatus,
 } from "../redux/promoCode/promoCodeSlice";
 import { ReactComponent as CheckedSvg } from "../assets/svg/done.svg";
+import { useEffect, useState } from "react";
+import { addShopCartPromoCode } from "../redux/user/userShopCart/userShopCartSlice";
 
 export const PromoCode = () => {
+  const [code, setCode] = useState("");
+
+  console.log("code", code);
   const dispatch = useDispatch();
 
   const [checkPromoCode] = useLazyCheckPromoCodeQuery({
@@ -37,7 +42,7 @@ export const PromoCode = () => {
         }
       } else if (data) {
         dispatch(setPromoStatus(PromoValid));
-        // console.log(data);
+
         dispatch(setPromoCodeDiscount(data.discount));
       }
     },
@@ -47,11 +52,23 @@ export const PromoCode = () => {
   const isPromoInvalid = useSelector(selectPromoInvalid);
   const isPromoValid = useSelector(selectPromoValid);
   const promoCode = useSelector(selectPromoCode);
+  console.log("promocode", promoCode);
 
   const handleChangePromo = code => {
     dispatch(setPromoCode(code));
     checkPromoCode(code);
+    setCode(code);
   };
+
+  useEffect(() => {
+    if (PromoValid) {
+      dispatch(addShopCartPromoCode(code));
+    }
+
+    if (PromoInvalid || PromoExpired) {
+      dispatch(addShopCartPromoCode(""));
+    }
+  }, [code, dispatch]);
 
   return (
     <Formik
