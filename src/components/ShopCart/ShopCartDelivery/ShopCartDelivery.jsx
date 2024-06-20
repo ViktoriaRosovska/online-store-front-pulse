@@ -72,14 +72,12 @@ export const ShopCartDelivery = props => {
   const dispatch = useDispatch();
 
   let location = useLocation();
-  const { products, priceSum, countQuantity, city } =
+  const { products, priceSum, countQuantity, city, deliveryType } =
     useSelector(selectUserShopCart);
 
   //const shopCard = useSelector(selectUserShopCartState);
   //console.log(shopCard);
   // const [selectCitySearch, setSelectCitySearch] = useState("");
-
-  const [isSelectedBtn, setIsSelectedBtn] = useState(DELIVERY.department);
 
   const [
     getDepartments,
@@ -153,16 +151,15 @@ export const ShopCartDelivery = props => {
                     <StyledChoiceBtnWrapper>
                       <StyledChoiceDeliveryBtn
                         type="button"
-                        $isSelectedBtn={isSelectedBtn === DELIVERY.department}
-                        onClick={() => {
-                          setIsSelectedBtn(DELIVERY.department);
-                          dispatch(addDeliveryType(DELIVERY.department));
-                        }}
+                        $isSelectedBtn={deliveryType === DELIVERY.department}
+                        onClick={() =>
+                          dispatch(addDeliveryType(DELIVERY.department))
+                        }
                       >
                         <StyledChoiceBtnParagraphWrapper>
                           <StyledChoiseVariant
                             $isSelectedBtn={
-                              isSelectedBtn === DELIVERY.department
+                              deliveryType === DELIVERY.department
                             }
                           >
                             Доставка на відділення “Нова пошта”
@@ -172,16 +169,15 @@ export const ShopCartDelivery = props => {
                         <p>Безкоштовна доставка від 4000 грн</p>
                       </StyledChoiceDeliveryBtn>
                       <StyledChoiceDeliveryBtn
-                        $isSelectedBtn={isSelectedBtn === DELIVERY.courier}
+                        $isSelectedBtn={deliveryType === DELIVERY.courier}
                         type="button"
-                        onClick={() => {
-                          setIsSelectedBtn(DELIVERY.courier);
-                          dispatch(addDeliveryType(DELIVERY.courier));
-                        }}
+                        onClick={() =>
+                          dispatch(addDeliveryType(DELIVERY.courier))
+                        }
                       >
                         <StyledChoiceBtnParagraphWrapper>
                           <StyledChoiseVariant
-                            $isSelectedBtn={isSelectedBtn === DELIVERY.courier}
+                            $isSelectedBtn={deliveryType === DELIVERY.courier}
                           >
                             Кур’єрська доставка
                           </StyledChoiseVariant>
@@ -190,18 +186,15 @@ export const ShopCartDelivery = props => {
                         <p>Безкоштовна доставка від 4000 грн</p>
                       </StyledChoiceDeliveryBtn>
                       <StyledChoiceDeliveryBtn
-                        $isSelectedBtn={isSelectedBtn === DELIVERY.poshtomat}
+                        $isSelectedBtn={deliveryType === DELIVERY.poshtomat}
                         type="button"
-                        onClick={() => {
-                          setIsSelectedBtn(DELIVERY.poshtomat);
-                          dispatch(addDeliveryType(DELIVERY.poshtomat));
-                        }}
+                        onClick={() =>
+                          dispatch(addDeliveryType(DELIVERY.poshtomat))
+                        }
                       >
                         <StyledChoiceBtnParagraphWrapper>
                           <StyledChoiseVariant
-                            $isSelectedBtn={
-                              isSelectedBtn === DELIVERY.poshtomat
-                            }
+                            $isSelectedBtn={deliveryType === DELIVERY.poshtomat}
                           >
                             Доставка в поштомат “Нова пошта”
                           </StyledChoiseVariant>
@@ -211,7 +204,7 @@ export const ShopCartDelivery = props => {
                         <p>Безкоштовна доставка від 4000 грн</p>
                       </StyledChoiceDeliveryBtn>
                     </StyledChoiceBtnWrapper>
-                    {isSelectedBtn === DELIVERY.department && (
+                    {deliveryType === DELIVERY.department && (
                       <>
                         <StyledDeliveryTitle>
                           Адреса відділення
@@ -239,7 +232,7 @@ export const ShopCartDelivery = props => {
                         </StyledSelectWrapper>
                       </>
                     )}
-                    {isSelectedBtn === DELIVERY.courier && (
+                    {deliveryType === DELIVERY.courier && (
                       <>
                         <StyledDeliveryTitle>
                           Адреса доставки
@@ -292,7 +285,7 @@ export const ShopCartDelivery = props => {
                         />
                       </>
                     )}
-                    {isSelectedBtn === DELIVERY.poshtomat && (
+                    {deliveryType === DELIVERY.poshtomat && (
                       <>
                         <StyledSelectWrapper>
                           <StyledSelectLabel htmlFor="address">
