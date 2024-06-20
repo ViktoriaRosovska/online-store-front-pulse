@@ -23,7 +23,7 @@ import {
   useGetDepartmentsMutation,
   useGetStreetsMutation,
 } from "../../../redux/novaPoshta/novaPoshtaAPI";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { CitySelect } from "../SelectComponents/CitySelect";
 import {
@@ -108,9 +108,13 @@ export const ShopCartDelivery = props => {
   const departmentTypeFilter = (data, type) =>
     data?.data?.filter(el => type.includes(el.CategoryOfWarehouse));
 
+  const [citySearch, setCitySearch] = useState(city.Description);
+  useEffect(() => {
+    getCities(citySearch);
+  }, [citySearch, getCities]);
+
   const onSelectCitySearch = value => {
-    console.log("onSelectCitySearch", value);
-    getCities(value);
+    if (value !== "") setCitySearch(value);
   };
 
   const onSelectDepartmentSearch = (ref, value) => {
@@ -119,14 +123,14 @@ export const ShopCartDelivery = props => {
   };
 
   const onSelectStreetSearch = (ref, value) => {
+    console.log("onSelectStreetSearch", ref, value);
     getStreets(ref, value);
   };
 
   const onSelectCityChange = value => {
-    console.log("onSelectCityChange", value);
     dispatch(addShopCartCity(value));
-    getDepartments(value.ref, "");
-    getStreets(value.ref, "");
+    getDepartments(value.Ref, "");
+    getStreets(value.Ref, "");
   };
 
   const onSelectDepartmentsChange = value => {
@@ -138,14 +142,6 @@ export const ShopCartDelivery = props => {
     console.log("onSelectStreetChange", value);
     dispatch(addShopCartStreet(value.label));
   };
-
-  // const onSelectChange = value => {
-  //   console.log("onSelectChange", value);
-  //   // setSelectCitySearch(value);
-  //   dispatch(addShopCartCity(value));
-  //   getDepartments(value?.Ref, "");
-  //   getStreets(value?.Ref, "");
-  // };
 
   const discount = useSelector(selectPromoCodeDiscount);
 
@@ -190,9 +186,7 @@ export const ShopCartDelivery = props => {
                       <CitySelect
                         options={data?.data}
                         placeholder={"Введіть населений пункт"}
-                        onChange={e => {
-                          onSelectCityChange(e);
-                        }}
+                        onChange={e => onSelectCityChange(e)}
                         onSearch={e => onSelectCitySearch(e)}
                         displayCity={city}
                         name="city"
