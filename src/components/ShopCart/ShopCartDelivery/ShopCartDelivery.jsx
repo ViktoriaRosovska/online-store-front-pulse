@@ -5,16 +5,13 @@ import { Title } from "components/Typography/Typography.styled";
 import CustomInput from "components/form/formElements/CustomInput/CustomInput";
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-// import { selectUserShopCartPriceSum, selectUserShopCartProducts, selectUserShopCartQuantity } from "../../../redux/user/userShopCart/userShopCartSelector";
+
 import {
-  StyledChoiceBtnParagraphWrapper,
   StyledNotificationWrapper,
   StyledOrderPriceTextWrapper,
   StyledOrderText,
   StyledOrderTitle,
   StyledPDVText,
-  // StyledPromocodeCheckWrapper,
-  // StyledPromocodeWrapper,
 } from "../ShopCart/ShopCart.styled";
 import { ShopCard } from "../ShopCard/ShopCard";
 
@@ -27,9 +24,6 @@ import { useEffect, useState } from "react";
 import {
   StyledCheckboxLabel,
   StyledCheckboxWrapper,
-  StyledChoiceBtnWrapper,
-  StyledChoiceDeliveryBtn,
-  StyledChoiseVariant,
   StyledDeliveryForm,
   StyledDeliveryOrderWrapper,
   StyledDeliveryTitle,
@@ -49,13 +43,11 @@ import { CheckboxItem } from "components/CheckboxList/CheckboxItem/ChechboxItem"
 
 import { StyledConditionsLinks } from "components/Links/Links.styled";
 import { normalize_count_form } from "../../../utils/normalize_count_form";
-import { deliveryPrice } from "../../../utils/deliveryPrice";
 import { discountPrice } from "../../../utils/discountPrice";
 import { DELIVERY } from "../../../utils/DELIVERY";
 import { DepartmentSelect } from "../SelectComponents/DepartmentSelect";
 import { StreetSelect } from "../SelectComponents/StreetSelect";
 import {
-  addDeliveryType,
   addShopCartAddress,
   addShopCartCondition,
   addShopCartIsMailing,
@@ -67,6 +59,9 @@ import {
 import { PromoCode } from "components/PromoCode";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { DeliveryCitySelect } from "./DeliveryCitySelect";
+import { DeliveryChoiceType } from "./DeliveryChoiceType";
+import { DepartmentDeliveryAddress } from "./DepartmentDeliveryAddress";
+import { PoshtomatDeliveryAddress } from "./PoshtomatDeliveryAddress";
 
 export const ShopCartDelivery = props => {
   const dispatch = useDispatch();
@@ -75,38 +70,11 @@ export const ShopCartDelivery = props => {
   const { products, priceSum, countQuantity, city, deliveryType } =
     useSelector(selectUserShopCart);
 
-  //const shopCard = useSelector(selectUserShopCartState);
-  //console.log(shopCard);
-  // const [selectCitySearch, setSelectCitySearch] = useState("");
-
-  const [
-    getDepartments,
-    {
-      data: departmentData,
-      // isError: departmentIsError,
-      // isLoading: departmentIsLoading,
-    },
-  ] = useGetDepartmentsMutation();
-
   const [getStreets, { data: streetsData }] = useGetStreetsMutation();
-  // const userData = useFetchCurrentUserQuery();
-
-  const departmentTypeFilter = (data, type) =>
-    data?.data?.filter(el => type.includes(el.CategoryOfWarehouse));
-
-  const onSelectDepartmentSearch = (ref, value) => {
-    console.log("onSelectDepartmentSearch", ref, value);
-    getDepartments(ref, value);
-  };
 
   const onSelectStreetSearch = (ref, value) => {
     console.log("onSelectStreetSearch", ref, value);
     getStreets(ref, value);
-  };
-
-  const onSelectDepartmentsChange = value => {
-    console.log("onSelectDepartmentsChange", value);
-    dispatch(addShopCartAddress(value.label));
   };
 
   const onSelectStreetChange = value => {
@@ -131,7 +99,6 @@ export const ShopCartDelivery = props => {
               initialValues={{
                 name: "",
                 phone: "",
-                address: "",
                 street: "",
                 house: "",
                 numberHoll: "",
@@ -140,97 +107,16 @@ export const ShopCartDelivery = props => {
                 surname: "",
                 policy: false,
                 isMailing: false,
-                deliveryType: DELIVERY.department,
               }}
             >
               {formik => (
                 <StyledDeliveryForm>
                   <>
                     <DeliveryCitySelect />
+                    <DeliveryChoiceType />
 
-                    <StyledChoiceBtnWrapper>
-                      <StyledChoiceDeliveryBtn
-                        type="button"
-                        $isSelectedBtn={deliveryType === DELIVERY.department}
-                        onClick={() =>
-                          dispatch(addDeliveryType(DELIVERY.department))
-                        }
-                      >
-                        <StyledChoiceBtnParagraphWrapper>
-                          <StyledChoiseVariant
-                            $isSelectedBtn={
-                              deliveryType === DELIVERY.department
-                            }
-                          >
-                            Доставка на відділення “Нова пошта”
-                          </StyledChoiseVariant>
-                          <p>{deliveryPrice(priceSum)}</p>
-                        </StyledChoiceBtnParagraphWrapper>
-                        <p>Безкоштовна доставка від 4000 грн</p>
-                      </StyledChoiceDeliveryBtn>
-                      <StyledChoiceDeliveryBtn
-                        $isSelectedBtn={deliveryType === DELIVERY.courier}
-                        type="button"
-                        onClick={() =>
-                          dispatch(addDeliveryType(DELIVERY.courier))
-                        }
-                      >
-                        <StyledChoiceBtnParagraphWrapper>
-                          <StyledChoiseVariant
-                            $isSelectedBtn={deliveryType === DELIVERY.courier}
-                          >
-                            Кур’єрська доставка
-                          </StyledChoiseVariant>
-                          <p>{deliveryPrice(priceSum)}</p>
-                        </StyledChoiceBtnParagraphWrapper>
-                        <p>Безкоштовна доставка від 4000 грн</p>
-                      </StyledChoiceDeliveryBtn>
-                      <StyledChoiceDeliveryBtn
-                        $isSelectedBtn={deliveryType === DELIVERY.poshtomat}
-                        type="button"
-                        onClick={() =>
-                          dispatch(addDeliveryType(DELIVERY.poshtomat))
-                        }
-                      >
-                        <StyledChoiceBtnParagraphWrapper>
-                          <StyledChoiseVariant
-                            $isSelectedBtn={deliveryType === DELIVERY.poshtomat}
-                          >
-                            Доставка в поштомат “Нова пошта”
-                          </StyledChoiseVariant>
-                          <p>{deliveryPrice(priceSum)}</p>
-                        </StyledChoiceBtnParagraphWrapper>
-
-                        <p>Безкоштовна доставка від 4000 грн</p>
-                      </StyledChoiceDeliveryBtn>
-                    </StyledChoiceBtnWrapper>
                     {deliveryType === DELIVERY.department && (
-                      <>
-                        <StyledDeliveryTitle>
-                          Адреса відділення
-                        </StyledDeliveryTitle>
-
-                        <StyledSelectWrapper>
-                          <StyledSelectLabel htmlFor="address">
-                            Оберіть номер відділення
-                          </StyledSelectLabel>
-                          <DepartmentSelect
-                            options={departmentTypeFilter(departmentData, [
-                              "Branch",
-                              "Store",
-                            ])}
-                            placeholder="Номер відділення"
-                            onChange={e => {
-                              onSelectDepartmentsChange(e);
-                              formik.setFieldValue("address", e.label);
-                            }}
-                            onSearch={e =>
-                              onSelectDepartmentSearch(city.Ref, e)
-                            }
-                            name="address"
-                          />
-                        </StyledSelectWrapper>
-                      </>
+                      <DepartmentDeliveryAddress />
                     )}
                     {deliveryType === DELIVERY.courier && (
                       <>
@@ -286,27 +172,7 @@ export const ShopCartDelivery = props => {
                       </>
                     )}
                     {deliveryType === DELIVERY.poshtomat && (
-                      <>
-                        <StyledSelectWrapper>
-                          <StyledSelectLabel htmlFor="address">
-                            Оберіть номер поштомату
-                          </StyledSelectLabel>
-                          <DepartmentSelect
-                            options={departmentTypeFilter(departmentData, [
-                              "Postomat",
-                            ])}
-                            placeholder="Номер поштомату"
-                            onChange={e => {
-                              onSelectDepartmentsChange(e);
-                              formik.setFieldValue("address", e.label);
-                            }}
-                            onSearch={e =>
-                              onSelectDepartmentSearch(city.Ref, e)
-                            }
-                            name="address"
-                          />
-                        </StyledSelectWrapper>
-                      </>
+                      <PoshtomatDeliveryAddress />
                     )}
                     <StyledDeliveryTitle>Особисті дані</StyledDeliveryTitle>
                     <StyledNameWrapper>
