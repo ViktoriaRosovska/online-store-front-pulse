@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useLocation } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
@@ -19,7 +19,10 @@ import { ROUTES } from "../../../utils/routes";
 import { ShopCard } from "../ShopCard/ShopCard";
 
 import {
+  selectPromoCode,
   selectPromoCodeDiscount,
+  selectPromoExpired,
+  selectPromoInvalid,
   selectPromoValid,
 } from "../../../redux/promoCode/promoCodeSelector";
 import useMediaQuery from "../../../hooks/useMediaQuery";
@@ -31,21 +34,34 @@ import {
   selectUserShopCart,
   selectUserShopCartState,
 } from "../../../redux/user/userShopCart/userShopCartSelector";
+import { addShopCartPromoCode } from "../../../redux/user/userShopCart/userShopCartSlice";
+import {
+  PromoExpired,
+  PromoInvalid,
+  PromoValid,
+} from "../../../redux/promoCode/promoCodeSlice";
 
 export const ShopCart = props => {
   const { products, priceSum, countQuantity, code } =
     useSelector(selectUserShopCart);
-
+  const dispatch = useDispatch();
   const shopcart = useSelector(selectUserShopCartState);
   console.log(shopcart);
   console.log(code);
 
   let location = useLocation();
-
+  const promoCode = useSelector(selectPromoCode);
   const isPromoValid = useSelector(selectPromoValid);
+  const isPromoInvalid = useSelector(selectPromoInvalid);
+  const isPromoExpired = useSelector(selectPromoExpired);
+
   console.log(isPromoValid);
   const isDesktop = useMediaQuery("(min-width: 1440px)");
   const discount = useSelector(selectPromoCodeDiscount);
+
+  const getCode = code => {
+    console.log("promocode", code);
+  };
 
   return (
     <>
@@ -97,7 +113,7 @@ export const ShopCart = props => {
                 </StyledOrderPriceTextWrapper>
               </div>
 
-              <PromoCode />
+              <PromoCode getCode={() => getCode} code={promoCode} />
 
               <StyledShopCartButton
                 text={"Оформити"}

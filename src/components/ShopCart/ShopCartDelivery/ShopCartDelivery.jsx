@@ -77,14 +77,14 @@ export const ShopCartDelivery = props => {
   const dispatch = useDispatch();
 
   let location = useLocation();
-  const { products, priceSum, countQuantity } = useSelector(selectUserShopCart);
-  const shopCard = useSelector(selectUserShopCartState);
-  console.log(shopCard);
-  const [selectCitySearch, setSelectCitySearch] = useState("");
+  const { products, priceSum, countQuantity, city } =
+    useSelector(selectUserShopCart);
+
+  //const shopCard = useSelector(selectUserShopCartState);
+  //console.log(shopCard);
+  // const [selectCitySearch, setSelectCitySearch] = useState("");
 
   const [isSelectedBtn, setIsSelectedBtn] = useState(DELIVERY.department);
-
-  const [selectDepartmentSearch, setSelectDepartmentSearch] = useState("");
 
   const [
     getCities,
@@ -103,40 +103,49 @@ export const ShopCartDelivery = props => {
   ] = useGetDepartmentsMutation();
 
   const [getStreets, { data: streetsData }] = useGetStreetsMutation();
-  console.log("streets", streetsData);
   // const userData = useFetchCurrentUserQuery();
 
-  const departmentTypeFilter = (data, type) => {
-    const departmentsList = data?.data?.filter(
-      el => el.CategoryOfWarehouse === type
-    );
-    return departmentsList;
-  };
+  const departmentTypeFilter = (data, type) =>
+    data?.data?.filter(el => type.includes(el.CategoryOfWarehouse));
 
   const onSelectCitySearch = value => {
+    console.log("onSelectCitySearch", value);
     getCities(value);
   };
 
   const onSelectDepartmentSearch = (ref, value) => {
+    console.log("onSelectDepartmentSearch", ref, value);
     getDepartments(ref, value);
   };
 
-  const onSelectChange = value => {
-    console.log("onSelectChange", value);
-    setSelectCitySearch(value);
-    dispatch(addShopCartCity(value?.label));
-    getDepartments(value?.Ref, "");
-    getStreets(value?.Ref, "");
+  const onSelectStreetSearch = (ref, value) => {
+    getStreets(ref, value);
+  };
+
+  const onSelectCityChange = value => {
+    console.log("onSelectCityChange", value);
+    dispatch(addShopCartCity(value));
+    getDepartments(value.ref, "");
+    getStreets(value.ref, "");
   };
 
   const onSelectDepartmentsChange = value => {
-    setSelectDepartmentSearch(value);
+    console.log("onSelectDepartmentsChange", value);
     dispatch(addShopCartAddress(value.label));
   };
 
-  const onSelectStreetSearch = value => {
+  const onSelectStreetChange = value => {
+    console.log("onSelectStreetChange", value);
     dispatch(addShopCartStreet(value.label));
   };
+
+  // const onSelectChange = value => {
+  //   console.log("onSelectChange", value);
+  //   // setSelectCitySearch(value);
+  //   dispatch(addShopCartCity(value));
+  //   getDepartments(value?.Ref, "");
+  //   getStreets(value?.Ref, "");
+  // };
 
   const discount = useSelector(selectPromoCodeDiscount);
 
@@ -182,11 +191,10 @@ export const ShopCartDelivery = props => {
                         options={data?.data}
                         placeholder={"Введіть населений пункт"}
                         onChange={e => {
-                          onSelectChange(e);
-                          formik.setFieldValue("city", e.label);
+                          onSelectCityChange(e);
                         }}
                         onSearch={e => onSelectCitySearch(e)}
-                        value={selectCitySearch}
+                        displayCity={city}
                         name="city"
                       />
                     </StyledSelectWrapper>
@@ -263,19 +271,18 @@ export const ShopCartDelivery = props => {
                             Оберіть номер відділення
                           </StyledSelectLabel>
                           <DepartmentSelect
-                            options={departmentTypeFilter(
-                              departmentData,
-                              "Branch"
-                            )}
+                            options={departmentTypeFilter(departmentData, [
+                              "Branch",
+                              "Store",
+                            ])}
                             placeholder="Номер відділення"
                             onChange={e => {
                               onSelectDepartmentsChange(e);
                               formik.setFieldValue("address", e.label);
                             }}
                             onSearch={e =>
-                              onSelectDepartmentSearch(selectCitySearch?.Ref, e)
+                              onSelectDepartmentSearch(city.Ref, e)
                             }
-                            value={selectDepartmentSearch}
                             name="address"
                           />
                         </StyledSelectWrapper>
@@ -295,10 +302,11 @@ export const ShopCartDelivery = props => {
                             options={streetsData?.data}
                             placeholder="Вулиця"
                             onChange={e => {
-                              onSelectChange(e);
+                              onSelectStreetChange(e);
                               formik.setFieldValue("street", e.label);
+                              // dispatch(addShopCartStreet(e.label));
                             }}
-                            onSearch={e => onSelectStreetSearch(e)}
+                            onSearch={e => onSelectStreetSearch(city.Ref, e)}
                             // value={selectStreetSearch}
                             name="street"
                           />
@@ -340,19 +348,17 @@ export const ShopCartDelivery = props => {
                             Оберіть номер поштомату
                           </StyledSelectLabel>
                           <DepartmentSelect
-                            options={departmentTypeFilter(
-                              departmentData,
-                              "Postomat"
-                            )}
+                            options={departmentTypeFilter(departmentData, [
+                              "Postomat",
+                            ])}
                             placeholder="Номер поштомату"
                             onChange={e => {
                               onSelectDepartmentsChange(e);
                               formik.setFieldValue("address", e.label);
                             }}
                             onSearch={e =>
-                              onSelectDepartmentSearch(selectCitySearch?.Ref, e)
+                              onSelectDepartmentSearch(city.Ref, e)
                             }
-                            value={selectDepartmentSearch}
                             name="address"
                           />
                         </StyledSelectWrapper>

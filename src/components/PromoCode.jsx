@@ -9,7 +9,6 @@ import { Error } from "./form/formElements/CustomInput/CustomInput.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { useLazyCheckPromoCodeQuery } from "../redux/products/productsApi";
 import {
-  selectPromoCode,
   selectPromoExpired,
   selectPromoInvalid,
   selectPromoValid,
@@ -23,13 +22,10 @@ import {
   setPromoStatus,
 } from "../redux/promoCode/promoCodeSlice";
 import { ReactComponent as CheckedSvg } from "../assets/svg/done.svg";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { addShopCartPromoCode } from "../redux/user/userShopCart/userShopCartSlice";
 
-export const PromoCode = () => {
-  const [code, setCode] = useState("");
-
-  console.log("code", code);
+export const PromoCode = ({ getCode, code }) => {
   const dispatch = useDispatch();
 
   const [checkPromoCode] = useLazyCheckPromoCodeQuery({
@@ -51,24 +47,19 @@ export const PromoCode = () => {
   const isPromoExpired = useSelector(selectPromoExpired);
   const isPromoInvalid = useSelector(selectPromoInvalid);
   const isPromoValid = useSelector(selectPromoValid);
-  const promoCode = useSelector(selectPromoCode);
-  console.log("promocode", promoCode);
+  // const promoCode = useSelector(selectPromoCode);
 
-  const handleChangePromo = code => {
-    dispatch(setPromoCode(code));
-    checkPromoCode(code);
-    setCode(code);
+  const handleChangePromo = promo => {
+    dispatch(setPromoCode(promo));
+    checkPromoCode(promo);
+    getCode(promo);
   };
 
   useEffect(() => {
-    if (PromoValid) {
+    if (isPromoValid) {
       dispatch(addShopCartPromoCode(code));
     }
-
-    if (PromoInvalid || PromoExpired) {
-      dispatch(addShopCartPromoCode(""));
-    }
-  }, [code, dispatch]);
+  }, [code, dispatch, isPromoValid]);
 
   return (
     <Formik
@@ -84,7 +75,7 @@ export const PromoCode = () => {
             name="code"
             label=""
             onChange={e => handleChangePromo(e.target.value)}
-            value={promoCode}
+            value={code}
           />
           {isPromoInvalid && <Error>Невірний промокод</Error>}
           {isPromoExpired && <Error>Промокод вже недійсний</Error>}
