@@ -19,13 +19,11 @@ import {
 import { ShopCard } from "../ShopCard/ShopCard";
 
 import {
-  useGetCitiesMutation,
   useGetDepartmentsMutation,
   useGetStreetsMutation,
 } from "../../../redux/novaPoshta/novaPoshtaAPI";
 import { useEffect, useState } from "react";
 
-import { CitySelect } from "../SelectComponents/CitySelect";
 import {
   StyledCheckboxLabel,
   StyledCheckboxWrapper,
@@ -59,7 +57,6 @@ import { StreetSelect } from "../SelectComponents/StreetSelect";
 import {
   addDeliveryType,
   addShopCartAddress,
-  addShopCartCity,
   addShopCartCondition,
   addShopCartIsMailing,
   addShopCartName,
@@ -68,10 +65,8 @@ import {
   addShopCartSurname,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { PromoCode } from "components/PromoCode";
-import {
-  selectUserShopCart,
-  selectUserShopCartState,
-} from "../../../redux/user/userShopCart/userShopCartSelector";
+import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
+import { DeliveryCitySelect } from "./DeliveryCitySelect";
 
 export const ShopCartDelivery = props => {
   const dispatch = useDispatch();
@@ -87,13 +82,6 @@ export const ShopCartDelivery = props => {
   const [isSelectedBtn, setIsSelectedBtn] = useState(DELIVERY.department);
 
   const [
-    getCities,
-    {
-      data,
-      // isError, isLoading
-    },
-  ] = useGetCitiesMutation();
-  const [
     getDepartments,
     {
       data: departmentData,
@@ -108,15 +96,6 @@ export const ShopCartDelivery = props => {
   const departmentTypeFilter = (data, type) =>
     data?.data?.filter(el => type.includes(el.CategoryOfWarehouse));
 
-  const [citySearch, setCitySearch] = useState(city.Description);
-  useEffect(() => {
-    getCities(citySearch);
-  }, [citySearch, getCities]);
-
-  const onSelectCitySearch = value => {
-    if (value !== "") setCitySearch(value);
-  };
-
   const onSelectDepartmentSearch = (ref, value) => {
     console.log("onSelectDepartmentSearch", ref, value);
     getDepartments(ref, value);
@@ -125,12 +104,6 @@ export const ShopCartDelivery = props => {
   const onSelectStreetSearch = (ref, value) => {
     console.log("onSelectStreetSearch", ref, value);
     getStreets(ref, value);
-  };
-
-  const onSelectCityChange = value => {
-    dispatch(addShopCartCity(value));
-    getDepartments(value.Ref, "");
-    getStreets(value.Ref, "");
   };
 
   const onSelectDepartmentsChange = value => {
@@ -159,7 +132,6 @@ export const ShopCartDelivery = props => {
             <Formik
               initialValues={{
                 name: "",
-                city: "",
                 phone: "",
                 address: "",
                 street: "",
@@ -176,22 +148,7 @@ export const ShopCartDelivery = props => {
               {formik => (
                 <StyledDeliveryForm>
                   <>
-                    <StyledDeliveryTitle>
-                      Обери адресу доставки
-                    </StyledDeliveryTitle>
-                    <StyledSelectWrapper>
-                      <StyledSelectLabel htmlFor="city">
-                        Населений пункт
-                      </StyledSelectLabel>
-                      <CitySelect
-                        options={data?.data}
-                        placeholder={"Введіть населений пункт"}
-                        onChange={e => onSelectCityChange(e)}
-                        onSearch={e => onSelectCitySearch(e)}
-                        displayCity={city}
-                        name="city"
-                      />
-                    </StyledSelectWrapper>
+                    <DeliveryCitySelect />
 
                     <StyledChoiceBtnWrapper>
                       <StyledChoiceDeliveryBtn
