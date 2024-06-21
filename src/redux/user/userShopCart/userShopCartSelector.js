@@ -15,5 +15,7 @@ export const selectUserShopCart = createSelector(
     name: userShopCart.name,
     phone: userShopCart.phone,
     deliveryType: userShopCart.deliveryType,
+    addressDepartment: userShopCart.addressDepartment,
+    addressPoshtomat: userShopCart.addressPoshtomat,
   })
 );

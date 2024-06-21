@@ -7,12 +7,12 @@ import {
   StyledSelectLabel,
   StyledSelectWrapper,
 } from "./ShopCartDelivery.styled";
-import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
+import { addShopCartAddressDepartment } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { useEffect, useState } from "react";
 
 export const DepartmentDeliveryAddress = () => {
-  const { city, address } = useSelector(selectUserShopCart);
+  const { city, addressDepartment } = useSelector(selectUserShopCart);
   const dispatch = useDispatch();
   const [
     getDepartments,
@@ -23,7 +23,7 @@ export const DepartmentDeliveryAddress = () => {
     },
   ] = useGetDepartmentsMutation();
 
-  const [search, setSearch] = useState(address.Description);
+  const [search, setSearch] = useState(addressDepartment?.Description);
   useEffect(() => {
     getDepartments(city.Ref, search);
   }, [city, search, getDepartments]);
@@ -33,7 +33,7 @@ export const DepartmentDeliveryAddress = () => {
   };
 
   const onSelectDepartmentsChange = value => {
-    dispatch(addShopCartAddress(value));
+    dispatch(addShopCartAddressDepartment(value));
   };
 
   return (
@@ -49,7 +49,7 @@ export const DepartmentDeliveryAddress = () => {
           placeholder="Номер відділення"
           onChange={e => onSelectDepartmentsChange(e)}
           onSearch={e => onSelectDepartmentSearch(city.Ref, e)}
-          displayDepartment={address}
+          displayDepartment={addressDepartment}
           name="address"
         />
       </StyledSelectWrapper>

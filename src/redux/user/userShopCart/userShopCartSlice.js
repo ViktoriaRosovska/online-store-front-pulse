@@ -8,7 +8,9 @@ const userShopCartSlice = createSlice({
       products: [],
       code: "",
       city: {},
-      address: "",
+      addressDepartment: {},
+      addressPoshtomat: {},
+      address: {},
       street: "",
       house: "",
       flat: "",
@@ -78,6 +80,12 @@ const userShopCartSlice = createSlice({
     addShopCartAddress(state, { payload }) {
       state.userShopCart.address = payload;
     },
+    addShopCartAddressDepartment(state, { payload }) {
+      state.userShopCart.addressDepartment = payload;
+    },
+    addShopCartAddressPoshtomat(state, { payload }) {
+      state.userShopCart.addressPoshtomat = payload;
+    },
     addShopCartStreet(state, { payload }) {
       state.userShopCart.street = payload;
     },
@@ -109,6 +117,8 @@ export const {
   addDeliveryType,
   addShopCartPriceSum,
   addShopCartAddress,
+  addShopCartAddressDepartment,
+  addShopCartAddressPoshtomat,
   addShopCartStreet,
   addShopCartName,
   addShopCartSurname,
