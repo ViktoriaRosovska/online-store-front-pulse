@@ -7,12 +7,12 @@ import {
   StyledSelectLabel,
   StyledSelectWrapper,
 } from "./ShopCartDelivery.styled";
-import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
+import { addShopCartAddressPoshtomat } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { useEffect, useState } from "react";
 
 export const PoshtomatDeliveryAddress = () => {
-  const { city, address } = useSelector(selectUserShopCart);
+  const { city, addressPoshtomat } = useSelector(selectUserShopCart);
   const dispatch = useDispatch();
   const [
     getDepartments,
@@ -23,7 +23,7 @@ export const PoshtomatDeliveryAddress = () => {
     },
   ] = useGetDepartmentsMutation();
 
-  const [search, setSearch] = useState(address.Description);
+  const [search, setSearch] = useState(addressPoshtomat?.Description);
   useEffect(() => {
     getDepartments(city.Ref, search);
   }, [city, search, getDepartments]);
@@ -33,7 +33,7 @@ export const PoshtomatDeliveryAddress = () => {
   };
 
   const onSelectDepartmentsChange = value => {
-    dispatch(addShopCartAddress(value));
+    dispatch(addShopCartAddressPoshtomat(value));
   };
 
   return (
@@ -49,7 +49,7 @@ export const PoshtomatDeliveryAddress = () => {
           placeholder="Номер поштомату"
           onChange={e => onSelectDepartmentsChange(e)}
           onSearch={e => onSelectDepartmentSearch(city.Ref, e)}
-          displayDepartment={address}
+          displayDepartment={addressPoshtomat}
           name="address"
         />
       </StyledSelectWrapper>
