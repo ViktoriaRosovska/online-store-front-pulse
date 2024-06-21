@@ -17,9 +17,11 @@ import { StyledDeliveryTitle } from "../ShopCartDelivery/ShopCartDelivery.styled
 import { PromoCode } from "components/PromoCode";
 import {
   StyledOrderPaymentWrapper,
+  StyledPaymentPropsWrapper,
   StyledPaymentWrapper,
   StyledRadioGroupWrapper,
 } from "./ShopCartPayment.styled";
+import { deliveryPrice } from "../../../utils/deliveryPrice";
 
 export const ShopCartPayment = props => {
   const isDesktop = useMediaQuery("(min-width: 1440px)");
@@ -29,11 +31,16 @@ export const ShopCartPayment = props => {
     priceSum,
     countQuantity,
     city,
-    address,
+    // address,
+    street,
+    flat,
+    numberHoll,
+    numberHouse,
     lastName,
     firstName,
     phone,
     deliveryType,
+    email,
   } = useSelector(selectUserShopCart);
 
   return (
@@ -56,7 +63,6 @@ export const ShopCartPayment = props => {
                 );
               })}
             </ul>
-
             <StyledOrderTitle>Твоє замовлення</StyledOrderTitle>
             <StyledOrderPriceTextWrapper>
               <StyledOrderText>
@@ -79,17 +85,42 @@ export const ShopCartPayment = props => {
                 <span>{priceSum}&nbsp;грн</span>
               </StyledOrderText>
             </StyledOrderPriceTextWrapper>
-
             <PromoCode />
             <StyledOrderTitle>Адреса доставки</StyledOrderTitle>
             {/* <p>{address}</p> */}
-            {/* <p>{city?.Description}</p> */}
-            <p>{firstName + " " + lastName}</p>
-            <p>{phone}</p>
+            <StyledPaymentPropsWrapper>
+              <p>
+                {city?.SettlementTypeDescription +
+                  " " +
+                  city?.Description +
+                  " " +
+                  city?.AreaDescription +
+                  " " +
+                  "обл."}
+              </p>
+              <p>
+                {street?.StreetsType +
+                  " " +
+                  street?.Description +
+                  ", " +
+                  "будинок " +
+                  numberHouse +
+                  ", " +
+                  "під'їзд " +
+                  numberHoll +
+                  ", " +
+                  "квартира " +
+                  flat}
+              </p>
+              <p>{firstName + " " + lastName}</p>
+              <p>{"Номер телефону:" + " " + phone}</p>
+              <p>{email}</p>
+            </StyledPaymentPropsWrapper>
             <StyledOrderTitle>Умови доставки</StyledOrderTitle>
-
-            <p>{deliveryType}</p>
-            <p style={{ color: "red" }}>Безкоштовно</p>
+            <StyledPaymentPropsWrapper>
+              <p>{deliveryType}</p>
+              <p>{deliveryPrice(priceSum)}</p>
+            </StyledPaymentPropsWrapper>
           </div>
 
           <StyledPaymentWrapper>
