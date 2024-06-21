@@ -1,6 +1,12 @@
 import Select from "react-select";
 
-export const StreetSelect = ({ options, onChange, onSearch, placeholder }) => {
+export const StreetSelect = ({
+  options,
+  onChange,
+  onSearch,
+  placeholder,
+  displayStreet,
+}) => {
   const style = {
     control: baseStyles => ({
       ...baseStyles,
@@ -91,6 +97,8 @@ export const StreetSelect = ({ options, onChange, onSearch, placeholder }) => {
         label: option.StreetsType + " " + option.Description,
       });
     }
+  } else if (displayStreet) {
+    modifiedOptions.push(displayStreet);
   }
 
   return (
@@ -101,6 +109,7 @@ export const StreetSelect = ({ options, onChange, onSearch, placeholder }) => {
         onChange={onChange}
         onInputChange={onSearch}
         placeholder={placeholder}
+        value={displayStreet}
       />
     </>
   );

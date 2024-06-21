@@ -11,7 +11,7 @@ const userShopCartSlice = createSlice({
       addressDepartment: {},
       addressPoshtomat: {},
       address: {},
-      street: "",
+      street: {},
       numberHouse: "",
       flat: "",
       numberHoll: "",
@@ -47,7 +47,6 @@ const userShopCartSlice = createSlice({
       );
       state.userShopCart.priceSum -= payload.price;
       state.userShopCart.countQuantity -= 1;
-      // console.log("deleteUserShopCartItem", payload, state.userShopCart);
     },
     incrementQuantity(state, { payload }) {
       const item = state.userShopCart.products.find(
@@ -95,14 +94,23 @@ const userShopCartSlice = createSlice({
     addShopCartNumberHoll(state, { payload }) {
       state.userShopCart.numberHoll = payload;
     },
-    addShopCartfirstName(state, { payload }) {
+    addShopCartFlat(state, { payload }) {
+      state.userShopCart.flat = payload;
+    },
+    addShopCartComments(state, { payload }) {
+      state.userShopCart.comments = payload;
+    },
+    addShopCartFirstName(state, { payload }) {
       state.userShopCart.firstName = payload;
     },
-    addShopCartlastName(state, { payload }) {
+    addShopCartFastName(state, { payload }) {
       state.userShopCart.lastName = payload;
     },
     addShopCartPhone(state, { payload }) {
       state.userShopCart.phone = payload;
+    },
+    addShopCartEmail(state, { payload }) {
+      state.userShopCart.email = payload;
     },
     addShopCartIsMailing(state, { payload }) {
       return { ...state, isMailing: payload };
@@ -126,12 +134,15 @@ export const {
   addShopCartAddressDepartment,
   addShopCartAddressPoshtomat,
   addShopCartStreet,
-  addShopCartfirstName,
-  addShopCartlastName,
+  addShopCartFirstName,
+  addShopCartLastName,
   addShopCartPhone,
   addShopCartIsMailing,
   addShopCartCondition,
   addShopCartNumberHouse,
   addShopCartNumberHoll,
+  addShopCartFlat,
+  addShopCartComments,
+  addShopCartEmail,
 } = userShopCartSlice.actions;
 export const userShopCartReducer = userShopCartSlice.reducer;

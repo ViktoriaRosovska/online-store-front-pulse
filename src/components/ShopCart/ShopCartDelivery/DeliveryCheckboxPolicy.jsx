@@ -17,6 +17,7 @@ export const DeliveryCheckboxPolicy = () => {
   const { condition, isMailing } = useSelector(selectUserShopCart);
 
   console.log("condition:", condition, "isMailing:", isMailing);
+
   return (
     <StyledCheckboxWrapper>
       <StyledCheckboxLabel>
@@ -27,7 +28,6 @@ export const DeliveryCheckboxPolicy = () => {
           onChange={e => {
             dispatch(addShopCartCondition(e.target.checked));
           }}
-          checked={condition}
         />
         <div
           style={{
@@ -58,7 +58,6 @@ export const DeliveryCheckboxPolicy = () => {
         <CheckboxItem
           name="isMailing"
           item=""
-          checked={isMailing}
           onChange={e => {
             dispatch(addShopCartIsMailing(e.target.checked));
           }}

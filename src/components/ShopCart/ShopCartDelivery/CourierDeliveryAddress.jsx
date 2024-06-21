@@ -1,34 +1,22 @@
 import CustomInput from "components/form/formElements/CustomInput/CustomInput";
-import { StreetSelect } from "../SelectComponents/StreetSelect";
-import {
-  StyledDeliveryTitle,
-  StyledSelectLabel,
-  StyledSelectWrapper,
-} from "./ShopCartDelivery.styled";
-import { useGetStreetsMutation } from "../../../redux/novaPoshta/novaPoshtaAPI";
+
+import { StyledDeliveryTitle } from "./ShopCartDelivery.styled";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
+  addShopCartComments,
+  addShopCartFlat,
   addShopCartNumberHoll,
   addShopCartNumberHouse,
-  addShopCartStreet,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
+import { DeliveryStreetSelect } from "./DeliveryStreetSelect";
 
 export const CourierDeliveryAddress = () => {
   const dispatch = useDispatch();
-  const [getStreets, { data: streetsData }] = useGetStreetsMutation();
-  const { city, numberHouse, flat, numberHoll } =
+
+  const { numberHouse, flat, numberHoll, comments } =
     useSelector(selectUserShopCart);
-
-  const onSelectStreetSearch = (ref, value) => {
-    console.log("onSelectStreetSearch", ref, value);
-    getStreets(ref, value);
-  };
-
-  const onSelectStreetChange = value => {
-    console.log("onSelectStreetChange", value);
-    dispatch(addShopCartStreet(value.label));
-  };
 
   const handleChange = (value, func) => {
     console.log(value);
@@ -38,22 +26,8 @@ export const CourierDeliveryAddress = () => {
   return (
     <>
       <StyledDeliveryTitle>Адреса доставки</StyledDeliveryTitle>
-      <StyledSelectWrapper>
-        <StyledSelectLabel htmlFor="street">
-          Вкажіть назву вулиці
-        </StyledSelectLabel>
-        <StreetSelect
-          options={streetsData?.data}
-          placeholder="Вулиця"
-          onChange={e => {
-            onSelectStreetChange(e);
-          }}
-          onSearch={e => onSelectStreetSearch(city.Ref, e)}
-          // value={selectStreetSearch}
-          name="street"
-        />
-      </StyledSelectWrapper>
 
+      <DeliveryStreetSelect />
       <CustomInput
         type="text"
         label="Вкажіть номер будинку"
@@ -75,6 +49,8 @@ export const CourierDeliveryAddress = () => {
         label="Вкажіть номер квартири"
         placeholder="Номер квартири"
         name="flat"
+        onChange={e => handleChange(e.target.value, addShopCartFlat)}
+        value={flat}
       />
 
       <CustomInput
@@ -84,6 +60,8 @@ export const CourierDeliveryAddress = () => {
         $textarea
         placeholder="Напишіть коментар"
         label="Коментарі для кур'єра"
+        onChange={e => handleChange(e.target.value, addShopCartComments)}
+        value={comments}
       />
     </>
   );

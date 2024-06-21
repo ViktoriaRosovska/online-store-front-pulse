@@ -4,13 +4,16 @@ import {
   StyledNameWrapper,
 } from "./ShopCartDelivery.styled";
 import {
+  addShopCartEmail,
+  addShopCartFirstName,
+  addShopCartLastName,
   addShopCartPhone,
-  addShopCartfirstName,
-  addShopCartlastName,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 
 export const DeliveryPersonalDetails = () => {
+  const { firstName, lastName, email, phone } = useSelector(selectUserShopCart);
   const dispatch = useDispatch();
   return (
     <>
@@ -22,8 +25,9 @@ export const DeliveryPersonalDetails = () => {
           placeholder="Ім'я"
           name="fistName"
           onChange={e => {
-            dispatch(addShopCartfirstName(e.target.value));
+            dispatch(addShopCartFirstName(e.target.value));
           }}
+          value={firstName}
         />
         <CustomInput
           type="text"
@@ -31,8 +35,9 @@ export const DeliveryPersonalDetails = () => {
           placeholder="Прізвище"
           name="lastName"
           onChange={e => {
-            dispatch(addShopCartlastName(e.target.value));
+            dispatch(addShopCartLastName(e.target.value));
           }}
+          value={lastName}
         />
         <CustomInput
           type="text"
@@ -42,6 +47,7 @@ export const DeliveryPersonalDetails = () => {
           onChange={e => {
             dispatch(addShopCartPhone(e.target.value));
           }}
+          value={phone}
         />
         <CustomInput
           type="email"
@@ -49,8 +55,9 @@ export const DeliveryPersonalDetails = () => {
           placeholder="example@com.ua"
           name="email"
           onChange={e => {
-            dispatch(addShopCartPhone(e.target.value));
+            dispatch(addShopCartEmail(e.target.value));
           }}
+          value={email}
         />
       </StyledNameWrapper>
     </>

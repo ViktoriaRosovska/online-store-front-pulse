@@ -241,6 +241,6 @@ export const userShopCartValidationSchema = Yup.object().shape({
   flat: Yup.string(),
   comments: Yup.string(),
   numberHoll: Yup.string(),
-  policy: Yup.boolean().required("Обов'язкове поле"),
+  condition: Yup.boolean().required("Обов'язкове поле"),
   isMailing: Yup.boolean(),
 });
