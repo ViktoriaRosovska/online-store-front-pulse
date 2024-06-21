@@ -12,12 +12,12 @@ const userShopCartSlice = createSlice({
       addressPoshtomat: {},
       address: {},
       street: "",
-      house: "",
+      numberHouse: "",
       flat: "",
       numberHoll: "",
       comments: "",
-      name: "",
-      surname: "",
+      firstName: "",
+      lastName: "",
       phone: "",
       isMailing: false,
       condition: false,
@@ -89,20 +89,26 @@ const userShopCartSlice = createSlice({
     addShopCartStreet(state, { payload }) {
       state.userShopCart.street = payload;
     },
-    addShopCartName(state, { payload }) {
-      state.userShopCart.name = payload;
+    addShopCartNumberHouse(state, { payload }) {
+      state.userShopCart.numberHouse = payload;
     },
-    addShopCartSurname(state, { payload }) {
-      state.userShopCart.surname = payload;
+    addShopCartNumberHoll(state, { payload }) {
+      state.userShopCart.numberHoll = payload;
+    },
+    addShopCartfirstName(state, { payload }) {
+      state.userShopCart.firstName = payload;
+    },
+    addShopCartlastName(state, { payload }) {
+      state.userShopCart.lastName = payload;
     },
     addShopCartPhone(state, { payload }) {
       state.userShopCart.phone = payload;
     },
     addShopCartIsMailing(state, { payload }) {
-      state.userShopCart.isMailing = payload;
+      return { ...state, isMailing: payload };
     },
     addShopCartCondition(state, { payload }) {
-      state.userShopCart.condition = payload;
+      return { ...state, condition: payload };
     },
   },
 });
@@ -120,10 +126,12 @@ export const {
   addShopCartAddressDepartment,
   addShopCartAddressPoshtomat,
   addShopCartStreet,
-  addShopCartName,
-  addShopCartSurname,
+  addShopCartfirstName,
+  addShopCartlastName,
   addShopCartPhone,
   addShopCartIsMailing,
   addShopCartCondition,
+  addShopCartNumberHouse,
+  addShopCartNumberHoll,
 } = userShopCartSlice.actions;
 export const userShopCartReducer = userShopCartSlice.reducer;
