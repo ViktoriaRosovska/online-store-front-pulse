@@ -5,10 +5,10 @@ import {
   StyledSelectLabel,
   StyledSelectWrapper,
 } from "./ShopCartDelivery.styled";
+import { DepartmentSelect } from "../SelectComponents/DepartmentSelect";
 import { useGetDepartmentsMutation } from "../../../redux/novaPoshta/novaPoshtaAPI";
 import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
-import { DepartmentSelect } from "../SelectComponents/DepartmentSelect";
-import { selectUserShopCart } from "redux/user/userShopCart/userShopCartSelector";
+import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 
 export const PoshtomatDeliveryAddress = () => {
   const { city } = useSelector(selectUserShopCart);

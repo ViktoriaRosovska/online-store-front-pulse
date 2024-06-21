@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from "react-redux";
 import { departmentTypeFilter } from "../../../utils/departmentTypeFilter";
 import { useGetDepartmentsMutation } from "../../../redux/novaPoshta/novaPoshtaAPI";
 import { DepartmentSelect } from "../SelectComponents/DepartmentSelect";
@@ -6,9 +7,8 @@ import {
   StyledSelectLabel,
   StyledSelectWrapper,
 } from "./ShopCartDelivery.styled";
-import { useDispatch, useSelector } from "react-redux";
 import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
-import { selectUserShopCart } from "redux/user/userShopCart/userShopCartSelector";
+import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 
 export const DepartmentDeliveryAddress = () => {
   const { city } = useSelector(selectUserShopCart);
