@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Formik } from "formik";
+
 import {
   StyledDeliveryTitle,
   StyledSelectLabel,
@@ -37,29 +37,19 @@ export const DeliveryCitySelect = () => {
   };
 
   return (
-    <Formik
-      initialValues={{
-        city: "",
-      }}
-    >
-      {() => (
-        <>
-          <StyledDeliveryTitle>Обери адресу доставки</StyledDeliveryTitle>
-          <StyledSelectWrapper>
-            <StyledSelectLabel htmlFor="city">
-              Населений пункт
-            </StyledSelectLabel>
-            <CitySelect
-              options={data?.data}
-              placeholder={"Введіть населений пункт"}
-              onChange={e => onSelectCityChange(e)}
-              onSearch={e => onSelectCitySearch(e)}
-              displayCity={city}
-              name="city"
-            />
-          </StyledSelectWrapper>
-        </>
-      )}
-    </Formik>
+    <>
+      <StyledDeliveryTitle>Обери адресу доставки</StyledDeliveryTitle>
+      <StyledSelectWrapper>
+        <StyledSelectLabel htmlFor="city">Населений пункт</StyledSelectLabel>
+        <CitySelect
+          options={data?.data}
+          placeholder={"Введіть населений пункт"}
+          onChange={e => onSelectCityChange(e)}
+          onSearch={e => onSelectCitySearch(e)}
+          displayCity={city}
+          name="city"
+        />
+      </StyledSelectWrapper>
+    </>
   );
 };

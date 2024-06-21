@@ -23,19 +23,18 @@ import {
 
 export const ShopCartPayment = props => {
   const isDesktop = useMediaQuery("(min-width: 1440px)");
+
   const {
     products,
     priceSum,
     countQuantity,
     city,
     address,
-    surname,
-    name: userName,
+    lastName,
+    firstName,
     phone,
     deliveryType,
-  } = useSelector(selectUserShopCart)
-
-  // const dayNow = new Date();
+  } = useSelector(selectUserShopCart);
 
   return (
     <>
@@ -83,9 +82,9 @@ export const ShopCartPayment = props => {
 
             <PromoCode />
             <StyledOrderTitle>Адреса доставки</StyledOrderTitle>
-            <p>{address}</p>
-            <p>{city}</p>
-            <p>{surname + " " + userName}</p>
+            {/* <p>{address}</p> */}
+            {/* <p>{city?.Description}</p> */}
+            <p>{firstName + " " + lastName}</p>
             <p>{phone}</p>
             <StyledOrderTitle>Умови доставки</StyledOrderTitle>
 

@@ -3,7 +3,7 @@ import { ROUTES } from "../../../utils/routes";
 import { useLocation } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
 import { Formik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import {
   StyledNotificationWrapper,
