@@ -15,11 +15,7 @@ import {
 } from "../ShopCart/ShopCart.styled";
 import { ShopCard } from "../ShopCard/ShopCard";
 
-import {
-  useGetDepartmentsMutation,
-  useGetStreetsMutation,
-} from "../../../redux/novaPoshta/novaPoshtaAPI";
-import { useEffect, useState } from "react";
+import { useGetStreetsMutation } from "../../../redux/novaPoshta/novaPoshtaAPI";
 
 import {
   StyledCheckboxLabel,
@@ -45,10 +41,8 @@ import { StyledConditionsLinks } from "components/Links/Links.styled";
 import { normalize_count_form } from "../../../utils/normalize_count_form";
 import { discountPrice } from "../../../utils/discountPrice";
 import { DELIVERY } from "../../../utils/DELIVERY";
-import { DepartmentSelect } from "../SelectComponents/DepartmentSelect";
 import { StreetSelect } from "../SelectComponents/StreetSelect";
 import {
-  addShopCartAddress,
   addShopCartCondition,
   addShopCartIsMailing,
   addShopCartName,
@@ -303,7 +297,6 @@ export const ShopCartDelivery = props => {
               </StyledOrderPriceTextWrapper>
             </div>
 
-            {/* <PromoCode onCheckPromo={() => onCheckPromo()} /> */}
             <PromoCode />
             <ul>
               {products.map((el, idx) => {
