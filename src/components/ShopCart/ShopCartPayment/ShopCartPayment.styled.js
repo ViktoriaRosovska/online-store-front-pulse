@@ -24,8 +24,15 @@ const StyledRadioGroupWrapper = styled.div`
   gap: 24px;
 `;
 
+const StyledPaymentPropsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+`;
 export {
   StyledOrderPaymentWrapper,
   StyledPaymentWrapper,
   StyledRadioGroupWrapper,
+  StyledPaymentPropsWrapper,
 };

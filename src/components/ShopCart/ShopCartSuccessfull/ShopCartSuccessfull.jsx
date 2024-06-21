@@ -7,26 +7,71 @@ import {
   StyledPDVText,
 } from "../ShopCart/ShopCart.styled";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
-import { StyledOrderPaymentWrapper } from "../ShopCartPayment/ShopCartPayment.styled";
+import { StyledPaymentPropsWrapper } from "../ShopCartPayment/ShopCartPayment.styled";
 import { normalize_count_form } from "../../../utils/normalize_count_form";
 import { ShopCard } from "../ShopCard/ShopCard";
 import useMediaQuery from "../../../hooks/useMediaQuery";
+import { deliveryPrice } from "../../../utils/deliveryPrice";
+import {
+  StyledInfoMessage,
+  StyledInviteMessage,
+  StyledOrderSuccessfullWrapper,
+  StyledProductsListWrapper,
+} from "./ShopCartSuccessfull.styled";
 
 export const ShopCartSuccessfull = ({ title }) => {
+  const {
+    products,
+    priceSum,
+    countQuantity,
+    city,
+    // address,
+    street,
+    numberHouse,
+    numberHoll,
+    flat,
+    lastName,
+    firstName,
+    phone,
+    deliveryType,
+    email,
+  } = useSelector(selectUserShopCart);
   const isDesktop = useMediaQuery("(min-width: 1440px)");
-  const shopCart = useSelector(selectUserShopCart);
-  const items = useSelector(selectUserShopCart).products;
-  const priceSum = shopCart?.priceSum;
-  const countQuantity = shopCart?.countQuantity;
+
   return (
     <>
       <Title>{title}</Title>
+      {/* <StyledProductsListWrapper></StyledProductsListWrapper> */}
+      {products && products.length > 0 && (
+        <StyledOrderSuccessfullWrapper>
+          <StyledProductsListWrapper>
+            <div>
+              <StyledOrderTitle>Твоє замовлення</StyledOrderTitle>
+              <StyledOrderPriceTextWrapper>
+                <StyledOrderText>
+                  <span>
+                    {countQuantity}&nbsp;
+                    {normalize_count_form(countQuantity, [
+                      "товар",
+                      "товари",
+                      "товарів",
+                    ])}
+                  </span>
+                  <span>{priceSum}&nbsp;грн</span>
+                </StyledOrderText>
 
-      {items && items.length > 0 && (
-        <StyledOrderPaymentWrapper>
-          <div>
+                <StyledOrderText>
+                  <div>
+                    <p>Усього</p>
+                    <StyledPDVText>Включно з ПДВ</StyledPDVText>
+                  </div>
+                  <span>{priceSum}&nbsp;грн</span>
+                </StyledOrderText>
+              </StyledOrderPriceTextWrapper>
+            </div>
+
             <ul>
-              {items.map((el, idx) => {
+              {products.map((el, idx) => {
                 return (
                   <ShopCard
                     el={el}
@@ -38,51 +83,57 @@ export const ShopCartSuccessfull = ({ title }) => {
                 );
               })}
             </ul>
+          </StyledProductsListWrapper>
 
-            <StyledOrderTitle>Твоє замовлення</StyledOrderTitle>
-            <StyledOrderPriceTextWrapper>
-              <StyledOrderText>
-                <span>
-                  {countQuantity}&nbsp;
-                  {normalize_count_form(countQuantity, [
-                    "товар",
-                    "товари",
-                    "товарів",
-                  ])}
-                </span>
-                <span>{priceSum}&nbsp;грн</span>
-              </StyledOrderText>
-
-              <StyledOrderText>
-                <div>
-                  <p>Усього</p>
-                  <StyledPDVText>Включно з ПДВ</StyledPDVText>
-                </div>
-                <span>{priceSum}&nbsp;грн</span>
-              </StyledOrderText>
-            </StyledOrderPriceTextWrapper>
-          </div>
           <div>
-            <p>Вітаю, {shopCart.name}, дякую, що купуєте у нас!</p>
-            <p>
+            <StyledInviteMessage>
+              Вітаю, {firstName}, дякую, що купуєте у нас!
+            </StyledInviteMessage>
+            <StyledInfoMessage>
               Ви отримаєте лист на email та СМС, коли ваше замовлення буде
               відправлене зі складу.
-            </p>
+            </StyledInfoMessage>
             <div>
               <StyledOrderTitle>Адреса доставки</StyledOrderTitle>
-              <div>
-                <p>{shopCart.address}</p>
-                <p>{shopCart.city}</p>
-                <p>{shopCart.surname + " " + shopCart.name}</p>
-                <p>{shopCart.phone}</p>
-              </div>
+              <StyledPaymentPropsWrapper>
+                <p>
+                  {" "}
+                  {city?.SettlementTypeDescription +
+                    " " +
+                    city?.Description +
+                    " " +
+                    city?.AreaDescription +
+                    " " +
+                    "обл."}{" "}
+                </p>
+                <p>
+                  {street?.StreetsType +
+                    " " +
+                    street?.Description +
+                    ", " +
+                    "будинок " +
+                    numberHouse +
+                    ", " +
+                    "під'їзд " +
+                    numberHoll +
+                    ", " +
+                    "квартира " +
+                    flat}
+                </p>
+                {/* <p>{city}</p> */}
+                <p>{lastName + " " + firstName}</p>
+                <p>{phone}</p>
+                <p>{email}</p>
+              </StyledPaymentPropsWrapper>
             </div>
             <StyledOrderTitle>Умови доставки</StyledOrderTitle>
-            <p style={{ color: "red" }}>09.03 - 10.03</p>
-            <p>{shopCart.deliveryType}</p>
-            <p style={{ color: "red" }}>Безкоштовно</p>
+            {/* <p style={{ color: "red" }}>09.03 - 10.03</p> */}
+            <StyledPaymentPropsWrapper>
+              <p>{deliveryType}</p>
+              <p>{deliveryPrice(priceSum)}</p>
+            </StyledPaymentPropsWrapper>
           </div>
-        </StyledOrderPaymentWrapper>
+        </StyledOrderSuccessfullWrapper>
       )}
     </>
   );
