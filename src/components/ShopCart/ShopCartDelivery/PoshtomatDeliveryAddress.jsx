@@ -1,50 +1,55 @@
 import { useDispatch, useSelector } from "react-redux";
 import { departmentTypeFilter } from "../../../utils/departmentTypeFilter";
+import { useGetDepartmentsMutation } from "../../../redux/novaPoshta/novaPoshtaAPI";
+import { DepartmentSelect } from "../SelectComponents/DepartmentSelect";
 import {
   StyledDeliveryTitle,
   StyledSelectLabel,
   StyledSelectWrapper,
 } from "./ShopCartDelivery.styled";
-import { DepartmentSelect } from "../SelectComponents/DepartmentSelect";
-import { useGetDepartmentsMutation } from "../../../redux/novaPoshta/novaPoshtaAPI";
 import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
+import { useEffect, useState } from "react";
 
 export const PoshtomatDeliveryAddress = () => {
-  const { city } = useSelector(selectUserShopCart);
+  const { city, address } = useSelector(selectUserShopCart);
   const dispatch = useDispatch();
   const [
     getDepartments,
     {
-      data: departmentData,
+      data,
       // isError: departmentIsError,
       // isLoading: departmentIsLoading,
     },
   ] = useGetDepartmentsMutation();
 
+  const [search, setSearch] = useState(address.Description);
+  useEffect(() => {
+    getDepartments(city.Ref, search);
+  }, [city, search, getDepartments]);
+
   const onSelectDepartmentSearch = (ref, value) => {
-    console.log("onSelectDepartmentSearch", ref, value);
-    getDepartments(ref, value);
+    if (value !== "") setSearch(value);
   };
 
   const onSelectDepartmentsChange = value => {
-    console.log("onSelectDepartmentsChange", value);
-    dispatch(addShopCartAddress(value.label));
+    dispatch(addShopCartAddress(value));
   };
+
   return (
     <>
       <StyledDeliveryTitle>Адреса відділення</StyledDeliveryTitle>
+
       <StyledSelectWrapper>
         <StyledSelectLabel htmlFor="address">
           Оберіть номер поштомату
         </StyledSelectLabel>
         <DepartmentSelect
-          options={departmentTypeFilter(departmentData, ["Postomat"])}
+          options={departmentTypeFilter(data, ["Postomat"])}
           placeholder="Номер поштомату"
-          onChange={e => {
-            onSelectDepartmentsChange(e);
-          }}
+          onChange={e => onSelectDepartmentsChange(e)}
           onSearch={e => onSelectDepartmentSearch(city.Ref, e)}
+          displayDepartment={address}
           name="address"
         />
       </StyledSelectWrapper>

@@ -29,12 +29,10 @@ export const DepartmentDeliveryAddress = () => {
   }, [city, search, getDepartments]);
 
   const onSelectDepartmentSearch = (ref, value) => {
-    console.log("onSelectDepartmentSearch", ref, value);
     if (value !== "") setSearch(value);
   };
 
   const onSelectDepartmentsChange = value => {
-    console.log("onSelectDepartmentsChange", value);
     dispatch(addShopCartAddress(value));
   };
 
