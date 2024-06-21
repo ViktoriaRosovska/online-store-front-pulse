@@ -5,6 +5,7 @@ export const DepartmentSelect = ({
   onChange,
   onSearch,
   placeholder,
+  displayDepartment,
 }) => {
   const style = {
     control: baseStyles => ({
@@ -94,6 +95,8 @@ export const DepartmentSelect = ({
         label: option.Description,
       });
     }
+  } else if (displayDepartment) {
+    modifiedOptions.push(displayDepartment);
   }
 
   return (
@@ -104,6 +107,7 @@ export const DepartmentSelect = ({
         onChange={onChange}
         onInputChange={onSearch}
         placeholder={placeholder}
+        value={displayDepartment}
       />
     </>
   );

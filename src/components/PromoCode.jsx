@@ -23,34 +23,36 @@ import {
   setPromoStatus,
 } from "../redux/promoCode/promoCodeSlice";
 import { ReactComponent as CheckedSvg } from "../assets/svg/done.svg";
+import { addShopCartPromoCode } from "../redux/user/userShopCart/userShopCartSlice";
+import { useEffect } from "react";
 
 export const PromoCode = () => {
   const dispatch = useDispatch();
 
-  const [checkPromoCode] = useLazyCheckPromoCodeQuery({
-    selectFromResult: ({ data, error }) => {
-      if (error) {
-        if (error.status === 404) {
-          dispatch(setPromoStatus(PromoInvalid));
-        } else if (error.status === 400) {
-          dispatch(setPromoStatus(PromoExpired));
-        }
-      } else if (data) {
-        dispatch(setPromoStatus(PromoValid));
-        // console.log(data);
-        dispatch(setPromoCodeDiscount(data.discount));
-      }
-    },
-  });
+  const [checkPromoCode, { data, error }] = useLazyCheckPromoCodeQuery();
 
   const isPromoExpired = useSelector(selectPromoExpired);
   const isPromoInvalid = useSelector(selectPromoInvalid);
   const isPromoValid = useSelector(selectPromoValid);
   const promoCode = useSelector(selectPromoCode);
 
-  const handleChangePromo = code => {
-    dispatch(setPromoCode(code));
-    checkPromoCode(code);
+  useEffect(() => {
+    if (error) {
+      if (error.status === 404) {
+        dispatch(setPromoStatus(PromoInvalid));
+      } else if (error.status === 400) {
+        dispatch(setPromoStatus(PromoExpired));
+      }
+    } else if (data) {
+      dispatch(setPromoStatus(PromoValid));
+      dispatch(setPromoCodeDiscount(data.discount));
+      dispatch(addShopCartPromoCode(promoCode));
+    }
+  }, [data, error, dispatch]);
+
+  const handleChangePromo = promo => {
+    dispatch(setPromoCode(promo));
+    checkPromoCode(promo);
   };
 
   return (

@@ -1,6 +1,12 @@
 import Select from "react-select";
 
-export const CitySelect = ({ options, onChange, onSearch, placeholder }) => {
+export const CitySelect = ({
+  options,
+  onChange,
+  onSearch,
+  placeholder,
+  displayCity,
+}) => {
   const style = {
     control: baseStyles => ({
       ...baseStyles,
@@ -83,7 +89,6 @@ export const CitySelect = ({ options, onChange, onSearch, placeholder }) => {
   const modifiedOptions = [];
 
   if (options) {
-    console.log("options", options);
     for (const option of options) {
       modifiedOptions.push({
         ...option,
@@ -97,6 +102,8 @@ export const CitySelect = ({ options, onChange, onSearch, placeholder }) => {
           " обл",
       });
     }
+  } else if (displayCity) {
+    modifiedOptions.push(displayCity);
   }
 
   return (
@@ -107,6 +114,7 @@ export const CitySelect = ({ options, onChange, onSearch, placeholder }) => {
         onChange={onChange}
         onInputChange={onSearch}
         placeholder={placeholder}
+        value={displayCity}
       />
     </>
   );
