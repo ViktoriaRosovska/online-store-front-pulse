@@ -6,7 +6,7 @@ export const selectUserShopCart = createSelector(
   [selectUserShopCartState],
   userShopCart => ({
     products: userShopCart.products,
-    code: userShopCart.code,
+    promocode: userShopCart.promocode,
     priceSum: userShopCart.priceSum,
     countQuantity: userShopCart.countQuantity,
     city: userShopCart.city,
@@ -25,5 +25,9 @@ export const selectUserShopCart = createSelector(
     condition: userShopCart.condition,
     street: userShopCart.street,
     comments: userShopCart.comments,
+    userId: userShopCart.userId,
+    deliveryAddress: userShopCart.deliveryAddress,
+    orderDate: userShopCart.orderDate,
+    paymentMethod: userShopCart.paymentMethod,
   })
 );

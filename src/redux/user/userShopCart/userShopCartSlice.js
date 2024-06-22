@@ -6,7 +6,7 @@ const userShopCartSlice = createSlice({
   initialState: {
     userShopCart: {
       products: [],
-      code: "",
+      promocode: "",
       city: {},
       addressDepartment: {},
       addressPoshtomat: {},
@@ -24,6 +24,11 @@ const userShopCartSlice = createSlice({
       deliveryType: DELIVERY.department,
       priceSum: 0,
       countQuantity: 0,
+      paymentMethod: "",
+      email: "",
+      orderDate: "",
+      userId: "",
+      deliveryAddress: "",
     },
     isLoading: true,
     isLoggedIn: false,
@@ -67,7 +72,7 @@ const userShopCartSlice = createSlice({
       }
     },
     addShopCartPromoCode(state, { payload }) {
-      state.userShopCart.code = payload;
+      state.userShopCart.promocode = payload;
     },
     addShopCartCity(state, { payload }) {
       state.userShopCart.city = payload;

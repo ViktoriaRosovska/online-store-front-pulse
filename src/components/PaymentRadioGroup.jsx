@@ -21,11 +21,16 @@ import { selectPaymentCard } from "../redux/paymentCard/paymentCardSelector";
 import { editCardDateInInput } from "./form/formHelpers/formUserCardEdit";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../utils/routes";
+import { Portal } from "./Modals/helpersForModal/modalPortal";
+import CommonModal from "./Modals/CommonModal";
+import { ModalSuccessfulPayment } from "./Modals/ModalSuccessfulPayment/ModalSuccessfulPayment";
 
 export const PaymentRadioGroup = () => {
   const [selected, setSelected] = useState("card");
+  const [isVisible, setIsVisible] = useState(false);
   const selectedCard = useSelector(selectPaymentCard);
   const navigate = useNavigate();
+
   return (
     <>
       <CustomRadioButton
@@ -50,7 +55,7 @@ export const PaymentRadioGroup = () => {
             </button>
           </StyledCardIconWrapper>
 
-          <StyledPayButton>
+          <StyledPayButton onClick={() => setIsVisible(true)}>
             <GooglePayBtn />
           </StyledPayButton>
         </StyledOnlinePaymentWrapper>
@@ -107,6 +112,16 @@ export const PaymentRadioGroup = () => {
           </StypedOfflinePaymentWrapper>
         )}
       </CustomRadioButton>
+      <Portal isOpen={isVisible}>
+        <CommonModal
+          onClose={() => {}}
+          isSizeModal={true}
+          padding="20px 20px"
+          showClose={false}
+        >
+          <ModalSuccessfulPayment />
+        </CommonModal>
+      </Portal>
     </>
   );
 };
