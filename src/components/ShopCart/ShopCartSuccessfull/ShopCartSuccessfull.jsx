@@ -19,29 +19,17 @@ import {
   StyledProductsListWrapper,
 } from "./ShopCartSuccessfull.styled";
 
+import { AddressDeliveryComponent } from "./AddressDeliveryComponent";
+
 export const ShopCartSuccessfull = ({ title }) => {
-  const {
-    products,
-    priceSum,
-    countQuantity,
-    city,
-    // address,
-    street,
-    numberHouse,
-    numberHoll,
-    flat,
-    lastName,
-    firstName,
-    phone,
-    deliveryType,
-    email,
-  } = useSelector(selectUserShopCart);
+  const { products, priceSum, countQuantity, firstName, deliveryType } =
+    useSelector(selectUserShopCart);
   const isDesktop = useMediaQuery("(min-width: 1440px)");
 
   return (
     <>
       <Title>{title}</Title>
-      {/* <StyledProductsListWrapper></StyledProductsListWrapper> */}
+
       {products && products.length > 0 && (
         <StyledOrderSuccessfullWrapper>
           <StyledProductsListWrapper>
@@ -94,40 +82,10 @@ export const ShopCartSuccessfull = ({ title }) => {
               відправлене зі складу.
             </StyledInfoMessage>
             <div>
-              <StyledOrderTitle>Адреса доставки</StyledOrderTitle>
-              <StyledPaymentPropsWrapper>
-                <p>
-                  {" "}
-                  {city?.SettlementTypeDescription +
-                    " " +
-                    city?.Description +
-                    " " +
-                    city?.AreaDescription +
-                    " " +
-                    "обл."}{" "}
-                </p>
-                <p>
-                  {street?.StreetsType +
-                    " " +
-                    street?.Description +
-                    ", " +
-                    "будинок " +
-                    numberHouse +
-                    ", " +
-                    "під'їзд " +
-                    numberHoll +
-                    ", " +
-                    "квартира " +
-                    flat}
-                </p>
-                {/* <p>{city}</p> */}
-                <p>{lastName + " " + firstName}</p>
-                <p>{phone}</p>
-                <p>{email}</p>
-              </StyledPaymentPropsWrapper>
+              <AddressDeliveryComponent />
             </div>
             <StyledOrderTitle>Умови доставки</StyledOrderTitle>
-            {/* <p style={{ color: "red" }}>09.03 - 10.03</p> */}
+
             <StyledPaymentPropsWrapper>
               <p>{deliveryType}</p>
               <p>{deliveryPrice(priceSum)}</p>

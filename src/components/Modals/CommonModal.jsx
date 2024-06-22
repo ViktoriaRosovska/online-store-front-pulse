@@ -1,8 +1,15 @@
 import { useEffect } from "react";
-import { Backdrop, CloseButton, ModalContant } from "./CommonModal.styled";
+import { Backdrop, CloseButton, ModalContent } from "./CommonModal.styled";
 import { ReactComponent as CloseSvg } from "../../assets/svg/closeBtnSmall.svg";
 
-const CommonModal = ({ onClose, children, padding, top, isSizeModal }) => {
+const CommonModal = ({
+  onClose,
+  children,
+  padding,
+  top,
+  isSizeModal,
+  showClose,
+}) => {
   const handleKeyDown = event => {
     if (event.key === "Escape") {
       onClose();
@@ -31,14 +38,23 @@ const CommonModal = ({ onClose, children, padding, top, isSizeModal }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onClose]);
 
+  if (showClose === undefined) showClose = true;
+
   return (
     <Backdrop onClick={handleBackdropClick} $isSizeModal={isSizeModal}>
-      <ModalContant $padding={padding} $isSizeModal={isSizeModal}>
-        <CloseButton type="button" onClick={onClose} $top={top} $isSizeModal={isSizeModal}>
-          <CloseSvg />
-        </CloseButton>
+      <ModalContent $padding={padding} $isSizeModal={isSizeModal}>
+        {showClose && (
+          <CloseButton
+            type="button"
+            onClick={onClose}
+            $top={top}
+            $isSizeModal={isSizeModal}
+          >
+            <CloseSvg />
+          </CloseButton>
+        )}
         {children}
-      </ModalContant>
+      </ModalContent>
     </Backdrop>
   );
 };

@@ -154,13 +154,14 @@ const StyledOrderPriceTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
+
+  @media screen and (min-width: 1440px) {
+    width: 295px;
+  }
 `;
 
 const StyledShopCartItemCount = styled.span`
-  /* font-family: "Roboto";
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 33.6px; */
   margin-right: 9px;
   margin-left: 9px;
 `;
@@ -189,6 +190,14 @@ const StyledChangeCountWrapperDesktop = styled(StyledChangeCountWrapper)`
   }
 `;
 
+const StyledYourOrderWrapper = styled.div`
+  width: 100%;
+  @media screen and (min-width: 1440px) {
+    width: 385px;
+  }
+  /* margin-bottom: 24px; */
+`;
+
 const StyledChangeCountBtn = styled.button`
   background-color: transparent;
   border: none;
@@ -211,6 +220,7 @@ const StyledNotificationWrapper = styled.p`
 
 const StyledPromocodeWrapper = styled.div`
   position: relative;
+  width: 100%;
   /* margin-bottom: 24px; */
   @media screen and (min-width: 1440px) {
     /* margin-bottom: 0; */
@@ -255,4 +265,5 @@ export {
   StyledPromocodeWrapper,
   StyledPromocodeCheckWrapper,
   StyledChoiceBtnParagraphWrapper,
+  StyledYourOrderWrapper,
 };

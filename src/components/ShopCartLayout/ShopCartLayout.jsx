@@ -7,7 +7,7 @@ import {
 
 const ShopCartLayout = () => {
   const pathname = useLocation().pathname;
-  console.log(pathname);
+  // console.log(pathname);
   const isActive = () =>
     [
       "/shopcart",

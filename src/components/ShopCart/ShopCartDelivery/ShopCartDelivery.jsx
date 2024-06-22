@@ -5,14 +5,7 @@ import { Title } from "components/Typography/Typography.styled";
 import { Formik } from "formik";
 import { useSelector } from "react-redux";
 
-import {
-  StyledNotificationWrapper,
-  StyledOrderPriceTextWrapper,
-  StyledOrderText,
-  StyledOrderTitle,
-  StyledPDVText,
-} from "../ShopCart/ShopCart.styled";
-import { ShopCard } from "../ShopCard/ShopCard";
+import { StyledNotificationWrapper } from "../ShopCart/ShopCart.styled";
 
 import {
   StyledDeliveryForm,
@@ -20,18 +13,9 @@ import {
   StyledOrderDeliveryWrapper,
 } from "../ShopCartDelivery/ShopCartDelivery.styled";
 
-import {
-  selectPromoCodeDiscount,
-  selectPromoValid,
-} from "../../../redux/promoCode/promoCodeSelector";
-
 import useMediaQuery from "../../../hooks/useMediaQuery";
 
-import { normalize_count_form } from "../../../utils/normalize_count_form";
-import { discountPrice } from "../../../utils/discountPrice";
 import { DELIVERY } from "../../../utils/DELIVERY";
-
-import { PromoCode } from "components/PromoCode";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { DeliveryCitySelect } from "./DeliveryCitySelect";
 import { DeliveryChoiceType } from "./DeliveryChoiceType";
@@ -41,15 +25,13 @@ import { DeliveryPersonalDetails } from "./DeliveryPersonalInfo";
 import { userShopCartValidationSchema } from "components/form/formHelpers/formValidation";
 import { CourierDeliveryAddress } from "./CourierDeliveryAddress";
 import { DeliveryCheckboxPolicy } from "./DeliveryCheckboxPolicy";
+import { YourOrderPriceComponent } from "../ShopCart/YourOrderPriceComponent/YourOrderPriceComponent";
+import { ShopCartProductsList } from "../ShopCartProductsList";
+import { PromoCode } from "components/PromoCode";
 
 export const ShopCartDelivery = props => {
   let location = useLocation();
-  const { products, priceSum, countQuantity, deliveryType } =
-    useSelector(selectUserShopCart);
-
-  const discount = useSelector(selectPromoCodeDiscount);
-
-  const isPromoValid = useSelector(selectPromoValid);
+  const { products, deliveryType } = useSelector(selectUserShopCart);
 
   const isDesktop = useMediaQuery("(min-width: 1440px)");
 
@@ -76,27 +58,21 @@ export const ShopCartDelivery = props => {
               }}
             >
               <StyledDeliveryForm>
-                <>
-                  <DeliveryCitySelect />
-                  <DeliveryChoiceType />
+                <DeliveryCitySelect />
+                <DeliveryChoiceType />
 
-                  {deliveryType === DELIVERY.department && (
-                    <DepartmentDeliveryAddress />
-                  )}
-                  {deliveryType === DELIVERY.courier && (
-                    <>
-                      <CourierDeliveryAddress />
-                    </>
-                  )}
-                  {deliveryType === DELIVERY.poshtomat && (
-                    <PoshtomatDeliveryAddress />
-                  )}
+                {deliveryType === DELIVERY.department && (
+                  <DepartmentDeliveryAddress />
+                )}
+                {deliveryType === DELIVERY.courier && (
+                  <CourierDeliveryAddress />
+                )}
+                {deliveryType === DELIVERY.poshtomat && (
+                  <PoshtomatDeliveryAddress />
+                )}
 
-                  <DeliveryPersonalDetails />
-
-                  <DeliveryCheckboxPolicy />
-                  {/* <button type="submit">Форма</button> */}
-                </>
+                <DeliveryPersonalDetails />
+                <DeliveryCheckboxPolicy />
               </StyledDeliveryForm>
             </Formik>
 
@@ -108,50 +84,14 @@ export const ShopCartDelivery = props => {
           </div>
 
           <StyledDeliveryOrderWrapper>
-            <div>
-              <StyledOrderTitle>Твоє замовлення</StyledOrderTitle>
-              <StyledOrderPriceTextWrapper>
-                <StyledOrderText>
-                  <span>
-                    {countQuantity}&nbsp;
-                    {normalize_count_form(countQuantity, [
-                      "товар",
-                      "товари",
-                      "товарів",
-                    ])}
-                  </span>
-                  <span>{priceSum}&nbsp;грн</span>
-                </StyledOrderText>
-
-                <StyledOrderText>
-                  <div>
-                    <p>Усього</p>
-                    <StyledPDVText>Включно з ПДВ</StyledPDVText>
-                  </div>
-                  <span>
-                    {isPromoValid
-                      ? discountPrice(priceSum, discount)
-                      : priceSum}
-                    &nbsp;грн
-                  </span>
-                </StyledOrderText>
-              </StyledOrderPriceTextWrapper>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "24px" }}
+            >
+              <YourOrderPriceComponent />
+              <PromoCode />
             </div>
 
-            <PromoCode />
-            <ul>
-              {products.map((el, idx) => {
-                return (
-                  <ShopCard
-                    el={el}
-                    key={el._id + "#" + idx}
-                    showCloseBtn={false}
-                    showDeliveryPrice={isDesktop}
-                    device={isDesktop ? "desktop" : "mobile"}
-                  />
-                );
-              })}
-            </ul>
+            <ShopCartProductsList products={products} isDesktop={isDesktop} />
           </StyledDeliveryOrderWrapper>
         </StyledOrderDeliveryWrapper>
       ) : (
