@@ -30,7 +30,6 @@ export const ShopCart = props => {
       <StyledPageWrapper>
         {products && products.length > 0 ? (
           <>
-            {/* <ShopCardProductsList products={products} isDesktop={isDesktop} /> */}
             <ShopCartProductsListWithCloseBtn
               products={products}
               isDesktop={isDesktop}
