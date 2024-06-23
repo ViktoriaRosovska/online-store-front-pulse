@@ -23,6 +23,7 @@ const userShopCartSlice = createSlice({
       condition: false,
       deliveryType: DELIVERY.department,
       priceSum: 0,
+      totalPriceSum: 0,
       countQuantity: 0,
       paymentMethod: "",
       email: "",
@@ -123,6 +124,12 @@ const userShopCartSlice = createSlice({
     addShopCartCondition(state, { payload }) {
       return { ...state, condition: payload };
     },
+    addShopCartTotalPriceSum(state, { payload }) {
+      state.userShopCart.totalPriceSum = payload;
+    },
+    addShopCartPaymentMethod(state, { payload }) {
+      state.userShopCart.paymentMethod = payload;
+    },
   },
 });
 
@@ -149,5 +156,7 @@ export const {
   addShopCartFlat,
   addShopCartComments,
   addShopCartEmail,
+  addShopCartTotalPriceSum,
+  addShopCartPaymentMethod,
 } = userShopCartSlice.actions;
 export const userShopCartReducer = userShopCartSlice.reducer;

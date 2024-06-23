@@ -5,18 +5,16 @@ import {
   StyledCheckboxWrapper,
 } from "./ShopCartDelivery.styled";
 import { CheckboxItem } from "components/CheckboxList/CheckboxItem/ChechboxItem";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   addShopCartCondition,
   addShopCartIsMailing,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
-import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
+// import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 
 export const DeliveryCheckboxPolicy = () => {
   const dispatch = useDispatch();
-  const { condition, isMailing } = useSelector(selectUserShopCart);
-
-  console.log("condition:", condition, "isMailing:", isMailing);
+  // const { condition, isMailing } = useSelector(selectUserShopCart);
 
   return (
     <StyledCheckboxWrapper>

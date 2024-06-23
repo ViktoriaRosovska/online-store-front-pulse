@@ -29,5 +29,6 @@ export const selectUserShopCart = createSelector(
     deliveryAddress: userShopCart.deliveryAddress,
     orderDate: userShopCart.orderDate,
     paymentMethod: userShopCart.paymentMethod,
+    totalPriceSum: userShopCart.totalPriceSum,
   })
 );
