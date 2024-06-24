@@ -10,7 +10,7 @@ const userShopCartSlice = createSlice({
       city: {},
       addressDepartment: {},
       addressPoshtomat: {},
-      address: {},
+      address: "",
       street: {},
       numberHouse: "",
       flat: "",
@@ -28,8 +28,8 @@ const userShopCartSlice = createSlice({
       paymentMethod: "",
       email: "",
       orderDate: "",
-      userId: "",
       deliveryAddress: "",
+      discount: 0,
     },
     isLoading: true,
     isLoggedIn: false,
@@ -82,9 +82,6 @@ const userShopCartSlice = createSlice({
       state.userShopCart.deliveryType = payload;
     },
 
-    addShopCartAddress(state, { payload }) {
-      state.userShopCart.address = payload;
-    },
     addShopCartAddressDepartment(state, { payload }) {
       state.userShopCart.addressDepartment = payload;
     },
@@ -109,7 +106,7 @@ const userShopCartSlice = createSlice({
     addShopCartFirstName(state, { payload }) {
       state.userShopCart.firstName = payload;
     },
-    addShopCartFastName(state, { payload }) {
+    addShopCartLastName(state, { payload }) {
       state.userShopCart.lastName = payload;
     },
     addShopCartPhone(state, { payload }) {
@@ -130,6 +127,16 @@ const userShopCartSlice = createSlice({
     addShopCartPaymentMethod(state, { payload }) {
       state.userShopCart.paymentMethod = payload;
     },
+    addShopCartDiscount(state, { payload }) {
+      state.userShopCart.discount = payload;
+    },
+    addShopCartAddress(state) {
+      if (state.userShopCart.deliveryType === DELIVERY.department) {
+        state.userShopCart.address = JSON.stringify(
+          state.userShopCart.addressDepartment
+        );
+      }
+    },
   },
 });
 
@@ -142,7 +149,7 @@ export const {
   addShopCartCity,
   addDeliveryType,
   addShopCartPriceSum,
-  addShopCartAddress,
+
   addShopCartAddressDepartment,
   addShopCartAddressPoshtomat,
   addShopCartStreet,
@@ -158,5 +165,7 @@ export const {
   addShopCartEmail,
   addShopCartTotalPriceSum,
   addShopCartPaymentMethod,
+  addShopCartDiscount,
+  addShopCartAddress,
 } = userShopCartSlice.actions;
 export const userShopCartReducer = userShopCartSlice.reducer;

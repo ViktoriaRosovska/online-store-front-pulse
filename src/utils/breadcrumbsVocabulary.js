@@ -6,15 +6,13 @@ export const BREADCRUMBS = {
   [ROUTES.NEWBRANDS]: "Новинки",
   [ROUTES.CATALOG]: "Каталог",
   [ROUTES.SALES]: "Розпродаж",
-  // [ROUTES.SHOPCART]: "Кошик",
-  // [ROUTES.SHOPCARTDELIVERY]: "Доставка",
 };
 
 export const BREADCRUMBS_SHOPCART = {
   [ROUTES.SHOPCART]: "Кошик",
   [ROUTES.SHOPCARTDELIVERY]: "Доставка",
   [ROUTES.SHOPCARTPAYMENT]: "Оплата",
-  [ROUTES.SHOPCARTSUCCESSFULL]: "Замовлення оформлено",
+  [ROUTES.SHOPCARTSUCCESSFUL]: "Замовлення оформлено",
 };
 
 export const BREADCRUMBS_PROFILE = {

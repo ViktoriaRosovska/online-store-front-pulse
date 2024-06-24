@@ -24,7 +24,7 @@ const StyledInfoMessage = styled.p`
   margin-bottom: 24px;
 `;
 
-const StyledOrderSuccessfullWrapper = styled(StyledOrderPaymentWrapper)`
+const StyledOrderSuccessfulWrapper = styled(StyledOrderPaymentWrapper)`
   flex-direction: column-reverse;
   @media screen and (min-width: 1440px) {
     flex-direction: row-reverse;
@@ -34,5 +34,5 @@ export {
   StyledInviteMessage,
   StyledProductsListWrapper,
   StyledInfoMessage,
-  StyledOrderSuccessfullWrapper,
+  StyledOrderSuccessfulWrapper,
 };

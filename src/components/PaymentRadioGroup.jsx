@@ -21,6 +21,7 @@ import { selectPaymentCard } from "../redux/paymentCard/paymentCardSelector";
 import {
   editCardDateInInput,
   editCardNumberInInput,
+  formatDate,
   formatDateCard,
 } from "./form/formHelpers/formUserCardEdit";
 import { useNavigate } from "react-router-dom";
@@ -31,6 +32,8 @@ import { ModalSuccessfulPayment } from "./Modals/ModalSuccessfulPayment/ModalSuc
 import { addShopCartPaymentMethod } from "../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../redux/user/userShopCart/userShopCartSelector";
 import { validationUserCardShopCardSchema } from "./form/formHelpers/formValidation";
+import { usePostOrdersMutation } from "../redux/products/productsApi";
+import { selectPromoCodeDiscount } from "../redux/promoCode/promoCodeSelector";
 
 export const PaymentRadioGroup = () => {
   const [selected, setSelected] = useState("card");
@@ -38,8 +41,77 @@ export const PaymentRadioGroup = () => {
   const selectedCard = useSelector(selectPaymentCard);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { paymentMethod, products, totalPriceSum } =
-    useSelector(selectUserShopCart);
+  const {
+    paymentMethod,
+    products,
+    promocode,
+    city,
+    addressDepartment,
+    addressPoshtomat,
+    address,
+    street,
+    numberHouse,
+    flat,
+    numberHoll,
+    comments,
+    firstName,
+    lastName,
+    phone,
+    isMailing,
+    condition,
+    deliveryType,
+    priceSum,
+    totalPriceSum,
+    countQuantity,
+    discount,
+    email,
+    orderDate,
+    deliveryAddress,
+  } = useSelector(selectUserShopCart);
+
+  const ShopCartFormData = {
+    paymentMethod,
+    products,
+    promocode,
+    city,
+    addressDepartment,
+    addressPoshtomat,
+    address,
+    street,
+    numberHouse,
+    flat,
+    numberHoll,
+    comments,
+    firstName,
+    lastName,
+    phone,
+    isMailing,
+    condition,
+    deliveryType,
+    priceSum,
+    totalPriceSum,
+    countQuantity,
+    discount,
+    email,
+    orderDate,
+    deliveryAddress,
+  };
+
+  console.log(ShopCartFormData);
+
+  const userFormData = new FormData();
+  userFormData.append("priceSum", totalPriceSum);
+  userFormData.append("orderDate", new Date().getUTCDate());
+  userFormData.append("deliveryAddress", address);
+  userFormData.append("paymentMethod", paymentMethod);
+  userFormData.append("promoCode", promocode);
+  userFormData.append("discount", discount);
+  userFormData.append("email", email);
+  userFormData.append("name", firstName + " " + lastName);
+  userFormData.append("phone", phone);
+  userFormData.append("isMailing", isMailing);
+
+  const [postOrders] = usePostOrdersMutation();
   console.log(paymentMethod);
   console.log(products);
   useEffect(() => {
@@ -56,16 +128,12 @@ export const PaymentRadioGroup = () => {
     cardCVC: selectedCard?.cardCVC || "",
   };
   const onSubmit = (values, option) => {
-    // values.cardNumber = values.cardNumber.replace(/\s/g, "");
-    // values.cardDate = formatDate(values.cardDate);
+    values.cardNumber = values.cardNumber.replace(/\s/g, "");
+    values.cardDate = formatDate(values.cardDate);
 
-    // try {
     console.log(values, option);
+    postOrders(userFormData);
     setIsVisible(true);
-    // option.resetForm();
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
   return (
     <>
