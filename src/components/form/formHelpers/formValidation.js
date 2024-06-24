@@ -269,11 +269,14 @@ export const userShopCartValidationSchema = Yup.object().shape({
     .matches(phoneRegex, { message: "Введіть корректний номер телефону" })
     .nullable()
     .required("Вкажіть номер телефону"),
-  street: Yup.string(),
+  street: Yup.object(),
   numberHouse: Yup.string(),
   flat: Yup.string(),
   comments: Yup.string(),
   numberHoll: Yup.string(),
   condition: Yup.boolean().required("Обов'язкове поле"),
   isMailing: Yup.boolean(),
+  address: Yup.string().required(),
+  addressDepartment: Yup.object(),
+  addressPoshtomat: Yup.object(),
 });

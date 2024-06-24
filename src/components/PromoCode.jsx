@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLazyCheckPromoCodeQuery } from "../redux/products/productsApi";
 import {
   selectPromoCode,
+  selectPromoCodeDiscount,
   selectPromoExpired,
   selectPromoInvalid,
   selectPromoValid,
@@ -23,7 +24,10 @@ import {
   setPromoStatus,
 } from "../redux/promoCode/promoCodeSlice";
 import { ReactComponent as CheckedSvg } from "../assets/svg/done.svg";
-import { addShopCartPromoCode } from "../redux/user/userShopCart/userShopCartSlice";
+import {
+  addShopCartDiscount,
+  addShopCartPromoCode,
+} from "../redux/user/userShopCart/userShopCartSlice";
 import { useEffect } from "react";
 
 export const PromoCode = () => {
@@ -35,6 +39,7 @@ export const PromoCode = () => {
   const isPromoInvalid = useSelector(selectPromoInvalid);
   const isPromoValid = useSelector(selectPromoValid);
   const promoCode = useSelector(selectPromoCode);
+  const discount = useSelector(selectPromoCodeDiscount);
 
   useEffect(() => {
     if (error) {
@@ -47,6 +52,7 @@ export const PromoCode = () => {
       dispatch(setPromoStatus(PromoValid));
       dispatch(setPromoCodeDiscount(data.discount));
       dispatch(addShopCartPromoCode(promoCode));
+      dispatch(addShopCartDiscount(discount));
     }
   }, [data, error, dispatch]);
 

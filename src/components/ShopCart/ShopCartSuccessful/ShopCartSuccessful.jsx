@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Title } from "../../../components/Typography/Typography.styled";
+import { Title } from "../../Typography/Typography.styled";
 import { StyledOrderTitle } from "../ShopCart/ShopCart.styled";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { StyledPaymentPropsWrapper } from "../ShopCartPayment/ShopCartPayment.styled";
@@ -8,15 +8,15 @@ import { deliveryPrice } from "../../../utils/deliveryPrice";
 import {
   StyledInfoMessage,
   StyledInviteMessage,
-  StyledOrderSuccessfullWrapper,
+  StyledOrderSuccessfulWrapper,
   StyledProductsListWrapper,
-} from "./ShopCartSuccessfull.styled";
+} from "./ShopCartSuccessful.styled";
 
 import { AddressDeliveryComponent } from "./AddressDeliveryComponent";
 import { YourOrderPriceComponent } from "../ShopCart/YourOrderPriceComponent/YourOrderPriceComponent";
 import { ShopCartProductsList } from "../ShopCartProductsList";
 
-export const ShopCartSuccessfull = ({ title }) => {
+export const ShopCartSuccessful = ({ title }) => {
   const { products, priceSum, firstName, deliveryType } =
     useSelector(selectUserShopCart);
   const isDesktop = useMediaQuery("(min-width: 1440px)");
@@ -26,7 +26,7 @@ export const ShopCartSuccessfull = ({ title }) => {
       <Title>{title}</Title>
 
       {products && products.length > 0 && (
-        <StyledOrderSuccessfullWrapper>
+        <StyledOrderSuccessfulWrapper>
           <StyledProductsListWrapper>
             <div>
               <YourOrderPriceComponent />
@@ -53,7 +53,7 @@ export const ShopCartSuccessfull = ({ title }) => {
               <p>{deliveryPrice(priceSum)}</p>
             </StyledPaymentPropsWrapper>
           </div>
-        </StyledOrderSuccessfullWrapper>
+        </StyledOrderSuccessfulWrapper>
       )}
     </>
   );

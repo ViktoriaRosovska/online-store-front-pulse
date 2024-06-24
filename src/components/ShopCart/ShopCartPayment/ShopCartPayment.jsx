@@ -22,7 +22,7 @@ import {
   StyledRadioGroupWrapper,
 } from "./ShopCartPayment.styled";
 import { deliveryPrice } from "../../../utils/deliveryPrice";
-import { AddressDeliveryComponent } from "../ShopCartSuccessfull/AddressDeliveryComponent";
+import { AddressDeliveryComponent } from "../ShopCartSuccessful/AddressDeliveryComponent";
 import { YourOrderPriceComponent } from "../ShopCart/YourOrderPriceComponent/YourOrderPriceComponent";
 import { ShopCartProductsList } from "../ShopCartProductsList";
 import { PromoCode } from "components/PromoCode";

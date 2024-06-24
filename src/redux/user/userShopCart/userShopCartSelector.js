@@ -30,5 +30,6 @@ export const selectUserShopCart = createSelector(
     orderDate: userShopCart.orderDate,
     paymentMethod: userShopCart.paymentMethod,
     totalPriceSum: userShopCart.totalPriceSum,
+    discount: userShopCart.discount,
   })
 );

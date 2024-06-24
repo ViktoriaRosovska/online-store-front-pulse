@@ -28,13 +28,24 @@ import { DeliveryCheckboxPolicy } from "./DeliveryCheckboxPolicy";
 import { YourOrderPriceComponent } from "../ShopCart/YourOrderPriceComponent/YourOrderPriceComponent";
 import { ShopCartProductsList } from "../ShopCartProductsList";
 import { PromoCode } from "components/PromoCode";
+import { useEffect } from "react";
+import { useFetchCurrentUserQuery } from "../../../redux/auth";
 
 export const ShopCartDelivery = props => {
   let location = useLocation();
   const { products, deliveryType } = useSelector(selectUserShopCart);
-
+  const { data, isLoading, refetch } = useFetchCurrentUserQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
+  console.log(data);
   const isDesktop = useMediaQuery("(min-width: 1440px)");
 
+  const onSubmit = (values, option) => {
+    console.log(values, option);
+  };
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
   return (
     <>
       <Title>{props.title}</Title>
@@ -43,11 +54,13 @@ export const ShopCartDelivery = props => {
           <div>
             <Formik
               validationSchema={userShopCartValidationSchema}
+              onSubmit={onSubmit}
               initialValues={{
-                firstName: "",
-                lastName: "",
-                phone: "",
-                email: "",
+                firstName: data?.user.firstName || "",
+                lastName: data?.user.lastName || "",
+                phone: data?.user.phone || "",
+                email: data?.user.email || "",
+                address: "",
                 street: "",
                 numberHouse: "",
                 numberHoll: "",
@@ -57,29 +70,32 @@ export const ShopCartDelivery = props => {
                 isMailing: false,
               }}
             >
-              <StyledDeliveryForm>
-                <DeliveryCitySelect />
-                <DeliveryChoiceType />
+              {formik => (
+                <StyledDeliveryForm>
+                  <DeliveryCitySelect />
+                  <DeliveryChoiceType />
 
-                {deliveryType === DELIVERY.department && (
-                  <DepartmentDeliveryAddress />
-                )}
-                {deliveryType === DELIVERY.courier && (
-                  <CourierDeliveryAddress />
-                )}
-                {deliveryType === DELIVERY.poshtomat && (
-                  <PoshtomatDeliveryAddress />
-                )}
+                  {deliveryType === DELIVERY.department && (
+                    <DepartmentDeliveryAddress formik={formik} />
+                  )}
+                  {deliveryType === DELIVERY.courier && (
+                    <CourierDeliveryAddress formik={formik} />
+                  )}
+                  {deliveryType === DELIVERY.poshtomat && (
+                    <PoshtomatDeliveryAddress formik={formik} />
+                  )}
 
-                <DeliveryPersonalDetails />
-                <DeliveryCheckboxPolicy />
-              </StyledDeliveryForm>
+                  <DeliveryPersonalDetails formik={formik} />
+                  <DeliveryCheckboxPolicy />
+                </StyledDeliveryForm>
+              )}
             </Formik>
 
             <StyledShopCartButton
               text={"Продовжити оформлення"}
               route={ROUTES.SHOPCARTPAYMENT}
               state={{ from: location }}
+              onClick={onSubmit}
             />
           </div>
 

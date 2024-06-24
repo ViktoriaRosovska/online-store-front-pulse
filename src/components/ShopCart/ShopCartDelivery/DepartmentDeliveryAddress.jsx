@@ -10,8 +10,9 @@ import {
 import { addShopCartAddressDepartment } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { useEffect, useState } from "react";
+import { Formik } from "formik";
 
-export const DepartmentDeliveryAddress = () => {
+export const DepartmentDeliveryAddress = ({ formik }) => {
   const { city, addressDepartment } = useSelector(selectUserShopCart);
   const dispatch = useDispatch();
   const [
@@ -47,7 +48,10 @@ export const DepartmentDeliveryAddress = () => {
         <DepartmentSelect
           options={departmentTypeFilter(data, ["Branch", "Store"])}
           placeholder="Номер відділення"
-          onChange={e => onSelectDepartmentsChange(e)}
+          onChange={e => {
+            onSelectDepartmentsChange(e);
+            formik.setFieldValue("");
+          }}
           onSearch={e => onSelectDepartmentSearch(city.Ref, e)}
           displayDepartment={addressDepartment}
           name="address"

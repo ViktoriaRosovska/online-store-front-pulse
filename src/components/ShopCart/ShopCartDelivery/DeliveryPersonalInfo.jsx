@@ -11,10 +11,27 @@ import {
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
+import { useFetchCurrentUserQuery } from "../../../redux/auth";
+import { useEffect } from "react";
 
 export const DeliveryPersonalDetails = () => {
+  const { data, isLoading, refetch } = useFetchCurrentUserQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
+
   const { firstName, lastName, email, phone } = useSelector(selectUserShopCart);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    refetch();
+    if (data?.user) {
+      dispatch(addShopCartFirstName(data?.user?.firstName || ""));
+      dispatch(addShopCartLastName(data?.user?.lastName || ""));
+      dispatch(addShopCartPhone(data?.user?.phone || ""));
+      dispatch(addShopCartEmail(data?.user?.email || ""));
+    }
+  }, [data, dispatch]);
+
   return (
     <>
       <StyledDeliveryTitle>Особисті дані</StyledDeliveryTitle>
