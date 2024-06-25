@@ -17,7 +17,7 @@ export const ModalSuccessfulPayment = () => {
     const timeoutId = setTimeout(() => {
       setClick(true);
     }, 3000);
-    if (click) navigate(ROUTES.SHOPCARTSUCCESSFULL);
+    if (click) navigate(ROUTES.SHOPCARTSUCCESSFUL);
     return () => clearTimeout(timeoutId);
   }, [click, navigate]);
 

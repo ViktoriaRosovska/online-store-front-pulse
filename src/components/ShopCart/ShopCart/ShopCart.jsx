@@ -18,8 +18,6 @@ import { PromoCode } from "components/PromoCode";
 
 export const ShopCart = props => {
   const { products } = useSelector(selectUserShopCart);
-  // const shopcart = useSelector(selectUserShopCartState);
-  // console.log(shopcart);
 
   let location = useLocation();
   const isDesktop = useMediaQuery("(min-width: 1440px)");

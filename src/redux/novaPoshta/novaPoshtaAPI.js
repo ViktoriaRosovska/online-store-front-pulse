@@ -1,6 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import {
-  NOVA_POSHTA_BASE_URL,
   apiPost,
   axiosBaseQuery,
   warehouseDepartmentsRequest,
@@ -22,11 +21,10 @@ export const novaPoshtaAPI = createApi({
       }),
     }),
     getDepartments: builder.mutation({
-      query: (ref, search) => ({
-        // url: NOVA_POSHTA_BASE_URL,
+      query: ref => ({
         url: "https://api.novaposhta.ua/v2.0/json/",
         method: "POST",
-        data: warehouseDepartmentsRequest(ref, search),
+        data: warehouseDepartmentsRequest(ref),
       }),
     }),
     getStreets: builder.mutation({

@@ -52,15 +52,14 @@ const warehouseSettlementsRequest = search => ({
   methodProperties: { Page: "1", FindByString: search, Limit: "20" },
 });
 
-const warehouseDepartmentsRequest = (ref, search = "") => ({
+const warehouseDepartmentsRequest = ref => ({
   apiKey: NOVA_POSHTA_API_KEY,
   modelName: "Address",
   calledMethod: "getWarehouses",
 
   methodProperties: {
     Page: "1",
-    FindByString: search,
-    Limit: "100",
+    Limit: "500",
     CityRef: ref,
   },
 });
