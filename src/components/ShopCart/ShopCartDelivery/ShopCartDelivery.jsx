@@ -33,7 +33,6 @@ import { useEffect } from "react";
 import { useFetchCurrentUserQuery } from "../../../redux/auth";
 import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
 import CustomInput from "components/form/formElements/CustomInput/CustomInput";
-import { DeleteButton } from "components/Modals/ModalDeleteUser/ModalDeleteUser.styled";
 
 export const ShopCartDelivery = props => {
   let location = useLocation();
