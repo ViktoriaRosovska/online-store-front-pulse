@@ -43,7 +43,7 @@ const ProductInfo = () => {
   const [isVisibleCart, setIsVisibleCart] = useState(false);
   const [lastView, setLastView] = useLocalStorage("lastView", []);
   const dispatch = useDispatch();
-  
+
   const toggleVisibility = type => {
     // setIsLocked(prev => !prev);
     if (type == "size") {
@@ -101,12 +101,13 @@ const ProductInfo = () => {
     data: data,
     quantity: 1,
     size: sizeValue,
+    sizeId: data?.categories?.size?.find(el => el.value === sizeValue)?._id,
     price: data.price,
   };
   if (lastView.findIndex(e => e._id === data._id) < 0) {
     setLastView(prev => [data, ...prev]);
   }
-
+  // console.log(shopCartProduct);
   return (
     <StyledProductInfoWrapper>
       <h1 hidden> {name}</h1>
@@ -191,7 +192,7 @@ const ProductInfo = () => {
           top="68px"
         >
           <ModalShopCart
-            onClose={()=>toggleVisibility("cart")}
+            onClose={() => toggleVisibility("cart")}
             productData={data}
             sizeValue={sizeValue}
           />

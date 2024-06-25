@@ -3,7 +3,7 @@ import { ROUTES } from "../../../utils/routes";
 import { useLocation } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
 import { Formik } from "formik";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { StyledNotificationWrapper } from "../ShopCart/ShopCart.styled";
 
@@ -30,10 +30,23 @@ import { ShopCartProductsList } from "../ShopCartProductsList";
 import { PromoCode } from "components/PromoCode";
 import { useEffect } from "react";
 import { useFetchCurrentUserQuery } from "../../../redux/auth";
+import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
 
 export const ShopCartDelivery = props => {
   let location = useLocation();
-  const { products, deliveryType } = useSelector(selectUserShopCart);
+  const dispatch = useDispatch();
+  const {
+    products,
+    deliveryType,
+    address,
+    addressDepartment,
+    addressPoshtomat,
+    city,
+    street,
+    flat,
+    numberHouse,
+    numberHoll,
+  } = useSelector(selectUserShopCart);
   const { data, isLoading, refetch } = useFetchCurrentUserQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
@@ -42,10 +55,42 @@ export const ShopCartDelivery = props => {
 
   const onSubmit = (values, option) => {
     console.log(values, option);
+    if (deliveryType === DELIVERY.department) {
+      dispatch(
+        addShopCartAddress(city.label + ", " + addressDepartment.Description)
+      );
+    }
+    if (deliveryType === DELIVERY.poshtomat) {
+      dispatch(
+        addShopCartAddress(city.label + ", " + addressPoshtomat.Description)
+      );
+    }
+    if (deliveryType === DELIVERY.courier) {
+      dispatch(
+        addShopCartAddress(
+          city?.label +
+            ", " +
+            street?.Description +
+            ", " +
+            numberHouse +
+            ", " +
+            numberHoll +
+            ", " +
+            flat
+        )
+      );
+    }
   };
   useEffect(() => {
     refetch();
   }, [refetch]);
+
+  console.log("address", address);
+  console.log("addressDepartment", addressDepartment);
+
+  console.log("addressPoshtomat", addressPoshtomat);
+
+  console.log("city", city);
   return (
     <>
       <Title>{props.title}</Title>

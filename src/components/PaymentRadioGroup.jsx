@@ -21,7 +21,6 @@ import { selectPaymentCard } from "../redux/paymentCard/paymentCardSelector";
 import {
   editCardDateInInput,
   editCardNumberInInput,
-  formatDate,
   formatDateCard,
 } from "./form/formHelpers/formUserCardEdit";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +32,6 @@ import { addShopCartPaymentMethod } from "../redux/user/userShopCart/userShopCar
 import { selectUserShopCart } from "../redux/user/userShopCart/userShopCartSelector";
 import { validationUserCardShopCardSchema } from "./form/formHelpers/formValidation";
 import { usePostOrdersMutation } from "../redux/products/productsApi";
-import { selectPromoCodeDiscount } from "../redux/promoCode/promoCodeSelector";
 
 export const PaymentRadioGroup = () => {
   const [selected, setSelected] = useState("card");
@@ -69,47 +67,28 @@ export const PaymentRadioGroup = () => {
     deliveryAddress,
   } = useSelector(selectUserShopCart);
 
-  const ShopCartFormData = {
-    paymentMethod,
-    products,
-    promocode,
-    city,
-    addressDepartment,
-    addressPoshtomat,
-    address,
-    street,
-    numberHouse,
-    flat,
-    numberHoll,
-    comments,
-    firstName,
-    lastName,
-    phone,
-    isMailing,
-    condition,
-    deliveryType,
-    priceSum,
-    totalPriceSum,
-    countQuantity,
-    discount,
-    email,
-    orderDate,
-    deliveryAddress,
+  const newProducts = [
+    ...products.map(el => ({
+      productId: el._id,
+      quantity: el.quantity,
+      priceByOne: el.price,
+      sizeId: el.sizeId,
+    })),
+  ];
+
+  const shop = {
+    priceSum: totalPriceSum,
+    orderDate: new Date().toUTCString(),
+    products: newProducts,
+    deliveryAddress: address,
+    paymentMethod: paymentMethod,
+    discount: discount,
+    promoCode: promocode,
+    name: firstName + " " + lastName,
+    email: email,
+    isMailing: isMailing,
+    phone: phone,
   };
-
-  console.log(ShopCartFormData);
-
-  const userFormData = new FormData();
-  userFormData.append("priceSum", totalPriceSum);
-  userFormData.append("orderDate", new Date().getUTCDate());
-  userFormData.append("deliveryAddress", address);
-  userFormData.append("paymentMethod", paymentMethod);
-  userFormData.append("promoCode", promocode);
-  userFormData.append("discount", discount);
-  userFormData.append("email", email);
-  userFormData.append("name", firstName + " " + lastName);
-  userFormData.append("phone", phone);
-  userFormData.append("isMailing", isMailing);
 
   const [postOrders] = usePostOrdersMutation();
   console.log(paymentMethod);
@@ -128,12 +107,14 @@ export const PaymentRadioGroup = () => {
     cardCVC: selectedCard?.cardCVC || "",
   };
   const onSubmit = (values, option) => {
-    values.cardNumber = values.cardNumber.replace(/\s/g, "");
-    values.cardDate = formatDate(values.cardDate);
-
     console.log(values, option);
-    postOrders(userFormData);
-    setIsVisible(true);
+    try {
+      postOrders(shop);
+      setIsVisible(true);
+    } catch (error) {
+      console.log(error.message);
+    }
+    // postOrders(userFormData);
   };
   return (
     <>

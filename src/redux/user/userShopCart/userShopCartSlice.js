@@ -130,11 +130,9 @@ const userShopCartSlice = createSlice({
     addShopCartDiscount(state, { payload }) {
       state.userShopCart.discount = payload;
     },
-    addShopCartAddress(state) {
+    addShopCartAddress(state, { payload }) {
       if (state.userShopCart.deliveryType === DELIVERY.department) {
-        state.userShopCart.address = JSON.stringify(
-          state.userShopCart.addressDepartment
-        );
+        state.userShopCart.address = payload;
       }
     },
   },

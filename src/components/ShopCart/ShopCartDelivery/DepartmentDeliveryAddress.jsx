@@ -9,10 +9,9 @@ import {
 } from "./ShopCartDelivery.styled";
 import { addShopCartAddressDepartment } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
-import { useEffect, useState } from "react";
-import { Formik } from "formik";
+import { useEffect } from "react";
 
-export const DepartmentDeliveryAddress = ({ formik }) => {
+export const DepartmentDeliveryAddress = () => {
   const { city, addressDepartment } = useSelector(selectUserShopCart);
   const dispatch = useDispatch();
   const [
@@ -24,14 +23,9 @@ export const DepartmentDeliveryAddress = ({ formik }) => {
     },
   ] = useGetDepartmentsMutation();
 
-  const [search, setSearch] = useState(addressDepartment?.Description);
   useEffect(() => {
-    getDepartments(city.Ref, search);
-  }, [city, search, getDepartments]);
-
-  const onSelectDepartmentSearch = (ref, value) => {
-    if (value !== "") setSearch(value);
-  };
+    getDepartments(city.Ref);
+  }, [city, getDepartments]);
 
   const onSelectDepartmentsChange = value => {
     dispatch(addShopCartAddressDepartment(value));
@@ -48,11 +42,7 @@ export const DepartmentDeliveryAddress = ({ formik }) => {
         <DepartmentSelect
           options={departmentTypeFilter(data, ["Branch", "Store"])}
           placeholder="Номер відділення"
-          onChange={e => {
-            onSelectDepartmentsChange(e);
-            formik.setFieldValue("");
-          }}
-          onSearch={e => onSelectDepartmentSearch(city.Ref, e)}
+          onChange={e => onSelectDepartmentsChange(e)}
           displayDepartment={addressDepartment}
           name="address"
         />
