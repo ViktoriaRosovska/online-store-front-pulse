@@ -43,28 +43,16 @@ export const PaymentRadioGroup = () => {
     paymentMethod,
     products,
     promocode,
-    city,
-    addressDepartment,
-    addressPoshtomat,
     address,
-    street,
-    numberHouse,
-    flat,
-    numberHoll,
-    comments,
     firstName,
     lastName,
     phone,
     isMailing,
-    condition,
-    deliveryType,
-    priceSum,
+
     totalPriceSum,
-    countQuantity,
+
     discount,
     email,
-    orderDate,
-    deliveryAddress,
   } = useSelector(selectUserShopCart);
 
   const newProducts = [
