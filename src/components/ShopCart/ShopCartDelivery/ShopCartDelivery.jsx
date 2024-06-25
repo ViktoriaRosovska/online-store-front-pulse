@@ -10,6 +10,7 @@ import { StyledNotificationWrapper } from "../ShopCart/ShopCart.styled";
 import {
   StyledDeliveryForm,
   StyledDeliveryOrderWrapper,
+  StyledDeliveryTitle,
   StyledOrderDeliveryWrapper,
 } from "../ShopCartDelivery/ShopCartDelivery.styled";
 
@@ -31,6 +32,8 @@ import { PromoCode } from "components/PromoCode";
 import { useEffect } from "react";
 import { useFetchCurrentUserQuery } from "../../../redux/auth";
 import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
+import CustomInput from "components/form/formElements/CustomInput/CustomInput";
+import { DeleteButton } from "components/Modals/ModalDeleteUser/ModalDeleteUser.styled";
 
 export const ShopCartDelivery = props => {
   let location = useLocation();
@@ -148,6 +151,39 @@ export const ShopCartDelivery = props => {
             <div
               style={{ display: "flex", flexDirection: "column", gap: "24px" }}
             >
+              <div>
+                <StyledDeliveryTitle>ВХІД</StyledDeliveryTitle>
+                <Formik>
+                  <form>
+                    <div
+                      style={{
+                        marginBottom: "20px",
+                        marginTop: "24px",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "20px",
+                      }}
+                    >
+                      <CustomInput
+                        label="Email"
+                        name="email"
+                        type="email"
+                        placeholder="Ваш email"
+                      />
+
+                      <CustomInput
+                        label="Пароль"
+                        name="password"
+                        type="password"
+                        placeholder="**********"
+                      />
+                    </div>
+
+                    <p style={{ marginBottom: "20px" }}>Забули пароль?</p>
+                    <StyledShopCartButton type="button" text="Увійти" />
+                  </form>
+                </Formik>
+              </div>
               <YourOrderPriceComponent />
               <PromoCode />
             </div>
