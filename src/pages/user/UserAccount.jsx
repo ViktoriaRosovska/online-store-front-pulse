@@ -3,8 +3,8 @@ import UserInfoCard from "components/UserAccount/UserInfoCard/UserInfoCard";
 import { useState } from "react";
 
 const UserAccount = () => {
-  const [selectedFile, setSelectedFile] = useState(null)
-  
+  const [selectedFile, setSelectedFile] = useState(null);
+
   return (
     <>
       <div>
