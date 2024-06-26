@@ -18,12 +18,41 @@ import { ReactComponent as FilterIcon } from "../../../assets/svg/filter.svg";
 import { ReactComponent as SortIcon } from "../../../assets/svg/sortIcon.svg";
 import { ReactComponent as CloseBtn } from "../../../assets/svg/closeBtn.svg";
 import { SortSelect } from "./SortSelect";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import options from "../../../data/sortoptions.json";
 
 export const CatalogHeader = props => {
   const [showFilter, setShowFilter] = useState(false);
   const [showSelectMenu, setShowSelectMenu] = useState(false);
+  const sortRef = useRef(null)
+
+  const handleEscapeKey = event => {
+    if (event.key === "Escape") {
+      setShowSelectMenu(false);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (sortRef.current && !sortRef.current.contains(event.target)) {
+        const sortButtonClicked = event.target.closest('button')
+        if(!sortButtonClicked){
+        setShowSelectMenu(!showSelectMenu)}
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [sortRef, showSelectMenu])
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleEscapeKey);
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setShowSelectMenu]);
 
   const IsNewest = list => {
     let arr = [];
@@ -92,7 +121,9 @@ export const CatalogHeader = props => {
         </StyledSortContainer>
 
         {Boolean(showSelectMenu) && Boolean(!showSelect) && (
-          <StyledSelectMenuWrapper>
+          <StyledSelectMenuWrapper
+            ref={sortRef}
+          >
             <ul>
               {IsNewest(options).map(o => (
                 <li

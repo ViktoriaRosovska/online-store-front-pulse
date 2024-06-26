@@ -166,19 +166,6 @@ export const CatalogComponent = ({
     return setShowAside(!showAside);
   };
 
-  // let locationPath = useLocation()?.state?.from;
-  // const arr = [];
-  // arr.push(locationPath?.pathname);
-  // while (locationPath !== undefined) {
-  //   locationPath = locationPath?.state?.from;
-  //   if (locationPath !== undefined) {
-  //     arr.push(locationPath?.pathname);
-  //   } else if (locationPath == undefined) {
-  //     break;
-  //   }
-  // }
-
-  // console.log(arr);
   return (
     <PageSection>
       <Container>

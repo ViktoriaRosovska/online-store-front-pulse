@@ -10,9 +10,14 @@ import {
   FooterSection,
   FooterSectionColumn,
 } from "./FooterPages.styled";
+import { Helmet } from "react-helmet";
 
 const FooterAboutUs = () => {
   return (
+    <>
+      <Helmet>
+        <title>PulseRun AboutUs</title>
+      </Helmet>
     <PageSection>
       <Container>
         <FooterPages>
@@ -101,7 +106,8 @@ const FooterAboutUs = () => {
           </MediaQuery>
         </FooterPages>
       </Container>
-    </PageSection>
+      </PageSection>
+      </>
   );
 };
 

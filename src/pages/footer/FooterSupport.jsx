@@ -12,12 +12,17 @@ import {
   PhoneNumber,
   Link,
 } from "./FooterPages.styled";
+import { Helmet } from "react-helmet";
 
 const FooterSupport = () => {
   const { data } = useFetchCurrentUserQuery();
   const user = data?.user;
 
   return (
+    <>
+      <Helmet>
+        <title>PulseRun Support</title>
+      </Helmet>
     <PageSection>
       <Container>
         <FooterPages>
@@ -57,7 +62,8 @@ const FooterSupport = () => {
           </FooterSectionCenter>
         </FooterPages>
       </Container>
-    </PageSection>
+      </PageSection>
+      </>
   );
 };
 
