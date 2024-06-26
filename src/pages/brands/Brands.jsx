@@ -1,6 +1,14 @@
 import BrandsList from "components/brand/Brand";
+import { Helmet } from "react-helmet";
 const Brands = () => {
-  return <BrandsList title={"Бренди"} />;
+  return (
+    <>
+      <Helmet>
+        <title>PulseRun Brands</title>
+      </Helmet>
+      <BrandsList title={"Бренди"} />
+    </>
+  );
 };
 
 export default Brands;
