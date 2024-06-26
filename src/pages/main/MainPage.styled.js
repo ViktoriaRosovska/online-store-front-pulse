@@ -46,7 +46,7 @@ export const BoxHeroTitleWrapper = styled.div`
   height: 178px;
 
   @media screen and (min-width: 1440px) {
-    width: 570px;
+    width: 460px;
     height: 412px;
   }
 
