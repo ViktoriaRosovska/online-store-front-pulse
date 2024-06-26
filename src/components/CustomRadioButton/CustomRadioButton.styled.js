@@ -21,7 +21,8 @@ const StyledPayButton = styled.button`
   background-color: var(--black-bg-color);
   color: var(--white-text-color);
   border-radius: 16px;
-  padding: 16px, 32px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,6 +32,10 @@ const StyledPayButton = styled.button`
   font-weight: 400;
   line-height: 30px;
   letter-spacing: 0.01em;
+  &:hover {
+    background-color: var(--white-dark-bg-color);
+    color: var(--black-text-color);
+  }
 `;
 
 const StyledOuterCircle = styled.div`
@@ -74,7 +79,7 @@ const StyledOfflinePaymentText = styled.p`
   margin-bottom: 24px;
 `;
 
-const StypedOfflinePaymentWrapper = styled.div`
+const StyledOfflinePaymentWrapper = styled.div`
   /* margin-bottom: 80px; */
 `;
 
@@ -88,5 +93,5 @@ export {
   StyledOnlinePaymentWrapper,
   StyledCardForm,
   StyledOfflinePaymentText,
-  StypedOfflinePaymentWrapper,
+  StyledOfflinePaymentWrapper,
 };

@@ -1,6 +1,17 @@
-import Select from "react-select";
+import { useState } from "react";
 
-export const StreetSelect = ({ options, onChange, onSearch, placeholder }) => {
+import CreatableSelect from "react-select/creatable";
+
+export const StreetSelect = ({
+  options,
+  onChange,
+  onSearch,
+  placeholder,
+  displayStreet,
+}) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [value, setValue] = useState(null);
   const style = {
     control: baseStyles => ({
       ...baseStyles,
@@ -46,12 +57,28 @@ export const StreetSelect = ({ options, onChange, onSearch, placeholder }) => {
       display: "none",
     }),
 
+    indicatorsContainer: baseStyles => {
+      return {
+        ...baseStyles,
+        padding: "0px",
+        paddingLeft: "0px",
+        paddingTop: "0px",
+        paddingRight: "0px",
+        paddingBottom: "0px",
+        border: "1px solid red",
+      };
+    },
+    indicatorContainer: baseStyles => ({
+      ...baseStyles,
+      padding: 0,
+    }),
     input: baseStyles => ({
       ...baseStyles,
       padding: 0,
       margin: 0,
       //   height: "20px",
     }),
+
     option: baseStyles => ({
       ...baseStyles,
       //   fontSize: "14px",
@@ -64,15 +91,12 @@ export const StreetSelect = ({ options, onChange, onSearch, placeholder }) => {
       //     color: "var(--grey-text-color)",
       //   },
     }),
+
     singleValue: baseStyles => ({
       ...baseStyles,
-      padding: 0,
+      paddingBottom: "14px",
+      // color: "red",
       margin: 0,
-      //   width: "110px",
-
-      //   "&:hover": {
-      //     color: "var(--grey-text-color)",
-      //   },
     }),
     valueContainer: baseStyles => ({
       ...baseStyles,
@@ -81,6 +105,19 @@ export const StreetSelect = ({ options, onChange, onSearch, placeholder }) => {
     }),
   };
   const modifiedOptions = [];
+  const createOption = label => ({
+    label,
+    value: label.toLowerCase().replace(/\W/g, ""),
+  });
+  const handleCreate = inputValue => {
+    setIsLoading(true);
+    setTimeout(() => {
+      const newOption = createOption(inputValue);
+      setIsLoading(false);
+      modifiedOptions.push(newOption);
+      setValue(newOption);
+    }, 1000);
+  };
 
   if (options) {
     console.log("options", options);
@@ -91,16 +128,23 @@ export const StreetSelect = ({ options, onChange, onSearch, placeholder }) => {
         label: option.StreetsType + " " + option.Description,
       });
     }
+  } else if (displayStreet) {
+    modifiedOptions.push(displayStreet);
   }
 
   return (
     <>
-      <Select
+      <CreatableSelect
         styles={style}
         options={modifiedOptions}
         onChange={onChange}
         onInputChange={onSearch}
         placeholder={placeholder}
+        value={displayStreet || value}
+        isClearable
+        onCreateOption={handleCreate}
+        isDisabled={isLoading}
+        isLoading={isLoading}
       />
     </>
   );

@@ -31,12 +31,12 @@ const UserEditForm = ({ selectedFile }) => {
   const user = data?.user;
 
   useEffect(() => {
-    refetch()
-  }, [refetch])
+    refetch();
+  }, [refetch]);
 
   const phoneNumber =
-  user?.phone === "0000000000" ? "" : formatPhoneNumber(user?.phone);
-  
+    user?.phone === "0000000000" ? "" : formatPhoneNumber(user?.phone);
+
   const onSubmit = async values => {
     const formData = new FormData();
 
@@ -95,7 +95,7 @@ const UserEditForm = ({ selectedFile }) => {
       await userDelete()
         .unwrap()
         .then(() =>
-          Notify.success("Аккаун успішно видалений", {
+          Notify.success("Акаунт успішно видалений", {
             position: "center-center",
           })
         )

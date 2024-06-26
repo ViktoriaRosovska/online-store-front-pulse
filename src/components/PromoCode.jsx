@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLazyCheckPromoCodeQuery } from "../redux/products/productsApi";
 import {
   selectPromoCode,
+  selectPromoCodeDiscount,
   selectPromoExpired,
   selectPromoInvalid,
   selectPromoValid,
@@ -23,34 +24,41 @@ import {
   setPromoStatus,
 } from "../redux/promoCode/promoCodeSlice";
 import { ReactComponent as CheckedSvg } from "../assets/svg/done.svg";
+import {
+  addShopCartDiscount,
+  addShopCartPromoCode,
+} from "../redux/user/userShopCart/userShopCartSlice";
+import { useEffect } from "react";
 
 export const PromoCode = () => {
   const dispatch = useDispatch();
 
-  const [checkPromoCode] = useLazyCheckPromoCodeQuery({
-    selectFromResult: ({ data, error }) => {
-      if (error) {
-        if (error.status === 404) {
-          dispatch(setPromoStatus(PromoInvalid));
-        } else if (error.status === 400) {
-          dispatch(setPromoStatus(PromoExpired));
-        }
-      } else if (data) {
-        dispatch(setPromoStatus(PromoValid));
-        // console.log(data);
-        dispatch(setPromoCodeDiscount(data.discount));
-      }
-    },
-  });
+  const [checkPromoCode, { data, error }] = useLazyCheckPromoCodeQuery();
 
   const isPromoExpired = useSelector(selectPromoExpired);
   const isPromoInvalid = useSelector(selectPromoInvalid);
   const isPromoValid = useSelector(selectPromoValid);
   const promoCode = useSelector(selectPromoCode);
+  const discount = useSelector(selectPromoCodeDiscount);
 
-  const handleChangePromo = code => {
-    dispatch(setPromoCode(code));
-    checkPromoCode(code);
+  useEffect(() => {
+    if (error) {
+      if (error.status === 404) {
+        dispatch(setPromoStatus(PromoInvalid));
+      } else if (error.status === 400) {
+        dispatch(setPromoStatus(PromoExpired));
+      }
+    } else if (data) {
+      dispatch(setPromoStatus(PromoValid));
+      dispatch(setPromoCodeDiscount(data.discount));
+      dispatch(addShopCartPromoCode(promoCode));
+      dispatch(addShopCartDiscount(discount));
+    }
+  }, [data, error, dispatch]);
+
+  const handleChangePromo = promo => {
+    dispatch(setPromoCode(promo));
+    checkPromoCode(promo);
   };
 
   return (

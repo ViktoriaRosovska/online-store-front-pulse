@@ -41,7 +41,7 @@ function UserActions(props) {
     setIsLoginModalOpen(true);
   };
 
-  console.log(!!isLoggedIn);
+  // console.log(!!isLoggedIn);
 
   // useEffect(() => {
   //   if (isLoggedIn) {

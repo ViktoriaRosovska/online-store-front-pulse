@@ -77,14 +77,15 @@ const StyledDeliveryOrderWrapper = styled.div`
   @media screen and (min-width: 1440px) {
     flex-direction: column;
     gap: 24px;
-    width: 385px;
   }
 `;
 
 const StyledPromoCodeForm = styled.form`
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
+
   @media screen and (min-width: 1440px) {
     margin-bottom: 0;
+    width: 385px;
   }
 `;
 

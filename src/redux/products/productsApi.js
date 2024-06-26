@@ -72,6 +72,7 @@ export const productsApi = createApi({
     findProducts: builder.query({
       query: ({ name, page, limit }) => ({
         url: "/products/search",
+        type: "application/json",
         method: "GET",
         params: {
           name,
@@ -95,6 +96,14 @@ export const productsApi = createApi({
         method: "GET",
       }),
     }),
+
+    postOrders: builder.mutation({
+      query: data => ({
+        url: "/products/orders",
+        method: "POST",
+        data,
+      }),
+    }),
   }),
 });
 
@@ -112,4 +121,5 @@ export const {
   useCreateProductMutation,
   useCheckPromoCodeQuery,
   useLazyCheckPromoCodeQuery,
+  usePostOrdersMutation,
 } = productsApi;

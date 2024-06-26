@@ -26,6 +26,12 @@ const persistConfig = {
   storage,
   whitelist: ["token"],
 };
+
+const promoCodeConfig = {
+  key: "promo",
+  storage,
+};
+
 const userPersistConfig = {
   key: "user",
   storage,
@@ -36,6 +42,8 @@ const cardPersistConfig = {
   key: "card",
   storage,
 };
+
+const persistedPromoCode = persistReducer(promoCodeConfig, promoCodeReducer);
 
 const persistedUserShopCart = persistReducer(
   userPersistConfig,
@@ -48,7 +56,7 @@ export const store = configureStore({
     [userAuthApi.reducerPath]: userAuthApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     [novaPoshtaAPI.reducerPath]: novaPoshtaAPI.reducer,
-    promoCode: promoCodeReducer,
+    promoCode: persistedPromoCode,
     userShopCart: persistedUserShopCart,
     userAuthReducer: persistReducer(persistConfig, authReducer),
     paymentCard: persistReducer(cardPersistConfig, paymentCardReducer),

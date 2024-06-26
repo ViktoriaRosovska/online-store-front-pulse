@@ -4,20 +4,33 @@ import { DELIVERY } from "../../../utils/DELIVERY";
 const userShopCartSlice = createSlice({
   name: "userShopCart",
   initialState: {
-  
+    userShopCart: {
       products: [],
-      code: "",
-      city: "",
+      promocode: "",
+      city: {},
+      addressDepartment: {},
+      addressPoshtomat: {},
       address: "",
-      name: "",
-      surname: "",
+      street: {},
+      numberHouse: "",
+      flat: "",
+      numberHoll: "",
+      comments: "",
+      firstName: "",
+      lastName: "",
       phone: "",
       isMailing: false,
       condition: false,
       deliveryType: DELIVERY.department,
       priceSum: 0,
+      totalPriceSum: 0,
       countQuantity: 0,
-    
+      paymentMethod: "",
+      email: "",
+      orderDate: "",
+      deliveryAddress: "",
+      discount: 0,
+    },
     isLoading: true,
     isLoggedIn: false,
 
@@ -25,69 +38,102 @@ const userShopCartSlice = createSlice({
   },
   reducers: {
     addShopCartItem(state, { payload }) {
-      const item = state.products.find(
+      const item = state.userShopCart.products.find(
         el => el._id === payload._id && el.size === payload.size
       );
       if (item) item.quantity += payload.quantity;
       else
-        state.products = [payload, ...state.products];
-      state.priceSum += payload.price;
-      state.countQuantity += 1;
+        state.userShopCart.products = [payload, ...state.userShopCart.products];
+      state.userShopCart.priceSum += payload.price;
+      state.userShopCart.countQuantity += 1;
     },
     deleteUserShopCartItem(state, { payload }) {
-      state.products = state.products.filter(
+      state.userShopCart.products = state.userShopCart.products.filter(
         el => el._id !== payload._id || el.size !== payload.size
       );
-      state.priceSum -= payload.price;
-      state.countQuantity -= 1;
-      // console.log("deleteUserShopCartItem", payload, state.userShopCart);
+      state.userShopCart.priceSum -= payload.price;
+      state.userShopCart.countQuantity -= 1;
     },
     incrementQuantity(state, { payload }) {
-      const item = state.products.find(
+      const item = state.userShopCart.products.find(
         el => el._id === payload._id && el.size === payload.size
       );
       if (item) ++item.quantity;
-      state.priceSum += payload.price;
-      state.countQuantity += 1;
+      state.userShopCart.priceSum += payload.price;
+      state.userShopCart.countQuantity += 1;
     },
     decrementQuantity(state, { payload }) {
-      const item = state.products.find(
+      const item = state.userShopCart.products.find(
         el => el._id === payload._id && el.size === payload.size
       );
-      if (item && item.quantity > 1) --item.quantity;
-      state.priceSum -= payload.price;
-      state.countQuantity -= 1;
+      if (item && item.quantity > 1) {
+        --item.quantity;
+        state.userShopCart.priceSum -= payload.price;
+        state.userShopCart.countQuantity -= 1;
+      }
     },
     addShopCartPromoCode(state, { payload }) {
-      state.code = payload;
+      state.userShopCart.promocode = payload;
     },
     addShopCartCity(state, { payload }) {
-      state.city = payload;
+      state.userShopCart.city = payload;
     },
     addDeliveryType(state, { payload }) {
-      state.deliveryType = payload;
+      state.userShopCart.deliveryType = payload;
     },
 
-    addShopCartAddress(state, { payload }) {
-      state.address = payload;
+    addShopCartAddressDepartment(state, { payload }) {
+      state.userShopCart.addressDepartment = payload;
+    },
+    addShopCartAddressPoshtomat(state, { payload }) {
+      state.userShopCart.addressPoshtomat = payload;
     },
     addShopCartStreet(state, { payload }) {
-      state.street = payload;
+      state.userShopCart.street = payload;
     },
-    addShopCartName(state, { payload }) {
-      state.name = payload;
+    addShopCartNumberHouse(state, { payload }) {
+      state.userShopCart.numberHouse = payload;
     },
-    addShopCartSurname(state, { payload }) {
-      state.surname = payload;
+    addShopCartNumberHoll(state, { payload }) {
+      state.userShopCart.numberHoll = payload;
+    },
+    addShopCartFlat(state, { payload }) {
+      state.userShopCart.flat = payload;
+    },
+    addShopCartComments(state, { payload }) {
+      state.userShopCart.comments = payload;
+    },
+    addShopCartFirstName(state, { payload }) {
+      state.userShopCart.firstName = payload;
+    },
+    addShopCartLastName(state, { payload }) {
+      state.userShopCart.lastName = payload;
     },
     addShopCartPhone(state, { payload }) {
-      state.phone = payload;
+      state.userShopCart.phone = payload;
+    },
+    addShopCartEmail(state, { payload }) {
+      state.userShopCart.email = payload;
     },
     addShopCartIsMailing(state, { payload }) {
-      state.isMailing = payload;
+      return { ...state, isMailing: payload };
     },
     addShopCartCondition(state, { payload }) {
-      state.condition = payload;
+      return { ...state, condition: payload };
+    },
+    addShopCartTotalPriceSum(state, { payload }) {
+      state.userShopCart.totalPriceSum = payload;
+    },
+    addShopCartPaymentMethod(state, { payload }) {
+      state.userShopCart.paymentMethod = payload;
+    },
+    addShopCartDiscount(state, { payload }) {
+      state.userShopCart.discount = payload;
+    },
+    addShopCartAddress(state, { payload }) {
+      if (state.userShopCart.deliveryType === DELIVERY.department) {
+        state.userShopCart.address = payload;
+      }
     },
   },
 });
@@ -101,12 +147,23 @@ export const {
   addShopCartCity,
   addDeliveryType,
   addShopCartPriceSum,
-  addShopCartAddress,
+
+  addShopCartAddressDepartment,
+  addShopCartAddressPoshtomat,
   addShopCartStreet,
-  addShopCartName,
-  addShopCartSurname,
+  addShopCartFirstName,
+  addShopCartLastName,
   addShopCartPhone,
   addShopCartIsMailing,
   addShopCartCondition,
+  addShopCartNumberHouse,
+  addShopCartNumberHoll,
+  addShopCartFlat,
+  addShopCartComments,
+  addShopCartEmail,
+  addShopCartTotalPriceSum,
+  addShopCartPaymentMethod,
+  addShopCartDiscount,
+  addShopCartAddress,
 } = userShopCartSlice.actions;
 export const userShopCartReducer = userShopCartSlice.reducer;

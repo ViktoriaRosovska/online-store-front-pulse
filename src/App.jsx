@@ -27,7 +27,7 @@ import {
   UserShopCartDelivery,
   UserShopCartPayment,
   SearchPage,
-  UserShopCartSuccessfull,
+  UserShopCartSuccessful,
 } from "./pages/index";
 
 import ShopCartLayout from "components/ShopCartLayout/ShopCartLayout.jsx";
@@ -61,8 +61,8 @@ const App = () => {
                 element={<UserShopCartPayment />}
               />
               <Route
-                path={ROUTES.SHOPCARTSUCCESSFULL}
-                element={<UserShopCartSuccessfull />}
+                path={ROUTES.SHOPCARTSUCCESSFUL}
+                element={<UserShopCartSuccessful />}
               />
             </Route>
             <Route path={ROUTES.SUPPORT} element={<FooterSupport />} />
