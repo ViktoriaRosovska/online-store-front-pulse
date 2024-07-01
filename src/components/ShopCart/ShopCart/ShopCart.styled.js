@@ -180,7 +180,7 @@ const StyledInfoWrapper = styled.div`
 const StyledChangeCountWrapper = styled.div`
   display: flex;
   @media screen and (min-width: 1440px) {
-    display: none;
+    /* display: none; */
   }
 `;
 const StyledChangeCountWrapperDesktop = styled(StyledChangeCountWrapper)`

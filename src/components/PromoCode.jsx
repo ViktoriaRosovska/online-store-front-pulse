@@ -58,7 +58,7 @@ export const PromoCode = () => {
 
   const handleChangePromo = promo => {
     dispatch(setPromoCode(promo));
-    checkPromoCode(promo);
+    if (promo) checkPromoCode(promo);
   };
 
   return (

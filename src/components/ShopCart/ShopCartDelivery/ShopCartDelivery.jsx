@@ -11,6 +11,7 @@ import {
   StyledDeliveryForm,
   StyledDeliveryOrderWrapper,
   StyledDeliveryTitle,
+  StyledLoginFormNameBtn,
   StyledOrderDeliveryWrapper,
 } from "../ShopCartDelivery/ShopCartDelivery.styled";
 
@@ -29,10 +30,12 @@ import { DeliveryCheckboxPolicy } from "./DeliveryCheckboxPolicy";
 import { YourOrderPriceComponent } from "../ShopCart/YourOrderPriceComponent/YourOrderPriceComponent";
 import { ShopCartProductsList } from "../ShopCartProductsList";
 import { PromoCode } from "components/PromoCode";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFetchCurrentUserQuery } from "../../../redux/auth";
 import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
-import CustomInput from "components/form/formElements/CustomInput/CustomInput";
+
+import { ShopCartLoginForm } from "components/form/ShopCartLoginForm/ShopCartLoginForm";
+import { ShopCartRegisterForm } from "components/form/ShopCartRegisterForm/ShopCartRegisterForm";
 
 export const ShopCartDelivery = props => {
   let location = useLocation();
@@ -54,7 +57,7 @@ export const ShopCartDelivery = props => {
   });
   console.log(data);
   const isDesktop = useMediaQuery("(min-width: 1440px)");
-
+  const [isActiveForm, setIsActiveForm] = useState(true);
   const onSubmit = (values, option) => {
     console.log(values, option);
     if (deliveryType === DELIVERY.department) {
@@ -151,38 +154,34 @@ export const ShopCartDelivery = props => {
               style={{ display: "flex", flexDirection: "column", gap: "24px" }}
             >
               <div>
-                <StyledDeliveryTitle>ВХІД</StyledDeliveryTitle>
-                <Formik>
-                  <form>
-                    <div
-                      style={{
-                        marginBottom: "20px",
-                        marginTop: "24px",
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "20px",
-                      }}
+                <StyledDeliveryTitle>
+                  <p
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: "30px",
+                      cursor: "default",
+                    }}
+                  >
+                    <StyledLoginFormNameBtn
+                      onClick={() => setIsActiveForm(!isActiveForm)}
+                      $isActiveForm={isActiveForm}
                     >
-                      <CustomInput
-                        label="Email"
-                        name="email"
-                        type="email"
-                        placeholder="Ваш email"
-                      />
-
-                      <CustomInput
-                        label="Пароль"
-                        name="password"
-                        type="password"
-                        placeholder="**********"
-                      />
-                    </div>
-
-                    <p style={{ marginBottom: "20px" }}>Забули пароль?</p>
-                    <StyledShopCartButton type="button" text="Увійти" />
-                  </form>
-                </Formik>
+                      ВХІД
+                    </StyledLoginFormNameBtn>
+                    |
+                    <StyledLoginFormNameBtn
+                      onClick={() => setIsActiveForm(!isActiveForm)}
+                      $isActiveForm={!isActiveForm}
+                    >
+                      РЕЄСТРАЦІЯ
+                    </StyledLoginFormNameBtn>
+                  </p>
+                </StyledDeliveryTitle>
+                {isActiveForm && <ShopCartLoginForm />}
+                {!isActiveForm && <ShopCartRegisterForm />}
               </div>
+
               <YourOrderPriceComponent />
               <PromoCode />
             </div>

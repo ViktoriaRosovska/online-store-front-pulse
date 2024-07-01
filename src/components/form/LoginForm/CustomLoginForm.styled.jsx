@@ -26,7 +26,8 @@ export const Button = styled.button`
   font-size: 18px;
   line-height: 150%;
   letter-spacing: 0.01em;
-  transition: background-color 200ms ease-out, color 200ms ease-out, border 200ms ease-out;
+  transition: background-color 200ms ease-out, color 200ms ease-out,
+    border 200ms ease-out;
 
   &:hover {
     background-color: transparent;
@@ -42,9 +43,12 @@ export const Button = styled.button`
 
 export const ForgotPasswordButton = styled.button`
   margin-left: auto;
+  font-family: "Roboto";
   font-size: 16px;
+  font-weight: 400;
   line-height: 16px;
   letter-spacing: 0.5px;
+  text-align: center;
   text-decoration: underline;
 
   &:hover {
