@@ -49,13 +49,11 @@ const StyledShopCartDescription = styled.div`
   line-height: 20px;
 
   width: 156px;
-  @media screen and (min-width: 1440px) {
-    width: auto;
-  }
 `;
 
 const StyledShopCartInfo = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 12px;
   padding-bottom: 10px;
   margin-bottom: 10px;

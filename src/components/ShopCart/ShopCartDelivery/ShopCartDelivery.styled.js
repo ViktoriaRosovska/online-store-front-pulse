@@ -89,6 +89,13 @@ const StyledPromoCodeForm = styled.form`
   }
 `;
 
+const StyledLoginFormNameBtn = styled.p`
+  color: ${props =>
+    props.$isActiveForm
+      ? "var(--black-text-color)"
+      : "var( --grey-text-color)"};
+  cursor: pointer;
+`;
 const StyledCheckboxLabel = styled.label`
   display: flex;
   height: 30px;
@@ -140,6 +147,7 @@ const StyledNameWrapper = styled.div`
 `;
 
 export {
+  StyledLoginFormNameBtn,
   StyledChoiceDeliveryBtn,
   StyledChoiseVariant,
   StyledChoiceBtnWrapper,

@@ -3,17 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 export const PromoValid = "valid";
 export const PromoInvalid = "invalid";
 export const PromoExpired = "expired";
+export const PromoUnknown = "unknown";
 
 export const promoCodeSlice = createSlice({
   name: "promoCode",
   initialState: {
     promoCode: "",
-    status: "unknown",
+    status: PromoUnknown,
     discount: 0,
   },
   reducers: {
     setPromoCode(state, action) {
-      return { ...state, promoCode: action.payload };
+      return { ...state, promoCode: action.payload, status: PromoUnknown };
     },
     setPromoStatus(state, action) {
       return { ...state, status: action.payload };

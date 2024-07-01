@@ -1,6 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { DELIVERY } from "../../../utils/DELIVERY";
 
+function updatePriceQuantity(cart) {
+  cart.priceSum = cart.products
+    .map(i => i.price * i.quantity)
+    .reduce((p, q) => p + q, 0);
+  cart.countQuantity = cart.products
+    .map(i => i.quantity)
+    .reduce((p, q) => p + q, 0);
+}
+
 const userShopCartSlice = createSlice({
   name: "userShopCart",
   initialState: {
@@ -44,23 +53,20 @@ const userShopCartSlice = createSlice({
       if (item) item.quantity += payload.quantity;
       else
         state.userShopCart.products = [payload, ...state.userShopCart.products];
-      state.userShopCart.priceSum += payload.price;
-      state.userShopCart.countQuantity += 1;
+      updatePriceQuantity(state.userShopCart);
     },
     deleteUserShopCartItem(state, { payload }) {
       state.userShopCart.products = state.userShopCart.products.filter(
         el => el._id !== payload._id || el.size !== payload.size
       );
-      state.userShopCart.priceSum -= payload.price;
-      state.userShopCart.countQuantity -= 1;
+      updatePriceQuantity(state.userShopCart);
     },
     incrementQuantity(state, { payload }) {
       const item = state.userShopCart.products.find(
         el => el._id === payload._id && el.size === payload.size
       );
       if (item) ++item.quantity;
-      state.userShopCart.priceSum += payload.price;
-      state.userShopCart.countQuantity += 1;
+      updatePriceQuantity(state.userShopCart);
     },
     decrementQuantity(state, { payload }) {
       const item = state.userShopCart.products.find(
@@ -68,8 +74,7 @@ const userShopCartSlice = createSlice({
       );
       if (item && item.quantity > 1) {
         --item.quantity;
-        state.userShopCart.priceSum -= payload.price;
-        state.userShopCart.countQuantity -= 1;
+        updatePriceQuantity(state.userShopCart);
       }
     },
     addShopCartPromoCode(state, { payload }) {

@@ -71,6 +71,24 @@ export const ShopCard = ({ el, showCloseBtn, showDeliveryPrice, device }) => {
                   <StyledProductValue>{el.quantity}</StyledProductValue>
                 </StyledProductText>
               )}
+              {showCloseBtn && (
+                <StyledChangeCountWrapperDesktop>
+                  <StyledChangeCountBtn
+                    onClick={() => dispatch(decrementQuantity(el))}
+                  >
+                    <FiMinus />
+                  </StyledChangeCountBtn>
+                  <StyledShopCartItemCount>
+                    {el.quantity}
+                  </StyledShopCartItemCount>
+
+                  <StyledChangeCountBtn
+                    onClick={() => dispatch(incrementQuantity(el))}
+                  >
+                    <FiPlus />
+                  </StyledChangeCountBtn>
+                </StyledChangeCountWrapperDesktop>
+              )}
               {showDeliveryPrice && (
                 <>
                   <StyledProductText>
@@ -84,27 +102,11 @@ export const ShopCard = ({ el, showCloseBtn, showDeliveryPrice, device }) => {
                 </>
               )}
             </StyledInfoWrapper>
-            {showCloseBtn && (
-              <StyledChangeCountWrapperDesktop>
-                <StyledChangeCountBtn
-                  onClick={() => dispatch(decrementQuantity(el))}
-                >
-                  <FiMinus />
-                </StyledChangeCountBtn>
-                <StyledShopCartItemCount>{el.quantity}</StyledShopCartItemCount>
-
-                <StyledChangeCountBtn
-                  onClick={() => dispatch(incrementQuantity(el))}
-                >
-                  <FiPlus />
-                </StyledChangeCountBtn>
-              </StyledChangeCountWrapperDesktop>
-            )}
           </StyledShopCartInfo>
         </StyledCard>
 
         <StyledCountANDPriceWrapper $showCloseBtn={showCloseBtn}>
-          {showCloseBtn && (
+          {showCloseBtn && device === "mobile" && (
             <StyledChangeCountWrapper>
               <StyledChangeCountBtn
                 onClick={() => dispatch(decrementQuantity(el))}
