@@ -101,13 +101,13 @@ export const SearchMobileBox = styled.div`
   position: absolute;
   display: flex;
   justify-content: center;
-  top: 72px;
+  top: 65px;
   left: 0;
-  padding-top: 10px;
+  padding-top: 8px;
   border-radius: 26px;
-  padding-bottom: 10px;
-  background-color: var(--white-bg-color-favorite-btn);
-  border-bottom: 0.2px solid var(--white-dark-bg-color);
+  padding-bottom: 8px;
+  /* background-color: var(--white-bg-color-favorite-btn); */
+  /* border-bottom: 0.2px solid var(--white-dark-bg-color); */
   width: 100%;
 
   svg {
@@ -129,8 +129,8 @@ export const MobileInput = styled.input`
   display: block;
   width: calc(100vw - 48px);
   max-width: 326px;
-  padding-top: 11px;
-  padding-bottom: 11px;
+  padding-top: 9px;
+  padding-bottom: 9px;
   padding-left: 42px;
   padding-right: 36px;
   border-radius: 16px;

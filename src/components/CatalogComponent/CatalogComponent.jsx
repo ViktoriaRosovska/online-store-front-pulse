@@ -64,6 +64,7 @@ export const CatalogComponent = ({
   page,
   totalPages,
 }) => {
+  console.log("data", data)
   const [selectedBrands, setSelectedBrands] = useState(
     getFromSearchParams("brand", brand ? [brand] : [])
   );
