@@ -6,6 +6,7 @@ const MaleCatalog = () => {
   const [getAllProducts, { data, isError, isFetching }] =
     useLazyGetAllProductsQuery();
 
+  console.log("MaleCatalog  data", data);
   return (
     <>
       <Helmet>

@@ -32,11 +32,16 @@ export const userApi = createApi({
         method: "DELETE",
       }),
     }),
-    getFavorites: builder.query({
-      query: () => ({
-        url: "/users/favorites",
-        method: "GET",
-      }),
+    getFavorites: builder.query({queryFn: async (arg, queryApi, extraOptions, baseQuery) => {
+        const result = await baseQuery({
+          url: "/users/favorites",
+          method: "GET",
+        });
+        if (result.error && result.error.status === 404) {
+          return { data: [] }; 
+        }
+        return result;
+      },
       providesTags: ["Favorites"],
     }),
     addToFavorites: builder.mutation({

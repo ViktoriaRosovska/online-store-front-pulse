@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import {
   CardButtonContainer,
   CardImage,
@@ -13,10 +14,6 @@ import FavoriteButton from "../Buttons/FavoriteButton/FavoriteButton.jsx";
 import { SaleBand } from "../salesComponents/SaleBand/SaleBand.jsx";
 import { SalePercent } from "../salesComponents/SalePercent/SalePercent.jsx";
 import { ROUTES } from "../../utils/routes.js";
-import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { selectUserToken } from "../../redux/auth/selectors.js";
 
 const Card = ({
   info,
@@ -27,43 +24,11 @@ const Card = ({
   cardfeature,
   filterQuery,
   cardSlider,
-  favorites,
-  deleteFromFavorites,
-  addToFavorites,
 }) => {
-  const isLoggedIn = useSelector(selectUserToken);
-
-  const [favoriteState, setFavoriteState] = useState(false);
-
-  useEffect(() => {
-    setFavoriteState(favorites?.some(el => el._id === id));
-  }, [favorites, id]);
 
   const sales = cardfeature === "sales";
   const newBrands = cardfeature === "newbrands";
   const location = useLocation().pathname;
-
-  const toggleFavorite = event => {
-    event.preventDefault();
-
-    if (isLoggedIn) {
-      if (favoriteState) {
-        setFavoriteState(false);
-        deleteFromFavorites({ productId: id });
-      } else {
-        setFavoriteState(true);
-        addToFavorites({ productId: id });
-      }
-    } else {
-      const storedFavorites =
-        JSON.parse(localStorage.getItem("favorites")) || [];
-      const updatedFavorites = favoriteState
-        ? storedFavorites.filter(favId => favId !== id)
-        : [...storedFavorites, id];
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      setFavoriteState(!favoriteState);
-    }
-  };
 
   return (
     <li>
@@ -76,7 +41,8 @@ const Card = ({
         }}
         state={{ from: location }}
       >
-        <CardWrapper $isFavorite={favoriteState} $cardSlider={cardSlider}>
+        <CardWrapper
+          $cardSlider={cardSlider}>
           <ImageWrapper>
             {sales && sale > 0 ? (
               <SaleBand text={"SALE"} $background={"#fef746"} color={"black"} />
@@ -93,8 +59,7 @@ const Card = ({
             <FavoriteButton
               $sales={sales && sale > 0}
               $new={newBrands}
-              onClick={toggleFavorite}
-              isFavorite={favoriteState}
+              productId={id}
             />
             {sales && sale > 0 ? <SalePercent text={-sale} /> : null}
           </ImageWrapper>
