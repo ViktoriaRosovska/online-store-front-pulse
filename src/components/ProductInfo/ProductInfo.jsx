@@ -8,7 +8,6 @@ import {
   DescriptionTitle,
   DescriptionWrapper,
   FavoriteWrapper,
-  // FavoriteButton,
   Meta,
   PriceWrapper,
   ProductDataWrapper,

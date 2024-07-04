@@ -271,17 +271,18 @@ export const DescriptionText = styled("p")`
 
 export const ProductInfoList = styled("ul")`
   margin-top: 24px;
-  list-style-type: disc;
-  list-style-position: inside;
+   list-style: none;
 `;
 
 export const ProductInfoItem = styled("li")`
   margin-top: 24px;
+  position: relative;
+  padding-left: 19px;
 
   font-family: "Roboto";
   font-size: 16px;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 20px;
   letter-spacing: 0.01em;
   text-align: left;
 
@@ -289,7 +290,16 @@ export const ProductInfoItem = styled("li")`
     margin-top: 0;
   }
 
-  & > span {
-    margin-left: -5px;
+  &::before{
+    content: ''; 
+      position: absolute;
+      display: flex;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--black-text-color);
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
   }
 `;
