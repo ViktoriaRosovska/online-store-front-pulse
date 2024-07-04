@@ -37,7 +37,7 @@ export const DepartmentDeliveryAddress = () => {
 
       <StyledSelectWrapper>
         <StyledSelectLabel htmlFor="address">
-          Оберіть номер відділення
+          Оберіть номер відділення&#42;
         </StyledSelectLabel>
         <DepartmentSelect
           options={departmentTypeFilter(data, ["Branch", "Store"])}

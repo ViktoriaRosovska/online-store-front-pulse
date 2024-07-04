@@ -1,6 +1,6 @@
 import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
 import { ROUTES } from "../../../utils/routes";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,19 +31,23 @@ import { YourOrderPriceComponent } from "../ShopCart/YourOrderPriceComponent/You
 import { ShopCartProductsList } from "../ShopCartProductsList";
 import { PromoCode } from "components/PromoCode";
 import { useEffect, useState } from "react";
-import { useFetchCurrentUserQuery } from "../../../redux/auth";
+import { selectUserToken, useFetchCurrentUserQuery } from "../../../redux/auth";
 import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
 
 import { ShopCartLoginForm } from "components/form/ShopCartLoginForm/ShopCartLoginForm";
 import { ShopCartRegisterForm } from "components/form/ShopCartRegisterForm/ShopCartRegisterForm";
+import { Portal } from "components/Modals/helpersForModal/modalPortal";
+import CommonModal from "components/Modals/CommonModal";
+import ModalForgotPassword from "components/Modals/ModalForgotPassword/ModalForgotPassword";
+import { StyledLoginFormButton } from "components/form/ShopCartLoginForm/ShopCartLoginForm.styled";
 
 export const ShopCartDelivery = props => {
-  let location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     products,
     deliveryType,
-    address,
+    // address,
     addressDepartment,
     addressPoshtomat,
     city,
@@ -55,6 +59,22 @@ export const ShopCartDelivery = props => {
   const { data, isLoading, refetch } = useFetchCurrentUserQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
+  // const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
+    useState(false);
+  const location = useLocation();
+  const isLoggedIn = useSelector(selectUserToken);
+
+  const openForgotPasswordModal = () => {
+    setIsForgotPasswordModalOpen(true);
+    // setIsLoginModalOpen(false);
+  };
+
+  const closeForgotPasswordModal = () => {
+    setIsForgotPasswordModalOpen(false);
+    // setIsLoginModalOpen(true);
+  };
+
   console.log(data);
   const isDesktop = useMediaQuery("(min-width: 1440px)");
   const [isActiveForm, setIsActiveForm] = useState(true);
@@ -85,17 +105,19 @@ export const ShopCartDelivery = props => {
         )
       );
     }
+    navigate(ROUTES.SHOPCARTPAYMENT);
   };
   useEffect(() => {
     refetch();
   }, [refetch]);
 
-  console.log("address", address);
-  console.log("addressDepartment", addressDepartment);
+  // console.log("address", address);
+  // console.log("addressDepartment", addressDepartment);
 
-  console.log("addressPoshtomat", addressPoshtomat);
+  // console.log("addressPoshtomat", addressPoshtomat);
 
-  console.log("city", city);
+  // console.log("city", city);
+
   return (
     <>
       <Title>{props.title}</Title>
@@ -106,6 +128,7 @@ export const ShopCartDelivery = props => {
               validationSchema={userShopCartValidationSchema}
               onSubmit={onSubmit}
               initialValues={{
+                city: null,
                 firstName: data?.user.firstName || "",
                 lastName: data?.user.lastName || "",
                 phone: data?.user.phone || "",
@@ -119,72 +142,92 @@ export const ShopCartDelivery = props => {
                 condition: false,
                 isMailing: false,
               }}
+              validateOnBlur={false}
+              validateOnChange={true}
             >
-              {formik => (
+              {({ errors, values, setFieldValue }) => (
                 <StyledDeliveryForm>
-                  <DeliveryCitySelect />
+                  <DeliveryCitySelect
+                    errors={errors}
+                    values={values}
+                    setFieldValue={setFieldValue}
+                  />
                   <DeliveryChoiceType />
 
                   {deliveryType === DELIVERY.department && (
-                    <DepartmentDeliveryAddress formik={formik} />
+                    <DepartmentDeliveryAddress />
                   )}
                   {deliveryType === DELIVERY.courier && (
-                    <CourierDeliveryAddress formik={formik} />
+                    <CourierDeliveryAddress />
                   )}
                   {deliveryType === DELIVERY.poshtomat && (
-                    <PoshtomatDeliveryAddress formik={formik} />
+                    <PoshtomatDeliveryAddress />
                   )}
 
-                  <DeliveryPersonalDetails formik={formik} />
+                  <DeliveryPersonalDetails />
                   <DeliveryCheckboxPolicy />
+
+                  <StyledLoginFormButton type="submit">
+                    Продовжити оформлення
+                  </StyledLoginFormButton>
                 </StyledDeliveryForm>
               )}
             </Formik>
 
-            <StyledShopCartButton
+            {/* <StyledShopCartButton
               text={"Продовжити оформлення"}
               route={ROUTES.SHOPCARTPAYMENT}
               state={{ from: location }}
-              onClick={onSubmit}
-            />
+              onClick={() => onSubmit()}
+            /> */}
           </div>
 
           <StyledDeliveryOrderWrapper>
-            <div
-              style={{ display: "flex", flexDirection: "column", gap: "24px" }}
-            >
-              <div>
-                <StyledDeliveryTitle>
-                  <p
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      gap: "30px",
-                      cursor: "default",
-                    }}
-                  >
-                    <StyledLoginFormNameBtn
-                      onClick={() => setIsActiveForm(!isActiveForm)}
-                      $isActiveForm={isActiveForm}
+            {!isLoggedIn && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "24px",
+                }}
+              >
+                <div>
+                  <StyledDeliveryTitle>
+                    <p
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: "30px",
+                        cursor: "default",
+                      }}
                     >
-                      ВХІД
-                    </StyledLoginFormNameBtn>
-                    |
-                    <StyledLoginFormNameBtn
-                      onClick={() => setIsActiveForm(!isActiveForm)}
-                      $isActiveForm={!isActiveForm}
-                    >
-                      РЕЄСТРАЦІЯ
-                    </StyledLoginFormNameBtn>
-                  </p>
-                </StyledDeliveryTitle>
-                {isActiveForm && <ShopCartLoginForm />}
-                {!isActiveForm && <ShopCartRegisterForm />}
-              </div>
+                      <StyledLoginFormNameBtn
+                        onClick={() => setIsActiveForm(!isActiveForm)}
+                        $isActiveForm={isActiveForm}
+                      >
+                        ВХІД
+                      </StyledLoginFormNameBtn>
+                      |
+                      <StyledLoginFormNameBtn
+                        onClick={() => setIsActiveForm(!isActiveForm)}
+                        $isActiveForm={!isActiveForm}
+                      >
+                        РЕЄСТРАЦІЯ
+                      </StyledLoginFormNameBtn>
+                    </p>
+                  </StyledDeliveryTitle>
+                  {isActiveForm && (
+                    <ShopCartLoginForm
+                      openForgotPasswordModal={openForgotPasswordModal}
+                    />
+                  )}
+                  {!isActiveForm && <ShopCartRegisterForm />}
+                </div>
 
-              <YourOrderPriceComponent />
-              <PromoCode />
-            </div>
+                <YourOrderPriceComponent />
+                <PromoCode />
+              </div>
+            )}
 
             <ShopCartProductsList products={products} isDesktop={isDesktop} />
           </StyledDeliveryOrderWrapper>
@@ -194,6 +237,18 @@ export const ShopCartDelivery = props => {
           У вашому кошику ще немає товарів
         </StyledNotificationWrapper>
       )}
+      <Portal isOpen={isForgotPasswordModalOpen}>
+        <CommonModal
+          onClose={closeForgotPasswordModal}
+          padding="68px 164px"
+          top="68px"
+        >
+          <ModalForgotPassword
+            onClose={closeForgotPasswordModal}
+            openLoginModal={() => setIsForgotPasswordModalOpen(false)}
+          />
+        </CommonModal>
+      </Portal>
     </>
   );
 };

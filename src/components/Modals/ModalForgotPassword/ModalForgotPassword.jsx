@@ -4,9 +4,9 @@ import { Line, OrText, OrWrapper } from "../ModalAuth/ModalAuth.styled";
 
 const ModalForgotPassword = ({ onClose, openLoginModal }) => {
   const handleOpenAuthModal = () => {
-    onClose()
-    openLoginModal()
-  }
+    onClose();
+    openLoginModal();
+  };
 
   return (
     <>
@@ -23,7 +23,9 @@ const ModalForgotPassword = ({ onClose, openLoginModal }) => {
         <Line />
       </OrWrapper>
 
-      <ReturnButton onClick={handleOpenAuthModal}>Повернутися до авторизації</ReturnButton>
+      <ReturnButton onClick={handleOpenAuthModal}>
+        Повернутися до авторизації
+      </ReturnButton>
     </>
   );
 };

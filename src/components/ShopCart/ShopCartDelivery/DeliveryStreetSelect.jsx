@@ -15,8 +15,8 @@ export const DeliveryStreetSelect = () => {
   const dispatch = useDispatch();
   const [getStreets, { data }] = useGetStreetsMutation();
 
-  const onSelectStreetSearch = (ref, value) => {
-    // console.log("onSelectStreetSearch", ref, value);
+  const onSelectStreetSearch = value => {
+    // console.log("onSelectStreetSearch", value, streetSearch);
     if (value !== "") setStreetSearch(value?.Description);
   };
 
@@ -25,21 +25,30 @@ export const DeliveryStreetSelect = () => {
     dispatch(addShopCartStreet(value));
   };
 
+  const onSelectStreetBlur = e => {
+    const search = e.target.value;
+    //console.log("onSelectStreetBlur", search, e.target.value);
+    if (search) {
+      const street = { value: search, label: search, Description: search };
+      dispatch(addShopCartStreet(street));
+    }
+  };
+
   useEffect(() => {
-    getStreets(city.Ref, streetSearch);
-  }, [streetSearch, getStreets]);
+    if (city && city.Ref) getStreets(city.Ref, streetSearch);
+  }, [streetSearch, getStreets, city]);
+
   return (
     <StyledSelectWrapper>
       <StyledSelectLabel htmlFor="street">
-        Вкажіть назву вулиці
+        Вкажіть назву вулиці&#42;
       </StyledSelectLabel>
       <StreetSelect
         options={data?.data}
         placeholder="Вулиця"
-        onChange={e => {
-          onSelectStreetChange(e);
-        }}
-        onSearch={e => onSelectStreetSearch(city.Ref, e)}
+        onChange={e => onSelectStreetChange(e)}
+        onSearch={e => onSelectStreetSearch(e)}
+        onBlur={e => onSelectStreetBlur(e)}
         // value={selectStreetSearch}
         name="street"
         displayStreet={street}

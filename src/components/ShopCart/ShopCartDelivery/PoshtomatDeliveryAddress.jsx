@@ -37,7 +37,7 @@ export const PoshtomatDeliveryAddress = () => {
 
       <StyledSelectWrapper>
         <StyledSelectLabel htmlFor="address">
-          Оберіть номер поштомату
+          Оберіть номер поштомату&#42;
         </StyledSelectLabel>
         <DepartmentSelect
           options={departmentTypeFilter(data, ["Postomat"])}

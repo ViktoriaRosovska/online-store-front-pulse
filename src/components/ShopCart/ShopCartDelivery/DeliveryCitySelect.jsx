@@ -10,8 +10,10 @@ import { CitySelect } from "../SelectComponents/CitySelect";
 import { useGetCitiesMutation } from "../../../redux/novaPoshta/novaPoshtaAPI";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { addShopCartCity } from "../../../redux/user/userShopCart/userShopCartSlice";
+import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
 
-export const DeliveryCitySelect = () => {
+export const DeliveryCitySelect = ({ errors, values, setFieldValue }) => {
+  console.log("errors", errors, values);
   const dispatch = useDispatch();
   const { city } = useSelector(selectUserShopCart);
 
@@ -33,6 +35,7 @@ export const DeliveryCitySelect = () => {
   };
 
   const onSelectCityChange = value => {
+    setFieldValue("city", value);
     dispatch(addShopCartCity(value));
   };
 
@@ -40,7 +43,9 @@ export const DeliveryCitySelect = () => {
     <>
       <StyledDeliveryTitle>Обери адресу доставки</StyledDeliveryTitle>
       <StyledSelectWrapper>
-        <StyledSelectLabel htmlFor="city">Населений пункт</StyledSelectLabel>
+        <StyledSelectLabel htmlFor="city">
+          Населений пункт&#42;
+        </StyledSelectLabel>
         <CitySelect
           options={data?.data}
           placeholder={"Введіть населений пункт"}
@@ -48,7 +53,9 @@ export const DeliveryCitySelect = () => {
           onSearch={e => onSelectCitySearch(e)}
           displayCity={city}
           name="city"
+          // value={values.city}
         />
+        {errors.city && <Error>{errors.city}</Error>}
       </StyledSelectWrapper>
     </>
   );

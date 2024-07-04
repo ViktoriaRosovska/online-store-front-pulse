@@ -1,17 +1,13 @@
-import { useState } from "react";
-
-import CreatableSelect from "react-select/creatable";
+import Select from "react-select";
 
 export const StreetSelect = ({
   options,
   onChange,
   onSearch,
+  onBlur,
   placeholder,
   displayStreet,
 }) => {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const [value, setValue] = useState(null);
   const style = {
     control: baseStyles => ({
       ...baseStyles,
@@ -68,10 +64,7 @@ export const StreetSelect = ({
         border: "1px solid red",
       };
     },
-    indicatorContainer: baseStyles => ({
-      ...baseStyles,
-      padding: 0,
-    }),
+
     input: baseStyles => ({
       ...baseStyles,
       padding: 0,
@@ -104,23 +97,10 @@ export const StreetSelect = ({
       //   width: "120px",
     }),
   };
+
   const modifiedOptions = [];
-  const createOption = label => ({
-    label,
-    value: label.toLowerCase().replace(/\W/g, ""),
-  });
-  const handleCreate = inputValue => {
-    setIsLoading(true);
-    setTimeout(() => {
-      const newOption = createOption(inputValue);
-      setIsLoading(false);
-      modifiedOptions.push(newOption);
-      setValue(newOption);
-    }, 1000);
-  };
 
   if (options) {
-    console.log("options", options);
     for (const option of options) {
       modifiedOptions.push({
         ...option,
@@ -134,17 +114,15 @@ export const StreetSelect = ({
 
   return (
     <>
-      <CreatableSelect
+      <Select
         styles={style}
         options={modifiedOptions}
         onChange={onChange}
         onInputChange={onSearch}
+        onBlur={onBlur}
         placeholder={placeholder}
-        value={displayStreet || value}
+        value={displayStreet}
         isClearable
-        onCreateOption={handleCreate}
-        isDisabled={isLoading}
-        isLoading={isLoading}
       />
     </>
   );

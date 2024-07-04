@@ -50,7 +50,7 @@ export const ShopCard = ({ el, showCloseBtn, showDeliveryPrice, device }) => {
         )}
 
         <StyledCard>
-          <StyledShopCartImage src={el.data.imgGallery[0]} alt={el.data.name} />
+          <StyledShopCartImage src={el.data.imgThumbnail} alt={el.data.name} />
           <StyledShopCartInfo>
             <StyledInfoWrapper>
               <StyledProductName>{el.data.name}</StyledProductName>
