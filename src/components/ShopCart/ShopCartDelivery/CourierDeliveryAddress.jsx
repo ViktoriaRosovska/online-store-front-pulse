@@ -30,7 +30,7 @@ export const CourierDeliveryAddress = () => {
       <DeliveryStreetSelect />
       <CustomInput
         type="text"
-        label="Вкажіть номер будинку"
+        label="Вкажіть номер будинку&#42;"
         placeholder="Номер будинку"
         name="numberHouse"
         onChange={e => handleChange(e.target.value, addShopCartNumberHouse)}

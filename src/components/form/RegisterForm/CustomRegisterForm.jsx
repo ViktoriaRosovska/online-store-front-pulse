@@ -50,35 +50,37 @@ const CustomRegisterForm = ({ onClose, redirectPath }) => {
         }}
         validationSchema={registerValidationSchema}
         onSubmit={onSubmit}
+        validateOnBlur={false}
+        validateOnChange={true}
       >
         {() => (
           <StyledForm>
             <CustomInput
-              label="Ім’я"
+              label="Ім’я&#42;"
               name="firstName"
               type="text"
               placeholder="Ім’я"
             />
             <CustomInput
-              label="Прізвище"
+              label="Прізвище&#42;"
               name="lastName"
               type="text"
               placeholder="Прізвище"
             />
             <CustomInput
-              label="Email"
+              label="Email&#42;"
               name="email"
               type="email"
               placeholder="Ваш email"
             />
             <CustomInput
-              label="Пароль"
+              label="Пароль&#42;"
               name="password"
               type="password"
               placeholder="**********"
             />
             <CustomInput
-              label="Повторити пароль"
+              label="Повторити пароль&#42;"
               name="passwordCheck"
               type="password"
               placeholder="Пароль"

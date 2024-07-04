@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 
 import { CustomRadioButton } from "./CustomRadioButton/CustomRadioButton";
-import { Formik } from "formik";
-import CustomInput from "./form/formElements/CustomInput/CustomInput";
+
 import { ReactComponent as Visa } from "../assets/svg/visa.svg";
 import { ReactComponent as Mastercard } from "../assets/svg/master.svg";
 import { ReactComponent as ApplePay } from "../assets/svg/applePay.svg";
 import { ReactComponent as GooglePay } from "../assets/svg/googlePay.svg";
 import { ReactComponent as GooglePayBtn } from "../assets/svg/googlePay_btn.svg";
 import {
-  StyledCardForm,
   StyledCardIconWrapper,
   StyledOfflinePaymentText,
   StyledOfflinePaymentWrapper,
@@ -17,12 +15,6 @@ import {
   StyledPayButton,
 } from "./CustomRadioButton/CustomRadioButton.styled";
 import { useDispatch, useSelector } from "react-redux";
-import { selectPaymentCard } from "../redux/paymentCard/paymentCardSelector";
-import {
-  editCardDateInInput,
-  editCardNumberInInput,
-  formatDateCard,
-} from "./form/formHelpers/formUserCardEdit";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../utils/routes";
 import { Portal } from "./Modals/helpersForModal/modalPortal";
@@ -30,13 +22,14 @@ import CommonModal from "./Modals/CommonModal";
 import { ModalSuccessfulPayment } from "./Modals/ModalSuccessfulPayment/ModalSuccessfulPayment";
 import { addShopCartPaymentMethod } from "../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../redux/user/userShopCart/userShopCartSelector";
-import { validationUserCardShopCardSchema } from "./form/formHelpers/formValidation";
+
+import { ShopCartCardPaymentForm } from "./form/ShopCartCardPaymentForm/ShopCartCardPaymentForm";
 import { usePostOrdersMutation } from "../redux/products/productsApi";
 
 export const PaymentRadioGroup = () => {
   const [selected, setSelected] = useState("card");
   const [isVisible, setIsVisible] = useState(false);
-  const selectedCard = useSelector(selectPaymentCard);
+  const [postOrders] = usePostOrdersMutation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -48,9 +41,7 @@ export const PaymentRadioGroup = () => {
     lastName,
     phone,
     isMailing,
-
     totalPriceSum,
-
     discount,
     email,
   } = useSelector(selectUserShopCart);
@@ -66,7 +57,7 @@ export const PaymentRadioGroup = () => {
 
   const shop = {
     priceSum: totalPriceSum,
-    orderDate: new Date().toUTCString(),
+    orderDate: new Date().toString(),
     products: newProducts,
     deliveryAddress: address,
     paymentMethod: paymentMethod,
@@ -78,9 +69,8 @@ export const PaymentRadioGroup = () => {
     phone: phone,
   };
 
-  const [postOrders] = usePostOrdersMutation();
-  console.log(paymentMethod);
-  console.log(products);
+  // console.log(paymentMethod);
+  //console.log(products);
   useEffect(() => {
     if (selected === "card" || selected === "online") {
       dispatch(addShopCartPaymentMethod("card"));
@@ -89,21 +79,6 @@ export const PaymentRadioGroup = () => {
     }
   }, [dispatch, selected]);
 
-  const initialValues = {
-    cardNumber: editCardNumberInInput(selectedCard?.cardNumber) || "",
-    cardDate: formatDateCard(selectedCard?.cardDate) || "",
-    cardCVC: selectedCard?.cardCVC || "",
-  };
-  const onSubmit = (values, option) => {
-    console.log(values, option);
-    try {
-      postOrders(shop);
-      setIsVisible(true);
-    } catch (error) {
-      console.log(error.message);
-    }
-    // postOrders(userFormData);
-  };
   return (
     <>
       <CustomRadioButton
@@ -128,7 +103,16 @@ export const PaymentRadioGroup = () => {
             </button>
           </StyledCardIconWrapper>
 
-          <StyledPayButton onClick={() => setIsVisible(true)}>
+          <StyledPayButton
+            onClick={() => {
+              try {
+                postOrders(shop);
+                setIsVisible(true);
+              } catch (error) {
+                console.log(error.message);
+              }
+            }}
+          >
             <GooglePayBtn />
           </StyledPayButton>
         </StyledOnlinePaymentWrapper>
@@ -139,59 +123,7 @@ export const PaymentRadioGroup = () => {
         onChange={setSelected}
         text="Оплатити банківською карткою"
       >
-        <Formik
-          validationSchema={validationUserCardShopCardSchema}
-          initialValues={initialValues}
-          validateOnChange={true}
-          onSubmit={onSubmit}
-        >
-          {formik => (
-            <StyledCardForm>
-              <CustomInput
-                type="text"
-                label="Номер картки"
-                name="cardNumber"
-                maxLength="19"
-                placeholder="0000 0000 0000 0000"
-                onChange={event => {
-                  const formattedValue = editCardNumberInInput(
-                    event.target.value
-                  );
-                  formik.setFieldValue("cardNumber", formattedValue);
-                }}
-                onKeyDown={event => {
-                  if (event.key === "Backspace" && event.type === "keydown") {
-                    event.preventDefault();
-                    const newValue = formik.values.cardNumber.slice(0, -1);
-                    formik.setFieldValue("cardNumber", newValue);
-                  }
-                }}
-              />
-              <CustomInput
-                label="Термін дії"
-                name="cardDate"
-                type="text"
-                placeholder="MM/YY"
-                onChange={event => {
-                  const formattedValue = editCardDateInInput(
-                    event.target.value
-                  );
-                  formik.setFieldValue("cardDate", formattedValue);
-                }}
-              />
-              <CustomInput
-                label="CVV"
-                name="cardCVC"
-                type="text"
-                placeholder="CVV"
-                maxLength="3"
-              />
-              <StyledPayButton type="submit">
-                {"Сплатити" + " " + totalPriceSum + " грн."}
-              </StyledPayButton>
-            </StyledCardForm>
-          )}
-        </Formik>
+        <ShopCartCardPaymentForm shop={shop} showModal={setIsVisible} />
       </CustomRadioButton>
       <CustomRadioButton
         value="offline"
@@ -208,7 +140,7 @@ export const PaymentRadioGroup = () => {
               грн. + 2% від суми переказу.
             </StyledOfflinePaymentText>
             <StyledPayButton
-              onClick={() => navigate(`${ROUTES.SHOPCARTSUCCESSFULL}`)}
+              onClick={() => navigate(`${ROUTES.SHOPCARTSUCCESSFUL}`)}
             >
               Підтвердити замовлення
             </StyledPayButton>

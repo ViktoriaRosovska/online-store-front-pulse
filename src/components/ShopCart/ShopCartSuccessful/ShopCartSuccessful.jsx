@@ -15,6 +15,7 @@ import {
 import { AddressDeliveryComponent } from "./AddressDeliveryComponent";
 import { YourOrderPriceComponent } from "../ShopCart/YourOrderPriceComponent/YourOrderPriceComponent";
 import { ShopCartProductsList } from "../ShopCartProductsList";
+import { DeliveryOrderDateInfo } from "./DeliveryOrderDateInfo/DeliveryOrderDateInfo";
 
 export const ShopCartSuccessful = ({ title }) => {
   const { products, priceSum, firstName, deliveryType } =
@@ -39,6 +40,11 @@ export const ShopCartSuccessful = ({ title }) => {
             <StyledInviteMessage>
               Вітаю, {firstName}, дякую, що купуєте у нас!
             </StyledInviteMessage>
+
+            <DeliveryOrderDateInfo
+              products={products}
+              deliveryType={deliveryType}
+            />
             <StyledInfoMessage>
               Ви отримаєте лист на email та СМС, коли ваше замовлення буде
               відправлене зі складу.
