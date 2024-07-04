@@ -9,6 +9,7 @@ import { Container, PageSection } from "../../main.styled";
 import { Title } from "components/Typography/Typography.styled";
 import Breadcrumbs from "components/Breadcrumbs";
 import { BREADCRUMBS } from "../../utils/breadcrumbsVocabulary";
+import { Helmet } from "react-helmet";
 
 const SearchPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -44,6 +45,10 @@ const SearchPage = () => {
   };
 
   return (
+    <>
+      <Helmet>
+        <title>PulseRun Search</title>
+      </Helmet>
     <PageSection>
       <Container>
         <Breadcrumbs current={`Результат пошуку "${searchQuery}"`} BREADCRUMBS={BREADCRUMBS} />
@@ -57,7 +62,8 @@ const SearchPage = () => {
           page={currentPage}
         />
       </Container>
-    </PageSection>
+      </PageSection>
+      </>
   );
 };
 

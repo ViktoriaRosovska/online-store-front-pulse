@@ -4,6 +4,7 @@ import {
   StyledNavLink,
   StyledNavigationWrapper,
 } from "./ShopCartLayout.styled";
+import { Helmet } from "react-helmet";
 
 const ShopCartLayout = () => {
   const pathname = useLocation().pathname;
@@ -18,6 +19,9 @@ const ShopCartLayout = () => {
 
   return (
     <>
+      <Helmet>
+        <title>PulseRun ShopCart</title>
+      </Helmet>
       <PageSection>
         <Container>
           <StyledNavigationWrapper>

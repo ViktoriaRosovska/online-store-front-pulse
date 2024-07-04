@@ -13,7 +13,7 @@ const FavoriteBtn = styled.button`
 
   background-color: var(--grey-bg-icon-color);
 
-  position: absolute;
+  position: ${props => (props.$productInfo ? "static" : "absolute")};
   right: 10px;
   top: ${props => (props.$sales || props.$new ? "36px" : "10px")};
 

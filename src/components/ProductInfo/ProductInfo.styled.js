@@ -211,7 +211,7 @@ export const AddToCartButton = styled(CommonButton)`
   }
 `;
 
-export const FavoriteButton = styled("button")`
+export const FavoriteWrapper = styled("div")`
   flex-shrink: 0;
   cursor: pointer;
   background-color: transparent;

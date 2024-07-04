@@ -1,20 +1,21 @@
+import { useState } from "react";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
   AddToCartButton,
   ButtonWrapper,
   DescriptionText,
   DescriptionTitle,
   DescriptionWrapper,
-  FavoriteButton,
+  FavoriteWrapper,
+  // FavoriteButton,
   Meta,
   PriceWrapper,
   ProductDataWrapper,
   SizeGridButton,
   StyledProductInfoWrapper,
 } from "./ProductInfo.styled";
-import { useState } from "react";
-import { ReactComponent as LogoLover } from "../../assets/svg/favorites-icon.svg";
 import { useGetProductByIdQuery } from "../../redux/products/productsApi";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import ProductImageList from "./ProductImageList";
 import ProductHeading from "./ProductHeading";
 import ProductPrice from "./ProductPrice";
@@ -22,20 +23,16 @@ import ProductSizeList from "./ProductSizeList";
 import ProductFeatureList from "./ProductFeatureList";
 import ProductCommonInfo from "./ProductCommonInfo";
 import DetailsToggler from "components/UIKit/DetailsToggler";
-// import BasicModal from "components/modal/Modal";
 import Breadcrumbs from "components/Breadcrumbs";
-// import { AnimatePresence } from "framer-motion";
-// import ReusableModal from "components/Modals/ReusableModal";
-// import useScrollLock from "components/Modals/helpersForModal/useScrollLock";
 import { ModalSizeList } from "../../components/Modals/ModalSizeList/ModalSizeList";
 import { ModalShopCart } from "components/Modals/ModalShopCart/ModalShopCart";
 
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { useDispatch } from "react-redux";
 import { addShopCartItem } from "../../redux/user/userShopCart/userShopCartSlice";
 import { BREADCRUMBS } from "../../utils/breadcrumbsVocabulary";
 import { Portal } from "components/Modals/helpersForModal/modalPortal";
 import CommonModal from "components/Modals/CommonModal";
+import FavoriteButton from "components/Buttons/FavoriteButton/FavoriteButton";
 
 const ProductInfo = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -78,8 +75,6 @@ const ProductInfo = () => {
     }
   }
 
-  // console.log(arr);
-
   if (isFetching) return <div>Loading...</div>;
   if (!data) return null;
   if (isError || !data.name) return <div>Error Component</div>;
@@ -107,7 +102,7 @@ const ProductInfo = () => {
   if (lastView.findIndex(e => e._id === data._id) < 0) {
     setLastView(prev => [data, ...prev]);
   }
-  // console.log(shopCartProduct);
+
   return (
     <StyledProductInfoWrapper>
       <h1 hidden> {name}</h1>
@@ -153,10 +148,9 @@ const ProductInfo = () => {
             >
               Додати в кошик
             </AddToCartButton>
-
-            <FavoriteButton type="button">
-              <LogoLover />
-            </FavoriteButton>
+            <FavoriteWrapper>
+              <FavoriteButton productId={data._id} productInfo={true} />
+              </FavoriteWrapper>
           </ButtonWrapper>
 
           <ProductCommonInfo />

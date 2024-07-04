@@ -5,6 +5,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { Box, OutletWrapper } from "./ProfileLayout.styled";
 import Breadcrumbs from "components/Breadcrumbs";
 import { BREADCRUMBS_PROFILE } from "../../utils/breadcrumbsVocabulary";
+import { Helmet } from "react-helmet";
 
 const ProfileLayout = () => {
   const location = useLocation().pathname
@@ -19,6 +20,10 @@ const ProfileLayout = () => {
   }
 
   return (
+    <>
+      <Helmet>
+        <title>PulseRun Profile</title>
+      </Helmet>
     <PageSection>
       <Container>
         <Breadcrumbs current={findBreadcrumb(location)} />
@@ -31,7 +36,8 @@ const ProfileLayout = () => {
           </OutletWrapper>
         </Box>
       </Container>
-    </PageSection>
+      </PageSection>
+      </>
   );
 };
 

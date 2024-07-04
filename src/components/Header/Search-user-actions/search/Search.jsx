@@ -34,6 +34,12 @@ function Search({
     openSearch();
   };
 
+   const handleKeyDown = event => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <SearchBox>
       <MediaQuery minWidth={1440}>
@@ -44,6 +50,7 @@ function Search({
           $location={location}
           value={searchQuery}
           onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
         />
         <Button onClick={handleSearch}>
           <SearchIcon $isFixed={isFixed} $location={location} />

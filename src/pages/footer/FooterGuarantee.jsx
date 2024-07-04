@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Container, PageSection } from "../../main.styled";
 import {
   FooterPages,
@@ -8,6 +9,10 @@ import {
 
 const FooterGuarantee = () => {
   return (
+    <>
+      <Helmet>
+        <title>PulseRun Guarantee</title>
+      </Helmet>
     <PageSection>
       <Container>
         <FooterPages>
@@ -74,7 +79,8 @@ const FooterGuarantee = () => {
           </FooterListNoMarker>
         </FooterPages>
       </Container>
-    </PageSection>
+      </PageSection>
+      </>
   );
 };
 

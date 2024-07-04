@@ -85,6 +85,12 @@ function Header() {
     handleCloseMobileSearch();
   };
 
+  const handleKeyDown = event => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <header
       className={`header ${
@@ -144,6 +150,7 @@ function Header() {
                 placeholder="Пошук"
                 value={searchQuery}
                 onChange={e => handleSearchInputChange(e.target.value)}
+                onKeyDown={handleKeyDown}
               />
               {searchQuery && (
                 <CloseSearcSvg onClick={handleDeleteSearchQuery} />
