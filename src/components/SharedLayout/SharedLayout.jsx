@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import { MainWrapper, SharedLayoutContainer } from "./SharedLayout.styled";
 import { ScrollToTop } from "../ScrollToTop.js";
 import Footer from "../Footer/Footer";
+import { Suspense } from "react";
 
 function SharedLayout() {
   return (
@@ -11,7 +12,9 @@ function SharedLayout() {
       <Header />
 
       <MainWrapper>
-        <Outlet />
+        <Suspense>
+          <Outlet />
+        </Suspense>
       </MainWrapper>
 
       <Footer />

@@ -5,6 +5,7 @@ import {
   StyledNavigationWrapper,
 } from "./ShopCartLayout.styled";
 import { Helmet } from "react-helmet";
+import { Suspense } from "react";
 
 const ShopCartLayout = () => {
   const pathname = useLocation().pathname;
@@ -57,7 +58,9 @@ const ShopCartLayout = () => {
               </>
             )}
           </StyledNavigationWrapper>
-          <Outlet />
+          <Suspense>
+            <Outlet />
+          </Suspense>
         </Container>
       </PageSection>
     </>

@@ -1,6 +1,6 @@
-import moment from "moment";
+// import moment from "moment";
 import {
-  StyledDate,
+  // StyledDate,
   StyledImageWrapper,
   StyledOrderDateInfoWrapper,
   StyledTextInfoWrapper,
@@ -20,8 +20,8 @@ export const DeliveryOrderDateInfo = ({ products, deliveryType }) => {
     nextDay.setDate(nextDay.getDate() + 3);
   }
 
-  const orderDay = moment(today).format("DD.MM");
-  const deliveryDay = moment(nextDay).format("DD.MM");
+  // const orderDay = moment(today).format("DD.MM");
+  // const deliveryDay = moment(nextDay).format("DD.MM");
 
   return (
     <StyledOrderDateInfoWrapper>
@@ -33,7 +33,7 @@ export const DeliveryOrderDateInfo = ({ products, deliveryType }) => {
         <StyledTextPlacement>
           Твоє замовлення буде доставлено:
         </StyledTextPlacement>
-        <StyledDate>{orderDay + " - " + deliveryDay}</StyledDate>
+        {/* <StyledDate>{orderDay + " - " + deliveryDay}</StyledDate> */}
         <p>{deliveryType}</p>
       </StyledTextInfoWrapper>
     </StyledOrderDateInfoWrapper>
