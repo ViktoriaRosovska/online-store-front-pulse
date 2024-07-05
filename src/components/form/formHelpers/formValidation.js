@@ -14,9 +14,9 @@ const emailRegex =
 
 const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z0-9!$#@])[A-Za-z\d!$#@]{8,20}$/;
 
-// const phoneRegex = /^\+38\(\d{3}\)\d{3}-\d{2}-\d{2}$/;
+const phoneRegex = /^\+38\(\d{3}\)\d{3}-\d{2}-\d{2}$/;
 
-const phoneRegex = /^\+\d{12,20}$/;
+// const phoneRegex = /^\+\d{12,20}$/;
 
 const cardNameRegex = /^[A-Za-z ]+$/;
 
@@ -268,7 +268,9 @@ export const resetPasswordValidationSchema = Yup.object().shape({
     .required("Oбовʼязкове поле"),
 });
 export const userShopCartValidationSchema = Yup.object().shape({
-  city: Yup.object().required("Вкажіть населений пункт"),
+  city: Yup.object()
+    .required("Вкажіть населений пункт")
+    .test(value => Object.hasOwn(value, "Description")),
   firstName: Yup.string()
     .typeError("Повинно бути строкою")
     .matches(nameRegex, "Повинні бути тільки букви")
@@ -301,9 +303,13 @@ export const userShopCartValidationSchema = Yup.object().shape({
   numberHoll: Yup.string(),
   condition: Yup.boolean()
     .required("Обов'язкове поле")
-    .test(value => value === true),
+    .test("Прийміть політику конфіденційності", value =>
+      value ? true : false
+    ),
   isMailing: Yup.boolean(),
-  address: Yup.string().required(),
+  address: Yup.object()
+    .required()
+    .test(value => Object.hasOwn(value, "Description")),
   addressDepartment: Yup.object(),
   addressPoshtomat: Yup.object(),
 });

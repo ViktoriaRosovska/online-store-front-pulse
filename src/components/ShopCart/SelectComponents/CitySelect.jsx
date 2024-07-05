@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import Select from "react-select";
 
 export const CitySelect = ({
@@ -7,7 +8,10 @@ export const CitySelect = ({
   placeholder,
   displayCity,
   errors,
+  values,
 }) => {
+  const cityRef = useRef(null).current;
+  console.log(cityRef);
   const style = {
     control: baseStyles => ({
       ...baseStyles,
@@ -118,6 +122,8 @@ export const CitySelect = ({
         onInputChange={onSearch}
         placeholder={placeholder}
         value={displayCity}
+        ref={cityRef}
+        defaultValue={values?.city}
       />
     </>
   );

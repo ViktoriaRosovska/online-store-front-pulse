@@ -7,12 +7,17 @@ import {
   StyledSelectLabel,
   StyledSelectWrapper,
 } from "./ShopCartDelivery.styled";
-import { addShopCartAddressPoshtomat } from "../../../redux/user/userShopCart/userShopCartSlice";
+import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { useEffect } from "react";
+import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
 
-export const PoshtomatDeliveryAddress = () => {
-  const { city, addressPoshtomat } = useSelector(selectUserShopCart);
+export const PoshtomatDeliveryAddress = ({ setFieldValue, errors }) => {
+  useEffect(() => {
+    dispatch(addShopCartAddress({}));
+  }, []);
+  const { city, address } = useSelector(selectUserShopCart);
+  console.log("address", address);
   const dispatch = useDispatch();
   const [
     getDepartments,
@@ -28,7 +33,8 @@ export const PoshtomatDeliveryAddress = () => {
   }, [city, getDepartments]);
 
   const onSelectDepartmentsChange = value => {
-    dispatch(addShopCartAddressPoshtomat(value));
+    dispatch(addShopCartAddress(value));
+    setFieldValue("address", value);
   };
 
   return (
@@ -43,9 +49,10 @@ export const PoshtomatDeliveryAddress = () => {
           options={departmentTypeFilter(data, ["Postomat"])}
           placeholder="Номер поштомату"
           onChange={e => onSelectDepartmentsChange(e)}
-          displayDepartment={addressPoshtomat}
+          displayDepartment={address}
           name="address"
         />
+        {errors.address && <Error>{"Введіть адресу поштомату"}</Error>}
       </StyledSelectWrapper>
     </>
   );

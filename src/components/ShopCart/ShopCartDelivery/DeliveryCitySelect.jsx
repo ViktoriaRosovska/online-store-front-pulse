@@ -25,7 +25,7 @@ export const DeliveryCitySelect = ({ errors, values, setFieldValue }) => {
     },
   ] = useGetCitiesMutation();
 
-  const [citySearch, setCitySearch] = useState(city.Description);
+  const [citySearch, setCitySearch] = useState(city?.Description);
   useEffect(() => {
     getCities(citySearch);
   }, [citySearch, getCities]);
@@ -36,6 +36,7 @@ export const DeliveryCitySelect = ({ errors, values, setFieldValue }) => {
 
   const onSelectCityChange = value => {
     setFieldValue("city", value);
+
     dispatch(addShopCartCity(value));
   };
 
@@ -54,7 +55,6 @@ export const DeliveryCitySelect = ({ errors, values, setFieldValue }) => {
           onSearch={e => onSelectCitySearch(e)}
           displayCity={city}
           name="city"
-          // value={values.city}
         />
         {errors.city && <Error>{errors.city}</Error>}
       </StyledSelectWrapper>

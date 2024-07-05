@@ -136,9 +136,9 @@ const userShopCartSlice = createSlice({
       state.userShopCart.discount = payload;
     },
     addShopCartAddress(state, { payload }) {
-      if (state.userShopCart.deliveryType === DELIVERY.department) {
-        state.userShopCart.address = payload;
-      }
+      // if (state.userShopCart.deliveryType === DELIVERY.department) {
+      state.userShopCart.address = payload;
+      // }
     },
   },
 });
