@@ -1,23 +1,20 @@
 import { setCredentials, useCreateUserMutation } from "../../../redux/auth";
 import CustomInput from "../formElements/CustomInput/CustomInput";
 import { Notify } from "notiflix";
-import { Formik } from "formik";
+import { Form, Formik } from "formik";
 import { registerValidationSchema } from "../formHelpers/formValidation";
-import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { StyledLoginFormButton } from "../ShopCartLoginForm/ShopCartLoginForm.styled";
 
-export const ShopCartRegisterForm = ({ onClose, redirectPath }) => {
+export const ShopCartRegisterForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const [createUser] = useCreateUserMutation();
   const onSubmit = ({ firstName, lastName, email, password }) => {
     createUser({ firstName, lastName, email, password })
       .unwrap()
       .then(res => {
         dispatch(setCredentials(res));
-        navigate(redirectPath);
-        onClose();
       })
       .catch(error => {
         if (error.status === 409) {
@@ -40,7 +37,7 @@ export const ShopCartRegisterForm = ({ onClose, redirectPath }) => {
       onSubmit={onSubmit}
     >
       {() => (
-        <form>
+        <Form>
           <div
             style={{
               marginBottom: "20px",
@@ -51,41 +48,41 @@ export const ShopCartRegisterForm = ({ onClose, redirectPath }) => {
             }}
           >
             <CustomInput
-              label="Ім’я"
+              label="Ім’я&#42;"
               name="firstName"
               type="text"
               placeholder="Ім’я"
             />
             <CustomInput
-              label="Прізвище"
+              label="Прізвище&#42;"
               name="lastName"
               type="text"
               placeholder="Прізвище"
             />
             <CustomInput
-              label="Email"
+              label="Email&#42;"
               name="email"
               type="email"
               placeholder="Ваш email"
             />
             <CustomInput
-              label="Пароль"
+              label="Пароль&#42;"
               name="password"
               type="password"
               placeholder="**********"
             />
             <CustomInput
-              label="Повторити пароль"
+              label="Повторити пароль&#42;"
               name="passwordCheck"
               type="password"
               placeholder="Пароль"
             />
-            <StyledShopCartButton type="Submit" text="Зареєструватись" />
+            <StyledLoginFormButton type="submit">
+              Зареєструватись
+            </StyledLoginFormButton>
           </div>
-        </form>
+        </Form>
       )}
     </Formik>
   );
 };
-
-const CustomRegisterForm = ({ onClose, redirectPath }) => {};

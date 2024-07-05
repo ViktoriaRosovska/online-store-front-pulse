@@ -15,6 +15,7 @@ export const StyledForm = styled(Form)`
 `;
 
 export const Button = styled.button`
+  font-family: "Roboto";
   display: flex;
   width: 100%;
   align-items: center;

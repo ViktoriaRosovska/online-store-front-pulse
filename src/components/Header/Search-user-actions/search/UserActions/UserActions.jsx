@@ -41,19 +41,6 @@ function UserActions(props) {
     setIsLoginModalOpen(true);
   };
 
-  // console.log(!!isLoggedIn);
-
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     toggleVisibility();
-  //   }
-  // }, [isLoggedIn]);
-
-  // const toggleVisibility = () => {
-  //   setIsVisible(prev => !prev);
-  //   setIsLocked(prev => !prev);
-  // };
-
   const navigateToCabinet = () => {
     navigate("/profile/account");
   };

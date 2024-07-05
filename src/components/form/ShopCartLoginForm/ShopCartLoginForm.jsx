@@ -1,20 +1,14 @@
-import { Formik } from "formik";
+import { Form, Formik } from "formik";
 import CustomInput from "../formElements/CustomInput/CustomInput";
-import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
 import { setCredentials, useLoginUserMutation } from "../../../redux/auth";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { Notify } from "notiflix";
 import { loginValidationSchema } from "../formHelpers/formValidation";
 import { ForgotPasswordButton } from "../LoginForm/CustomLoginForm.styled";
+import { StyledLoginFormButton } from "./ShopCartLoginForm.styled";
 
-export const ShopCartLoginForm = ({
-  onClose,
-  openForgotPasswordModal,
-  redirectPath,
-}) => {
+export const ShopCartLoginForm = ({ openForgotPasswordModal }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [loginUser, { data }] = useLoginUserMutation();
   console.log("CustomLoginForm  data", data);
 
@@ -23,8 +17,6 @@ export const ShopCartLoginForm = ({
       .unwrap()
       .then(res => {
         dispatch(setCredentials(res));
-        //    navigate(redirectPath);
-        // onClose();
       })
       .catch(error => {
         console.log("CustomLoginForm  error", error);
@@ -52,7 +44,7 @@ export const ShopCartLoginForm = ({
       onSubmit={onSubmit}
     >
       {() => (
-        <form>
+        <Form>
           <div
             style={{
               marginBottom: "20px",
@@ -63,14 +55,14 @@ export const ShopCartLoginForm = ({
             }}
           >
             <CustomInput
-              label="Email"
+              label="Email&#42;"
               name="email"
               type="email"
               placeholder="Ваш email"
             />
 
             <CustomInput
-              label="Пароль"
+              label="Пароль&#42;"
               name="password"
               type="password"
               placeholder="**********"
@@ -85,8 +77,8 @@ export const ShopCartLoginForm = ({
               Забули пароль?
             </ForgotPasswordButton>
           </p>
-          <StyledShopCartButton type="Submit" text="Увійти" />
-        </form>
+          <StyledLoginFormButton type="submit">Увійти</StyledLoginFormButton>
+        </Form>
       )}
     </Formik>
   );

@@ -57,15 +57,15 @@ const CustomLoginForm = ({
         onSubmit={onSubmit}
       >
         {() => (
-          <StyledForm >
+          <StyledForm>
             <CustomInput
-              label="Email"
+              label="Email&#42;"
               name="email"
               type="email"
               placeholder="Ваш email"
             />
             <CustomInput
-              label="Пароль"
+              label="Пароль&#42;"
               name="password"
               type="password"
               placeholder="**********"

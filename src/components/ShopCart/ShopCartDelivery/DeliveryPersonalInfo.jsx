@@ -38,7 +38,7 @@ export const DeliveryPersonalDetails = () => {
       <StyledNameWrapper>
         <CustomInput
           type="text"
-          label="Ім'я"
+          label="Ім'я&#42;"
           placeholder="Ім'я"
           name="fistName"
           onChange={e => {
@@ -48,7 +48,7 @@ export const DeliveryPersonalDetails = () => {
         />
         <CustomInput
           type="text"
-          label="Прізвище"
+          label="Прізвище&#42;"
           placeholder="Прізвище"
           name="lastName"
           onChange={e => {
@@ -58,7 +58,7 @@ export const DeliveryPersonalDetails = () => {
         />
         <CustomInput
           type="text"
-          label="Номер телефону"
+          label="Номер телефону&#42;"
           placeholder="+380"
           name="phone"
           onChange={e => {
@@ -68,7 +68,7 @@ export const DeliveryPersonalDetails = () => {
         />
         <CustomInput
           type="email"
-          label="Email"
+          label="Email&#42;"
           placeholder="example@com.ua"
           name="email"
           onChange={e => {
