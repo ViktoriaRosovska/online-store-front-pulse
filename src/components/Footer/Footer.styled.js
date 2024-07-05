@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import footerBackground from "../../assets/images/footer-background.png";
+import footerBackground from "../../assets/images/footer-background.jpg";
 import { Form } from "formik";
 import CustomInput from "components/form/formElements/CustomInput/CustomInput";
 import { HeroButton } from "../../pages/main/MainPage.styled";

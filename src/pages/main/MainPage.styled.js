@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import heroBackground from "../../assets/images/hero-background.png";
+import heroBackground from "../../assets/images/hero-background.jpg";
 import manBoxLg from "../../assets/images/manBox-lg.png";
 import manBoxSm from "../../assets/images/manBox-sm.jpg";
 import womanBoxLg from "../../assets/images/woman-main-lg.png";
