@@ -47,7 +47,7 @@ export const ShopCartDelivery = props => {
   const {
     products,
     deliveryType,
-    // address,
+    address,
     addressDepartment,
     addressPoshtomat,
     city,
@@ -116,7 +116,7 @@ export const ShopCartDelivery = props => {
 
   // console.log("addressPoshtomat", addressPoshtomat);
 
-  // console.log("city", city);
+  console.log("city", city);
 
   return (
     <>
@@ -128,12 +128,12 @@ export const ShopCartDelivery = props => {
               validationSchema={userShopCartValidationSchema}
               onSubmit={onSubmit}
               initialValues={{
-                city: null,
+                city: city || null,
                 firstName: data?.user.firstName || "",
                 lastName: data?.user.lastName || "",
                 phone: data?.user.phone || "",
                 email: data?.user.email || "",
-                address: "",
+                address: address || {},
                 street: "",
                 numberHouse: "",
                 numberHoll: "",
@@ -155,17 +155,26 @@ export const ShopCartDelivery = props => {
                   <DeliveryChoiceType />
 
                   {deliveryType === DELIVERY.department && (
-                    <DepartmentDeliveryAddress />
+                    <DepartmentDeliveryAddress
+                      setFieldValue={setFieldValue}
+                      errors={errors}
+                    />
                   )}
                   {deliveryType === DELIVERY.courier && (
                     <CourierDeliveryAddress />
                   )}
                   {deliveryType === DELIVERY.poshtomat && (
-                    <PoshtomatDeliveryAddress />
+                    <PoshtomatDeliveryAddress
+                      setFieldValue={setFieldValue}
+                      errors={errors}
+                    />
                   )}
 
-                  <DeliveryPersonalDetails />
-                  <DeliveryCheckboxPolicy />
+                  <DeliveryPersonalDetails setFieldValue={setFieldValue} />
+                  <DeliveryCheckboxPolicy
+                    setFieldValue={setFieldValue}
+                    errors={errors}
+                  />
 
                   <StyledLoginFormButton type="submit">
                     Продовжити оформлення
@@ -173,13 +182,6 @@ export const ShopCartDelivery = props => {
                 </StyledDeliveryForm>
               )}
             </Formik>
-
-            {/* <StyledShopCartButton
-              text={"Продовжити оформлення"}
-              route={ROUTES.SHOPCARTPAYMENT}
-              state={{ from: location }}
-              onClick={() => onSubmit()}
-            /> */}
           </div>
 
           <StyledDeliveryOrderWrapper>

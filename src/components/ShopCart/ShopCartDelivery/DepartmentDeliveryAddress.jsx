@@ -7,12 +7,14 @@ import {
   StyledSelectLabel,
   StyledSelectWrapper,
 } from "./ShopCartDelivery.styled";
-import { addShopCartAddressDepartment } from "../../../redux/user/userShopCart/userShopCartSlice";
+import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { useEffect } from "react";
+import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
 
-export const DepartmentDeliveryAddress = () => {
-  const { city, addressDepartment } = useSelector(selectUserShopCart);
+export const DepartmentDeliveryAddress = ({ setFieldValue, errors }) => {
+  const { city, address } = useSelector(selectUserShopCart);
+  console.log("address", address);
   const dispatch = useDispatch();
   const [
     getDepartments,
@@ -27,8 +29,13 @@ export const DepartmentDeliveryAddress = () => {
     getDepartments(city.Ref);
   }, [city, getDepartments]);
 
+  useEffect(() => {
+    dispatch(addShopCartAddress({}));
+  }, []);
+
   const onSelectDepartmentsChange = value => {
-    dispatch(addShopCartAddressDepartment(value));
+    dispatch(addShopCartAddress(value));
+    setFieldValue("address", value);
   };
 
   return (
@@ -43,9 +50,10 @@ export const DepartmentDeliveryAddress = () => {
           options={departmentTypeFilter(data, ["Branch", "Store"])}
           placeholder="Номер відділення"
           onChange={e => onSelectDepartmentsChange(e)}
-          displayDepartment={addressDepartment}
+          displayDepartment={address}
           name="address"
         />
+        {errors.address && <Error>{errors.address}</Error>}
       </StyledSelectWrapper>
     </>
   );

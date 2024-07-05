@@ -9,17 +9,17 @@ import {
   addShopCartLastName,
   addShopCartPhone,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
+import { useDispatch } from "react-redux";
+
 import { useFetchCurrentUserQuery } from "../../../redux/auth";
 import { useEffect } from "react";
+import { formatPhoneNumber } from "components/form/formHelpers/formatPhoneNumber";
 
-export const DeliveryPersonalDetails = () => {
+export const DeliveryPersonalDetails = ({ setFieldValue }) => {
   const { data, isLoading, refetch } = useFetchCurrentUserQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
 
-  const { firstName, lastName, email, phone } = useSelector(selectUserShopCart);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,8 +43,8 @@ export const DeliveryPersonalDetails = () => {
           name="firstName"
           onChange={e => {
             dispatch(addShopCartFirstName(e.target.value));
+            setFieldValue("firstName", e.target.value);
           }}
-          value={firstName}
         />
         <CustomInput
           type="text"
@@ -53,18 +53,18 @@ export const DeliveryPersonalDetails = () => {
           name="lastName"
           onChange={e => {
             dispatch(addShopCartLastName(e.target.value));
+            setFieldValue("lastName", e.target.value);
           }}
-          value={lastName}
         />
         <CustomInput
           type="text"
           label="Номер телефону&#42;"
-          placeholder="+380"
+          placeholder="+38(000)000-00-00"
           name="phone"
           onChange={e => {
             dispatch(addShopCartPhone(e.target.value));
+            setFieldValue("phone", formatPhoneNumber(e.target.value));
           }}
-          value={phone}
         />
         <CustomInput
           type="email"
@@ -73,8 +73,8 @@ export const DeliveryPersonalDetails = () => {
           name="email"
           onChange={e => {
             dispatch(addShopCartEmail(e.target.value));
+            setFieldValue("email", e.target.value);
           }}
-          value={email}
         />
       </StyledNameWrapper>
     </>

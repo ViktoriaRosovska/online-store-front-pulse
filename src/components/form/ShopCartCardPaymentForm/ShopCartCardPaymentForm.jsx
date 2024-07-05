@@ -16,6 +16,7 @@ import { selectPaymentCard } from "../../../redux/paymentCard/paymentCardSelecto
 
 export const ShopCartCardPaymentForm = ({ shop, showModal }) => {
   const selectedCard = useSelector(selectPaymentCard);
+  console.log(shop);
   const [postOrders] = usePostOrdersMutation();
   const initialValues = {
     cardNumber: editCardNumberInInput(selectedCard?.cardNumber) || "",
@@ -77,7 +78,7 @@ export const ShopCartCardPaymentForm = ({ shop, showModal }) => {
             maxLength="3"
           />
           <StyledPayButton type="submit">
-            {"Сплатити" + " " + shop.totalPriceSum + " грн."}
+            {"Сплатити" + " " + shop.priceSum + " грн."}
           </StyledPayButton>
         </StyledCardForm>
       )}
