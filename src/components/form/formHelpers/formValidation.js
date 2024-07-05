@@ -268,7 +268,7 @@ export const resetPasswordValidationSchema = Yup.object().shape({
     .required("Oбовʼязкове поле"),
 });
 export const userShopCartValidationSchema = Yup.object().shape({
-  city: Yup.object().required(),
+  city: Yup.object().required("Вкажіть населений пункт"),
   firstName: Yup.string()
     .typeError("Повинно бути строкою")
     .matches(nameRegex, "Повинні бути тільки букви")
@@ -299,7 +299,9 @@ export const userShopCartValidationSchema = Yup.object().shape({
   flat: Yup.string(),
   comments: Yup.string(),
   numberHoll: Yup.string(),
-  condition: Yup.boolean().required("Обов'язкове поле"),
+  condition: Yup.boolean()
+    .required("Обов'язкове поле")
+    .test(value => value === true),
   isMailing: Yup.boolean(),
   address: Yup.string().required(),
   addressDepartment: Yup.object(),
