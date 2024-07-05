@@ -6,38 +6,41 @@ import { Box, OutletWrapper } from "./ProfileLayout.styled";
 import Breadcrumbs from "components/Breadcrumbs";
 import { BREADCRUMBS_PROFILE } from "../../utils/breadcrumbsVocabulary";
 import { Helmet } from "react-helmet";
+import { Suspense } from "react";
 
 const ProfileLayout = () => {
-  const location = useLocation().pathname
+  const location = useLocation().pathname;
 
-  const findBreadcrumb = (path) => {
+  const findBreadcrumb = path => {
     for (const key in BREADCRUMBS_PROFILE) {
       if (path.includes(key)) {
-        return BREADCRUMBS_PROFILE[key]
+        return BREADCRUMBS_PROFILE[key];
       }
     }
-    return ''
-  }
+    return "";
+  };
 
   return (
     <>
       <Helmet>
         <title>PulseRun Profile</title>
       </Helmet>
-    <PageSection>
-      <Container>
-        <Breadcrumbs current={findBreadcrumb(location)} />
-        <Box>
-          <MediaQuery minWidth={1440}>
-            <ProfileMenu />
-          </MediaQuery>
-          <OutletWrapper>
-            <Outlet />
-          </OutletWrapper>
-        </Box>
-      </Container>
+      <PageSection>
+        <Container>
+          <Breadcrumbs current={findBreadcrumb(location)} />
+          <Box>
+            <MediaQuery minWidth={1440}>
+              <ProfileMenu />
+            </MediaQuery>
+            <OutletWrapper>
+              <Suspense>
+                <Outlet />
+              </Suspense>
+            </OutletWrapper>
+          </Box>
+        </Container>
       </PageSection>
-      </>
+    </>
   );
 };
 
