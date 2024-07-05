@@ -66,7 +66,7 @@ export const PaymentRadioGroup = () => {
     name: firstName + " " + lastName,
     email: email,
     isMailing: isMailing,
-    phone: phone,
+    phone: phone.replace(/[\s()-]/g, ""),
   };
 
   // console.log(paymentMethod);
