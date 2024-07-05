@@ -40,7 +40,7 @@ export const DeliveryPersonalDetails = () => {
           type="text"
           label="Ім'я&#42;"
           placeholder="Ім'я"
-          name="fistName"
+          name="firstName"
           onChange={e => {
             dispatch(addShopCartFirstName(e.target.value));
           }}

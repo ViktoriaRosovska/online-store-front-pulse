@@ -6,11 +6,14 @@ export const CitySelect = ({
   onSearch,
   placeholder,
   displayCity,
+  errors,
 }) => {
   const style = {
     control: baseStyles => ({
       ...baseStyles,
-      border: "1px solid var(--black-text-color)",
+      border: errors.city
+        ? "1px solid red"
+        : "1px solid var(--black-text-color)",
       borderRadius: "16px",
       //   backgroundColor: "transparent",
       //   boxShadow: "none",

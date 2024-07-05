@@ -20,7 +20,6 @@ export const DeliveryCheckboxPolicy = () => {
     <StyledCheckboxWrapper>
       <StyledCheckboxLabel>
         <CheckboxItem
-          required
           name="condition"
           item=""
           onChange={e => {

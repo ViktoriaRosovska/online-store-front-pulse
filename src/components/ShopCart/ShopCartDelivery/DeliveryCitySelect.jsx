@@ -47,6 +47,7 @@ export const DeliveryCitySelect = ({ errors, values, setFieldValue }) => {
           Населений пункт&#42;
         </StyledSelectLabel>
         <CitySelect
+          errors={errors}
           options={data?.data}
           placeholder={"Введіть населений пункт"}
           onChange={e => onSelectCityChange(e)}

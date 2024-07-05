@@ -9,13 +9,16 @@ import { ReactComponent as BasketIcon } from "../../../../../assets/svg/basket_i
 import { ReactComponent as ProfileIcon } from "../../../../../assets/svg/profile_icon.svg";
 import { ReactComponent as FavoriteIcon } from "../../../../../assets/svg/heart_lg.svg";
 import ParenModalForAuth from "components/Modals/ParentModalForAuth/ParentModalForAuth";
+import { StyledShopCountComponent } from "components/StyledShopCountComponent/StyledShopCountComponent";
+import { StyledBasketWrapper } from "components/Header/Header.styled";
+import { selectUserShopCart } from "../../../../../redux/user/userShopCart/userShopCartSelector";
 
 function UserActions(props) {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
     useState(false);
   const [redirectPath, setRedirectPath] = useState("/profile/account");
-
+  const { countQuantity } = useSelector(selectUserShopCart);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -80,14 +83,17 @@ function UserActions(props) {
           <FavoriteIcon />
         </button>
       </MediaQuery>
-      <button
-        className={`user__actions-cart user__actions-icon ${
-          props.isFixed || !props.location ? "fixed" : ""
-        }`}
-        onClick={navigateToShopCart}
-      >
-        <BasketIcon />
-      </button>
+      <StyledBasketWrapper>
+        <button
+          className={`user__actions-cart user__actions-icon ${
+            props.isFixed || !props.location ? "fixed" : ""
+          }`}
+          onClick={navigateToShopCart}
+        >
+          <BasketIcon />
+          {countQuantity > 0 ? <StyledShopCountComponent /> : null}
+        </button>
+      </StyledBasketWrapper>
 
       <ParenModalForAuth
         isAuthModalOpen={isLoginModalOpen}
