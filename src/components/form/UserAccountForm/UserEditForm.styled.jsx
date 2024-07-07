@@ -11,10 +11,11 @@ export const StyledForm = styled(Form)`
   gap: 16px;
 
   @media screen and (min-width: 1440px) {
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     height: 330px;
-    width: 797px;
-    gap: 30px 26px;
+    width: 792px;
+    gap: 30px 24px;
   }
 `;
 

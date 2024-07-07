@@ -133,15 +133,15 @@ export const StyledPassIconWrapper = styled.div`
 `;
 
 export const Error = styled.p`
-  /* position: absolute; */
+  position: absolute;
   color: red;
-  /* left: 0; */
-  font-size: 12px;
+  left: 0;
+  font-size: 10px;
   /* margin-top: 16px; */
-  /* bottom: -16px; */
+  bottom: -16px;
 
   @media screen and (min-width: 1440px) {
-    font-size: 14px;
-    bottom: -20px;
+    font-size: 12px;
+    top: 88px;
   }
 `;
