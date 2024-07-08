@@ -26,7 +26,17 @@ const commonProductQuery = ({
 
 export const productsApi = createApi({
   reducerPath: "products",
-  baseQuery: axiosBaseQuery(api),
+  baseQuery: axiosBaseQuery(api, {
+    prepareHeaders: ({ getState }) => {
+      const state = getState();
+      if (state.userAuthReducer.token) {
+        return {
+          Authorization: `Bearer ${state.userAuthReducer.token}`,
+        };
+      }
+      return {};
+    },
+  }),
   tagTypes: ["Products"],
 
   endpoints: builder => ({
