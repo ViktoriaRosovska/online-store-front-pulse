@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import { CatalogComponent } from "../../components/CatalogComponent/CatalogComponent";
+import CatalogComponent from "../../components/CatalogComponent/CatalogComponent";
 import { useLazyGetNewestQuery } from "../../redux/products/productsApi";
 
 const NewBrands = () => {
