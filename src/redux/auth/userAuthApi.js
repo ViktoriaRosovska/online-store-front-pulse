@@ -62,6 +62,12 @@ export const userAuthApi = createApi({
         method: "GET",
       }),
     }),
+    getUserOrders: builder.query({
+      query: () => ({
+        url: `/products/orders`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -73,4 +79,5 @@ export const {
   useLoginUserFBQuery,
   useLazyFetchCurrentUserQuery,
   useFetchCurrentUserQuery,
+  useGetUserOrdersQuery,
 } = userAuthApi;

@@ -55,7 +55,7 @@ const Card = ({
               />
             ) : null}
 
-            <CardImage src={image} $sales={sales} $cardSlider={cardSlider} />
+            <CardImage src={image} $sales={sales} $cardSlider={cardSlider} loading="lazy" />
             <FavoriteButton
               $sales={sales && sale > 0}
               $new={newBrands}

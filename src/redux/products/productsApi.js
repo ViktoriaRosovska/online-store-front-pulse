@@ -104,6 +104,7 @@ export const productsApi = createApi({
         data,
       }),
     }),
+
   }),
 });
 
