@@ -1,3 +1,4 @@
+import { formatPrice } from "../../../utils/formatPrice";
 import { calculateTotalPrice } from "../../../utils/calculateTotalPrice";
 import UserOrderHistoryDetailsItem from "../UserOrderHistoryDetailsItem/UserOrderHistoryDetailsItem";
 import {
@@ -9,18 +10,19 @@ import {
 } from "./UserOrderHistoryDetailsList.styled";
 
 const UserOrderHistoryDetailsList = ({ item }) => {
+  console.log("UserOrderHistoryDetailsList  item", item)
   return (
     <Wrapper>
       <List>
         {item?.products.map(product => (
-          <UserOrderHistoryDetailsItem key={item._id} product={product} />
+          <UserOrderHistoryDetailsItem key={product.productId._id} product={product} />
         ))}
       </List>
 
       <SumUpBox>
         <div>
           <p>Підсумок</p>
-          <p>{calculateTotalPrice(item?.products)} грн.</p>
+          <p>{formatPrice(calculateTotalPrice(item?.products))} грн.</p>
         </div>
         <div>
           <p>Доставка</p>
@@ -28,7 +30,7 @@ const UserOrderHistoryDetailsList = ({ item }) => {
         </div>
         <TotalPrice>
           <p>Разом</p>
-          <p>{calculateTotalPrice(item?.products) + 0} грн.</p>
+          <p>{formatPrice(calculateTotalPrice(item?.products) + 0)} грн.</p>
         </TotalPrice>
       </SumUpBox>
 

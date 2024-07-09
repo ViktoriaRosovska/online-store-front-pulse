@@ -9,7 +9,7 @@ const UserOrderHistory = () => {
   return (
     <>
       <Title style={{ textAlign: "left" }}>Історія замовлень</Title>
-      <UserOrderHistoryList />
+      <UserOrderHistoryList orders={data?.buyHistory} />
     </>
   );
 };
