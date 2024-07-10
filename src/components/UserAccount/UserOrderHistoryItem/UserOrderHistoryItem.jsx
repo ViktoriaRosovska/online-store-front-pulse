@@ -18,6 +18,7 @@ import { formatOrderDate } from "../../../utils/formatOrderDate";
 import { formatPrice } from "../../../utils/formatPrice";
 
 const UserOrderHistoryItem = ({ item }) => {
+  console.log("UserOrderHistoryItem  item", item)
   const [isOrderDetailsOpen, setIsOrderDetailsOpen] = useState(false);
 
   const arrowSvg = isOrderDetailsOpen ? <DownSvg /> : <UpSvg />;

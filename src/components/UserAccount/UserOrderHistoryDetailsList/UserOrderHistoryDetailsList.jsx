@@ -10,7 +10,8 @@ import {
 } from "./UserOrderHistoryDetailsList.styled";
 
 const UserOrderHistoryDetailsList = ({ item }) => {
-  console.log("UserOrderHistoryDetailsList  item", item)
+ console.log("UserOrderHistoryDetailsList  item", item)
+ 
   return (
     <Wrapper>
       <List>
@@ -35,8 +36,9 @@ const UserOrderHistoryDetailsList = ({ item }) => {
       </SumUpBox>
 
       <Address>
-        <p>тел. +380 96 452 31 45</p>
-        <p>м. Київ</p>
+        <p>{item?.name}</p>
+        <p>тел. {item?.phone}</p>
+        <p>{item?.deliveryAddress}</p>
         <p>Відділення №2: вул. Бережанська, 9</p>
       </Address>
     </Wrapper>

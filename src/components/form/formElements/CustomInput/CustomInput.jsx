@@ -1,5 +1,5 @@
 import { useField } from "formik";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import VisiblePasswordIcon from "../VisiblePasswordIcon/VisiblePasswordIcon";
 import {
   Box,
@@ -14,6 +14,7 @@ import {
 const CustomInput = ({ label, mask, ...props }) => {
   const [field, meta] = useField(props);
   const [visiblePassword, setVisiblePassword] = useState(false);
+  const inputRef = useRef(null);
 
   const isError = meta.error && meta.touched;
 
@@ -23,6 +24,14 @@ const CustomInput = ({ label, mask, ...props }) => {
   const togglePasswordVisibility = () => {
     setVisiblePassword(!visiblePassword);
   };
+
+ useEffect(() => {
+    if (inputRef.current && mask) {
+      const inputElement = inputRef.current.inputElement;
+      const startPosition = mask.indexOf("0") + 1; // После символа (
+      inputElement.setSelectionRange(startPosition, startPosition);
+    }
+  }, [mask]);
 
   return (
     <Box>
@@ -34,8 +43,9 @@ const CustomInput = ({ label, mask, ...props }) => {
               {...field}
               {...props}
               mask={mask}
-              autoComplete="off"
+              autoComplete="on"
               showMask={true}
+              ref={inputRef}
             />
           ) : (
             <Input

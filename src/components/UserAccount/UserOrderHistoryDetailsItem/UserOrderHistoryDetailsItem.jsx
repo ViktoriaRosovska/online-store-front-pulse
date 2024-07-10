@@ -18,7 +18,7 @@ console.log("UserOrderHistoryDetailsItem  product", product)
         <InfoContainer>
           <Box>
             <h3>{product?.productId.name}</h3>
-            <Size>{product?.sizeId} розмір</Size>
+            <Size>{product?.sizeId.value} розмір</Size>
           </Box>
           <Quantity>{product?.quantity} шт.</Quantity>
         </InfoContainer>
