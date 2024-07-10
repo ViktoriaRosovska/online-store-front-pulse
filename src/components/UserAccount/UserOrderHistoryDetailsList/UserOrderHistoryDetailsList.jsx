@@ -1,6 +1,6 @@
 import { formatPrice } from "../../../utils/formatPrice";
 import { calculateTotalPrice } from "../../../utils/calculateTotalPrice";
-import UserOrderHistoryDetailsItem from "../UserOrderHistoryDetailsItem/UserOrderHistoryDetailsItem";
+import UserOrderHistoryDetailsItem from "./UserOrderHistoryDetailsItem/UserOrderHistoryDetailsItem";
 import {
   Address,
   List,
