@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import { CatalogComponent } from "../../components/CatalogComponent/CatalogComponent.jsx";
+import  CatalogComponent from "../../components/CatalogComponent/CatalogComponent.jsx";
 import { useLazyGetAllProductsQuery } from "../../redux/products/productsApi.js";
 
 const FemaleCatalog = () => {

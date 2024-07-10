@@ -14,8 +14,11 @@ import { ReactComponent as UpSvg } from "../../../assets/svg/up.svg";
 import { ReactComponent as DownSvg } from "../../../assets/svg/down.svg";
 import UserOrderHistoryDetailsList from "../UserOrderHistoryDetailsList/UserOrderHistoryDetailsList";
 import { calculateTotalPrice } from "../../../utils/calculateTotalPrice";
+import { formatOrderDate } from "../../../utils/formatOrderDate";
+import { formatPrice } from "../../../utils/formatPrice";
 
 const UserOrderHistoryItem = ({ item }) => {
+  console.log("UserOrderHistoryItem  item", item)
   const [isOrderDetailsOpen, setIsOrderDetailsOpen] = useState(false);
 
   const arrowSvg = isOrderDetailsOpen ? <DownSvg /> : <UpSvg />;
@@ -26,25 +29,21 @@ const UserOrderHistoryItem = ({ item }) => {
 
   const imageCount = item?.products.length;
 
-  //   const calculateTotalPrice = products => {
-  //     return products.reduce((total, product) => {
-  //       return total + product.quantity * product.priceByOne;
-  //     }, 0);
-  //   };
+  const status = item?.status === 'pending' ? "Оформлений" : "Доставлений"
 
   return (
     <>
       <Item>
-        <Box>
+        <Box $status={status}>
           <Info>
             <OrderNumber>
-              Замовлення №{item._id}2345-45637, {item.date}
+              Замовлення №{(item._id).slice(0, 14)}, {formatOrderDate(item.orderDate)}
             </OrderNumber>
-            <Status>{item.status}</Status>
+            <Status>{status}</Status>
           </Info>
           <div>
             <SumUp>Підсумок</SumUp>
-            <p>{calculateTotalPrice(item.products)} грн.</p>
+            <p>{formatPrice(calculateTotalPrice(item.products))}</p>
           </div>
           <ImageThumb>
             {item?.products.map(product => (
@@ -52,8 +51,8 @@ const UserOrderHistoryItem = ({ item }) => {
                 key={product.productId._id}
                 src={product.productId.imgThumbnail}
                 alt={product.productId.name}
-                    $count={imageCount}
-                    style={{width: '43'}}
+                $count={imageCount}
+                style={{ width: "43" }}
               />
             ))}
           </ImageThumb>

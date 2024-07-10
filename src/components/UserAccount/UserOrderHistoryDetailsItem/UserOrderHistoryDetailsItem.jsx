@@ -1,7 +1,8 @@
+import { formatPrice } from "../../../utils/formatPrice";
 import { Box, Image, InfoContainer, Item, Price, Quantity, Size } from "./UserOrderHistoryDetailsItem.styled";
 
 const UserOrderHistoryDetailsItem = ({ product }) => {
-  console.log("UserOrderHistoryDetailsItem  product", product);
+console.log("UserOrderHistoryDetailsItem  product", product)
 
   const calculateTotalPrice = product => {
     return product?.priceByOne * product?.quantity;
@@ -17,11 +18,11 @@ const UserOrderHistoryDetailsItem = ({ product }) => {
         <InfoContainer>
           <Box>
             <h3>{product?.productId.name}</h3>
-            <Size>{product?.sizeId} розмір</Size>
+            <Size>{product?.sizeId.value} розмір</Size>
           </Box>
           <Quantity>{product?.quantity} шт.</Quantity>
         </InfoContainer>
-        <Price>{calculateTotalPrice(product)} грн.</Price>
+        <Price>{formatPrice(calculateTotalPrice(product))}</Price>
       </Item>
     </>
   );

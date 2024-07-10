@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { CatalogComponent } from "../../components/CatalogComponent/CatalogComponent.jsx";
+import  CatalogComponent  from "../../components/CatalogComponent/CatalogComponent.jsx";
 import { useLazyGetAllProductsQuery } from "../../redux/products/productsApi.js";
 import { Helmet } from "react-helmet";
 

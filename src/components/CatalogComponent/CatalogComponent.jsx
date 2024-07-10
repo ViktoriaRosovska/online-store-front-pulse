@@ -51,7 +51,7 @@ function getInitialFilter(def) {
   return filter;
 }
 
-export const CatalogComponent = ({
+ const CatalogComponent = ({
   title,
   sex,
   cardfeature,
@@ -215,3 +215,5 @@ export const CatalogComponent = ({
     </PageSection>
   );
 };
+
+export default CatalogComponent 

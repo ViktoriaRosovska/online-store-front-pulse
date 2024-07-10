@@ -34,7 +34,7 @@ export const Box = styled.div`
     width: 1.5px;
     height: 100%;
     left: -8px;
-    background-color: #34a853;
+    background-color: ${props => props.$status === 'pending' ? '#34a853' : 'var(--grey-text-color)'} ;
   }
 
   @media screen and (min-width: 1440px) {
