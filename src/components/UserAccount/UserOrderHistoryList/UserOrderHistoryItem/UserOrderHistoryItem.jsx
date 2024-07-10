@@ -10,12 +10,12 @@ import {
   Status,
   SumUp,
 } from "./UserOrderHistoryItem.styled";
-import { ReactComponent as UpSvg } from "../../../assets/svg/up.svg";
-import { ReactComponent as DownSvg } from "../../../assets/svg/down.svg";
-import UserOrderHistoryDetailsList from "../UserOrderHistoryDetailsList/UserOrderHistoryDetailsList";
-import { calculateTotalPrice } from "../../../utils/calculateTotalPrice";
-import { formatOrderDate } from "../../../utils/formatOrderDate";
-import { formatPrice } from "../../../utils/formatPrice";
+import { ReactComponent as UpSvg } from "../../../../assets/svg/up.svg";
+import { ReactComponent as DownSvg } from "../../../../assets/svg/down.svg";
+import UserOrderHistoryDetailsList from "../../UserOrderHistoryDetailsList/UserOrderHistoryDetailsList";
+import { calculateTotalPrice } from "../../../../utils/calculateTotalPrice";
+import { formatOrderDate } from "../../../../utils/formatOrderDate";
+import { formatPrice } from "../../../../utils/formatPrice";
 
 const UserOrderHistoryItem = ({ item }) => {
   console.log("UserOrderHistoryItem  item", item)
