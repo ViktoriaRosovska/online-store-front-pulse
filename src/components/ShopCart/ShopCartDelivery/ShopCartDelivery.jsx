@@ -1,4 +1,3 @@
-import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
 import { ROUTES } from "../../../utils/routes";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
@@ -32,7 +31,11 @@ import { ShopCartProductsList } from "../ShopCartProductsList";
 import { PromoCode } from "components/PromoCode";
 import { useEffect, useState } from "react";
 import { selectUserToken, useFetchCurrentUserQuery } from "../../../redux/auth";
-import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
+import {
+  addShopCartAddress,
+  addShopCartAddressDepartment,
+  addShopCartAddressPoshtomat,
+} from "../../../redux/user/userShopCart/userShopCartSlice";
 
 import { ShopCartLoginForm } from "components/form/ShopCartLoginForm/ShopCartLoginForm";
 import { ShopCartRegisterForm } from "components/form/ShopCartRegisterForm/ShopCartRegisterForm";
@@ -55,6 +58,7 @@ export const ShopCartDelivery = props => {
     flat,
     numberHouse,
     numberHoll,
+    comments,
   } = useSelector(selectUserShopCart);
   const { data, isLoading, refetch } = useFetchCurrentUserQuery(undefined, {
     refetchOnMountOrArgChange: true,
@@ -76,40 +80,35 @@ export const ShopCartDelivery = props => {
   };
 
   console.log(data);
+
   const isDesktop = useMediaQuery("(min-width: 1440px)");
   const [isActiveForm, setIsActiveForm] = useState(true);
+
+  if (deliveryType === DELIVERY.courier) {
+    dispatch(addShopCartAddressDepartment(address));
+    dispatch(addShopCartAddressPoshtomat(address));
+  }
+
   const onSubmit = (values, option) => {
     console.log(values, option);
-    if (deliveryType === DELIVERY.department) {
-      dispatch(
-        addShopCartAddress(city.label + ", " + addressDepartment.Description)
-      );
-    }
-    if (deliveryType === DELIVERY.poshtomat) {
-      dispatch(
-        addShopCartAddress(city.label + ", " + addressPoshtomat.Description)
-      );
-    }
+
     if (deliveryType === DELIVERY.courier) {
       dispatch(
-        addShopCartAddress(
-          city?.label +
-            ", " +
-            street?.Description +
-            ", " +
-            numberHouse +
-            ", " +
-            numberHoll +
-            ", " +
-            flat
-        )
+        addShopCartAddressDepartment({ Description: address.Description })
+      );
+      dispatch(
+        addShopCartAddressPoshtomat({ Description: address.Description })
       );
     }
     navigate(ROUTES.SHOPCARTPAYMENT);
   };
   useEffect(() => {
     refetch();
-  }, [refetch]);
+    if (deliveryType === DELIVERY.courier) {
+      dispatch(addShopCartAddressDepartment(address));
+      dispatch(addShopCartAddressPoshtomat(address));
+    }
+  }, [refetch, address, dispatch, deliveryType]);
 
   // console.log("address", address);
   // console.log("addressDepartment", addressDepartment);
@@ -118,6 +117,8 @@ export const ShopCartDelivery = props => {
 
   console.log("city", city);
 
+  console.log("address", address);
+  console.log("stringify", JSON.stringify(address));
   return (
     <>
       <Title>{props.title}</Title>
@@ -128,17 +129,30 @@ export const ShopCartDelivery = props => {
               validationSchema={userShopCartValidationSchema}
               onSubmit={onSubmit}
               initialValues={{
-                city: city || null,
+                city: city || {},
                 firstName: data?.user.firstName || "",
                 lastName: data?.user.lastName || "",
                 phone: data?.user.phone || "",
                 email: data?.user.email || "",
-                address: address || {},
-                street: "",
-                numberHouse: "",
-                numberHoll: "",
-                comments: "",
-                flat: "",
+                address: {
+                  Description: "",
+                  city: city || {},
+                  street: street || {},
+                  numberHouse: numberHouse || "",
+                  numberHoll: numberHoll || "",
+                  flat: flat || "",
+                  comments: comments || "",
+                },
+                addressDepartment: {
+                  Description: addressDepartment.Description || {},
+                },
+                addressPoshtomat:
+                  { Description: addressPoshtomat.Description } || {},
+                street: street || {},
+                numberHouse: numberHouse || "",
+                numberHoll: numberHoll || "",
+                comments: comments || "",
+                flat: flat || "",
                 condition: false,
                 isMailing: false,
               }}
@@ -158,15 +172,21 @@ export const ShopCartDelivery = props => {
                     <DepartmentDeliveryAddress
                       setFieldValue={setFieldValue}
                       errors={errors}
+                      values={values}
                     />
                   )}
                   {deliveryType === DELIVERY.courier && (
-                    <CourierDeliveryAddress />
+                    <CourierDeliveryAddress
+                      values={values}
+                      setFieldValue={setFieldValue}
+                      errors={errors}
+                    />
                   )}
                   {deliveryType === DELIVERY.poshtomat && (
                     <PoshtomatDeliveryAddress
                       setFieldValue={setFieldValue}
                       errors={errors}
+                      values={values}
                     />
                   )}
 

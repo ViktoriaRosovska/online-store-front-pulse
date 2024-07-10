@@ -25,7 +25,7 @@ const CustomInput = ({ label, mask, ...props }) => {
     setVisiblePassword(!visiblePassword);
   };
 
- useEffect(() => {
+  useEffect(() => {
     if (inputRef.current && mask) {
       const inputElement = inputRef.current.inputElement;
       const startPosition = mask.indexOf("0") + 1; // После символа (
@@ -34,49 +34,52 @@ const CustomInput = ({ label, mask, ...props }) => {
   }, [mask]);
 
   return (
-    <Box>
-      <InputField>
-        <label>{label}</label>
-        <InputWrapper $isPassword={isPasswordInput}>
-          {mask ? (
-            <StyledMaskedInput
-              {...field}
-              {...props}
-              mask={mask}
-              autoComplete="on"
-              showMask={true}
-              ref={inputRef}
-            />
-          ) : (
-            <Input
-              onChange={field.onChange}
-              {...field}
-              {...props}
-              $isPassword={isPasswordInput}
-              as={props.$textarea ? "textarea" : "input"}
-              type={
-                isPasswordInput
-                  ? visiblePassword
-                    ? "text"
-                    : "password"
-                  : props.type
-              }
-              autoComplete="off"
-              $isError={isError}
-            />
-          )}
-          <StyledPassIconWrapper>
-            {isPasswordInput && (
-              <VisiblePasswordIcon
-                visiblePassword={visiblePassword}
-                onClick={togglePasswordVisibility}
+    <div style={{ position: "relative" }}>
+      <Box>
+        <InputField>
+          <label>{label}</label>
+          <InputWrapper $isPassword={isPasswordInput}>
+            {mask ? (
+              <StyledMaskedInput
+                {...field}
+                {...props}
+                mask={mask}
+                autoComplete="on"
+                showMask={true}
+                $isError={isError}
+                ref={inputRef}
+              />
+            ) : (
+              <Input
+                onChange={field.onChange}
+                {...field}
+                {...props}
+                $isPassword={isPasswordInput}
+                as={props.$textarea ? "textarea" : "input"}
+                type={
+                  isPasswordInput
+                    ? visiblePassword
+                      ? "text"
+                      : "password"
+                    : props.type
+                }
+                autoComplete="off"
+                $isError={isError}
               />
             )}
-          </StyledPassIconWrapper>
-        </InputWrapper>
-      </InputField>
+            <StyledPassIconWrapper>
+              {isPasswordInput && (
+                <VisiblePasswordIcon
+                  visiblePassword={visiblePassword}
+                  onClick={togglePasswordVisibility}
+                />
+              )}
+            </StyledPassIconWrapper>
+          </InputWrapper>
+        </InputField>
+      </Box>
       {isError && <Error>{meta.error}</Error>}
-    </Box>
+    </div>
   );
 };
 

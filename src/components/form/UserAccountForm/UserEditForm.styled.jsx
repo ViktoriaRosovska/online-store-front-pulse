@@ -8,7 +8,7 @@ export const Box = styled.div`
 export const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 26px;
 
   @media screen and (min-width: 1440px) {
     display: grid;
@@ -31,7 +31,8 @@ export const Button = styled.button`
   font-size: 18px;
   line-height: 150%;
   letter-spacing: 0.01em;
-  transition: background-color 200ms ease-out, color 200ms ease-out, border 200ms ease-out;
+  transition: background-color 200ms ease-out, color 200ms ease-out,
+    border 200ms ease-out;
 
   &:hover {
     background-color: transparent;

@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import Select from "react-select";
 
 export const CitySelect = ({
@@ -10,8 +9,6 @@ export const CitySelect = ({
   errors,
   values,
 }) => {
-  const cityRef = useRef(null).current;
-  console.log(cityRef);
   const style = {
     control: baseStyles => ({
       ...baseStyles,
@@ -19,30 +16,18 @@ export const CitySelect = ({
         ? "1px solid red"
         : "1px solid var(--black-text-color)",
       borderRadius: "16px",
-      //   backgroundColor: "transparent",
-      //   boxShadow: "none",
-      //   border: "1px solid transparent",
-      //   minHeight: "20px",
+
       height: "48px",
       padding: "14px 16px",
 
-      //   "&:hover": {
-      //     border: "1px solid transparent",
-      //     color: "var(--grey-text-color)",
-      //   },
+      "&:hover": {
+        border: errors.city
+          ? "1px solid red"
+          : "1px solid var(--black-text-color)",
+      },
     }),
     menu: baseStyles => ({
       ...baseStyles,
-      //   width: "180px",
-      //   backgroundColor: "white",
-      //   border: "1px solid var(--black-bg-color)",
-      //   padding: "5px 12px",
-      //   borderRadius: "16px",
-      //   boxShadow: "none",
-      //   right: 0,
-      //   "&::-webkit-scrollbar": {
-      //     width: "0px",
-      //   },
     }),
     menuList: baseStyles => ({
       ...baseStyles,
@@ -122,7 +107,6 @@ export const CitySelect = ({
         onInputChange={onSearch}
         placeholder={placeholder}
         value={displayCity}
-        ref={cityRef}
         defaultValue={values?.city}
       />
     </>

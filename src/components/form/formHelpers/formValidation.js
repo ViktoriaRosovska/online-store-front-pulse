@@ -269,8 +269,10 @@ export const resetPasswordValidationSchema = Yup.object().shape({
 });
 export const userShopCartValidationSchema = Yup.object().shape({
   city: Yup.object()
-    .required("Вкажіть населений пункт")
-    .test(value => Object.hasOwn(value, "Description")),
+    .test("Вкажіть населений пункт", value =>
+      Object.hasOwn(value, "Description")
+    )
+    .required("Вкажіть населений пункт"),
   firstName: Yup.string()
     .typeError("Повинно бути строкою")
     .matches(nameRegex, "Повинні бути тільки букви")
@@ -296,8 +298,8 @@ export const userShopCartValidationSchema = Yup.object().shape({
     .matches(phoneRegex, { message: "Введіть корректний номер телефону" })
     .nullable()
     .required("Вкажіть номер телефону"),
-  street: Yup.object(),
-  numberHouse: Yup.string(),
+  street: Yup.object().test(value => Object.hasOwn(value, "Description")),
+  numberHouse: Yup.string().min(1, "Вкажіть номер будинку"),
   flat: Yup.string(),
   comments: Yup.string(),
   numberHoll: Yup.string(),
@@ -310,6 +312,10 @@ export const userShopCartValidationSchema = Yup.object().shape({
   address: Yup.object()
     .required()
     .test(value => Object.hasOwn(value, "Description")),
-  addressDepartment: Yup.object(),
-  addressPoshtomat: Yup.object(),
+  addressDepartment: Yup.object().test("Вкажіть адресу відділення", value =>
+    Object.hasOwn(value, "Description")
+  ),
+  addressPoshtomat: Yup.object().test("Вкажіть адресу поштомату", value =>
+    Object.hasOwn(value, "Description")
+  ),
 });
