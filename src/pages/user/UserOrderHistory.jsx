@@ -4,7 +4,6 @@ import { useGetUserOrdersQuery } from "../../redux/auth/userAuthApi";
 
 const UserOrderHistory = () => {
   const {data} = useGetUserOrdersQuery()
-  console.log("UserOrderHistory  data", data)
 
   return (
     <>

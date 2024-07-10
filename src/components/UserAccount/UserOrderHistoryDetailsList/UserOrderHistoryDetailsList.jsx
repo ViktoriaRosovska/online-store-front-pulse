@@ -10,7 +10,6 @@ import {
 } from "./UserOrderHistoryDetailsList.styled";
 
 const UserOrderHistoryDetailsList = ({ item }) => {
- console.log("UserOrderHistoryDetailsList  item", item)
  
   return (
     <Wrapper>

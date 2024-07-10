@@ -1,5 +1,6 @@
 .swiper-wrapper {
-  height: 415px;
+  height: 501px;
+  --swiper-pagination-bottom: 26px;
 }
 
 @media screen and (min-width: 1440px) {
@@ -10,6 +11,7 @@
   }
   .swiper-wrapper {
     height: 486px;
+    --swiper-pagination-bottom: 0;
   }
 }
 .swiper-pagination {
@@ -23,4 +25,9 @@
   background-color: red;
   width: 10px;
   height: 10px;
+}
+
+.swiper-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic,
+.swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+  bottom: 26px;
 }

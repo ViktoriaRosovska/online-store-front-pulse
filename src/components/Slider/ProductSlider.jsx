@@ -41,23 +41,27 @@ const ProductSlider = props => {
         // modules={[Pagination, Navigation]}
         navigation-next-el=".custom-next-button"
         navigation-prev-el=".custom-prev-button"
+        pagination-dynamic-bullets="true"
         pagination={{
           el: ".swiper-pagination",
           clickable: true,
           bulletClass: ".swiper-pagination-bullets",
+          dynamicBullets: true,
+          dynamicMainBullets: 5,
+          
         }}
-        loop={"true"}
+        // loop={"true"}
         loading="lazy"
         breakpoints={JSON.stringify({
           310: {
-            slidesPerView: 2,
+            slidesPerView: 1,
             spaceBetween: 12,
-            slidesPerGroup: 2,
+            slidesPerGroup: 1,
           },
           375: {
-            slidesPerView: 2,
+            slidesPerView: 1,
             spaceBetween: 24,
-            slidesPerGroup: 2,
+            slidesPerGroup: 1,
           },
 
           1440: {
@@ -71,7 +75,7 @@ const ProductSlider = props => {
           "--swiper-pagination-bullet-inactive-color": "var(--grey-text-color)",
           "--swiper-pagination-bullet-inactive-opacity": "1",
           // "--swiper-pagination-bullet-width": "5px",
-          "--swiper-pagination-bottom": "0px",
+          // "--swiper-pagination-bottom": "26px",
           // "--swiper-pagination-bullet-size": "12px",
           // "--swiper-pagination-bullet-horizontal-gap": "6px",
         }}

@@ -6,7 +6,7 @@ const CardWrapper = styled.div`
     width: 145px;
   }
   @media screen and (min-width: 375px) {
-    width: 152px;
+    width: ${props => props.$cardSlider ? '327px' : '152px'};
   }
   @media screen and (min-width: 1440px) {
     width: ${props => (props.$cardSlider ? "340px" : "320px")};
@@ -17,9 +17,9 @@ const CardImage = styled.img`
     width: 145px;
   }
   @media screen and (min-width: 375px) {
-    width: 152px;
+    width: ${props => props.$cardSlider ? '327px' : '152px'};
   }
-  height: ${props => (props.$cardSlider ? "167px" : "auto")};
+  height: ${props => (props.$cardSlider ? "287px" : "auto")};
   @media screen and (min-width: 1440px) {
     width: ${props => (props.$cardSlider ? "340px" : "320px")};
     height: ${props => (props.$cardSlider ? "287px" : "auto")};
