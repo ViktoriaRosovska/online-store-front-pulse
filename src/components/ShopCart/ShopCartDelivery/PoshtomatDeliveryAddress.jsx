@@ -11,6 +11,7 @@ import {
   addShopCartAddress,
   addShopCartAddressDepartment,
   addShopCartAddressPoshtomat,
+  addShopCartStreet,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { useEffect } from "react";
@@ -18,9 +19,10 @@ import { Error } from "components/form/formElements/CustomInput/CustomInput.styl
 
 export const PoshtomatDeliveryAddress = ({ setFieldValue, errors, values }) => {
   useEffect(() => {
-    dispatch(addShopCartAddress({ Description: values.city.label }));
+    dispatch(addShopCartAddress({ Description: values.address.city.label }));
   }, []);
-  const { city, addressPoshtomat } = useSelector(selectUserShopCart);
+
+  const { addressPoshtomat, address } = useSelector(selectUserShopCart);
   console.log("addressPoshtomat", addressPoshtomat);
   console.log("field addressDepartment", values.addressDepartment);
   const dispatch = useDispatch();
@@ -34,27 +36,24 @@ export const PoshtomatDeliveryAddress = ({ setFieldValue, errors, values }) => {
   ] = useGetDepartmentsMutation();
 
   useEffect(() => {
-    getDepartments(city.Ref);
-  }, [city, getDepartments]);
+    getDepartments(address?.city.Ref);
+  }, [address?.city, getDepartments]);
 
   const onSelectDepartmentsChange = value => {
-    dispatch(
-      addShopCartAddress({
-        Description: values.address.Description + ", " + value.Description,
-      })
-    );
-    setFieldValue("addressPoshtomat", value.Description);
+    setFieldValue("addressDepartment", {});
+    dispatch(addShopCartAddressDepartment({}));
+
+    setFieldValue("addressPoshtomat", value);
     dispatch(addShopCartAddressPoshtomat(value));
+
     setFieldValue("address", {
-      Description: values.address.Description + ", " + value.Description,
+      ...values.address,
+      Description: value.Description,
     });
-    setFieldValue("addressDepartment", {
-      Description: values.address.Description + ", " + value.Description,
-    });
-    dispatch(addShopCartAddressDepartment(value));
-    setFieldValue("addressDepartment", {
-      Description: values.address.Description + ", " + value.Description,
-    });
+    dispatch(addShopCartAddress({ Description: value.Description }));
+
+    setFieldValue("street", { Description: value.Description });
+    dispatch(addShopCartStreet({ Description: value.Description }));
   };
 
   return (

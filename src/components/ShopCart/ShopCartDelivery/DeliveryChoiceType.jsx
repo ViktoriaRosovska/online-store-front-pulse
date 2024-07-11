@@ -6,11 +6,14 @@ import {
 } from "./ShopCartDelivery.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
-import { addDeliveryType } from "../../../redux/user/userShopCart/userShopCartSlice";
+import {
+  addDeliveryType,
+  addShopCartAddress,
+} from "../../../redux/user/userShopCart/userShopCartSlice";
 import { StyledChoiceBtnParagraphWrapper } from "../ShopCart/ShopCart.styled";
 import { DELIVERY } from "../../../utils/DELIVERY";
 
-export const DeliveryChoiceType = () => {
+export const DeliveryChoiceType = ({ setFieldValue }) => {
   const { priceSum, deliveryType } = useSelector(selectUserShopCart);
   const dispatch = useDispatch();
   return (
@@ -35,6 +38,8 @@ export const DeliveryChoiceType = () => {
         type="button"
         onClick={() => {
           dispatch(addDeliveryType(DELIVERY.courier));
+          dispatch(addShopCartAddress({ street: {} }));
+          setFieldValue("address.street", {});
         }}
       >
         <StyledChoiceBtnParagraphWrapper>

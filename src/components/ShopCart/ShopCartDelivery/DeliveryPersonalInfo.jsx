@@ -11,26 +11,10 @@ import {
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { useDispatch } from "react-redux";
 
-import { useFetchCurrentUserQuery } from "../../../redux/auth";
-import { useEffect } from "react";
 import { formatPhoneNumber } from "components/form/formHelpers/formatPhoneNumber";
 
 export const DeliveryPersonalDetails = ({ setFieldValue }) => {
-  const { data, isLoading, refetch } = useFetchCurrentUserQuery(undefined, {
-    refetchOnMountOrArgChange: true,
-  });
-
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    refetch();
-    if (data?.user) {
-      dispatch(addShopCartFirstName(data?.user?.firstName || ""));
-      dispatch(addShopCartLastName(data?.user?.lastName || ""));
-      dispatch(addShopCartPhone(data?.user?.phone || ""));
-      dispatch(addShopCartEmail(data?.user?.email || ""));
-    }
-  }, [data, dispatch]);
 
   return (
     <>

@@ -16,15 +16,18 @@ const userShopCartSlice = createSlice({
     userShopCart: {
       products: [],
       promocode: "",
-      city: {},
       addressDepartment: {},
       addressPoshtomat: {},
-      address: "",
-      street: {},
-      numberHouse: "",
-      flat: "",
-      numberHoll: "",
-      comments: "",
+      address: {
+        Description: "",
+        city: {},
+        street: {},
+        numberHouse: "",
+        numberHoll: "",
+        flat: "",
+        comment: "",
+      },
+
       firstName: "",
       lastName: "",
       phone: "",
@@ -80,9 +83,7 @@ const userShopCartSlice = createSlice({
     addShopCartPromoCode(state, { payload }) {
       state.userShopCart.promocode = payload;
     },
-    addShopCartCity(state, { payload }) {
-      state.userShopCart.city = payload;
-    },
+
     addDeliveryType(state, { payload }) {
       state.userShopCart.deliveryType = payload;
     },
@@ -93,21 +94,7 @@ const userShopCartSlice = createSlice({
     addShopCartAddressPoshtomat(state, { payload }) {
       state.userShopCart.addressPoshtomat = payload;
     },
-    addShopCartStreet(state, { payload }) {
-      state.userShopCart.street = payload;
-    },
-    addShopCartNumberHouse(state, { payload }) {
-      state.userShopCart.numberHouse = payload;
-    },
-    addShopCartNumberHoll(state, { payload }) {
-      state.userShopCart.numberHoll = payload;
-    },
-    addShopCartFlat(state, { payload }) {
-      state.userShopCart.flat = payload;
-    },
-    addShopCartComments(state, { payload }) {
-      state.userShopCart.comments = payload;
-    },
+
     addShopCartFirstName(state, { payload }) {
       state.userShopCart.firstName = payload;
     },
@@ -136,9 +123,9 @@ const userShopCartSlice = createSlice({
       state.userShopCart.discount = payload;
     },
     addShopCartAddress(state, { payload }) {
-      // if (state.userShopCart.deliveryType === DELIVERY.department) {
-      state.userShopCart.address = payload;
-      // }
+      for (const [key, value] of Object.entries(payload)) {
+        state.userShopCart.address[key] = value;
+      }
     },
   },
 });

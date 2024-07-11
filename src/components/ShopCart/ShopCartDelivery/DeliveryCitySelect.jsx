@@ -13,18 +13,16 @@ import {
   addShopCartAddress,
   addShopCartAddressDepartment,
   addShopCartAddressPoshtomat,
-  addShopCartCity,
-  addShopCartStreet,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
 import { DELIVERY } from "../../../utils/DELIVERY";
 
 export const DeliveryCitySelect = ({ errors, values, setFieldValue }) => {
   console.log("errors", errors, values);
-  console.log(values.city);
+
   const dispatch = useDispatch();
-  const { city, deliveryType } = useSelector(selectUserShopCart);
-  console.log(city);
+  const { deliveryType, address } = useSelector(selectUserShopCart);
+
   const [
     getCities,
     {
@@ -33,7 +31,7 @@ export const DeliveryCitySelect = ({ errors, values, setFieldValue }) => {
     },
   ] = useGetCitiesMutation();
 
-  const [citySearch, setCitySearch] = useState(city?.Description);
+  const [citySearch, setCitySearch] = useState(address?.city?.Description);
   useEffect(() => {
     getCities(citySearch);
   }, [citySearch, getCities]);
@@ -43,11 +41,20 @@ export const DeliveryCitySelect = ({ errors, values, setFieldValue }) => {
   };
 
   const onSelectCityChange = value => {
-    console.log(value);
-    setFieldValue("city", value);
+    console.log("city value", value);
 
-    setFieldValue("address", { Description: value?.label, city: value?.label });
-    setFieldValue("street", {});
+    setFieldValue("address.city", value);
+    setFieldValue("address.Description", value?.label);
+    dispatch(
+      addShopCartAddress({
+        Description: value?.label,
+        city: value,
+      })
+    );
+
+    setFieldValue("address.street", {});
+    dispatch(addShopCartAddress({ street: {} }));
+
     if (deliveryType === DELIVERY.courier) {
       setFieldValue("addressDepartment", { Description: value?.label });
       setFieldValue("addressPoshtomat", { Description: value?.label });
@@ -59,20 +66,13 @@ export const DeliveryCitySelect = ({ errors, values, setFieldValue }) => {
       dispatch(addShopCartAddressDepartment({}));
       dispatch(addShopCartAddressPoshtomat({}));
     }
-
-    dispatch(addShopCartCity(value));
-    dispatch(addShopCartStreet({}));
-
-    dispatch(
-      addShopCartAddress({ Description: value?.label, city: value?.label })
-    );
   };
 
   return (
     <>
       <StyledDeliveryTitle>Обери адресу доставки</StyledDeliveryTitle>
       <StyledSelectWrapper>
-        <StyledSelectLabel htmlFor="city">
+        <StyledSelectLabel htmlFor="address.city">
           Населений пункт&#42;
         </StyledSelectLabel>
         <div style={{ position: "relative" }}>
@@ -82,10 +82,10 @@ export const DeliveryCitySelect = ({ errors, values, setFieldValue }) => {
             placeholder={"Введіть населений пункт"}
             onChange={e => onSelectCityChange(e)}
             onSearch={e => onSelectCitySearch(e)}
-            displayCity={city}
-            name="city"
+            displayCity={address.city}
+            name="address.city"
           />
-          {errors.city && <Error>{"Вкажіть населений пункт"}</Error>}
+          {errors.address?.city && <Error>{"Вкажіть населений пункт"}</Error>}
         </div>
       </StyledSelectWrapper>
     </>

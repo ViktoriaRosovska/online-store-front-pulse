@@ -3,31 +3,32 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { ROUTES } from "./utils/routes";
 import { PersistedAuth } from "./HOCs";
-import // Brands,
-// Catalog,
-// FemaleCatalog,
-// Main,
-// MaleCatalog,
-// NewBrands,
-// ProductPage,
-// Sales,
-// UserAccount,
-// UserFavorites,
-// UserOrderHistory,
-// UserSupport,
-// UserWallet,
-// FooterSupport,
-// FooterConditions,
-// FooterGuarantee,
-// FooterPrivacyPolicy,
-// FooterDelivery,
-// FooterAboutUs,
-// UserShopCart,
-// UserShopCartDelivery,
-// UserShopCartPayment,
-// SearchPage,
-// UserShopCartSuccessful,
-  "./pages/index";
+// import {
+//   Brands,
+//   Catalog,
+//   FemaleCatalog,
+//   Main,
+//   MaleCatalog,
+//   NewBrands,
+//   ProductPage,
+//   Sales,
+//   UserAccount,
+//   UserFavorites,
+//   UserOrderHistory,
+//   UserSupport,
+//   UserWallet,
+//   FooterSupport,
+//   FooterConditions,
+//   FooterGuarantee,
+//   FooterPrivacyPolicy,
+//   FooterDelivery,
+//   FooterAboutUs,
+//   UserShopCart,
+//   UserShopCartDelivery,
+//   UserShopCartPayment,
+//   SearchPage,
+//   UserShopCartSuccessful,
+// } from "./pages/index";
 import SharedLayout from "./components/SharedLayout/SharedLayout.jsx";
 import ShopCartLayout from "components/ShopCartLayout/ShopCartLayout.jsx";
 import ProfileLayout from "components/ProfileLayout/ProfileLayout.jsx";
@@ -124,7 +125,6 @@ const App = () => {
             </Route>
           </Route>
         </Routes>
-        {/* <PasswordResetHandler/> */}
       </PersistedAuth>
     </BrowserRouter>
   );
