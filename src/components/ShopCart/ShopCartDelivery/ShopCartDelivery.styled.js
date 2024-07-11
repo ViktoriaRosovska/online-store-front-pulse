@@ -112,7 +112,7 @@ const StyledCheckboxWrapper = styled.div`
   margin-bottom: 24px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 18px;
   width: 300px;
   @media screen and (min-width: 1440px) {
     width: 100%;

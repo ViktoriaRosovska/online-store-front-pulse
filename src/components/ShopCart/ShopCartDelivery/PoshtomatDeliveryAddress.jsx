@@ -7,17 +7,22 @@ import {
   StyledSelectLabel,
   StyledSelectWrapper,
 } from "./ShopCartDelivery.styled";
-import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
+import {
+  addShopCartAddress,
+  addShopCartAddressDepartment,
+  addShopCartAddressPoshtomat,
+} from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { useEffect } from "react";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
 
-export const PoshtomatDeliveryAddress = ({ setFieldValue, errors }) => {
+export const PoshtomatDeliveryAddress = ({ setFieldValue, errors, values }) => {
   useEffect(() => {
-    dispatch(addShopCartAddress({}));
+    dispatch(addShopCartAddress({ Description: values.city.label }));
   }, []);
-  const { city, address } = useSelector(selectUserShopCart);
-  console.log("address", address);
+  const { city, addressPoshtomat } = useSelector(selectUserShopCart);
+  console.log("addressPoshtomat", addressPoshtomat);
+  console.log("field addressDepartment", values.addressDepartment);
   const dispatch = useDispatch();
   const [
     getDepartments,
@@ -33,8 +38,23 @@ export const PoshtomatDeliveryAddress = ({ setFieldValue, errors }) => {
   }, [city, getDepartments]);
 
   const onSelectDepartmentsChange = value => {
-    dispatch(addShopCartAddress(value));
-    setFieldValue("address", value);
+    dispatch(
+      addShopCartAddress({
+        Description: values.address.Description + ", " + value.Description,
+      })
+    );
+    setFieldValue("addressPoshtomat", value.Description);
+    dispatch(addShopCartAddressPoshtomat(value));
+    setFieldValue("address", {
+      Description: values.address.Description + ", " + value.Description,
+    });
+    setFieldValue("addressDepartment", {
+      Description: values.address.Description + ", " + value.Description,
+    });
+    dispatch(addShopCartAddressDepartment(value));
+    setFieldValue("addressDepartment", {
+      Description: values.address.Description + ", " + value.Description,
+    });
   };
 
   return (
@@ -45,14 +65,23 @@ export const PoshtomatDeliveryAddress = ({ setFieldValue, errors }) => {
         <StyledSelectLabel htmlFor="address">
           Оберіть номер поштомату&#42;
         </StyledSelectLabel>
-        <DepartmentSelect
-          options={departmentTypeFilter(data, ["Postomat"])}
-          placeholder="Номер поштомату"
-          onChange={e => onSelectDepartmentsChange(e)}
-          displayDepartment={address}
-          name="address"
-        />
-        {errors.address && <Error>{"Введіть адресу поштомату"}</Error>}
+        <div style={{ position: "relative" }}>
+          <DepartmentSelect
+            options={departmentTypeFilter(data, ["Postomat"])}
+            placeholder="Номер поштомату"
+            onChange={e => onSelectDepartmentsChange(e)}
+            displayDepartment={addressPoshtomat}
+            name="address"
+            isError={
+              errors.addressPoshtomat ||
+              values.addressPoshtomat.Description === undefined
+            }
+          />
+          {(errors.addressPoshtomat ||
+            values.addressPoshtomat.Description === undefined) && (
+            <Error>{"Введіть адресу поштомату"}</Error>
+          )}
+        </div>
       </StyledSelectWrapper>
     </>
   );

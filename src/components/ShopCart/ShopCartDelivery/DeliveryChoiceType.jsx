@@ -33,7 +33,9 @@ export const DeliveryChoiceType = () => {
       <StyledChoiceDeliveryBtn
         $isSelectedBtn={deliveryType === DELIVERY.courier}
         type="button"
-        onClick={() => dispatch(addDeliveryType(DELIVERY.courier))}
+        onClick={() => {
+          dispatch(addDeliveryType(DELIVERY.courier));
+        }}
       >
         <StyledChoiceBtnParagraphWrapper>
           <StyledChoiseVariant

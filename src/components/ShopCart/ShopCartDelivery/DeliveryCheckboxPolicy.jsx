@@ -19,43 +19,46 @@ export const DeliveryCheckboxPolicy = ({ setFieldValue, errors }) => {
 
   return (
     <StyledCheckboxWrapper>
-      <StyledCheckboxLabel>
-        <CheckboxItem
-          name="condition"
-          item=""
-          onChange={e => {
-            dispatch(addShopCartCondition(e.target.checked));
-            console.log(e.target.checked);
-            setFieldValue("condition", e.target.checked);
-          }}
-        />
-        <div
-          style={{
-            height: "30px",
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            alignItems: "center",
-          }}
-        >
-          <span>
-            Я приймаю&nbsp;
-            <StyledConditionsLinks to={ROUTES.POLICY}>
-              Політику конфіденційності
-            </StyledConditionsLinks>
-            &nbsp;
-          </span>
-          <span>
-            і&nbsp;
-            <StyledConditionsLinks to={ROUTES.CONDITIONS}>
-              Умови продажу
-            </StyledConditionsLinks>
-          </span>
-        </div>
-      </StyledCheckboxLabel>
-      {errors.condition && (
-        <Error>{"Прийміть політику конфіденційності"}</Error>
-      )}
+      <div style={{ position: "relative" }}>
+        <StyledCheckboxLabel>
+          <CheckboxItem
+            name="condition"
+            item=""
+            onChange={e => {
+              dispatch(addShopCartCondition(e.target.checked));
+              console.log(e.target.checked);
+              setFieldValue("condition", e.target.checked);
+            }}
+          />
+          <div
+            style={{
+              height: "30px",
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              alignItems: "center",
+              position: "relative",
+            }}
+          >
+            <span>
+              Я приймаю&nbsp;
+              <StyledConditionsLinks to={ROUTES.POLICY}>
+                Політику конфіденційності
+              </StyledConditionsLinks>
+              &nbsp;
+            </span>
+            <span>
+              і&nbsp;
+              <StyledConditionsLinks to={ROUTES.CONDITIONS}>
+                Умови продажу
+              </StyledConditionsLinks>
+            </span>
+          </div>
+        </StyledCheckboxLabel>
+        {errors.condition && (
+          <Error>{"Прийміть політику конфіденційності"}</Error>
+        )}
+      </div>
       <StyledCheckboxLabel>
         <CheckboxItem
           name="isMailing"

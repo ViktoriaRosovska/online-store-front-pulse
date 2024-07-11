@@ -7,14 +7,22 @@ import {
   StyledSelectLabel,
   StyledSelectWrapper,
 } from "./ShopCartDelivery.styled";
-import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
+import {
+  addShopCartAddress,
+  addShopCartAddressDepartment,
+} from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { useEffect } from "react";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
 
-export const DepartmentDeliveryAddress = ({ setFieldValue, errors }) => {
-  const { city, address } = useSelector(selectUserShopCart);
-  console.log("address", address);
+export const DepartmentDeliveryAddress = ({
+  setFieldValue,
+  errors,
+  values,
+}) => {
+  const { city, address, addressDepartment } = useSelector(selectUserShopCart);
+  console.log("addressDepartment", addressDepartment);
+  console.log(values?.addressDepartment);
   const dispatch = useDispatch();
   const [
     getDepartments,
@@ -30,12 +38,23 @@ export const DepartmentDeliveryAddress = ({ setFieldValue, errors }) => {
   }, [city, getDepartments]);
 
   useEffect(() => {
-    dispatch(addShopCartAddress({}));
+    dispatch(addShopCartAddress({ Description: values.city.label }));
   }, []);
 
   const onSelectDepartmentsChange = value => {
-    dispatch(addShopCartAddress(value));
-    setFieldValue("address", value);
+    dispatch(
+      addShopCartAddress({
+        Description: values.address.Description + ", " + value.Description,
+      })
+    );
+    setFieldValue("addressDepartment", value);
+    setFieldValue("address", {
+      Description: values.address.Description + ", " + value.Description,
+    });
+    dispatch(addShopCartAddressDepartment(value));
+    setFieldValue("addressPoshtomat", {
+      Description: values.address.Description + ", " + value.Description,
+    });
   };
 
   return (
@@ -46,14 +65,23 @@ export const DepartmentDeliveryAddress = ({ setFieldValue, errors }) => {
         <StyledSelectLabel htmlFor="address">
           Оберіть номер відділення&#42;
         </StyledSelectLabel>
-        <DepartmentSelect
-          options={departmentTypeFilter(data, ["Branch", "Store"])}
-          placeholder="Номер відділення"
-          onChange={e => onSelectDepartmentsChange(e)}
-          displayDepartment={address}
-          name="address"
-        />
-        {errors.address && <Error>{errors.address}</Error>}
+        <div style={{ position: "relative" }}>
+          <DepartmentSelect
+            options={departmentTypeFilter(data, ["Branch", "Store"])}
+            placeholder="Номер відділення"
+            onChange={e => onSelectDepartmentsChange(e)}
+            displayDepartment={addressDepartment}
+            name="address"
+            isError={
+              errors.addressDepartment ||
+              values.addressDepartment.Description === undefined
+            }
+          />
+          {(errors.addressDepartment ||
+            values.addressDepartment.Description === undefined) && (
+            <Error>{"Вкажіть номер відділення"}</Error>
+          )}
+        </div>
       </StyledSelectWrapper>
     </>
   );

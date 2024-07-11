@@ -25,6 +25,7 @@ import { selectUserShopCart } from "../redux/user/userShopCart/userShopCartSelec
 
 import { ShopCartCardPaymentForm } from "./form/ShopCartCardPaymentForm/ShopCartCardPaymentForm";
 import { usePostOrdersMutation } from "../redux/products/productsApi";
+import { number } from "yup";
 
 export const PaymentRadioGroup = () => {
   const [selected, setSelected] = useState("card");
@@ -44,6 +45,10 @@ export const PaymentRadioGroup = () => {
     totalPriceSum,
     discount,
     email,
+    numberHouse,
+    numberHoll,
+    flat,
+    comments,
   } = useSelector(selectUserShopCart);
 
   const newProducts = [
@@ -59,7 +64,8 @@ export const PaymentRadioGroup = () => {
     priceSum: totalPriceSum,
     orderDate: new Date().toString(),
     products: newProducts,
-    deliveryAddress: address,
+    deliveryAddress: JSON.stringify(address),
+
     paymentMethod: paymentMethod,
     discount: discount,
     promoCode: promocode,

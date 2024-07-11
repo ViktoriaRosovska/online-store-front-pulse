@@ -2,7 +2,7 @@ import MaskedInput from "react-text-mask";
 import styled from "styled-components";
 
 export const Box = styled.div`
-  position: relative;
+  /* position: relative; */
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -136,12 +136,12 @@ export const Error = styled.p`
   position: absolute;
   color: red;
   left: 0;
+  /* bottom: 0; */
   font-size: 10px;
-  /* margin-top: 16px; */
-  bottom: -16px;
+  margin-top: 4px;
 
   @media screen and (min-width: 1440px) {
     font-size: 12px;
-    top: 88px;
+    /* top: 88px; */
   }
 `;
