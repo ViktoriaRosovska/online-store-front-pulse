@@ -87,12 +87,13 @@ const userShopCartSlice = createSlice({
   },
   reducers: {
     addShopCartItem(state, { payload }) {
-      const item = state.userShopCart.products.find(
+      const item = state.userShopCart.products?.find(
         el => el._id === payload._id && el.size === payload.size
       );
       if (item) item.quantity += payload.quantity;
       else
         state.userShopCart.products = [payload, ...state.userShopCart.products];
+
       updatePriceQuantity(state.userShopCart);
     },
     deleteUserShopCartItem(state, { payload }) {
@@ -165,7 +166,7 @@ const userShopCartSlice = createSlice({
       }
     },
     clearShopCart(state) {
-      state.userShopCart = { ...initialState };
+      state.userShopCart = { ...initialState.userShopCart };
     },
   },
 });

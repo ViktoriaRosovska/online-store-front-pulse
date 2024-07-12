@@ -14,6 +14,7 @@ import { usePostOrdersMutation } from "../../../redux/products/productsApi";
 import { useDispatch, useSelector } from "react-redux";
 import { selectPaymentCard } from "../../../redux/paymentCard/paymentCardSelector";
 import { clearShopCart } from "../../../redux/user/userShopCart/userShopCartSlice";
+import { clearPromoCode } from "redux/promoCode/promoCodeSlice";
 
 export const ShopCartCardPaymentForm = ({ shop, showModal }) => {
   const selectedCard = useSelector(selectPaymentCard);
@@ -31,6 +32,7 @@ export const ShopCartCardPaymentForm = ({ shop, showModal }) => {
     try {
       postOrders(shop);
       dispatch(clearShopCart());
+      dispatch(clearPromoCode());
       showModal(true);
     } catch (error) {
       console.log(error.message);

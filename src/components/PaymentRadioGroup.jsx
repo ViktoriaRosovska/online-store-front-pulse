@@ -31,6 +31,7 @@ import { usePostOrdersMutation } from "../redux/products/productsApi";
 
 import { DELIVERY } from "../utils/DELIVERY";
 import { createUserAddress } from "../utils/createUserAddress";
+import { clearPromoCode } from "../redux/promoCode/promoCodeSlice";
 
 export const PaymentRadioGroup = () => {
   const [selected, setSelected] = useState("card");
@@ -145,6 +146,7 @@ export const PaymentRadioGroup = () => {
               try {
                 postOrders(shop);
                 dispatch(clearShopCart());
+                dispatch(clearPromoCode());
                 setIsVisible(true);
               } catch (error) {
                 console.log(error.message);
@@ -182,6 +184,7 @@ export const PaymentRadioGroup = () => {
                 try {
                   postOrders(shop);
                   dispatch(clearShopCart());
+                  dispatch(clearPromoCode());
                   setIsVisible(true);
                   navigate(`${ROUTES.SHOPCARTSUCCESSFUL}`);
                 } catch (error) {
