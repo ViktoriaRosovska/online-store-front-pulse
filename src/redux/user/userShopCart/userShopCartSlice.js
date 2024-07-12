@@ -10,6 +10,43 @@ function updatePriceQuantity(cart) {
     .reduce((p, q) => p + q, 0);
 }
 
+const initialState = {
+  userShopCart: {
+    products: [],
+    promocode: "",
+    addressDepartment: {},
+    addressPoshtomat: {},
+    address: {
+      Description: "",
+      city: {},
+      street: {},
+      numberHouse: "",
+      numberHoll: "",
+      flat: "",
+      comment: "",
+    },
+
+    firstName: "",
+    lastName: "",
+    phone: "",
+    isMailing: false,
+    condition: false,
+    deliveryType: DELIVERY.department,
+    priceSum: 0,
+    totalPriceSum: 0,
+    countQuantity: 0,
+    paymentMethod: "",
+    email: "",
+    orderDate: "",
+    deliveryAddress: "",
+    discount: 0,
+  },
+  isLoading: true,
+  isLoggedIn: false,
+
+  error: null,
+};
+
 const userShopCartSlice = createSlice({
   name: "userShopCart",
   initialState: {
@@ -127,6 +164,9 @@ const userShopCartSlice = createSlice({
         state.userShopCart.address[key] = value;
       }
     },
+    clearShopCart(state) {
+      state.userShopCart = { ...initialState };
+    },
   },
 });
 
@@ -136,26 +176,27 @@ export const {
   incrementQuantity,
   decrementQuantity,
   addShopCartPromoCode,
-  addShopCartCity,
+  // addShopCartCity,
   addDeliveryType,
   addShopCartPriceSum,
 
   addShopCartAddressDepartment,
   addShopCartAddressPoshtomat,
-  addShopCartStreet,
+  // addShopCartStreet,
   addShopCartFirstName,
   addShopCartLastName,
   addShopCartPhone,
   addShopCartIsMailing,
   addShopCartCondition,
-  addShopCartNumberHouse,
-  addShopCartNumberHoll,
-  addShopCartFlat,
-  addShopCartComments,
+  // addShopCartNumberHouse,
+  // addShopCartNumberHoll,
+  // addShopCartFlat,
+  // addShopCartComments,
   addShopCartEmail,
   addShopCartTotalPriceSum,
   addShopCartPaymentMethod,
   addShopCartDiscount,
   addShopCartAddress,
+  clearShopCart,
 } = userShopCartSlice.actions;
 export const userShopCartReducer = userShopCartSlice.reducer;

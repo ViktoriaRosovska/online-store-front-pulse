@@ -11,11 +11,13 @@ import {
 import { Formik } from "formik";
 import { validationUserCardShopCardSchema } from "../formHelpers/formValidation";
 import { usePostOrdersMutation } from "../../../redux/products/productsApi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectPaymentCard } from "../../../redux/paymentCard/paymentCardSelector";
+import { clearShopCart } from "../../../redux/user/userShopCart/userShopCartSlice";
 
 export const ShopCartCardPaymentForm = ({ shop, showModal }) => {
   const selectedCard = useSelector(selectPaymentCard);
+  const dispatch = useDispatch();
   console.log(shop);
   const [postOrders] = usePostOrdersMutation();
   const initialValues = {
@@ -28,6 +30,7 @@ export const ShopCartCardPaymentForm = ({ shop, showModal }) => {
     console.log(values, option);
     try {
       postOrders(shop);
+      dispatch(clearShopCart());
       showModal(true);
     } catch (error) {
       console.log(error.message);

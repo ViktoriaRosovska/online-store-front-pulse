@@ -19,7 +19,10 @@ import { userApi } from "./user/userSlice/userApi";
 import { novaPoshtaAPI } from "./novaPoshta/novaPoshtaAPI";
 
 import paymentCardReducer from "./paymentCard/paymentCardSlice";
-import { logoutMiddleware } from "./middlewares/logoutMiddleware";
+import {
+  logoutMiddleware,
+  resetShopCartMiddleware,
+} from "./middlewares/logoutMiddleware";
 
 const persistConfig = {
   key: "userToken",
@@ -71,7 +74,8 @@ export const store = configureStore({
       userAuthApi.middleware,
       userApi.middleware,
       novaPoshtaAPI.middleware,
-      logoutMiddleware
+      logoutMiddleware,
+      resetShopCartMiddleware
     );
   },
 });

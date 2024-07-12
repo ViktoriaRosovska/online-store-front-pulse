@@ -18,7 +18,7 @@ import { formatOrderDate } from "../../../utils/formatOrderDate";
 import { formatPrice } from "../../../utils/formatPrice";
 
 const UserOrderHistoryItem = ({ item }) => {
-  console.log("UserOrderHistoryItem  item", item)
+  console.log("UserOrderHistoryItem  item", item);
   const [isOrderDetailsOpen, setIsOrderDetailsOpen] = useState(false);
 
   const arrowSvg = isOrderDetailsOpen ? <DownSvg /> : <UpSvg />;
@@ -29,7 +29,7 @@ const UserOrderHistoryItem = ({ item }) => {
 
   const imageCount = item?.products.length;
 
-  const status = item?.status === 'pending' ? "Оформлений" : "Доставлений"
+  const status = item?.status === "pending" ? "Оформлений" : "Доставлений";
 
   return (
     <>
@@ -37,7 +37,8 @@ const UserOrderHistoryItem = ({ item }) => {
         <Box $status={status}>
           <Info>
             <OrderNumber>
-              Замовлення №{(item._id).slice(0, 14)}, {formatOrderDate(item.orderDate)}
+              Замовлення №{item._id.slice(0, 14)},{" "}
+              {formatOrderDate(item.orderDate)}
             </OrderNumber>
             <Status>{status}</Status>
           </Info>
