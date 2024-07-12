@@ -20,7 +20,10 @@ import { ROUTES } from "../utils/routes";
 import { Portal } from "./Modals/helpersForModal/modalPortal";
 import CommonModal from "./Modals/CommonModal";
 import { ModalSuccessfulPayment } from "./Modals/ModalSuccessfulPayment/ModalSuccessfulPayment";
-import { addShopCartPaymentMethod } from "../redux/user/userShopCart/userShopCartSlice";
+import {
+  addShopCartPaymentMethod,
+  clearShopCart,
+} from "../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../redux/user/userShopCart/userShopCartSelector";
 
 import { ShopCartCardPaymentForm } from "./form/ShopCartCardPaymentForm/ShopCartCardPaymentForm";
@@ -28,6 +31,7 @@ import { usePostOrdersMutation } from "../redux/products/productsApi";
 
 import { DELIVERY } from "../utils/DELIVERY";
 import { createUserAddress } from "../utils/createUserAddress";
+import { clearPromoCode } from "../redux/promoCode/promoCodeSlice";
 
 export const PaymentRadioGroup = () => {
   const [selected, setSelected] = useState("card");
@@ -141,6 +145,8 @@ export const PaymentRadioGroup = () => {
             onClick={() => {
               try {
                 postOrders(shop);
+                dispatch(clearShopCart());
+                dispatch(clearPromoCode());
                 setIsVisible(true);
               } catch (error) {
                 console.log(error.message);
@@ -174,7 +180,17 @@ export const PaymentRadioGroup = () => {
               грн. + 2% від суми переказу.
             </StyledOfflinePaymentText>
             <StyledPayButton
-              onClick={() => navigate(`${ROUTES.SHOPCARTSUCCESSFUL}`)}
+              onClick={() => {
+                try {
+                  postOrders(shop);
+                  dispatch(clearShopCart());
+                  dispatch(clearPromoCode());
+                  setIsVisible(true);
+                  navigate(`${ROUTES.SHOPCARTSUCCESSFUL}`);
+                } catch (error) {
+                  console.log(error.message);
+                }
+              }}
             >
               Підтвердити замовлення
             </StyledPayButton>

@@ -1,7 +1,7 @@
 import UserOrderHistoryItem from "./UserOrderHistoryItem/UserOrderHistoryItem";
 import { List } from "./UserOrderHistoryList.styled";
 
-const UserOrderHistoryList = ({orders}) => {
+const UserOrderHistoryList = ({ orders }) => {
   return (
     <List>
       {orders?.map(item => (

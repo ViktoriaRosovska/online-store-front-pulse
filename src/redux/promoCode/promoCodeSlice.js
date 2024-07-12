@@ -5,6 +5,12 @@ export const PromoInvalid = "invalid";
 export const PromoExpired = "expired";
 export const PromoUnknown = "unknown";
 
+const initialState = {
+  promoCode: "",
+  status: PromoUnknown,
+  discount: 0,
+};
+
 export const promoCodeSlice = createSlice({
   name: "promoCode",
   initialState: {
@@ -22,8 +28,15 @@ export const promoCodeSlice = createSlice({
     setPromoCodeDiscount(state, action) {
       return { ...state, discount: Number(action.payload) };
     },
+    clearPromoCode() {
+      return { ...initialState };
+    },
   },
 });
-export const { setPromoCode, setPromoStatus, setPromoCodeDiscount } =
-  promoCodeSlice.actions;
+export const {
+  setPromoCode,
+  setPromoStatus,
+  setPromoCodeDiscount,
+  clearPromoCode,
+} = promoCodeSlice.actions;
 export const promoCodeReducer = promoCodeSlice.reducer;
