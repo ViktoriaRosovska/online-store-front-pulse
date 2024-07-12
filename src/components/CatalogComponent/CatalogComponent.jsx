@@ -1,57 +1,59 @@
 import { useEffect, useState } from "react";
-
+import { useLocation, useNavigate } from "react-router-dom";
 import { Container, ContentWrapper, PageSection } from "../../main.styled";
 import { Aside } from "./Aside/Aside";
 import { CardsList } from "../CardsList/CardsList";
 import { CatalogHeader } from "./CatalogHeader/CatalogHeader";
 import { LastView } from "components/LastView/LastView";
-// import { useLocation } from "react-router-dom";
 import Breadcrumbs from "components/Breadcrumbs";
 import { BREADCRUMBS } from "../../utils/breadcrumbsVocabulary";
+import { getFromSearchParams } from "../../utils/getFromSearchParams";
+import { getSortOrder } from "../../utils/getSortOrder";
+import { getInitialFilter } from "../../utils/getInitialFilter";
 
-function getFromSearchParams(prop, def = [], proj = null) {
-  const params = new URLSearchParams(location.search);
-  const value = params.get(prop);
-  if (!value) return def;
+// function getFromSearchParams(prop, def = [], proj = null) {
+//   const params = new URLSearchParams(location.search);
+//   const value = params.get(prop);
+//   if (!value) return def;
 
-  const arr = value.split(",");
-  if (proj) return arr.map(proj);
-  return arr;
-}
+//   const arr = value.split(",");
+//   if (proj) return arr.map(proj);
+//   return arr;
+// }
 
-function getSortOrder() {
-  const params = new URLSearchParams(location.search);
-  const sort = params.get("sort");
-  const order = params.get("order");
-  if (!sort) return null;
-  return sort == "createdAt" ? sort : order;
-}
+// function getSortOrder() {
+//   const params = new URLSearchParams(location.search);
+//   const sort = params.get("sort");
+//   const order = params.get("order");
+//   if (!sort) return null;
+//   return sort == "createdAt" ? sort : order;
+// }
 
-function getInitialFilter(def) {
-  const filter = {
-    sex: "",
-    brand: "",
-    season: "",
-    size: "",
-    color: "",
-    page: 1,
-    sort: "",
-    order: "",
-    ...def,
-  };
+// function getInitialFilter(def) {
+//   const filter = {
+//     sex: "",
+//     brand: "",
+//     season: "",
+//     size: "",
+//     color: "",
+//     page: 1,
+//     sort: "",
+//     order: "",
+//     ...def,
+//   };
 
-  const params = new URLSearchParams(location.search);
-  for (const key of Object.keys(filter)) {
-    if (!params.has(key)) continue;
-    const value = params.get(key);
-    if (!value) continue;
-    filter[key] = value;
-  }
+//   const params = new URLSearchParams(location.search);
+//   for (const key of Object.keys(filter)) {
+//     if (!params.has(key)) continue;
+//     const value = params.get(key);
+//     if (!value) continue;
+//     filter[key] = value;
+//   }
 
-  return filter;
-}
+//   return filter;
+// }
 
- const CatalogComponent = ({
+const CatalogComponent = ({
   title,
   sex,
   cardfeature,
@@ -64,6 +66,9 @@ function getInitialFilter(def) {
   page,
   totalPages,
 }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [selectedBrands, setSelectedBrands] = useState(
     getFromSearchParams("brand", brand ? [brand] : [])
   );
@@ -84,7 +89,7 @@ function getInitialFilter(def) {
   );
 
   useEffect(() => {
-    const href = location.href.replace(/\?.+$/, "");
+    const href = location.pathname;
 
     const params = new URLSearchParams();
 
@@ -93,14 +98,26 @@ function getInitialFilter(def) {
       params.set(key, value);
     }
 
-    history.replaceState(history.state, "", href + "?" + params.toString());
+    navigate(href + "?" + params.toString(), { replace: true });
 
     loader(filterQuery);
-  }, [loader, filterQuery]);
+  }, [loader, filterQuery, navigate, location.pathname]);
+
+  useEffect(() => {
+    const updatedFilter = getInitialFilter(
+      { sex: sex, brand: brand || "" },
+      location.search
+    );
+    setFilterQuery(updatedFilter);
+  }, [location.search, sex, brand]);
 
   const onPageChange = page => {
     const newFilter = { ...filterQuery, page: page };
     setFilterQuery(newFilter);
+
+    const href = location.pathname;
+    const params = new URLSearchParams(newFilter);
+    navigate(href + "?" + params.toString());
   };
 
   const onSortOrderChanged = value => {
@@ -216,4 +233,4 @@ function getInitialFilter(def) {
   );
 };
 
-export default CatalogComponent 
+export default CatalogComponent;
