@@ -9,9 +9,7 @@ import {
 } from "./ShopCartDelivery.styled";
 import {
   addShopCartAddress,
-  addShopCartAddressDepartment,
   addShopCartAddressPoshtomat,
-  addShopCartStreet,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { useEffect } from "react";
@@ -23,8 +21,7 @@ export const PoshtomatDeliveryAddress = ({ setFieldValue, errors, values }) => {
   }, []);
 
   const { addressPoshtomat, address } = useSelector(selectUserShopCart);
-  console.log("addressPoshtomat", addressPoshtomat);
-  console.log("field addressDepartment", values.addressDepartment);
+
   const dispatch = useDispatch();
   const [
     getDepartments,
@@ -39,21 +36,9 @@ export const PoshtomatDeliveryAddress = ({ setFieldValue, errors, values }) => {
     getDepartments(address?.city.Ref);
   }, [address?.city, getDepartments]);
 
-  const onSelectDepartmentsChange = value => {
-    setFieldValue("addressDepartment", {});
-    dispatch(addShopCartAddressDepartment({}));
-
-    setFieldValue("addressPoshtomat", value);
+  const onSelectDepartmentsChange = async value => {
+    await setFieldValue("addressPoshtomat", value);
     dispatch(addShopCartAddressPoshtomat(value));
-
-    setFieldValue("address", {
-      ...values.address,
-      Description: value.Description,
-    });
-    dispatch(addShopCartAddress({ Description: value.Description }));
-
-    setFieldValue("street", { Description: value.Description });
-    dispatch(addShopCartStreet({ Description: value.Description }));
   };
 
   return (

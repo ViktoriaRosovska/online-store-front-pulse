@@ -1,16 +1,11 @@
 import { Form, Formik } from "formik";
 import CustomInput from "../formElements/CustomInput/CustomInput";
-import {
-  setCredentials,
-  useFetchCurrentUserQuery,
-  useLoginUserMutation,
-} from "../../../redux/auth";
+import { setCredentials, useLoginUserMutation } from "../../../redux/auth";
 import { useDispatch } from "react-redux";
 import { Notify } from "notiflix";
 import { loginValidationSchema } from "../formHelpers/formValidation";
 import { ForgotPasswordButton } from "../LoginForm/CustomLoginForm.styled";
 import { StyledLoginFormButton } from "./ShopCartLoginForm.styled";
-import { useEffect } from "react";
 
 export const ShopCartLoginForm = ({ openForgotPasswordModal }) => {
   const dispatch = useDispatch();
@@ -45,6 +40,7 @@ export const ShopCartLoginForm = ({ openForgotPasswordModal }) => {
       }}
       validateOnBlur={false}
       validateOnChange={true}
+      enableReinitialize
       validationSchema={loginValidationSchema}
       onSubmit={onSubmit}
     >

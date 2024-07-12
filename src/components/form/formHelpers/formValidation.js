@@ -1,3 +1,4 @@
+import { DELIVERY } from "../../../utils/DELIVERY";
 import * as Yup from "yup";
 
 // const nameRegex = /^[A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+(-[A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+)?$/;
@@ -290,9 +291,9 @@ export const userShopCartValidationSchema = Yup.object().shape({
     )
     .required("Oбовʼязкове поле"),
   phone: Yup.string()
-    .matches(backendPhoneRegex, {
-      message: "Введіть корректний номер телефону",
-    })
+    // .matches(phoneRegex, {
+    //   message: "Введіть корректний номер телефону",
+    // })
     .nullable()
     .required("Вкажіть номер телефону"),
 
@@ -304,17 +305,40 @@ export const userShopCartValidationSchema = Yup.object().shape({
   isMailing: Yup.boolean(),
   address: Yup.object({
     Description: Yup.string().required(),
-    city: Yup.object().required(),
-    street: Yup.object(),
-    numberHouse: Yup.string(),
+    city: Yup.object()
+      .required()
+      .test(value => Object.hasOwn(value, "Description")),
+    street: Yup.object().when("deliveryType", ([deliveryType]) => {
+      if (deliveryType == DELIVERY.courier)
+        return Yup.object()
+          .required()
+          .test(value => Object.hasOwn(value, "Description"));
+    }),
+    numberHouse: Yup.string().when("deliveryType", ([deliveryType]) => {
+      if (deliveryType == DELIVERY.courier) return Yup.string().required();
+    }),
     numberHoll: Yup.string(),
     flat: Yup.string(),
     comments: Yup.string(),
+    deliveryType: Yup.string(),
   }).test(value => Object.hasOwn(value, "Description")),
-  addressDepartment: Yup.object({
-    Description: Yup.string().min(1).required(),
-  }).test(value => Object.hasOwn(value, "Description")),
-  addressPoshtomat: Yup.object({
-    Description: Yup.string().min(1).required(),
-  }).test(value => Object.hasOwn(value, "Description")),
+
+  addressDepartment: Yup.object().shape({
+    Description: Yup.string().when(
+      "deliveryType",
+      (deliveryType, schema, ctx) => {
+        deliveryType = ctx.context.address.deliveryType;
+        if (deliveryType == DELIVERY.department) return schema.required();
+      }
+    ),
+  }),
+  addressPoshtomat: Yup.object().shape({
+    Description: Yup.string().when(
+      "deliveryType",
+      (deliveryType, schema, ctx) => {
+        deliveryType = ctx.context.address.deliveryType;
+        if (deliveryType == DELIVERY.poshtomat) return schema.required();
+      }
+    ),
+  }),
 });

@@ -7,7 +7,8 @@ import { DeliveryCourierAddress } from "./DeliveryCourierAddress";
 
 export const AddressDeliveryComponent = () => {
   const {
-    city,
+    address,
+
     addressDepartment,
     addressPoshtomat,
     lastName,
@@ -20,15 +21,7 @@ export const AddressDeliveryComponent = () => {
     <>
       <StyledOrderTitle>Адреса доставки</StyledOrderTitle>
       <StyledPaymentPropsWrapper>
-        <p>
-          {city?.SettlementTypeDescription +
-            " " +
-            city?.Description +
-            " " +
-            city?.AreaDescription +
-            " " +
-            "обл."}
-        </p>
+        <p>{address.city.label}</p>
         {deliveryType === DELIVERY.department && (
           <p>{addressDepartment.Description}</p>
         )}

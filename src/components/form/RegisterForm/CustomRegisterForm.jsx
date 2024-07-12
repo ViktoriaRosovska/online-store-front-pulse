@@ -52,6 +52,7 @@ const CustomRegisterForm = ({ onClose, redirectPath }) => {
         onSubmit={onSubmit}
         validateOnBlur={false}
         validateOnChange={true}
+        enableReinitialize
       >
         {() => (
           <StyledForm>

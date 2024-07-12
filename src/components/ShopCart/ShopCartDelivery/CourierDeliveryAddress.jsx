@@ -24,11 +24,7 @@ export const CourierDeliveryAddress = ({ values, setFieldValue, errors }) => {
     <>
       <StyledDeliveryTitle>Адреса доставки</StyledDeliveryTitle>
 
-      <DeliveryStreetSelect
-        values={values}
-        errors={errors}
-        setFieldValue={setFieldValue}
-      />
+      <DeliveryStreetSelect errors={errors} setFieldValue={setFieldValue} />
       <div style={{ position: "relative" }}>
         <CustomInput
           type="text"
@@ -47,8 +43,7 @@ export const CourierDeliveryAddress = ({ values, setFieldValue, errors }) => {
           }}
           value={address?.numberHouse}
         />
-        {(values?.address?.numberHouse?.length < 1 ||
-          errors?.address?.numberHouse) && (
+        {errors.address?.numberHouse && (
           <Error>{"Вкажіть номер будинку"}</Error>
         )}
       </div>
@@ -97,10 +92,10 @@ export const CourierDeliveryAddress = ({ values, setFieldValue, errors }) => {
         label="Коментарі для кур'єра"
         onChange={e => {
           handleChange({ comments: e.target.value }, addShopCartAddress);
-          setFieldValue("address.comments", e.target.value.trim());
+          setFieldValue("address.comments", e.target.value);
           dispatch(
             addShopCartAddress({
-              comments: e.target.value.trim(),
+              comments: e.target.value,
             })
           );
         }}

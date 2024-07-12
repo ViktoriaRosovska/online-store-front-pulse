@@ -51,6 +51,7 @@ const CustomLoginForm = ({
           email: "",
           password: "",
         }}
+        enableReinitialize
         validateOnBlur={false}
         validateOnChange={true}
         validationSchema={loginValidationSchema}

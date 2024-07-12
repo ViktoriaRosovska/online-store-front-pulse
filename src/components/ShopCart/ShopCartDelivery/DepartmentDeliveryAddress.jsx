@@ -7,20 +7,12 @@ import {
   StyledSelectLabel,
   StyledSelectWrapper,
 } from "./ShopCartDelivery.styled";
-import {
-  addShopCartAddress,
-  addShopCartAddressDepartment,
-  addShopCartStreet,
-} from "../../../redux/user/userShopCart/userShopCartSlice";
+import { addShopCartAddressDepartment } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { useEffect } from "react";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
 
-export const DepartmentDeliveryAddress = ({
-  setFieldValue,
-  errors,
-  values,
-}) => {
+export const DepartmentDeliveryAddress = ({ setFieldValue, errors }) => {
   const { address, addressDepartment } = useSelector(selectUserShopCart);
   const dispatch = useDispatch();
   const [
@@ -36,19 +28,9 @@ export const DepartmentDeliveryAddress = ({
     getDepartments(address?.city.Ref);
   }, [address?.city, getDepartments]);
 
-  const onSelectDepartmentsChange = value => {
-    setFieldValue("address.Description", value.Description);
-    dispatch(
-      addShopCartAddress({
-        Description: value.Description,
-      })
-    );
-
-    setFieldValue("addressDepartment", value);
+  const onSelectDepartmentsChange = async value => {
+    await setFieldValue("addressDepartment", value);
     dispatch(addShopCartAddressDepartment(value));
-
-    setFieldValue("street", { Description: value.Description });
-    dispatch(addShopCartStreet({ Description: value.Description }));
   };
 
   return (
@@ -66,13 +48,9 @@ export const DepartmentDeliveryAddress = ({
             onChange={e => onSelectDepartmentsChange(e)}
             displayDepartment={addressDepartment}
             name="address"
-            isError={
-              errors.addressDepartment ||
-              values.addressDepartment.Description === undefined
-            }
+            isError={errors.addressDepartment}
           />
-          {(errors.addressDepartment ||
-            values.addressDepartment.Description === undefined) && (
+          {errors.addressDepartment && (
             <Error>{"Вкажіть номер відділення"}</Error>
           )}
         </div>

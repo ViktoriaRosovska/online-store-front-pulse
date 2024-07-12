@@ -61,7 +61,6 @@ export const DeliveryStreetSelect = ({ setFieldValue, errors }) => {
           onChange={e => onSelectStreetChange(e)}
           onSearch={e => onSelectStreetSearch(e)}
           onBlur={e => onSelectStreetBlur(e)}
-          // value={selectStreetSearch}
           name="address.street"
           displayStreet={address.street}
         />

@@ -15,13 +15,10 @@ import {
   addShopCartAddressPoshtomat,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
-import { DELIVERY } from "../../../utils/DELIVERY";
 
-export const DeliveryCitySelect = ({ errors, values, setFieldValue }) => {
-  console.log("errors", errors, values);
-
+export const DeliveryCitySelect = ({ errors, setFieldValue }) => {
   const dispatch = useDispatch();
-  const { deliveryType, address } = useSelector(selectUserShopCart);
+  const { address } = useSelector(selectUserShopCart);
 
   const [
     getCities,
@@ -40,11 +37,10 @@ export const DeliveryCitySelect = ({ errors, values, setFieldValue }) => {
     if (value !== "") setCitySearch(value);
   };
 
-  const onSelectCityChange = value => {
-    console.log("city value", value);
+  const onSelectCityChange = async value => {
+    await setFieldValue("address.city", value);
+    await setFieldValue("address.Description", value?.label);
 
-    setFieldValue("address.city", value);
-    setFieldValue("address.Description", value?.label);
     dispatch(
       addShopCartAddress({
         Description: value?.label,
@@ -52,20 +48,13 @@ export const DeliveryCitySelect = ({ errors, values, setFieldValue }) => {
       })
     );
 
-    setFieldValue("address.street", {});
+    await setFieldValue("address.street", {});
     dispatch(addShopCartAddress({ street: {} }));
 
-    if (deliveryType === DELIVERY.courier) {
-      setFieldValue("addressDepartment", { Description: value?.label });
-      setFieldValue("addressPoshtomat", { Description: value?.label });
-      dispatch(addShopCartAddressDepartment({ Description: value?.label }));
-      dispatch(addShopCartAddressPoshtomat({ Description: value?.label }));
-    } else {
-      setFieldValue("addressPoshtomat", {});
-      setFieldValue("addressDepartment", {});
-      dispatch(addShopCartAddressDepartment({}));
-      dispatch(addShopCartAddressPoshtomat({}));
-    }
+    await setFieldValue("addressPoshtomat", {});
+    await setFieldValue("addressDepartment", {});
+    dispatch(addShopCartAddressDepartment({}));
+    dispatch(addShopCartAddressPoshtomat({}));
   };
 
   return (

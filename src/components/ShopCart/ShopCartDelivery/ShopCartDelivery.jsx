@@ -2,7 +2,6 @@ import { ROUTES } from "../../../utils/routes";
 import { useNavigate } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
 import { Formik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
 
 import { StyledNotificationWrapper } from "../ShopCart/ShopCart.styled";
 
@@ -31,12 +30,6 @@ import { ShopCartProductsList } from "../ShopCartProductsList";
 import { PromoCode } from "components/PromoCode";
 import { useEffect, useState } from "react";
 import { selectUserToken, useFetchCurrentUserQuery } from "../../../redux/auth";
-import {
-  addShopCartEmail,
-  addShopCartFirstName,
-  addShopCartLastName,
-  addShopCartPhone,
-} from "../../../redux/user/userShopCart/userShopCartSlice";
 
 import { ShopCartLoginForm } from "components/form/ShopCartLoginForm/ShopCartLoginForm";
 import { ShopCartRegisterForm } from "components/form/ShopCartRegisterForm/ShopCartRegisterForm";
@@ -44,9 +37,9 @@ import { Portal } from "components/Modals/helpersForModal/modalPortal";
 import CommonModal from "components/Modals/CommonModal";
 import ModalForgotPassword from "components/Modals/ModalForgotPassword/ModalForgotPassword";
 import { StyledLoginFormButton } from "components/form/ShopCartLoginForm/ShopCartLoginForm.styled";
+import { useSelector } from "react-redux";
 
 export const ShopCartDelivery = props => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
     products,
@@ -66,15 +59,6 @@ export const ShopCartDelivery = props => {
     if (!isLoggedIn) refetch();
   }, [refetch, isLoggedIn]);
 
-  useEffect(() => {
-    if (data?.user) {
-      dispatch(addShopCartFirstName(data?.user?.firstName || ""));
-      dispatch(addShopCartLastName(data?.user?.lastName || ""));
-      dispatch(addShopCartPhone(data?.user?.phone || ""));
-      dispatch(addShopCartEmail(data?.user?.email || ""));
-    }
-  }, [data, dispatch]);
-
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
     useState(false);
   // const location = useLocation();
@@ -87,13 +71,15 @@ export const ShopCartDelivery = props => {
     setIsForgotPasswordModalOpen(false);
   };
 
-  // console.log(data);
+  console.log("address", address);
 
   const isDesktop = useMediaQuery("(min-width: 1440px)");
   const [isActiveForm, setIsActiveForm] = useState(true);
 
   const onSubmit = (values, option) => {
     console.log(values, option);
+
+    console.log(values.phone);
 
     navigate(ROUTES.SHOPCARTPAYMENT);
   };
@@ -115,12 +101,13 @@ export const ShopCartDelivery = props => {
                 email: data?.user.email || "",
                 address: {
                   Description: address.Description || "",
-                  city: address.city || {},
+                  city: address.city || null,
                   street: address.street || {},
                   numberHouse: address.numberHouse || "",
                   numberHoll: address.numberHoll || "",
                   flat: address.flat || "",
                   comments: address.comments || "",
+                  deliveryType: deliveryType || "",
                 },
                 addressDepartment: addressDepartment || {
                   Description: "",
@@ -143,7 +130,10 @@ export const ShopCartDelivery = props => {
                     values={values}
                     setFieldValue={setFieldValue}
                   />
-                  <DeliveryChoiceType setFieldValue={setFieldValue} />
+                  <DeliveryChoiceType
+                    setFieldValue={setFieldValue}
+                    values={values}
+                  />
 
                   {deliveryType === DELIVERY.department && (
                     <DepartmentDeliveryAddress

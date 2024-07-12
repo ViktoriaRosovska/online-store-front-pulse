@@ -25,7 +25,9 @@ import { selectUserShopCart } from "../redux/user/userShopCart/userShopCartSelec
 
 import { ShopCartCardPaymentForm } from "./form/ShopCartCardPaymentForm/ShopCartCardPaymentForm";
 import { usePostOrdersMutation } from "../redux/products/productsApi";
-import { number } from "yup";
+
+import { DELIVERY } from "../utils/DELIVERY";
+import { createUserAddress } from "../utils/createUserAddress";
 
 export const PaymentRadioGroup = () => {
   const [selected, setSelected] = useState("card");
@@ -45,10 +47,10 @@ export const PaymentRadioGroup = () => {
     totalPriceSum,
     discount,
     email,
-    numberHouse,
-    numberHoll,
-    flat,
-    comments,
+
+    deliveryType,
+    addressDepartment,
+    addressPoshtomat,
   } = useSelector(selectUserShopCart);
 
   const newProducts = [
@@ -60,11 +62,37 @@ export const PaymentRadioGroup = () => {
     })),
   ];
 
+  const newAddress = address => {
+    const newUserAddress = [];
+    newUserAddress.push(address.city.label);
+    if (deliveryType == DELIVERY.department) {
+      newUserAddress.push(addressDepartment.Description);
+    }
+    if (deliveryType == DELIVERY.poshtomat) {
+      newUserAddress.push(addressPoshtomat.Description);
+    }
+    if (deliveryType == DELIVERY.courier) {
+      newUserAddress.push(
+        createUserAddress(
+          address.street,
+          address.numberHouse,
+          address.numberHoll,
+          address.flat
+        )
+      );
+      if (address.comments) {
+        newUserAddress.push(address.comments);
+      }
+    }
+
+    return newUserAddress.join(", ");
+  };
+
   const shop = {
     priceSum: totalPriceSum,
     orderDate: new Date().toString(),
     products: newProducts,
-    deliveryAddress: JSON.stringify(address),
+    deliveryAddress: newAddress(address),
 
     paymentMethod: paymentMethod,
     discount: discount,
@@ -81,7 +109,7 @@ export const PaymentRadioGroup = () => {
     if (selected === "card" || selected === "online") {
       dispatch(addShopCartPaymentMethod("card"));
     } else {
-      dispatch(addShopCartPaymentMethod("cash on delivery"));
+      dispatch(addShopCartPaymentMethod("cash"));
     }
   }, [dispatch, selected]);
 
