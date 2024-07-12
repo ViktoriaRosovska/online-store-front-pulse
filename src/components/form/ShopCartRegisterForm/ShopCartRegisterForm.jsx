@@ -34,6 +34,7 @@ export const ShopCartRegisterForm = () => {
         passwordCheck: "",
       }}
       validationSchema={registerValidationSchema}
+      enableReinitialize
       onSubmit={onSubmit}
     >
       {() => (

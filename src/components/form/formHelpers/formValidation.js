@@ -1,3 +1,4 @@
+import { DELIVERY } from "../../../utils/DELIVERY";
 import * as Yup from "yup";
 
 // const nameRegex = /^[A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+(-[A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+)?$/;
@@ -16,7 +17,7 @@ const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z0-9!$#@])[A-Za-z\d!$#@]{8,20}$/;
 
 const phoneRegex = /^\+38\(\d{3}\)\d{3}-\d{2}-\d{2}$/;
 
-// const phoneRegex = /^\+\d{12,20}$/;
+const backendPhoneRegex = /^\+\d{12,20}$/;
 
 const cardNameRegex = /^[A-Za-z ]+$/;
 
@@ -268,11 +269,6 @@ export const resetPasswordValidationSchema = Yup.object().shape({
     .required("Oбовʼязкове поле"),
 });
 export const userShopCartValidationSchema = Yup.object().shape({
-  city: Yup.object()
-    .test("Вкажіть населений пункт", value =>
-      Object.hasOwn(value, "Description")
-    )
-    .required("Вкажіть населений пункт"),
   firstName: Yup.string()
     .typeError("Повинно бути строкою")
     .matches(nameRegex, "Повинні бути тільки букви")
@@ -295,27 +291,54 @@ export const userShopCartValidationSchema = Yup.object().shape({
     )
     .required("Oбовʼязкове поле"),
   phone: Yup.string()
-    .matches(phoneRegex, { message: "Введіть корректний номер телефону" })
+    // .matches(phoneRegex, {
+    //   message: "Введіть корректний номер телефону",
+    // })
     .nullable()
     .required("Вкажіть номер телефону"),
-  street: Yup.object().test(value => Object.hasOwn(value, "Description")),
-  numberHouse: Yup.string().min(1, "Вкажіть номер будинку"),
-  flat: Yup.string(),
-  comments: Yup.string(),
-  numberHoll: Yup.string(),
+
   condition: Yup.boolean()
     .required("Обов'язкове поле")
     .test("Прийміть політику конфіденційності", value =>
       value ? true : false
     ),
   isMailing: Yup.boolean(),
-  address: Yup.object()
-    .required()
-    .test(value => Object.hasOwn(value, "Description")),
-  addressDepartment: Yup.object().test("Вкажіть адресу відділення", value =>
-    Object.hasOwn(value, "Description")
-  ),
-  addressPoshtomat: Yup.object().test("Вкажіть адресу поштомату", value =>
-    Object.hasOwn(value, "Description")
-  ),
+  address: Yup.object({
+    Description: Yup.string().required(),
+    city: Yup.object()
+      .required()
+      .test(value => Object.hasOwn(value, "Description")),
+    street: Yup.object().when("deliveryType", ([deliveryType]) => {
+      if (deliveryType == DELIVERY.courier)
+        return Yup.object()
+          .required()
+          .test(value => Object.hasOwn(value, "Description"));
+    }),
+    numberHouse: Yup.string().when("deliveryType", ([deliveryType]) => {
+      if (deliveryType == DELIVERY.courier) return Yup.string().required();
+    }),
+    numberHoll: Yup.string(),
+    flat: Yup.string(),
+    comments: Yup.string(),
+    deliveryType: Yup.string(),
+  }).test(value => Object.hasOwn(value, "Description")),
+
+  addressDepartment: Yup.object().shape({
+    Description: Yup.string().when(
+      "deliveryType",
+      (deliveryType, schema, ctx) => {
+        deliveryType = ctx.context.address.deliveryType;
+        if (deliveryType == DELIVERY.department) return schema.required();
+      }
+    ),
+  }),
+  addressPoshtomat: Yup.object().shape({
+    Description: Yup.string().when(
+      "deliveryType",
+      (deliveryType, schema, ctx) => {
+        deliveryType = ctx.context.address.deliveryType;
+        if (deliveryType == DELIVERY.poshtomat) return schema.required();
+      }
+    ),
+  }),
 });

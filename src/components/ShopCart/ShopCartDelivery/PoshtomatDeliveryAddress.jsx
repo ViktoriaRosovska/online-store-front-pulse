@@ -9,7 +9,6 @@ import {
 } from "./ShopCartDelivery.styled";
 import {
   addShopCartAddress,
-  addShopCartAddressDepartment,
   addShopCartAddressPoshtomat,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
@@ -18,11 +17,11 @@ import { Error } from "components/form/formElements/CustomInput/CustomInput.styl
 
 export const PoshtomatDeliveryAddress = ({ setFieldValue, errors, values }) => {
   useEffect(() => {
-    dispatch(addShopCartAddress({ Description: values.city.label }));
+    dispatch(addShopCartAddress({ Description: values.address.city.label }));
   }, []);
-  const { city, addressPoshtomat } = useSelector(selectUserShopCart);
-  console.log("addressPoshtomat", addressPoshtomat);
-  console.log("field addressDepartment", values.addressDepartment);
+
+  const { addressPoshtomat, address } = useSelector(selectUserShopCart);
+
   const dispatch = useDispatch();
   const [
     getDepartments,
@@ -34,27 +33,12 @@ export const PoshtomatDeliveryAddress = ({ setFieldValue, errors, values }) => {
   ] = useGetDepartmentsMutation();
 
   useEffect(() => {
-    getDepartments(city.Ref);
-  }, [city, getDepartments]);
+    getDepartments(address?.city.Ref);
+  }, [address?.city, getDepartments]);
 
-  const onSelectDepartmentsChange = value => {
-    dispatch(
-      addShopCartAddress({
-        Description: values.address.Description + ", " + value.Description,
-      })
-    );
-    setFieldValue("addressPoshtomat", value.Description);
+  const onSelectDepartmentsChange = async value => {
+    await setFieldValue("addressPoshtomat", value);
     dispatch(addShopCartAddressPoshtomat(value));
-    setFieldValue("address", {
-      Description: values.address.Description + ", " + value.Description,
-    });
-    setFieldValue("addressDepartment", {
-      Description: values.address.Description + ", " + value.Description,
-    });
-    dispatch(addShopCartAddressDepartment(value));
-    setFieldValue("addressDepartment", {
-      Description: values.address.Description + ", " + value.Description,
-    });
   };
 
   return (

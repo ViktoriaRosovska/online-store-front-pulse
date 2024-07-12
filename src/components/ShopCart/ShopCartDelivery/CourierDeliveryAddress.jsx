@@ -3,24 +3,17 @@ import CustomInput from "components/form/formElements/CustomInput/CustomInput";
 import { StyledDeliveryTitle } from "./ShopCartDelivery.styled";
 
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addShopCartComments,
-  addShopCartFlat,
-  addShopCartNumberHoll,
-  addShopCartNumberHouse,
-} from "../../../redux/user/userShopCart/userShopCartSlice";
+import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { DeliveryStreetSelect } from "./DeliveryStreetSelect";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
 
 export const CourierDeliveryAddress = ({ values, setFieldValue, errors }) => {
   console.log("courier values", values);
-  console.log("values.address", values.address);
 
   const dispatch = useDispatch();
 
-  const { numberHouse, flat, numberHoll, comments } =
-    useSelector(selectUserShopCart);
+  const { address } = useSelector(selectUserShopCart);
 
   const handleChange = (value, func) => {
     console.log(value);
@@ -31,25 +24,26 @@ export const CourierDeliveryAddress = ({ values, setFieldValue, errors }) => {
     <>
       <StyledDeliveryTitle>Адреса доставки</StyledDeliveryTitle>
 
-      <DeliveryStreetSelect
-        values={values}
-        errors={errors}
-        setFieldValue={setFieldValue}
-      />
+      <DeliveryStreetSelect errors={errors} setFieldValue={setFieldValue} />
       <div style={{ position: "relative" }}>
         <CustomInput
           type="text"
           label="Вкажіть номер будинку&#42;"
           placeholder="Номер будинку"
-          name="numberHouse"
+          name="address.numberHouse"
           onChange={e => {
-            handleChange(e.target.value, addShopCartNumberHouse);
-            setFieldValue("numberHouse", e.target.value.trim());
+            handleChange({ numberHouse: e.target.value }, addShopCartAddress);
+
             setFieldValue("address.numberHouse", e.target.value.trim());
+            dispatch(
+              addShopCartAddress({
+                numberHouse: e.target.value.trim(),
+              })
+            );
           }}
-          value={numberHouse}
+          value={address?.numberHouse}
         />
-        {(values.numberHouse.length < 1 || errors.numberHouse) && (
+        {errors.address?.numberHouse && (
           <Error>{"Вкажіть номер будинку"}</Error>
         )}
       </div>
@@ -60,11 +54,16 @@ export const CourierDeliveryAddress = ({ values, setFieldValue, errors }) => {
         placeholder="Номер під'їзду"
         name="numberHoll"
         onChange={e => {
-          handleChange(e.target.value, addShopCartNumberHoll);
-          setFieldValue("numberHoll", e.target.value);
+          handleChange({ numberHoll: e.target.value }, addShopCartAddress);
+
           setFieldValue("address.numberHoll", e.target.value.trim());
+          dispatch(
+            addShopCartAddress({
+              numberHoll: e.target.value.trim(),
+            })
+          );
         }}
-        value={numberHoll}
+        value={address.numberHoll}
       />
       <CustomInput
         type="text"
@@ -72,11 +71,16 @@ export const CourierDeliveryAddress = ({ values, setFieldValue, errors }) => {
         placeholder="Номер квартири"
         name="flat"
         onChange={e => {
-          handleChange(e.target.value, addShopCartFlat);
-          setFieldValue("flat", e.target.value);
+          handleChange({ flat: e.target.value }, addShopCartAddress);
+
           setFieldValue("address.flat", e.target.value.trim());
+          dispatch(
+            addShopCartAddress({
+              flat: e.target.value.trim(),
+            })
+          );
         }}
-        value={flat}
+        value={address.flat}
       />
 
       <CustomInput
@@ -87,10 +91,15 @@ export const CourierDeliveryAddress = ({ values, setFieldValue, errors }) => {
         placeholder="Напишіть коментар"
         label="Коментарі для кур'єра"
         onChange={e => {
-          handleChange(e.target.value, addShopCartComments);
-          setFieldValue("address.comments", e.target.value.trim());
+          handleChange({ comments: e.target.value }, addShopCartAddress);
+          setFieldValue("address.comments", e.target.value);
+          dispatch(
+            addShopCartAddress({
+              comments: e.target.value,
+            })
+          );
         }}
-        value={comments}
+        value={address.comments}
       />
     </>
   );

@@ -19,7 +19,7 @@ import { addShopCartTotalPriceSum } from "../../../../redux/user/userShopCart/us
 export const YourOrderPriceComponent = () => {
   const { priceSum, countQuantity, totalPriceSum } =
     useSelector(selectUserShopCart);
-  console.log(totalPriceSum);
+  // console.log(totalPriceSum);
   const discount = useSelector(selectPromoCodeDiscount);
   const isPromoValid = useSelector(selectPromoValid);
   const totalSum = isPromoValid ? discountPrice(priceSum, discount) : priceSum;

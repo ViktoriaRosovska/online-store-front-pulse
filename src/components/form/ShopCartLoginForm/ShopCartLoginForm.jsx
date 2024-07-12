@@ -40,6 +40,7 @@ export const ShopCartLoginForm = ({ openForgotPasswordModal }) => {
       }}
       validateOnBlur={false}
       validateOnChange={true}
+      enableReinitialize
       validationSchema={loginValidationSchema}
       onSubmit={onSubmit}
     >

@@ -6,11 +6,15 @@ import {
 } from "./ShopCartDelivery.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
-import { addDeliveryType } from "../../../redux/user/userShopCart/userShopCartSlice";
+import {
+  addDeliveryType,
+  addShopCartAddressDepartment,
+  addShopCartAddressPoshtomat,
+} from "../../../redux/user/userShopCart/userShopCartSlice";
 import { StyledChoiceBtnParagraphWrapper } from "../ShopCart/ShopCart.styled";
 import { DELIVERY } from "../../../utils/DELIVERY";
 
-export const DeliveryChoiceType = () => {
+export const DeliveryChoiceType = ({ setFieldValue, values }) => {
   const { priceSum, deliveryType } = useSelector(selectUserShopCart);
   const dispatch = useDispatch();
   return (
@@ -18,7 +22,10 @@ export const DeliveryChoiceType = () => {
       <StyledChoiceDeliveryBtn
         type="button"
         $isSelectedBtn={deliveryType === DELIVERY.department}
-        onClick={() => dispatch(addDeliveryType(DELIVERY.department))}
+        onClick={() => {
+          dispatch(addDeliveryType(DELIVERY.department));
+          setFieldValue("address.deliveryType", DELIVERY.department);
+        }}
       >
         <StyledChoiceBtnParagraphWrapper>
           <StyledChoiseVariant
@@ -35,6 +42,10 @@ export const DeliveryChoiceType = () => {
         type="button"
         onClick={() => {
           dispatch(addDeliveryType(DELIVERY.courier));
+          // dispatch(addShopCartAddress({ street: {} }));
+          setFieldValue("address.deliveryType", DELIVERY.courier);
+
+          // setFieldValue("address.street", {});
         }}
       >
         <StyledChoiceBtnParagraphWrapper>
@@ -50,7 +61,10 @@ export const DeliveryChoiceType = () => {
       <StyledChoiceDeliveryBtn
         $isSelectedBtn={deliveryType === DELIVERY.poshtomat}
         type="button"
-        onClick={() => dispatch(addDeliveryType(DELIVERY.poshtomat))}
+        onClick={() => {
+          dispatch(addDeliveryType(DELIVERY.poshtomat));
+          setFieldValue("address.deliveryType", DELIVERY.poshtomat);
+        }}
       >
         <StyledChoiceBtnParagraphWrapper>
           <StyledChoiseVariant

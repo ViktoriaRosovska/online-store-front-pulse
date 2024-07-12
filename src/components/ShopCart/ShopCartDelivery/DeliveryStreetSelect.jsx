@@ -4,26 +4,25 @@ import {
   StyledSelectLabel,
   StyledSelectWrapper,
 } from "./ShopCartDelivery.styled";
-import {
-  addShopCartAddress,
-  addShopCartStreet,
-} from "../../../redux/user/userShopCart/userShopCartSlice";
+import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { useGetStreetsMutation } from "../../../redux/novaPoshta/novaPoshtaAPI";
 import { useEffect, useState } from "react";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
 
-export const DeliveryStreetSelect = ({ setFieldValue, values, errors }) => {
-  const { city, street } = useSelector(selectUserShopCart);
-  const [streetSearch, setStreetSearch] = useState(street?.Description);
+export const DeliveryStreetSelect = ({ setFieldValue, errors }) => {
+  const { address } = useSelector(selectUserShopCart);
+  const [streetSearch, setStreetSearch] = useState(
+    address?.street?.Description
+  );
   const dispatch = useDispatch();
   const [getStreets, { data }] = useGetStreetsMutation();
 
   useEffect(() => {
-    if (city.label.length > 0) {
-      dispatch(addShopCartAddress({ Description: city.label }));
+    if (address?.city?.label?.length > 0) {
+      dispatch(addShopCartAddress({ Description: address?.city?.label }));
     }
-  }, [dispatch, city.label]);
+  }, [dispatch, address?.city?.label]);
 
   const onSelectStreetSearch = value => {
     // console.log("onSelectStreetSearch", value, streetSearch);
@@ -31,34 +30,28 @@ export const DeliveryStreetSelect = ({ setFieldValue, values, errors }) => {
   };
 
   const onSelectStreetChange = value => {
-    // console.log("onSelectStreetChange", value);
-    dispatch(addShopCartStreet(value));
-    setFieldValue("street", value);
-    setFieldValue("address.street", value.label);
-    dispatch(
-      addShopCartAddress({
-        street: value.label,
-      })
-    );
+    setFieldValue("address.street", value);
+    dispatch(addShopCartAddress({ street: value }));
   };
 
   const onSelectStreetBlur = e => {
     const search = e.target.value;
-    //console.log("onSelectStreetBlur", search, e.target.value);
+
     if (search) {
       const street = { value: search, label: search, Description: search };
-      dispatch(addShopCartStreet(street));
-      setFieldValue("street", street);
+      dispatch(addShopCartAddress({ street: street }));
+      setFieldValue("address.street", street);
     }
   };
 
   useEffect(() => {
-    if (city && city.Ref) getStreets(city.Ref, streetSearch);
-  }, [streetSearch, getStreets, city]);
+    if (address?.city && address?.city.Ref)
+      getStreets(address?.city.Ref, streetSearch);
+  }, [streetSearch, getStreets, address?.city]);
 
   return (
     <StyledSelectWrapper>
-      <StyledSelectLabel htmlFor="street">
+      <StyledSelectLabel htmlFor="address.street">
         Вкажіть назву вулиці&#42;
       </StyledSelectLabel>
       <div style={{ position: "relative" }}>
@@ -68,11 +61,10 @@ export const DeliveryStreetSelect = ({ setFieldValue, values, errors }) => {
           onChange={e => onSelectStreetChange(e)}
           onSearch={e => onSelectStreetSearch(e)}
           onBlur={e => onSelectStreetBlur(e)}
-          // value={selectStreetSearch}
-          name="street"
-          displayStreet={street}
+          name="address.street"
+          displayStreet={address.street}
         />
-        {errors.street && <Error>{"Вкажіть назву вулиці"}</Error>}
+        {errors.address?.street && <Error>{"Вкажіть назву вулиці"}</Error>}
       </div>
     </StyledSelectWrapper>
   );

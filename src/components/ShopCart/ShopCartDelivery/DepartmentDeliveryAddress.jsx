@@ -7,22 +7,13 @@ import {
   StyledSelectLabel,
   StyledSelectWrapper,
 } from "./ShopCartDelivery.styled";
-import {
-  addShopCartAddress,
-  addShopCartAddressDepartment,
-} from "../../../redux/user/userShopCart/userShopCartSlice";
+import { addShopCartAddressDepartment } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { useEffect } from "react";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
 
-export const DepartmentDeliveryAddress = ({
-  setFieldValue,
-  errors,
-  values,
-}) => {
-  const { city, address, addressDepartment } = useSelector(selectUserShopCart);
-  console.log("addressDepartment", addressDepartment);
-  console.log(values?.addressDepartment);
+export const DepartmentDeliveryAddress = ({ setFieldValue, errors }) => {
+  const { address, addressDepartment } = useSelector(selectUserShopCart);
   const dispatch = useDispatch();
   const [
     getDepartments,
@@ -34,27 +25,12 @@ export const DepartmentDeliveryAddress = ({
   ] = useGetDepartmentsMutation();
 
   useEffect(() => {
-    getDepartments(city.Ref);
-  }, [city, getDepartments]);
+    getDepartments(address?.city.Ref);
+  }, [address?.city, getDepartments]);
 
-  useEffect(() => {
-    dispatch(addShopCartAddress({ Description: values.city.label }));
-  }, []);
-
-  const onSelectDepartmentsChange = value => {
-    dispatch(
-      addShopCartAddress({
-        Description: values.address.Description + ", " + value.Description,
-      })
-    );
-    setFieldValue("addressDepartment", value);
-    setFieldValue("address", {
-      Description: values.address.Description + ", " + value.Description,
-    });
+  const onSelectDepartmentsChange = async value => {
+    await setFieldValue("addressDepartment", value);
     dispatch(addShopCartAddressDepartment(value));
-    setFieldValue("addressPoshtomat", {
-      Description: values.address.Description + ", " + value.Description,
-    });
   };
 
   return (
@@ -72,13 +48,9 @@ export const DepartmentDeliveryAddress = ({
             onChange={e => onSelectDepartmentsChange(e)}
             displayDepartment={addressDepartment}
             name="address"
-            isError={
-              errors.addressDepartment ||
-              values.addressDepartment.Description === undefined
-            }
+            isError={errors.addressDepartment}
           />
-          {(errors.addressDepartment ||
-            values.addressDepartment.Description === undefined) && (
+          {errors.addressDepartment && (
             <Error>{"Вкажіть номер відділення"}</Error>
           )}
         </div>

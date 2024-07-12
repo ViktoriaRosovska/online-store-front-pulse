@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-    @media screen and (min-width: 1440px) {
-        display: grid;
-        grid-template-columns: 612px 1fr;
-        column-gap: 38px
-    }
-`
+  @media screen and (min-width: 1440px) {
+    width: 894px;
+    display: grid;
+    grid-template-columns: 612px 1fr;
+    column-gap: 38px;
+  }
+`;
 
 export const List = styled.ul`
   display: flex;
@@ -25,7 +26,7 @@ export const Box = styled.div`
   @media screen and (min-width: 1440px) {
     display: flex;
   }
-`
+`;
 
 export const SumUpBox = styled.div`
   display: flex;
@@ -65,17 +66,17 @@ export const TotalPrice = styled.div`
 `;
 
 export const Address = styled.address`
-display: flex;
-flex-direction: column;
-gap: 10px;
-    font-style: normal;
-    font-size: 12px;
-    line-height: 12px;
-    color: var(--grey-text-color);
-    @media screen and (min-width: 1440px) {
-        grid-column: 2;
-        grid-row: 1;
-        font-size: 14px;
-        line-height: 14px;
-    }
-`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 12px;
+  color: var(--grey-text-color);
+  @media screen and (min-width: 1440px) {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 14px;
+    line-height: 14px;
+  }
+`;
