@@ -34,7 +34,6 @@ export const PromoCode = () => {
   const dispatch = useDispatch();
 
   const [checkPromoCode, { data, error }] = useLazyCheckPromoCodeQuery();
-
   const isPromoExpired = useSelector(selectPromoExpired);
   const isPromoInvalid = useSelector(selectPromoInvalid);
   const isPromoValid = useSelector(selectPromoValid);
@@ -54,7 +53,7 @@ export const PromoCode = () => {
       dispatch(addShopCartPromoCode(promoCode));
       dispatch(addShopCartDiscount(discount));
     }
-  }, [data, error, dispatch]);
+  }, [data, error, dispatch, promoCode, discount]);
 
   const handleChangePromo = promo => {
     dispatch(setPromoCode(promo));

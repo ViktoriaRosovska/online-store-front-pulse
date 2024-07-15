@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { productsApi } from "./products/productsApi";
 import { userAuthApi } from "./auth/userAuthApi";
-import { promoCodeReducer } from "./promoCode/promoCodeSlice";
+
 import { authReducer } from "./auth/auth";
 import {
   persistStore,
@@ -23,6 +23,7 @@ import {
   logoutMiddleware,
   resetShopCartMiddleware,
 } from "./middlewares/logoutMiddleware";
+import { promoCodeReducer } from "./promoCode/promoCodeSlice";
 
 const persistConfig = {
   key: "userToken",
