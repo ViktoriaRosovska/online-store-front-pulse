@@ -12,7 +12,10 @@ import { ReactComponent as BasketIcon } from "../../../../../assets/svg/basket_i
 import { ReactComponent as ProfileIcon } from "../../../../../assets/svg/profile_icon.svg";
 import { ReactComponent as FavoriteIcon } from "../../../../../assets/svg/heart_lg.svg";
 import ParenModalForAuth from "components/Modals/ParentModalForAuth/ParentModalForAuth";
-import { StyledShopCountComponent } from "components/StyledShopCountComponent/StyledShopCountComponent";
+import {
+  FavoriteCountComponent,
+  ShopCountComponent,
+} from "components/CountComponent/CountComponent";
 import { StyledBasketWrapper } from "components/Header/Header.styled";
 import { selectUserShopCart } from "../../../../../redux/user/userShopCart/userShopCartSelector";
 import { generateAvatarFromName } from "../../../../../utils/generateAvatarFromName";
@@ -20,6 +23,7 @@ import {
   StyledHeaderGeneratedAvatar,
   StyledHeaderUserAvatar,
 } from "components/StyledHeaderGeneratedAvatar/StyledHeaderGeneratedAvatar.styled";
+import { makeRandomColor } from "../../../../../utils/makeRandomcolor";
 
 function UserActions(props) {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -78,20 +82,6 @@ function UserActions(props) {
     navigate(ROUTES.SHOPCARTLAYOUT, { state: { from: location } });
   };
 
-  function makeRandomColor() {
-    const brightness = 0;
-    var rgb = [Math.random() * 256, Math.random() * 256, Math.random() * 256];
-    var mix = [brightness * 51, brightness * 51, brightness * 51]; //51 => 255/5
-    var mixedrgb = [rgb[0] + mix[0], rgb[1] + mix[1], rgb[2] + mix[2]].map(
-      function (x) {
-        return Math.round(x / 2.0);
-      }
-    );
-    return "rgb(" + mixedrgb.join(",") + ")";
-  }
-
-  console.log(makeRandomColor());
-
   return (
     <div className="user__actions">
       <button
@@ -118,20 +108,23 @@ function UserActions(props) {
           <ProfileIcon />
         )}
       </button>
-      <MediaQuery minWidth={1440}>
-        <button
-          className={`user__actions-favorites user__actions-icon ${
-            props.isFixed || !props.location ? "fixed" : ""
-          }`}
-          onClick={
-            isLoggedIn
-              ? navigateToFavorites
-              : () => handleOpenLoginModal("/profile/favorites")
-          }
-        >
+      {/* <MediaQuery minWidth={1440}> */}
+      <button
+        className={`user__actions-favorites user__actions-icon ${
+          props.isFixed || !props.location ? "fixed" : ""
+        }`}
+        onClick={
+          isLoggedIn
+            ? navigateToFavorites
+            : () => handleOpenLoginModal("/profile/favorites")
+        }
+      >
+        <div style={{ position: "relative" }}>
           <FavoriteIcon />
-        </button>
-      </MediaQuery>
+          <FavoriteCountComponent />
+        </div>
+      </button>
+      {/* </MediaQuery> */}
       <StyledBasketWrapper>
         <button
           className={`user__actions-cart user__actions-icon ${
@@ -140,7 +133,7 @@ function UserActions(props) {
           onClick={navigateToShopCart}
         >
           <BasketIcon />
-          {countQuantity > 0 ? <StyledShopCountComponent /> : null}
+          {countQuantity > 0 ? <ShopCountComponent /> : null}
         </button>
       </StyledBasketWrapper>
 

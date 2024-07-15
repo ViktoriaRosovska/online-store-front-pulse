@@ -1,14 +1,19 @@
 import { useNavigate } from "react-router-dom";
-import { CancelButton, DeleteButton, Text, Wrapper } from "./ModalDeleteUser.styled";
+import {
+  CancelButton,
+  DeleteButton,
+  Text,
+  Wrapper,
+} from "./ModalDeleteUser.styled";
 
 const ModalDeleteUser = ({ onDeleteUser, onClose }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleDelete = () => {
-    onDeleteUser()
-    onClose()
-    navigate('/')
-  }
+    onDeleteUser();
+    onClose();
+    navigate("/");
+  };
 
   return (
     <>

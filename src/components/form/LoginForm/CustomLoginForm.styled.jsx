@@ -21,6 +21,8 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
   background-color: var(--black-bg-color);
+  border: 1px solid transparent;
+
   color: var(--white-text-color);
   border-radius: 16px;
   padding: 10px;
@@ -28,12 +30,11 @@ export const Button = styled.button`
   line-height: 150%;
   letter-spacing: 0.01em;
   transition: background-color 200ms ease-out, color 200ms ease-out,
-    border 200ms ease-out;
+    200ms ease-out;
 
   &:hover {
-    background-color: transparent;
+    background-color: var(--white-dark-bg-color);
     color: var(--black-bg-color);
-    border: 1px solid var(--black-bg-color);
   }
 
   @media screen and (min-width: 1440px) {
