@@ -7,9 +7,10 @@ import {
   ForgotPasswordButton,
   StyledForm,
 } from "./CustomLoginForm.styled";
-import { useNavigate } from "react-router-dom";
+
 import { useDispatch } from "react-redux";
 import { Notify } from "notiflix";
+import { useNavigate } from "react-router-dom";
 
 const CustomLoginForm = ({
   onClose,

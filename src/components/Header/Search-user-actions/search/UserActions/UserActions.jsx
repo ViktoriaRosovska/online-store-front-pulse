@@ -1,8 +1,11 @@
 import { useNavigate, useLocation } from "react-router";
 import "./UserActions.css";
 import MediaQuery from "react-responsive";
-import { useState } from "react";
-import { selectUserToken } from "../../../../../redux/auth";
+import { useEffect, useState } from "react";
+import {
+  selectUserToken,
+  useFetchCurrentUserQuery,
+} from "../../../../../redux/auth";
 import { ROUTES } from "../../../../../utils/routes";
 import { useSelector } from "react-redux";
 import { ReactComponent as BasketIcon } from "../../../../../assets/svg/basket_icon.svg";
@@ -12,17 +15,36 @@ import ParenModalForAuth from "components/Modals/ParentModalForAuth/ParentModalF
 import { StyledShopCountComponent } from "components/StyledShopCountComponent/StyledShopCountComponent";
 import { StyledBasketWrapper } from "components/Header/Header.styled";
 import { selectUserShopCart } from "../../../../../redux/user/userShopCart/userShopCartSelector";
+import { generateAvatarFromName } from "../../../../../utils/generateAvatarFromName";
+import {
+  StyledHeaderGeneratedAvatar,
+  StyledHeaderUserAvatar,
+} from "components/StyledHeaderGeneratedAvatar/StyledHeaderGeneratedAvatar.styled";
 
 function UserActions(props) {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
     useState(false);
+  const location = useLocation();
+
   const [redirectPath, setRedirectPath] = useState("/profile/account");
   const { countQuantity } = useSelector(selectUserShopCart);
   const navigate = useNavigate();
-  const location = useLocation();
-
+  const [user, setUser] = useState(null);
   const isLoggedIn = useSelector(selectUserToken);
+
+  const { data, refetch } = useFetchCurrentUserQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      refetch();
+      setUser(data?.user);
+    } else {
+      setUser(null);
+    }
+  }, [refetch, isLoggedIn, data]);
 
   const handleOpenLoginModal = redirectPath => {
     setRedirectPath(redirectPath);
@@ -55,6 +77,21 @@ function UserActions(props) {
   const navigateToShopCart = () => {
     navigate(ROUTES.SHOPCARTLAYOUT, { state: { from: location } });
   };
+
+  function makeRandomColor() {
+    const brightness = 0;
+    var rgb = [Math.random() * 256, Math.random() * 256, Math.random() * 256];
+    var mix = [brightness * 51, brightness * 51, brightness * 51]; //51 => 255/5
+    var mixedrgb = [rgb[0] + mix[0], rgb[1] + mix[1], rgb[2] + mix[2]].map(
+      function (x) {
+        return Math.round(x / 2.0);
+      }
+    );
+    return "rgb(" + mixedrgb.join(",") + ")";
+  }
+
+  console.log(makeRandomColor());
+
   return (
     <div className="user__actions">
       <button
@@ -67,7 +104,19 @@ function UserActions(props) {
             : () => handleOpenLoginModal("/profile/account")
         }
       >
-        <ProfileIcon />
+        {isLoggedIn ? (
+          user?.avatar ? (
+            <StyledHeaderUserAvatar $color={makeRandomColor()}>
+              <img src={user?.avatar || ""} alt="user avatar" />
+            </StyledHeaderUserAvatar>
+          ) : (
+            <StyledHeaderGeneratedAvatar $color={makeRandomColor()}>
+              {generateAvatarFromName(user?.firstName, user?.lastName)}
+            </StyledHeaderGeneratedAvatar>
+          )
+        ) : (
+          <ProfileIcon />
+        )}
       </button>
       <MediaQuery minWidth={1440}>
         <button

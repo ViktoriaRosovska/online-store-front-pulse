@@ -16,23 +16,33 @@ import {
 } from "./ModalAuth.styled";
 import UserResetPasswordForm from "components/form/UserResetPasswordForm/UserResetPasswordForm";
 import { useLoginUserGoogleQuery } from "../../../redux/auth";
+import { useLocation } from "react-router-dom";
 
-const ModalAuth = ({ onClose, openForgotPasswordModal, resetPassword, redirectPath }) => {
-  const {data, isLoading, error, refetch} = useLoginUserGoogleQuery();
-  console.log("ModalAuth  isLoading", isLoading)
-  console.log("ModalAuth  error", error)
-  console.log("ModalAuth  data", data)
+const ModalAuth = ({
+  onClose,
+  openForgotPasswordModal,
+  resetPassword,
+  redirectPath,
+}) => {
+  const { data, isLoading, error, refetch } = useLoginUserGoogleQuery();
+  // console.log("ModalAuth  isLoading", isLoading)
+  // console.log("ModalAuth  error", error)
+  // console.log("ModalAuth  data", data)
   const [mode, setMode] = useState("login");
 
-  const handleGoogleLogin = async() => {
-      refetch()
-  }
-//   const handleGoogleLogin = async() => {window.location.href = "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=http://localhost:5173/online-store-front-pulse&scope=profile%20email&client_id=978298121964-08iv7n2kehtn2iin4hjph7h2cjjnaige.apps.googleusercontent.com"
-//     // ;
-//     // window.location.href = "https://pulse-run-api.onrender.com/api/auth/google?clientId=978298121964-08iv7n2kehtn2iin4hjph7h2cjjnaige.apps.googleusercontent.com";
-//     // await loginUserGoogle()
+  console.log("redirectPath", redirectPath);
 
-// };
+  const handleGoogleLogin = async () => {
+    refetch();
+  };
+  //   const handleGoogleLogin = async() => {window.location.href = "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=http://localhost:5173/online-store-front-pulse&scope=profile%20email&client_id=978298121964-08iv7n2kehtn2iin4hjph7h2cjjnaige.apps.googleusercontent.com"
+  //     // ;
+  //     // window.location.href = "https://pulse-run-api.onrender.com/api/auth/google?clientId=978298121964-08iv7n2kehtn2iin4hjph7h2cjjnaige.apps.googleusercontent.com";
+  //     // await loginUserGoogle()
+
+  // };
+
+  const locationPath = useLocation().pathname;
 
   const switchToLogin = () => {
     setMode("login");
@@ -61,10 +71,18 @@ const ModalAuth = ({ onClose, openForgotPasswordModal, resetPassword, redirectPa
           Реєстрація
         </Button>
       </Navigation>
-      {mode === "login" ? (resetPassword ? <UserResetPasswordForm onClose={onClose}/> :
-        <CustomLoginForm onClose={onClose} openForgotPasswordModal={openForgotPasswordModal} redirectPath={redirectPath} />
+      {mode === "login" ? (
+        resetPassword ? (
+          <UserResetPasswordForm onClose={onClose} />
+        ) : (
+          <CustomLoginForm
+            onClose={onClose}
+            openForgotPasswordModal={openForgotPasswordModal}
+            redirectPath={locationPath}
+          />
+        )
       ) : (
-          <CustomRegisterForm onClose={onClose} redirectPath={redirectPath} />
+        <CustomRegisterForm onClose={onClose} redirectPath={locationPath} />
       )}
       {mode === "login" ? (
         <Wrapper>
