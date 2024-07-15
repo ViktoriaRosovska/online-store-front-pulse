@@ -99,32 +99,34 @@ function Header() {
     >
       <Container>
         <div className="header__inner">
-          <MediaQuery maxWidth={1440}>
-            <div>
-              <HeaderMenuSvg
-                isOpen={isOpen}
-                onClose={handleCloseMenu}
-                onOpen={handleOpenMenu}
-                isFixed={location.pathname !== "/" || isFixed ? true : false}
-              />
+          <div style={{ display: "flex", gap: "24px" }}>
+            <MediaQuery maxWidth={1440}>
+              <div>
+                <HeaderMenuSvg
+                  isOpen={isOpen}
+                  onClose={handleCloseMenu}
+                  onOpen={handleOpenMenu}
+                  isFixed={location.pathname !== "/" || isFixed ? true : false}
+                />
 
-              <Portal isOpen={isOpen} burgerModal={true}>
-                <ModalBurgerMenu onClose={handleCloseMenu}>
-                  <HeaderMobileMenu onClose={handleCloseMenu} />
-                </ModalBurgerMenu>
-              </Portal>
-            </div>
-          </MediaQuery>
-          <Link className="logo" to="./">
-            <img
-              className={`logo__icon ${
-                location.pathname !== "/" || isFixed ? "fixed" : ""
-              }`}
-              src={logoImg}
-              alt="PulseRun"
-              onClick={homeClick}
-            />
-          </Link>
+                <Portal isOpen={isOpen} burgerModal={true}>
+                  <ModalBurgerMenu onClose={handleCloseMenu}>
+                    <HeaderMobileMenu onClose={handleCloseMenu} />
+                  </ModalBurgerMenu>
+                </Portal>
+              </div>
+            </MediaQuery>
+            <Link className="logo" to="./">
+              <img
+                className={`logo__icon ${
+                  location.pathname !== "/" || isFixed ? "fixed" : ""
+                }`}
+                src={logoImg}
+                alt="PulseRun"
+                onClick={homeClick}
+              />
+            </Link>
+          </div>
           <MediaQuery minWidth={1440}>
             <nav>
               <Menu />

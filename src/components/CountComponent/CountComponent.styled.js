@@ -23,6 +23,7 @@ const StyledCountWrapper = styled.div`
 `;
 const StyledFavoriteCountWrapper = styled(StyledCountWrapper)`
   background-color: var(--grey-text-color);
+  z-index: 100;
   &:hover {
     background-color: var(--grey-text-color);
   }

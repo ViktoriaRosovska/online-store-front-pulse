@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router";
 import "./UserActions.css";
-import MediaQuery from "react-responsive";
+// import MediaQuery from "react-responsive";
 import { useEffect, useState } from "react";
 import {
   selectUserToken,
