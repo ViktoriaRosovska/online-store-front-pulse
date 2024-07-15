@@ -1,4 +1,4 @@
-import { PromoExpired, PromoInvalid, PromoValid } from "./promoCodeSlice";
+import { PromoExpired, PromoInvalid, PromoValid } from "./promoCodeSlice.js";
 
 export const selectPromoCode = state => state.promoCode.promoCode;
 export const selectPromoValid = state => state.promoCode.status === PromoValid;
