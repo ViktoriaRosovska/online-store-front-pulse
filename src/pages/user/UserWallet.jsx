@@ -4,8 +4,8 @@ import { Title } from "../../components/Typography/Typography.styled";
 const UserWallet = () => {
   return (
     <>
-          <Title style={{ textAlign: "left" }}>Гаманець</Title>
-          <UserWalletList />
+      <Title style={{ textAlign: "left" }}>Гаманець</Title>
+      <UserWalletList />
     </>
   );
 };

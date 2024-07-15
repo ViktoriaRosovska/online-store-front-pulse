@@ -29,17 +29,19 @@ export const CancelButton = styled.button`
   font-size: 16px;
   line-height: 20px;
   color: var(--white-text-color);
-
+  font-family: "Roboto";
+  height: 48px;
   &:hover {
-    background-color: transparent;
+    background-color: var(--white-dark-bg-color);
     color: var(--black-bg-color);
-    border: 1px solid var(--black-bg-color);
+    border: 1px solid transparent;
   }
 
   @media screen and (min-width: 1440px) {
     font-size: 20px;
     line-height: 30px;
     width: 214px;
+    height: 64px;
   }
 `;
 
@@ -49,15 +51,18 @@ export const DeleteButton = styled.button`
   font-size: 16px;
   line-height: 20px;
   border: 1px solid var(--black-bg-color);
-
+  font-family: "Roboto";
+  height: 48px;
   &:hover {
-    background-color: var(--black-bg-color);
-    color: var(--white-text-color);
+    background-color: var(--white-dark-bg-color);
+    color: var(--black-text-color);
+    border: 1px solid transparent;
   }
 
   @media screen and (min-width: 1440px) {
     font-size: 20px;
     line-height: 30px;
     width: 214px;
+    height: 62px;
   }
 `;

@@ -5,7 +5,7 @@ import { useLazyGetNewestQuery } from "../../redux/products/productsApi";
 const NewBrands = () => {
   const [getNewest, { data, isError, isFetching }] = useLazyGetNewestQuery();
 
-  const newestProducts = data?.products?.filter(el => el?.sale === 0);
+  const newestProducts = data?.products?.filter(el => el?.isNewProduct);
 
   return (
     <>

@@ -1,28 +1,54 @@
 import { useNavigate, useLocation } from "react-router";
 import "./UserActions.css";
-import MediaQuery from "react-responsive";
-import { useState } from "react";
-import { selectUserToken } from "../../../../../redux/auth";
+// import MediaQuery from "react-responsive";
+import { useEffect, useState } from "react";
+import {
+  selectUserToken,
+  useFetchCurrentUserQuery,
+} from "../../../../../redux/auth";
 import { ROUTES } from "../../../../../utils/routes";
 import { useSelector } from "react-redux";
 import { ReactComponent as BasketIcon } from "../../../../../assets/svg/basket_icon.svg";
 import { ReactComponent as ProfileIcon } from "../../../../../assets/svg/profile_icon.svg";
 import { ReactComponent as FavoriteIcon } from "../../../../../assets/svg/heart_lg.svg";
 import ParenModalForAuth from "components/Modals/ParentModalForAuth/ParentModalForAuth";
-import { StyledShopCountComponent } from "components/StyledShopCountComponent/StyledShopCountComponent";
+import {
+  FavoriteCountComponent,
+  ShopCountComponent,
+} from "components/CountComponent/CountComponent";
 import { StyledBasketWrapper } from "components/Header/Header.styled";
 import { selectUserShopCart } from "../../../../../redux/user/userShopCart/userShopCartSelector";
+import { generateAvatarFromName } from "../../../../../utils/generateAvatarFromName";
+import {
+  StyledHeaderGeneratedAvatar,
+  StyledHeaderUserAvatar,
+} from "components/StyledHeaderGeneratedAvatar/StyledHeaderGeneratedAvatar.styled";
+import { makeRandomColor } from "../../../../../utils/makeRandomcolor";
 
 function UserActions(props) {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
     useState(false);
+  const location = useLocation();
+
   const [redirectPath, setRedirectPath] = useState("/profile/account");
   const { countQuantity } = useSelector(selectUserShopCart);
   const navigate = useNavigate();
-  const location = useLocation();
-
+  const [user, setUser] = useState(null);
   const isLoggedIn = useSelector(selectUserToken);
+
+  const { data, refetch } = useFetchCurrentUserQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      refetch();
+      setUser(data?.user);
+    } else {
+      setUser(null);
+    }
+  }, [refetch, isLoggedIn, data]);
 
   const handleOpenLoginModal = redirectPath => {
     setRedirectPath(redirectPath);
@@ -55,6 +81,7 @@ function UserActions(props) {
   const navigateToShopCart = () => {
     navigate(ROUTES.SHOPCARTLAYOUT, { state: { from: location } });
   };
+
   return (
     <div className="user__actions">
       <button
@@ -67,22 +94,37 @@ function UserActions(props) {
             : () => handleOpenLoginModal("/profile/account")
         }
       >
-        <ProfileIcon />
+        {isLoggedIn ? (
+          user?.avatar ? (
+            <StyledHeaderUserAvatar $color={makeRandomColor()}>
+              <img src={user?.avatar || ""} alt="user avatar" />
+            </StyledHeaderUserAvatar>
+          ) : (
+            <StyledHeaderGeneratedAvatar $color={makeRandomColor()}>
+              {generateAvatarFromName(user?.firstName, user?.lastName)}
+            </StyledHeaderGeneratedAvatar>
+          )
+        ) : (
+          <ProfileIcon />
+        )}
       </button>
-      <MediaQuery minWidth={1440}>
-        <button
-          className={`user__actions-favorites user__actions-icon ${
-            props.isFixed || !props.location ? "fixed" : ""
-          }`}
-          onClick={
-            isLoggedIn
-              ? navigateToFavorites
-              : () => handleOpenLoginModal("/profile/favorites")
-          }
-        >
+      {/* <MediaQuery minWidth={1440}> */}
+      <button
+        className={`user__actions-favorites user__actions-icon ${
+          props.isFixed || !props.location ? "fixed" : ""
+        }`}
+        onClick={
+          isLoggedIn
+            ? navigateToFavorites
+            : () => handleOpenLoginModal("/profile/favorites")
+        }
+      >
+        <div style={{ position: "relative" }}>
           <FavoriteIcon />
-        </button>
-      </MediaQuery>
+          <FavoriteCountComponent />
+        </div>
+      </button>
+      {/* </MediaQuery> */}
       <StyledBasketWrapper>
         <button
           className={`user__actions-cart user__actions-icon ${
@@ -91,7 +133,7 @@ function UserActions(props) {
           onClick={navigateToShopCart}
         >
           <BasketIcon />
-          {countQuantity > 0 ? <StyledShopCountComponent /> : null}
+          {countQuantity > 0 ? <ShopCountComponent /> : null}
         </button>
       </StyledBasketWrapper>
 

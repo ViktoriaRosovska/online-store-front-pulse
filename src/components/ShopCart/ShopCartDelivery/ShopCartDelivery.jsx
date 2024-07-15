@@ -54,14 +54,13 @@ export const ShopCartDelivery = props => {
   });
 
   const isLoggedIn = useSelector(selectUserToken);
-  // console.log(isLoggedIn);
+
   useEffect(() => {
     if (!isLoggedIn) refetch();
   }, [refetch, isLoggedIn]);
 
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
     useState(false);
-  // const location = useLocation();
 
   const openForgotPasswordModal = () => {
     setIsForgotPasswordModalOpen(true);
@@ -71,7 +70,7 @@ export const ShopCartDelivery = props => {
     setIsForgotPasswordModalOpen(false);
   };
 
-  console.log("address", address);
+  // console.log("address", address);
 
   const isDesktop = useMediaQuery("(min-width: 1440px)");
   const [isActiveForm, setIsActiveForm] = useState(true);
@@ -172,14 +171,14 @@ export const ShopCartDelivery = props => {
           </div>
 
           <StyledDeliveryOrderWrapper>
-            {!isLoggedIn && (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "24px",
-                }}
-              >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "24px",
+              }}
+            >
+              {!isLoggedIn && (
                 <div>
                   <StyledDeliveryTitle>
                     <p
@@ -212,11 +211,10 @@ export const ShopCartDelivery = props => {
                   )}
                   {!isActiveForm && <ShopCartRegisterForm />}
                 </div>
-
-                <YourOrderPriceComponent />
-                <PromoCode />
-              </div>
-            )}
+              )}
+              <YourOrderPriceComponent />
+              <PromoCode />
+            </div>
 
             <ShopCartProductsList products={products} isDesktop={isDesktop} />
           </StyledDeliveryOrderWrapper>

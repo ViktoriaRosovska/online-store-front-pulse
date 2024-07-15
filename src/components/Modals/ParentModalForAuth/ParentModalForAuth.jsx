@@ -30,7 +30,10 @@ const ParenModalForAuth = ({
           padding="68px 164px"
           top="68px"
         >
-          <ModalForgotPassword onClose={closeForgotPasswordModal} openLoginModal={openLoginModal} />
+          <ModalForgotPassword
+            onClose={closeForgotPasswordModal}
+            openLoginModal={openLoginModal}
+          />
         </CommonModal>
       </Portal>
     </>
