@@ -11,6 +11,7 @@ import {
   FooterSectionColumn,
 } from "./FooterPages.styled";
 import { Helmet } from "react-helmet";
+import { Title } from "components/Typography/Typography.styled";
 
 const FooterAboutUs = () => {
   return (
@@ -18,60 +19,18 @@ const FooterAboutUs = () => {
       <Helmet>
         <title>PulseRun AboutUs</title>
       </Helmet>
-    <PageSection>
-      <Container>
-        <FooterPages>
-          <MediaQuery maxWidth={1439.98}>
-            <h3>Про нас</h3>
-            <FooterSectionColumn>
-              <img
-                src={photoFounderMob}
-                alt="Photo portrait of the founder"
-                width="328"
-                height="327"
-              />
-              <FooterItemText>
-                Ласкаво просимо до RunPulse – мого улюбленого куточку для тих,
-                хто розуміє важливість комфорту та стилю у спортивному взутті!
-              </FooterItemText>
-              <FooterItemText>
-                <FooterItemBottom>
-                  Мене звати Оксана, і я є засновницею цього магазину. Як жінка
-                  та поціновувачка активного способу життя, я розумію, наскільки
-                  важливо мати вірного спутника на кожному кроці свого шляху.
-                  Сама знаю, як важливо мати взуття, яке не тільки підтримує,
-                  але і надихає до досягнень.
-                </FooterItemBottom>
-              </FooterItemText>
-
-              <DetailsTogglerSecond>
-                <FooterItemText>
-                  "У RunPulse ми пропонуємо вам великий вибір брендового та
-                  класичного спортивного взуття. Ми віримо, що правильний вибір
-                  взуття може зробити ваші тренування більш ефективними та
-                  приємними. Кожна пара, яку ми обираємо для нашого магазину,
-                  проходить відбір за якістю та стилем, щоб ви могли бути
-                  впевнені в своєму виборі. Моя команда та я прагнемо зробити
-                  ваші покупки максимально приємними та зручними. Будьте
-                  впевнені, що кожна пара взуття від RunPulse призначена для
-                  того, щоб допомагати вам досягати нових висот у спорті. Дякую,
-                  що обрали RunPulse – ваш партнер у кожному спортивному
-                  досягненні!"
-                </FooterItemText>
-              </DetailsTogglerSecond>
-            </FooterSectionColumn>
-          </MediaQuery>
-
-          <MediaQuery minWidth={1440}>
-            <h3>Про нас</h3>
-            <FooterSection>
-              <img
-                src={photoFounder}
-                alt="Photo portrait of the founder"
-                width="347"
-                height="327"
-              />
+      <PageSection>
+        <Container>
+          <Title>Про нас</Title>
+          <FooterPages>
+            <MediaQuery maxWidth={1439.98}>
               <FooterSectionColumn>
+                <img
+                  src={photoFounderMob}
+                  alt="Photo portrait of the founder"
+                  width="328"
+                  height="327"
+                />
                 <FooterItemText>
                   Ласкаво просимо до RunPulse – мого улюбленого куточку для тих,
                   хто розуміє важливість комфорту та стилю у спортивному взутті!
@@ -102,12 +61,54 @@ const FooterAboutUs = () => {
                   </FooterItemText>
                 </DetailsTogglerSecond>
               </FooterSectionColumn>
-            </FooterSection>
-          </MediaQuery>
-        </FooterPages>
-      </Container>
+            </MediaQuery>
+
+            <MediaQuery minWidth={1440}>
+              <FooterSection>
+                <img
+                  src={photoFounder}
+                  alt="Photo portrait of the founder"
+                  width="347"
+                  height="327"
+                />
+                <FooterSectionColumn>
+                  <FooterItemText>
+                    Ласкаво просимо до RunPulse – мого улюбленого куточку для
+                    тих, хто розуміє важливість комфорту та стилю у спортивному
+                    взутті!
+                  </FooterItemText>
+                  <FooterItemText>
+                    <FooterItemBottom>
+                      Мене звати Оксана, і я є засновницею цього магазину. Як
+                      жінка та поціновувачка активного способу життя, я розумію,
+                      наскільки важливо мати вірного спутника на кожному кроці
+                      свого шляху. Сама знаю, як важливо мати взуття, яке не
+                      тільки підтримує, але і надихає до досягнень.
+                    </FooterItemBottom>
+                  </FooterItemText>
+
+                  <DetailsTogglerSecond>
+                    <FooterItemText>
+                      "У RunPulse ми пропонуємо вам великий вибір брендового та
+                      класичного спортивного взуття. Ми віримо, що правильний
+                      вибір взуття може зробити ваші тренування більш
+                      ефективними та приємними. Кожна пара, яку ми обираємо для
+                      нашого магазину, проходить відбір за якістю та стилем, щоб
+                      ви могли бути впевнені в своєму виборі. Моя команда та я
+                      прагнемо зробити ваші покупки максимально приємними та
+                      зручними. Будьте впевнені, що кожна пара взуття від
+                      RunPulse призначена для того, щоб допомагати вам досягати
+                      нових висот у спорті. Дякую, що обрали RunPulse – ваш
+                      партнер у кожному спортивному досягненні!"
+                    </FooterItemText>
+                  </DetailsTogglerSecond>
+                </FooterSectionColumn>
+              </FooterSection>
+            </MediaQuery>
+          </FooterPages>
+        </Container>
       </PageSection>
-      </>
+    </>
   );
 };
 

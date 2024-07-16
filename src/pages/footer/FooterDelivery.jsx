@@ -7,7 +7,7 @@ import {
   FooterListNoMarker,
 } from "./FooterPages.styled";
 
-import { StyledLinks } from "components/Typography/Typography.styled";
+import { StyledLinks, Title } from "components/Typography/Typography.styled";
 
 const FooterDelivery = () => {
   return (
@@ -17,8 +17,8 @@ const FooterDelivery = () => {
       </Helmet>
       <PageSection>
         <Container>
+          <Title>Доставка</Title>
           <FooterPages>
-            <h3>Доставка</h3>
             <FooterListNoMarker>
               <h4>1. ЯКІ УМОВИ ДОСТАВКИ?</h4>
               <h4>Зона доставки:</h4>
