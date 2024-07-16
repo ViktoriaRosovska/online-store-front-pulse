@@ -24,6 +24,7 @@ import {
   StyledHeaderUserAvatar,
 } from "components/StyledHeaderGeneratedAvatar/StyledHeaderGeneratedAvatar.styled";
 import { makeRandomColor } from "../../../../../utils/makeRandomcolor";
+import { useGetFavoritesQuery } from "../../../../../redux/user/userSlice/userApi";
 
 function UserActions(props) {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -41,6 +42,9 @@ function UserActions(props) {
     refetchOnMountOrArgChange: true,
   });
 
+  const { data: favoriteData } = useGetFavoritesQuery();
+
+  const favoriteCount = favoriteData?.length;
   useEffect(() => {
     if (isLoggedIn) {
       refetch();
@@ -121,7 +125,9 @@ function UserActions(props) {
       >
         <div style={{ position: "relative" }}>
           <FavoriteIcon />
-          <FavoriteCountComponent />
+          {isLoggedIn && favoriteCount > 0 && (
+            <FavoriteCountComponent favoriteCount={favoriteCount} />
+          )}
         </div>
       </button>
       {/* </MediaQuery> */}

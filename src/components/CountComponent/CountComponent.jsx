@@ -1,4 +1,3 @@
-import { useGetFavoritesQuery } from "../../redux/user/userSlice/userApi";
 import { selectUserShopCart } from "../../redux/user/userShopCart/userShopCartSelector";
 import {
   StyledCountWrapper,
@@ -11,11 +10,7 @@ export const ShopCountComponent = () => {
   return <StyledCountWrapper>{countQuantity}</StyledCountWrapper>;
 };
 
-export const FavoriteCountComponent = () => {
-  const { data } = useGetFavoritesQuery();
-
-  const favoriteCount = data?.length;
-
+export const FavoriteCountComponent = ({ favoriteCount }) => {
   return (
     <StyledFavoriteCountWrapper>{favoriteCount}</StyledFavoriteCountWrapper>
   );
