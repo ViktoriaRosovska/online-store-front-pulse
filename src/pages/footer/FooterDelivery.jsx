@@ -7,6 +7,8 @@ import {
   FooterListNoMarker,
 } from "./FooterPages.styled";
 
+import { StyledLinks } from "components/Typography/Typography.styled";
+
 const FooterDelivery = () => {
   return (
     <>
@@ -23,17 +25,17 @@ const FooterDelivery = () => {
               <FooterItem>Ми відправляємо товари по всій Україні*. </FooterItem>
               <FooterItem>
                 * Ми тимчасово не доставляємо замовлення на окуповані території
-                в Донецькій, Луганській, Херсонскій, Запорізькій, Харківській
+                в Донецькій, Луганській, Херсонській, Запорізькій, Харківській
                 областях і в Крим.
               </FooterItem>
             </FooterListNoMarker>
 
             <FooterListNoBottom>
               <h4>Доступні варіанти доставки:</h4>
-              <FooterItem>У відділення Нова Пошта;</FooterItem>
+              <FooterItem>У відділення Нова Пошта;</FooterItem>
               <FooterItem>У поштомат “Нова Пошта”;</FooterItem>
               <FooterItem>
-                Кур'єрська доставка за адресою.
+                Кур&apos;єрська доставка за адресою.
                 <p>
                   Відправлення здійснюється в день оформлення замовлення або
                   максимум наступного дня:
@@ -53,22 +55,28 @@ const FooterDelivery = () => {
                 можна буде відстежити.
               </p>
               <p>
-                {" "}
-                Ти можеш відстежити статус замовлення на сайті кур'єрської
+                Ти можеш відстежити статус замовлення на сайті кур&apos;єрської
                 служби:
               </p>
               <FooterItem>
-                {" "}
-                Нова Пошта: httFooterItems://novaposhta.ua/ru/tracking
+                Нова Пошта:{" "}
+                <StyledLinks
+                  to="https://tracking.novaposhta.ua/#/uk"
+                  target="_blank"
+                  rel="noopener
+                  norefferer"
+                >
+                  https://tracking.novaposhta.ua/#/uk
+                </StyledLinks>
               </FooterItem>
             </FooterListNoBottom>
 
             <FooterListNoBottom>
               <h4>Термін зберігання замовлення:</h4>
               <FooterItem>
-                 У відділенні “Нова пошта” – до 5 днів. Після закінчення 5 днів
+                У відділенні “Нова пошта” – до 5 днів. Після закінчення 5 днів
                 посилка автоматично повертається відправнику і не підлягає
-                повторній перевідправці.
+                повторному відправленню.
               </FooterItem>
               <FooterItem>
                 У поштоматі “Нова пошта” – до 3 днів. Якщо термін зберігання
