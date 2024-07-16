@@ -41,12 +41,15 @@ const UserEditForm = ({ selectedFile }) => {
     const formData = new FormData();
 
     if (values.phone !== "") {
-      values.phone = values?.phone?.replace(/[\s()-]/g, "");
+      // values.phone = values?.phone?.replace(/[\s()-]/g, "");
+      const userPhoneNumber = phoneNumber.replace(/[\s()-]/g, "");
+      formData.append("phone", userPhoneNumber);
     }
 
     Object.keys(values).forEach(key => {
       if (
         key !== "passwordCheck" &&
+        key !== "phone" &&
         values[key] !== user[key] &&
         values[key] !== ""
       ) {
@@ -59,7 +62,7 @@ const UserEditForm = ({ selectedFile }) => {
     }
 
     try {
-      const { data } = await userUpdate(formData)
+      await userUpdate(formData)
         .unwrap()
         .then(res => {
           Notify.success("Особисті данні оновлені", {
@@ -73,16 +76,24 @@ const UserEditForm = ({ selectedFile }) => {
               position: "center-center",
             });
           }
+          if (error?.status === 409) {
+            return Notify.failure(
+              "Користувач з такою електронною адресою вже існує",
+              {
+                position: "center-center",
+              }
+            );
+          }
         });
 
-      const updatedPhoneNumber =
-        data?.user?.phone === "0000000000"
-          ? ""
-          : data?.user?.phone.replace(
-              /^(\+38)(\d{3})(\d{3})(\d{2})(\d{2})$/,
-              "$1($2)$3-$4-$5"
-            );
-      values.phone = updatedPhoneNumber;
+      // const updatedPhoneNumber =
+      //   data?.user?.phone === "0000000000"
+      //     ? ""
+      //     : data?.user?.phone.replace(
+      //         /^(\+38)(\d{3})(\d{3})(\d{2})(\d{2})$/,
+      //         "$1($2)$3-$4-$5"
+      //       );
+      // values.phone = updatedPhoneNumber;
 
       await refetch();
     } catch (error) {
@@ -168,25 +179,25 @@ const UserEditForm = ({ selectedFile }) => {
               name="phone"
               type="text"
               placeholder="Номер телефону"
-              mask={[
-                "+",
-                "3",
-                "8",
-                "(",
-                "0",
-                /[0-9]/,
-                /[0-9]/,
-                ")",
-                /[0-9]/,
-                /[0-9]/,
-                /[0-9]/,
-                "-",
-                /[0-9]/,
-                /[0-9]/,
-                "-",
-                /[0-9]/,
-                /[0-9]/,
-              ]}
+              // mask={[
+              //   "+",
+              //   "3",
+              //   "8",
+              //   "(",
+              //   "0",
+              //   /[0-9]/,
+              //   /[0-9]/,
+              //   ")",
+              //   /[0-9]/,
+              //   /[0-9]/,
+              //   /[0-9]/,
+              //   "-",
+              //   /[0-9]/,
+              //   /[0-9]/,
+              //   "-",
+              //   /[0-9]/,
+              //   /[0-9]/,
+              // ]}
             />
             <CustomInput
               label="Пароль"
