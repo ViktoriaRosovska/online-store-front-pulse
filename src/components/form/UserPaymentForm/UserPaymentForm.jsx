@@ -102,6 +102,13 @@ const UserPaymentForm = ({ onClose }) => {
                 type="text"
                 placeholder="CVV"
                 maxLength="3"
+                minLength="3"
+                onChange={event => {
+                  formik.setFieldValue(
+                    "cardCVC",
+                    event.target.value.replace(/[^0-9\-()]/g, "")
+                  );
+                }}
               />
             </InputWrapper>
             <CustomInput
