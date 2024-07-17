@@ -37,7 +37,13 @@ import { Portal } from "components/Modals/helpersForModal/modalPortal";
 import CommonModal from "components/Modals/CommonModal";
 import ModalForgotPassword from "components/Modals/ModalForgotPassword/ModalForgotPassword";
 import { StyledLoginFormButton } from "components/form/ShopCartLoginForm/ShopCartLoginForm.styled";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addShopCartEmail,
+  addShopCartFirstName,
+  addShopCartLastName,
+  addShopCartPhone,
+} from "../../../redux/user/userShopCart/userShopCartSlice";
 
 export const ShopCartDelivery = props => {
   const navigate = useNavigate();
@@ -47,6 +53,10 @@ export const ShopCartDelivery = props => {
     address,
     addressDepartment,
     addressPoshtomat,
+    firstName,
+    lastName,
+    phone,
+    email,
   } = useSelector(selectUserShopCart);
   console.log(address);
   const { data, refetch } = useFetchCurrentUserQuery(undefined, {
@@ -54,9 +64,18 @@ export const ShopCartDelivery = props => {
   });
 
   const isLoggedIn = useSelector(selectUserToken);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (!isLoggedIn) refetch();
+    else {
+      if (data?.user) {
+        if (firstName === "")
+          dispatch(addShopCartFirstName(data?.user.firstName));
+        if (lastName === "") dispatch(addShopCartLastName(data?.user.lastName));
+        if (phone === "") dispatch(addShopCartPhone(data?.user.phone));
+        if (email === "") dispatch(addShopCartEmail(data?.user.email));
+      }
+    }
   }, [refetch, isLoggedIn]);
 
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
@@ -94,10 +113,10 @@ export const ShopCartDelivery = props => {
               validationSchema={userShopCartValidationSchema}
               onSubmit={onSubmit}
               initialValues={{
-                firstName: data?.user.firstName || "",
-                lastName: data?.user.lastName || "",
-                phone: data?.user.phone || "",
-                email: data?.user.email || "",
+                firstName: firstName,
+                lastName: lastName,
+                phone: phone,
+                email: email,
                 address: {
                   Description: address.Description || "",
                   city: address.city || null,
