@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Title = styled.h2`
@@ -35,4 +36,13 @@ const StyledSliderTitle = styled.h2`
     line-height: 64px;
   }
 `;
-export { PageTitle, Title, StyledSliderTitle };
+
+const StyledLinks = styled(Link)`
+  text-decoration: underline;
+
+  & a {
+    padding: 0;
+    margin: 0;
+  }
+`;
+export { PageTitle, Title, StyledSliderTitle, StyledLinks };

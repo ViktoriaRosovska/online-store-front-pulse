@@ -23,6 +23,8 @@ import {
 import { generateAvatarFromName } from "../../../utils/generateAvatarFromName";
 import { GeneratedAvatar } from "../UserInfoCard/UserInfoCard.styled";
 import { userAuthApi } from "../../../redux/auth/userAuthApi";
+import { clearShopCart } from "../../../redux/user/userShopCart/userShopCartSlice";
+import { clearPromoCode } from "../../../redux/promoCode/promoCodeSlice";
 
 function ProfileMenu({ onClose, isProfile }) {
   const navigate = useNavigate();
@@ -38,7 +40,9 @@ function ProfileMenu({ onClose, isProfile }) {
       .unwrap()
       .then(() => {
         dispatch(removeCredentials());
-        dispatch(userAuthApi.util.resetApiState())
+        dispatch(userAuthApi.util.resetApiState());
+        dispatch(clearShopCart());
+        dispatch(clearPromoCode());
         navigate("/");
       })
       .catch(e => console.log("Error logout", e))

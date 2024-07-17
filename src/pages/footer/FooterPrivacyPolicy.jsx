@@ -6,6 +6,7 @@ import {
   FooterItem,
   HighlightedWord,
 } from "./FooterPages.styled";
+import { Title } from "components/Typography/Typography.styled";
 
 const FooterPrivacyPolicy = () => {
   return (
@@ -15,8 +16,8 @@ const FooterPrivacyPolicy = () => {
       </Helmet>
       <PageSection>
         <Container>
+          <Title>Політика конфіденційності</Title>
           <FooterPages>
-            <h3>Політика конфіденційності</h3>
             <FooterListNoMarker>
               <FooterItem>
                 Дякуємо за використання нашого веб-сайту. Наша політика

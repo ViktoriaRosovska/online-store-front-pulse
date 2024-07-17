@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet";
 import { Container, PageSection } from "../../main.styled";
-import { FooterPages, FooterList, FooterItem } from "./FooterPages.styled";
+import { FooterList, FooterItem } from "./FooterPages.styled";
+import { Title } from "components/Typography/Typography.styled";
 
 const FooterConditions = () => {
   return (
@@ -10,8 +11,8 @@ const FooterConditions = () => {
       </Helmet>
       <PageSection>
         <Container>
-          <FooterPages>
-            <h3>Умови та положення</h3>
+          <Title>Умови та положення</Title>
+          <div>
             <FooterList>
               <h4>1.Опис продукції</h4>
               <FooterItem>
@@ -105,7 +106,7 @@ const FooterConditions = () => {
                 послуг.
               </FooterItem>
             </FooterList>
-          </FooterPages>
+          </div>
         </Container>
       </PageSection>
     </>
