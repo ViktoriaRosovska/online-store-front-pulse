@@ -65,18 +65,23 @@ export const ShopCartDelivery = props => {
 
   const isLoggedIn = useSelector(selectUserToken);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    if (!isLoggedIn) refetch();
-    else {
-      if (data?.user) {
-        if (firstName === "")
-          dispatch(addShopCartFirstName(data?.user.firstName));
-        if (lastName === "") dispatch(addShopCartLastName(data?.user.lastName));
-        if (phone === "") dispatch(addShopCartPhone(data?.user.phone));
-        if (email === "") dispatch(addShopCartEmail(data?.user.email));
-      }
+    refetch();
+  }, [refetch]);
+
+  useEffect(() => {
+    // if (!isLoggedIn) refetch();
+    // else {
+    if (data?.user) {
+      if (firstName === "")
+        dispatch(addShopCartFirstName(data?.user.firstName));
+      if (lastName === "") dispatch(addShopCartLastName(data?.user.lastName));
+      if (phone === "") dispatch(addShopCartPhone(data?.user.phone));
+      if (email === "") dispatch(addShopCartEmail(data?.user.email));
     }
-  }, [refetch, isLoggedIn]);
+    // }
+  }, [data, firstName, lastName, phone, email, dispatch]);
 
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
     useState(false);
