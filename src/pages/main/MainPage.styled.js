@@ -145,7 +145,7 @@ export const BoxTitle = styled.div`
   font-weight: 400;
   line-height: 30px;
   letter-spacing: 0.01em;
-  text-decoration: underline;
+  /* text-decoration: underline; */
 
   @media screen and (min-width: 1440px) {
     padding: 16.5px 37px;
