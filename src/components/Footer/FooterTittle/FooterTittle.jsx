@@ -45,7 +45,7 @@ function FooterTittle() {
       console.error(error);
     }
   };
-  
+
   return (
     <Container>
       <FooterInner>

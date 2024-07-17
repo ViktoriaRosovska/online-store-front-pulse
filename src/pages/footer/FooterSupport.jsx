@@ -29,7 +29,7 @@ const FooterSupport = () => {
           <Title>Підтримка</Title>
           <FooterPages>
             <FooterListNoBottom>
-              <h4>Зв'язатися з нами ви завжди можете за допомогою:</h4>
+              <h4>Зв&apos;язатися з нами ви завжди можете за допомогою:</h4>
               <FooterSectionSupport>
                 <FooterSectionDiv>
                   <FooterItem>

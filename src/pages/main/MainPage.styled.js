@@ -94,8 +94,10 @@ export const ManBox = styled.div`
   padding-left: 14px;
   position: relative;
 
-  &:hover {
-    & div {
+  &:hover,
+  &:focus,
+  &:active {
+    & div > div {
       background-color: var(--black-bg-color);
       color: var(--white-text-color);
       filter: none;
@@ -116,8 +118,10 @@ export const WomenBox = styled.div`
   padding-top: 14px;
   padding-left: 14px;
 
-  &:hover {
-    & div {
+  &:hover,
+  &:focus,
+  &:active {
+    & div > div {
       background-color: var(--black-bg-color);
       color: var(--white-text-color);
     }
@@ -149,7 +153,9 @@ export const BoxTitle = styled.div`
     font-weight: 400;
     line-height: 32px;
   }
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     background-color: var(--black-bg-color);
     color: var(--white-text-color);
   }
