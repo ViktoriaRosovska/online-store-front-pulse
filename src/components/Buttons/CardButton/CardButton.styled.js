@@ -17,7 +17,9 @@ const CardButtonWrapper = styled(Link)`
   width: ${props => (props.$bannerWidth ? "227px" : "100%")};
   border: none;
   cursor: pointer;
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     background-color: var(--white-dark-bg-color);
     color: black;
   }

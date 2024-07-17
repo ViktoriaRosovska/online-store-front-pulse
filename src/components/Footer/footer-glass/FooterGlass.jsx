@@ -19,7 +19,7 @@ function FooterGlass() {
     <FooterBox>
       <Container>
         <Link to="/" onClick={e => handleLinkClick(e)}>
-          <img src={logoFooterImg} alt="" />
+          <img src={logoFooterImg} alt="logo PulseRun" />
         </Link>
         <FooterGlassInfo />
         <Copyright />
