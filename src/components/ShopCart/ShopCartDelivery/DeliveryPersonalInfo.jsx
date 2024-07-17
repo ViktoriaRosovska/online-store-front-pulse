@@ -34,14 +34,14 @@ export const DeliveryPersonalDetails = ({ setFieldValue }) => {
   //   }
   // }, [data, dispatch]);
 
-  const isLoggedIn = useSelector(selectUserToken);
-  console.log(isLoggedIn);
+  // const isLoggedIn = useSelector(selectUserToken);
+  // console.log(isLoggedIn);
 
-  useEffect(() => {
-    refetch();
-  }, [refetch]);
+  // useEffect(() => {
+  //   refetch();
+  // }, [refetch]);
 
-  if (isLoggedIn) console.log(data?.user);
+  // if (isLoggedIn) console.log(data?.user);
   return (
     <>
       <StyledDeliveryTitle>Особисті дані</StyledDeliveryTitle>

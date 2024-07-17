@@ -33,10 +33,7 @@ export const loginValidationSchema = Yup.object().shape({
     .required("Oбовʼязкове поле"),
   password: Yup.string()
     .typeError("Поле повинно бути текстовим")
-    .matches(
-      passwordRegex,
-      "Пароль має містити латинські літери і принаймі одну велику літеру та цифру. Без пробілів."
-    )
+    .matches(passwordRegex, "Неправильний емейл або пароль")
     .min(8, "Пароль має бути не менш ніж 8 символів")
     .max(20, "Максимальна кількість 20 символів")
     .required("Oбовʼязкове поле"),
@@ -315,7 +312,8 @@ export const userShopCartValidationSchema = Yup.object().shape({
           .test(value => Object.hasOwn(value, "Description"));
     }),
     numberHouse: Yup.string().when("deliveryType", ([deliveryType]) => {
-      if (deliveryType == DELIVERY.courier) return Yup.string().required();
+      if (deliveryType == DELIVERY.courier)
+        return Yup.string().required("Вкажіть номер будинку");
     }),
     numberHoll: Yup.string(),
     flat: Yup.string(),
