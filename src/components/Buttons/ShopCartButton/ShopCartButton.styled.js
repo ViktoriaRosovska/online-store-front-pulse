@@ -13,7 +13,8 @@ const StyledShopCartButton = styled(CardButton)`
   border: 1px solid transparent;
   border-radius: 16px;
   &:hover,
-  &:focus {
+  &:focus,
+  &:active {
     background-color: transparent;
     border: 1px solid var(--black-bg-color);
     color: var(--white-text-color);
@@ -28,7 +29,8 @@ const StyledShopCartWhiteButton = styled(StyledShopCartButton)`
   color: var(--black-text-color);
   background-color: transparent;
   &:hover,
-  &:focus {
+  &:focus,
+  &:active {
     background-color: var(--black-bg-color);
     color: var(--white-text-color);
   }

@@ -15,7 +15,9 @@ const FilterButton = styled.button`
   & svg {
     margin-right: 12px;
   }
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     color: var(--grey-text-color);
     & svg {
       stroke: var(--grey-text-color);
@@ -26,7 +28,9 @@ const FilterButton = styled.button`
   @media screen and (min-width: 1440px) {
     font-size: 16px;
     cursor: ${props => (props.$hasFilter ? "pointer" : "auto")};
-    &:hover {
+    &:hover,
+    &:focus,
+    &:active {
       color: ${props =>
         props.$hasFilter ? "var(--grey-text-color)" : "currentColor"};
       & svg {
@@ -41,7 +45,9 @@ const SortButton = styled(FilterButton)`
   & span {
     display: none;
   }
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     color: ${props =>
       !props.$showSelect ? "var(--grey-text-color)" : "currentColor"};
     & svg {

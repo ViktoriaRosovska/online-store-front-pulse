@@ -20,6 +20,8 @@ const ShowAllCheckboxButton = styled.button`
 
   padding: 0;
   &:hover,
+  &:focus,
+  &:active,
   &:hover svg {
     color: var(--black-text-color);
     fill: var(--black-text-color);

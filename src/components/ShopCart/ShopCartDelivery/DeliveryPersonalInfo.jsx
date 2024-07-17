@@ -23,16 +23,16 @@ export const DeliveryPersonalDetails = ({ setFieldValue }) => {
     refetchOnMountOrArgChange: true,
   });
 
-  const { firstName, lastName, phone, email } = useSelector(selectUserShopCart);
+  // const { firstName, lastName, phone, email } = useSelector(selectUserShopCart);
 
-  useEffect(() => {
-    if (data?.user) {
-      dispatch(addShopCartFirstName(data?.user?.firstName || ""));
-      dispatch(addShopCartLastName(data?.user?.lastName || ""));
-      dispatch(addShopCartPhone(data?.user?.phone || ""));
-      dispatch(addShopCartEmail(data?.user?.email || ""));
-    }
-  }, [data, dispatch]);
+  // useEffect(() => {
+  //   if (data?.user) {
+  //     dispatch(addShopCartFirstName(data?.user?.firstName || ""));
+  //     dispatch(addShopCartLastName(data?.user?.lastName || ""));
+  //     dispatch(addShopCartPhone(data?.user?.phone || ""));
+  //     dispatch(addShopCartEmail(data?.user?.email || ""));
+  //   }
+  // }, [data, dispatch]);
 
   const isLoggedIn = useSelector(selectUserToken);
   console.log(isLoggedIn);
@@ -55,7 +55,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue }) => {
             dispatch(addShopCartFirstName(e.target.value));
             await setFieldValue("firstName", e.target.value);
           }}
-          value={data?.user?.firstName || firstName}
+          // value={firstName}
         />
         <CustomInput
           type="text"
@@ -66,7 +66,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue }) => {
             dispatch(addShopCartLastName(e.target.value));
             await setFieldValue("lastName", e.target.value);
           }}
-          value={data?.user?.lastName || lastName}
+          // value={lastName}
         />
         <CustomInput
           type="text"
@@ -82,7 +82,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue }) => {
               formatPhoneNumber(e.target.value.trim())
             );
           }}
-          value={data?.user?.phone || phone}
+          // value={phone}
         />
         <CustomInput
           type="email"
@@ -93,7 +93,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue }) => {
             dispatch(addShopCartEmail(e.target.value));
             await setFieldValue("email", e.target.value);
           }}
-          value={data?.user?.email || email}
+          // value={data?.user?.email || email}
         />
       </StyledNameWrapper>
     </>

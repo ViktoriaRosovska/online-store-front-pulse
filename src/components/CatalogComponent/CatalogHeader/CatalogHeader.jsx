@@ -24,7 +24,7 @@ import options from "../../../data/sortoptions.json";
 export const CatalogHeader = props => {
   const [showFilter, setShowFilter] = useState(false);
   const [showSelectMenu, setShowSelectMenu] = useState(false);
-  const sortRef = useRef(null)
+  const sortRef = useRef(null);
 
   const handleEscapeKey = event => {
     if (event.key === "Escape") {
@@ -35,16 +35,17 @@ export const CatalogHeader = props => {
   useEffect(() => {
     const handleClickOutside = event => {
       if (sortRef.current && !sortRef.current.contains(event.target)) {
-        const sortButtonClicked = event.target.closest('button')
-        if(!sortButtonClicked){
-        setShowSelectMenu(!showSelectMenu)}
+        const sortButtonClicked = event.target.closest("button");
+        if (!sortButtonClicked) {
+          setShowSelectMenu(!showSelectMenu);
+        }
       }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
+    };
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [sortRef, showSelectMenu])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [sortRef, showSelectMenu]);
 
   useEffect(() => {
     document.addEventListener("keydown", handleEscapeKey);
@@ -121,9 +122,7 @@ export const CatalogHeader = props => {
         </StyledSortContainer>
 
         {Boolean(showSelectMenu) && Boolean(!showSelect) && (
-          <StyledSelectMenuWrapper
-            ref={sortRef}
-          >
+          <StyledSelectMenuWrapper ref={sortRef}>
             <ul>
               {IsNewest(options).map(o => (
                 <li
