@@ -89,6 +89,18 @@ export const FooterItemText = styled.p`
   font-size: 16px;
   font-weight: 400;
 `;
+export const Link = styled.a`
+  font-weight: 500;
+  text-decoration: underline;
+`;
+
+export const StyledPolicyLink = styled.a`
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: underline;
+  }
+`;
 
 export const HighlightedWord = styled.span`
   font-weight: bold;
@@ -147,9 +159,4 @@ export const FooterSectionCenter = styled.div`
 
 export const PhoneNumber = styled.a`
   font-weight: 500;
-`;
-
-export const Link = styled.a`
-  font-weight: 500;
-  text-decoration: underline;
 `;
