@@ -65,12 +65,12 @@ export const ShopCard = ({ el, showCloseBtn, showDeliveryPrice, device }) => {
                 Розмір:&nbsp;
                 <StyledProductValue>{el.size}</StyledProductValue>
               </StyledProductText>
-              {device === "mobile" && (
+              {/* {device === "mobile" && (
                 <StyledProductText>
                   Кількість:&nbsp;
                   <StyledProductValue>{el.quantity}</StyledProductValue>
                 </StyledProductText>
-              )}
+              )} */}
               {showCloseBtn && (
                 <StyledChangeCountWrapperDesktop>
                   <StyledChangeCountBtn
@@ -89,15 +89,15 @@ export const ShopCard = ({ el, showCloseBtn, showDeliveryPrice, device }) => {
                   </StyledChangeCountBtn>
                 </StyledChangeCountWrapperDesktop>
               )}
-              {showDeliveryPrice && (
+              {!showCloseBtn && (
                 <>
-                  <StyledProductText>
-                    Ціна:&nbsp;
-                    <StyledProductValue>{el.price}&nbsp;грн</StyledProductValue>
-                  </StyledProductText>
                   <StyledProductText>
                     Кількість:&nbsp;
                     <StyledProductValue>{el.quantity}</StyledProductValue>
+                  </StyledProductText>
+                  <StyledProductText>
+                    Ціна:&nbsp;
+                    <StyledProductValue>{el.price}&nbsp;грн</StyledProductValue>
                   </StyledProductText>
                 </>
               )}
@@ -124,7 +124,7 @@ export const ShopCard = ({ el, showCloseBtn, showDeliveryPrice, device }) => {
               </StyledChangeCountBtn>
             </StyledChangeCountWrapper>
           )}
-          {!showDeliveryPrice && (
+          {showCloseBtn && !showDeliveryPrice && (
             <StyledProductName>{el.price}&nbsp;грн</StyledProductName>
           )}
         </StyledCountANDPriceWrapper>
