@@ -12,9 +12,14 @@ const nameRegex =
 const emailRegex =
   /^[^.][a-zA-Z0-9!#$%&'*+/=?^_`{|}~-][^.]{1,64}@[a-zA-Z0-9-_]+(?:\.[a-zA-Z0-9-_]{2,})*$/;
 
+// const emailRegex =
+//   /^(([^<>()\\[\]\\.,;:\s@"]+(.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
+
 // const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])[A-Za-z\d]*$/;
 
-const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z0-9!$#@])[A-Za-z\d!$#@]{8,20}$/;
+// const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z0-9!$#@])[A-Za-z\d!$#@]{8,20}$/;
+
+const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z\d\S]).{8,20}$/;
 
 const phoneRegex = /^\+38\(\d{3}\)\d{3}-\d{2}-\d{2}$/;
 
@@ -27,12 +32,12 @@ export const loginValidationSchema = Yup.object().shape({
     .matches(emailRegex, "Введіть коректний email")
     .email("Введіть коректний email", {
       minDomainSegments: 2,
-      tlds: { deny: ["ru"] },
+      tlds: { deny: ["ru", "ya"] },
     })
     .test(
       "is-not-ru",
       "Домени .ru заборонені",
-      value => !value?.endsWith(".ru")
+      value => !value?.endsWith([".ru", ".ya"])
     )
     .required("Oбовʼязкове поле"),
   password: Yup.string()
@@ -60,12 +65,12 @@ export const registerValidationSchema = Yup.object().shape({
     .matches(emailRegex, "Введіть коректний email")
     .email("Введіть коректний email", {
       minDomainSegments: 2,
-      tlds: { deny: ["ru"] },
+      tlds: { deny: ["ru", "ya"] },
     })
     .test(
       "is-not-ru",
       "Домени .ru заборонені",
-      value => !value?.endsWith(".ru")
+      value => !value?.endsWith([".ru", ".ya"])
     )
     .required("Oбовʼязкове поле"),
   password: Yup.string()
@@ -81,7 +86,7 @@ export const registerValidationSchema = Yup.object().shape({
     .typeError("Поле повинно бути текстовим")
     .matches(
       passwordRegex,
-      "Пароль має містити латинські літери і принаймі одну велику літеру та цифру. Без пробілів."
+      "Пароль має містити мінімум 8 символів, латинські літери і принаймі одну велику літеру та цифру. Без пробілів."
     )
     .min(8, "Пароль має бути не менш ніж 8 символів")
     .max(20, "Максимальна кількість 20 символів")
