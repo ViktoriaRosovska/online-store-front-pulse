@@ -34,25 +34,25 @@ const UserSupportForm = ({ user }) => {
         {() => (
           <StyledForm>
             <CustomInput
-              label="Ваше ім’я"
+              label="Ваше ім’я&#42;"
               name="name"
               type="text"
               placeholder="Ваше ім’я"
             />
             <CustomInput
-              label="Ваш email"
+              label="Ваш email&#42;"
               name="email"
               type="text"
               placeholder="Ваш email"
             />
             <CustomInput
-              label="Тема повідомлення"
+              label="Тема повідомлення&#42;"
               name="subject"
               type="text"
               placeholder="Тема"
             />
             <CustomInput
-              label="Текст повідомлення"
+              label="Текст повідомлення&#42;"
               name="message"
               type="text"
               placeholder="Введіть текст"
