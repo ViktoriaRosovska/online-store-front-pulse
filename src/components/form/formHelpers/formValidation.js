@@ -3,7 +3,8 @@ import * as Yup from "yup";
 
 // const nameRegex = /^[A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+(-[A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+)?$/;
 
-const nameRegex = /^[A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+(-[A-Za-zа-яА-ЯіІїЇєЄґҐ']+)?$/;
+const nameRegex =
+  /^[^ ][A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+(-[A-Za-zа-яА-ЯіІїЇєЄґҐ']+)?[^ ]$/;
 
 // const emailRegex =
 //   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,})*$/;
@@ -51,7 +52,7 @@ export const registerValidationSchema = Yup.object().shape({
     .required("Oбовʼязкове поле"),
   lastName: Yup.string()
     .typeError("Поле повинно бути текстовим")
-    .matches(nameRegex, "Повинні бути тільки букви")
+    .matches(nameRegex, "Повинні бути лише букви")
     .min(1, "Мінімальна кількість символів 1")
     .max(30, "Максимальна кількість символів 30")
     .required("Oбовʼязкове поле"),

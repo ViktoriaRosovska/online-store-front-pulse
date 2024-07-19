@@ -45,8 +45,16 @@ const UserEditForm = ({ selectedFile }) => {
       const userPhoneNumber = phoneNumber.replace(/[\s()-]/g, "").trim();
       formData.append("phone", userPhoneNumber);
     }
-    values.firstName = values.firstName.trim();
-    values.lastName = values.lastName.trim();
+    values.firstName = values.firstName
+      .split(" ")
+      .filter(el => el !== "")
+      .join(" ")
+      .trim();
+    values.lastName = values.lastName
+      .split(" ")
+      .filter(el => el !== "")
+      .join(" ")
+      .trim();
     Object.keys(values).forEach(key => {
       if (
         key !== "passwordCheck" &&
