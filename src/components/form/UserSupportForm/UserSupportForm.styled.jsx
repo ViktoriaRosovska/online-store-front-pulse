@@ -30,7 +30,9 @@ export const Button = styled.button`
   transition: background-color 200ms ease-out, color 200ms ease-out,
     border 200ms ease-out;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     background-color: var(--white-dark-bg-color);
     color: var(--black-bg-color);
   }
