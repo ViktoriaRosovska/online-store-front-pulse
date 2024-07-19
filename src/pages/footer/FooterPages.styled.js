@@ -85,7 +85,7 @@ export const FooterItemBottom = styled.div`
   margin-bottom: 23px;
 `;
 
-export const FooterItemText = styled.p`
+export const FooterItemText = styled.div`
   font-size: 16px;
   font-weight: 400;
 `;
