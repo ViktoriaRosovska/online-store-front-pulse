@@ -57,9 +57,11 @@ function FooterTittle() {
 
           <Formik
             initialValues={initialValues}
-            validateOnBlur
             validationSchema={userSubscribeValidationSchema}
             onSubmit={onSubmit}
+            validateOnBlur={false}
+            validateOnChange={true}
+            enableReinitialize
           >
             {formik => (
               console.log(formik.values),

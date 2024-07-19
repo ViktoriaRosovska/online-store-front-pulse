@@ -3,13 +3,14 @@ import * as Yup from "yup";
 
 // const nameRegex = /^[A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+(-[A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+)?$/;
 
-const nameRegex = /^[A-Za-zа-яА-ЯіІїЇєЄґҐ']+(-[A-Za-zа-яА-ЯіІїЇєЄґҐ']+)?$/;
+const nameRegex =
+  /^[^ ][A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+(-[A-Za-zа-яА-ЯіІїЇєЄґҐ']+)?[^ ]$/;
 
 // const emailRegex =
 //   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,})*$/;
 
 const emailRegex =
-  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]{1,64}@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,})*$/;
+  /^[^.][a-zA-Z0-9!#$%&'*+/=?^_`{|}~-][^.]{1,64}@[a-zA-Z0-9-_]+(?:\.[a-zA-Z0-9-_]{2,})*$/;
 
 // const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])[A-Za-z\d]*$/;
 
@@ -24,7 +25,10 @@ const cardNameRegex = /^[A-Za-z ]+$/;
 export const loginValidationSchema = Yup.object().shape({
   email: Yup.string()
     .matches(emailRegex, "Введіть коректний email")
-    .email("Введіть коректний email")
+    .email("Введіть коректний email", {
+      minDomainSegments: 2,
+      tlds: { deny: ["ru"] },
+    })
     .test(
       "is-not-ru",
       "Домени .ru заборонені",
@@ -48,13 +52,16 @@ export const registerValidationSchema = Yup.object().shape({
     .required("Oбовʼязкове поле"),
   lastName: Yup.string()
     .typeError("Поле повинно бути текстовим")
-    .matches(nameRegex, "Повинні бути тільки букви")
+    .matches(nameRegex, "Повинні бути лише букви")
     .min(1, "Мінімальна кількість символів 1")
     .max(30, "Максимальна кількість символів 30")
     .required("Oбовʼязкове поле"),
   email: Yup.string()
     .matches(emailRegex, "Введіть коректний email")
-    .email("Введіть коректний email")
+    .email("Введіть коректний email", {
+      minDomainSegments: 2,
+      tlds: { deny: ["ru"] },
+    })
     .test(
       "is-not-ru",
       "Домени .ru заборонені",
@@ -65,7 +72,7 @@ export const registerValidationSchema = Yup.object().shape({
     .typeError("Поле повинно бути текстовим")
     .matches(
       passwordRegex,
-      "Пароль має містити латинські літери і принаймі одну велику літеру та цифру. Без пробілів."
+      "Пароль має містити мінімум 8 символів, латинські літери і принаймі одну велику літеру та цифру. Без пробілів."
     )
     .min(8, "Пароль має бути не менш ніж 8 символів")
     .max(20, "Максимальна кількість 20 символів")
@@ -97,7 +104,10 @@ export const userEditValidationSchema = Yup.object().shape({
     .required("Oбовʼязкове поле"),
   email: Yup.string()
     .matches(emailRegex, "Введіть коректний email")
-    .email("Введіть коректний email")
+    .email("Введіть коректний email", {
+      minDomainSegments: 2,
+      tlds: { deny: ["ru"] },
+    })
     .test(
       "is-not-ru",
       "Домени .ru заборонені",
@@ -126,7 +136,10 @@ export const userEditValidationSchema = Yup.object().shape({
 export const userSubscribeValidationSchema = Yup.object().shape({
   email: Yup.string()
     .matches(emailRegex, "Введіть коректний email")
-    .email("Введіть коректний email")
+    .email("Введіть коректний email", {
+      minDomainSegments: 2,
+      tlds: { deny: ["ru"] },
+    })
     .test(
       "is-not-ru",
       "Домени .ru заборонені",

@@ -199,7 +199,7 @@ export const SectionSale = styled.section`
   margin-left: auto;
   margin-right: auto;
   max-width: 1370px;
-
+  position: relative;
   @media screen and (min-width: 1440px) {
     padding-top: 120px;
   }
