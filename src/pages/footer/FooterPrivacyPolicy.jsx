@@ -5,6 +5,7 @@ import {
   FooterListNoMarker,
   FooterItem,
   HighlightedWord,
+  StyledPolicyLink,
 } from "./FooterPages.styled";
 import { Title } from "components/Typography/Typography.styled";
 
@@ -89,12 +90,18 @@ const FooterPrivacyPolicy = () => {
               <h4>Контактна інформація:</h4>
               <FooterItem>
                 Якщо у вас виникли питання щодо нашої політики конфіденційності,
-                будь ласка, зв&apos;яжіться з нами за телефоном{" "}
-                <HighlightedWord>
-                  0(800) 23 75 56, (044) 23 75 568
-                </HighlightedWord>{" "}
-                або напишіть на пошту{" "}
-                <HighlightedWord>pulseRun@gmail.com</HighlightedWord>
+                будь ласка, зв&apos;яжіться з нами за телефоном&nbsp;
+                <StyledPolicyLink href="tel:0800237556">
+                  <HighlightedWord>0(800) 23 75 56</HighlightedWord>
+                </StyledPolicyLink>
+                <HighlightedWord>,&nbsp;</HighlightedWord>
+                <StyledPolicyLink href="tel:+3800442375568">
+                  <HighlightedWord>(044) 23 75 568</HighlightedWord>&nbsp;
+                </StyledPolicyLink>
+                або напишіть на пошту&nbsp;
+                <StyledPolicyLink href="mailto:pulseRun@gmail.com">
+                  <HighlightedWord>pulseRun@gmail.com</HighlightedWord>
+                </StyledPolicyLink>
               </FooterItem>
             </FooterListNoMarker>
           </FooterPages>
