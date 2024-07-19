@@ -100,7 +100,6 @@ export const InputWrapper = styled.div`
     font-size: 16px;
     line-height: 125%;
     width: 100%;
-    border: 1px solid var(--black-text-color);
     border-radius: 16px;
 
     &::placeholder {
