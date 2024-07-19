@@ -22,7 +22,12 @@ const CustomRegisterForm = ({ onClose, redirectPath }) => {
   const [createUser] = useCreateUserMutation();
 
   const onSubmit = ({ firstName, lastName, email, password }) => {
-    createUser({ firstName, lastName, email, password })
+    createUser({
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      email: email.trim(),
+      password: password.trim(),
+    })
       .unwrap()
       .then(res => {
         dispatch(setCredentials(res));
