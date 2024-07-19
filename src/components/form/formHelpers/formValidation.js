@@ -26,6 +26,7 @@ const phoneRegex = /^\+38\(\d{3}\)\d{3}-\d{2}-\d{2}$/;
 const backendPhoneRegex = /^\+\d{12,20}$/;
 
 const cardNameRegex = /^[A-Za-z ]+$/;
+/^[A-Za-z ]+$/;
 
 export const loginValidationSchema = Yup.object().shape({
   email: Yup.string()
@@ -187,7 +188,7 @@ export const validationUserCardSchema = Yup.object().shape({
   cardName: Yup.string()
     .matches(cardNameRegex, "Ім'я повинно містити лише латинські букви")
     .min(1, "Мінімальна кількість символів 1")
-    .max(60, "Максимальна кількість 60 символів")
+    .max(61, "Максимальна кількість 60 символів")
     .required("Поле обов'язкове"),
 });
 

@@ -59,6 +59,7 @@ const UserPaymentForm = ({ onClose }) => {
         initialValues={initialValues}
         onSubmit={onSubmit}
         validationSchema={validationUserCardSchema}
+        validateOnBlur={false}
         validateOnChange={true}
       >
         {formik => (
