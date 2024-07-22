@@ -11,8 +11,6 @@ import {
 import { deliveryPrice } from "../../.././utils/deliveryPrice";
 
 const UserOrderHistoryDetailsList = ({ item }) => {
-  console.log("UserOrderHistoryDetailsList  item", item);
-
   return (
     <Wrapper>
       <List>

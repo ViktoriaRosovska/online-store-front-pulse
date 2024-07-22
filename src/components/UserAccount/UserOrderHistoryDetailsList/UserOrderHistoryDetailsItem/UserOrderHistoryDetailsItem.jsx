@@ -2,8 +2,6 @@ import { formatPrice } from "../../../../utils/formatPrice";
 import { Box, Image, InfoContainer, Item, Price, Quantity, Size } from "./UserOrderHistoryDetailsItem.styled";
 
 const UserOrderHistoryDetailsItem = ({ product }) => {
-console.log("UserOrderHistoryDetailsItem  product", product)
-
   const calculateTotalPrice = product => {
     return product?.priceByOne * product?.quantity;
   };

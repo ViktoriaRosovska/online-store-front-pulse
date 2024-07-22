@@ -17,6 +17,7 @@
   .swiper-container {
     width: 1200px;
     height: 486px;
+    --swiper-pagination-bottom: 0;
   }
 }
 
@@ -60,4 +61,10 @@
   width: 24px;
   height: 12px;
   border-radius: 12px;
+}
+
+.swiper-horizontal
+  > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic,
+.swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+  bottom: 26px;
 }

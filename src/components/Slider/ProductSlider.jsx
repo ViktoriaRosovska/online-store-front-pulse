@@ -59,26 +59,45 @@ const ProductSlider = props => {
 
   return (
     <SwiperContainer>
-      <Swiper
-        className="mySwiper swiper-container"
-        modules={[Pagination, Navigation]}
-        onBeforeInit={swiper => {
-          swiperRef.current = swiper;
+      <StyledNavigationPrevBtn
+        className="nav-btn custom-prev-button"
+        $card={true}
+      >
+        <SwiperLeftArrowIcon />
+      </StyledNavigationPrevBtn>
+
+      <StyledNavigationNextBtn
+        className="nav-btn custom-next-button"
+        $card={true}
+      >
+        <SwiperRightArrowIcon />
+      </StyledNavigationNextBtn>
+
+      <swiper-container
+        class="swiper-wrapper"
+        // modules={[Pagination, Navigation]}
+        navigation-next-el=".custom-next-button"
+        navigation-prev-el=".custom-prev-button"
+        pagination-dynamic-bullets="true"
+        pagination={{
+          el: ".swiper-pagination",
+          clickable: true,
+          bulletClass: ".swiper-pagination-bullets",
+          dynamicBullets: true,
+          dynamicMainBullets: 5,
         }}
-        pagination={pagination}
-        loop={true}
-        loopAddBlankSlides
-        loopAdditionalSlides={1}
+        // loop={"true"}
         loading="lazy"
-        breakpoints={{
-          320: {
+        breakpoints={JSON.stringify({
+          310: {
             slidesPerView: 1,
+            spaceBetween: 12,
             slidesPerGroup: 1,
           },
           375: {
-            slidesPerView: 2,
-            spaceBetween: 12,
-            slidesPerGroup: 2,
+            slidesPerView: 1,
+            spaceBetween: 24,
+            slidesPerGroup: 1,
           },
 
           1440: {
@@ -86,6 +105,15 @@ const ProductSlider = props => {
             spaceBetween: 89,
             slidesPerGroup: 3,
           },
+        })}
+        style={{
+          "--swiper-pagination-color": "var(--black-bg-color)",
+          "--swiper-pagination-bullet-inactive-color": "var(--grey-text-color)",
+          "--swiper-pagination-bullet-inactive-opacity": "1",
+          // "--swiper-pagination-bullet-width": "5px",
+          // "--swiper-pagination-bottom": "26px",
+          // "--swiper-pagination-bullet-size": "12px",
+          // "--swiper-pagination-bullet-horizontal-gap": "6px",
         }}
       >
         <ul>
@@ -111,7 +139,7 @@ const ProductSlider = props => {
             <div> Loading...</div>
           )}
         </ul>
-      </Swiper>
+      </swiper-container>
       <div className="swiper-navigation">
         <StyledNavigationPrevBtn
           onClick={() => swiperRef.current?.slidePrev()}
