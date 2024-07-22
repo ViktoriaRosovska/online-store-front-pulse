@@ -142,12 +142,15 @@ export const BoxTitle = styled.div`
   line-height: 30px;
   letter-spacing: 0.01em;
   text-decoration: underline;
+   text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
 
   @media screen and (min-width: 1440px) {
     padding: 16.5px 37px;
     font-size: 32px;
     font-weight: 400;
     line-height: 32px;
+     text-decoration-thickness: 2px;
   }
   &:hover {
     background-color: var(--black-bg-color);
