@@ -2,17 +2,30 @@ import styled from "styled-components";
 
 const SwiperContainer = styled.div`
   position: relative;
+  height: 416px;
+  /* border: 1px solid blue; */
+
+  display: flex;
+  flex-direction: column;
+  /* @media screen and (min-width: 375px) {
+    height: 416px;
+  } */
+  @media screen and (min-width: 1440px) {
+    height: 486px;
+  }
 `;
 
-const StyledNavigationBtn = styled.div`
+const StyledNavigationBtn = styled.button`
   position: absolute;
   width: 64px;
   height: 64px;
-  z-index: 100;
+  z-index: 300;
   user-select: none;
   stroke: var(--black-text-color);
   cursor: pointer;
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     & svg {
       stroke: var(--grey-text-color);
     }

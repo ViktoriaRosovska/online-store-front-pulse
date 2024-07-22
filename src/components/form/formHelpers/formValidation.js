@@ -30,15 +30,20 @@ const cardNameRegex = /^[A-Za-z ]+$/;
 
 export const loginValidationSchema = Yup.object().shape({
   email: Yup.string()
-    .matches(emailRegex, "Введіть коректний email")
-    .email("Введіть коректний email", {
+    .matches(emailRegex, "Неправильний емейл або пароль")
+    .email("Неправильний емейл або пароль", {
       minDomainSegments: 2,
       tlds: { deny: ["ru", "ya"] },
     })
     .test(
       "is-not-ru",
-      "Домени .ru заборонені",
-      value => !value?.endsWith([".ru", ".ya"])
+      "Неправильний емейл або пароль",
+      value => !value?.endsWith(".ru")
+    )
+    .test(
+      "is-not-ru",
+      "Неправильний емейл або пароль",
+      value => !value?.endsWith(".ya")
     )
     .required("Oбовʼязкове поле"),
   password: Yup.string()
@@ -71,7 +76,12 @@ export const registerValidationSchema = Yup.object().shape({
     .test(
       "is-not-ru",
       "Домени .ru заборонені",
-      value => !value?.endsWith([".ru", ".ya"])
+      value => !value?.endsWith(".ru")
+    )
+    .test(
+      "is-not-ru",
+      "Домени .ya заборонені",
+      value => !value?.endsWith(".ya")
     )
     .required("Oбовʼязкове поле"),
   password: Yup.string()
@@ -112,12 +122,17 @@ export const userEditValidationSchema = Yup.object().shape({
     .matches(emailRegex, "Введіть коректний email")
     .email("Введіть коректний email", {
       minDomainSegments: 2,
-      tlds: { deny: ["ru"] },
+      tlds: { deny: ["ru", "ya"] },
     })
     .test(
       "is-not-ru",
       "Домени .ru заборонені",
       value => !value?.endsWith(".ru")
+    )
+    .test(
+      "is-not-ru",
+      "Домени .ya заборонені",
+      value => !value?.endsWith(".ya")
     )
     .required("Oбовʼязкове поле"),
   password: Yup.string()
@@ -144,12 +159,12 @@ export const userSubscribeValidationSchema = Yup.object().shape({
     .matches(emailRegex, "Введіть коректний email")
     .email("Введіть коректний email", {
       minDomainSegments: 2,
-      tlds: { deny: ["ru"] },
+      tlds: { deny: ["ru", "ya"] },
     })
     .test(
       "is-not-ru",
       "Домени .ru заборонені",
-      value => !value?.endsWith(".ru")
+      value => !value?.endsWith(".ru", ".ya")
     )
     .required("Oбовʼязкове поле"),
 });
@@ -238,7 +253,7 @@ export const userSupportValidationSchema = Yup.object().shape({
     .test(
       "is-not-ru",
       "Домени .ru заборонені",
-      value => !value?.endsWith(".ru")
+      value => !value?.endsWith(".ru", ".ya")
     )
     .required("Oбовʼязкове поле"),
   subject: Yup.string()
@@ -258,7 +273,7 @@ export const forgotPasswordValidationSchema = Yup.object().shape({
     .test(
       "is-not-ru",
       "Домени .ru заборонені",
-      value => !value?.endsWith(".ru")
+      value => !value?.endsWith(".ru", ".ya")
     )
     .required("Oбовʼязкове поле"),
 });
@@ -303,7 +318,7 @@ export const userShopCartValidationSchema = Yup.object().shape({
     .test(
       "is-not-ru",
       "Домени .ru заборонені",
-      value => !value?.endsWith(".ru")
+      value => !value?.endsWith(".ru", ".ya")
     )
     .required("Oбовʼязкове поле"),
   phone: Yup.string()

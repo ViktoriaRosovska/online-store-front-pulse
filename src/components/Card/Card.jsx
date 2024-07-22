@@ -25,13 +25,12 @@ const Card = ({
   filterQuery,
   cardSlider,
 }) => {
-
   const sales = cardfeature === "sales";
   const newBrands = cardfeature === "newbrands";
   const location = useLocation().pathname;
 
   return (
-    <li>
+    <li style={{ listStyle: "none" }}>
       <StyledCardLink
         to={{
           pathname: `${ROUTES.HOME}${id}`,
@@ -41,8 +40,7 @@ const Card = ({
         }}
         state={{ from: location }}
       >
-        <CardWrapper
-          $cardSlider={cardSlider}>
+        <CardWrapper $cardSlider={cardSlider}>
           <ImageWrapper>
             {sales && sale > 0 ? (
               <SaleBand text={"SALE"} $background={"#fef746"} color={"black"} />
@@ -55,7 +53,12 @@ const Card = ({
               />
             ) : null}
 
-            <CardImage src={image} $sales={sales} $cardSlider={cardSlider} loading="lazy" />
+            <CardImage
+              src={image}
+              $sales={sales}
+              $cardSlider={cardSlider}
+              loading="lazy"
+            />
             <FavoriteButton
               $sales={sales && sale > 0}
               $new={newBrands}
