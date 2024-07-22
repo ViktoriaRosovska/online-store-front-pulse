@@ -22,7 +22,7 @@ import Breadcrumbs from "components/Breadcrumbs";
 import { Title } from "components/Typography/Typography.styled";
 
 register();
-export default function BrandsList(props) {
+export default function BrandsList({title}) {
   let locationPath = useLocation()?.state?.from;
   const arr = [];
   arr.push(locationPath?.pathname);
@@ -38,8 +38,8 @@ export default function BrandsList(props) {
   return (
     <PageSection>
       <Container>
-        <Breadcrumbs current={props.title} />
-        <Title>{props.title}</Title>
+        <Breadcrumbs current={title} />
+        <Title>{title}</Title>
 
         <SliderBrandsWrapper>
           <StyledNavigationPrevBtn

@@ -3,10 +3,13 @@ import styled from "styled-components";
 
 const CardWrapper = styled.div`
   @media screen and (max-width: 374.98px) {
-    width: 145px;
+    /* width: 145px; */
+    width: 300px;
+    height: auto;
   }
   @media screen and (min-width: 375px) {
     width: 152px;
+    /* width: ${props => (props.$cardSlider ? "327px" : "152px")}; */
   }
   @media screen and (min-width: 1440px) {
     width: ${props => (props.$cardSlider ? "340px" : "320px")};
@@ -14,12 +17,16 @@ const CardWrapper = styled.div`
 `;
 const CardImage = styled.img`
   @media screen and (max-width: 374.98px) {
-    width: 145px;
+    /* width: 327px; */
+    width: ${props => (props.$cardSlider ? "300px" : "300px")};
+    height: ${props => (props.$cardSlider ? "250px" : "auto")};
+    object-fit: cover;
   }
   @media screen and (min-width: 375px) {
     width: 152px;
+    height: ${props => (props.$cardSlider ? "167px" : "auto")};
   }
-  height: ${props => (props.$cardSlider ? "167px" : "auto")};
+
   @media screen and (min-width: 1440px) {
     width: ${props => (props.$cardSlider ? "340px" : "320px")};
     height: ${props => (props.$cardSlider ? "287px" : "auto")};
@@ -57,11 +64,11 @@ const CardPrice = styled.span`
   line-height: ${props => (props.$sales ? "28px" : "20px")};
 
   color: ${props =>
-  props.$sales ? `var(--red-color)` : `var(--black-text-color)`};
-    
-    @media screen and (min-width: 1440px) {
-      font-size: ${props => (props.$sales ? "20px" : "16px")};
-    }
+    props.$sales ? `var(--red-color)` : `var(--black-text-color)`};
+
+  @media screen and (min-width: 1440px) {
+    font-size: ${props => (props.$sales ? "20px" : "16px")};
+  }
 `;
 
 const StyledCardPriceWrapper = styled.div`
@@ -73,6 +80,7 @@ const StyledCardPriceWrapper = styled.div`
 const StyledCardLink = styled(Link)`
   cursor: pointer;
   display: block;
+  /* border: 1px solid pink; */
 `;
 
 const CardButtonContainer = styled.div`
@@ -90,7 +98,9 @@ const CardButtonContainer = styled.div`
   width: 100%;
   border: none;
   cursor: pointer;
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     background-color: var(--white-dark-bg-color);
     color: black;
   }
