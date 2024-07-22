@@ -6,10 +6,6 @@ import { Helmet } from "react-helmet";
 const Catalog = () => {
   const params = new URLSearchParams(useLocation().search);
   const brand = params.get("brand");
-  if (brand) {
-    const href = window.location.href.replace(/\?.*$/, "");
-    history.pushState(null, null, href);
-  }
 
   const [getAllProducts, { data, isError, isFetching }] =
     useLazyGetAllProductsQuery();
