@@ -15,12 +15,16 @@ export const CommonButton = styled("button")`
   border-radius: 16px;
 
   transition: all 300ms ease-in-out;
-  &:hover {
-    background-color: var(--grey-bg-color);
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: var(--white-dark-bg-color);
+    color: var(--black-text-color);
   }
 
   &:disabled {
     cursor: auto;
-    background-color: var(--grey-text-color);
+    background-color: var(--white-dark-bg-color);
+    color: var(--grey-text-color);
   }
 `;

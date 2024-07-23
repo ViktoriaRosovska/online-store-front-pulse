@@ -10,6 +10,8 @@ import {
   StyledShopCartDescription,
   StyledShopCartImage,
   StyledShopCartInfo,
+  StyledShopCartMainInfo,
+  StyledShopCartProductDescriptionWrapper,
   StyledShopCartRegistration,
   StyledShopCartTip,
 } from "./ModalShopCart.styled";
@@ -47,34 +49,37 @@ export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
       <ModalShopCartTitle>Додано в кошик</ModalShopCartTitle>
       <StyledShopCartContainer>
         <StyledShopCartInfo>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <StyledShopCartMainInfo>
             <StyledShopCartImage src={imgGallery[0]} alt={name} />
-            <StyledShopCartDescription>
-              <StyledProductTitle>{name}</StyledProductTitle>
-              <StyledProductTitle>{price} грн</StyledProductTitle>
-              <p>
-                Колір:&nbsp;
-                {categories.color.map(el => el.name)?.join(" / ")}
-              </p>
-              <p>Розмір:&nbsp;{sizeValue} </p>
-            </StyledShopCartDescription>
-          </div>
-          <StyledChangeCountWrapper>
-            <StyledChangeCountBtn
-              onClick={() => dispatch(decrementQuantity(productItem))}
-            >
-              <FiMinus />
-            </StyledChangeCountBtn>
-            <StyledShopCartItemCount>
-              <StyledProductName>{productItem.quantity}</StyledProductName>
-            </StyledShopCartItemCount>
+            <StyledShopCartProductDescriptionWrapper>
+              <StyledShopCartDescription>
+                <StyledProductTitle>{name}</StyledProductTitle>
+                <StyledProductTitle>{price} грн</StyledProductTitle>
+                <p>
+                  Колір:&nbsp;
+                  {categories.color.map(el => el.name)?.join(" / ")}
+                </p>
+                <p>Розмір:&nbsp;{sizeValue} </p>
+                <p>Кількість:&nbsp;{productItem.quantity}</p>
+              </StyledShopCartDescription>
+              <StyledChangeCountWrapper>
+                <StyledChangeCountBtn
+                  onClick={() => dispatch(decrementQuantity(productItem))}
+                >
+                  <FiMinus />
+                </StyledChangeCountBtn>
+                <StyledShopCartItemCount>
+                  <StyledProductName>{productItem.quantity}</StyledProductName>
+                </StyledShopCartItemCount>
 
-            <StyledChangeCountBtn
-              onClick={() => dispatch(incrementQuantity(productItem))}
-            >
-              <FiPlus />
-            </StyledChangeCountBtn>
-          </StyledChangeCountWrapper>
+                <StyledChangeCountBtn
+                  onClick={() => dispatch(incrementQuantity(productItem))}
+                >
+                  <FiPlus />
+                </StyledChangeCountBtn>
+              </StyledChangeCountWrapper>
+            </StyledShopCartProductDescriptionWrapper>
+          </StyledShopCartMainInfo>
         </StyledShopCartInfo>
         <StyledShopCartRegistration>
           <div>

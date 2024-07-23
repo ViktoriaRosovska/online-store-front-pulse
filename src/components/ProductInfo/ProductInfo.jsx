@@ -106,7 +106,7 @@ const ProductInfo = () => {
     quantity: 1,
     size: sizeValue,
     sizeId: data?.categories?.size?.find(el => el.value === sizeValue)?._id,
-    price: data.price,
+    price: data.price.toFixed(),
   };
   if (lastView.findIndex(e => e._id === data._id) < 0) {
     setLastView(prev => [data, ...prev]);

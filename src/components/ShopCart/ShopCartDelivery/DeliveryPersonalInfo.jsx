@@ -44,7 +44,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue }) => {
   // if (isLoggedIn) console.log(data?.user);
   return (
     <>
-      <StyledDeliveryTitle>Особисті дані</StyledDeliveryTitle>
+      <StyledDeliveryTitle>Особисті дані отримувача</StyledDeliveryTitle>
       <StyledNameWrapper>
         <CustomInput
           type="text"

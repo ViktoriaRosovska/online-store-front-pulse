@@ -90,24 +90,16 @@ const StyledShopCartRegistration = styled.div`
   }
 `;
 
-// const StyledCloseBtnShopCart = styled(StyledCloseBtn)`
-//   top: 32px;
-//   right: 24px;
-//   width: 24px;
-//   height: 24px;
-//   & svg {
-//     scale: 0.5;
-//   }
-//   @media screen and (min-width: 1440px) {
-//     top: 68px;
-//     right: 51px;
-//     width: 48px;
-//     height: 48px;
-//     & svg {
-//       scale: 1;
-//     }
-//   }
-// `;
+const StyledShopCartProductDescriptionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+const StyledShopCartMainInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 export {
   StyledModalShopCartWrapper,
   ModalShopCartTitle,
@@ -118,5 +110,6 @@ export {
   StyledShopCartTip,
   StyledShopCartRegistration,
   StyledShopCartContainer,
-  // StyledCloseBtnShopCart,
+  StyledShopCartProductDescriptionWrapper,
+  StyledShopCartMainInfo,
 };
