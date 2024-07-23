@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import { ROUTES } from "./utils/routes";
 import { PersistedAuth } from "./HOCs";
@@ -33,6 +33,7 @@ import SharedLayout from "./components/SharedLayout/SharedLayout.jsx";
 import ShopCartLayout from "components/ShopCartLayout/ShopCartLayout.jsx";
 import ProfileLayout from "components/ProfileLayout/ProfileLayout.jsx";
 import PrivateRoute from "components/routs/PrivateRout.jsx";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 const Brands = lazy(() => import("./pages/brands/Brands"));
 const Catalog = lazy(() => import("./pages/catalog/Catalog"));
@@ -68,6 +69,8 @@ const SearchPage = lazy(() => import("./pages/search/SearchPage"));
 const UserShopCartSuccessful = lazy(() =>
   import("./pages/user/UserShopCart/UserShopCartSuccessful")
 );
+
+// const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 
 const App = () => {
   return (
@@ -123,6 +126,8 @@ const App = () => {
               <Route path={ROUTES.WALLET} element={<UserWallet />} />
               <Route path={ROUTES.SUPPORT} element={<UserSupport />} />
             </Route>
+            <Route path="/404" element={<NotFoundPage />} />
+            <Route path="*" element={<Navigate replace to="/404" />} />
           </Route>
         </Routes>
       </PersistedAuth>

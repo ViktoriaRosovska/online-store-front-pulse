@@ -1,5 +1,10 @@
-import { useState } from "react";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   AddToCartButton,
@@ -32,16 +37,17 @@ import { BREADCRUMBS } from "../../utils/breadcrumbsVocabulary";
 import { Portal } from "components/Modals/helpersForModal/modalPortal";
 import CommonModal from "components/Modals/CommonModal";
 import FavoriteButton from "components/Buttons/FavoriteButton/FavoriteButton";
+import { Container } from "../../main.styled";
+import { LastView } from "components/LastView/LastView";
 
 const ProductInfo = () => {
   const [isVisible, setIsVisible] = useState(false);
-  // const [isLocked, setIsLocked] = useScrollLock(false);
   const [isVisibleCart, setIsVisibleCart] = useState(false);
   const [lastView, setLastView] = useLocalStorage("lastView", []);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const toggleVisibility = type => {
-    // setIsLocked(prev => !prev);
     if (type == "size") {
       setIsVisible(prev => !prev);
     }
@@ -61,6 +67,7 @@ const ProductInfo = () => {
   };
 
   const { data, isError, isFetching } = useGetProductByIdQuery(id);
+  console.log(data, isError);
 
   let location = useLocation()?.state?.from;
   const arr = [];
@@ -73,6 +80,9 @@ const ProductInfo = () => {
       break;
     }
   }
+  useEffect(() => {
+    if (isError) navigate("/404");
+  }, [isError, navigate]);
 
   if (isFetching) return <div>Loading...</div>;
   if (!data) return null;
@@ -101,97 +111,104 @@ const ProductInfo = () => {
   if (lastView.findIndex(e => e._id === data._id) < 0) {
     setLastView(prev => [data, ...prev]);
   }
-
+  const lastViewData = JSON.parse(localStorage.getItem("lastView"));
   return (
-    <StyledProductInfoWrapper>
-      <h1 hidden> {name}</h1>
-      <Breadcrumbs current={name} BREADCRUMBS={BREADCRUMBS} />
-      <ProductHeading device="mobile" article={article} title={name} />
-      <ProductDataWrapper>
-        <ProductImageList images={imgGallery} alt={name} />
+    <>
+      <Container>
+        <StyledProductInfoWrapper>
+          <h1 hidden> {name}</h1>
+          <Breadcrumbs current={name} BREADCRUMBS={BREADCRUMBS} />
+          <ProductHeading device="mobile" article={article} title={name} />
+          <ProductDataWrapper>
+            <ProductImageList images={imgGallery} alt={name} />
 
-        <Meta>
-          <ProductHeading device="desktop" article={article} title={name} />
+            <Meta>
+              <ProductHeading device="desktop" article={article} title={name} />
 
-          <PriceWrapper>
-            <ProductPrice
-              sale={sale}
-              basePrice={basePrice}
-              price={price.toFixed(2)}
-            />
-          </PriceWrapper>
+              <PriceWrapper>
+                <ProductPrice
+                  sale={sale}
+                  basePrice={basePrice}
+                  price={price.toFixed(2)}
+                />
+              </PriceWrapper>
 
-          <SizeGridButton
-            type="button"
-            onClick={() => toggleVisibility("size")}
-          >
-            Розмірна сітка
-          </SizeGridButton>
+              <SizeGridButton
+                type="button"
+                onClick={() => toggleVisibility("size")}
+              >
+                Розмірна сітка
+              </SizeGridButton>
 
-          {categories && (
-            <ProductSizeList
-              sizes={categories.size}
-              currentValue={sizeValue}
-              onSizeSelect={onSizeSelect}
-            />
-          )}
+              {categories && (
+                <ProductSizeList
+                  sizes={categories.size}
+                  currentValue={sizeValue}
+                  onSizeSelect={onSizeSelect}
+                />
+              )}
 
-          <ButtonWrapper>
-            <AddToCartButton
-              type="button"
-              disabled={!sizeValue}
-              onClick={() => {
-                dispatch(addShopCartItem(shopCartProduct));
-                toggleVisibility("cart");
-              }}
+              <ButtonWrapper>
+                <AddToCartButton
+                  type="button"
+                  disabled={!sizeValue}
+                  onClick={() => {
+                    dispatch(addShopCartItem(shopCartProduct));
+                    toggleVisibility("cart");
+                  }}
+                >
+                  Додати в кошик
+                </AddToCartButton>
+                <FavoriteWrapper>
+                  <FavoriteButton productId={data._id} productInfo={true} />
+                </FavoriteWrapper>
+              </ButtonWrapper>
+
+              <ProductCommonInfo />
+            </Meta>
+          </ProductDataWrapper>
+          <DescriptionWrapper>
+            <DetailsToggler summary={<DescriptionTitle>Опис</DescriptionTitle>}>
+              <DescriptionText>{description}</DescriptionText>
+            </DetailsToggler>
+
+            <DetailsToggler
+              summary={<DescriptionTitle>Характеристики</DescriptionTitle>}
             >
-              Додати в кошик
-            </AddToCartButton>
-            <FavoriteWrapper>
-              <FavoriteButton productId={data._id} productInfo={true} />
-              </FavoriteWrapper>
-          </ButtonWrapper>
+              <ProductFeatureList features={features} />
+            </DetailsToggler>
+          </DescriptionWrapper>
 
-          <ProductCommonInfo />
-        </Meta>
-      </ProductDataWrapper>
-      <DescriptionWrapper>
-        <DetailsToggler summary={<DescriptionTitle>Опис</DescriptionTitle>}>
-          <DescriptionText>{description}</DescriptionText>
-        </DetailsToggler>
+          <Portal isOpen={isVisible}>
+            <CommonModal
+              onClose={() => toggleVisibility("size")}
+              isSizeModal={true}
+              padding="80px 55px"
+              top="80px"
+            >
+              <ModalSizeList isVisible={isVisible} />
+            </CommonModal>
+          </Portal>
 
-        <DetailsToggler
-          summary={<DescriptionTitle>Характеристики</DescriptionTitle>}
-        >
-          <ProductFeatureList features={features} />
-        </DetailsToggler>
-      </DescriptionWrapper>
-
-      <Portal isOpen={isVisible}>
-        <CommonModal
-          onClose={() => toggleVisibility("size")}
-          isSizeModal={true}
-          padding="80px 55px"
-          top="80px"
-        >
-          <ModalSizeList isVisible={isVisible} />
-        </CommonModal>
-      </Portal>
-
-      <Portal isOpen={isVisibleCart}>
-        <CommonModal
-          onClose={() => toggleVisibility("cart")}
-          padding="68px 48px 66px"
-          top="68px"
-        >
-          <ModalShopCart
-            onClose={() => toggleVisibility("cart")}
-            productData={data}
-            sizeValue={sizeValue}
-          />
-        </CommonModal>
-      </Portal>
-    </StyledProductInfoWrapper>
+          <Portal isOpen={isVisibleCart}>
+            <CommonModal
+              onClose={() => toggleVisibility("cart")}
+              padding="68px 48px 66px"
+              top="68px"
+            >
+              <ModalShopCart
+                onClose={() => toggleVisibility("cart")}
+                productData={data}
+                sizeValue={sizeValue}
+              />
+            </CommonModal>
+          </Portal>
+        </StyledProductInfoWrapper>
+      </Container>
+      {lastViewData.length > 0 ? (
+        <LastView lastViewData={lastViewData} />
+      ) : null}
+    </>
   );
 };
 
