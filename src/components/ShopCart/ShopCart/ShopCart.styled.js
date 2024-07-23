@@ -187,6 +187,7 @@ const StyledChangeCountWrapperDesktop = styled(StyledChangeCountWrapper)`
   display: none;
   @media screen and (min-width: 1440px) {
     display: flex;
+    /* padding-left: 213px; */
   }
 `;
 

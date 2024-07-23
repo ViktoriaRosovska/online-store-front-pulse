@@ -6,14 +6,8 @@ import * as Yup from "yup";
 const nameRegex =
   /^[^ ][A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+(-[A-Za-zа-яА-ЯіІїЇєЄґҐ']+)?[^ ]$/;
 
-// const emailRegex =
-//   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,})*$/;
-
 const emailRegex =
-  /^[^.][a-zA-Z0-9!#$%&'*+/=?^_`{|}~-][^.]{1,64}@[a-zA-Z0-9-_]+(?:\.[a-zA-Z0-9-_]{2,})*$/;
-
-// const emailRegex =
-//   /^(([^<>()\\[\]\\.,;:\s@"]+(.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
+  /^[^.][a-zA-Z0-9!#$%&'*+/=?^_.\\`{|}~-][^.]{1,64}@((?!xn--).)[a-zA-Z0-9-_]+(?:\.[^][a-zA-Z0-9-_]{2,})+$/;
 
 // const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])[A-Za-z\d]*$/;
 
@@ -32,7 +26,9 @@ export const loginValidationSchema = Yup.object().shape({
   email: Yup.string()
     .matches(emailRegex, "Неправильний емейл або пароль")
     .email("Неправильний емейл або пароль", {
-      minDomainSegments: 2,
+      minDomainSegments: 1,
+      allowUnicode: { allow: false },
+      minSubdomainSegments: 2,
       tlds: { deny: ["ru", "ya"] },
     })
     .test(
@@ -70,7 +66,9 @@ export const registerValidationSchema = Yup.object().shape({
   email: Yup.string()
     .matches(emailRegex, "Введіть коректний email")
     .email("Введіть коректний email", {
-      minDomainSegments: 2,
+      minDomainSegments: 1,
+      allowUnicode: { allow: false },
+      minSubdomainSegments: 2,
       tlds: { deny: ["ru", "ya"] },
     })
     .test(

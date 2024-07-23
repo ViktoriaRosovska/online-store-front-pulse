@@ -271,7 +271,7 @@ export const DescriptionText = styled("p")`
 
 export const ProductInfoList = styled("ul")`
   margin-top: 24px;
-   list-style: none;
+  list-style: none;
 `;
 
 export const ProductInfoItem = styled("li")`
@@ -290,16 +290,16 @@ export const ProductInfoItem = styled("li")`
     margin-top: 0;
   }
 
-  &::before{
-    content: ''; 
-      position: absolute;
-      display: flex;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: var(--black-text-color);
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
+  &::before {
+    content: "";
+    position: absolute;
+    display: flex;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--black-text-color);
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
   }
 `;
