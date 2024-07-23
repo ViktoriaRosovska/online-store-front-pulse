@@ -17,12 +17,21 @@ import { ReactComponent as SwiperRightArrowIcon } from "../../assets/svg/swiperR
 import { ReactComponent as SwiperLeftArrowIcon } from "../../assets/svg/swiperLeftArrow.svg";
 import { Link, useLocation } from "react-router-dom";
 import { Container, PageSection } from "../../main.styled";
-import { register } from "swiper/element";
+
 import Breadcrumbs from "components/Breadcrumbs";
 import { Title } from "components/Typography/Typography.styled";
 
-register();
-export default function BrandsList({title}) {
+import { Navigation, Pagination } from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/pagination";
+
+import "swiper/css/navigation";
+import { useRef } from "react";
+
+export default function BrandsList({ title }) {
   let locationPath = useLocation()?.state?.from;
   const arr = [];
   arr.push(locationPath?.pathname);
@@ -34,7 +43,34 @@ export default function BrandsList({title}) {
       break;
     }
   }
+  const swiperRef = useRef();
 
+  const pagination = {
+    clickable: true,
+    type: "custom",
+    renderCustom: function (swiper, current, total) {
+      let text = [];
+      let start, end;
+      if (current <= 3) {
+        start = 1;
+        end = Math.min(total, 5);
+      } else if (current >= total - 2) {
+        start = Math.max(1, total - 4);
+        end = total;
+      } else {
+        start = current - 2;
+        end = current + 2;
+      }
+      for (let i = start; i <= end; ++i) {
+        const style =
+          current === i
+            ? "swiper-pagination-bullet-active"
+            : "swiper-pagination-bullet";
+        text.push(`<li class="${style}"></li>`);
+      }
+      return text.join("");
+    },
+  };
   return (
     <PageSection>
       <Container>
@@ -42,60 +78,68 @@ export default function BrandsList({title}) {
         <Title>{title}</Title>
 
         <SliderBrandsWrapper>
-          <StyledNavigationPrevBtn
-            className="nav-btn custom-prev-button"
-            $card={false}
-          >
-            <SwiperLeftArrowIcon />
-          </StyledNavigationPrevBtn>
-
-          <StyledNavigationNextBtn
-            className="nav-btn custom-next-button"
-            $card={false}
-          >
-            <SwiperRightArrowIcon />
-          </StyledNavigationNextBtn>
-
-          <swiper-container
-            class="swiper-wrapper"
-            spaceBetween={10}
-            navigation={true}
+          <Swiper
+            className="brands swiper-container"
+            modules={[Pagination, Navigation]}
+            onBeforeInit={swiper => {
+              swiperRef.current = swiper;
+            }}
+            pagination={pagination}
             loop={true}
             loading="lazy"
-            navigation-next-el=".custom-next-button"
-            navigation-prev-el=".custom-prev-button"
-            slides-per-view={5}
-            space-between={87}
-            style={{
-              "--swiper-button-prev-right": "auto",
-              "--swiper-navigation-color": "black",
+            breakpoints={{
+              1440: {
+                slidesPerView: 6,
+                spaceBetween: 35,
+              },
             }}
-            scrollbar="false"
           >
-            {brands && brands.length > 0 ? (
-              brands.map(el => {
-                return (
-                  <swiper-slide class="swiper-slide" key={el.title}>
-                    <Link
-                      to={`/catalog?brand=${el.title}`}
-                      style={{ width: "170px" }}
+            <ul>
+              {brands && brands.length > 0 ? (
+                brands.map(el => {
+                  return (
+                    <SwiperSlide
+                      className="swiper-slide"
+                      key={el._id + el.title}
                     >
-                      <StyledBrandCardWrapper>
-                        <StyledBrandImage
-                          src={el.img}
-                          alt={el.title}
-                          loading="eager"
-                        />
-                        <Text>{el.title}</Text>
-                      </StyledBrandCardWrapper>
-                    </Link>
-                  </swiper-slide>
-                );
-              })
-            ) : (
-              <div>Loading...</div>
-            )}
-          </swiper-container>
+                      <Link
+                        to={`/catalog?brand=${el.title}`}
+                        style={{ width: "170px" }}
+                      >
+                        <StyledBrandCardWrapper>
+                          <StyledBrandImage
+                            src={el.img}
+                            alt={el.title}
+                            loading="eager"
+                          />
+                          <Text>{el.title}</Text>
+                        </StyledBrandCardWrapper>
+                      </Link>
+                    </SwiperSlide>
+                  );
+                })
+              ) : (
+                <div>Loading...</div>
+              )}
+            </ul>
+          </Swiper>
+          <div className="swiper-navigation">
+            <StyledNavigationPrevBtn
+              onClick={() => swiperRef.current?.slidePrev()}
+              className="nav-btn custom-prev-button"
+              $card={false}
+            >
+              <SwiperLeftArrowIcon />
+            </StyledNavigationPrevBtn>
+
+            <StyledNavigationNextBtn
+              onClick={() => swiperRef.current?.slideNext()}
+              className="nav-btn custom-next-button"
+              $card={false}
+            >
+              <SwiperRightArrowIcon />
+            </StyledNavigationNextBtn>
+          </div>
         </SliderBrandsWrapper>
 
         <StyledMobileBrandList>

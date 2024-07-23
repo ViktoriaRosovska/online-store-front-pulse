@@ -11,16 +11,12 @@ import {
   SwiperContainer,
 } from "./ProductSlider.styled";
 
-// import Swiper core and required modules
 import { Navigation, Pagination } from "swiper/modules";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-
-// register();
 
 import "swiper/css/navigation";
 import { useRef } from "react";

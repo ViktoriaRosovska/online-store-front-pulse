@@ -35,7 +35,7 @@ const SliderBrandsWrapper = styled.div`
   display: none;
 
   @media screen and (min-width: 1440px) {
-    display: block;
+    display: flex;
     height: 147px;
   }
 `;
