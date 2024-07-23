@@ -1,14 +1,64 @@
-.swiper-slide {
-  height: 550px;
-  /* max-width: 152x; */
-  /* width: 152px; */
-  /* border: 1px solid green; */
-  /* height: 416px; */
+.brands.swiper-container {
+  width: 300px;
+  height: 147px;
+  overflow: hidden;
 }
-@media screen and (min-width: 1440px) {
-  .swiper-slide {
-    /* max-width: 340px;
-    margin-right: 89px; */
+.swiper-slide {
+  width: 152px;
+}
+@media screen and (min-width: 375px) {
+  .brands.swiper-container {
+    width: 327px;
     height: 147px;
   }
+}
+
+@media screen and (min-width: 1440px) {
+  .brands.swiper-container {
+    width: 1200px;
+    height: 200px;
+  }
+}
+
+.swiper-navigation {
+  /* height: 64px; */
+  /* width: 100%; */
+
+  bottom: 50px !important;
+  z-index: 200;
+}
+
+.swiper-pagination {
+  height: 64px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  gap: 8px;
+  justify-content: center;
+  position: absolute !important;
+  z-index: 15;
+  bottom: -27px;
+}
+
+@media screen and (min-width: 375px) {
+  .swiper-pagination {
+    bottom: -42px !important;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .swiper-pagination {
+    bottom: -48px !important;
+  }
+}
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: var(--grey-text-color) !important;
+}
+.swiper-pagination-bullet-active {
+  background-color: var(--black-bg-color) !important;
+  width: 24px;
+  height: 12px;
+  border-radius: 12px;
 }

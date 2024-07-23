@@ -23,9 +23,7 @@ const StyledNavigationBtn = styled.button`
   user-select: none;
   stroke: var(--black-text-color);
   cursor: pointer;
-  &:hover,
-  &:focus,
-  &:active {
+  &:hover {
     & svg {
       stroke: var(--grey-text-color);
     }
