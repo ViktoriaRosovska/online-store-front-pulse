@@ -46,6 +46,7 @@ const CatalogComponent = ({
     getInitialFilter({ sex: sex, brand: brand || "" })
   );
 
+  const lastViewData = JSON.parse(localStorage.getItem("lastView"));
   useEffect(() => {
     const href = location.pathname;
 
@@ -186,7 +187,10 @@ const CatalogComponent = ({
           />
         </ContentWrapper>
       </Container>
-      <LastView />
+
+      {lastViewData.length > 0 ? (
+        <LastView lastViewData={lastViewData} />
+      ) : null}
     </PageSection>
   );
 };

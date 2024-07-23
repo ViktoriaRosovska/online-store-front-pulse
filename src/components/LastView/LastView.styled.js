@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
 const StyledLastViewWrapper = styled.div`
-  /* background-color: var(--white-dark-bg-color); */
   background-image: linear-gradient(
     180deg,
     rgba(229, 229, 229, 1) 0%,
     rgba(231, 231, 231, 0.4) 97.9%
   );
   padding: 24px 0;
-  /* padding-top: 24px; */
 `;
 
 const StyledLastViewTitle = styled.h2`
