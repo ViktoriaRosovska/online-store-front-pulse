@@ -115,25 +115,25 @@ function UserActions(props) {
         )}
       </button>
       {/* <MediaQuery minWidth={1440}> */}
-      <button
-        className={`user__actions-favorites user__actions-icon ${
-          props.isFixed || !props.location ? "fixed" : ""
-        }`}
-        onClick={
-          isLoggedIn
-            ? navigateToFavorites
-            : () => handleOpenLoginModal("/profile/favorites")
-        }
-      >
-        <div style={{ position: "relative" }}>
+      <div style={{ position: "relative" }}>
+        <button
+          className={`user__actions-favorites user__actions-icon ${
+            props.isFixed || !props.location ? "fixed" : ""
+          }`}
+          onClick={
+            isLoggedIn
+              ? navigateToFavorites
+              : () => handleOpenLoginModal("/profile/favorites")
+          }
+        >
           <FavoriteIcon />
           {(userFavorites?.length > 0 || favoriteData?.length > 0) && (
             <FavoriteCountComponent
               favoriteCount={favoriteData?.length || userFavorites?.length || 0}
             />
           )}
-        </div>
-      </button>
+        </button>
+      </div>
       {/* </MediaQuery> */}
       <StyledBasketWrapper>
         <button
