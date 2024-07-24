@@ -43,9 +43,9 @@ export const CourierDeliveryAddress = ({ values, setFieldValue, errors }) => {
           }}
           value={address?.numberHouse}
         />
-        {errors.address?.numberHouse && (
+        {/* {errors.address?.numberHouse && (
           <Error>{"Вкажіть номер будинку"}</Error>
-        )}
+        )} */}
       </div>
 
       <CustomInput

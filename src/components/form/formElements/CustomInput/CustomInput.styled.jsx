@@ -39,6 +39,7 @@ export const Input = styled.input`
   &::placeholder {
     font-size: 16px;
     line-height: 125%;
+    color: gray;
   }
   @media screen and (min-width: 1440px) {
     height: 60px;
@@ -135,7 +136,7 @@ export const Error = styled.p`
   position: absolute;
   color: red;
   left: 0;
-  /* bottom: 0; */
+  bottom: -20px;
   font-size: 10px;
   margin-top: 4px;
 

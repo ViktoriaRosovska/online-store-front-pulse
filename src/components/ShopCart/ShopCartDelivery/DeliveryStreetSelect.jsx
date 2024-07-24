@@ -15,6 +15,8 @@ export const DeliveryStreetSelect = ({ setFieldValue, errors }) => {
   const [streetSearch, setStreetSearch] = useState(
     address?.street?.Description
   );
+
+  const [showPlaceholder, setShowPlaceholder] = useState(true);
   const dispatch = useDispatch();
   const [getStreets, { data }] = useGetStreetsMutation();
 
@@ -25,16 +27,20 @@ export const DeliveryStreetSelect = ({ setFieldValue, errors }) => {
   }, [dispatch, address?.city?.label]);
 
   const onSelectStreetSearch = value => {
-    // console.log("onSelectStreetSearch", value, streetSearch);
+    console.log("onSelectStreetSearch", value);
+    if (value !== "") setShowPlaceholder(false);
+    else setShowPlaceholder(true);
     if (value !== "") setStreetSearch(value?.Description);
   };
 
   const onSelectStreetChange = value => {
+    console.log("onStreetChange", value);
     setFieldValue("address.street", value);
     dispatch(addShopCartAddress({ street: value }));
   };
 
   const onSelectStreetBlur = e => {
+    console.log(e.target.value);
     const search = e.target.value;
 
     if (search) {
@@ -61,8 +67,10 @@ export const DeliveryStreetSelect = ({ setFieldValue, errors }) => {
           onChange={e => onSelectStreetChange(e)}
           onSearch={e => onSelectStreetSearch(e)}
           onBlur={e => onSelectStreetBlur(e)}
+          onFocus={() => setShowPlaceholder(false)}
           name="address.street"
           displayStreet={address.street}
+          showPlaceholder={showPlaceholder}
         />
         {errors.address?.street && <Error>{"Вкажіть назву вулиці"}</Error>}
       </div>

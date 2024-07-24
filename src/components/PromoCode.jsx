@@ -76,8 +76,12 @@ export const PromoCode = () => {
             onChange={e => handleChangePromo(e.target.value)}
             value={promoCode}
           />
-          {isPromoInvalid && <Error>Невірний промокод</Error>}
-          {isPromoExpired && <Error>Промокод вже недійсний</Error>}
+          {isPromoInvalid && promoCode !== "" && (
+            <Error>Невірний промокод</Error>
+          )}
+          {isPromoExpired && promoCode !== "" && (
+            <Error>Промокод вже недійсний</Error>
+          )}
           {isPromoValid ? (
             <StyledPromocodeCheckWrapper>
               <CheckedSvg />

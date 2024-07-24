@@ -25,48 +25,50 @@ const CustomInput = ({ label, mask, ...props }) => {
   };
 
   return (
-    <Box>
-      <InputField>
-        <label>{label}</label>
-        <InputWrapper $isPassword={isPasswordInput}>
-          {mask ? (
-            <StyledMaskedInput
-              {...field}
-              {...props}
-              mask={mask}
-              autoComplete="on"
-              showMask={true}
-            />
-          ) : (
-            <Input
-              onChange={field.onChange}
-              {...field}
-              {...props}
-              $isPassword={isPasswordInput}
-              as={props.$textarea ? "textarea" : "input"}
-              type={
-                isPasswordInput
-                  ? visiblePassword
-                    ? "text"
-                    : "password"
-                  : props.type
-              }
-              autoComplete="off"
-              $isError={isError}
-            />
-          )}
-          <StyledPassIconWrapper>
-            {isPasswordInput && (
-              <VisiblePasswordIcon
-                visiblePassword={visiblePassword}
-                onClick={togglePasswordVisibility}
+    <>
+      <Box>
+        <InputField>
+          <label>{label}</label>
+          <InputWrapper $isPassword={isPasswordInput}>
+            {mask ? (
+              <StyledMaskedInput
+                {...field}
+                {...props}
+                mask={mask}
+                autoComplete="on"
+                showMask={true}
+              />
+            ) : (
+              <Input
+                onChange={field.onChange}
+                {...field}
+                {...props}
+                $isPassword={isPasswordInput}
+                as={props.$textarea ? "textarea" : "input"}
+                type={
+                  isPasswordInput
+                    ? visiblePassword
+                      ? "text"
+                      : "password"
+                    : props.type
+                }
+                autoComplete="off"
+                $isError={isError}
               />
             )}
-          </StyledPassIconWrapper>
-        </InputWrapper>
-      </InputField>
-      {isError && <Error>{meta.error}</Error>}
-    </Box>
+            <StyledPassIconWrapper>
+              {isPasswordInput && (
+                <VisiblePasswordIcon
+                  visiblePassword={visiblePassword}
+                  onClick={togglePasswordVisibility}
+                />
+              )}
+            </StyledPassIconWrapper>
+            {isError && <Error>{meta.error}</Error>}
+          </InputWrapper>
+        </InputField>
+      </Box>
+    </>
   );
 };
 
