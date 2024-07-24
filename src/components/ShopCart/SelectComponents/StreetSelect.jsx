@@ -7,6 +7,7 @@ export const StreetSelect = ({
   onBlur,
   placeholder,
   displayStreet,
+  showPlaceholder,
 }) => {
   const style = {
     control: baseStyles => ({
@@ -19,10 +20,18 @@ export const StreetSelect = ({
       //   minHeight: "20px",
       // height: "48px",
       // padding: "14px 16px",
+      width: "100%",
 
       "&:hover": {
         border: "1px solid var(--black-text-color)",
       },
+    }),
+    placeholder: baseStyles => ({
+      ...baseStyles,
+      // backgroundColor: "black",
+      // fontSize: "2em",
+      // color: "black",
+      // fontWeight: 400,
     }),
     menu: baseStyles => ({
       ...baseStyles,
@@ -44,7 +53,7 @@ export const StreetSelect = ({
 
     input: baseStyles => ({
       ...baseStyles,
-
+      width: "100%",
       padding: 0,
       margin: 0,
     }),
@@ -57,7 +66,7 @@ export const StreetSelect = ({
 
     singleValue: baseStyles => ({
       ...baseStyles,
-
+      width: "100%",
       margin: 0,
     }),
     valueContainer: baseStyles => ({
@@ -65,6 +74,7 @@ export const StreetSelect = ({
 
       padding: "14px 16px",
       height: "48px",
+      width: "100%",
     }),
   };
 
@@ -82,8 +92,9 @@ export const StreetSelect = ({
     modifiedOptions.push(displayStreet);
   }
 
+  console.log("displayStreet", displayStreet, modifiedOptions);
   return (
-    <>
+    <div style={{ position: "relative" }}>
       <Select
         styles={style}
         options={modifiedOptions}
@@ -92,8 +103,22 @@ export const StreetSelect = ({
         onBlur={onBlur}
         placeholder={placeholder}
         value={displayStreet}
-        // isClearable
+        noOptionsMessage={({ inputValue }) =>
+          `No result found for "${inputValue}"`
+        }
       />
-    </>
+      {displayStreet?.Description == undefined && showPlaceholder && (
+        <span
+          style={{
+            color: "gray",
+            position: "absolute",
+            bottom: "14px",
+            left: "16px",
+          }}
+        >
+          Вулиця
+        </span>
+      )}
+    </div>
   );
 };

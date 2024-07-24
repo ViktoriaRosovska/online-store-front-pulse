@@ -43,9 +43,9 @@ export const CourierDeliveryAddress = ({ values, setFieldValue, errors }) => {
           }}
           value={address?.numberHouse}
         />
-        {errors.address?.numberHouse && (
+        {/* {errors.address?.numberHouse && (
           <Error>{"Вкажіть номер будинку"}</Error>
-        )}
+        )} */}
       </div>
 
       <CustomInput
@@ -54,12 +54,18 @@ export const CourierDeliveryAddress = ({ values, setFieldValue, errors }) => {
         placeholder="Номер під'їзду"
         name="numberHoll"
         onChange={e => {
-          handleChange({ numberHoll: e.target.value }, addShopCartAddress);
+          handleChange(
+            { numberHoll: e.target.value.replace(/[^0-9\-/\\]/g, "") },
+            addShopCartAddress
+          );
 
-          setFieldValue("address.numberHoll", e.target.value.trim());
+          setFieldValue(
+            "address.numberHoll",
+            e.target.value.replace(/[^0-9\-/\\]/g, "").trim()
+          );
           dispatch(
             addShopCartAddress({
-              numberHoll: e.target.value.trim(),
+              numberHoll: e.target.value.replace(/[^0-9\-/\\]/g, "").trim(),
             })
           );
         }}
