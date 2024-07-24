@@ -188,7 +188,7 @@ const CatalogComponent = ({
         </ContentWrapper>
       </Container>
 
-      {lastViewData.length > 0 ? (
+      {lastViewData?.length > 0 ? (
         <LastView lastViewData={lastViewData} />
       ) : null}
     </PageSection>
