@@ -9,9 +9,10 @@ import {
   useDeleteFromFavoritesMutation,
   useGetFavoritesQuery,
 } from "../../../redux/user/userSlice/userApi";
-import { selectUserToken } from "../../../redux/auth";
-import { useSelector } from "react-redux";
+import { selectUserFavorites, selectUserToken } from "../../../redux/auth";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { addLocalFavorites } from "../../../redux/auth/auth";
 
 function FavoriteButton(props) {
   const { data: favorites } = useGetFavoritesQuery();
@@ -20,8 +21,10 @@ function FavoriteButton(props) {
   const isLoggedIn = useSelector(selectUserToken);
   const [favoriteState, setFavoriteState] = useState(false);
 
+  const userFavorites = useSelector(selectUserFavorites);
+  console.log(userFavorites);
   const productId = props.productId;
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (isLoggedIn) {
       setFavoriteState(favorites?.some(el => el._id === productId));
@@ -29,8 +32,10 @@ function FavoriteButton(props) {
       const storedFavorites =
         JSON.parse(localStorage.getItem("favorites")) || [];
       setFavoriteState(storedFavorites.includes(productId));
+      console.log(storedFavorites);
+      dispatch(addLocalFavorites([...storedFavorites]));
     }
-  }, [favorites, productId, isLoggedIn]);
+  }, [favorites, productId, isLoggedIn, dispatch]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -62,6 +67,9 @@ function FavoriteButton(props) {
         : [...storedFavorites, productId];
       localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
       setFavoriteState(!favoriteState);
+      dispatch(
+        addLocalFavorites([...JSON.parse(localStorage.getItem("favorites"))])
+      );
     }
   };
 
