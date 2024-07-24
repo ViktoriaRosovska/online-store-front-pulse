@@ -127,9 +127,9 @@ function UserActions(props) {
       >
         <div style={{ position: "relative" }}>
           <FavoriteIcon />
-          {(userFavorites.length > 0 || favoriteData.length > 0) && (
+          {(userFavorites?.length > 0 || favoriteData?.length > 0) && (
             <FavoriteCountComponent
-              favoriteCount={favoriteData.length || userFavorites.length}
+              favoriteCount={favoriteData?.length || userFavorites?.length || 0}
             />
           )}
         </div>
