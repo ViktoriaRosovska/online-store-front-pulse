@@ -14,11 +14,15 @@ export const DepartmentSelect = ({
       border: isError ? "1px solid red" : "1px solid var(--black-text-color)",
       borderRadius: "16px",
 
-      height: "48px",
-      padding: "14px 16px",
+      // height: "48px",
+      // padding: "14px 16px",
 
       "&:hover": {
         border: isError ? "1px solid red" : "1px solid var(--black-text-color)",
+      },
+      "@media screen and (min-width: 1440px)": {
+        ...baseStyles["@media screen and (min-width: 1440px)"],
+        height: "60px",
       },
     }),
     menu: baseStyles => ({
@@ -69,8 +73,13 @@ export const DepartmentSelect = ({
     }),
     valueContainer: baseStyles => ({
       ...baseStyles,
-      padding: 0,
-      //   width: "120px",
+      padding: "14px 16px",
+      height: "48px",
+      width: "100%",
+      "@media screen and (min-width: 1440px)": {
+        ...baseStyles["@media screen and (min-width: 1440px)"],
+        height: "60px",
+      },
     }),
   };
   const modifiedOptions = [];

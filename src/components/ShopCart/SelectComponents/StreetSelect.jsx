@@ -25,6 +25,10 @@ export const StreetSelect = ({
       "&:hover": {
         border: "1px solid var(--black-text-color)",
       },
+      "@media screen and (min-width: 1440px)": {
+        ...baseStyles["@media screen and (min-width: 1440px)"],
+        height: "60px",
+      },
     }),
     placeholder: baseStyles => ({
       ...baseStyles,
@@ -75,6 +79,10 @@ export const StreetSelect = ({
       padding: "14px 16px",
       height: "48px",
       width: "100%",
+      "@media screen and (min-width: 1440px)": {
+        ...baseStyles["@media screen and (min-width: 1440px)"],
+        height: "60px",
+      },
     }),
   };
 

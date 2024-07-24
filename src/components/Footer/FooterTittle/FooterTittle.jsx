@@ -69,7 +69,7 @@ function FooterTittle() {
                 <StyledFooterForm>
                   <StyledCustomInputWhite
                     name="email"
-                    type="text"
+                    type="email"
                     placeholder="Email"
                     className="whiteInput"
                   />

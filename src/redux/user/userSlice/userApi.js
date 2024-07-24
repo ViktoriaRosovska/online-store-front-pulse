@@ -32,13 +32,14 @@ export const userApi = createApi({
         method: "DELETE",
       }),
     }),
-    getFavorites: builder.query({queryFn: async (arg, queryApi, extraOptions, baseQuery) => {
+    getFavorites: builder.query({
+      queryFn: async (arg, queryApi, extraOptions, baseQuery) => {
         const result = await baseQuery({
           url: "/users/favorites",
           method: "GET",
         });
         if (result.error && result.error.status === 404) {
-          return { data: [] }; 
+          return { data: [] };
         }
         return result;
       },
