@@ -7,7 +7,10 @@ const nameRegex =
   /^[^ ][A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+(-[A-Za-zа-яА-ЯіІїЇєЄґҐ']+)?[^ ]$/;
 
 const emailRegex =
-  /^[^.][a-zA-Z0-9!#$%&'*+/=?^_.\\`{|}~-][^.]{1,64}@((?!xn--).)[a-zA-Z0-9-_]+(?:\.[^][a-zA-Z0-9-_]{2,})+$/;
+  /^[^.][a-zA-Z0-9!#$%&'*+/=?^_.\\`{|}~-][^.]{1,64}@[a-zA-Z0-9-_]+(?:\.[^][a-zA-Z0-9-_]{2,})+$/;
+
+// const emailRegex =
+//   /^[^.][a-zA-Z0-9!#$%&'*+/=?^_.\\`{|}~-][^.]{1,64}@((?!xn--).)[a-zA-Z0-9-_]+(?:\.[^][a-zA-Z0-9-_]{2,})+$/;
 
 // const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])[A-Za-z\d]*$/;
 
@@ -27,7 +30,7 @@ export const loginValidationSchema = Yup.object().shape({
     .matches(emailRegex, "Неправильний емейл або пароль")
     .email("Неправильний емейл або пароль", {
       minDomainSegments: 1,
-      allowUnicode: { allow: false },
+      allowUnicode: { allow: true },
       minSubdomainSegments: 2,
       tlds: { deny: ["ru", "ya"] },
     })
@@ -67,7 +70,7 @@ export const registerValidationSchema = Yup.object().shape({
     .matches(emailRegex, "Введіть коректний email")
     .email("Введіть коректний email", {
       minDomainSegments: 1,
-      allowUnicode: { allow: false },
+      allowUnicode: { allow: true },
       minSubdomainSegments: 2,
       tlds: { deny: ["ru", "ya"] },
     })
@@ -119,7 +122,9 @@ export const userEditValidationSchema = Yup.object().shape({
   email: Yup.string()
     .matches(emailRegex, "Введіть коректний email")
     .email("Введіть коректний email", {
-      minDomainSegments: 2,
+      minDomainSegments: 1,
+      allowUnicode: { allow: true },
+      minSubdomainSegments: 2,
       tlds: { deny: ["ru", "ya"] },
     })
     .test(
@@ -156,13 +161,20 @@ export const userSubscribeValidationSchema = Yup.object().shape({
   email: Yup.string()
     .matches(emailRegex, "Введіть коректний email")
     .email("Введіть коректний email", {
-      minDomainSegments: 2,
+      minDomainSegments: 1,
+      allowUnicode: { allow: true },
+      minSubdomainSegments: 2,
       tlds: { deny: ["ru", "ya"] },
     })
     .test(
       "is-not-ru",
       "Домени .ru заборонені",
-      value => !value?.endsWith(".ru", ".ya")
+      value => !value?.endsWith(".ru")
+    )
+    .test(
+      "is-not-ru",
+      "Домени .ya заборонені",
+      value => !value?.endsWith(".ya")
     )
     .required("Oбовʼязкове поле"),
 });
@@ -247,11 +259,21 @@ export const userSupportValidationSchema = Yup.object().shape({
     .required("Oбовʼязкове поле"),
   email: Yup.string()
     .matches(emailRegex, "Введіть коректний email")
-    .email("Введіть коректний email")
+    .email("Введіть коректний email", {
+      minDomainSegments: 1,
+      allowUnicode: { allow: true },
+      minSubdomainSegments: 2,
+      tlds: { deny: ["ru", "ya"] },
+    })
     .test(
       "is-not-ru",
       "Домени .ru заборонені",
-      value => !value?.endsWith(".ru", ".ya")
+      value => !value?.endsWith(".ru")
+    )
+    .test(
+      "is-not-ru",
+      "Домени .ya заборонені",
+      value => !value?.endsWith(".ya")
     )
     .required("Oбовʼязкове поле"),
   subject: Yup.string()
@@ -267,11 +289,21 @@ export const userSupportValidationSchema = Yup.object().shape({
 export const forgotPasswordValidationSchema = Yup.object().shape({
   email: Yup.string()
     .matches(emailRegex, "Введіть коректний email")
-    .email("Введіть коректний email")
+    .email("Введіть коректний email", {
+      minDomainSegments: 1,
+      allowUnicode: { allow: true },
+      minSubdomainSegments: 2,
+      tlds: { deny: ["ru", "ya"] },
+    })
     .test(
       "is-not-ru",
       "Домени .ru заборонені",
-      value => !value?.endsWith(".ru", ".ya")
+      value => !value?.endsWith(".ru")
+    )
+    .test(
+      "is-not-ru",
+      "Домени .ya заборонені",
+      value => !value?.endsWith(".ya")
     )
     .required("Oбовʼязкове поле"),
 });
@@ -312,11 +344,21 @@ export const userShopCartValidationSchema = Yup.object().shape({
     .required("Oбовʼязкове поле"),
   email: Yup.string()
     .matches(emailRegex, "Введіть коректний email")
-    .email("Введіть коректний email")
+    .email("Введіть коректний email", {
+      minDomainSegments: 1,
+      allowUnicode: { allow: true },
+      minSubdomainSegments: 2,
+      tlds: { deny: ["ru", "ya"] },
+    })
     .test(
       "is-not-ru",
       "Домени .ru заборонені",
-      value => !value?.endsWith(".ru", ".ya")
+      value => !value?.endsWith(".ru")
+    )
+    .test(
+      "is-not-ru",
+      "Домени .ya заборонені",
+      value => !value?.endsWith(".ya")
     )
     .required("Oбовʼязкове поле"),
   phone: Yup.string()

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -15,6 +15,8 @@ import {
   addShopCartAddressPoshtomat,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
+import useMediaQuery from "../../../hooks/useMediaQuery";
+import { components } from "react-select";
 
 export const DeliveryCitySelect = ({ errors, setFieldValue }) => {
   const dispatch = useDispatch();
@@ -56,7 +58,7 @@ export const DeliveryCitySelect = ({ errors, setFieldValue }) => {
     dispatch(addShopCartAddressDepartment({}));
     dispatch(addShopCartAddressPoshtomat({}));
   };
-
+  const isDesktop = useMediaQuery("(min-width: 1440px)");
   return (
     <>
       <StyledDeliveryTitle>Обери адресу доставки</StyledDeliveryTitle>
@@ -73,6 +75,8 @@ export const DeliveryCitySelect = ({ errors, setFieldValue }) => {
             onSearch={e => onSelectCitySearch(e)}
             displayCity={address.city}
             name="address.city"
+            $isDesktop={isDesktop}
+            components={{ SingleValue }}
           />
           {errors.address?.city && <Error>{"Вкажіть населений пункт"}</Error>}
         </div>
@@ -80,3 +84,17 @@ export const DeliveryCitySelect = ({ errors, setFieldValue }) => {
     </>
   );
 };
+
+function SingleValue(props) {
+  const { children, ...rest } = props;
+  const { selectProps } = props;
+  let contents = children;
+  if (selectProps.menuIsOpen) {
+    contents = selectProps.placeholder ? (
+      <div style={{ color: "#999" }}>{selectProps.placeholder}</div>
+    ) : (
+      <Fragment></Fragment>
+    );
+  }
+  return <components.SingleValue {...rest}>{contents}</components.SingleValue>;
+}

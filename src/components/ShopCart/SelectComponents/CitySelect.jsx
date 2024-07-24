@@ -8,6 +8,8 @@ export const CitySelect = ({
   displayCity,
   errors,
   values,
+  $isDesktop,
+  components,
 }) => {
   const style = {
     control: baseStyles => ({
@@ -17,22 +19,29 @@ export const CitySelect = ({
         : "1px solid var(--black-text-color)",
       borderRadius: "16px",
 
-      height: "48px",
-      padding: "14px 16px",
-
       "&:hover": {
         border: errors.city
           ? "1px solid red"
           : "1px solid var(--black-text-color)",
       },
+      boxShadow: "none",
     }),
     menu: baseStyles => ({
       ...baseStyles,
+      "&::-webkit-scrollbar": {
+        width: "5px",
+      },
     }),
     menuList: baseStyles => ({
       ...baseStyles,
       "&::-webkit-scrollbar": {
-        width: "0px",
+        width: "5px",
+        backgroundColor: "transparent",
+      },
+      "&::-webkit-scrollbar-thumb": {
+        width: "2px",
+        backgroundColor: "black",
+        borderRadius: "2px",
       },
     }),
     dropdownIndicator: baseStyles => ({
@@ -48,34 +57,40 @@ export const CitySelect = ({
       ...baseStyles,
       padding: 0,
       margin: 0,
-      //   height: "20px",
     }),
-    option: baseStyles => ({
+    option: (baseStyles, state) => ({
       ...baseStyles,
-      //   fontSize: "14px",
-      //   padding: "4px 0 10px 0",
-
-      //   backgroundColor: "none",
+      // height: "60px",
+      borderBottom: state.isFocused
+        ? "1px solid var(--black-text-color)"
+        : "1px solid var(--grey-text-color)",
       color: "var(--black-text-color)",
-      //   borderBottom: "1px solid var(--black-bg-color)",
-      //   "&:hover": {
-      //     color: "var(--grey-text-color)",
-      //   },
+
+      boxShadow: "none",
+      cursor: "pointer",
+
+      paddingTop: "16px",
+      paddingBottom: "16px",
+      backgroundColor: state.isSelected
+        ? "transparent!important"
+        : "transparent!important",
     }),
     singleValue: baseStyles => ({
       ...baseStyles,
-      padding: 0,
+      width: "100%",
       margin: 0,
-      //   width: "110px",
-
-      //   "&:hover": {
-      //     color: "var(--grey-text-color)",
-      //   },
     }),
     valueContainer: baseStyles => ({
       ...baseStyles,
-      padding: 0,
-      //   width: "120px",
+
+      padding: "14px 16px",
+      height: "48px",
+      width: "100%",
+
+      "@media screen and (min-width: 1440px)": {
+        ...baseStyles["@media screen and (min-width: 1440px)"],
+        height: "60px",
+      },
     }),
   };
   const modifiedOptions = [];
@@ -101,13 +116,15 @@ export const CitySelect = ({
   return (
     <>
       <Select
+        $isDesktop={$isDesktop}
         styles={style}
         options={modifiedOptions}
         onChange={onChange}
         onInputChange={onSearch}
         placeholder={placeholder}
-        value={displayCity}
-        defaultValue={values?.city}
+        // value={displayCity}
+        // defaultValue={values?.city}
+        components={components}
       />
     </>
   );
