@@ -18,8 +18,13 @@ const authSlice = createSlice({
       state.user = null;
       state.favoriteProducts = [];
     },
+    addLocalFavorites: (state, { payload }) => {
+      console.log(payload);
+      state.favoriteProducts = payload;
+    },
   },
 });
 
-export const { setCredentials, removeCredentials } = authSlice.actions;
+export const { setCredentials, removeCredentials, addLocalFavorites } =
+  authSlice.actions;
 export const authReducer = authSlice.reducer;

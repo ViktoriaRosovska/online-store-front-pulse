@@ -3,6 +3,7 @@ import "./UserActions.css";
 // import MediaQuery from "react-responsive";
 import { useEffect, useState } from "react";
 import {
+  selectUserFavorites,
   selectUserToken,
   useFetchCurrentUserQuery,
 } from "../../../../../redux/auth";
@@ -44,7 +45,8 @@ function UserActions(props) {
 
   const { data: favoriteData } = useGetFavoritesQuery();
 
-  const favoriteCount = favoriteData?.length;
+  const userFavorites = useSelector(selectUserFavorites);
+
   useEffect(() => {
     if (isLoggedIn) {
       refetch();
@@ -125,8 +127,10 @@ function UserActions(props) {
       >
         <div style={{ position: "relative" }}>
           <FavoriteIcon />
-          {isLoggedIn && favoriteCount > 0 && (
-            <FavoriteCountComponent favoriteCount={favoriteCount} />
+          {(userFavorites.length > 0 || favoriteData.length > 0) && (
+            <FavoriteCountComponent
+              favoriteCount={favoriteData.length || userFavorites.length}
+            />
           )}
         </div>
       </button>

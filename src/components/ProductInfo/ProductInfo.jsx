@@ -106,7 +106,7 @@ const ProductInfo = () => {
     quantity: 1,
     size: sizeValue,
     sizeId: data?.categories?.size?.find(el => el.value === sizeValue)?._id,
-    price: data.price.toFixed(),
+    price: Math.ceil(data.price),
   };
   if (lastView.findIndex(e => e._id === data._id) < 0) {
     setLastView(prev => [data, ...prev]);
@@ -129,7 +129,7 @@ const ProductInfo = () => {
                 <ProductPrice
                   sale={sale}
                   basePrice={basePrice}
-                  price={price.toFixed(2)}
+                  price={Math.ceil(data.price)}
                 />
               </PriceWrapper>
 
