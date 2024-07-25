@@ -205,7 +205,7 @@ export const ShopCartDelivery = props => {
               {!isLoggedIn && (
                 <div>
                   <StyledDeliveryTitle>
-                    <p
+                    <span
                       style={{
                         display: "flex",
                         justifyContent: "center",
@@ -226,7 +226,7 @@ export const ShopCartDelivery = props => {
                       >
                         РЕЄСТРАЦІЯ
                       </StyledLoginFormNameBtn>
-                    </p>
+                    </span>
                   </StyledDeliveryTitle>
                   {isActiveForm && (
                     <ShopCartLoginForm

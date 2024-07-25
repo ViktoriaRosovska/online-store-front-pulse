@@ -34,7 +34,7 @@ function Search({
     openSearch();
   };
 
-   const handleKeyDown = event => {
+  const handleKeyDown = event => {
     if (event.key === "Enter") {
       handleSearch();
     }

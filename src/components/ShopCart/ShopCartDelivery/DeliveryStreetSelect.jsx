@@ -6,9 +6,10 @@ import {
 } from "./ShopCartDelivery.styled";
 import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
-import { useGetStreetsMutation } from "../../../redux/novaPoshta/novaPoshtaAPI";
+import { useLazyGetStreetsQuery } from "../../../redux/novaPoshta/novaPoshtaAPI";
 import { useEffect, useState } from "react";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
+import { SingleValue } from "./showPlaceholder";
 
 export const DeliveryStreetSelect = ({ setFieldValue, errors }) => {
   const { address } = useSelector(selectUserShopCart);
@@ -16,9 +17,8 @@ export const DeliveryStreetSelect = ({ setFieldValue, errors }) => {
     address?.street?.Description
   );
 
-  const [showPlaceholder, setShowPlaceholder] = useState(true);
   const dispatch = useDispatch();
-  const [getStreets, { data }] = useGetStreetsMutation();
+  const [getStreets, { data }] = useLazyGetStreetsQuery();
 
   useEffect(() => {
     if (address?.city?.label?.length > 0) {
@@ -27,9 +27,6 @@ export const DeliveryStreetSelect = ({ setFieldValue, errors }) => {
   }, [dispatch, address?.city?.label]);
 
   const onSelectStreetSearch = value => {
-    console.log("onSelectStreetSearch", value);
-    if (value !== "") setShowPlaceholder(false);
-    else setShowPlaceholder(true);
     if (value !== "") setStreetSearch(value?.Description);
   };
 
@@ -67,10 +64,13 @@ export const DeliveryStreetSelect = ({ setFieldValue, errors }) => {
           onChange={e => onSelectStreetChange(e)}
           onSearch={e => onSelectStreetSearch(e)}
           onBlur={e => onSelectStreetBlur(e)}
-          onFocus={() => setShowPlaceholder(false)}
           name="address.street"
           displayStreet={address.street}
-          showPlaceholder={showPlaceholder}
+          components={{ SingleValue }}
+          noOptionsMessage={initialValues =>
+            initialValues ? null : "За вашим запитом нічого не знайдено"
+          }
+          isError={errors?.street}
         />
         {errors.address?.street && <Error>{"Вкажіть назву вулиці"}</Error>}
       </div>

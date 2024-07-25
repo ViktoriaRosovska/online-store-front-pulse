@@ -11,6 +11,7 @@ import { addShopCartAddressDepartment } from "../../../redux/user/userShopCart/u
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { useEffect } from "react";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
+import { SingleValue } from "./showPlaceholder";
 
 export const DepartmentDeliveryAddress = ({ setFieldValue, errors }) => {
   const { address, addressDepartment } = useSelector(selectUserShopCart);
@@ -49,6 +50,11 @@ export const DepartmentDeliveryAddress = ({ setFieldValue, errors }) => {
             displayDepartment={addressDepartment}
             name="address"
             isError={errors.addressDepartment}
+            components={{ SingleValue }}
+            noOptionsMessage={initialValues =>
+              initialValues ? null : "За вашим запитом нічого не знайдено"
+            }
+            errors={errors?.addressDepartment}
           />
           {errors.addressDepartment && (
             <Error>{"Вкажіть номер відділення"}</Error>

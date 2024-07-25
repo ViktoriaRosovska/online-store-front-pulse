@@ -14,6 +14,7 @@ import {
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { useEffect } from "react";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
+import { SingleValue } from "./showPlaceholder";
 
 export const PoshtomatDeliveryAddress = ({ setFieldValue, errors, values }) => {
   useEffect(() => {
@@ -59,6 +60,10 @@ export const PoshtomatDeliveryAddress = ({ setFieldValue, errors, values }) => {
             isError={
               errors.addressPoshtomat ||
               values.addressPoshtomat.Description === undefined
+            }
+            components={{ SingleValue }}
+            noOptionsMessage={initialValues =>
+              initialValues ? null : "За вашим запитом нічого не знайдено"
             }
           />
           {(errors.addressPoshtomat ||
