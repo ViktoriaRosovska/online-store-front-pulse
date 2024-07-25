@@ -146,6 +146,15 @@ const StyledNameWrapper = styled.div`
   }
 `;
 
+const StyledDeliveryPriceType = styled.p`
+  height: 40px;
+  font-size: 12px;
+  padding-top: ${props => (props.$isSelectedBtn ? "3px" : "1px")};
+  /* color: ${props => (props.$isSelectedBtn ? "green" : "inherit")}; */
+  @media screen and (min-width: 375px) {
+    font-size: 16px;
+  }
+`;
 export {
   StyledLoginFormNameBtn,
   StyledChoiceDeliveryBtn,
@@ -161,4 +170,5 @@ export {
   StyledSelectLabel,
   StyledSelectWrapper,
   StyledNameWrapper,
+  StyledDeliveryPriceType,
 };

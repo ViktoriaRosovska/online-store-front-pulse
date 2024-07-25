@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -7,7 +7,7 @@ import {
   StyledSelectWrapper,
 } from "./ShopCartDelivery.styled";
 import { CitySelect } from "../SelectComponents/CitySelect";
-import { useGetCitiesMutation } from "../../../redux/novaPoshta/novaPoshtaAPI";
+import { useLazyGetCitiesQuery } from "../../../redux/novaPoshta/novaPoshtaAPI";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import {
   addShopCartAddress,
@@ -16,7 +16,8 @@ import {
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
 import useMediaQuery from "../../../hooks/useMediaQuery";
-import { components } from "react-select";
+
+import { SingleValue } from "./showPlaceholder";
 
 export const DeliveryCitySelect = ({ errors, setFieldValue }) => {
   const dispatch = useDispatch();
@@ -28,11 +29,11 @@ export const DeliveryCitySelect = ({ errors, setFieldValue }) => {
       data,
       // isError, isLoading
     },
-  ] = useGetCitiesMutation();
+  ] = useLazyGetCitiesQuery();
 
   const [citySearch, setCitySearch] = useState(address?.city?.Description);
   useEffect(() => {
-    getCities(citySearch);
+    if (citySearch) getCities(citySearch);
   }, [citySearch, getCities]);
 
   const onSelectCitySearch = value => {
@@ -68,7 +69,7 @@ export const DeliveryCitySelect = ({ errors, setFieldValue }) => {
         </StyledSelectLabel>
         <div style={{ position: "relative" }}>
           <CitySelect
-            errors={errors}
+            isError={errors?.city}
             options={data?.data}
             placeholder={"Введіть населений пункт"}
             onChange={e => onSelectCityChange(e)}
@@ -77,6 +78,9 @@ export const DeliveryCitySelect = ({ errors, setFieldValue }) => {
             name="address.city"
             $isDesktop={isDesktop}
             components={{ SingleValue }}
+            noOptionsMessage={initialValues =>
+              initialValues ? null : "За вашим запитом нічого не знайдено"
+            }
           />
           {errors.address?.city && <Error>{"Вкажіть населений пункт"}</Error>}
         </div>
@@ -84,17 +88,3 @@ export const DeliveryCitySelect = ({ errors, setFieldValue }) => {
     </>
   );
 };
-
-function SingleValue(props) {
-  const { children, ...rest } = props;
-  const { selectProps } = props;
-  let contents = children;
-  if (selectProps.menuIsOpen) {
-    contents = selectProps.placeholder ? (
-      <div style={{ color: "#999" }}>{selectProps.placeholder}</div>
-    ) : (
-      <Fragment></Fragment>
-    );
-  }
-  return <components.SingleValue {...rest}>{contents}</components.SingleValue>;
-}

@@ -3,8 +3,8 @@ import { ReactComponent as CloseMenu } from "../../../assets/svg/closeBtnSmall.s
 import { Button } from "./HeaderMenuSvg.styled";
 
 const HeaderMenuSvg = ({ isOpen, onClose, onOpen, isFixed }) => {
- return (
-    <div >
+  return (
+    <div>
       {!isOpen ? (
         <Button onClick={onOpen} $isFixed={isFixed}>
           <BurgerMenu />

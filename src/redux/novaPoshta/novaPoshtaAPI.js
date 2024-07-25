@@ -13,7 +13,7 @@ export const novaPoshtaAPI = createApi({
   baseQuery: axiosBaseQuery(apiPost),
 
   endpoints: builder => ({
-    getCities: builder.mutation({
+    getCities: builder.query({
       query: search => ({
         url: "https://api.novaposhta.ua/v2.0/json/",
         method: "POST",
@@ -27,7 +27,7 @@ export const novaPoshtaAPI = createApi({
         data: warehouseDepartmentsRequest(ref),
       }),
     }),
-    getStreets: builder.mutation({
+    getStreets: builder.query({
       query: (ref, search) => ({
         url: "https://api.novaposhta.ua/v2.0/json/",
         method: "POST",
@@ -38,7 +38,9 @@ export const novaPoshtaAPI = createApi({
 });
 
 export const {
-  useGetCitiesMutation,
+  useGetCitiesQuery,
   useGetDepartmentsMutation,
-  useGetStreetsMutation,
+  useLazyGetCitiesQuery,
+  useGetStreetsQuery,
+  useLazyGetStreetsQuery,
 } = novaPoshtaAPI;
