@@ -15,11 +15,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectPaymentCard } from "../../../redux/paymentCard/paymentCardSelector";
 import { clearShopCart } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { clearPromoCode } from "../../../redux/promoCode/promoCodeSlice";
+import { useNavigate } from "react-router-dom";
+import { copyShopCart } from "../../../redux/user/userShopCart/userCopyShopCart";
+import { ROUTES } from "../../../utils/routes";
+import { selectUserShopCartState } from "../../../redux/user/userShopCart/userShopCartSelector";
 
 export const ShopCartCardPaymentForm = ({ shop, showModal }) => {
   const selectedCard = useSelector(selectPaymentCard);
   const dispatch = useDispatch();
   console.log(shop);
+  const navigate = useNavigate();
+  const userShopCart = useSelector(selectUserShopCartState);
   const [postOrders] = usePostOrdersMutation();
   const initialValues = {
     cardNumber: editCardNumberInInput(selectedCard?.cardNumber) || "",
@@ -34,6 +40,10 @@ export const ShopCartCardPaymentForm = ({ shop, showModal }) => {
       dispatch(clearShopCart());
       dispatch(clearPromoCode());
       showModal(true);
+
+      dispatch(copyShopCart(userShopCart));
+
+      navigate(`${ROUTES.SHOPCARTSUCCESSFUL}`);
     } catch (error) {
       console.log(error.message);
     }

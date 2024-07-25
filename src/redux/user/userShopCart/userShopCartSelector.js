@@ -27,3 +27,32 @@ export const selectUserShopCart = createSelector(
     discount: userShopCart.discount,
   })
 );
+
+export const selectCopyUserShopCart = state =>
+  state.userCopyShopCart.userCopyShopCart;
+
+export const selectCopyShopCart = createSelector(
+  [selectCopyUserShopCart],
+  userCopyShopCart => ({
+    products: userCopyShopCart.products,
+    promocode: userCopyShopCart.promocode,
+    priceSum: userCopyShopCart.priceSum,
+    countQuantity: userCopyShopCart.countQuantity,
+    address: userCopyShopCart.address,
+    lastName: userCopyShopCart.lastName,
+    firstName: userCopyShopCart.firstName,
+    phone: userCopyShopCart.phone,
+    email: userCopyShopCart.email,
+    deliveryType: userCopyShopCart.deliveryType,
+    addressDepartment: userCopyShopCart.addressDepartment,
+    addressPoshtomat: userCopyShopCart.addressPoshtomat,
+    isMailing: userCopyShopCart.isMailing,
+    condition: userCopyShopCart.condition,
+    userId: userCopyShopCart.userId,
+    deliveryAddress: userCopyShopCart.deliveryAddress,
+    orderDate: userCopyShopCart.orderDate,
+    paymentMethod: userCopyShopCart.paymentMethod,
+    totalPriceSum: userCopyShopCart.totalPriceSum,
+    discount: userCopyShopCart.discount,
+  })
+);

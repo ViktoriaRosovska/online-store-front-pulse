@@ -52,7 +52,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue }) => {
           placeholder="Ім'я"
           name="firstName"
           onChange={async e => {
-            dispatch(addShopCartFirstName(e.target.value.tirm()));
+            dispatch(addShopCartFirstName(e.target.value.trim()));
             await setFieldValue("firstName", e.target.value.trim());
           }}
           // value={firstName}
@@ -64,7 +64,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue }) => {
           name="lastName"
           onChange={async e => {
             dispatch(addShopCartLastName(e.target.value.trim()));
-            await setFieldValue("lastName", e.target.value.tirm());
+            await setFieldValue("lastName", e.target.value.trim());
           }}
           // value={lastName}
         />

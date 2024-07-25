@@ -24,7 +24,10 @@ import {
   addShopCartPaymentMethod,
   clearShopCart,
 } from "../redux/user/userShopCart/userShopCartSlice";
-import { selectUserShopCart } from "../redux/user/userShopCart/userShopCartSelector";
+import {
+  selectUserShopCart,
+  selectUserShopCartState,
+} from "../redux/user/userShopCart/userShopCartSelector";
 
 import { ShopCartCardPaymentForm } from "./form/ShopCartCardPaymentForm/ShopCartCardPaymentForm";
 import { usePostOrdersMutation } from "../redux/products/productsApi";
@@ -32,11 +35,13 @@ import { usePostOrdersMutation } from "../redux/products/productsApi";
 import { DELIVERY } from "../utils/DELIVERY";
 import { createUserAddress } from "../utils/createUserAddress";
 import { clearPromoCode } from "../redux/promoCode/promoCodeSlice";
+import { copyShopCart } from "../redux/user/userShopCart/userCopyShopCart";
 
 export const PaymentRadioGroup = () => {
   const [selected, setSelected] = useState("card");
   const [isVisible, setIsVisible] = useState(false);
   const [postOrders] = usePostOrdersMutation();
+  const userShopCart = useSelector(selectUserShopCartState);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -107,8 +112,6 @@ export const PaymentRadioGroup = () => {
     phone: phone.replace(/[\s()-]/g, ""),
   };
 
-  // console.log(paymentMethod);
-  //console.log(products);
   useEffect(() => {
     if (selected === "card" || selected === "online") {
       dispatch(addShopCartPaymentMethod("card"));
@@ -145,9 +148,11 @@ export const PaymentRadioGroup = () => {
             onClick={() => {
               try {
                 postOrders(shop);
+                dispatch(copyShopCart(userShopCart));
                 dispatch(clearShopCart());
                 dispatch(clearPromoCode());
                 setIsVisible(true);
+                navigate(`${ROUTES.SHOPCARTSUCCESSFUL}`);
               } catch (error) {
                 console.log(error.message);
               }
@@ -183,6 +188,7 @@ export const PaymentRadioGroup = () => {
               onClick={() => {
                 try {
                   postOrders(shop);
+                  dispatch(copyShopCart(userShopCart));
                   dispatch(clearShopCart());
                   dispatch(clearPromoCode());
                   setIsVisible(true);

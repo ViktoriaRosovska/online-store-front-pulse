@@ -1,7 +1,10 @@
 import { useSelector } from "react-redux";
 import { Title } from "../../Typography/Typography.styled";
 import { StyledOrderTitle } from "../ShopCart/ShopCart.styled";
-import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
+import {
+  selectCopyShopCart,
+  selectUserShopCart,
+} from "../../../redux/user/userShopCart/userShopCartSelector";
 import { StyledPaymentPropsWrapper } from "../ShopCartPayment/ShopCartPayment.styled";
 import useMediaQuery from "../../../hooks/useMediaQuery";
 import { deliveryPrice } from "../../../utils/deliveryPrice";
@@ -19,9 +22,10 @@ import { DeliveryOrderDateInfo } from "./DeliveryOrderDateInfo/DeliveryOrderDate
 
 export const ShopCartSuccessful = ({ title }) => {
   const { products, priceSum, firstName, deliveryType } =
-    useSelector(selectUserShopCart);
+    useSelector(selectCopyShopCart);
   const isDesktop = useMediaQuery("(min-width: 1440px)");
 
+  console.log(products);
   return (
     <>
       <Title>{title}</Title>

@@ -21,8 +21,8 @@ export const DeliveryCheckboxPolicy = ({ setFieldValue, errors }) => {
           <CheckboxItem
             name="condition"
             item=""
-            onChange={e => {
-              setFieldValue("condition", e.target.checked);
+            onChange={async e => {
+              await setFieldValue("condition", e.target.checked);
             }}
           />
           <div
@@ -58,9 +58,9 @@ export const DeliveryCheckboxPolicy = ({ setFieldValue, errors }) => {
         <CheckboxItem
           name="isMailing"
           item=""
-          onChange={e => {
+          onChange={async e => {
             dispatch(addShopCartIsMailing(e.target.checked));
-            setFieldValue("isMailing", e.target.checked);
+            await setFieldValue("isMailing", e.target.checked);
           }}
         />
         Я хочу отримувати інформацію про новинки, акції
