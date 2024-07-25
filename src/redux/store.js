@@ -24,6 +24,7 @@ import {
   resetShopCartMiddleware,
 } from "./middlewares/logoutMiddleware";
 import { promoCodeReducer } from "./promoCode/promoCodeSlice";
+import { userCopyShopCartReducer } from "./user/userShopCart/userCopyShopCart";
 
 const persistConfig = {
   key: "userToken",
@@ -60,6 +61,7 @@ export const store = configureStore({
     [userAuthApi.reducerPath]: userAuthApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     [novaPoshtaAPI.reducerPath]: novaPoshtaAPI.reducer,
+    userCopyShopCart: userCopyShopCartReducer,
     promoCode: persistedPromoCode,
     userShopCart: persistedUserShopCart,
     userAuthReducer: persistReducer(persistConfig, authReducer),

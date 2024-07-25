@@ -21,8 +21,8 @@ function FavoriteButton(props) {
   const isLoggedIn = useSelector(selectUserToken);
   const [favoriteState, setFavoriteState] = useState(false);
 
-  const userFavorites = useSelector(selectUserFavorites);
-  console.log(userFavorites);
+  // const userFavorites = useSelector(selectUserFavorites);
+
   const productId = props.productId;
   const dispatch = useDispatch();
   useEffect(() => {

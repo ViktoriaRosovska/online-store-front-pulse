@@ -79,7 +79,7 @@ export const DeliveryCitySelect = ({ errors, setFieldValue }) => {
             $isDesktop={isDesktop}
             components={{ SingleValue }}
             noOptionsMessage={initialValues =>
-              initialValues ? null : "За вашим запитом нічого не знайдено"
+              initialValues ? "За вашим запитом нічого не знайдено" : null
             }
           />
           {errors.address?.city && <Error>{"Вкажіть населений пункт"}</Error>}

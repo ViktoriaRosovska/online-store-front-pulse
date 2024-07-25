@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { DeliveryStreetSelect } from "./DeliveryStreetSelect";
-import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
 
 export const CourierDeliveryAddress = ({ values, setFieldValue, errors }) => {
   console.log("courier values", values);
@@ -43,9 +42,6 @@ export const CourierDeliveryAddress = ({ values, setFieldValue, errors }) => {
           }}
           value={address?.numberHouse}
         />
-        {/* {errors.address?.numberHouse && (
-          <Error>{"Вкажіть номер будинку"}</Error>
-        )} */}
       </div>
 
       <CustomInput
