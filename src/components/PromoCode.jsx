@@ -29,6 +29,7 @@ import {
   addShopCartPromoCode,
 } from "../redux/user/userShopCart/userShopCartSlice";
 import { useEffect } from "react";
+import { useDebouncedCallback } from "use-debounce";
 
 export const PromoCode = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,12 @@ export const PromoCode = () => {
   const isPromoValid = useSelector(selectPromoValid);
   const promoCode = useSelector(selectPromoCode);
   const discount = useSelector(selectPromoCodeDiscount);
+
+  const debounced = useDebouncedCallback(value => {
+    if (value) {
+      checkPromoCode(value);
+    }
+  }, 1000);
 
   useEffect(() => {
     if (error) {
@@ -56,8 +63,10 @@ export const PromoCode = () => {
   }, [data, error, dispatch, promoCode, discount]);
 
   const handleChangePromo = promo => {
+    // dispatch(setPromoCode(promo));
+    // if (promo) checkPromoCode(promo);
     dispatch(setPromoCode(promo));
-    if (promo) checkPromoCode(promo);
+    debounced(promo);
   };
 
   return (

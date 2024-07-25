@@ -89,12 +89,22 @@ export const Button = styled.button`
   left: 0;
   margin-left: 8px;
   margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
 `;
 
 export const MobileButton = styled.button`
   border: none;
   background: transparent;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
 `;
 
 export const SearchMobileBox = styled.div`
@@ -136,4 +146,14 @@ export const MobileInput = styled.input`
   border-radius: 16px;
   border: 1px solid var(--white-dark-bg-color);
   font-size: 12px;
+`;
+
+export const StyledSearchUserActionWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @media screen and (min-width: 1440px) {
+    gap: 16px;
+  }
 `;

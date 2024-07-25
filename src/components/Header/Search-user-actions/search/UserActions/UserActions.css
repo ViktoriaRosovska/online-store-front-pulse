@@ -1,6 +1,7 @@
 .user__actions {
   display: flex;
-  gap: 8px;
+  gap: 12px;
+  align-items: center;
 }
 
 @media screen and (min-width: 1440px) {
