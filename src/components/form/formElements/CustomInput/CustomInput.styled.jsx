@@ -27,8 +27,9 @@ export const Input = styled.input`
   line-height: 125%;
   height: 48px;
   width: 100%;
-  border: 1px solid
-    ${props => (props.$isError ? "red" : "var(--black-text-color)")};
+  border: ${props =>
+    props.$isError ? "1px solid red" : "1px solid var(--black-text-color)"};
+
   border-radius: 16px;
   padding: 14px 16px;
   ${props =>

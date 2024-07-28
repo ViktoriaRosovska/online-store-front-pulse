@@ -218,7 +218,8 @@ const HeroButton = styled(Button)`
   cursor: pointer;
   background-color: var(--white-dark-bg-color);
   &:hover,
-  &:focus {
+  &:focus,
+  &:active {
     color: var(--white-text-color);
     background-color: var(--black-bg-color);
   }

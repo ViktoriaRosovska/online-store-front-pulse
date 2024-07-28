@@ -40,7 +40,10 @@ const StyledFooterForm = styled(Form)`
 const FooterContainer = styled.div``;
 
 const StyledCustomInputWhite = styled(CustomInput)`
-  border: 1px solid var(--white-dark-bg-color);
+  /* border: 1px solid var(--white-dark-bg-color); */
+  border: ${props =>
+    props.$isError ? "1px solid red" : "1px solid var(--white-dark-bg-color)"};
+
   background-color: transparent !important;
   color: var(--white-text-color) !important;
 

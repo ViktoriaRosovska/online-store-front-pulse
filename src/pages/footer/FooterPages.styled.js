@@ -15,7 +15,7 @@ export const FooterList = styled.ul`
   }
 
   h4 {
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 24px;
     font-size: 20px;
 
