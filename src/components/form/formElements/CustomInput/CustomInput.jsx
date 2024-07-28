@@ -1,5 +1,5 @@
 import { useField } from "formik";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import VisiblePasswordIcon from "../VisiblePasswordIcon/VisiblePasswordIcon";
 import {
   Box,
