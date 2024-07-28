@@ -24,8 +24,12 @@ export const ProductTitle = styled("h2")`
 
 export const ProductArticle = styled("p")`
   margin-top: 12px;
+
+  font-family: "Roboto";
   font-size: 16px;
-  line-height: 1.25;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
 
   & > span {
     color: var(--grey-bg-color);
@@ -95,6 +99,7 @@ export const PriceWrapper = styled("p")`
   display: flex;
   align-items: center;
   column-gap: 6px;
+  margin-bottom: 16px;
 `;
 
 export const PriceOld = styled("span")`
@@ -302,4 +307,18 @@ export const ProductInfoItem = styled("li")`
     top: 50%;
     transform: translateY(-50%);
   }
+`;
+
+export const ProductCategory = styled.p`
+  font-family: "Roboto";
+  font-size: 16px;
+  line-height: 22.4px;
+`;
+
+export const ProductCategoryName = styled.span`
+  font-weight: 500;
+`;
+
+export const ProductCategoryValue = styled.span`
+  font-weight: 400;
 `;

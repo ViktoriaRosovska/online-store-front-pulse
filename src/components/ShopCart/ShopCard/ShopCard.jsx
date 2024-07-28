@@ -24,6 +24,8 @@ import { useDispatch } from "react-redux";
 import { ReactComponent as CloseBtnSmall } from "../../../assets/svg/closeBtnSmall.svg";
 import { FiMinus, FiPlus } from "react-icons/fi";
 
+import { StyledHoveredLink } from "components/Typography/Typography.styled";
+
 export const ShopCard = ({ el, showCloseBtn, showDeliveryPrice, device }) => {
   const mergeColor = arr => {
     const newArr = [];
@@ -53,7 +55,9 @@ export const ShopCard = ({ el, showCloseBtn, showDeliveryPrice, device }) => {
           <StyledShopCartImage src={el.data.imgThumbnail} alt={el.data.name} />
           <StyledShopCartInfo>
             <StyledInfoWrapper>
-              <StyledProductName>{el.data.name}</StyledProductName>
+              <StyledHoveredLink to={`/${el.data._id}`}>
+                <StyledProductName>{el.data.name}</StyledProductName>
+              </StyledHoveredLink>
               <StyledProductText>
                 Колір:
                 <StyledProductValue>

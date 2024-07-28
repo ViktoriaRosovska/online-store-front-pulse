@@ -1,8 +1,10 @@
+import { ROUTES } from "../../utils/routes";
 import { PackageInfoItem, PackageInfoList } from "./ProductInfo.styled";
 import { ReactComponent as ConditionsIcon } from "/public/icons/product-page-icons/conditions.svg";
 import { ReactComponent as DeliveryIcon } from "/public/icons/product-page-icons/delivery.svg";
 import { ReactComponent as ExchangeIcon } from "/public/icons/product-page-icons/exchange.svg";
 import { ReactComponent as OriginalIcon } from "/public/icons/product-page-icons/original.svg";
+import { StyledLinks } from "components/Typography/Typography.styled";
 
 const ProductCommonInfo = () => {
   return (
@@ -20,7 +22,10 @@ const ProductCommonInfo = () => {
       </PackageInfoItem>
 
       <PackageInfoItem>
-        <ConditionsIcon /> Умови оплати, доставки та повернення
+        <ConditionsIcon />{" "}
+        <StyledLinks to={ROUTES.CONDITIONS}>
+          Умови оплати, доставки та повернення
+        </StyledLinks>
       </PackageInfoItem>
     </PackageInfoList>
   );
