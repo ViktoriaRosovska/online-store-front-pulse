@@ -45,4 +45,13 @@ const StyledLinks = styled(Link)`
     margin: 0;
   }
 `;
-export { PageTitle, Title, StyledSliderTitle, StyledLinks };
+
+const StyledHoveredLink = styled(Link)`
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: underline;
+  }
+`;
+
+export { PageTitle, Title, StyledSliderTitle, StyledLinks, StyledHoveredLink };

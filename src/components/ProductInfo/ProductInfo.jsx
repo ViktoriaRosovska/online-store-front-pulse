@@ -15,6 +15,9 @@ import {
   FavoriteWrapper,
   Meta,
   PriceWrapper,
+  ProductCategory,
+  ProductCategoryName,
+  ProductCategoryValue,
   ProductDataWrapper,
   SizeGridButton,
   StyledProductInfoWrapper,
@@ -67,7 +70,7 @@ const ProductInfo = () => {
   };
 
   const { data, isError, isFetching } = useGetProductByIdQuery(id);
-  console.log(data, isError);
+  // console.log(data, isError);
 
   let location = useLocation()?.state?.from;
   const arr = [];
@@ -90,7 +93,7 @@ const ProductInfo = () => {
 
   const {
     name,
-    price,
+    // price,
     sale,
     article,
     basePrice,
@@ -118,7 +121,12 @@ const ProductInfo = () => {
         <StyledProductInfoWrapper>
           <h1 hidden> {name}</h1>
           <Breadcrumbs current={name} BREADCRUMBS={BREADCRUMBS} />
-          <ProductHeading device="mobile" article={article} title={name} />
+          <ProductHeading
+            device="mobile"
+            article={article}
+            title={name}
+            categories={categories}
+          />
           <ProductDataWrapper>
             <ProductImageList images={imgGallery} alt={name} />
 
@@ -132,7 +140,22 @@ const ProductInfo = () => {
                   price={Math.ceil(data.price)}
                 />
               </PriceWrapper>
-
+              <div>
+                <ProductCategory>
+                  <ProductCategoryName>Категорія:</ProductCategoryName>&nbsp;
+                  <ProductCategoryValue>
+                    {categories?.sex == "Жінка"
+                      ? "Жіноче взуття"
+                      : "Чоловіче взуття"}
+                  </ProductCategoryValue>
+                </ProductCategory>
+                <ProductCategory>
+                  <ProductCategoryName>Сезон:</ProductCategoryName>&nbsp;
+                  <ProductCategoryValue>
+                    {categories?.season}
+                  </ProductCategoryValue>
+                </ProductCategory>
+              </div>
               <SizeGridButton
                 type="button"
                 onClick={() => toggleVisibility("size")}
