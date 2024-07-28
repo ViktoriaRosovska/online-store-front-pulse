@@ -159,6 +159,12 @@ export const userEditValidationSchema = Yup.object().shape({
 
 export const userSubscribeValidationSchema = Yup.object().shape({
   email: Yup.string()
+    .required("Oбовʼязкове поле")
+    .nullable(true)
+    .transform((_, value) => {
+      return value === "" ? null : value;
+    })
+
     .matches(emailRegex, "Введіть коректний email")
     .email("Введіть коректний email", {
       minDomainSegments: 1,
@@ -175,8 +181,7 @@ export const userSubscribeValidationSchema = Yup.object().shape({
       "is-not-ru",
       "Домени .ya заборонені",
       value => !value?.endsWith(".ya")
-    )
-    .required("Oбовʼязкове поле"),
+    ),
 });
 
 export const validationUserCardSchema = Yup.object().shape({
