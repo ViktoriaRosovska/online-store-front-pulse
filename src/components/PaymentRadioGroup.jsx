@@ -189,9 +189,10 @@ export const PaymentRadioGroup = () => {
                 try {
                   postOrders(shop);
                   dispatch(copyShopCart(userShopCart));
+                  setIsVisible(true);
                   dispatch(clearShopCart());
                   dispatch(clearPromoCode());
-                  setIsVisible(true);
+
                   navigate(`${ROUTES.SHOPCARTSUCCESSFUL}`);
                 } catch (error) {
                   console.log(error.message);

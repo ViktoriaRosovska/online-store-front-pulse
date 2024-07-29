@@ -9,7 +9,7 @@ import {
   useDeleteFromFavoritesMutation,
   useGetFavoritesQuery,
 } from "../../../redux/user/userSlice/userApi";
-import { selectUserFavorites, selectUserToken } from "../../../redux/auth";
+import { selectUserToken } from "../../../redux/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { addLocalFavorites } from "../../../redux/auth/auth";
@@ -21,8 +21,6 @@ function FavoriteButton(props) {
   const isLoggedIn = useSelector(selectUserToken);
   const [favoriteState, setFavoriteState] = useState(false);
 
-  // const userFavorites = useSelector(selectUserFavorites);
-
   const productId = props.productId;
   const dispatch = useDispatch();
   useEffect(() => {
@@ -32,7 +30,7 @@ function FavoriteButton(props) {
       const storedFavorites =
         JSON.parse(localStorage.getItem("favorites")) || [];
       setFavoriteState(storedFavorites.includes(productId));
-      console.log(storedFavorites);
+
       dispatch(addLocalFavorites([...storedFavorites]));
     }
   }, [favorites, productId, isLoggedIn, dispatch]);

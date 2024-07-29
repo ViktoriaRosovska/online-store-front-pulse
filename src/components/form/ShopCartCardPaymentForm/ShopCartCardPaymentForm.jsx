@@ -37,12 +37,10 @@ export const ShopCartCardPaymentForm = ({ shop, showModal }) => {
     console.log(values, option);
     try {
       postOrders(shop);
+      dispatch(copyShopCart(userShopCart));
       dispatch(clearShopCart());
       dispatch(clearPromoCode());
       showModal(true);
-
-      dispatch(copyShopCart(userShopCart));
-
       navigate(`${ROUTES.SHOPCARTSUCCESSFUL}`);
     } catch (error) {
       console.log(error.message);

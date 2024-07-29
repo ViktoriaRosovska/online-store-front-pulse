@@ -21,7 +21,7 @@ import { novaPoshtaAPI } from "./novaPoshta/novaPoshtaAPI";
 import paymentCardReducer from "./paymentCard/paymentCardSlice";
 import {
   logoutMiddleware,
-  resetShopCartMiddleware,
+  // resetShopCartMiddleware,
 } from "./middlewares/logoutMiddleware";
 import { promoCodeReducer } from "./promoCode/promoCodeSlice";
 import { userCopyShopCartReducer } from "./user/userShopCart/userCopyShopCart";
@@ -77,8 +77,8 @@ export const store = configureStore({
       userAuthApi.middleware,
       userApi.middleware,
       novaPoshtaAPI.middleware,
-      logoutMiddleware,
-      resetShopCartMiddleware
+      logoutMiddleware
+      // resetShopCartMiddleware
     );
   },
 });

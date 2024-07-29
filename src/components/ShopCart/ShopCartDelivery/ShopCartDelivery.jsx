@@ -57,6 +57,9 @@ export const ShopCartDelivery = props => {
     lastName,
     phone,
     email,
+    priceSum,
+    totalPriceSum,
+    countQuantity,
   } = useSelector(selectUserShopCart);
   console.log(address);
   const { data, refetch } = useFetchCurrentUserQuery(undefined, {
@@ -236,7 +239,11 @@ export const ShopCartDelivery = props => {
                   {!isActiveForm && <ShopCartRegisterForm />}
                 </div>
               )}
-              <YourOrderPriceComponent />
+              <YourOrderPriceComponent
+                priceSum={priceSum}
+                totalPriceSum={totalPriceSum}
+                countQuantity={countQuantity}
+              />
               <PromoCode />
             </div>
 

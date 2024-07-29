@@ -30,7 +30,20 @@ import { PromoCode } from "components/PromoCode";
 export const ShopCartPayment = props => {
   const isDesktop = useMediaQuery("(min-width: 1440px)");
 
-  const { products, priceSum, deliveryType } = useSelector(selectUserShopCart);
+  const {
+    products,
+    priceSum,
+    deliveryType,
+    totalPriceSum,
+    countQuantity,
+    address,
+    addressDepartment,
+    addressPoshtomat,
+    email,
+    firstName,
+    lastName,
+    phone,
+  } = useSelector(selectUserShopCart);
 
   return (
     <>
@@ -52,13 +65,26 @@ export const ShopCartPayment = props => {
                     gap: "24px",
                   }}
                 >
-                  <YourOrderPriceComponent />
+                  <YourOrderPriceComponent
+                    priceSum={priceSum}
+                    totalPriceSum={totalPriceSum}
+                    countQuantity={countQuantity}
+                  />
                   <PromoCode />
                 </div>
               </div>
             </StyledDeliveryOrderWrapper>
 
-            <AddressDeliveryComponent />
+            <AddressDeliveryComponent
+              email={email}
+              address={address}
+              addressDepartment={addressDepartment}
+              addressPoshtomat={addressPoshtomat}
+              lastName={lastName}
+              firstName={firstName}
+              phone={phone}
+              deliveryType={deliveryType}
+            />
             <StyledOrderTitle>Умови доставки</StyledOrderTitle>
             <StyledPaymentPropsWrapper>
               <p>{deliveryType}</p>
