@@ -8,7 +8,7 @@ import {
 } from "../ShopCart.styled";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserShopCart } from "../../../../redux/user/userShopCart/userShopCartSelector";
+
 import { selectPromoCodeDiscount } from "../../../../redux/promoCode/promoCodeSelector";
 
 import { selectPromoValid } from "../../../../redux/promoCode/promoCodeSelector";
@@ -16,10 +16,11 @@ import { discountPrice } from "../../../../utils/discountPrice";
 import { useEffect } from "react";
 import { addShopCartTotalPriceSum } from "../../../../redux/user/userShopCart/userShopCartSlice";
 
-export const YourOrderPriceComponent = () => {
-  const { priceSum, countQuantity, totalPriceSum } =
-    useSelector(selectUserShopCart);
-  // console.log(totalPriceSum);
+export const YourOrderPriceComponent = ({
+  priceSum,
+  countQuantity,
+  totalPriceSum,
+}) => {
   const discount = useSelector(selectPromoCodeDiscount);
   const isPromoValid = useSelector(selectPromoValid);
   const totalSum = isPromoValid ? discountPrice(priceSum, discount) : priceSum;

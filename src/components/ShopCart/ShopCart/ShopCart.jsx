@@ -17,7 +17,8 @@ import { ShopCartProductsListWithCloseBtn } from "../ShopCartProductsListWithClo
 import { PromoCode } from "components/PromoCode";
 
 export const ShopCart = props => {
-  const { products } = useSelector(selectUserShopCart);
+  const { products, priceSum, totalPriceSum, countQuantity } =
+    useSelector(selectUserShopCart);
 
   let location = useLocation();
   const isDesktop = useMediaQuery("(min-width: 1440px)");
@@ -33,7 +34,11 @@ export const ShopCart = props => {
               isDesktop={isDesktop}
             />
             <StyledOrderWrapper>
-              <YourOrderPriceComponent />
+              <YourOrderPriceComponent
+                priceSum={priceSum}
+                totalPriceSum={totalPriceSum}
+                countQuantity={countQuantity}
+              />
               <PromoCode />
 
               <StyledShopCartButton

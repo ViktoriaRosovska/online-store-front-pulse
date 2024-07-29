@@ -165,8 +165,9 @@ const userShopCartSlice = createSlice({
         state.userShopCart.address[key] = value;
       }
     },
-    clearShopCart(state) {
-      state.userShopCart = { ...initialState.userShopCart };
+    clearShopCart(state, { payload }) {
+      console.log(payload);
+      state.userShopCart = { ...payload, ...initialState.userShopCart };
     },
   },
 });
