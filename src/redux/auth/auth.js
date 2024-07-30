@@ -19,7 +19,6 @@ const authSlice = createSlice({
       state.favoriteProducts = [];
     },
     addLocalFavorites: (state, { payload }) => {
-      console.log(payload);
       state.favoriteProducts = payload;
     },
   },

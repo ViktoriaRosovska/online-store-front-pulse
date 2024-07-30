@@ -32,15 +32,6 @@ export const SearchBox = styled.div`
     filter: invert(53%) sepia(0%) saturate(798%) hue-rotate(256deg)
       brightness(92%) contrast(86%);
   }
-
-  @media screen and (min-width: 1440px) {
-    button {
-      position: absolute;
-      left: 0;
-      margin-left: 10px;
-      margin-top: 13px;
-    }
-  }
 `;
 
 export const SearchInput = styled.input`
@@ -66,8 +57,7 @@ export const SearchInput = styled.input`
     width: 185px;
     height: 45px;
     font-size: 16px;
-    padding: 0px 10px 0 30px;
-    padding: 0px 16px 0 35px;
+    padding: 10px 16px 10px 35px;
   }
 `;
 
@@ -87,8 +77,9 @@ export const Button = styled.button`
   background: transparent;
   position: absolute;
   left: 0;
+  top: 10px;
   margin-left: 8px;
-  margin-top: 5px;
+  /* margin-top: 5px; */
   display: flex;
   align-items: center;
   justify-content: center;
