@@ -7,7 +7,7 @@ export const LastView = ({ lastViewData }) => {
     <StyledLastViewWrapper>
       <Container>
         <StyledLastViewTitle>Недавно переглянуті</StyledLastViewTitle>
-        <ProductSlider products={lastViewData} />
+        <ProductSlider products={lastViewData} loop={true} />
       </Container>
     </StyledLastViewWrapper>
   );

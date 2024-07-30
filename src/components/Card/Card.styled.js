@@ -87,7 +87,7 @@ const CardButtonContainer = styled.div`
   font-size: 18px;
   line-height: 20px;
 
-  background-color: black;
+  background-color: var(--black-bg-color);
   color: white;
   display: flex;
   justify-content: center;

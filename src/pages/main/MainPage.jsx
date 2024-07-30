@@ -15,20 +15,38 @@ import {
   VectorBox,
   WomenBox,
 } from "./MainPage.styled.js";
-// import OneSlider from "../../components/Slider/OneSlider.jsx";
+
 import ProductSlider from "../../components/Slider/ProductSlider.jsx";
 
 import { useEffect, useState } from "react";
-import { brandNew, brandSales } from "../../http/ProductsApi";
+
 import { Container } from "../../main.styled";
 import { StyledSliderTitle } from "components/Typography/Typography.styled";
 import { Portal } from "components/Modals/helpersForModal/modalPortal";
 import CommonModal from "components/Modals/CommonModal";
 import ModalAuth from "components/Modals/ModalAuth/ModalAuth";
+import {
+  useLazyGetNewestQuery,
+  useLazyGetSalesQuery,
+} from "../../redux/products/productsApi";
+import { DEFAULT_QUERY_LIMIT, DEFAULT_QUERY_PAGE } from "../../http/config";
+import { ROUTES } from "../../utils/routes";
 
 const Main = () => {
+  const [getNewest, { data, isError, isFetching }] = useLazyGetNewestQuery();
+  const [
+    getSales,
+    { data: saleData, isError: isSaleError, isFetching: isSaleFetching },
+  ] = useLazyGetSalesQuery();
+  const [newProducts, setNewProducts] = useState([]);
   const [sales, setSales] = useState([]);
-  const [newBrands, setNewBrands] = useState([]);
+  useEffect(() => {
+    getNewest({ page: DEFAULT_QUERY_PAGE, limit: DEFAULT_QUERY_LIMIT });
+    getSales({ page: DEFAULT_QUERY_PAGE, limit: DEFAULT_QUERY_LIMIT });
+    setNewProducts(data?.products?.filter(el => el?.isNewProduct));
+    setSales(saleData?.products);
+  }, [getNewest, getSales, data, saleData]);
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -45,17 +63,12 @@ const Main = () => {
   const handleCloseLoginModal = () => {
     setIsLoginModalOpen(false);
   };
-  // console.log(sales.products);
+
   const navFunc = () => {
     navigate("/catalog", {
       state: { from: location.pathname },
     });
   };
-
-  useEffect(() => {
-    brandNew().then(res => setNewBrands(res));
-    brandSales().then(res => setSales(res));
-  }, []);
 
   useEffect(() => {
     const query = new URLSearchParams(location.search);
@@ -97,8 +110,11 @@ const Main = () => {
         <Container>
           <StyledSliderTitle>Новинки</StyledSliderTitle>
           <ProductSlider
-            products={newBrands.products}
+            products={newProducts}
             cardfeature={"newbrands"}
+            to={ROUTES.NEWBRANDS}
+            showLastSlide={true}
+            loop={false}
           />
         </Container>
       </SectionNews>
@@ -106,7 +122,13 @@ const Main = () => {
       <SectionSale>
         <Container>
           <StyledSliderTitle>Розпродаж</StyledSliderTitle>
-          <ProductSlider products={sales.products} cardfeature={"sales"} />
+          <ProductSlider
+            products={sales}
+            cardfeature={"sales"}
+            showLastSlide={true}
+            to={ROUTES.SALES}
+            loop={false}
+          />
         </Container>
       </SectionSale>
       <section className="marquee-centered">

@@ -20,8 +20,17 @@ import "swiper/css/pagination";
 
 import "swiper/css/navigation";
 import { useRef } from "react";
+import { LastSlideNavigateToCatalog } from "./LastSlideNavigateToCatalog/LastSlideNavigateToCatalog";
 
 const ProductSlider = props => {
+  let arr = [];
+  if (props.showLastSlide) {
+    if (props.products) {
+      arr = [...props.products];
+      arr?.pop();
+    }
+  }
+
   const cardSlider = true;
 
   const swiperRef = useRef();
@@ -62,7 +71,7 @@ const ProductSlider = props => {
           swiperRef.current = swiper;
         }}
         pagination={pagination}
-        loop={true}
+        loop={props.loop}
         loading="lazy"
         breakpoints={{
           320: {
@@ -82,9 +91,35 @@ const ProductSlider = props => {
           },
         }}
       >
-        <ul>
-          {props.products && props.products.length > 0 ? (
-            props.products.map(el => {
+        <ul style={{ position: "relative" }}>
+          {props.showLastSlide ? (
+            <>
+              {arr?.length > 0 &&
+                arr?.map(el => {
+                  return (
+                    <SwiperSlide className="swiper-slide" key={el._id}>
+                      <Card
+                        sales={el.sale}
+                        key={el._id}
+                        info={el.name}
+                        image={el.imgThumbnail}
+                        price={el.basePrice}
+                        id={el._id}
+                        sale={el.sale}
+                        cardfeature={props.cardfeature}
+                        cardSlider={cardSlider}
+                      />
+                    </SwiperSlide>
+                  );
+                })}
+              <SwiperSlide>
+                <LastSlideNavigateToCatalog to={props.to} />
+              </SwiperSlide>
+            </>
+          ) : (
+            props?.products &&
+            props.products.length > 0 &&
+            props.products?.map(el => {
               return (
                 <SwiperSlide className="swiper-slide" key={el._id}>
                   <Card
@@ -101,9 +136,13 @@ const ProductSlider = props => {
                 </SwiperSlide>
               );
             })
-          ) : (
-            <div> Loading...</div>
           )}
+
+          {/* ) : ( */}
+          {props?.products?.length == 0 && (
+            <li style={{ position: "absolute" }}> Loading...</li>
+          )}
+          {/* )} */}
         </ul>
       </Swiper>
       <div className="swiper-navigation">
