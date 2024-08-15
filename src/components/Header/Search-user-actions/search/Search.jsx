@@ -17,6 +17,7 @@ function Search({
   searchQuery,
   isActive,
   closeSearch,
+  handleDeleteSearchQuery,
 }) {
   const navigate = useNavigate();
 
@@ -67,6 +68,11 @@ function Search({
             <SearchIcon $isFixed={isFixed} $location={location} />
           </MobileButton>
         )}
+      </MediaQuery>
+      <MediaQuery minWidth={1440}>
+        <Button style={{ right: "8px" }} onClick={handleDeleteSearchQuery}>
+          <CloseSearchIcon $isFixed={isFixed} $location={location} />
+        </Button>
       </MediaQuery>
     </SearchBox>
   );

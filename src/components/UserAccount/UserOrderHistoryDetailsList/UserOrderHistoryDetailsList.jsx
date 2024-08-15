@@ -24,16 +24,21 @@ const UserOrderHistoryDetailsList = ({ item }) => {
 
       <SumUpBox>
         <div>
-          <p>Підсумок</p>
+          <p>Разом</p>
           <p>{formatPrice(calculateTotalPrice(item?.products))}</p>
         </div>
         <div>
+          <p>Знижка</p>
+          <p>{item?.discount}%</p>
+        </div>
+        <div>
           <p>Доставка</p>
-          <p>{deliveryPrice(calculateTotalPrice(item?.products))}</p>
+          <p>{deliveryPrice(item?.priceSum)}</p>
         </div>
         <TotalPrice>
-          <p>Разом</p>
-          <p>{formatPrice(calculateTotalPrice(item?.products) + 0)}</p>
+          <p>Підсумок</p>
+
+          <p>{formatPrice(item?.priceSum)}</p>
         </TotalPrice>
       </SumUpBox>
 

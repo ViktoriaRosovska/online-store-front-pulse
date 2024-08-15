@@ -140,6 +140,7 @@ function Header() {
             onSearchInputChange={handleSearchInputChange}
             isActive={isActive}
             closeSearch={handleCloseMobileSearch}
+            handleDeleteSearchQuery={handleDeleteSearchQuery}
           />
         </div>
       </Container>

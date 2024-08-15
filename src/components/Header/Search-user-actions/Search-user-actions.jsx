@@ -10,6 +10,7 @@ function SearchUserActions({
   onSearchInputChange,
   isActive,
   closeSearch,
+  handleDeleteSearchQuery,
 }) {
   return (
     <StyledSearchUserActionWrapper>
@@ -21,6 +22,7 @@ function SearchUserActions({
         onSearchInputChange={onSearchInputChange}
         isActive={isActive}
         closeSearch={closeSearch}
+        handleDeleteSearchQuery={handleDeleteSearchQuery}
       />
       <UserActions isFixed={isFixed} location={location} />
     </StyledSearchUserActionWrapper>

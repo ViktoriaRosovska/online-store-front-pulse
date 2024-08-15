@@ -28,7 +28,7 @@ export const YourOrderPriceComponent = ({
 
   useEffect(() => {
     if (isPromoValid) {
-      dispatch(addShopCartTotalPriceSum(totalSum));
+      dispatch(addShopCartTotalPriceSum(Math.ceil(totalSum)));
     } else {
       dispatch(addShopCartTotalPriceSum(priceSum));
     }

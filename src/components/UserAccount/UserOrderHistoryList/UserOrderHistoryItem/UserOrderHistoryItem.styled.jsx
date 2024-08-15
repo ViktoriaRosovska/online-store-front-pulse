@@ -4,17 +4,20 @@ export const Item = styled.li`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 78px;
+  /* height: 78px; */
   border: 1px solid var(--black-bg-color);
   border-radius: 16px;
-  padding: 11px 21px 12px 18px;
+  padding: 11px 10px 12px 18px;
   font-size: 12px;
-   line-height: 12px;
+  line-height: 12px;
 
+  @media screen and (min-width: 375px) {
+    padding: 11px 21px 12px 18px;
+  }
   @media screen and (min-width: 1440px) {
     width: 894px;
     padding: 22px 40px 16px 43px;
-    height: 88px;
+    /* height: 88px; */
     font-size: 16px;
     line-height: 20px;
   }
@@ -23,10 +26,10 @@ export const Item = styled.li`
 export const Box = styled.div`
   position: relative;
   display: flex;
-
-  gap: 19px;
+  justify-content: space-between;
+  /* gap: 19px; */
   width: 100%;
-
+  margin-right: 12px;
   &::before {
     content: "";
     position: absolute;
@@ -34,16 +37,17 @@ export const Box = styled.div`
     width: 1.5px;
     height: 100%;
     left: -8px;
-    background-color: ${props => props.$status === 'pending' ? '#34a853' : 'var(--grey-text-color)'} ;
+    background-color: ${props =>
+      props.$status === "pending" ? "#34a853" : "var(--grey-text-color)"};
   }
 
   @media screen and (min-width: 1440px) {
     gap: 68px;
 
     &::before {
-        top: -15px;
-        left: -28px;
-        height: 72px;
+      top: -15px;
+      left: -28px;
+      height: 95px;
     }
   }
 `;
@@ -59,24 +63,24 @@ export const Info = styled.div`
 export const OrderNumber = styled.p`
   color: var(--grey-text-color);
   margin-bottom: 7px;
- 
-
+  display: flex;
+  flex-direction: column;
   @media screen and (min-width: 1440px) {
     margin-bottom: 10px;
   }
 `;
 
 export const Status = styled.p`
-@media screen and (min-width: 1440px) {
-   font-size: 14px;
-  }  
-`
+  @media screen and (min-width: 1440px) {
+    font-size: 14px;
+  }
+`;
 
 export const SumUp = styled.div`
   color: var(--grey-text-color);
   margin-bottom: 7px;
 
-   @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1440px) {
     margin-bottom: 10px;
   }
 `;
@@ -90,27 +94,27 @@ export const ImageThumb = styled.div`
   overflow-y: auto;
 
   @media screen and (min-width: 1440px) {
-   flex-direction: row;
-   justify-content: flex-end;
-   width: 139px;
-   gap: 5px;
-   overflow-x: auto;
-   /* overflow-y: hidden; */
-  }  
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 139px;
+    gap: 5px;
+    overflow-x: auto;
+    /* overflow-y: hidden; */
+  }
 `;
 
 export const Image = styled.img`
-  width: ${({ $count }) => ($count === 1 ? "43px" : "32px")};
-  height: ${({ $count }) => ($count === 1 ? "35px" : "25px")};
-  margin-bottom: ${({ $count }) => ($count > 1 ? "2px" : "0")};
+  width: 43px;
+  height: 35px;
+
   border-radius: 10px;
   object-fit: cover;
 
-   @media screen and (min-width: 1440px) {
-   width: 43px;
-   height: 35px;
-   margin-bottom: 0;
-  }  
+  @media screen and (min-width: 1440px) {
+    width: 43px;
+    height: 35px;
+    margin-bottom: 0;
+  }
 `;
 
 export const Button = styled.button`
