@@ -49,7 +49,7 @@ function Search({
           placeholder="Пошук"
           $isFixed={isFixed}
           $location={location}
-          value={searchQuery}
+          value={searchQuery || ""}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
         />
