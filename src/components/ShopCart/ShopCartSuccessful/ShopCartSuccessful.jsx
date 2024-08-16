@@ -34,6 +34,7 @@ export const ShopCartSuccessful = ({ title }) => {
     email,
     lastName,
   } = useSelector(selectCopyShopCart);
+
   const isDesktop = useMediaQuery("(min-width: 1440px)");
 
   console.log(products);
