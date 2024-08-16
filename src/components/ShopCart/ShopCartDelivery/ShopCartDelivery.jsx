@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
 import { Formik } from "formik";
 
-import { StyledNotificationWrapper } from "../ShopCart/ShopCart.styled";
-
 import {
   StyledDeliveryForm,
   StyledDeliveryOrderWrapper,
@@ -44,6 +42,7 @@ import {
   addShopCartLastName,
   addShopCartPhone,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
+import { EmptyShopCart } from "../EmptyShopCart/EmptyShopCart";
 
 export const ShopCartDelivery = props => {
   const navigate = useNavigate();
@@ -251,9 +250,7 @@ export const ShopCartDelivery = props => {
           </StyledDeliveryOrderWrapper>
         </StyledOrderDeliveryWrapper>
       ) : (
-        <StyledNotificationWrapper>
-          У вашому кошику ще немає товарів
-        </StyledNotificationWrapper>
+        <EmptyShopCart />
       )}
       <Portal isOpen={isForgotPasswordModalOpen}>
         <CommonModal

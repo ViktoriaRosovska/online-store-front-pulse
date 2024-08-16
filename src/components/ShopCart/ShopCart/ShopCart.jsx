@@ -9,12 +9,12 @@ import { ROUTES } from "../../../utils/routes";
 
 import { Title } from "components/Typography/Typography.styled";
 import {
-  StyledNotificationWrapper,
   StyledOrderWrapper,
   StyledPageWrapper,
 } from "../ShopCart/ShopCart.styled";
 import { ShopCartProductsListWithCloseBtn } from "../ShopCartProductsListWithCloseBtn";
 import { PromoCode } from "components/PromoCode";
+import { EmptyShopCart } from "../EmptyShopCart/EmptyShopCart";
 
 export const ShopCart = props => {
   const { products, priceSum, totalPriceSum, countQuantity } =
@@ -25,7 +25,7 @@ export const ShopCart = props => {
 
   return (
     <>
-      <Title>{props.title}</Title>
+      <Title>{products.length > 0 ? props.title : "Кошик порожній"}</Title>
       <StyledPageWrapper>
         {products && products.length > 0 ? (
           <>
@@ -49,9 +49,7 @@ export const ShopCart = props => {
             </StyledOrderWrapper>
           </>
         ) : (
-          <StyledNotificationWrapper>
-            У вашому кошику ще немає товарів
-          </StyledNotificationWrapper>
+          <EmptyShopCart />
         )}
       </StyledPageWrapper>
     </>

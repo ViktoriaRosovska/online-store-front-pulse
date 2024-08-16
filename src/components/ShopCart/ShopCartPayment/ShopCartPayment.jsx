@@ -1,9 +1,6 @@
 // import { useLocation } from "react-router-dom";
 import { Title } from "components/Typography/Typography.styled";
-import {
-  StyledNotificationWrapper,
-  StyledOrderTitle,
-} from "../ShopCart/ShopCart.styled";
+import { StyledOrderTitle } from "../ShopCart/ShopCart.styled";
 
 import { useSelector } from "react-redux";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
@@ -26,6 +23,7 @@ import { AddressDeliveryComponent } from "../ShopCartSuccessful/AddressDeliveryC
 import { YourOrderPriceComponent } from "../ShopCart/YourOrderPriceComponent/YourOrderPriceComponent";
 import { ShopCartProductsList } from "../ShopCartProductsList";
 import { PromoCode } from "components/PromoCode";
+import { EmptyShopCart } from "../EmptyShopCart/EmptyShopCart";
 
 export const ShopCartPayment = props => {
   const isDesktop = useMediaQuery("(min-width: 1440px)");
@@ -103,9 +101,7 @@ export const ShopCartPayment = props => {
           </StyledPaymentWrapper>
         </StyledOrderPaymentWrapper>
       ) : (
-        <StyledNotificationWrapper>
-          У вашому кошику ще немає товарів
-        </StyledNotificationWrapper>
+        <EmptyShopCart />
       )}
     </>
   );

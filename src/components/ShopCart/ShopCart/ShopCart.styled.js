@@ -213,12 +213,6 @@ const StyledChangeCountBtn = styled.button`
   }
 `;
 
-const StyledNotificationWrapper = styled.p`
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-`;
-
 const StyledPromocodeWrapper = styled.div`
   position: relative;
   width: 100%;
@@ -262,7 +256,6 @@ export {
   StyledInfoWrapper,
   StyledChangeCountWrapperDesktop,
   StyledChangeCountBtn,
-  StyledNotificationWrapper,
   StyledPromocodeWrapper,
   StyledPromocodeCheckWrapper,
   StyledChoiceBtnParagraphWrapper,
