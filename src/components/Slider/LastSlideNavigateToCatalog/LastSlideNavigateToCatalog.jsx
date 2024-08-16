@@ -1,5 +1,5 @@
 import {
-  CardButtonContainer,
+  // CardButtonContainer,
   StyledCardLink,
 } from "components/Card/Card.styled";
 import { ROUTES } from "../../../utils/routes";
@@ -9,18 +9,23 @@ export const LastSlideNavigateToCatalog = ({ to }) => {
     <StyledCardLink to={to}>
       <div
         style={{
-          height: "315px",
+          height: "286px",
           display: "flex",
           alignItems: "flex-start",
           flexDirection: "column",
-          justifyContent: "flex-start",
-          gap: "20px",
+          justifyContent: "center",
+
+          textDecoration: "underline",
         }}
       >
-        Переглянути більше...
-        <CardButtonContainer>
+        <span>Переглянути більше.</span>
+        <span>
+          Перейти до&nbsp;
+          {to === ROUTES.NEWBRANDS ? "новинок" : "розпродажу"}...
+        </span>
+        {/* <CardButtonContainer>
           До {to === ROUTES.NEWBRANDS ? "новинок" : "розпродажу"}
-        </CardButtonContainer>
+        </CardButtonContainer> */}
       </div>
     </StyledCardLink>
   );

@@ -13,7 +13,7 @@ import {
 import { ReactComponent as UpSvg } from "../../../../assets/svg/up.svg";
 import { ReactComponent as DownSvg } from "../../../../assets/svg/down.svg";
 import UserOrderHistoryDetailsList from "../../UserOrderHistoryDetailsList/UserOrderHistoryDetailsList";
-import { calculateTotalPrice } from "../../../../utils/calculateTotalPrice";
+// import { calculateTotalPrice } from "../../../../utils/calculateTotalPrice";
 import { formatOrderDate } from "../../../../utils/formatOrderDate";
 import { formatPrice } from "../../../../utils/formatPrice";
 
@@ -26,7 +26,7 @@ const UserOrderHistoryItem = ({ item }) => {
     setIsOrderDetailsOpen(!isOrderDetailsOpen);
   };
 
-  const imageCount = item?.products.length;
+  // const imageCount = 1;
 
   const status = item?.status === "pending" ? "Оформлений" : "Доставлений";
 
@@ -36,25 +36,25 @@ const UserOrderHistoryItem = ({ item }) => {
         <Box $status={status}>
           <Info>
             <OrderNumber>
-              Замовлення №{item._id.slice(0, 14)},{" "}
-              {formatOrderDate(item.orderDate)}
+              <span>Замовлення №{item._id.slice(0, 14)},</span>
+              <span>{formatOrderDate(item.orderDate)}</span>
             </OrderNumber>
             <Status>{status}</Status>
           </Info>
-          <div>
+
+          <div style={{ minWidth: "70px", whiteSpace: "nowrap" }}>
             <SumUp>Підсумок</SumUp>
-            <p>{formatPrice(calculateTotalPrice(item.products))}</p>
+
+            <p>{formatPrice(item.priceSum)}</p>
           </div>
           <ImageThumb>
-            {item?.products.map(product => (
-              <Image
-                key={product.productId._id}
-                src={product.productId.imgThumbnail}
-                alt={product.productId.name}
-                $count={imageCount}
-                style={{ width: "43" }}
-              />
-            ))}
+            <Image
+              key={item.products[0].productId?._id}
+              src={item.products[0].productId?.imgThumbnail}
+              alt={item.products[0].productId?.name}
+              // $count={imageCount}
+              // style={{ width: "43" }}
+            />
           </ImageThumb>
         </Box>
         <Button type="button" onClick={toggleOrderDetailsMenu}>

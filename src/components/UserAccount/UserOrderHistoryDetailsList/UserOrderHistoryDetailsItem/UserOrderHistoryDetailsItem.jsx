@@ -1,10 +1,18 @@
 import { formatPrice } from "../../../../utils/formatPrice";
-import { Box, Image, InfoContainer, Item, Price, Quantity, Size } from "./UserOrderHistoryDetailsItem.styled";
+import {
+  Box,
+  Image,
+  InfoContainer,
+  Item,
+  Price,
+  Quantity,
+  Size,
+} from "./UserOrderHistoryDetailsItem.styled";
 
 const UserOrderHistoryDetailsItem = ({ product }) => {
-  const calculateTotalPrice = product => {
-    return product?.priceByOne * product?.quantity;
-  };
+  // const calculateTotalPrice = product => {
+  //   return product?.priceByOne * product?.quantity;
+  // };
 
   return (
     <>
@@ -20,7 +28,8 @@ const UserOrderHistoryDetailsItem = ({ product }) => {
           </Box>
           <Quantity>{product?.quantity} шт.</Quantity>
         </InfoContainer>
-        <Price>{formatPrice(calculateTotalPrice(product))}</Price>
+        {/* <Price>{formatPrice(calculateTotalPrice(product))}</Price> */}
+        <Price>{formatPrice(product.priceByOne)}</Price>
       </Item>
     </>
   );

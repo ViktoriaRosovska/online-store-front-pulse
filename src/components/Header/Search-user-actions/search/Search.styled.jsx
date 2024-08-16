@@ -57,7 +57,10 @@ export const SearchInput = styled.input`
     width: 185px;
     height: 45px;
     font-size: 16px;
-    padding: 10px 16px 10px 35px;
+    padding: 10px 35px 10px 35px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
@@ -76,7 +79,7 @@ export const Button = styled.button`
   border: none;
   background: transparent;
   position: absolute;
-  left: 0;
+  /* left: 0; */
   top: 10px;
   margin-left: 8px;
   /* margin-top: 5px; */

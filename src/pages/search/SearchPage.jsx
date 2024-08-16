@@ -49,21 +49,34 @@ const SearchPage = () => {
       <Helmet>
         <title>PulseRun Search</title>
       </Helmet>
-    <PageSection>
-      <Container>
-        <Breadcrumbs current={`Результат пошуку "${searchQuery}"`} BREADCRUMBS={BREADCRUMBS} />
-        <Title>Результат пошуку &quot;{searchQuery}&quot;</Title>
-        <CardsList
-          onPageChange={handlePageChange}
-          data={data?.products}
-          isFetching={isFetching}
-          isError={isError}
-          totalPages={data?.totalPages}
-          page={currentPage}
-        />
-      </Container>
+      <PageSection>
+        <Container>
+          <Breadcrumbs
+            current={`Результат пошуку "${
+              searchQuery.length > 25
+                ? searchQuery.substring(0, 25) + "..."
+                : searchQuery
+            }"`}
+            BREADCRUMBS={BREADCRUMBS}
+          />
+          <Title>
+            Результат пошуку &quot;
+            {searchQuery.length > 25
+              ? searchQuery.substring(0, 25) + "..."
+              : searchQuery}
+            &quot;
+          </Title>
+          <CardsList
+            onPageChange={handlePageChange}
+            data={data?.products}
+            isFetching={isFetching}
+            isError={isError}
+            totalPages={data?.totalPages}
+            page={currentPage}
+          />
+        </Container>
       </PageSection>
-      </>
+    </>
   );
 };
 

@@ -61,7 +61,7 @@ export const ShopCartDelivery = props => {
     totalPriceSum,
     countQuantity,
   } = useSelector(selectUserShopCart);
-  console.log(address);
+  // console.log(address);
   const { data, refetch } = useFetchCurrentUserQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });

@@ -71,4 +71,5 @@ export const Price = styled.p`
   display: flex;
   align-items: center;
   margin-left: auto;
+  width: 70px;
 `;
