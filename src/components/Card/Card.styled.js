@@ -48,10 +48,15 @@ const CardTitle = styled.p`
   font-weight: 400;
   color: var(--black-text-color);
   margin-bottom: 12px;
-  -webkit-line-clamp: 2;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  @media screen and (min-width: 375px) {
+    white-space: normal;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 `;
 const TextWrapper = styled.div`
   margin-bottom: 12px;

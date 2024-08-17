@@ -2,14 +2,12 @@ import styled from "styled-components";
 
 const SwiperContainer = styled.div`
   position: relative;
-  height: 416px;
-  /* border: 1px solid blue; */
-
+  height: 480px;
   display: flex;
   flex-direction: column;
-  /* @media screen and (min-width: 375px) {
+  @media screen and (min-width: 375px) {
     height: 416px;
-  } */
+  }
   @media screen and (min-width: 1440px) {
     height: 486px;
   }
@@ -32,7 +30,10 @@ const StyledNavigationBtn = styled.button`
 
 const StyledNavigationPrevBtn = styled(StyledNavigationBtn)`
   left: 0;
+
+  /* @media screen and (min-width: 375px) { */
   bottom: 0px;
+  /* } */
   @media screen and (min-width: 1440px) {
     left: -83px;
     top: ${props => (props.$card ? "150px" : "50%")};
@@ -41,7 +42,9 @@ const StyledNavigationPrevBtn = styled(StyledNavigationBtn)`
 `;
 const StyledNavigationNextBtn = styled(StyledNavigationBtn)`
   right: 0;
-  bottom: 0;
+  /* @media screen and (min-width: 375px) { */
+  bottom: 0px;
+  /* } */
 
   @media screen and (min-width: 1440px) {
     top: ${props => (props.$card ? "150px" : "50%")};

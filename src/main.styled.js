@@ -25,6 +25,7 @@ const Container = styled.div`
   margin: 0 auto;
   padding: 0 5px;
   /* border: 1px solid red; */
+
   @media screen and (min-width: 320px) {
     width: 320px;
     padding: 0 10px;
