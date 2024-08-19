@@ -78,7 +78,6 @@ export const store = configureStore({
       userApi.middleware,
       novaPoshtaAPI.middleware,
       logoutMiddleware
-      // resetShopCartMiddleware
     );
   },
 });

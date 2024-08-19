@@ -12,8 +12,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import { formatPhoneNumber } from "components/form/formHelpers/formatPhoneNumber";
-import { selectUserToken, useFetchCurrentUserQuery } from "../../../redux/auth";
-import { useEffect } from "react";
+import { useFetchCurrentUserQuery } from "../../../redux/auth";
+
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 
 export const DeliveryPersonalDetails = ({ setFieldValue }) => {
@@ -23,7 +23,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue }) => {
     refetchOnMountOrArgChange: true,
   });
 
-  // const { firstName, lastName, phone, email } = useSelector(selectUserShopCart);
+  const { firstName, lastName, phone, email } = useSelector(selectUserShopCart);
 
   // useEffect(() => {
   //   if (data?.user) {
@@ -55,7 +55,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue }) => {
             dispatch(addShopCartFirstName(e.target.value.trim()));
             await setFieldValue("firstName", e.target.value.trim());
           }}
-          // value={firstName}
+          value={firstName}
         />
         <CustomInput
           type="text"
@@ -66,7 +66,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue }) => {
             dispatch(addShopCartLastName(e.target.value.trim()));
             await setFieldValue("lastName", e.target.value.trim());
           }}
-          // value={lastName}
+          value={lastName}
         />
         <CustomInput
           type="text"
@@ -82,7 +82,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue }) => {
               formatPhoneNumber(e.target.value.trim())
             );
           }}
-          // value={phone}
+          value={phone}
         />
         <CustomInput
           type="email"
@@ -93,7 +93,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue }) => {
             dispatch(addShopCartEmail(e.target.value));
             await setFieldValue("email", e.target.value);
           }}
-          // value={data?.user?.email || email}
+          value={email}
         />
       </StyledNameWrapper>
     </>
