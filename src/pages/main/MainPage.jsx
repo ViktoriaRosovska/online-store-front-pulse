@@ -33,7 +33,10 @@ import { DEFAULT_QUERY_LIMIT, DEFAULT_QUERY_PAGE } from "../../http/config";
 import { ROUTES } from "../../utils/routes";
 
 const Main = () => {
-  const [getNewest, { data, isError, isFetching }] = useLazyGetNewestQuery();
+  const [getNewest, { data, isError, isFetching, isLoading }] =
+    useLazyGetNewestQuery();
+
+  console.log(isFetching, isLoading);
   const [
     getSales,
     { data: saleData, isError: isSaleError, isFetching: isSaleFetching },
@@ -115,6 +118,7 @@ const Main = () => {
             to={ROUTES.NEWBRANDS}
             showLastSlide={true}
             loop={false}
+            isLoading={isLoading}
           />
         </Container>
       </SectionNews>

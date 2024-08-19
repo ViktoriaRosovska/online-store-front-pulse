@@ -17,6 +17,8 @@ export const Wrapper = styled.div`
       font-size: 36px;
       line-height: 36px;
     }
+
+    width: 792px;
   }
 `;
 

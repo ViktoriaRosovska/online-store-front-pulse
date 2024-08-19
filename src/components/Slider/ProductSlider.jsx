@@ -64,38 +64,68 @@ const ProductSlider = props => {
 
   return (
     <SwiperContainer>
-      <Swiper
-        className="swiper-container"
-        modules={[Pagination, Navigation]}
-        onBeforeInit={swiper => {
-          swiperRef.current = swiper;
-        }}
-        pagination={pagination}
-        loop={props.loop}
-        loading="lazy"
-        breakpoints={{
-          320: {
-            slidesPerView: 1,
-            slidesPerGroup: 1,
-          },
-          375: {
-            slidesPerView: 2,
-            spaceBetween: 12,
-            slidesPerGroup: 2,
-          },
+      {props?.products?.length == 0 ? (
+        <div style={{ position: "absolute" }}> Loading...</div>
+      ) : (
+        <>
+          <Swiper
+            className="swiper-container"
+            modules={[Pagination, Navigation]}
+            onBeforeInit={swiper => {
+              swiperRef.current = swiper;
+            }}
+            pagination={pagination}
+            loop={props.loop}
+            loading="lazy"
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+                slidesPerGroup: 1,
+              },
+              375: {
+                slidesPerView: 2,
+                spaceBetween: 12,
+                slidesPerGroup: 2,
+              },
 
-          1440: {
-            slidesPerView: 3,
-            spaceBetween: 89,
-            slidesPerGroup: 3,
-          },
-        }}
-      >
-        <ul style={{ position: "relative" }}>
-          {props.showLastSlide ? (
-            <>
-              {arr?.length > 0 &&
-                arr?.map(el => {
+              1440: {
+                slidesPerView: 3,
+                spaceBetween: 89,
+                slidesPerGroup: 3,
+              },
+            }}
+          >
+            <ul style={{ position: "relative" }}>
+              {props.showLastSlide ? (
+                <>
+                  {arr?.length > 0 &&
+                    arr?.map(el => {
+                      return (
+                        <SwiperSlide className="swiper-slide" key={el._id}>
+                          <Card
+                            sales={el.sale}
+                            key={el._id}
+                            info={el.name}
+                            image={el.imgThumbnail}
+                            price={el.basePrice}
+                            id={el._id}
+                            sale={el.sale}
+                            cardfeature={props.cardfeature}
+                            cardSlider={cardSlider}
+                          />
+                        </SwiperSlide>
+                      );
+                    })}
+                  {!props.isLoading && (
+                    <SwiperSlide>
+                      <LastSlideNavigateToCatalog to={props.to} />
+                    </SwiperSlide>
+                  )}
+                </>
+              ) : (
+                props?.products &&
+                props.products.length > 0 &&
+                props.products?.map(el => {
                   return (
                     <SwiperSlide className="swiper-slide" key={el._id}>
                       <Card
@@ -111,57 +141,29 @@ const ProductSlider = props => {
                       />
                     </SwiperSlide>
                   );
-                })}
-              <SwiperSlide>
-                <LastSlideNavigateToCatalog to={props.to} />
-              </SwiperSlide>
-            </>
-          ) : (
-            props?.products &&
-            props.products.length > 0 &&
-            props.products?.map(el => {
-              return (
-                <SwiperSlide className="swiper-slide" key={el._id}>
-                  <Card
-                    sales={el.sale}
-                    key={el._id}
-                    info={el.name}
-                    image={el.imgThumbnail}
-                    price={el.basePrice}
-                    id={el._id}
-                    sale={el.sale}
-                    cardfeature={props.cardfeature}
-                    cardSlider={cardSlider}
-                  />
-                </SwiperSlide>
-              );
-            })
-          )}
+                })
+              )}
+            </ul>
+          </Swiper>
+          <div className="swiper-navigation">
+            <StyledNavigationPrevBtn
+              onClick={() => swiperRef.current?.slidePrev()}
+              className="nav-btn custom-prev-button"
+              $card={true}
+            >
+              <SwiperLeftArrowIcon />
+            </StyledNavigationPrevBtn>
 
-          {/* ) : ( */}
-          {props?.products?.length == 0 && (
-            <li style={{ position: "absolute" }}> Loading...</li>
-          )}
-          {/* )} */}
-        </ul>
-      </Swiper>
-      <div className="swiper-navigation">
-        <StyledNavigationPrevBtn
-          onClick={() => swiperRef.current?.slidePrev()}
-          className="nav-btn custom-prev-button"
-          $card={true}
-        >
-          <SwiperLeftArrowIcon />
-        </StyledNavigationPrevBtn>
-
-        <StyledNavigationNextBtn
-          onClick={() => swiperRef.current?.slideNext()}
-          className="nav-btn custom-next-button"
-          $card={true}
-        >
-          <SwiperRightArrowIcon />
-        </StyledNavigationNextBtn>
-      </div>
+            <StyledNavigationNextBtn
+              onClick={() => swiperRef.current?.slideNext()}
+              className="nav-btn custom-next-button"
+              $card={true}
+            >
+              <SwiperRightArrowIcon />
+            </StyledNavigationNextBtn>
+          </div>
+        </>
+      )}
     </SwiperContainer>
   );
 };

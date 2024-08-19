@@ -16,15 +16,41 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Notify } from "notiflix";
 
+const formatName = name => {
+  console.log(name[0]);
+
+  if (name[0] == " ") {
+    name = name.trimStart();
+  }
+  if (name[name.length - 1] === " " && name[name.length - 2] === " ") {
+    name = name.replace(/ {2,}/g, " ");
+  }
+
+  return name;
+};
+
 const CustomRegisterForm = ({ onClose, redirectPath }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [createUser] = useCreateUserMutation();
 
+  const handleOnChange = e => {
+    let mas = e.target.value.split(" ");
+    console.log(mas);
+    // console.log(mas.filter(el => el !== " ").join(" "));
+  };
   const onSubmit = ({ firstName, lastName, email, password }) => {
     createUser({
-      firstName: firstName.trim(),
-      lastName: lastName.trim(),
+      firstName: firstName
+        .trim()
+        .split(" ")
+        .filter(el => el !== " ")
+        .join(" "),
+      lastName: lastName
+        .trim()
+        .split(" ")
+        .filter(el => el !== " ")
+        .join(" "),
       email: email.trim(),
       password: password.trim(),
     })
@@ -59,13 +85,18 @@ const CustomRegisterForm = ({ onClose, redirectPath }) => {
         validateOnChange={true}
         enableReinitialize
       >
-        {() => (
+        {({ setFieldValue, values }) => (
           <StyledForm>
             <CustomInput
               label="Ім’я&#42;"
               name="firstName"
               type="text"
               placeholder="Ім’я"
+              onChange={e => {
+                handleOnChange(e);
+                setFieldValue("firstName", formatName(e.target.value));
+              }}
+              value={values?.firstName}
             />
             <CustomInput
               label="Прізвище&#42;"

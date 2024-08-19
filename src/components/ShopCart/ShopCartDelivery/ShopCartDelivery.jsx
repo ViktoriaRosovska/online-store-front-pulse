@@ -43,6 +43,7 @@ import {
   addShopCartPhone,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { EmptyShopCart } from "../EmptyShopCart/EmptyShopCart";
+import { formatPhoneNumber } from "components/form/formHelpers/formatPhoneNumber";
 
 export const ShopCartDelivery = props => {
   const navigate = useNavigate();
@@ -73,8 +74,6 @@ export const ShopCartDelivery = props => {
   }, [refetch]);
 
   useEffect(() => {
-    // if (!isLoggedIn) refetch();
-    // else {
     if (data?.user) {
       if (firstName === "")
         dispatch(addShopCartFirstName(data?.user.firstName));
@@ -83,7 +82,7 @@ export const ShopCartDelivery = props => {
       if (email === "") dispatch(addShopCartEmail(data?.user.email));
     }
     // }
-  }, [data, firstName, lastName, phone, email, dispatch]);
+  }, []);
 
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
     useState(false);
@@ -102,9 +101,20 @@ export const ShopCartDelivery = props => {
   const [isActiveForm, setIsActiveForm] = useState(true);
 
   const onSubmit = (values, option) => {
-    console.log(values, option);
+    values.firstName = firstName
+      .trim()
+      .split(" ")
+      .filter(el => el !== " ")
+      .join(" ");
+    values.lastName = lastName
+      .trim()
+      .split(" ")
+      .filter(el => el !== " ")
+      .join(" ");
+    // console.log(values, option);
 
-    console.log(values.phone);
+    console.log(values.firstName);
+    console.log(values.lastName);
 
     navigate(ROUTES.SHOPCARTPAYMENT);
   };
@@ -122,7 +132,7 @@ export const ShopCartDelivery = props => {
               initialValues={{
                 firstName: firstName,
                 lastName: lastName,
-                phone: phone,
+                phone: phone === "0000000000" ? "" : formatPhoneNumber(phone),
                 email: email,
                 address: {
                   Description: address.Description || "",
