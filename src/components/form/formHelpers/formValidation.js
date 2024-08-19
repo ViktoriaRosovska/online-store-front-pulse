@@ -1,10 +1,10 @@
 import { DELIVERY } from "../../../utils/DELIVERY";
 import * as Yup from "yup";
 
-// const nameRegex = /^[A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+(-[A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+)?$/;
+const nameRegex = /^[A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+(-[A-Za-zа-яА-ЯіІїЇєЄґҐ']+)?$/;
 
-const nameRegex =
-  /^[^ ][A-Za-zа-яА-ЯіІїЇєЄґҐ' ]+(-[A-Za-zа-яА-ЯіІїЇєЄґҐ']+)?[^ ]$/;
+// const nameRegex =
+//   /^[^ ->()"<@,:!#$%&'*+/=?^_.\\`{|}~№;][A-Za-zа-яА-ЯіІїЇєЄґҐ' ]*(-[A-Za-zа-яА-ЯіІїЇєЄґҐ'][^<>"()@,:!#$%&'*+/=?^_.\\`{|}~№;][^\d][^<>"()@,:!#$%&'*+/=?^_.\\`{|}~-№;]*)?$/;
 
 const emailRegex =
   /^[^.][a-zA-Z0-9!#$%&'*+/=?^_.\\`{|}~-][^.]{1,64}@[a-zA-Z0-9-_]+(?:\.[^][a-zA-Z0-9-_]{2,})+$/;
@@ -56,8 +56,11 @@ export const loginValidationSchema = Yup.object().shape({
 export const registerValidationSchema = Yup.object().shape({
   firstName: Yup.string()
     .typeError("Поле повинно бути текстовим")
-    .matches(nameRegex, "Повинні бути лише букви")
-    .min(1, "Мінімальна кількість символів 1")
+    .matches(
+      nameRegex,
+      "Ім'я може складатись лише з літер і бути довжиною від 2 до 30 символів"
+    )
+    .min(2, "Мінімальна кількість символів 2")
     .max(30, "Максимальна кількість символів 30")
     .required("Oбовʼязкове поле"),
   lastName: Yup.string()
@@ -109,14 +112,20 @@ export const registerValidationSchema = Yup.object().shape({
 export const userEditValidationSchema = Yup.object().shape({
   firstName: Yup.string()
     .typeError("Поле повинно бути текстовим")
-    .matches(nameRegex, "Повинні бути лише букви")
-    .min(1, "Мінімальна кількість символів 1")
+    .matches(
+      nameRegex,
+      "Ім'я може складатись лише з літер і бути довжиною від 2 до 30 символів"
+    )
+    .min(2, "Мінімальна кількість символів 2")
     .max(30, "Максимальна кількість символів 30")
     .required("Oбовʼязкове поле"),
   lastName: Yup.string()
-    .typeError("Повинно бути строкою")
-    .matches(nameRegex, "Повинні бути лише букви")
-    .min(1, "Мінімальна кількість символів 1")
+    .typeError("Поле повинно бути текстовим")
+    .matches(
+      nameRegex,
+      "Ім'я може складатись лише з літер і бути довжиною від 2 до 30 символів"
+    )
+    .min(2, "Мінімальна кількість символів 2")
     .max(30, "Максимальна кількість символів 30")
     .required("Oбовʼязкове поле"),
   email: Yup.string()
@@ -257,11 +266,15 @@ export const validationUserCardShopCardSchema = Yup.object().shape({
 
 export const userSupportValidationSchema = Yup.object().shape({
   name: Yup.string()
-    .typeError("Повинно бути строкою")
-    .matches(nameRegex, "Повинні бути лише букви")
-    .min(1, "Мінімальна кількість символів 1")
-    .max(61, "Максимальна кількість символів 61")
+    .typeError("Поле повинно бути текстовим")
+    .matches(
+      nameRegex,
+      "Ім'я може складатись лише з літер і бути довжиною від 2 до 30 символів"
+    )
+    .min(2, "Мінімальна кількість символів 2")
+    .max(30, "Максимальна кількість символів 30")
     .required("Oбовʼязкове поле"),
+
   email: Yup.string()
     .matches(emailRegex, "Введіть коректний email")
     .email("Введіть коректний email", {
@@ -336,15 +349,21 @@ export const resetPasswordValidationSchema = Yup.object().shape({
 });
 export const userShopCartValidationSchema = Yup.object().shape({
   firstName: Yup.string()
-    .typeError("Повинно бути строкою")
-    .matches(nameRegex, "Повинні бути тільки букви")
-    .min(1, "Мінімальна кількість символів 1")
+    .typeError("Поле повинно бути текстовим")
+    .matches(
+      nameRegex,
+      "Ім'я може складатись лише з літер і бути довжиною від 2 до 30 символів"
+    )
+    .min(2, "Мінімальна кількість символів 2")
     .max(30, "Максимальна кількість символів 30")
     .required("Oбовʼязкове поле"),
   lastName: Yup.string()
-    .typeError("Повинно бути строкою")
-    .matches(nameRegex, "Повинні бути тільки букви")
-    .min(1, "Мінімальна кількість символів 1")
+    .typeError("Поле повинно бути текстовим")
+    .matches(
+      nameRegex,
+      "Ім'я може складатись лише з літер і бути довжиною від 2 до 30 символів"
+    )
+    .min(2, "Мінімальна кількість символів 2")
     .max(30, "Максимальна кількість символів 30")
     .required("Oбовʼязкове поле"),
   email: Yup.string()

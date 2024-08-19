@@ -63,10 +63,15 @@ function ProfileMenu({ onClose, isProfile }) {
             )}
           </Avatar>
           <div>
-            <p>
+            <p
+              style={{ wordBreak: "break-word", width: "189px" }}
+              lang="en, uk"
+            >
               {user?.firstName} {user?.lastName}
             </p>
-            <p>{user?.email}</p>
+            <p style={{ wordBreak: "break-word", width: "189px" }}>
+              {user?.email}
+            </p>
           </div>
         </UserCard>
       )}

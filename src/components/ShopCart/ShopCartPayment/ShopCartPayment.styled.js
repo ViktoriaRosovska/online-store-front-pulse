@@ -30,6 +30,9 @@ const StyledPaymentPropsWrapper = styled.div`
   flex-direction: column;
   gap: 16px;
   margin-bottom: 24px;
+  @media screen and (min-width: 1440px) {
+    width: 486px;
+  }
 `;
 export {
   StyledOrderPaymentWrapper,

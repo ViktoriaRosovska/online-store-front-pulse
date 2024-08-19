@@ -23,7 +23,6 @@ import { useRef } from "react";
 import { LastSlideNavigateToCatalog } from "./LastSlideNavigateToCatalog/LastSlideNavigateToCatalog";
 
 const ProductSlider = props => {
-  console.log("isLoading", props.isLoading);
   let arr = [];
   if (props.showLastSlide) {
     if (props.products) {

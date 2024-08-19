@@ -56,7 +56,7 @@ const UserInfoCard = ({ onFileSelect }) => {
           />
         </Button>
       </Box>
-      <h2>
+      <h2 style={{ wordBreak: "break-word" }}>
         {user?.firstName} {user?.lastName}
       </h2>
     </Wrapper>
