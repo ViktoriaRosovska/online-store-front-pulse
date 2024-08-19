@@ -22,7 +22,7 @@ function Search({
   const navigate = useNavigate();
 
   const handleInputChange = event => {
-    onSearchInputChange(event.target.value);
+    onSearchInputChange(event.target.value.trim());
   };
 
   const handleSearch = () => {

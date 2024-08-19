@@ -44,14 +44,14 @@ const UserEditForm = ({ selectedFile }) => {
       // values.phone = values?.phone?.replace(/[\s()-]/g, "");
       const userPhoneNumber = phoneNumber.replace(/[\s()-]/g, "").trim();
       formData.append("phone", userPhoneNumber);
-    }
+    } else formData.append("phone", "0000000000");
     values.firstName = values.firstName
-      .split(" ")
+      ?.split(" ")
       .filter(el => el !== "")
       .join(" ")
       .trim();
     values.lastName = values.lastName
-      .split(" ")
+      ?.split(" ")
       .filter(el => el !== "")
       .join(" ")
       .trim();
@@ -158,72 +158,88 @@ const UserEditForm = ({ selectedFile }) => {
   return (
     <Box>
       <Formik
-        enableReinitialize
+        // enableReinitialize
         initialValues={initialValues}
         validationSchema={userEditValidationSchema}
         onSubmit={onSubmit}
       >
-        {() => (
-          <StyledForm>
-            <CustomInput
-              label="Ім’я"
-              name="firstName"
-              type="text"
-              placeholder="Ім’я"
-            />
-            <CustomInput
-              label="Прізвище"
-              name="lastName"
-              type="text"
-              placeholder="Прізвище"
-            />
-            <CustomInput
-              label="Email"
-              name="email"
-              type="email"
-              placeholder="Ваш email"
-            />
-            <CustomInput
-              label="Номер телефону"
-              name="phone"
-              type="text"
-              placeholder="Номер телефону"
-              // mask={[
-              //   "+",
-              //   "3",
-              //   "8",
-              //   "(",
-              //   "0",
-              //   /[0-9]/,
-              //   /[0-9]/,
-              //   ")",
-              //   /[0-9]/,
-              //   /[0-9]/,
-              //   /[0-9]/,
-              //   "-",
-              //   /[0-9]/,
-              //   /[0-9]/,
-              //   "-",
-              //   /[0-9]/,
-              //   /[0-9]/,
-              // ]}
-            />
-            <CustomInput
-              label="Пароль"
-              name="password"
-              type="password"
-              placeholder="**********"
-            />
-            <CustomInput
-              label="Повторити пароль"
-              name="passwordCheck"
-              type="password"
-              placeholder="Пароль"
-            />
-            {/* <input type="file" accept="image/*" onChange={handleFileChange} /> */}
-            <Button type="submit">Зберегти</Button>
-          </StyledForm>
-        )}
+        <StyledForm>
+          <CustomInput
+            label="Ім’я"
+            name="firstName"
+            type="text"
+            placeholder="Ім’я"
+            onKeyDown={e => {
+              e.key === "Enter" && e.preventDefault();
+            }}
+          />
+          <CustomInput
+            label="Прізвище"
+            name="lastName"
+            type="text"
+            placeholder="Прізвище"
+            onKeyDown={e => {
+              e.key === "Enter" && e.preventDefault();
+            }}
+          />
+          <CustomInput
+            label="Email"
+            name="email"
+            type="email"
+            placeholder="Ваш email"
+            onKeyDown={e => {
+              e.key === "Enter" && e.preventDefault();
+            }}
+          />
+          <CustomInput
+            label="Номер телефону"
+            name="phone"
+            type="text"
+            placeholder="Номер телефону"
+            onKeyDown={e => {
+              e.key === "Enter" && e.preventDefault();
+            }}
+            // mask={[
+            //   "+",
+            //   "3",
+            //   "8",
+            //   "(",
+            //   "0",
+            //   /[0-9]/,
+            //   /[0-9]/,
+            //   ")",
+            //   /[0-9]/,
+            //   /[0-9]/,
+            //   /[0-9]/,
+            //   "-",
+            //   /[0-9]/,
+            //   /[0-9]/,
+            //   "-",
+            //   /[0-9]/,
+            //   /[0-9]/,
+            // ]}
+          />
+          <CustomInput
+            label="Пароль"
+            name="password"
+            type="password"
+            placeholder="**********"
+            onKeyDown={e => {
+              e.key === "Enter" && e.preventDefault();
+            }}
+          />
+          <CustomInput
+            label="Повторити пароль"
+            name="passwordCheck"
+            type="password"
+            placeholder="Пароль"
+            onKeyDown={e => {
+              e.key === "Enter" && e.preventDefault();
+            }}
+          />
+
+          <Button type="submit">Зберегти</Button>
+        </StyledForm>
       </Formik>
       <DeleteButton onClick={handleOpenMobile} type="button">
         Видалити акаунт
