@@ -26,7 +26,11 @@ function Search({
   };
 
   const handleSearch = () => {
-    const query = searchQuery.trim();
+    const query = searchQuery
+      .trim()
+      .split(" ")
+      .filter(el => el)
+      .join(" ");
     if (query) {
       onSearchInputChange(query);
       navigate(`/search?query=${query}`);

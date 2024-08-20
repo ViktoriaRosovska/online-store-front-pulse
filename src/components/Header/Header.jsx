@@ -70,7 +70,14 @@ function Header() {
 
   const handleSearchInputChange = query => {
     setSearchQuery(query);
-    localStorage.setItem("searchQuery", query.trim());
+    localStorage.setItem(
+      "searchQuery",
+      query
+        .trim()
+        .split(" ")
+        .filter(el => el)
+        .join(" ")
+    );
   };
 
   const handleDeleteSearchQuery = () => {
@@ -79,7 +86,11 @@ function Header() {
   };
 
   const handleSearch = () => {
-    const query = searchQuery.trim();
+    const query = searchQuery
+      .trim()
+      .split(" ")
+      .filter(el => el)
+      .join(" ");
     if (query) {
       setSearchQuery(query);
       navigate(`/search?query=${query}`);
