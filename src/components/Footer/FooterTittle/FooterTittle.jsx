@@ -74,7 +74,7 @@ function FooterTittle() {
               setErrors,
               values,
             }) => (
-              <StyledFooterForm>
+              <StyledFooterForm noValidate>
                 <StyledCustomInputWhite
                   name="email"
                   type="email"
@@ -82,7 +82,7 @@ function FooterTittle() {
                   className="whiteInput"
                   $isError={errors.email}
                   onChange={async e => {
-                    console.log(errors);
+                    // console.log(errors);
                     if (e.target.value == "") {
                       await setFieldTouched({}, false);
                       await setFieldValue("email", "");
@@ -92,7 +92,7 @@ function FooterTittle() {
                   value={values.email}
                 />
 
-                <StyledFooterButton btnType="submit">
+                <StyledFooterButton btnType="submit" formnovalidate>
                   Підписатися
                 </StyledFooterButton>
                 {/* <button type="submit"> Підписатися</button> */}

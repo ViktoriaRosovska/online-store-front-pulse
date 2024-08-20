@@ -12,36 +12,14 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import { formatPhoneNumber } from "components/form/formHelpers/formatPhoneNumber";
-import { useFetchCurrentUserQuery } from "../../../redux/auth";
 
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 
 export const DeliveryPersonalDetails = ({ setFieldValue }) => {
   const dispatch = useDispatch();
 
-  const { data, isLoading, refetch } = useFetchCurrentUserQuery(undefined, {
-    refetchOnMountOrArgChange: true,
-  });
-
   const { firstName, lastName, phone, email } = useSelector(selectUserShopCart);
 
-  // useEffect(() => {
-  //   if (data?.user) {
-  //     dispatch(addShopCartFirstName(data?.user?.firstName || ""));
-  //     dispatch(addShopCartLastName(data?.user?.lastName || ""));
-  //     dispatch(addShopCartPhone(data?.user?.phone || ""));
-  //     dispatch(addShopCartEmail(data?.user?.email || ""));
-  //   }
-  // }, [data, dispatch]);
-
-  // const isLoggedIn = useSelector(selectUserToken);
-  // console.log(isLoggedIn);
-
-  // useEffect(() => {
-  //   refetch();
-  // }, [refetch]);
-
-  // if (isLoggedIn) console.log(data?.user);
   return (
     <>
       <StyledDeliveryTitle>Особисті дані отримувача</StyledDeliveryTitle>

@@ -36,7 +36,7 @@ const Main = () => {
   const [getNewest, { data, isError, isFetching, isLoading }] =
     useLazyGetNewestQuery();
 
-  console.log(isFetching, isLoading);
+  // console.log(isFetching, isLoading);
   const [
     getSales,
     { data: saleData, isError: isSaleError, isFetching: isSaleFetching },
