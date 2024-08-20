@@ -64,8 +64,8 @@ const CustomInput = ({ label, mask, ...props }) => {
                 />
               )}
             </StyledPassIconWrapper>
-            {isError && <Error>{meta.error}</Error>}
           </InputWrapper>
+          {isError && <Error>{meta.error}</Error>}
         </InputField>
       </Box>
     </>

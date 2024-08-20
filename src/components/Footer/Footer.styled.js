@@ -47,11 +47,12 @@ const StyledCustomInputWhite = styled(CustomInput)`
   background-color: transparent !important;
   color: var(--white-text-color) !important;
 
-  & .whiteInput::placeholder {
+  &.whiteInput::placeholder {
     font-family: "Roboto";
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
+    color: var(--white-dark-bg-color);
   }
 `;
 

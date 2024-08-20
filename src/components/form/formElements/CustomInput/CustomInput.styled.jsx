@@ -12,6 +12,7 @@ export const InputField = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  position: relative;
   /* width: 384px; */
 
   label {
@@ -21,7 +22,6 @@ export const InputField = styled.div`
 `;
 
 export const Input = styled.input`
-  /* border: none; */
   flex-grow: 1;
   font-size: 16px;
   line-height: 125%;
@@ -44,7 +44,6 @@ export const Input = styled.input`
   }
   @media screen and (min-width: 1440px) {
     height: 60px;
-    /* width: 384px; */
     padding: 18px 16px;
     ${props =>
       props.$isPassword &&
@@ -88,7 +87,7 @@ export const StyledMaskedInput = styled(MaskedInput)`
 export const InputWrapper = styled.div`
   display: flex;
   align-items: center;
-  position: relative;
+  /* position: relative; */
   width: 100%;
 
   textarea {
@@ -133,13 +132,14 @@ export const StyledPassIconWrapper = styled.div`
   right: 16px;
 `;
 
-export const Error = styled.p`
+export const Error = styled.div`
   position: absolute;
   color: red;
   left: 0;
-  bottom: -20px;
+  height: 30px;
+  bottom: -35px;
   font-size: 10px;
-  margin-top: 4px;
+  /* margin-top: 4px; */
 
   @media screen and (min-width: 1440px) {
     font-size: 12px;
