@@ -10,7 +10,7 @@ import { StyledLoginFormButton } from "./ShopCartLoginForm.styled";
 export const ShopCartLoginForm = ({ openForgotPasswordModal }) => {
   const dispatch = useDispatch();
   const [loginUser, { data }] = useLoginUserMutation();
-  console.log("CustomLoginForm  data", data);
+  // console.log("CustomLoginForm  data", data);
 
   const onSubmit = values => {
     loginUser(values)

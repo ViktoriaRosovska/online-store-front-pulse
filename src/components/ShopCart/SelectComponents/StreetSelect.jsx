@@ -26,7 +26,7 @@ export const StreetSelect = ({
     modifiedOptions.push(displayStreet);
   }
 
-  console.log("displayStreet", displayStreet, modifiedOptions);
+  // console.log("displayStreet", displayStreet, modifiedOptions);
   return (
     <div style={{ position: "relative" }}>
       <Select

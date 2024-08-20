@@ -26,7 +26,6 @@ export const DepartmentDeliveryAddress = ({ setFieldValue, errors }) => {
   ] = useGetDepartmentsMutation();
 
   useEffect(() => {
-    if (!address?.city) return;
     getDepartments(address?.city.Ref);
   }, [address?.city, getDepartments]);
 
