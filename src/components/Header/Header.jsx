@@ -70,7 +70,7 @@ function Header() {
 
   const handleSearchInputChange = query => {
     setSearchQuery(query);
-    localStorage.setItem("searchQuery", query);
+    localStorage.setItem("searchQuery", query.trim());
   };
 
   const handleDeleteSearchQuery = () => {
@@ -79,8 +79,10 @@ function Header() {
   };
 
   const handleSearch = () => {
-    if (searchQuery) {
-      navigate(`/search?query=${searchQuery}`);
+    const query = searchQuery.trim();
+    if (query) {
+      setSearchQuery(query);
+      navigate(`/search?query=${query}`);
     }
     handleCloseMobileSearch();
   };
@@ -152,7 +154,9 @@ function Header() {
               <MobileInput
                 placeholder="Пошук"
                 value={searchQuery}
-                onChange={e => handleSearchInputChange(e.target.value)}
+                onChange={e =>
+                  handleSearchInputChange(e.target.value.trimStart())
+                }
                 onKeyDown={handleKeyDown}
               />
               {searchQuery && (
