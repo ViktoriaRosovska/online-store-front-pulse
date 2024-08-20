@@ -34,7 +34,6 @@ export const PoshtomatDeliveryAddress = ({ setFieldValue, errors, values }) => {
   ] = useGetDepartmentsMutation();
 
   useEffect(() => {
-    if (!address?.city) return;
     getDepartments(address?.city.Ref);
   }, [address?.city, getDepartments]);
 

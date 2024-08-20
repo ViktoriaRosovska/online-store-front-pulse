@@ -25,12 +25,8 @@ const ModalAuth = ({
   redirectPath,
 }) => {
   const { data, isLoading, error, refetch } = useLoginUserGoogleQuery();
-  // console.log("ModalAuth  isLoading", isLoading)
-  // console.log("ModalAuth  error", error)
-  // console.log("ModalAuth  data", data)
-  const [mode, setMode] = useState("login");
 
-  console.log("redirectPath", redirectPath);
+  const [mode, setMode] = useState("login");
 
   const handleGoogleLogin = async () => {
     refetch();

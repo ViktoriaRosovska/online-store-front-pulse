@@ -39,11 +39,11 @@ export const ModalShopCart = ({ productData, sizeValue, onClose }) => {
   if (!productData) return null;
 
   const { name, price, categories, imgGallery, _id } = productData;
-  console.log(products);
+  // console.log(products);
   const productItem = products.find(el => el._id === _id);
-  console.log(productItem);
-  console.log(_id);
-  console.log(categories);
+  // console.log(productItem);
+  // console.log(_id);
+  // console.log(categories);
   return (
     <StyledModalShopCartWrapper>
       <ModalShopCartTitle>Додано в кошик</ModalShopCartTitle>

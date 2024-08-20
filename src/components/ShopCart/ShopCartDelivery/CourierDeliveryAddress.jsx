@@ -8,7 +8,7 @@ import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCar
 import { DeliveryStreetSelect } from "./DeliveryStreetSelect";
 
 export const CourierDeliveryAddress = ({ values, setFieldValue, errors }) => {
-  console.log("courier values", values);
+  // console.log("courier values", values);
 
   const dispatch = useDispatch();
 
