@@ -47,7 +47,7 @@ const SearchPage = () => {
   return (
     <>
       <Helmet>
-        <title>PulseRun Search</title>
+        <title>PulseRun Пошук</title>
       </Helmet>
       <PageSection>
         <Container>
