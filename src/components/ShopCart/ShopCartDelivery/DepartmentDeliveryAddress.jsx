@@ -26,7 +26,7 @@ export const DepartmentDeliveryAddress = ({ setFieldValue, errors }) => {
   ] = useGetDepartmentsMutation();
 
   useEffect(() => {
-    getDepartments(address?.city.Ref);
+    if (address?.city.Ref) getDepartments(address?.city.Ref);
   }, [address?.city, getDepartments]);
 
   const onSelectDepartmentsChange = async value => {
