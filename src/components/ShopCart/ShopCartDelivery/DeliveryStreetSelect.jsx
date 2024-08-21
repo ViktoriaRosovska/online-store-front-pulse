@@ -37,7 +37,7 @@ export const DeliveryStreetSelect = ({ setFieldValue, errors }) => {
   };
 
   const onSelectStreetBlur = e => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const search = e.target.value;
 
     if (search) {

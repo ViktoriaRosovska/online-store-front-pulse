@@ -113,8 +113,8 @@ export const ShopCartDelivery = props => {
       .join(" ");
     // console.log(values, option);
 
-    console.log(values.firstName);
-    console.log(values.lastName);
+    // console.log(values.firstName);
+    // console.log(values.lastName);
 
     navigate(ROUTES.SHOPCARTPAYMENT);
   };
@@ -126,7 +126,7 @@ export const ShopCartDelivery = props => {
         <StyledOrderDeliveryWrapper>
           <div>
             <Formik
-              enableReinitialize
+              //enableReinitialize
               validationSchema={userShopCartValidationSchema}
               onSubmit={onSubmit}
               initialValues={{
@@ -157,8 +157,9 @@ export const ShopCartDelivery = props => {
               }}
               validateOnBlur={false}
               validateOnChange={true}
+              //validateOnChange={false}
             >
-              {({ errors, values, setFieldValue }) => (
+              {({ errors, values, setFieldValue, setErrors }) => (
                 <StyledDeliveryForm>
                   <DeliveryCitySelect
                     errors={errors}
@@ -195,7 +196,9 @@ export const ShopCartDelivery = props => {
                   <DeliveryPersonalDetails setFieldValue={setFieldValue} />
                   <DeliveryCheckboxPolicy
                     setFieldValue={setFieldValue}
+                    values={values}
                     errors={errors}
+                    setErrors={setErrors}
                   />
 
                   <StyledLoginFormButton type="submit">
