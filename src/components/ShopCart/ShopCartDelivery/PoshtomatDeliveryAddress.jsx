@@ -57,17 +57,21 @@ export const PoshtomatDeliveryAddress = ({ setFieldValue, errors, values }) => {
             onChange={e => onSelectDepartmentsChange(e)}
             displayDepartment={addressPoshtomat}
             name="address"
-            isError={
-              errors.addressPoshtomat ||
-              values.addressPoshtomat.Description === undefined
-            }
+            // isError={
+            //   errors.addressPoshtomat ||
+            //   values.addressPoshtomat.Description === undefined
+            // }
+            isError={errors.addressPoshtomat}
             components={{ SingleValue }}
             noOptionsMessage={initialValues =>
               initialValues ? null : "За вашим запитом нічого не знайдено"
             }
           />
-          {(errors.addressPoshtomat ||
+          {/* {(errors.addressPoshtomat ||
             values.addressPoshtomat.Description === undefined) && (
+            <Error>{"Введіть адресу поштомату"}</Error>
+          )} */}
+          {errors.addressPoshtomat && (
             <Error>{"Введіть адресу поштомату"}</Error>
           )}
         </div>

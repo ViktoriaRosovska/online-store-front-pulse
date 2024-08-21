@@ -393,10 +393,12 @@ export const userShopCartValidationSchema = Yup.object().shape({
     .required("Вкажіть номер телефону"),
 
   condition: Yup.boolean()
-    .required("Обов'язкове поле")
-    .test("Прийміть політику конфіденційності", value =>
-      value ? true : false
-    ),
+    .oneOf([true], "Прийміть політику конфіденційності")
+    .test("should-be-true", "", (value, ctx) => {
+      console.log("ctx", ctx, value === true);
+      return value === true;
+    }),
+
   isMailing: Yup.boolean(),
   address: Yup.object({
     Description: Yup.string().required(),

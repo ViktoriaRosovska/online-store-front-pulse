@@ -8,11 +8,20 @@ import { CheckboxItem } from "components/CheckboxList/CheckboxItem/ChechboxItem"
 import { useDispatch } from "react-redux";
 import { addShopCartIsMailing } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { Error } from "components/form/formElements/CustomInput/CustomInput.styled";
+
 // import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 
-export const DeliveryCheckboxPolicy = ({ setFieldValue, errors }) => {
+export const DeliveryCheckboxPolicy = ({
+  setFieldValue,
+  errors,
+  values,
+  setErrors,
+}) => {
   const dispatch = useDispatch();
+
   // const { condition, isMailing } = useSelector(selectUserShopCart);
+  console.log("errors", errors);
+  console.log("values", values);
 
   return (
     <StyledCheckboxWrapper>
@@ -20,8 +29,11 @@ export const DeliveryCheckboxPolicy = ({ setFieldValue, errors }) => {
         <StyledCheckboxLabel>
           <CheckboxItem
             name="condition"
+            id="condition"
             item=""
             onChange={async e => {
+              console.log("condition", e.target.checked);
+              if (e.target.checked) setErrors({});
               await setFieldValue("condition", e.target.checked);
             }}
           />
@@ -50,9 +62,7 @@ export const DeliveryCheckboxPolicy = ({ setFieldValue, errors }) => {
             </span>
           </div>
         </StyledCheckboxLabel>
-        {errors.condition && (
-          <Error>{"Прийміть політику конфіденційності"}</Error>
-        )}
+        {errors.condition && <Error>{errors.condition}</Error>}
       </div>
       <StyledCheckboxLabel>
         <CheckboxItem
@@ -62,6 +72,7 @@ export const DeliveryCheckboxPolicy = ({ setFieldValue, errors }) => {
             dispatch(addShopCartIsMailing(e.target.checked));
             await setFieldValue("isMailing", e.target.checked);
           }}
+          value={values.condition}
         />
         Я хочу отримувати інформацію про новинки, акції
       </StyledCheckboxLabel>
