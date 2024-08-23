@@ -4,7 +4,6 @@ const StyledLastSlideWrapper = styled.div`
   height: 167px;
   display: flex;
   align-items: center;
-  height: 250px;
   flex-direction: column;
   justify-content: center;
   text-decoration: underline;
