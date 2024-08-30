@@ -15,6 +15,11 @@ const CardListWrapper = styled.ul`
   justify-content: space-between;
   row-gap: 24px;
 
+  @media screen and (min-width: 1024px) {
+    column-gap: 18px;
+    /* width: 996px; */
+    justify-content: center;
+  }
   @media screen and (min-width: 1440px) {
     column-gap: 18px;
     width: 996px;

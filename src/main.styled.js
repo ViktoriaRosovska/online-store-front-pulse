@@ -12,6 +12,7 @@ const PageSection = styled.section`
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-bottom: 80px;
   @media screen and (min-width: 1440px) {
     flex-direction: row;
