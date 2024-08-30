@@ -31,7 +31,7 @@ const StyledSliderTitle = styled.h2`
   line-height: 24px;
   margin-bottom: 36px;
   text-align: center;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     font-size: 64px;
 
     line-height: 64px;

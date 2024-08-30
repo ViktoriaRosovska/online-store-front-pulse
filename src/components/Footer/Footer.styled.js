@@ -32,7 +32,7 @@ const StyledFooterForm = styled(Form)`
   flex-direction: column;
   gap: 24px;
   width: 100%;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 375px) {
     width: 343px;
   }
 `;

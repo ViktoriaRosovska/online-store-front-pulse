@@ -35,6 +35,10 @@ const Container = styled.div`
     padding: 0 24px;
   }
 
+  @media screen and (min-width: 1024px) {
+    width: 1024px;
+    padding: 0 40px;
+  }
   @media screen and (min-width: 1440px) {
     width: 1440px;
     padding: 0 120px;

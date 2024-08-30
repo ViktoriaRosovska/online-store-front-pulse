@@ -17,7 +17,7 @@
   top: 50%;
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1024px) {
   .marquee {
     height: 80px;
   }
@@ -65,7 +65,7 @@
   top: 150px;
   transform: rotate(10deg);
 }
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1024px) {
   .marquee-centered {
     height: 369px;
   }

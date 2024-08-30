@@ -26,7 +26,7 @@ const Banner = () => {
           <CardButton
             $bannerWidth={true}
             text={"Каталог"}
-            route={ROUTES.SALES}
+            route={`${ROUTES.SALES}?season=Зима&page=1`}
             state={{ from: location }}
           />
         </StyledBannerWrapper>
