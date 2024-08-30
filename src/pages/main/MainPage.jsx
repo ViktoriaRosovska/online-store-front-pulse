@@ -12,7 +12,6 @@ import {
   SectionManWomen,
   SectionNews,
   SectionSale,
-  VectorBox,
   WomenBox,
 } from "./MainPage.styled.js";
 
@@ -95,6 +94,7 @@ const Main = () => {
           </BoxHero>
         </Container>
       </SectionHero>
+
       <SectionManWomen className="container">
         <Link to="/malecatalog" state={{ from: location }}>
           <ManBox>
@@ -107,7 +107,8 @@ const Main = () => {
           </WomenBox>
         </Link>
       </SectionManWomen>
-      <VectorBox>{/* <img src={vector2} alt="vector" /> */}</VectorBox>
+
+      {/* <VectorBox></VectorBox> */}
       <SectionNews>
         <Container>
           <StyledSliderTitle>Новинки</StyledSliderTitle>

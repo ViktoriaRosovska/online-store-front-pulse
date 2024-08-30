@@ -18,7 +18,7 @@ export const SectionBanner = styled.section`
 
 export const StyledBannerWrapper = styled.div`
   padding: 202px 0 204px 0;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     padding: 170px 0 174px 0;
   }
 `;
@@ -35,7 +35,7 @@ export const TitleBox = styled.div`
     line-height: 50.4px;
 
     margin-bottom: 36px;
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: 1024px) {
       font-size: 64px;
 
       font-size: 64px;

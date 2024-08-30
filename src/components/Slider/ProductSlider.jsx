@@ -87,7 +87,11 @@ const ProductSlider = props => {
                 spaceBetween: 12,
                 slidesPerGroup: 2,
               },
-
+              1024: {
+                slidesPerView: 2,
+                spaceBetween: 56,
+                slidesPerGroup: 2,
+              },
               1440: {
                 slidesPerView: 3,
                 spaceBetween: 89,

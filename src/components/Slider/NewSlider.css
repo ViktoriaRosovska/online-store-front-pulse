@@ -13,6 +13,12 @@
   }
 }
 
+@media screen and (min-width: 1024px) {
+  .swiper-container {
+    width: 736px;
+    height: 486px;
+  }
+}
 @media screen and (min-width: 1440px) {
   .swiper-container {
     width: 1200px;
@@ -40,7 +46,7 @@
   bottom: -20px;
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1024px) {
   .swiper-pagination {
     bottom: -48px !important;
   }

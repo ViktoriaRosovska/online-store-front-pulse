@@ -11,7 +11,7 @@ const CardWrapper = styled.div`
     width: 152px;
     /* width: ${props => (props.$cardSlider ? "327px" : "152px")}; */
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: ${props => (props.$cardSlider ? "340px" : "320px")};
   }
 `;
@@ -27,7 +27,7 @@ const CardImage = styled.img`
     height: ${props => (props.$cardSlider ? "167px" : "auto")};
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: ${props => (props.$cardSlider ? "340px" : "320px")};
     height: ${props => (props.$cardSlider ? "287px" : "auto")};
   }
@@ -109,7 +109,7 @@ const CardButtonContainer = styled.div`
     background-color: var(--white-dark-bg-color);
     color: black;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     font-size: 20px;
     font-weight: 400;
     line-height: 30px;
