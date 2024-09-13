@@ -11,13 +11,14 @@ const StyledChoiceDeliveryBtn = styled.button`
       : "1px solid var(--grey-text-color)"};
   border-radius: 16px;
   height: 109px;
-  width: 100%;
+
   padding: 13px;
   display: flex;
   flex-direction: column;
   gap: 19px;
 
   font-family: "Roboto";
+  width: 100%;
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
