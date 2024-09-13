@@ -19,8 +19,10 @@ const StyledImageWrapper = styled.div`
   border-radius: 16px;
   overflow: hidden;
   & img {
-    width: 112px;
+    border-radius: 16px;
+    /* width: 112px; */
     height: 137px;
+    object-fit: cover;
   }
   @media screen and (min-width: 1440px) {
     width: 112px;
