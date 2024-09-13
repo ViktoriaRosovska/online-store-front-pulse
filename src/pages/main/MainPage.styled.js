@@ -4,6 +4,7 @@ import heroBackgroundMobile from "../../assets/images/hero-background-modile.png
 import heroBackgroundLaptop from "../../assets/images/hero-background-laptop.png";
 import manBoxLg from "../../assets/images/manBox-lg.png";
 import manBoxSm from "../../assets/images/manBox-sm.jpg";
+import manBoxMd from "../../assets/images/manBox-md.jpg";
 import womanBoxLg from "../../assets/images/woman-main-lg.png";
 import womanBoxSm from "../../assets/images/woman-main-sm.png";
 import womanBoxMd from "../../assets/images/woman-main-md.png";
@@ -127,7 +128,7 @@ export const ManBox = styled.div`
     }
   }
   @media screen and (min-width: 1024px) {
-    background-image: url(${womanBoxMd});
+    background-image: url(${manBoxMd});
     width: 460px;
     height: 280px;
   }
