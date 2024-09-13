@@ -13,9 +13,14 @@ const StyledBrandCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   justify-content: space-between;
-  width: 152px;
-  height: 133px;
+  /* height: 133px; */
+  width: 140px;
+  @media screen and (min-width: 375px) {
+    width: 152px;
+    height: 133px;
+  }
   @media screen and (min-width: 1440px) {
     width: 170px;
     height: 147px;
@@ -23,7 +28,11 @@ const StyledBrandCardWrapper = styled.div`
 `;
 
 const StyledBrandImage = styled.img`
-  width: 152px;
+  width: 140px;
+  @media screen and (min-width: 375px) {
+    width: 152px;
+  }
+
   height: fit-content;
   @media screen and (min-width: 1440px) {
     width: 170px;
@@ -45,8 +54,10 @@ const StyledMobileBrandList = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  row-gap: 37px;
-
+  row-gap: 20px;
+  @media screen and (min-width: 375px) {
+    row-gap: 37px;
+  }
   @media screen and (min-width: 1440px) {
     display: none;
   }

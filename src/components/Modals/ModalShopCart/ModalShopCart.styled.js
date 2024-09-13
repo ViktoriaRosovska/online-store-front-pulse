@@ -25,6 +25,7 @@ const ModalShopCartTitle = styled.h2`
   line-height: 24px;
   text-align: center;
   margin-bottom: 24px;
+
   @media screen and (min-width: 1440px) {
     font-size: 36px;
     line-height: 36px;
@@ -33,10 +34,13 @@ const ModalShopCartTitle = styled.h2`
 `;
 
 const StyledShopCartImage = styled.img`
-  width: 125px;
+  width: 110px;
   height: 156px;
   border-radius: 16px;
   object-fit: cover;
+  @media screen and (min-width: 375px) {
+    width: 125px;
+  }
   @media screen and (min-width: 1440px) {
     width: 185px;
   }
@@ -48,7 +52,10 @@ const StyledShopCartDescription = styled.div`
   font-weight: 400;
   line-height: 20px;
 
-  width: 156px;
+  width: 120px;
+  @media screen and (min-width: 375px) {
+    width: 156px;
+  }
 `;
 
 const StyledShopCartInfo = styled.div`
@@ -69,12 +76,19 @@ const StyledShopCartInfo = styled.div`
   }
 `;
 
-const StyledProductTitle = styled.p`
+const StyledProductTitle = styled.div`
   font-family: "Roboto";
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 28px;
+  line-height: 24px;
   margin-bottom: 8px;
+  width: 120px;
+
+  @media screen and (min-width: 375px) {
+    font-size: 20px;
+    line-height: 28px;
+    width: 100%;
+  }
 `;
 
 const StyledShopCartTip = styled.div`

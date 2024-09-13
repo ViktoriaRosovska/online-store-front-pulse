@@ -12,18 +12,20 @@ export const Backdrop = styled.div`
 
 export const Modal = styled.div`
   position: absolute;
-  top: 72px;
+  /* top: 72px; */
   left: 0;
   width: clamp(299px, 80%, 320px);
   max-height: calc(100vh - 88px);
-  padding: 24px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 75px;
   padding-bottom: 24px;
   border: 1px solid var(--grey-text-color);
   border-top: none;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
   background-color: #ffff;
-  z-index: 999;
+  z-index: 500;
   overflow-y: auto;
 
   scrollbar-width: thin;
