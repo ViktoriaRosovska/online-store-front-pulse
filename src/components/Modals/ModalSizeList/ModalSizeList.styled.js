@@ -5,6 +5,7 @@ const StyledModalSizeListContainer = styled.div`
   height: fit-content;
   display: flex;
   justify-content: center;
+
   @media screen and (min-width: 1440px) {
     max-width: 906px;
   }

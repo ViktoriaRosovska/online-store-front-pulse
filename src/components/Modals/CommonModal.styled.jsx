@@ -29,6 +29,39 @@ export const ModalContent = styled.div`
   /* max-height: calc(100% - 80px); */
   max-height: 100%;
   overflow-y: auto;
+  /* &::-webkit-scrollbar-thumb {
+    width: 20px;
+    background-color: red;
+    padding: 10px;
+    height: 30px;
+  }
+  &::-webkit-scrollbar-button {
+    background-color: blue;
+  }
+  &::-webkit-scrollbar-track {
+    width: 30px;
+
+    background-color: black;
+  }*/
+  &::-webkit-scrollbar {
+    width: 20px;
+    border: 1px solid black;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 10px 10px var(--grey-btn-bg-color);
+    border: solid 6px transparent;
+    height: 30%;
+    border-radius: 20px;
+    max-height: 30%;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 10px 10px red;
+    border: solid 6px transparent;
+    height: 30%;
+    max-height: 30%;
+  }
+
   @media screen and (min-width: 375px) {
     /* max-height: calc(100% - 32px); */
   }
