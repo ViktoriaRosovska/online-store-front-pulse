@@ -140,6 +140,7 @@ export const MobileInput = styled.input`
   border-radius: 16px;
   border: 1px solid var(--white-dark-bg-color);
   font-size: 12px;
+  /* background-color: transparent; */
 `;
 
 export const StyledSearchUserActionWrapper = styled.div`
