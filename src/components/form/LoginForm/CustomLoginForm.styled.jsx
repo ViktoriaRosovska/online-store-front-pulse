@@ -4,9 +4,13 @@ import styled from "styled-components";
 export const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  /* gap: 16px; */
+  gap: 40px;
   max-width: 295px;
 
+  @media screen and (min-width: 375px) {
+    gap: 28px;
+  }
   @media screen and (min-width: 1440px) {
     width: 450px;
     max-width: 450px;
