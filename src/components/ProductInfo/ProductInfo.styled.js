@@ -251,6 +251,9 @@ export const PackageInfoItem = styled("li")`
   &:first-child {
     margin-top: 0;
   }
+  & svg {
+    width: 35px;
+  }
 `;
 
 export const DescriptionWrapper = styled("div")`
