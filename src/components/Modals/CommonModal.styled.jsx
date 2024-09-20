@@ -26,10 +26,11 @@ export const ModalContent = styled.div`
   z-index: 1400;
   margin-top: 16px;
   margin-bottom: 16px;
-  max-height: calc(100% - 80px);
+  /* max-height: calc(100% - 80px); */
+  max-height: 100%;
   overflow-y: auto;
   @media screen and (min-width: 375px) {
-    max-height: calc(100% - 32px);
+    /* max-height: calc(100% - 32px); */
   }
   @media screen and (min-width: 1440px) {
     padding: ${props => props.$padding};
