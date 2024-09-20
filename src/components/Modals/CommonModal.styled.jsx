@@ -44,16 +44,19 @@ export const ModalContent = styled.div`
     background-color: black;
   }*/
   &::-webkit-scrollbar {
-    width: 20px;
+    width: 15px;
     border: 1px solid transparent;
   }
-
+  &::-webkit-scrollbar-button {
+    background-color: transparent;
+    height: 50px;
+  }
   &::-webkit-scrollbar-thumb {
     box-shadow: inset 0 0 10px 10px var(--grey-btn-bg-color);
     border: solid 6px transparent;
     height: 70%;
     border-radius: 20px;
-    max-height: 70%;
+    max-height: 30%;
   }
   &::-webkit-scrollbar-track {
     box-shadow: inset 0 0 10px 10px transparent;
