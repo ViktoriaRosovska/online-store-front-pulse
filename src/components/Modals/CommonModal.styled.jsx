@@ -45,21 +45,21 @@ export const ModalContent = styled.div`
   }*/
   &::-webkit-scrollbar {
     width: 20px;
-    border: 1px solid black;
+    border: 1px solid transparent;
   }
 
   &::-webkit-scrollbar-thumb {
     box-shadow: inset 0 0 10px 10px var(--grey-btn-bg-color);
     border: solid 6px transparent;
-    height: 30%;
+    height: 70%;
     border-radius: 20px;
-    max-height: 30%;
+    max-height: 70%;
   }
   &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 10px 10px red;
+    box-shadow: inset 0 0 10px 10px transparent;
     border: solid 6px transparent;
-    height: 30%;
-    max-height: 30%;
+    height: 70%;
+    max-height: 70%;
   }
 
   @media screen and (min-width: 375px) {
