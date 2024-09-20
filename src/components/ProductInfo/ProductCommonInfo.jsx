@@ -22,7 +22,7 @@ const ProductCommonInfo = () => {
       </PackageInfoItem>
 
       <PackageInfoItem>
-        <ConditionsIcon />{" "}
+        <ConditionsIcon />
         <StyledLinks to={ROUTES.CONDITIONS}>
           Умови оплати, доставки та повернення
         </StyledLinks>
