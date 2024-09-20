@@ -17,6 +17,7 @@ const ContentWrapper = styled.div`
   @media screen and (min-width: 1440px) {
     flex-direction: row;
     margin-bottom: 120px;
+    align-items: flex-start;
   }
 `;
 

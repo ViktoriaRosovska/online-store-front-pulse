@@ -25,27 +25,47 @@ export const CatalogHeader = props => {
   const [showFilter, setShowFilter] = useState(false);
   const [showSelectMenu, setShowSelectMenu] = useState(false);
   const sortRef = useRef(null);
+  const filterRef = useRef(null);
 
   const handleEscapeKey = event => {
     if (event.key === "Escape") {
       setShowSelectMenu(false);
+      setShowFilter(false);
     }
   };
 
   useEffect(() => {
-    const handleClickOutside = event => {
+    const handleSortClickOutside = event => {
       if (sortRef.current && !sortRef.current.contains(event.target)) {
         const sortButtonClicked = event.target.closest("button");
+        console.log("sortButtonClicked", sortButtonClicked);
         if (!sortButtonClicked) {
           setShowSelectMenu(!showSelectMenu);
         }
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", handleSortClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleSortClickOutside);
     };
   }, [sortRef, showSelectMenu]);
+
+  useEffect(() => {
+    const handleFilterClickOutside = event => {
+      if (filterRef.current && !filterRef.current.contains(event.target)) {
+        const filterButtonClicked = event.target.closest("button");
+        console.log("filterRef", filterRef);
+        console.log("filterButtonClicked", filterButtonClicked);
+        if (!filterButtonClicked) {
+          setShowFilter(!showFilter);
+        }
+      }
+    };
+    document.addEventListener("mousedown", handleFilterClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleFilterClickOutside);
+    };
+  }, [filterRef, showFilter]);
 
   useEffect(() => {
     document.addEventListener("keydown", handleEscapeKey);
@@ -53,7 +73,7 @@ export const CatalogHeader = props => {
       document.removeEventListener("keydown", handleEscapeKey);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setShowSelectMenu]);
+  }, [setShowSelectMenu, setShowFilter]);
 
   const IsNewest = list => {
     let arr = [];
@@ -76,7 +96,9 @@ export const CatalogHeader = props => {
   if (!hasFilter && !showFilter) setShowFilter(true);
 
   const onToggleFilter = () => {
+    console.log("filterRef", filterRef);
     setShowFilter(!showFilter);
+    setShowSelectMenu(false);
     props.onAsideShow(!showFilter);
   };
 
@@ -86,7 +108,13 @@ export const CatalogHeader = props => {
   return (
     <CatalogHeaderContainer>
       <StyledHeaderTitleWrapper>
-        <FilterButton onClick={onToggleFilter} $hasFilter={hasFilter}>
+        <FilterButton
+          ref={filterRef}
+          onClick={() => {
+            onToggleFilter();
+          }}
+          $hasFilter={hasFilter}
+        >
           <FilterIcon />
           Фільтр
         </FilterButton>
@@ -99,6 +127,7 @@ export const CatalogHeader = props => {
               $showSelect={showSelect}
               onClick={() => {
                 setShowSelectMenu(!showSelectMenu);
+                setShowFilter(false);
               }}
             >
               <SortIcon />
@@ -138,7 +167,7 @@ export const CatalogHeader = props => {
       </StyledHeaderTitleWrapper>
 
       {hasFilter && showFilter ? (
-        <FilterWrapper>
+        <FilterWrapper ref={filterRef}>
           {Boolean(props.selectedSex.length) && (
             <FilterWrapperButton
               onClick={() => props.onClearOneFilterButton("sex")}
