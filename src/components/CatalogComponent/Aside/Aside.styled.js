@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const AsideList = styled.div`
   /* background-color: white; */
-  z-index: 101;
+  z-index: 9;
   display: ${props => (props.$onAsideShow ? "flex" : "none")};
 
   flex-direction: row;
@@ -14,6 +14,7 @@ const AsideList = styled.div`
   height: ${props => (props.$valueSize ? "fit-content" : "270px")};
   row-gap: 10px;
   margin-bottom: 24px;
+  background-color: white;
   /* border: 1px solid red; */
   @media screen and (min-width: 1440px) {
     display: flex;
