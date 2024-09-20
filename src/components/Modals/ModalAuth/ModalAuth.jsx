@@ -22,7 +22,7 @@ const ModalAuth = ({
   onClose,
   openForgotPasswordModal,
   resetPassword,
-  redirectPath,
+  // redirectPath,
 }) => {
   const { data, isLoading, error, refetch } = useLoginUserGoogleQuery();
 
