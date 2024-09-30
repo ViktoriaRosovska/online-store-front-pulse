@@ -28,47 +28,15 @@ export const ModalContent = styled.div`
   margin-bottom: 16px;
   /* max-height: calc(100% - 80px); */
   max-height: 100%;
-  overflow-y: auto;
-  /* &::-webkit-scrollbar-thumb {
-    width: 20px;
-    background-color: red;
-    padding: 10px;
-    height: 30px;
-  }
-  &::-webkit-scrollbar-button {
-    background-color: blue;
-  }
-  &::-webkit-scrollbar-track {
-    width: 30px;
 
-    background-color: black;
-  }*/
-  &::-webkit-scrollbar {
-    width: 15px;
-    border: 1px solid transparent;
-  }
-  &::-webkit-scrollbar-button {
-    background-color: transparent;
-    height: 50px;
-  }
-  &::-webkit-scrollbar-thumb {
-    box-shadow: inset 0 0 10px 10px var(--grey-btn-bg-color);
-    border: solid 6px transparent;
-    height: 70%;
-    border-radius: 20px;
-    max-height: 30%;
-  }
-  &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 10px 10px transparent;
-    border: solid 6px transparent;
-    height: 70%;
-    max-height: 70%;
-  }
+  /* overflow-y: auto; */
+
+  overflow-y: hidden;
 
   @media screen and (min-width: 375px) {
     /* max-height: calc(100% - 32px); */
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     padding: ${props => props.$padding};
     width: fit-content;
     max-width: ${props => (props.$isSizeModal ? "fit-content" : "898px")};
@@ -94,7 +62,7 @@ export const CloseButton = styled.button`
       }
     `}
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 48px;
     height: 48px;
     top: ${props => props.$top};

@@ -16,7 +16,7 @@ const AsideList = styled.div`
   margin-bottom: 24px;
   background-color: white;
   /* border: 1px solid red; */
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     display: flex;
     flex-direction: column;
     align-items: flex-start;

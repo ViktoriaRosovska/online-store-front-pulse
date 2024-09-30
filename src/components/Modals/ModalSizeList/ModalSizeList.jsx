@@ -3,6 +3,8 @@ import {
   StyledModalSizeListContainer,
   StyledSizeListTable,
   StyledSizeListTableCaption,
+  StyledTBody,
+  StyledTHead,
 } from "./ModalSizeList.styled";
 export const ModalSizeList = () => {
   return (
@@ -10,16 +12,16 @@ export const ModalSizeList = () => {
       <StyledSizeListTable>
         <StyledSizeListTableCaption>Розмірна сітка</StyledSizeListTableCaption>
 
-        <thead>
+        <StyledTHead>
           <tr>
             <th>US</th>
             <th>UK</th>
             <th>EU</th>
             <th>CM</th>
           </tr>
-        </thead>
+        </StyledTHead>
 
-        <tbody>
+        <StyledTBody>
           {sizeList &&
             sizeList.length &&
             sizeList.map(el => {
@@ -34,7 +36,7 @@ export const ModalSizeList = () => {
                 </tr>
               );
             })}
-        </tbody>
+        </StyledTBody>
       </StyledSizeListTable>
     </StyledModalSizeListContainer>
   );

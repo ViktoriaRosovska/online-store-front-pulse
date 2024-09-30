@@ -157,7 +157,7 @@ function Header() {
           />
         </div>
       </Container>
-      <MediaQuery maxWidth={1439}>
+      <MediaQuery maxWidth={1023}>
         {isActive && (
           <SearchMobileBox>
             <Box>

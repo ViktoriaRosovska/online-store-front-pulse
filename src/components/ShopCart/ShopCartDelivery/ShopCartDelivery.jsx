@@ -78,12 +78,12 @@ export const ShopCartDelivery = props => {
       if (firstName === "")
         dispatch(addShopCartFirstName(data?.user.firstName));
       if (lastName === "") dispatch(addShopCartLastName(data?.user.lastName));
-      if (phone === "") dispatch(addShopCartPhone(data?.user.phone));
+      if (phone != "0000000000") dispatch(addShopCartPhone(data?.user.phone));
+
       if (email === "") dispatch(addShopCartEmail(data?.user.email));
     }
-    // }
-  }, []);
-
+  }, [data?.user, dispatch, lastName, firstName, email, phone]);
+  console.log(data.user.phone);
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
     useState(false);
 
@@ -130,9 +130,10 @@ export const ShopCartDelivery = props => {
               validationSchema={userShopCartValidationSchema}
               onSubmit={onSubmit}
               initialValues={{
-                firstName: firstName,
-                lastName: lastName,
-                phone: phone === "0000000000" ? "" : formatPhoneNumber(phone),
+                firstName: data?.user.firstName || "",
+                lastName: data?.user.lastName || "",
+                // phone: phone === "0000000000" ? "" : formatPhoneNumber(phone),
+                phone: data?.user.phone || "",
                 email: email,
                 address: {
                   Description: address.Description || "",
@@ -193,7 +194,10 @@ export const ShopCartDelivery = props => {
                     />
                   )}
 
-                  <DeliveryPersonalDetails setFieldValue={setFieldValue} />
+                  <DeliveryPersonalDetails
+                    setFieldValue={setFieldValue}
+                    values={values}
+                  />
                   <DeliveryCheckboxPolicy
                     setFieldValue={setFieldValue}
                     values={values}
