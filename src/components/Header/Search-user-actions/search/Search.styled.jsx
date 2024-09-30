@@ -53,7 +53,7 @@ export const SearchInput = styled.input`
         `
       : ""}
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 185px;
     height: 45px;
     font-size: 16px;
@@ -148,7 +148,7 @@ export const StyledSearchUserActionWrapper = styled.div`
   align-items: center;
   gap: 12px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     gap: 16px;
   }
 `;

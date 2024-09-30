@@ -15,11 +15,19 @@ import { formatPhoneNumber } from "components/form/formHelpers/formatPhoneNumber
 
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 
-export const DeliveryPersonalDetails = ({ setFieldValue }) => {
+const checkPhone = number => {
+  console.log("number", number);
+  if (number == "0000000000" || number == "") {
+    return "";
+  }
+  return formatPhoneNumber(number);
+};
+
+export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
   const dispatch = useDispatch();
 
   const { firstName, lastName, phone, email } = useSelector(selectUserShopCart);
-
+  console.log("phone", phone);
   return (
     <>
       <StyledDeliveryTitle>Особисті дані отримувача</StyledDeliveryTitle>
@@ -52,15 +60,14 @@ export const DeliveryPersonalDetails = ({ setFieldValue }) => {
           placeholder="+38(000)000-00-00"
           name="phone"
           onChange={async e => {
-            dispatch(
-              addShopCartPhone(formatPhoneNumber(e.target.value.trim()))
-            );
+            dispatch(addShopCartPhone(e.target.value.trim()));
+
             await setFieldValue(
               "phone",
               formatPhoneNumber(e.target.value.trim())
             );
           }}
-          value={phone}
+          value={checkPhone(phone)}
         />
         <CustomInput
           type="email"

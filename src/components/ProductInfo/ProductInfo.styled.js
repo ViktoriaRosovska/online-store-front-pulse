@@ -11,7 +11,7 @@ export const StyledProductInfoWrapper = styled.div`
 export const MobileHeading = styled("div")`
   margin-top: 24px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     display: none;
   }
 `;
@@ -43,12 +43,18 @@ export const ProductArticle = styled("p")`
 export const ProductDataWrapper = styled("div")`
   margin-top: 16px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     margin-top: 36px;
     display: flex;
     align-items: start;
     column-gap: 102px;
   }
+  /* @media screen and (min-width: 1440px) {
+    margin-top: 36px;
+    display: flex;
+    align-items: start;
+    column-gap: 102px;
+  } */
 `;
 
 export const ImagesGrid = styled("div")`
@@ -57,7 +63,7 @@ export const ImagesGrid = styled("div")`
   column-gap: 24px;
   row-gap: 12px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 714px;
     column-gap: 32px;
     row-gap: 32px;
@@ -70,7 +76,10 @@ export const ImageWraper = styled("div")`
   background-color: gray;
   border-radius: 16px;
   overflow: hidden;
-
+  @media screen and (min-width: 1024px) {
+    flex-basis: calc((100% - 32px) / 2);
+    height: 280px;
+  }
   @media screen and (min-width: 1440px) {
     flex-basis: calc((100% - 32px) / 2);
     height: 369px;
@@ -89,7 +98,7 @@ export const Meta = styled("div")``;
 export const DesktopHeading = styled("div")`
   display: none;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     display: block;
   }
 `;
@@ -244,7 +253,7 @@ export const PackageInfoItem = styled("li")`
   font-size: 16px;
   line-height: 1.25;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     margin-top: 26px;
   }
 

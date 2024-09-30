@@ -18,6 +18,8 @@ import CommonModal from "components/Modals/CommonModal";
 import { Title } from "components/Typography/Typography.styled";
 import ModalDeleteUser from "components/Modals/ModalDeleteUser/ModalDeleteUser";
 import { formatPhoneNumber } from "../formHelpers/formatPhoneNumber";
+import { clearShopCart } from "../../../redux/user/userShopCart/userShopCartSlice";
+import { clearPromoCode } from "../../../redux/promoCode/promoCodeSlice";
 
 const UserEditForm = ({ selectedFile }) => {
   const dispatch = useDispatch();
@@ -39,10 +41,10 @@ const UserEditForm = ({ selectedFile }) => {
 
   const onSubmit = async values => {
     const formData = new FormData();
-
+    console.log("values phone", values.phone);
     if (values.phone !== "") {
       // values.phone = values?.phone?.replace(/[\s()-]/g, "");
-      const userPhoneNumber = phoneNumber.replace(/[\s()-]/g, "").trim();
+      const userPhoneNumber = values.phone.replace(/[\s() -]/g, "").trim();
       formData.append("phone", userPhoneNumber);
     } else formData.append("phone", "0000000000");
     values.firstName = values.firstName
@@ -81,9 +83,12 @@ const UserEditForm = ({ selectedFile }) => {
         })
         .catch(error => {
           if (error?.status === 400) {
-            return Notify.warning("Ви не внесли ніяких змін", {
-              position: "center-center",
-            });
+            return Notify.warning(
+              "(Помилка внесення даних) Ви не внесли ніяких змін",
+              {
+                position: "center-center",
+              }
+            );
           }
           if (error?.status === 409) {
             return Notify.failure(
@@ -125,6 +130,8 @@ const UserEditForm = ({ selectedFile }) => {
           })
         );
       dispatch(removeCredentials());
+      dispatch(clearShopCart());
+      dispatch(clearPromoCode());
     } catch (error) {
       console.error(error);
     }

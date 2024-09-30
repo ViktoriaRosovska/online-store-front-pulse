@@ -162,7 +162,7 @@ export const userEditValidationSchema = Yup.object().shape({
     .max(20, "Максимальна кількість 20 символів")
     .nullable(),
   phone: Yup.string()
-    .matches(phoneRegex, { message: "Введіть корректний номер телефону" })
+    // .matches(phoneRegex, { message: "Введіть корректний номер телефону" })
     .nullable(),
 });
 

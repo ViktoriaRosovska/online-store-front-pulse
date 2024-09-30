@@ -49,7 +49,7 @@ function Search({
 
   return (
     <SearchBox>
-      <MediaQuery minWidth={1440}>
+      <MediaQuery minWidth={1024}>
         <SearchInput
           type="text"
           placeholder="Пошук"
@@ -64,7 +64,7 @@ function Search({
         </Button>
       </MediaQuery>
 
-      <MediaQuery maxWidth={1439}>
+      <MediaQuery maxWidth={1023}>
         {isActive ? (
           <MobileButton onClick={closeSearch}>
             <CloseSearchIcon $isFixed={isFixed} $location={location} />
@@ -75,7 +75,7 @@ function Search({
           </MobileButton>
         )}
       </MediaQuery>
-      <MediaQuery minWidth={1440}>
+      <MediaQuery minWidth={1024}>
         <Button style={{ right: "8px" }} onClick={handleDeleteSearchQuery}>
           <CloseSearchIcon $isFixed={isFixed} $location={location} />
         </Button>
