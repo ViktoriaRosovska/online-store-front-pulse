@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledShopCartListItem = styled.li`
   display: ${props => (props.$device === "mobile" ? "block" : "none")};
   margin-bottom: 24px;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     display: ${props => (props.$device === "desktop" ? "block" : "none")};
     margin-bottom: 36px;
   }
@@ -20,6 +20,12 @@ const StyledShopCartCardWrapper = styled.div`
   width: 100%;
   /* flex-wrap: wrap; */
   /* justify-content: space-between; */
+  @media screen and (min-width: 1024px) {
+    display: ${props => (props.$device === "mobile" ? "none" : "flex")};
+    /* width: ${props => (props.$showDeliveryPrice ? "486px" : "500px")}; */
+    flex-direction: row;
+    gap: 20px;
+  }
   @media screen and (min-width: 1440px) {
     display: ${props => (props.$device === "mobile" ? "none" : "flex")};
     width: ${props => (props.$showDeliveryPrice ? "486px" : "612px")};
@@ -32,7 +38,7 @@ const StyledShopCartImage = styled.img`
   height: 161px;
   border-radius: 16px;
   object-fit: cover;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 185px;
     height: 166px;
   }
@@ -50,7 +56,7 @@ const StyledShopCartInfo = styled.div`
   gap: 21px;
   width: auto;
   /* height: 161px; */
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     display: flex;
     flex-direction: column;
     width: 185px;
@@ -65,7 +71,7 @@ const StyledCard = styled.div`
 
   gap: 9px;
   margin-bottom: 6px;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     display: flex;
     gap: 31px;
     width: 401px;
@@ -92,6 +98,7 @@ const StyledCloseBtnCard = styled.button`
       fill: rgba(122, 124, 127, 1);
     }
   }
+
   @media screen and (min-width: 1440px) {
     top: 22px;
     right: 24px;
@@ -100,7 +107,7 @@ const StyledCloseBtnCard = styled.button`
 
 const StyledPageWrapper = styled.div`
   display: block;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     display: flex;
     justify-content: space-between;
   }
@@ -121,7 +128,7 @@ const StyledOrderWrapper = styled.div`
   flex-direction: column;
   gap: 24px;
   /* border: 1px solid red; */
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 384px;
     /* flex-direction: row; */
   }
@@ -156,7 +163,7 @@ const StyledOrderPriceTextWrapper = styled.div`
   gap: 16px;
   width: 100%;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 295px;
   }
 `;
@@ -179,13 +186,10 @@ const StyledInfoWrapper = styled.div`
 
 const StyledChangeCountWrapper = styled.div`
   display: flex;
-  @media screen and (min-width: 1440px) {
-    /* display: none; */
-  }
 `;
 const StyledChangeCountWrapperDesktop = styled(StyledChangeCountWrapper)`
   display: none;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     display: flex;
     /* padding-left: 213px; */
   }
@@ -193,7 +197,7 @@ const StyledChangeCountWrapperDesktop = styled(StyledChangeCountWrapper)`
 
 const StyledYourOrderWrapper = styled.div`
   width: 100%;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 385px;
   }
   /* margin-bottom: 24px; */

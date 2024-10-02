@@ -48,7 +48,7 @@ const StyledDeliveryTitle = styled.h3`
   letter-spacing: 0.01em;
   text-transform: uppercase;
   text-align: center;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     font-size: 24px;
     line-height: 33.6px;
     text-align: left;
@@ -59,6 +59,9 @@ const StyledDeliveryForm = styled(Form)`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  @media screen and (min-width: 1024px) {
+    width: 400px;
+  }
   @media screen and (min-width: 1440px) {
     width: 587px;
   }
@@ -66,8 +69,11 @@ const StyledDeliveryForm = styled(Form)`
 
 const StyledOrderDeliveryWrapper = styled(StyledOrderWrapper)`
   flex-direction: column-reverse;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     flex-direction: row;
+    gap: 80px;
+  }
+  @media screen and (min-width: 1440px) {
     gap: 126px;
   }
 `;
@@ -75,9 +81,13 @@ const StyledOrderDeliveryWrapper = styled(StyledOrderWrapper)`
 const StyledDeliveryOrderWrapper = styled.div`
   display: flex;
   flex-direction: column-reverse;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     flex-direction: column;
     gap: 24px;
+    width: 400px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 100%;
   }
 `;
 
