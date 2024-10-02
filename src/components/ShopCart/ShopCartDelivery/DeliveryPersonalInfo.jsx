@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { formatPhoneNumber } from "components/form/formHelpers/formatPhoneNumber";
 
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
+import { useEffect } from "react";
 
 const checkPhone = number => {
   console.log("number", number);
@@ -28,21 +29,19 @@ export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
 
   const { firstName, lastName, phone, email } = useSelector(selectUserShopCart);
   console.log("phone", phone);
+
+  useEffect(() => {
+    if (firstName) setFieldValue("firstName", firstName);
+    if (lastName) setFieldValue("lastName", lastName);
+    if (phone) setFieldValue("phone", phone);
+    if (email) setFieldValue("email", email);
+  }, []);
+
+  console.log(values);
   return (
     <>
       <StyledDeliveryTitle>Особисті дані отримувача</StyledDeliveryTitle>
       <StyledNameWrapper>
-        <CustomInput
-          type="text"
-          label="Ім'я&#42;"
-          placeholder="Ім'я"
-          name="firstName"
-          onChange={async e => {
-            dispatch(addShopCartFirstName(e.target.value.trim()));
-            await setFieldValue("firstName", e.target.value.trim());
-          }}
-          value={firstName}
-        />
         <CustomInput
           type="text"
           label="Прізвище&#42;"
@@ -54,6 +53,18 @@ export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
           }}
           value={lastName}
         />
+        <CustomInput
+          type="text"
+          label="Ім'я&#42;"
+          placeholder="Ім'я"
+          name="firstName"
+          onChange={async e => {
+            dispatch(addShopCartFirstName(e.target.value.trim()));
+            await setFieldValue("firstName", e.target.value.trim());
+          }}
+          value={firstName}
+        />
+
         <CustomInput
           type="text"
           label="Номер телефону&#42;"

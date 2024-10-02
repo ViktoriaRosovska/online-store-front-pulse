@@ -3,6 +3,9 @@ import styled from "styled-components";
 
 export const Box = styled.div`
   position: relative;
+  @media screen and (min-width: 1024px) {
+    width: 794px;
+  }
 `;
 
 export const StyledForm = styled(Form)`
@@ -10,7 +13,7 @@ export const StyledForm = styled(Form)`
   flex-direction: column;
   gap: 26px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 330px;
@@ -44,7 +47,7 @@ export const Button = styled.button`
     color: var(--black-bg-color);
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 384px;
     height: 64px;
     margin-top: 60px;
@@ -79,9 +82,9 @@ export const DeleteButton = styled.button`
     border: 1px solid transparent;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 384px;
-    height: 62px;
+    height: 64px;
     margin-top: 60px;
     margin-left: auto;
     font-size: 20px;

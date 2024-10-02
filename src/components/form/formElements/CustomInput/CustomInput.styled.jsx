@@ -42,7 +42,7 @@ export const Input = styled.input`
     line-height: 125%;
     color: gray;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     height: 60px;
     padding: 18px 16px;
     ${props =>
@@ -72,7 +72,7 @@ export const StyledMaskedInput = styled(MaskedInput)`
     font-size: 16px;
     line-height: 125%;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     height: 60px;
     /* width: 384px; */
     padding: 18px 16px;
@@ -119,7 +119,7 @@ export const InputWrapper = styled.div`
     padding: 12px 10px;
    `} */
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     textarea {
       height: 144px;
       padding: 11px;
@@ -141,7 +141,7 @@ export const Error = styled.div`
   font-size: 10px;
   /* margin-top: 4px; */
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     font-size: 12px;
     /* top: 88px; */
   }
