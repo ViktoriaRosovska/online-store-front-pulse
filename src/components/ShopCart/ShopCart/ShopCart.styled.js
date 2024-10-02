@@ -92,7 +92,7 @@ const StyledCloseBtnCard = styled.button`
       fill: rgba(122, 124, 127, 1);
     }
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     top: 22px;
     right: 24px;
   }
@@ -100,7 +100,7 @@ const StyledCloseBtnCard = styled.button`
 
 const StyledPageWrapper = styled.div`
   display: block;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     display: flex;
     justify-content: space-between;
   }
@@ -121,7 +121,7 @@ const StyledOrderWrapper = styled.div`
   flex-direction: column;
   gap: 24px;
   /* border: 1px solid red; */
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 384px;
     /* flex-direction: row; */
   }
@@ -156,7 +156,7 @@ const StyledOrderPriceTextWrapper = styled.div`
   gap: 16px;
   width: 100%;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 295px;
   }
 `;
