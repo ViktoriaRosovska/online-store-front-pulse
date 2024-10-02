@@ -60,6 +60,9 @@ const StyledDeliveryForm = styled(Form)`
   flex-direction: column;
   gap: 24px;
   @media screen and (min-width: 1024px) {
+    width: 400px;
+  }
+  @media screen and (min-width: 1440px) {
     width: 587px;
   }
 `;
@@ -68,6 +71,9 @@ const StyledOrderDeliveryWrapper = styled(StyledOrderWrapper)`
   flex-direction: column-reverse;
   @media screen and (min-width: 1024px) {
     flex-direction: row;
+    gap: 80px;
+  }
+  @media screen and (min-width: 1440px) {
     gap: 126px;
   }
 `;
@@ -75,9 +81,13 @@ const StyledOrderDeliveryWrapper = styled(StyledOrderWrapper)`
 const StyledDeliveryOrderWrapper = styled.div`
   display: flex;
   flex-direction: column-reverse;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     flex-direction: column;
     gap: 24px;
+    width: 400px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 100%;
   }
 `;
 

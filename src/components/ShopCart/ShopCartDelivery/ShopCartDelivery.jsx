@@ -83,7 +83,7 @@ export const ShopCartDelivery = props => {
       if (email === "") dispatch(addShopCartEmail(data?.user.email));
     }
   }, [data?.user, dispatch, lastName, firstName, email, phone]);
-  console.log(data.user.phone);
+  console.log(data?.user?.phone);
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
     useState(false);
 
@@ -97,7 +97,7 @@ export const ShopCartDelivery = props => {
 
   // console.log("address", address);
 
-  const isDesktop = useMediaQuery("(min-width: 1440px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
   const [isActiveForm, setIsActiveForm] = useState(true);
 
   const onSubmit = (values, option) => {
@@ -130,10 +130,10 @@ export const ShopCartDelivery = props => {
               validationSchema={userShopCartValidationSchema}
               onSubmit={onSubmit}
               initialValues={{
-                firstName: data?.user.firstName || "",
-                lastName: data?.user.lastName || "",
+                firstName: firstName,
+                lastName: lastName,
                 // phone: phone === "0000000000" ? "" : formatPhoneNumber(phone),
-                phone: data?.user.phone || "",
+                phone: phone,
                 email: email,
                 address: {
                   Description: address.Description || "",

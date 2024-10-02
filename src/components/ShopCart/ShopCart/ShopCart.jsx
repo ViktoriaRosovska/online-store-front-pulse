@@ -21,7 +21,7 @@ export const ShopCart = props => {
     useSelector(selectUserShopCart);
 
   let location = useLocation();
-  const isDesktop = useMediaQuery("(min-width: 1440px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   return (
     <>
