@@ -34,17 +34,6 @@ export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
       <StyledNameWrapper>
         <CustomInput
           type="text"
-          label="Ім'я&#42;"
-          placeholder="Ім'я"
-          name="firstName"
-          onChange={async e => {
-            dispatch(addShopCartFirstName(e.target.value.trim()));
-            await setFieldValue("firstName", e.target.value.trim());
-          }}
-          value={firstName}
-        />
-        <CustomInput
-          type="text"
           label="Прізвище&#42;"
           placeholder="Прізвище"
           name="lastName"
@@ -54,6 +43,18 @@ export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
           }}
           value={lastName}
         />
+        <CustomInput
+          type="text"
+          label="Ім'я&#42;"
+          placeholder="Ім'я"
+          name="firstName"
+          onChange={async e => {
+            dispatch(addShopCartFirstName(e.target.value.trim()));
+            await setFieldValue("firstName", e.target.value.trim());
+          }}
+          value={firstName}
+        />
+
         <CustomInput
           type="text"
           label="Номер телефону&#42;"
