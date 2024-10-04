@@ -4,8 +4,9 @@ export const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  align-items: center;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     gap: 24px;
   }
 `;
