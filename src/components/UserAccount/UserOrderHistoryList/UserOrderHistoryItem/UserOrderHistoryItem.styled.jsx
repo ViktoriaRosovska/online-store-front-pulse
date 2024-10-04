@@ -14,7 +14,7 @@ export const Item = styled.li`
   @media screen and (min-width: 375px) {
     padding: 11px 21px 12px 18px;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 894px;
     padding: 22px 40px 16px 43px;
     /* height: 88px; */
@@ -38,10 +38,10 @@ export const Box = styled.div`
     height: 100%;
     left: -8px;
     background-color: ${props =>
-      props.$status === "pending" ? "#34a853" : "var(--grey-text-color)"};
+      props.$status != "Оформлений" ? "#34a853" : "var(--grey-text-color)"};
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     gap: 68px;
 
     &::before {
@@ -55,7 +55,7 @@ export const Box = styled.div`
 export const Info = styled.div`
   width: 128px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 420px;
   }
 `;
@@ -65,13 +65,13 @@ export const OrderNumber = styled.p`
   margin-bottom: 7px;
   display: flex;
   flex-direction: column;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     margin-bottom: 10px;
   }
 `;
 
 export const Status = styled.p`
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     font-size: 14px;
   }
 `;
@@ -80,7 +80,7 @@ export const SumUp = styled.div`
   color: var(--grey-text-color);
   margin-bottom: 7px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     margin-bottom: 10px;
   }
 `;
@@ -93,7 +93,7 @@ export const ImageThumb = styled.div`
   gap: 2px;
   overflow-y: auto;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     flex-direction: row;
     justify-content: flex-end;
     width: 139px;
@@ -110,9 +110,9 @@ export const Image = styled.img`
   border-radius: 10px;
   object-fit: cover;
 
-  @media screen and (min-width: 1440px) {
-    width: 43px;
-    height: 35px;
+  @media screen and (min-width: 1024px) {
+    width: 73px;
+    height: 65px;
     margin-bottom: 0;
   }
 `;

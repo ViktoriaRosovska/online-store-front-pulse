@@ -13,7 +13,7 @@ export const Item = styled.li`
     margin-bottom: 8px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     font-size: 14px;
     line-height: 14px;
     padding-bottom: 10px;
@@ -26,24 +26,25 @@ export const Item = styled.li`
 
 export const Image = styled.img`
   width: 72px;
-  height: 70px;
+  height: 80px;
+  object-fit: cover;
   border-radius: 16px;
   margin-right: 10px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 88px;
     margin-right: 15px;
   }
 `;
 
 export const InfoContainer = styled.div`
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     display: flex;
   }
 `;
 
 export const Box = styled.div`
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 200px;
     margin-right: 70px;
     align-items: center;
@@ -51,7 +52,7 @@ export const Box = styled.div`
 `;
 
 export const Quantity = styled.p`
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     height: fit-content;
     margin-top: auto;
     margin-bottom: auto;
@@ -62,7 +63,7 @@ export const Size = styled.p`
   color: var(--grey-text-color);
   margin-bottom: 20px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     margin-bottom: 0;
   }
 `;
