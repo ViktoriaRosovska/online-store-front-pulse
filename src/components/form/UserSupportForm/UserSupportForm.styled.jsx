@@ -9,9 +9,12 @@ export const StyledForm = styled(Form)`
     gap: 28px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 384px;
-    gap: 24px;
+    /* gap: 24px; */
+  }
+  @media screen and (min-width: 1440px) {
+    gap: 35px;
   }
 `;
 
