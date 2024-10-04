@@ -160,7 +160,11 @@ export const userEditValidationSchema = Yup.object().shape({
     .oneOf([Yup.ref("password")], "Паролі не співпадають")
     .min(8, "Пароль має бути не менш ніж 8 символів")
     .max(20, "Максимальна кількість 20 символів")
-    .nullable(),
+    .nullable()
+    .when("password", (password, schema, ctx) => {
+      if (password != "" && !ctx.context.passwordCheck)
+        return Yup.string().required("Підтвердіть пароль");
+    }),
   phone: Yup.string()
     // .matches(phoneRegex, { message: "Введіть корректний номер телефону" })
     .nullable(),
