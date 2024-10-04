@@ -6,6 +6,7 @@ import { StyledPaymentPropsWrapper } from "../ShopCartPayment/ShopCartPayment.st
 import useMediaQuery from "../../../hooks/useMediaQuery";
 import { deliveryPrice } from "../../../utils/deliveryPrice";
 import {
+  StyledConditionWrapper,
   StyledInfoMessage,
   StyledInviteMessage,
   StyledOrderSuccessfulWrapper,
@@ -35,7 +36,7 @@ export const ShopCartSuccessful = ({ title }) => {
     lastName,
   } = useSelector(selectCopyShopCart);
 
-  const isDesktop = useMediaQuery("(min-width: 1440px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   console.log(products);
 
@@ -57,7 +58,7 @@ export const ShopCartSuccessful = ({ title }) => {
               <ShopCartProductsList isDesktop={isDesktop} products={products} />
             </StyledProductsListWrapper>
 
-            <div>
+            <StyledConditionWrapper>
               <StyledInviteMessage>
                 Вітаю, {firstName}, дякую, що купуєте у нас!
               </StyledInviteMessage>
@@ -88,7 +89,7 @@ export const ShopCartSuccessful = ({ title }) => {
                 <p>{deliveryType}</p>
                 <p>{deliveryPrice(priceSum)}</p>
               </StyledPaymentPropsWrapper>
-            </div>
+            </StyledConditionWrapper>
           </StyledOrderSuccessfulWrapper>
         </>
       ) : (

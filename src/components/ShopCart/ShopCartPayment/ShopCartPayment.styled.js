@@ -4,7 +4,7 @@ const StyledOrderPaymentWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     flex-direction: row-reverse;
     justify-content: space-between;
   }
@@ -14,6 +14,9 @@ const StyledPaymentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  @media screen and (min-width: 1024px) {
+    width: 400px;
+  }
   @media screen and (min-width: 1440px) {
     width: 588px;
   }
@@ -30,6 +33,9 @@ const StyledPaymentPropsWrapper = styled.div`
   flex-direction: column;
   gap: 16px;
   margin-bottom: 24px;
+  @media screen and (min-width: 1024px) {
+    width: 350px;
+  }
   @media screen and (min-width: 1440px) {
     width: 486px;
   }
