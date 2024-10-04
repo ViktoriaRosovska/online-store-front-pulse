@@ -57,8 +57,15 @@ const UserEditForm = ({ selectedFile }) => {
       .filter(el => el !== "")
       .join(" ")
       .trim();
+
+    // if (values.password) {
+    //   if (values.passwordCheck == values.password) {
+    //     formData.append("password", values.password);
+    //   }
+    // }
     Object.keys(values).forEach(key => {
       if (
+        // key !== "password" &&
         key !== "passwordCheck" &&
         key !== "phone" &&
         values[key] !== user[key] &&
@@ -83,12 +90,9 @@ const UserEditForm = ({ selectedFile }) => {
         })
         .catch(error => {
           if (error?.status === 400) {
-            return Notify.warning(
-              "(Помилка внесення даних) Ви не внесли ніяких змін",
-              {
-                position: "center-center",
-              }
-            );
+            return Notify.warning("Помилка внесення даних", {
+              position: "center-center",
+            });
           }
           if (error?.status === 409) {
             return Notify.failure(
