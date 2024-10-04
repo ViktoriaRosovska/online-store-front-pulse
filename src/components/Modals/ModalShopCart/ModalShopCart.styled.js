@@ -5,14 +5,14 @@ const StyledModalShopCartWrapper = styled.div`
   width: 100%;
   /* min-width: 320px;  */
   /* padding: 32px 24px; */
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 803px;
     /* padding: 74px 48px 66px 48px; */
   }
 `;
 const StyledShopCartContainer = styled.div`
   display: block;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     display: flex;
     gap: 27px;
   }
@@ -26,7 +26,7 @@ const ModalShopCartTitle = styled.h2`
   text-align: center;
   margin-bottom: 24px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     font-size: 36px;
     line-height: 36px;
     margin-bottom: 42px;
@@ -41,7 +41,7 @@ const StyledShopCartImage = styled.img`
   @media screen and (min-width: 375px) {
     width: 125px;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 185px;
   }
 `;
@@ -65,7 +65,7 @@ const StyledShopCartInfo = styled.div`
   padding-bottom: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid var(--black-bg-color);
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 401px;
     border-bottom: none;
     margin-bottom: 0;
@@ -99,7 +99,7 @@ const StyledShopCartRegistration = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 374px;
   }
 `;

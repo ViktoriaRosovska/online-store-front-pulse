@@ -61,7 +61,7 @@ export const ShopCartDelivery = props => {
     totalPriceSum,
     countQuantity,
   } = useSelector(selectUserShopCart);
-  // console.log(address);
+
   const { data, refetch } = useFetchCurrentUserQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
@@ -75,15 +75,14 @@ export const ShopCartDelivery = props => {
 
   useEffect(() => {
     if (data?.user) {
-      if (firstName === "")
-        dispatch(addShopCartFirstName(data?.user.firstName));
-      if (lastName === "") dispatch(addShopCartLastName(data?.user.lastName));
-      if (phone != "0000000000") dispatch(addShopCartPhone(data?.user.phone));
+      if (firstName == "") dispatch(addShopCartFirstName(data?.user.firstName));
+      if (lastName == "") dispatch(addShopCartLastName(data?.user.lastName));
+      if (phone == "") dispatch(addShopCartPhone(data?.user.phone));
 
       if (email === "") dispatch(addShopCartEmail(data?.user.email));
     }
-  }, [data?.user, dispatch, lastName, firstName, email, phone]);
-  console.log(data?.user?.phone);
+  }, []);
+
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
     useState(false);
 
