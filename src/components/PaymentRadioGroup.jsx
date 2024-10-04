@@ -106,7 +106,7 @@ export const PaymentRadioGroup = () => {
     paymentMethod: paymentMethod,
     discount: discount,
     promoCode: promocode,
-    name: firstName + " " + lastName,
+    name: lastName + " " + firstName,
     email: email,
     isMailing: isMailing,
     phone: phone.replace(/[\s()-]/g, ""),
