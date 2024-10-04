@@ -23,7 +23,7 @@ const FooterAboutUs = () => {
         <Container>
           <Title>Про нас</Title>
           <FooterPages>
-            <MediaQuery maxWidth={1439.98}>
+            <MediaQuery maxWidth={1023.98}>
               <FooterSectionColumn>
                 <img
                   src={photoFounderMob}
@@ -63,7 +63,7 @@ const FooterAboutUs = () => {
               </FooterSectionColumn>
             </MediaQuery>
 
-            <MediaQuery minWidth={1440}>
+            <MediaQuery minWidth={1024}>
               <FooterSection>
                 <img
                   src={photoFounder}
@@ -71,6 +71,7 @@ const FooterAboutUs = () => {
                   width="347"
                   height="327"
                 />
+
                 <FooterSectionColumn>
                   <FooterItemText>
                     Ласкаво просимо до PulseRun – мого улюбленого куточка для

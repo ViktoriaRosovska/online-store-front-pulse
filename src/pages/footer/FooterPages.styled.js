@@ -19,7 +19,7 @@ export const FooterList = styled.ul`
     margin-bottom: 24px;
     font-size: 20px;
 
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: 1024px) {
       font-size: 24px;
     }
   }
@@ -34,15 +34,10 @@ export const FooterListNoBottom = styled.ul`
     font-size: 16px;
   }
 
-  h4 {
-    margin-top: 24px;
-    font-weight: 500;
-    margin-bottom: 24px;
-    font-size: 20px;
+  margin-bottom: 24px;
 
-    @media screen and (min-width: 1440px) {
-      font-size: 24px;
-    }
+  @media screen and (min-width: 1024px) {
+    font-size: 24px;
   }
 `;
 
@@ -52,17 +47,6 @@ export const FooterListNoMarker = styled.ul`
     list-style-type: none;
     margin-left: 0px;
     font-size: 16px;
-  }
-
-  h4 {
-    font-weight: 500;
-    margin-bottom: 24px;
-    margin-top: 36px;
-    font-size: 20px;
-
-    @media screen and (min-width: 1440px) {
-      font-size: 24px;
-    }
   }
 `;
 
@@ -81,6 +65,25 @@ export const FooterItem = styled.li`
   }
 `;
 
+export const StyledConditionHeader = styled.h3`
+  font-weight: 500;
+  margin-bottom: 24px;
+  font-size: 20px;
+
+  @media screen and (min-width: 1024px) {
+    font-size: 24px;
+  }
+`;
+
+export const StyledSubHeader = styled.h4`
+  font-weight: 500;
+  margin-bottom: 24px;
+  font-size: 20px;
+
+  @media screen and (min-width: 1024px) {
+    font-size: 24px;
+  }
+`;
 export const FooterItemBottom = styled.div`
   margin-bottom: 23px;
 `;
@@ -111,6 +114,10 @@ export const FooterSection = styled.div`
   flex-direction: row;
   margin-top: 36px;
   gap: 24px;
+  & img {
+    width: 327px;
+    height: 327px;
+  }
 `;
 
 export const FooterSectionSupport = styled.div`
@@ -118,7 +125,7 @@ export const FooterSectionSupport = styled.div`
   flex-direction: column;
   margin-top: 36px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     flex-direction: row;
     gap: 20px;
   }
@@ -130,16 +137,20 @@ export const FooterSectionColumn = styled.div`
   margin-top: 35px;
   margin-left: 61px;
 
-  @media (max-width: 1440px) {
+  @media (max-width: 1024px) {
     margin-left: 0px;
   }
 
   > img {
     margin-bottom: 24px;
+    height: fit-content;
   }
 
   > a {
     margin-top: 60px;
+  }
+  @media screen and (min-width: 1024px) {
+    margin-top: 0px;
   }
 `;
 

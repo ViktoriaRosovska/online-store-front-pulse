@@ -5,6 +5,7 @@ import {
   FooterList,
   FooterItem,
   FooterListNoMarker,
+  StyledSubHeader,
 } from "./FooterPages.styled";
 import { Title } from "components/Typography/Typography.styled";
 
@@ -19,8 +20,8 @@ const FooterGuarantee = () => {
           {" "}
           <Title>Гарантія та повернення</Title>
           <FooterPages>
+            <StyledSubHeader>1. Гарантія на товари</StyledSubHeader>
             <FooterListNoMarker>
-              <h4>1. Гарантія на товари</h4>
               <FooterItem>
                 Ми гарантуємо якість нашої продукції та надаємо гарантійні
                 зобов&apos;язання відповідно до чинного законодавства.
@@ -29,9 +30,8 @@ const FooterGuarantee = () => {
                 ми зобов&apos;язуємося замінити товар або повернути кошти.
               </FooterItem>
             </FooterListNoMarker>
-
+            <StyledSubHeader>2. Повернення товару</StyledSubHeader>
             <FooterListNoMarker>
-              <h4>2. Повернення товару</h4>
               <FooterItem>
                 Якщо ви не задоволені придбаною продукцією з будь-яких причин,
                 ми радо приймемо її назад протягом 30 днів з моменту придбання.
@@ -39,9 +39,8 @@ const FooterGuarantee = () => {
                 чек про придбання.
               </FooterItem>
             </FooterListNoMarker>
-
+            <StyledSubHeader>3. Процедура повернення</StyledSubHeader>
             <FooterListNoMarker>
-              <h4>3. Процедура повернення</h4>
               <FooterItem>
                 Для оформлення повернення, будь ласка, зв&apos;яжіться з нашим
                 відділом обслуговування клієнтів за контактними даними,
@@ -50,9 +49,8 @@ const FooterGuarantee = () => {
                 повернення.
               </FooterItem>
             </FooterListNoMarker>
-
+            <StyledSubHeader>4. Умови повернення</StyledSubHeader>
             <FooterList>
-              <h4>4. Умови повернення</h4>
               <FooterItem>
                 Повернення приймається тільки у випадку, якщо товар не був
                 вживаний та збережено всі етикетки та упаковку.
@@ -69,16 +67,15 @@ const FooterGuarantee = () => {
                 оплати, який ви використовували для замовлення.
               </FooterItem>
             </FooterList>
-
+            <StyledSubHeader> 5. Винятки</StyledSubHeader>
             <FooterListNoMarker>
-              <h4> 5. Винятки</h4>
               <FooterItem>
                 Деякі товари можуть бути виключені з політики повернення через
                 гігієнічні або інші обставини. Це буде зазначено на сторінці
                 товару. Ця політика повернення діє лише для товарів, придбаних у
                 нашому онлайн магазині. Для товарів, куплених у роздрібних
                 магазинах або інших місцях, будуть застосовуватися власні умови
-                повернення.{" "}
+                повернення.
               </FooterItem>
             </FooterListNoMarker>
           </FooterPages>

@@ -12,7 +12,7 @@ export const Box = styled.li`
     height: ${props => (props.$masterCard ? "30px" : "16px")};
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     svg {
       width: 99px;
       height: ${props => (props.$masterCard ? "56px" : "32px")};
@@ -28,7 +28,7 @@ export const CardInfo = styled.p`
   margin-left: 36px;
   color: var(--black-bg-color);
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     font-size: 16px;
     margin-left: 59px;
   }
@@ -60,7 +60,7 @@ export const DeleteButton = styled.button`
     height: 19px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     right: 30px;
   }
 `;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const Box = styled.div`
   position: relative;
+  width: 100%;
   @media screen and (min-width: 1024px) {
     width: 794px;
   }
@@ -17,7 +18,7 @@ export const StyledForm = styled(Form)`
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 330px;
-    width: 792px;
+    width: 794px;
     gap: 30px 24px;
   }
 `;

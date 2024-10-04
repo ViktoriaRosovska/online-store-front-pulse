@@ -5,6 +5,8 @@ import {
   FooterListNoBottom,
   FooterItem,
   FooterListNoMarker,
+  StyledConditionHeader,
+  StyledSubHeader,
 } from "./FooterPages.styled";
 
 import { StyledLinks, Title } from "components/Typography/Typography.styled";
@@ -19,9 +21,11 @@ const FooterDelivery = () => {
         <Container>
           <Title>Доставка</Title>
           <FooterPages>
+            <StyledConditionHeader>
+              1. ЯКІ УМОВИ ДОСТАВКИ?
+            </StyledConditionHeader>
+            <StyledSubHeader>Зона доставки:</StyledSubHeader>
             <FooterListNoMarker>
-              <h4>1. ЯКІ УМОВИ ДОСТАВКИ?</h4>
-              <h4>Зона доставки:</h4>
               <FooterItem>Ми відправляємо товари по всій Україні*. </FooterItem>
               <FooterItem>
                 * Ми тимчасово не доставляємо замовлення на окуповані території
@@ -29,9 +33,8 @@ const FooterDelivery = () => {
                 областях і в Крим.
               </FooterItem>
             </FooterListNoMarker>
-
+            <StyledSubHeader>Доступні варіанти доставки:</StyledSubHeader>
             <FooterListNoBottom>
-              <h4>Доступні варіанти доставки:</h4>
               <FooterItem>У відділення &quot;Нова Пошта&quot;;</FooterItem>
               <FooterItem>У поштомат &quot;Нова Пошта&quot;;</FooterItem>
               <FooterItem>
@@ -46,9 +49,8 @@ const FooterDelivery = () => {
                 Києва і до 2 днів по Україні.
               </FooterItem>
             </FooterListNoBottom>
-
-            <FooterListNoBottom>
-              <h4>Відстеження доставки:</h4>
+            <StyledSubHeader>Відстеження доставки:</StyledSubHeader>
+            <div>
               <p>
                 Як тільки замовлення буде відвантажено, ми надішлемо тобі sms з
                 номером замовлення у форматі AUA12345678 і ТТН, за яким його
@@ -58,21 +60,22 @@ const FooterDelivery = () => {
                 Ти можеш відстежити статус замовлення на сайті кур&apos;єрської
                 служби:
               </p>
-              <FooterItem>
-                Нова Пошта:{" "}
-                <StyledLinks
-                  to="https://tracking.novaposhta.ua/#/uk"
-                  target="_blank"
-                  rel="noopener
+              <FooterListNoBottom>
+                <FooterItem>
+                  Нова Пошта:{" "}
+                  <StyledLinks
+                    to="https://tracking.novaposhta.ua/#/uk"
+                    target="_blank"
+                    rel="noopener
                   norefferer"
-                >
-                  https://tracking.novaposhta.ua/#/uk
-                </StyledLinks>
-              </FooterItem>
-            </FooterListNoBottom>
-
+                  >
+                    https://tracking.novaposhta.ua/#/uk
+                  </StyledLinks>
+                </FooterItem>
+              </FooterListNoBottom>
+            </div>
+            <StyledSubHeader>Термін зберігання замовлення:</StyledSubHeader>
             <FooterListNoBottom>
-              <h4>Термін зберігання замовлення:</h4>
               <FooterItem>
                 У відділенні &quot;Нова пошта&quot; – до 5 днів. Після
                 закінчення 5 днів посилка автоматично повертається відправнику і
@@ -84,9 +87,10 @@ const FooterDelivery = () => {
                 Нової пошти, щоб звільнити комірку поштомата.
               </FooterItem>
             </FooterListNoBottom>
-
+            <StyledConditionHeader>
+              2. СКІЛЬКИ КОШТУЄ ДОСТАВКА?
+            </StyledConditionHeader>
             <FooterListNoMarker>
-              <h4>СКІЛЬКИ КОШТУЄ ДОСТАВКА?</h4>
               <FooterItem>
                 Ми доставимо безкоштовно по Україні будь-яке замовлення на суму
                 від 4000 гривень.

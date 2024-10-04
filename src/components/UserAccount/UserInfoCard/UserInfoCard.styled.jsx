@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  width: 100%;
   display: flex;
   gap: 27px;
   align-items: center;
@@ -11,7 +12,7 @@ export const Wrapper = styled.div`
     line-height: 100%;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     margin-bottom: 64px;
     h2 {
       font-size: 36px;
@@ -36,7 +37,7 @@ export const Image = styled.div`
   background-color: var(--grey-img-bg-color);
   overflow: hidden;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 130px;
     height: 130px;
   }
@@ -47,7 +48,7 @@ export const GeneratedAvatar = styled.div`
   font-size: 28px;
   color: var(--white-bg-color-favorite-btn);
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     font-size: 36px;
   }
 `;
@@ -60,10 +61,17 @@ export const Button = styled.button`
     height: 24px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     svg {
       width: 32px;
       height: 32px;
     }
   }
+`;
+
+export const StyledAccountWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 `;
