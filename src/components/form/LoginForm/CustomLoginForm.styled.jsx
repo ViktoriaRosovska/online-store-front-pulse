@@ -9,12 +9,11 @@ export const StyledForm = styled(Form)`
   max-width: 295px;
 
   @media screen and (min-width: 375px) {
-    gap: 28px;
+    gap: 35px;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 450px;
     max-width: 450px;
-    gap: 22px;
   }
 `;
 
@@ -41,7 +40,7 @@ export const Button = styled.button`
     color: var(--black-bg-color);
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     height: 62px;
     font-size: 20px;
   }

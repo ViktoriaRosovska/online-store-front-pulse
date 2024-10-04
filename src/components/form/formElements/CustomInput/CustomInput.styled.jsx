@@ -141,7 +141,7 @@ export const Error = styled.div`
   font-size: 10px;
   /* margin-top: 4px; */
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1440px) {
     font-size: 12px;
     /* top: 88px; */
   }

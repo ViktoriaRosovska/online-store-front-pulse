@@ -70,15 +70,42 @@ export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
           label="Номер телефону&#42;"
           placeholder="+38(000)000-00-00"
           name="phone"
+          // mask={[
+          //   "+",
+          //   "3",
+          //   "8",
+          //   "(",
+          //   "0",
+          //   /[0-9]/,
+          //   /[0-9]/,
+          //   ")",
+          //   /[0-9]/,
+          //   /[0-9]/,
+          //   /[0-9]/,
+          //   "-",
+          //   /[0-9]/,
+          //   /[0-9]/,
+          //   "-",
+          //   /[0-9]/,
+          //   /[0-9]/,
+          // ]}
           onChange={async e => {
-            dispatch(addShopCartPhone(e.target.value.trim()));
+            dispatch(
+              addShopCartPhone(
+                // e.target.value.replace(/[^+-()0-9]]/gi, "").trim()
+                e.target.value.replace(/[^()+-\d][^+()-]|_/g, "").trim()
+              )
+            );
 
             await setFieldValue(
               "phone",
-              formatPhoneNumber(e.target.value.trim())
+              formatPhoneNumber(
+                // e.target.value.replace(/[^+-()0-9]]/gi, "").trim()
+                e.target.value.replace(/[^\d][^\+()-]|_/g, "").trim()
+              )
             );
           }}
-          value={checkPhone(phone)}
+          value={phone}
         />
         <CustomInput
           type="email"
