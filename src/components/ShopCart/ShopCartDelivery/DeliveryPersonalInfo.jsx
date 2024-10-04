@@ -17,7 +17,7 @@ import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCar
 import { useEffect } from "react";
 
 const checkPhone = number => {
-  console.log("number", number);
+  // console.log("number", number);
   if (number == "0000000000" || number == "") {
     return "";
   }
@@ -28,7 +28,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
   const dispatch = useDispatch();
 
   const { firstName, lastName, phone, email } = useSelector(selectUserShopCart);
-  console.log("phone", phone);
+  // console.log("phone", phone);
 
   useEffect(() => {
     if (firstName) setFieldValue("firstName", firstName);
@@ -37,7 +37,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
     if (email) setFieldValue("email", email);
   }, []);
 
-  console.log(values);
+  // console.log(values);
   return (
     <>
       <StyledDeliveryTitle>Особисті дані отримувача</StyledDeliveryTitle>
@@ -105,7 +105,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
               )
             );
           }}
-          value={phone}
+          value={checkPhone(phone)}
         />
         <CustomInput
           type="email"

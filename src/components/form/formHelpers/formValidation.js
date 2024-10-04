@@ -399,7 +399,7 @@ export const userShopCartValidationSchema = Yup.object().shape({
   condition: Yup.boolean()
     .oneOf([true], "Прийміть політику конфіденційності")
     .test("should-be-true", "", (value, ctx) => {
-      console.log("ctx", ctx, value === true);
+      // console.log("ctx", ctx, value === true);
       return value === true;
     }),
 

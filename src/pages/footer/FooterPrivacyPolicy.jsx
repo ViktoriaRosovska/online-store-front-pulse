@@ -6,6 +6,7 @@ import {
   FooterItem,
   HighlightedWord,
   StyledPolicyLink,
+  StyledSubHeader,
 } from "./FooterPages.styled";
 import { Title } from "components/Typography/Typography.styled";
 
@@ -27,9 +28,8 @@ const FooterPrivacyPolicy = () => {
                 нашого сайту.
               </FooterItem>
             </FooterListNoMarker>
-
+            <StyledSubHeader>Збір і використання інформації:</StyledSubHeader>
             <FooterListNoMarker>
-              <h4>Збір і використання інформації:</h4>
               <FooterItem>
                 Ми збираємо різноманітну інформацію, щоб забезпечити краще
                 обслуговування наших клієнтів та покращити функціональність
@@ -43,9 +43,8 @@ const FooterPrivacyPolicy = () => {
                 обслуговування та асортименту товарів.
               </FooterItem>
             </FooterListNoMarker>
-
+            <StyledSubHeader>Захист інформації:</StyledSubHeader>
             <FooterListNoMarker>
-              <h4>Захист інформації:</h4>
               <FooterItem>
                 Ми приділяємо велику увагу безпеці вашої особистої інформації і
                 вживаємо відповідних заходів безпеки для її захисту від
@@ -54,9 +53,8 @@ const FooterPrivacyPolicy = () => {
                 вашого згоди, за винятком випадків, передбачених законом.
               </FooterItem>
             </FooterListNoMarker>
-
+            <StyledSubHeader>Cookies:</StyledSubHeader>
             <FooterListNoMarker>
-              <h4>Cookies:</h4>
               <FooterItem>
                 Наш веб-сайт може використовувати cookies для збору інформації
                 та поліпшення користувацького досвіду. Cookies є невеликими
@@ -67,27 +65,26 @@ const FooterPrivacyPolicy = () => {
                 призвести до обмеження деяких функцій нашого веб-сайту.
               </FooterItem>
             </FooterListNoMarker>
-
+            <StyledSubHeader> Посилання на інші сайти:</StyledSubHeader>
             <FooterListNoMarker>
-              <h4> Посилання на інші сайти:</h4>
               <FooterItem>
                 Наш веб-сайт може містити посилання на інші сайти, які не
                 контролюються нами. Ми не несемо відповідальності за політику
                 конфіденційності або вміст таких сайтів.
               </FooterItem>
             </FooterListNoMarker>
-
+            <StyledSubHeader>
+              Зміни у політиці конфіденційності:
+            </StyledSubHeader>
             <FooterListNoMarker>
-              <h4>Зміни у політиці конфіденційності:</h4>
               <FooterItem>
                 Ми можемо час від часу оновлювати нашу політику
                 конфіденційності. Будь ласка, періодично переглядайте цю
                 сторінку, щоб бути в курсі будь-яких змін.
               </FooterItem>
             </FooterListNoMarker>
-
+            <StyledSubHeader>Контактна інформація:</StyledSubHeader>
             <FooterListNoMarker>
-              <h4>Контактна інформація:</h4>
               <FooterItem>
                 Якщо у вас виникли питання щодо нашої політики конфіденційності,
                 будь ласка, зв&apos;яжіться з нами за телефоном&nbsp;

@@ -20,8 +20,8 @@ export const DeliveryCheckboxPolicy = ({
   const dispatch = useDispatch();
 
   // const { condition, isMailing } = useSelector(selectUserShopCart);
-  console.log("errors", errors);
-  console.log("values", values);
+  // console.log("errors", errors);
+  // console.log("values", values);
 
   return (
     <StyledCheckboxWrapper>
@@ -32,7 +32,7 @@ export const DeliveryCheckboxPolicy = ({
             id="condition"
             item=""
             onChange={async e => {
-              console.log("condition", e.target.checked);
+              // console.log("condition", e.target.checked);
               if (e.target.checked) setErrors({});
               await setFieldValue("condition", e.target.checked);
             }}

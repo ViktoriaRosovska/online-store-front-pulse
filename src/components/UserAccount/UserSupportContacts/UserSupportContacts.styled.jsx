@@ -5,7 +5,7 @@ export const Text = styled.p`
   line-height: 14px;
   margin-bottom: 36px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     font-size: 24px;
     line-height: 33px;
     margin-bottom: 24px;
@@ -20,7 +20,7 @@ export const List = styled.ul`
   list-style-type: disc;
   margin-bottom: 24px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 870px;
     height: 96px;
     flex-wrap: wrap;
@@ -33,7 +33,7 @@ export const ListItem = styled.li`
     line-height: 14px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     &:nth-child(-n + 2) {
       width: 465px;
     }
@@ -52,7 +52,7 @@ export const PhoneNumber = styled.a`
   font-weight: 500;
   line-height: 30px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     /* line-height: 22px; */
     &:nth-child(2) {
       display: inline;
