@@ -36,6 +36,9 @@ const StyledPayButton = styled.button`
     background-color: var(--white-dark-bg-color);
     color: var(--black-text-color);
   }
+  @media screen and (min-width: 1024px) {
+    height: 62px;
+  }
 `;
 
 const StyledOuterCircle = styled.div`

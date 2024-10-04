@@ -47,9 +47,9 @@ export const loginValidationSchema = Yup.object().shape({
     .required("Oбовʼязкове поле"),
   password: Yup.string()
     .typeError("Поле повинно бути текстовим")
-    .matches(passwordRegex, "Неправильний емейл або пароль")
-    .min(8, "Пароль має бути не менш ніж 8 символів")
-    .max(20, "Максимальна кількість 20 символів")
+    // .matches(passwordRegex, "Неправильний емейл або пароль")
+    // .min(8, "Пароль має бути не менш ніж 8 символів")
+    // .max(20, "Максимальна кількість 20 символів")
     .required("Oбовʼязкове поле"),
 });
 

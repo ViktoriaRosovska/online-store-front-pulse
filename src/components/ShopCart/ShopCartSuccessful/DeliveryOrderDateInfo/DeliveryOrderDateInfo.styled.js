@@ -7,6 +7,10 @@ const StyledOrderDateInfoWrapper = styled.div`
   display: flex;
   gap: 11px;
   margin-bottom: 24px;
+  @media screen and (min-width: 1024px) {
+    width: 350px;
+    padding: 31px 31px 16px 16px;
+  }
   @media screen and (min-width: 1440px) {
     width: 486px;
     padding: 31px 31px 16px 16px;
@@ -43,6 +47,9 @@ const StyledTextInfoWrapper = styled.div`
   flex-direction: column;
   gap: 6px;
   width: 172px;
+  @media screen and (min-width: 1024px) {
+    width: 200px;
+  }
   @media screen and (min-width: 1440px) {
     width: 316px;
   }

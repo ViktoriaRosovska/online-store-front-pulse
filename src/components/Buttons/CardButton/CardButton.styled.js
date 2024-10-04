@@ -23,7 +23,7 @@ const CardButtonWrapper = styled(Link)`
     background-color: var(--white-dark-bg-color);
     color: black;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     font-size: 20px;
     font-weight: 400;
     line-height: 30px;

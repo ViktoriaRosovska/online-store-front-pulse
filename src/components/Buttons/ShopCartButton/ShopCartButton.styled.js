@@ -20,7 +20,7 @@ const StyledShopCartButton = styled(CardButton)`
     color: var(--white-text-color);
     color: var(--black-text-color);
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     padding: 17px 0;
   }
 `;
