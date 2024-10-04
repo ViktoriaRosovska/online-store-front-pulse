@@ -20,7 +20,7 @@ export const Button = styled.button`
     ${props =>
       props.$active ? "var(--black-text-color)" : "var(--grey-text-color)"};
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     padding: 14px 20px 14px;
     font-size: 36px;
     line-height: 36px;
