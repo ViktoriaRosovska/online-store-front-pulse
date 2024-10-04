@@ -4,6 +4,7 @@ import {
   StyledChoiceDeliveryBtn,
   StyledChoiseVariant,
   StyledDeliveryPriceType,
+  StyledDeliveryText,
 } from "./ShopCartDelivery.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
@@ -36,7 +37,9 @@ export const DeliveryChoiceType = ({ setFieldValue }) => {
             {deliveryPrice(priceSum)}
           </StyledDeliveryPriceType>
         </StyledChoiceBtnParagraphWrapper>
-        <p>Безкоштовна доставка від 4000 грн</p>
+        <StyledDeliveryText>
+          Безкоштовна доставка від 4000 грн
+        </StyledDeliveryText>
       </StyledChoiceDeliveryBtn>
       <StyledChoiceDeliveryBtn
         $isSelectedBtn={deliveryType === DELIVERY.courier}
@@ -58,7 +61,9 @@ export const DeliveryChoiceType = ({ setFieldValue }) => {
             {deliveryPrice(priceSum)}
           </StyledDeliveryPriceType>
         </StyledChoiceBtnParagraphWrapper>
-        <p>Безкоштовна доставка від 4000 грн</p>
+        <StyledDeliveryText>
+          Безкоштовна доставка від 4000 грн
+        </StyledDeliveryText>
       </StyledChoiceDeliveryBtn>
       <StyledChoiceDeliveryBtn
         $isSelectedBtn={deliveryType === DELIVERY.poshtomat}
@@ -81,7 +86,9 @@ export const DeliveryChoiceType = ({ setFieldValue }) => {
           </StyledDeliveryPriceType>
         </StyledChoiceBtnParagraphWrapper>
 
-        <p>Безкоштовна доставка від 4000 грн</p>
+        <StyledDeliveryText>
+          Безкоштовна доставка від 4000 грн
+        </StyledDeliveryText>
       </StyledChoiceDeliveryBtn>
     </StyledChoiceBtnWrapper>
   );

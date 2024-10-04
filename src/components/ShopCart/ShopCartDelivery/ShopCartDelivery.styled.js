@@ -166,6 +166,12 @@ const StyledDeliveryPriceType = styled.p`
     font-size: 16px;
   }
 `;
+
+const StyledDeliveryText = styled.p`
+  @media screen and (max-width: 374.98px) {
+    font-size: 14px;
+  }
+`;
 export {
   StyledLoginFormNameBtn,
   StyledChoiceDeliveryBtn,
@@ -182,4 +188,5 @@ export {
   StyledSelectWrapper,
   StyledNameWrapper,
   StyledDeliveryPriceType,
+  StyledDeliveryText,
 };
