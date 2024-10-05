@@ -30,6 +30,7 @@ import {
 } from "../../redux/products/productsApi";
 import { DEFAULT_QUERY_LIMIT, DEFAULT_QUERY_PAGE } from "../../http/config";
 import { ROUTES } from "../../utils/routes";
+import { Loader } from "components/Loader/Loader";
 
 const Main = () => {
   const [getNewest, { data, isError, isFetching, isLoading }] =
@@ -94,7 +95,6 @@ const Main = () => {
           </BoxHero>
         </Container>
       </SectionHero>
-
       <SectionManWomen className="container">
         <Link to="/malecatalog" state={{ from: location }}>
           <ManBox>
@@ -112,27 +112,35 @@ const Main = () => {
       <SectionNews>
         <Container>
           <StyledSliderTitle>Новинки</StyledSliderTitle>
-          <ProductSlider
-            products={newProducts}
-            cardfeature={"newbrands"}
-            to={ROUTES.NEWBRANDS}
-            showLastSlide={true}
-            loop={false}
-            isLoading={isLoading}
-          />
+          {isFetching ? (
+            <ProductSlider
+              products={newProducts}
+              cardfeature={"newbrands"}
+              to={ROUTES.NEWBRANDS}
+              showLastSlide={true}
+              loop={false}
+              isLoading={isLoading}
+            />
+          ) : (
+            <Loader />
+          )}
         </Container>
       </SectionNews>
       <Banner />
       <SectionSale>
         <Container>
           <StyledSliderTitle>Розпродаж</StyledSliderTitle>
-          <ProductSlider
-            products={sales}
-            cardfeature={"sales"}
-            showLastSlide={true}
-            to={ROUTES.SALES}
-            loop={false}
-          />
+          {isSaleFetching ? (
+            <ProductSlider
+              products={sales}
+              cardfeature={"sales"}
+              showLastSlide={true}
+              to={ROUTES.SALES}
+              loop={false}
+            />
+          ) : (
+            <Loader />
+          )}
         </Container>
       </SectionSale>
       <section className="marquee-centered">
