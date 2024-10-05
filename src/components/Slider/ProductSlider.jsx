@@ -21,7 +21,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useRef } from "react";
 import { LastSlideNavigateToCatalog } from "./LastSlideNavigateToCatalog/LastSlideNavigateToCatalog";
-import { Loader } from "components/Loader/Loader";
 
 const ProductSlider = props => {
   let arr = [];

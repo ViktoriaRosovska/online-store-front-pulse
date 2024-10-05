@@ -4,21 +4,22 @@ import { MainWrapper, SharedLayoutContainer } from "./SharedLayout.styled";
 import { ScrollToTop } from "../ScrollToTop.js";
 import Footer from "../Footer/Footer";
 import { Suspense } from "react";
+import { Preloader } from "components/Preloader/Preloader";
 
 function SharedLayout() {
   return (
-    <SharedLayoutContainer>
-      <ScrollToTop />
-      <Header />
+    <Suspense fallback={<Preloader />}>
+      <SharedLayoutContainer>
+        <ScrollToTop />
+        <Header />
 
-      <MainWrapper>
-        <Suspense>
+        <MainWrapper>
           <Outlet />
-        </Suspense>
-      </MainWrapper>
+        </MainWrapper>
 
-      <Footer />
-    </SharedLayoutContainer>
+        <Footer />
+      </SharedLayoutContainer>
+    </Suspense>
   );
 }
 
