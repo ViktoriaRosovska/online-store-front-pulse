@@ -112,7 +112,7 @@ const Main = () => {
       <SectionNews>
         <Container>
           <StyledSliderTitle>Новинки</StyledSliderTitle>
-          {isFetching ? (
+          {!isFetching ? (
             <ProductSlider
               products={newProducts}
               cardfeature={"newbrands"}
@@ -130,7 +130,7 @@ const Main = () => {
       <SectionSale>
         <Container>
           <StyledSliderTitle>Розпродаж</StyledSliderTitle>
-          {isSaleFetching ? (
+          {!isSaleFetching ? (
             <ProductSlider
               products={sales}
               cardfeature={"sales"}
