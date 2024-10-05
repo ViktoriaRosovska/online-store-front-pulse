@@ -67,40 +67,42 @@ const ModalAuth = ({
           Реєстрація
         </Button>
       </Navigation>
-      {mode === "login" ? (
-        resetPassword ? (
-          <UserResetPasswordForm onClose={onClose} />
+      <div style={{ overflowY: "auto", height: "400px" }}>
+        {mode === "login" ? (
+          resetPassword ? (
+            <UserResetPasswordForm onClose={onClose} />
+          ) : (
+            <CustomLoginForm
+              onClose={onClose}
+              openForgotPasswordModal={openForgotPasswordModal}
+              redirectPath={locationPath}
+            />
+          )
         ) : (
-          <CustomLoginForm
-            onClose={onClose}
-            openForgotPasswordModal={openForgotPasswordModal}
-            redirectPath={locationPath}
-          />
-        )
-      ) : (
-        <CustomRegisterForm onClose={onClose} redirectPath={locationPath} />
-      )}
-      {mode === "login" ? (
-        <Wrapper>
-          <QuestionText>Немає облікового запису?</QuestionText>
-          <Register onClick={switchToRegister}>Зареєструватися</Register>
-        </Wrapper>
-      ) : null}
+          <CustomRegisterForm onClose={onClose} redirectPath={locationPath} />
+        )}
+        {mode === "login" ? (
+          <Wrapper>
+            <QuestionText>Немає облікового запису?</QuestionText>
+            <Register onClick={switchToRegister}>Зареєструватися</Register>
+          </Wrapper>
+        ) : null}
 
-      <OrWrapper>
-        <Line />
-        <OrText>Або</OrText>
-        <Line />
-      </OrWrapper>
+        <OrWrapper>
+          <Line />
+          <OrText>Або</OrText>
+          <Line />
+        </OrWrapper>
 
-      <SocialBox>
-        <button onClick={handleGoogleLogin}>
-          <GoogleSvg />
-        </button>
-        <button>
-          <FacebookSvg />
-        </button>
-      </SocialBox>
+        <SocialBox>
+          <button onClick={handleGoogleLogin}>
+            <GoogleSvg />
+          </button>
+          <button>
+            <FacebookSvg />
+          </button>
+        </SocialBox>
+      </div>
     </>
   );
 };

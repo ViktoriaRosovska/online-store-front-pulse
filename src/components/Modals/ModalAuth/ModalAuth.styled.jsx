@@ -35,7 +35,6 @@ export const Wrapper = styled.div`
   width: 100%;
   gap: 6px;
   margin-top: 24px;
-
   @media screen and (min-width: 1440px) {
     flex-direction: row;
     justify-content: center;

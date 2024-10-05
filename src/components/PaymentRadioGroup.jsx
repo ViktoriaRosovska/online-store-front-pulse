@@ -36,11 +36,13 @@ import { DELIVERY } from "../utils/DELIVERY";
 import { createUserAddress } from "../utils/createUserAddress";
 import { clearPromoCode } from "../redux/promoCode/promoCodeSlice";
 import { copyShopCart } from "../redux/user/userShopCart/userCopyShopCart";
+import { Notify } from "notiflix";
 
 export const PaymentRadioGroup = () => {
   const [selected, setSelected] = useState("card");
   const [isVisible, setIsVisible] = useState(false);
-  const [postOrders] = usePostOrdersMutation();
+  const [postOrders, { error }] = usePostOrdersMutation();
+
   const userShopCart = useSelector(selectUserShopCartState);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -147,15 +149,43 @@ export const PaymentRadioGroup = () => {
           <StyledPayButton
             onClick={() => {
               try {
-                postOrders(shop);
-                dispatch(copyShopCart(userShopCart));
-                dispatch(clearShopCart());
-                dispatch(clearPromoCode());
-                setIsVisible(true);
-                navigate(`${ROUTES.SHOPCARTSUCCESSFUL}`);
+                postOrders(shop)
+                  .unwrap()
+                  // .then(resp => {
+                  //   if (resp.ok) {
+                  //     console.log("Error");
+                  //     dispatch(copyShopCart(userShopCart));
+                  //     dispatch(clearShopCart());
+                  //     dispatch(clearPromoCode());
+                  //     setIsVisible(true);
+                  //     navigate(`${ROUTES.SHOPCARTSUCCESSFUL}`);
+                  //     return resp.join();
+                  //   }
+                  //   throw new Error("Something went wrong");
+                  // })
+                  .catch(error => {
+                    if (error.status === 400) {
+                      return Notify.failure("Помилка введення даних", {
+                        position: "center-center",
+                      });
+                    }
+                    if (error.status === 500) {
+                      return Notify.warning(
+                        "Виникла помилка на сервері. Спробуйте пізніше",
+                        {
+                          position: "center-center",
+                        }
+                      );
+                    }
+                  });
               } catch (error) {
                 console.log(error.message);
               }
+              dispatch(copyShopCart(userShopCart));
+              dispatch(clearShopCart());
+              dispatch(clearPromoCode());
+              setIsVisible(true);
+              navigate(`${ROUTES.SHOPCARTSUCCESSFUL}`);
             }}
           >
             <GooglePayBtn />
