@@ -1,5 +1,9 @@
-import { StyledPreloadWrapper } from "./Preloader.styled";
+import { StyledGradientBox, StyledPreloadWrapper } from "./Preloader.styled";
 
 export const Preloader = () => {
-  return <StyledPreloadWrapper>Pulse Run</StyledPreloadWrapper>;
+  return (
+    <StyledPreloadWrapper>
+      <StyledGradientBox></StyledGradientBox>
+    </StyledPreloadWrapper>
+  );
 };
