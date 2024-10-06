@@ -16,7 +16,7 @@ function SharedLayout() {
         <MainWrapper>
           <Outlet />
         </MainWrapper>
-
+        <Preloader />
         <Footer />
       </SharedLayoutContainer>
     </Suspense>
