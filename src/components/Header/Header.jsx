@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import MediaQuery from "react-responsive";
 import "./Header.css";
-import logoImg from "/logo.svg?url";
+import logoImg from "../../assets/svg/logo.svg";
 import Menu from "../HeaderMenu/HeaderMenu.jsx";
 import SearchUserActions from "./Search-user-actions/Search-user-actions.jsx";
 import { Portal } from "../../components/Modals/helpersForModal/modalPortal";
