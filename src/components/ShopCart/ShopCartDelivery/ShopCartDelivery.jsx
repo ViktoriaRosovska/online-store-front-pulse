@@ -47,20 +47,6 @@ import { formatPhoneNumber } from "components/form/formHelpers/formatPhoneNumber
 
 export const ShopCartDelivery = props => {
   const navigate = useNavigate();
-  const {
-    products,
-    deliveryType,
-    address,
-    addressDepartment,
-    addressPoshtomat,
-    firstName,
-    lastName,
-    phone,
-    email,
-    priceSum,
-    totalPriceSum,
-    countQuantity,
-  } = useSelector(selectUserShopCart);
 
   const { data, refetch } = useFetchCurrentUserQuery(undefined, {
     refetchOnMountOrArgChange: true,
@@ -73,15 +59,41 @@ export const ShopCartDelivery = props => {
     refetch();
   }, [refetch]);
 
-  useEffect(() => {
-    if (data?.user) {
-      if (firstName == "") dispatch(addShopCartFirstName(data?.user.firstName));
-      if (lastName == "") dispatch(addShopCartLastName(data?.user.lastName));
-      if (phone == "") dispatch(addShopCartPhone(data?.user.phone));
+  const cart = useSelector(selectUserShopCart);
+  const {
+    products,
+    deliveryType,
+    address,
+    addressDepartment,
+    addressPoshtomat,
+    priceSum,
+    totalPriceSum,
+    countQuantity,
+  } = cart;
 
-      if (email === "") dispatch(addShopCartEmail(data?.user.email));
-    }
-  }, []);
+  let firstName;
+  if (data?.user && !cart.firstName) {
+    firstName = data.user.firstName;
+    dispatch(addShopCartFirstName(firstName));
+  } else firstName = cart.firstName;
+
+  let lastName;
+  if (data?.user && !cart.lastName) {
+    lastName = data.user.lastName;
+    dispatch(addShopCartLastName(lastName));
+  } else lastName = cart.lastName;
+
+  let phone;
+  if (data?.user && !cart.phone) {
+    phone = data.user.phone;
+    dispatch(addShopCartPhone(phone));
+  } else phone = cart.phone;
+
+  let email;
+  if (data?.user && !cart.email) {
+    email = data.user.email;
+    dispatch(addShopCartEmail(email));
+  } else email = cart.email;
 
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
     useState(false);
@@ -95,7 +107,7 @@ export const ShopCartDelivery = props => {
   };
 
   // console.log("address", address);
-
+  //console.log(data);
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const [isActiveForm, setIsActiveForm] = useState(true);
 

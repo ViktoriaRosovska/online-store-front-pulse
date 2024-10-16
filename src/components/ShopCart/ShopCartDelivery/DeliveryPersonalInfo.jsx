@@ -9,35 +9,43 @@ import {
   addShopCartLastName,
   addShopCartPhone,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { formatPhoneNumber } from "components/form/formHelpers/formatPhoneNumber";
 
-import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
-import { useEffect } from "react";
-
-const checkPhone = number => {
+const formatPhone = number => {
   // console.log("number", number);
   if (number == "0000000000" || number == "") {
     return "";
   }
-  return formatPhoneNumber(number);
+
+  const cc = number.substr(0, 3); // +38
+  const ac = number.substr(3, 3); // 053
+  const n1 = number.substr(6, 3); // 123
+  const n2 = number.substr(9, 2); // 45
+  const n3 = number.substr(11, 2); // 67
+
+  let formatted = cc;
+  if (cc.length === 3) {
+    if (ac.length > 0) formatted += "(" + ac;
+    if (ac.length === 3) {
+      if (n1.length > 0) formatted += ")" + n1;
+      if (n1.length === 3) {
+        if (n2.length > 0) formatted += "-" + n2;
+        if (n2.length === 2 && n3.length > 0) formatted += "-" + n3;
+      }
+    }
+  }
+
+  return formatted;
+  //return formatPhoneNumber(number);
 };
 
 export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
   const dispatch = useDispatch();
+  const { firstName, lastName, phone, email } = values;
+  console.log("phone", phone);
 
-  const { firstName, lastName, phone, email } = useSelector(selectUserShopCart);
-  // console.log("phone", phone);
-
-  useEffect(() => {
-    if (firstName) setFieldValue("firstName", firstName);
-    if (lastName) setFieldValue("lastName", lastName);
-    if (phone) setFieldValue("phone", phone);
-    if (email) setFieldValue("email", email);
-  }, []);
-
-  // console.log(values);
   return (
     <>
       <StyledDeliveryTitle>Особисті дані отримувача</StyledDeliveryTitle>
@@ -90,22 +98,17 @@ export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
           //   /[0-9]/,
           // ]}
           onChange={async e => {
-            dispatch(
-              addShopCartPhone(
-                // e.target.value.replace(/[^+-()0-9]]/gi, "").trim()
-                e.target.value.replace(/[^()+-\d][^+()-]|_/g, "").trim()
-              )
-            );
+            let raw = e.target.value
+              .replace(/[^\d]/g, "")
+              .replace(/^380?|^0+/g, "")
+              .trim();
+            console.log("phone change", e.target.value, raw);
+            raw = "+380" + raw.substr(0, 12);
 
-            await setFieldValue(
-              "phone",
-              formatPhoneNumber(
-                // e.target.value.replace(/[^+-()0-9]]/gi, "").trim()
-                e.target.value.replace(/[^\d][^\+()-]|_/g, "").trim()
-              )
-            );
+            dispatch(addShopCartPhone(raw));
+            await setFieldValue("phone", raw);
           }}
-          value={checkPhone(phone)}
+          value={formatPhone(phone)}
         />
         <CustomInput
           type="email"
