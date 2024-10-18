@@ -51,23 +51,6 @@ export const CatalogHeader = props => {
   }, [sortRef, showSelectMenu]);
 
   useEffect(() => {
-    const handleFilterClickOutside = event => {
-      if (filterRef.current && !filterRef.current.contains(event.target)) {
-        const filterButtonClicked = event.target.closest("button");
-        console.log("filterRef", filterRef);
-        console.log("filterButtonClicked", filterButtonClicked);
-        if (!filterButtonClicked) {
-          setShowFilter(!showFilter);
-        }
-      }
-    };
-    document.addEventListener("mousedown", handleFilterClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleFilterClickOutside);
-    };
-  }, [filterRef, showFilter]);
-
-  useEffect(() => {
     document.addEventListener("keydown", handleEscapeKey);
     return () => {
       document.removeEventListener("keydown", handleEscapeKey);
@@ -93,10 +76,10 @@ export const CatalogHeader = props => {
       props.selectedSizes.length +
       props.selectedSex.length >
     0;
-  if (!hasFilter && !showFilter) setShowFilter(true);
+  // if (!hasFilter && !showFilter) setShowFilter(false);
 
   const onToggleFilter = () => {
-    console.log("filterRef", filterRef);
+    console.log("showFilter", showFilter);
     setShowFilter(!showFilter);
     setShowSelectMenu(false);
     props.onAsideShow(!showFilter);
@@ -105,6 +88,23 @@ export const CatalogHeader = props => {
   const showSelect = props.sortOrder !== null;
   if (showSelect && showSelectMenu) setShowSelectMenu(false);
 
+  // useEffect(() => {
+  //   const handleFilterClickOutside = event => {
+  //     if (filterRef.current && !filterRef.current.contains(event.target)) {
+  //       const filterButtonClicked = event.target.closest("button");
+  //       console.log("filterRef", filterRef);
+  //       console.log("filterButtonClicked", filterButtonClicked);
+  //       if (!filterButtonClicked) {
+  //         setShowFilter(!showFilter);
+  //       }
+  //     }
+  //   };
+  //   document.addEventListener("mousedown", handleFilterClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleFilterClickOutside);
+  //   };
+  // }, [filterRef, hasFilter]);
+
   return (
     <CatalogHeaderContainer>
       <StyledHeaderTitleWrapper>
@@ -112,6 +112,8 @@ export const CatalogHeader = props => {
           ref={filterRef}
           onClick={() => {
             onToggleFilter();
+            console.log("hasFilter", hasFilter);
+            console.log("showFilter", showFilter);
           }}
           $hasFilter={hasFilter}
         >
@@ -127,25 +129,26 @@ export const CatalogHeader = props => {
               $showSelect={showSelect}
               onClick={() => {
                 setShowSelectMenu(!showSelectMenu);
-                setShowFilter(false);
               }}
             >
               <SortIcon />
               <span>Сортування</span>
             </SortButton>
             {Boolean(showSelect) && (
-              <SortSelectWrapper>
-                <span>:</span>
-                <SortCloseBtn onClick={() => props.onSortOrderChanged(null)}>
-                  <CloseBtn />
-                </SortCloseBtn>
+              <>
+                <SortSelectWrapper>
+                  <span>:</span>
+                  <SortCloseBtn onClick={() => props.onSortOrderChanged(null)}>
+                    <CloseBtn />
+                  </SortCloseBtn>
 
-                <SortSelect
-                  onChange={e => props.onSortOrderChanged(e)}
-                  value={props.sortOrder}
-                  options={IsNewest(options)}
-                />
-              </SortSelectWrapper>
+                  <SortSelect
+                    onChange={e => props.onSortOrderChanged(e)}
+                    value={props.sortOrder}
+                    options={IsNewest(options)}
+                  />
+                </SortSelectWrapper>
+              </>
             )}
           </SortWrapper>
         </StyledSortContainer>

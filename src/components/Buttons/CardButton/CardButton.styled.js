@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const CardButtonWrapper = styled(Link)`
+  pointer-events: ${props => (props.$disabled ? "none" : "all")};
   font-size: 18px;
   line-height: 20px;
 

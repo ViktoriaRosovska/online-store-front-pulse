@@ -35,8 +35,8 @@ const CustomRegisterForm = ({ onClose, redirectPath }) => {
   const [createUser] = useCreateUserMutation();
 
   const handleOnChange = e => {
-    let mas = e.target.value.split(" ");
-    console.log(mas);
+    // let mas = e.target.value.split(" ");
+    // console.log(mas);
     // console.log(mas.filter(el => el !== " ").join(" "));
   };
   const onSubmit = ({ firstName, lastName, email, password }) => {
@@ -115,12 +115,20 @@ const CustomRegisterForm = ({ onClose, redirectPath }) => {
               name="password"
               type="password"
               placeholder="**********"
+              onChange={e => {
+                setFieldValue("password", e.target.value.trim());
+              }}
+              value={values?.password}
             />
             <CustomInput
               label="Повторити пароль&#42;"
               name="passwordCheck"
               type="password"
               placeholder="Пароль"
+              onChange={e => {
+                setFieldValue("passwordCheck", e.target.value.trim());
+              }}
+              value={values?.passwordCheck}
             />
             <Button type="submit">Зареєструватися</Button>
           </StyledForm>

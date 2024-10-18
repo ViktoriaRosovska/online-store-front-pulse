@@ -57,7 +57,7 @@ const CustomLoginForm = ({
         validationSchema={loginValidationSchema}
         onSubmit={onSubmit}
       >
-        {() => (
+        {({ setFieldValue, values }) => (
           <StyledForm>
             <CustomInput
               label="Email&#42;"
@@ -70,6 +70,13 @@ const CustomLoginForm = ({
               name="password"
               type="password"
               placeholder="**********"
+              onChange={e => {
+                setFieldValue(
+                  "password",
+                  e.target.value.replace(/ /, "").trim()
+                );
+              }}
+              value={values?.password}
             />
             <ForgotPasswordButton
               onClick={openForgotPasswordModal}

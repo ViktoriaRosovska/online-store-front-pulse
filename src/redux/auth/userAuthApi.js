@@ -78,6 +78,7 @@ export const {
   useLoginUserGoogleQuery,
   useLoginUserFBQuery,
   useLazyFetchCurrentUserQuery,
+  useLazyLoginUserGoogleQuery,
   useFetchCurrentUserQuery,
   useGetUserOrdersQuery,
 } = userAuthApi;

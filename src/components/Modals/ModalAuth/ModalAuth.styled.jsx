@@ -90,8 +90,35 @@ export const SocialBox = styled.div`
   justify-content: center;
   gap: 24px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     margin-top: 36px;
     gap: 32px;
+  }
+`;
+export const StyledFormWrapper = styled.div`
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 400px;
+  &::-webkit-scrollbar {
+    width: 5px;
+    border: 1px solid transparent;
+    position: absolute;
+  }
+  &::-webkit-scrollbar-button {
+    background-color: transparent;
+    height: 90px;
+  }
+  &::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 10px 10px var(--grey-btn-bg-color);
+    border: solid 1px transparent;
+    height: 30%;
+    border-radius: 20px;
+    max-height: 30%;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 10px 10px transparent;
+    border: solid 6px transparent;
+    height: 30%;
+    max-height: 30%;
   }
 `;

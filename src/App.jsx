@@ -3,32 +3,8 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import { ROUTES } from "./utils/routes";
 import { PersistedAuth } from "./HOCs";
-// import {
-//   Brands,
-//   Catalog,
-//   FemaleCatalog,
-//   Main,
-//   MaleCatalog,
-//   NewBrands,
-//   ProductPage,
-//   Sales,
-//   UserAccount,
-//   UserFavorites,
-//   UserOrderHistory,
-//   UserSupport,
-//   UserWallet,
-//   FooterSupport,
-//   FooterConditions,
-//   FooterGuarantee,
-//   FooterPrivacyPolicy,
-//   FooterDelivery,
-//   FooterAboutUs,
-//   UserShopCart,
-//   UserShopCartDelivery,
-//   UserShopCartPayment,
-//   SearchPage,
-//   UserShopCartSuccessful,
-// } from "./pages/index";
+// import { GoogleOAuthProvider } from "@react-oauth/google";
+
 import SharedLayout from "./components/SharedLayout/SharedLayout.jsx";
 import ShopCartLayout from "components/ShopCartLayout/ShopCartLayout.jsx";
 import ProfileLayout from "components/ProfileLayout/ProfileLayout.jsx";
@@ -71,11 +47,12 @@ const UserShopCartSuccessful = lazy(() =>
 );
 
 // const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
-
+// console.log(import.meta.env.GOOGLE_CLIENT_ID);
 const App = () => {
   return (
     <BrowserRouter basename="/online-store-front-pulse">
       <PersistedAuth>
+        {/* <GoogleOAuthProvider clientId="714053760620-gj9l120ntnpie22q76ap8ouklk42mfc9.apps.googleusercontent.com"> */}
         <Routes>
           <Route path={ROUTES.HOME} element={<SharedLayout />}>
             <Route index element={<Main />} />
@@ -130,6 +107,7 @@ const App = () => {
             <Route path="*" element={<Navigate replace to="/404" />} />
           </Route>
         </Routes>
+        {/* </GoogleOAuthProvider> */}
       </PersistedAuth>
     </BrowserRouter>
   );

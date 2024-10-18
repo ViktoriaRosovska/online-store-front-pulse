@@ -1,6 +1,6 @@
 import "./main.css";
 import Banner from "../../components/Banner/Banner.jsx";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import SaleIconsMarquee from "../../components/SaleIconsMarquee/SaleIconsMarquee";
 import {
   BoxHero,
@@ -80,6 +80,8 @@ const Main = () => {
       setIsResetPasswordModalOpen(true);
     }
   }, [location]);
+
+  console.log(location.search);
 
   return (
     <>

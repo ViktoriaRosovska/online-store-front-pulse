@@ -12,7 +12,7 @@ const StyledHeaderTitleWrapper = styled.div`
   position: relative;
   height: 74px;
   /* border: 1px solid red; */
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     height: 36px;
     margin-bottom: 36px;
   }
@@ -56,6 +56,11 @@ const SortSelectWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 13px;
+  /* position: absolute; */
+  z-index: 10;
+  opacity: 1;
+  width: 180px;
+  background-color: white;
 `;
 const SortCloseBtn = styled.button`
   border: 1px solid transparent;
@@ -100,7 +105,7 @@ const StyledSelectMenuWrapper = styled.div`
   & ul > li:not(:first-child) {
     padding-top: 4px;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     top: 36px;
   }
 `;

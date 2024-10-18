@@ -11,7 +11,7 @@ import {
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { useDispatch } from "react-redux";
 
-import { formatPhoneNumber } from "components/form/formHelpers/formatPhoneNumber";
+// import { formatPhoneNumber } from "components/form/formHelpers/formatPhoneNumber";
 
 const formatPhone = number => {
   // console.log("number", number);
@@ -44,7 +44,7 @@ const formatPhone = number => {
 export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
   const dispatch = useDispatch();
   const { firstName, lastName, phone, email } = values;
-  console.log("phone", phone);
+  // console.log("phone", phone);
 
   return (
     <>

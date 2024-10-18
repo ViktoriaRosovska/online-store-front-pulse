@@ -174,83 +174,93 @@ const UserEditForm = ({ selectedFile }) => {
         validationSchema={userEditValidationSchema}
         onSubmit={onSubmit}
       >
-        <StyledForm>
-          <CustomInput
-            label="Ім’я"
-            name="firstName"
-            type="text"
-            placeholder="Ім’я"
-            onKeyDown={e => {
-              e.key === "Enter" && e.preventDefault();
-            }}
-          />
-          <CustomInput
-            label="Прізвище"
-            name="lastName"
-            type="text"
-            placeholder="Прізвище"
-            onKeyDown={e => {
-              e.key === "Enter" && e.preventDefault();
-            }}
-          />
-          <CustomInput
-            label="Email"
-            name="email"
-            type="email"
-            placeholder="Ваш email"
-            onKeyDown={e => {
-              e.key === "Enter" && e.preventDefault();
-            }}
-          />
-          <CustomInput
-            label="Номер телефону"
-            name="phone"
-            type="text"
-            placeholder="Номер телефону"
-            onKeyDown={e => {
-              e.key === "Enter" && e.preventDefault();
-            }}
-            // mask={[
-            //   "+",
-            //   "3",
-            //   "8",
-            //   "(",
-            //   "0",
-            //   /[0-9]/,
-            //   /[0-9]/,
-            //   ")",
-            //   /[0-9]/,
-            //   /[0-9]/,
-            //   /[0-9]/,
-            //   "-",
-            //   /[0-9]/,
-            //   /[0-9]/,
-            //   "-",
-            //   /[0-9]/,
-            //   /[0-9]/,
-            // ]}
-          />
-          <CustomInput
-            label="Пароль"
-            name="password"
-            type="password"
-            placeholder="**********"
-            onKeyDown={e => {
-              e.key === "Enter" && e.preventDefault();
-            }}
-          />
-          <CustomInput
-            label="Повторити пароль"
-            name="passwordCheck"
-            type="password"
-            placeholder="Пароль"
-            onKeyDown={e => {
-              e.key === "Enter" && e.preventDefault();
-            }}
-          />
+        {({ setFieldValue, values }) => (
+          <StyledForm>
+            <CustomInput
+              label="Ім’я"
+              name="firstName"
+              type="text"
+              placeholder="Ім’я"
+              onKeyDown={e => {
+                e.key === "Enter" && e.preventDefault();
+              }}
+            />
+            <CustomInput
+              label="Прізвище"
+              name="lastName"
+              type="text"
+              placeholder="Прізвище"
+              onKeyDown={e => {
+                e.key === "Enter" && e.preventDefault();
+              }}
+            />
+            <CustomInput
+              label="Email"
+              name="email"
+              type="email"
+              placeholder="Ваш email"
+              onKeyDown={e => {
+                e.key === "Enter" && e.preventDefault();
+              }}
+            />
+            <CustomInput
+              label="Номер телефону"
+              name="phone"
+              type="text"
+              placeholder="Номер телефону"
+              onKeyDown={e => {
+                e.key === "Enter" && e.preventDefault();
+              }}
+              // mask={[
+              //   "+",
+              //   "3",
+              //   "8",
+              //   "(",
+              //   "0",
+              //   /[0-9]/,
+              //   /[0-9]/,
+              //   ")",
+              //   /[0-9]/,
+              //   /[0-9]/,
+              //   /[0-9]/,
+              //   "-",
+              //   /[0-9]/,
+              //   /[0-9]/,
+              //   "-",
+              //   /[0-9]/,
+              //   /[0-9]/,
+              // ]}
+            />
+            <CustomInput
+              label="Пароль"
+              name="password"
+              type="password"
+              placeholder="**********"
+              onKeyDown={e => {
+                e.key === "Enter" && e.preventDefault();
+              }}
+              onChange={e => {
+                setFieldValue("password", e.target.value.trim());
+              }}
+              value={values?.password}
+            />
+            <CustomInput
+              label="Повторити пароль"
+              name="passwordCheck"
+              type="password"
+              placeholder="Пароль"
+              onKeyDown={e => {
+                e.key === "Enter" && e.preventDefault();
+              }}
+              onChange={e => {
+                setFieldValue("password", e.target.value.trim());
+              }}
+              value={values?.password}
+            />
 
-          <Button type="submit">Зберегти</Button>
-        </StyledForm>
+            <Button type="submit">Зберегти</Button>
+          </StyledForm>
+        )}
       </Formik>
       <DeleteButton onClick={handleOpenMobile} type="button">
         Видалити акаунт

@@ -44,7 +44,7 @@ export const ShopCartLoginForm = ({ openForgotPasswordModal }) => {
       validationSchema={loginValidationSchema}
       onSubmit={onSubmit}
     >
-      {() => (
+      {({ setFieldValue, values }) => (
         <Form>
           <div
             style={{
@@ -67,6 +67,10 @@ export const ShopCartLoginForm = ({ openForgotPasswordModal }) => {
               name="password"
               type="password"
               placeholder="**********"
+              onChange={e => {
+                setFieldValue("password", e.target.value.trim());
+              }}
+              value={values?.password}
             />
           </div>
 

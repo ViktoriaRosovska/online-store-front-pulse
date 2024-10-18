@@ -38,7 +38,7 @@ const CheckboxItemWrapper = styled.div`
         color: var(--grey-text-color);
       }
     }
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: 1024px) {
       font-size: 14px;
       font-weight: 400;
       line-height: 14px;

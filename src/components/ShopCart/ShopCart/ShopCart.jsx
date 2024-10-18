@@ -15,14 +15,19 @@ import {
 import { ShopCartProductsListWithCloseBtn } from "../ShopCartProductsListWithCloseBtn";
 import { PromoCode } from "components/PromoCode";
 import { EmptyShopCart } from "../EmptyShopCart/EmptyShopCart";
+import { useState } from "react";
+import CardButton from "components/Buttons/CardButton/CardButton";
 
 export const ShopCart = props => {
+  const [fetchPromocode, setFetchPromoCode] = useState(false);
   const { products, priceSum, totalPriceSum, countQuantity } =
     useSelector(selectUserShopCart);
 
   let location = useLocation();
   const isDesktop = useMediaQuery("(min-width: 1024px)");
-
+  const onFetchPromoCode = fetchStatus => {
+    setFetchPromoCode(fetchStatus);
+  };
   return (
     <>
       <Title>{products.length > 0 ? props.title : "Кошик порожній"}</Title>
@@ -39,9 +44,10 @@ export const ShopCart = props => {
                 totalPriceSum={totalPriceSum}
                 countQuantity={countQuantity}
               />
-              <PromoCode />
+              <PromoCode onFetchPromoCode={onFetchPromoCode} />
 
-              <StyledShopCartButton
+              <CardButton
+                $disabled={fetchPromocode}
                 text={"Оформити"}
                 route={ROUTES.SHOPCARTDELIVERY}
                 state={{ from: location }}

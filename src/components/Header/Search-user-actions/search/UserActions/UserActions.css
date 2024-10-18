@@ -1,10 +1,14 @@
 .user__actions {
   display: flex;
-  gap: 12px;
+  gap: 5px;
   align-items: center;
 }
-
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 375px) {
+  .user__actions {
+    gap: 12px;
+  }
+}
+@media screen and (min-width: 1024px) {
   .user__actions {
     gap: 16px;
   }
