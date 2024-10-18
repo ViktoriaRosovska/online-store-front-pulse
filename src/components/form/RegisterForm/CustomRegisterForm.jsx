@@ -1,14 +1,5 @@
 import { Formik } from "formik";
-// import { FaEye } from "react-icons/fa";
-// import { useState } from "react";
-// import {
-//   useCreateUserMutation,
-//   useHandleAuthErrors,
-//   useHandleLoginSuccess,
-// } from "../../../redux/auth";
 import { registerValidationSchema } from "../formHelpers/formValidation";
-// import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
 import { Button, StyledForm } from "../LoginForm/CustomLoginForm.styled.jsx";
 import CustomInput from "../formElements/CustomInput/CustomInput.jsx";
 import { setCredentials, useCreateUserMutation } from "../../../redux/auth";
@@ -34,11 +25,6 @@ const CustomRegisterForm = ({ onClose, redirectPath }) => {
   const navigate = useNavigate();
   const [createUser] = useCreateUserMutation();
 
-  const handleOnChange = e => {
-    // let mas = e.target.value.split(" ");
-    // console.log(mas);
-    // console.log(mas.filter(el => el !== " ").join(" "));
-  };
   const onSubmit = ({ firstName, lastName, email, password }) => {
     createUser({
       firstName: firstName
@@ -93,7 +79,6 @@ const CustomRegisterForm = ({ onClose, redirectPath }) => {
               type="text"
               placeholder="Ім’я"
               onChange={e => {
-                handleOnChange(e);
                 setFieldValue("firstName", formatName(e.target.value));
               }}
               value={values?.firstName}
