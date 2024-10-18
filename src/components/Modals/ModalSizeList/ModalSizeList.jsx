@@ -24,9 +24,9 @@ export const ModalSizeList = () => {
         <StyledTBody>
           {sizeList &&
             sizeList.length &&
-            sizeList.map(el => {
+            sizeList.map((el, idx) => {
               return (
-                <tr key={el.cm}>
+                <tr key={el.cm + idx}>
                   <>
                     <td>{el.us}</td>
                     <td>{el.uk}</td>

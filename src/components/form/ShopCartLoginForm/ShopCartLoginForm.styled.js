@@ -20,6 +20,10 @@ const StyledLoginFormButton = styled.button`
     background-color: var(--white-dark-bg-color);
     color: black;
   }
+  &:disabled {
+    background-color: lightgray;
+    cursor: inherit;
+  }
   @media screen and (min-width: 1024px) {
     font-size: 20px;
     font-weight: 400;

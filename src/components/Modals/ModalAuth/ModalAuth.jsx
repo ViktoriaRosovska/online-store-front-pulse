@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CustomLoginForm from "components/form/LoginForm/CustomLoginForm";
 import CustomRegisterForm from "components/form/RegisterForm/CustomRegisterForm";
 import { ReactComponent as GoogleSvg } from "../../../assets/svg/google.svg";
@@ -12,11 +12,21 @@ import {
   QuestionText,
   Register,
   SocialBox,
+  StyledFormWrapper,
   Wrapper,
 } from "./ModalAuth.styled";
 import UserResetPasswordForm from "components/form/UserResetPasswordForm/UserResetPasswordForm";
-import { useLoginUserGoogleQuery } from "../../../redux/auth";
+// import { useLoginUserGoogleQuery } from "../../../redux/auth";
 import { useLocation } from "react-router-dom";
+
+// import { googleLogout, useGoogleLogin } from "@react-oauth/google";
+// import axios from "axios";
+import {
+  useLazyLoginUserGoogleQuery,
+  useFetchCurrentUserQuery,
+} from "../../../redux/auth/userAuthApi";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../../../redux/auth";
 
 const ModalAuth = ({
   onClose,
@@ -24,21 +34,36 @@ const ModalAuth = ({
   resetPassword,
   // redirectPath,
 }) => {
-  const { data, isLoading, error, refetch } = useLoginUserGoogleQuery();
-
+  const dispatch = useDispatch();
   const [mode, setMode] = useState("login");
+  const { data: userData, refetch: userRefetch } = useFetchCurrentUserQuery(
+    undefined,
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  );
 
-  const handleGoogleLogin = async () => {
-    refetch();
+  const locationPath = useLocation().search;
+  console.log(locationPath);
+  const [loginUserGoogle, { data, isLoading, error, refetch }] =
+    useLazyLoginUserGoogleQuery();
+  const handleGoogleLogin = () => {
+    let token = locationPath.substring(7, locationPath.length - 1);
+    console.log(token);
+
+    loginUserGoogle();
+    // window.location.href =
+    //   "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=https%3A%2F%2Fpulse-run-api.onrender.com%2Fapi%2Fauth%2Fgoogle%2Fcallback&scope=profile%20email&client_id=731278225368-mpbqkdde8745223rerdu6chp900n0he7.apps.googleusercontent.com";
+
+    // dispatch(setCredentials({ token: token }));
   };
-  //   const handleGoogleLogin = async() => {window.location.href = "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=http://localhost:5173/online-store-front-pulse&scope=profile%20email&client_id=978298121964-08iv7n2kehtn2iin4hjph7h2cjjnaige.apps.googleusercontent.com"
-  //     // ;
-  //     // window.location.href = "https://pulse-run-api.onrender.com/api/auth/google?clientId=978298121964-08iv7n2kehtn2iin4hjph7h2cjjnaige.apps.googleusercontent.com";
-  //     // await loginUserGoogle()
 
-  // };
+  useEffect(() => {
+    userRefetch();
+  }, [userRefetch]);
 
-  const locationPath = useLocation().pathname;
+  console.log(userData);
+  console.log(data);
 
   const switchToLogin = () => {
     setMode("login");
@@ -47,7 +72,34 @@ const ModalAuth = ({
   const switchToRegister = () => {
     setMode("register");
   };
+  // console.log(data);
 
+  // const [user, setUser] = useState([]);
+  // const [profile, setProfile] = useState([]);
+  // console.log(profile);
+  // const login = useGoogleLogin({
+  //   onSuccess: codeResponse => setUser(codeResponse),
+  //   onError: error => console.log("Login Failed:", error),
+  // });
+  // console.log(import.meta.env.GOOGLE_CLIENT_ID);
+  // useEffect(() => {
+  //   if (user) {
+  //     axios
+  //       .get(
+  //         `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${user.access_token}`,
+  //             Accept: "application/json",
+  //           },
+  //         }
+  //       )
+  //       .then(res => {
+  //         setProfile(res.data);
+  //       })
+  //       .catch(err => console.log(err));
+  //   }
+  // }, [user]);
   return (
     <>
       <Navigation>
@@ -67,7 +119,7 @@ const ModalAuth = ({
           Реєстрація
         </Button>
       </Navigation>
-      <div style={{ overflowY: "auto", height: "400px" }}>
+      <StyledFormWrapper>
         {mode === "login" ? (
           resetPassword ? (
             <UserResetPasswordForm onClose={onClose} />
@@ -98,11 +150,12 @@ const ModalAuth = ({
           <button onClick={handleGoogleLogin}>
             <GoogleSvg />
           </button>
+
           <button>
             <FacebookSvg />
           </button>
         </SocialBox>
-      </div>
+      </StyledFormWrapper>
     </>
   );
 };

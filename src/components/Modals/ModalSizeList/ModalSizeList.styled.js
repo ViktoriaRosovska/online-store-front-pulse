@@ -9,9 +9,6 @@ const StyledModalSizeListContainer = styled.div`
   @media screen and (min-width: 1024px) {
     max-width: 906px;
   }
-  /* @media screen and (min-width: 1440px) {
-    max-width: 906px;
-  } */
 `;
 
 const StyledSizeListTable = styled.table`
@@ -24,7 +21,6 @@ const StyledSizeListTable = styled.table`
     border-right: 1px solid rgba(122, 124, 127, 1);
     text-align: center;
     vertical-align: middle;
-    /* width: 70px; */
     height: 40px;
     font-family: "Roboto";
     font-size: 24px;
@@ -33,9 +29,6 @@ const StyledSizeListTable = styled.table`
     @media screen and (min-width: 1024px) {
       width: 199px;
     }
-    /* @media screen and (min-width: 1440px) {
-      width: 199px;
-    } */
   }
   & tr {
     width: 100%;
@@ -43,6 +36,9 @@ const StyledSizeListTable = styled.table`
   & td {
     @media screen and (max-width: 1023.98px) {
       width: 70px;
+    }
+    @media screen and (min-width: 1024px) {
+      width: calc(797px / 4);
     }
   }
   & th:not(:last-child) {
@@ -66,16 +62,19 @@ const StyledSizeListTable = styled.table`
 const StyledTHead = styled.thead`
   display: flex;
   flex-direction: column;
-  /* width: 100%; */
-  /* width: 100%; */
 
   overflow-y: auto;
   /* border: 1px solid red; */
   & td:last-child {
-    /* width: 70px; */
   }
   @media screen and (max-width: 1023.98px) {
-    width: 300px;
+    width: 295px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 797px;
+    & th {
+      width: calc(797px / 4);
+    }
   }
 `;
 const StyledTBody = styled.tbody`
@@ -90,16 +89,17 @@ const StyledTBody = styled.tbody`
     width: 300px;
   }
   &::-webkit-scrollbar {
-    width: 15px;
+    width: 5px;
     border: 1px solid transparent;
+    position: absolute;
   }
   &::-webkit-scrollbar-button {
     background-color: transparent;
-    height: 50px;
+    height: 90px;
   }
   &::-webkit-scrollbar-thumb {
     box-shadow: inset 0 0 10px 10px var(--grey-btn-bg-color);
-    border: solid 6px transparent;
+    border: solid 1px transparent;
     height: 70%;
     border-radius: 20px;
     max-height: 30%;
@@ -112,7 +112,22 @@ const StyledTBody = styled.tbody`
   }
   & tr {
     @media screen and (max-width: 1023.98px) {
-      width: 280px;
+      width: 295px;
+    }
+  }
+  & td {
+    @media screen and (max-width: 1023.98px) {
+      width: calc(300px / 4);
+    }
+  }
+  & td:not(:last-child) {
+    @media screen and (max-width: 1023.98px) {
+      width: 70px;
+    }
+  }
+  & td:last-child {
+    @media screen and (max-width: 1023.98px) {
+      width: 90px;
     }
   }
 `;

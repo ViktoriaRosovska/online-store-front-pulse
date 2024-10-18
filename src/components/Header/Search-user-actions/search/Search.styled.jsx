@@ -146,8 +146,10 @@ export const MobileInput = styled.input`
 export const StyledSearchUserActionWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
-
+  gap: 5px;
+  @media screen and (min-width: 375px) {
+    gap: 12px;
+  }
   @media screen and (min-width: 1024px) {
     gap: 16px;
   }

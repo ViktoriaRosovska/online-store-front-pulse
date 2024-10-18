@@ -43,15 +43,17 @@ import {
   addShopCartPhone,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { EmptyShopCart } from "../EmptyShopCart/EmptyShopCart";
-import { formatPhoneNumber } from "components/form/formHelpers/formatPhoneNumber";
+// import { formatPhoneNumber } from "components/form/formHelpers/formatPhoneNumber";
 
 export const ShopCartDelivery = props => {
   const navigate = useNavigate();
-
+  const [fetchPromocode, setFetchPromoCode] = useState(false);
   const { data, refetch } = useFetchCurrentUserQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
-
+  const onFetchPromoCode = fetchStatus => {
+    setFetchPromoCode(fetchStatus);
+  };
   const isLoggedIn = useSelector(selectUserToken);
   const dispatch = useDispatch();
 
@@ -122,7 +124,7 @@ export const ShopCartDelivery = props => {
       .split(" ")
       .filter(el => el !== " ")
       .join(" ");
-    // console.log(values, option);
+    console.log(values, option);
 
     // console.log(values.firstName);
     // console.log(values.lastName);
@@ -216,7 +218,10 @@ export const ShopCartDelivery = props => {
                     setErrors={setErrors}
                   />
 
-                  <StyledLoginFormButton type="submit">
+                  <StyledLoginFormButton
+                    type="submit"
+                    disabled={fetchPromocode}
+                  >
                     Продовжити оформлення
                   </StyledLoginFormButton>
                 </StyledDeliveryForm>
@@ -271,7 +276,7 @@ export const ShopCartDelivery = props => {
                 totalPriceSum={totalPriceSum}
                 countQuantity={countQuantity}
               />
-              <PromoCode />
+              <PromoCode onFetchPromoCode={onFetchPromoCode} />
             </div>
 
             <ShopCartProductsList products={products} isDesktop={isDesktop} />

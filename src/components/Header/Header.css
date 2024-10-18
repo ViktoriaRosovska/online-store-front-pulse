@@ -24,10 +24,15 @@
 }
 
 .logo__icon {
-  width: 128px;
-  height: 24px;
+  width: 110px;
+  height: 22px;
 }
-
+@media screen and (min-width: 375px) {
+  .logo__icon {
+    width: 128px;
+    height: 24px;
+  }
+}
 @media screen and (min-width: 1440px) {
   .logo__icon {
     width: 189px;

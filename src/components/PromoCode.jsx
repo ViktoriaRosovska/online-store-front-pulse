@@ -31,10 +31,11 @@ import {
 import { useEffect } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
-export const PromoCode = () => {
+export const PromoCode = ({ onFetchPromoCode }) => {
   const dispatch = useDispatch();
 
-  const [checkPromoCode, { data, error }] = useLazyCheckPromoCodeQuery();
+  const [checkPromoCode, { data, error, isFetching }] =
+    useLazyCheckPromoCodeQuery();
   const isPromoExpired = useSelector(selectPromoExpired);
   const isPromoInvalid = useSelector(selectPromoInvalid);
   const isPromoValid = useSelector(selectPromoValid);
@@ -68,6 +69,11 @@ export const PromoCode = () => {
     dispatch(setPromoCode(promo));
     debounced(promo);
   };
+
+  useEffect(() => {
+    if (isFetching) onFetchPromoCode(true);
+    if (!isFetching) onFetchPromoCode(false);
+  }, [isFetching]);
 
   return (
     <Formik

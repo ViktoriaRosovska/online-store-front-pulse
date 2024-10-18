@@ -112,7 +112,7 @@ function Header() {
     >
       <Container>
         <div className="header__inner">
-          <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
+          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
             <MediaQuery maxWidth={1440}>
               <div>
                 <HeaderMenuSvg

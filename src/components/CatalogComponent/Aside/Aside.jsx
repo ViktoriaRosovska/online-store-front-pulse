@@ -12,14 +12,14 @@ export const Aside = props => {
 
   const screenWidth = (a, b) => {
     const screen = window.innerWidth;
-    if (screen < 1440) {
+    if (screen < 1024) {
       if (props.sex.length == 0) {
         return a;
       } else {
         return b;
       }
     }
-    if (screen >= 1440) {
+    if (screen >= 1020) {
       return 10;
     }
   };
@@ -27,9 +27,10 @@ export const Aside = props => {
   let defaultShow = 3;
   const [valueSize, setValueSize] = useState(false);
   const onChangeShowAll = () => {
-    const anyCollapsed = props.selectedBrands.length > defaultShow ||
+    const anyCollapsed =
+      props.selectedBrands.length > defaultShow ||
       props.selectedSizes.length > defaultShow ||
-      props.selectedColors.length > defaultShow
+      props.selectedColors.length > defaultShow;
     // console.log(value);
     setValueSize(!anyCollapsed);
   };

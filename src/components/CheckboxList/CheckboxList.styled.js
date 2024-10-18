@@ -16,7 +16,7 @@ const CheckboxListItems = styled.div`
   font-size: 14px;
   letter-spacing: 0.01em;
   line-height: 100%;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     margin-bottom: 40px;
     width: 100%;
   }
@@ -29,7 +29,7 @@ const CheckboxListTitle = styled.h3`
   letter-spacing: 0.01em;
   margin-bottom: 12px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     margin-bottom: 20px;
     font-family: "Roboto";
     font-weight: 400;
