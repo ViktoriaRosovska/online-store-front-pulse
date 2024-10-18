@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import useMediaQuery from "../../../hooks/useMediaQuery";
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { YourOrderPriceComponent } from "./YourOrderPriceComponent/YourOrderPriceComponent";
-import { StyledShopCartButton } from "components/Buttons/ShopCartButton/ShopCartButton.styled";
 import { ROUTES } from "../../../utils/routes";
 
 import { Title } from "components/Typography/Typography.styled";
