@@ -16,6 +16,7 @@ const StyledPreloadWrapper = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 const StyledGradientBox = styled.div`
@@ -24,7 +25,7 @@ const StyledGradientBox = styled.div`
   mask: url(${preloaderIconSM});
   mask-repeat: no-repeat;
   mask-position: center;
-  margin-top: 100px;
+
   background: linear-gradient(
     to right,
     #fff 20%,
@@ -41,10 +42,7 @@ const StyledGradientBox = styled.div`
     height: 200px;
     mask: url(${preloaderIcon});
     mask-repeat: no-repeat;
-    margin-top: 400px;
-  }
-  @media screen and (min-width: 1440px) {
-    margin-top: 554px;
+    mask-position: center;
   }
 `;
 

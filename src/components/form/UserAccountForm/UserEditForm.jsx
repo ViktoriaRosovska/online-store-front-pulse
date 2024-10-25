@@ -20,6 +20,7 @@ import ModalDeleteUser from "components/Modals/ModalDeleteUser/ModalDeleteUser";
 import { formatPhoneNumber } from "../formHelpers/formatPhoneNumber";
 import { clearShopCart } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { clearPromoCode } from "../../../redux/promoCode/promoCodeSlice";
+import { Loader } from "../../Loader/Loader";
 
 const UserEditForm = ({ selectedFile }) => {
   const dispatch = useDispatch();
@@ -36,8 +37,8 @@ const UserEditForm = ({ selectedFile }) => {
     refetch();
   }, [refetch]);
 
-  const phoneNumber =
-    user?.phone === "0000000000" ? "" : formatPhoneNumber(user?.phone);
+  // const phoneNumber =
+  //   user?.phone === "0000000000" ? "" : formatPhoneNumber(user?.phone);
 
   const onSubmit = async values => {
     const formData = new FormData();
@@ -78,7 +79,6 @@ const UserEditForm = ({ selectedFile }) => {
     if (values.phone == "") {
       formData.append("firstName", values.firstName);
       formData.append("lastName", values.lastName);
-      formData.append("email", values.email);
     }
 
     if (selectedFile) {
@@ -148,7 +148,7 @@ const UserEditForm = ({ selectedFile }) => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const handleOpenMobile = () => {
@@ -163,7 +163,7 @@ const UserEditForm = ({ selectedFile }) => {
     firstName: user?.firstName || "",
     lastName: user?.lastName || "",
     email: user?.email || "",
-    phone: phoneNumber,
+    phone: user?.phone,
     password: "",
     passwordCheck: "",
   };
@@ -248,7 +248,6 @@ const UserEditForm = ({ selectedFile }) => {
               onChange={e => {
                 setFieldValue("password", e.target.value.trim());
               }}
-              value={values?.password}
             />
             <CustomInput
               label="Повторити пароль"
@@ -259,9 +258,8 @@ const UserEditForm = ({ selectedFile }) => {
                 e.key === "Enter" && e.preventDefault();
               }}
               onChange={e => {
-                setFieldValue("password", e.target.value.trim());
+                setFieldValue("passwordCheck", e.target.value.trim());
               }}
-              value={values?.password}
             />
 
             <Button type="submit">Зберегти</Button>

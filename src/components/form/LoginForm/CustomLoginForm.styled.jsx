@@ -7,7 +7,8 @@ export const StyledForm = styled(Form)`
   /* gap: 16px; */
   gap: 40px;
   max-width: 295px;
-
+  padding-right: 15px;
+  padding-bottom: 50px;
   @media screen and (min-width: 375px) {
     gap: 35px;
   }

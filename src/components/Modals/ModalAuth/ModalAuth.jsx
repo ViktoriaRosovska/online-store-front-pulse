@@ -44,9 +44,9 @@ const ModalAuth = ({
   );
 
   const locationPath = useLocation().search;
-  let token = locationPath.substring(7, locationPath.length - 1);
-  console.log(locationPath);
-  dispatch(setCredentials({ token: token }));
+
+  // console.log(locationPath);
+  // dispatch(setCredentials({ token: token }));
 
   // const [loginUserGoogle, { data, isLoading, error, refetch }] =
   //   useLazyLoginUserGoogleQuery();
@@ -58,6 +58,16 @@ const ModalAuth = ({
   //    loginUserGoogle();
   //    dispatch(setCredentials({ token: token }));
   // };
+
+  // useEffect(() => {
+  //   let token = locationPath.substring(7, locationPath.length - 1);
+  //   console.log(token);
+  //   if (token)
+  //     dispatch(setCredentials({ token: token })).then(() => {
+  //       const params = new URLSearchParams(location.search);
+  //       params.delete("token");
+  //     });
+  // }, [dispatch, locationPath]);
 
   useEffect(() => {
     userRefetch();
@@ -150,7 +160,8 @@ const ModalAuth = ({
 
           <SocialBox>
             <a href="https://pulse-run-api.onrender.com/api/auth/google">
-              <GoogleSvg />
+              {/* <GoogleSvg /> */}
+              GOOGLE
             </a>
 
             <button>
