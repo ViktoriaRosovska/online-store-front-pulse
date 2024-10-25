@@ -51,17 +51,13 @@ const ModalAuth = ({
   // const [loginUserGoogle, { data, isLoading, error, refetch }] =
   //   useLazyLoginUserGoogleQuery();
 
-  const handleGoogleLogin = () => {
-    let token = locationPath.substring(7, locationPath.length - 1);
-    // console.log(token);
+  // const handleGoogleLogin = () => {
+  //   let token = locationPath.substring(7, locationPath.length - 1);
+  //    console.log(token);
 
-    // loginUserGoogle();
-
-    // window.location.href =
-    //   "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=https%3A%2F%2Fpulse-run-api.onrender.com%2Fapi%2Fauth%2Fgoogle%2Fcallback&scope=profile%20email&client_id=731278225368-mpbqkdde8745223rerdu6chp900n0he7.apps.googleusercontent.com";
-
-    // dispatch(setCredentials({ token: token }));
-  };
+  //    loginUserGoogle();
+  //    dispatch(setCredentials({ token: token }));
+  // };
 
   useEffect(() => {
     userRefetch();
