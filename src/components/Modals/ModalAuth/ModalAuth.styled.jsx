@@ -106,19 +106,19 @@ export const StyledFormWrapper = styled.div`
   }
   &::-webkit-scrollbar-button {
     background-color: transparent;
-    height: 90px;
+    height: 100%;
   }
   &::-webkit-scrollbar-thumb {
     box-shadow: inset 0 0 10px 10px var(--grey-btn-bg-color);
     border: solid 1px transparent;
-    height: 30%;
+    height: 10%;
     border-radius: 20px;
-    max-height: 30%;
+    max-height: 10%;
   }
   &::-webkit-scrollbar-track {
     box-shadow: inset 0 0 10px 10px transparent;
     border: solid 6px transparent;
-    height: 30%;
-    max-height: 30%;
+    height: 10%;
+    max-height: 10%;
   }
 `;
