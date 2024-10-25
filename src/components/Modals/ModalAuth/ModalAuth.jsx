@@ -17,7 +17,7 @@ import {
 } from "./ModalAuth.styled";
 import UserResetPasswordForm from "components/form/UserResetPasswordForm/UserResetPasswordForm";
 // import { useLoginUserGoogleQuery } from "../../../redux/auth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 // import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 // import axios from "axios";
