@@ -53,7 +53,7 @@ const ModalAuth = ({
 
   const handleGoogleLogin = () => {
     let token = locationPath.substring(7, locationPath.length - 1);
-    console.log(token);
+    // console.log(token);
 
     // loginUserGoogle();
 
