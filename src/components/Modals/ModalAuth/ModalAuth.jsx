@@ -22,7 +22,7 @@ import { useLocation } from "react-router-dom";
 // import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 // import axios from "axios";
 import {
-  useLazyLoginUserGoogleQuery,
+  // useLazyLoginUserGoogleQuery,
   useFetchCurrentUserQuery,
 } from "../../../redux/auth/userAuthApi";
 import { useDispatch } from "react-redux";
