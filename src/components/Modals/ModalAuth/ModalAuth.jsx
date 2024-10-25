@@ -68,7 +68,7 @@ const ModalAuth = ({
   }, [userRefetch]);
 
   console.log(userData);
-  console.log(data);
+  // console.log(data);
 
   const switchToLogin = () => {
     setMode("login");
