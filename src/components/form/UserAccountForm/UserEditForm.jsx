@@ -46,7 +46,7 @@ const UserEditForm = ({ selectedFile }) => {
       // values.phone = values?.phone?.replace(/[\s()-]/g, "");
       const userPhoneNumber = values.phone.replace(/[\s() -]/g, "").trim();
       formData.append("phone", userPhoneNumber);
-    } else formData.append("phone", "0000000000");
+    }
     values.firstName = values.firstName
       ?.split(" ")
       .filter(el => el !== "")
@@ -74,6 +74,12 @@ const UserEditForm = ({ selectedFile }) => {
         formData.append(key, values[key]);
       }
     });
+
+    if (values.phone == "") {
+      formData.append("firstName", values.firstName);
+      formData.append("lastName", values.lastName);
+      formData.append("email", values.email);
+    }
 
     if (selectedFile) {
       formData.append("avatar", selectedFile);

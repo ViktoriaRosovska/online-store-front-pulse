@@ -44,7 +44,10 @@ const ModalAuth = ({
   );
 
   const locationPath = useLocation().search;
+  let token = locationPath.substring(7, locationPath.length - 1);
   console.log(locationPath);
+  dispatch(setCredentials({ token: token }));
+
   const [loginUserGoogle, { data, isLoading, error, refetch }] =
     useLazyLoginUserGoogleQuery();
 
@@ -150,9 +153,9 @@ const ModalAuth = ({
           </OrWrapper>
 
           <SocialBox>
-            <button onClick={handleGoogleLogin}>
+            <a href="https://pulse-run-api.onrender.com/api/auth/google">
               <GoogleSvg />
-            </button>
+            </a>
 
             <button>
               <FacebookSvg />
