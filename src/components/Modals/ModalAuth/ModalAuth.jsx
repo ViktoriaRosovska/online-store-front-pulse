@@ -17,7 +17,7 @@ import {
 } from "./ModalAuth.styled";
 import UserResetPasswordForm from "components/form/UserResetPasswordForm/UserResetPasswordForm";
 // import { useLoginUserGoogleQuery } from "../../../redux/auth";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 // import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 // import axios from "axios";
@@ -47,11 +47,13 @@ const ModalAuth = ({
   console.log(locationPath);
   const [loginUserGoogle, { data, isLoading, error, refetch }] =
     useLazyLoginUserGoogleQuery();
+  const navigate = useNavigate();
   const handleGoogleLogin = () => {
     let token = locationPath.substring(7, locationPath.length - 1);
     console.log(token);
 
-    loginUserGoogle();
+    navigate(loginUserGoogle());
+
     // window.location.href =
     //   "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=https%3A%2F%2Fpulse-run-api.onrender.com%2Fapi%2Fauth%2Fgoogle%2Fcallback&scope=profile%20email&client_id=731278225368-mpbqkdde8745223rerdu6chp900n0he7.apps.googleusercontent.com";
 
@@ -120,41 +122,43 @@ const ModalAuth = ({
         </Button>
       </Navigation>
       <StyledFormWrapper>
-        {mode === "login" ? (
-          resetPassword ? (
-            <UserResetPasswordForm onClose={onClose} />
+        <div style={{ height: "fit-content" }}>
+          {mode === "login" ? (
+            resetPassword ? (
+              <UserResetPasswordForm onClose={onClose} />
+            ) : (
+              <CustomLoginForm
+                onClose={onClose}
+                openForgotPasswordModal={openForgotPasswordModal}
+                redirectPath={locationPath}
+              />
+            )
           ) : (
-            <CustomLoginForm
-              onClose={onClose}
-              openForgotPasswordModal={openForgotPasswordModal}
-              redirectPath={locationPath}
-            />
-          )
-        ) : (
-          <CustomRegisterForm onClose={onClose} redirectPath={locationPath} />
-        )}
-        {mode === "login" ? (
-          <Wrapper>
-            <QuestionText>Немає облікового запису?</QuestionText>
-            <Register onClick={switchToRegister}>Зареєструватися</Register>
-          </Wrapper>
-        ) : null}
+            <CustomRegisterForm onClose={onClose} redirectPath={locationPath} />
+          )}
+          {mode === "login" ? (
+            <Wrapper>
+              <QuestionText>Немає облікового запису?</QuestionText>
+              <Register onClick={switchToRegister}>Зареєструватися</Register>
+            </Wrapper>
+          ) : null}
 
-        <OrWrapper>
-          <Line />
-          <OrText>Або</OrText>
-          <Line />
-        </OrWrapper>
+          <OrWrapper>
+            <Line />
+            <OrText>Або</OrText>
+            <Line />
+          </OrWrapper>
 
-        <SocialBox>
-          <button onClick={handleGoogleLogin}>
-            <GoogleSvg />
-          </button>
+          <SocialBox>
+            <button onClick={handleGoogleLogin}>
+              <GoogleSvg />
+            </button>
 
-          <button>
-            <FacebookSvg />
-          </button>
-        </SocialBox>
+            <button>
+              <FacebookSvg />
+            </button>
+          </SocialBox>
+        </div>
       </StyledFormWrapper>
     </>
   );

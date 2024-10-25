@@ -71,9 +71,12 @@ export const PromoCode = ({ onFetchPromoCode }) => {
   };
 
   useEffect(() => {
-    if (isFetching) onFetchPromoCode(true);
-    if (!isFetching) onFetchPromoCode(false);
-  }, [isFetching]);
+    const verifyPromoStatus = () => {
+      if (isFetching) onFetchPromoCode(true);
+      if (!isFetching) onFetchPromoCode(false);
+    };
+    verifyPromoStatus();
+  }, [isFetching, onFetchPromoCode]);
 
   return (
     <Formik

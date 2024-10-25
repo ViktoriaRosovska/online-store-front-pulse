@@ -276,6 +276,7 @@ export const ShopCartDelivery = props => {
                 totalPriceSum={totalPriceSum}
                 countQuantity={countQuantity}
               />
+
               <PromoCode onFetchPromoCode={onFetchPromoCode} />
             </div>
 

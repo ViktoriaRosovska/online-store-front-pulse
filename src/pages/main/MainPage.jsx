@@ -81,8 +81,8 @@ const Main = () => {
     }
   }, [location]);
 
-  console.log(location.search);
-
+  // console.log(location.search);
+  setTimeout(() => {}, 4000);
   return (
     <>
       <SectionHero>
