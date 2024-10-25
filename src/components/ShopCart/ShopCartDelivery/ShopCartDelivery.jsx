@@ -60,6 +60,9 @@ export const ShopCartDelivery = props => {
   useEffect(() => {
     refetch();
   }, [refetch]);
+  useEffect(() => {
+    onFetchPromoCode(fetchPromocode);
+  }, [fetchPromocode]);
 
   const cart = useSelector(selectUserShopCart);
   const {

@@ -9,7 +9,10 @@ import {
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectPromoCodeDiscount } from "../../../../redux/promoCode/promoCodeSelector";
+import {
+  selectPromoCode,
+  selectPromoCodeDiscount,
+} from "../../../../redux/promoCode/promoCodeSelector";
 
 import { selectPromoValid } from "../../../../redux/promoCode/promoCodeSelector";
 import { discountPrice } from "../../../../utils/discountPrice";
@@ -25,9 +28,9 @@ export const YourOrderPriceComponent = ({
   const isPromoValid = useSelector(selectPromoValid);
   const totalSum = isPromoValid ? discountPrice(priceSum, discount) : priceSum;
   const dispatch = useDispatch();
-
+  const promoCode = useSelector(selectPromoCode);
   useEffect(() => {
-    if (isPromoValid) {
+    if (isPromoValid && promoCode !== "") {
       dispatch(addShopCartTotalPriceSum(Math.ceil(totalSum)));
     } else {
       dispatch(addShopCartTotalPriceSum(priceSum));

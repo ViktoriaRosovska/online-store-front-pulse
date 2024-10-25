@@ -54,7 +54,6 @@ export const userAuthApi = createApi({
         url: "/auth/google",
         method: "GET",
       }),
-      redirect: "follow",
     }),
 
     loginUserFB: builder.query({

@@ -41,12 +41,14 @@ export const PromoCode = ({ onFetchPromoCode }) => {
   const isPromoValid = useSelector(selectPromoValid);
   const promoCode = useSelector(selectPromoCode);
   const discount = useSelector(selectPromoCodeDiscount);
-
+  const verifyPromoStatus = isFetch => {
+    onFetchPromoCode(isFetch);
+  };
   const debounced = useDebouncedCallback(value => {
     if (value) {
       checkPromoCode(value);
     }
-  }, 1000);
+  }, 3000);
 
   useEffect(() => {
     if (error) {
@@ -63,20 +65,19 @@ export const PromoCode = ({ onFetchPromoCode }) => {
     }
   }, [data, error, dispatch, promoCode, discount]);
 
+  useEffect(() => {
+    verifyPromoStatus(isFetching);
+  }, [isFetching, verifyPromoStatus]);
+
   const handleChangePromo = promo => {
     // dispatch(setPromoCode(promo));
     // if (promo) checkPromoCode(promo);
-    dispatch(setPromoCode(promo));
-    debounced(promo);
-  };
 
-  useEffect(() => {
-    const verifyPromoStatus = () => {
-      if (isFetching) onFetchPromoCode(true);
-      if (!isFetching) onFetchPromoCode(false);
-    };
-    verifyPromoStatus();
-  }, [isFetching, onFetchPromoCode]);
+    dispatch(setPromoCode(promo));
+
+    debounced(promo);
+    verifyPromoStatus(false);
+  };
 
   return (
     <Formik
@@ -91,7 +92,9 @@ export const PromoCode = ({ onFetchPromoCode }) => {
             type="text"
             name="code"
             label=""
-            onChange={e => handleChangePromo(e.target.value)}
+            onChange={e => {
+              handleChangePromo(e.target.value);
+            }}
             value={promoCode}
           />
           {isPromoInvalid && promoCode !== "" && (
@@ -100,7 +103,7 @@ export const PromoCode = ({ onFetchPromoCode }) => {
           {isPromoExpired && promoCode !== "" && (
             <Error>Промокод вже недійсний</Error>
           )}
-          {isPromoValid ? (
+          {isPromoValid && promoCode !== "" ? (
             <StyledPromocodeCheckWrapper>
               <CheckedSvg />
             </StyledPromocodeCheckWrapper>
