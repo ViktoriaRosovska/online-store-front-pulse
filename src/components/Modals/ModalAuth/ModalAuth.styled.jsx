@@ -106,7 +106,9 @@ export const StyledFormWrapper = styled.div`
   }
   &::-webkit-scrollbar-button {
     background-color: transparent;
-    height: 100%;
+
+    height: 0;
+
   }
   &::-webkit-scrollbar-thumb {
     box-shadow: inset 0 0 10px 10px var(--grey-btn-bg-color);
