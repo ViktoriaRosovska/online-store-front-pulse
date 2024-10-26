@@ -34,11 +34,11 @@ export const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   gap: 6px;
-  margin-top: 24px;
-  @media screen and (min-width: 1440px) {
+  /* margin-top: 24px; */
+  @media screen and (min-width: 1024px) {
     flex-direction: row;
     justify-content: center;
-    margin-top: 36px;
+    /* margin-top: 36px; */
   }
 `;
 
@@ -49,6 +49,7 @@ export const QuestionText = styled.p`
 
 export const Register = styled.button`
   font-size: 16px;
+  font-family: "Roboto";
   line-height: 20px;
   text-decoration: underline;
 
@@ -61,8 +62,9 @@ export const OrWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-top: 23px;
+  margin-right: 15px;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     margin-top: 36px;
   }
 `;
@@ -86,13 +88,28 @@ export const Line = styled.hr`
 
 export const SocialBox = styled.div`
   display: flex;
-  margin-top: 24px;
+  margin-top: 14px;
   justify-content: center;
   gap: 24px;
+  & a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+  }
 
   @media screen and (min-width: 1024px) {
-    margin-top: 36px;
+    /* margin-top: 36px; */
     gap: 32px;
+
+    & svg {
+      scale: 1.4;
+    }
+    & a {
+      width: 40px;
+      height: 40px;
+    }
   }
 `;
 export const StyledFormWrapper = styled.div`
@@ -105,10 +122,9 @@ export const StyledFormWrapper = styled.div`
     position: absolute;
   }
   &::-webkit-scrollbar-button {
-    background-color: transparent;
+    /* background-color: transparent; */
 
     height: 0;
-
   }
   &::-webkit-scrollbar-thumb {
     box-shadow: inset 0 0 10px 10px var(--grey-btn-bg-color);

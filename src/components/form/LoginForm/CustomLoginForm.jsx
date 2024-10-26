@@ -19,7 +19,7 @@ const CustomLoginForm = ({
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [loginUser, { data }] = useLoginUserMutation();
+  const [loginUser] = useLoginUserMutation();
 
   const onSubmit = values => {
     loginUser(values)

@@ -8,13 +8,15 @@ export const StyledForm = styled(Form)`
   gap: 40px;
   max-width: 295px;
   padding-right: 15px;
-  padding-bottom: 50px;
+  /* padding-bottom: 50px; */
+  padding-bottom: 24px;
   @media screen and (min-width: 375px) {
     gap: 35px;
   }
   @media screen and (min-width: 1024px) {
     width: 450px;
     max-width: 450px;
+    padding-bottom: 36px;
   }
 `;
 
