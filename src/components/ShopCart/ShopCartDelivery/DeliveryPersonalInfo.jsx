@@ -15,9 +15,9 @@ import { useDispatch } from "react-redux";
 
 const formatPhone = number => {
   // console.log("number", number);
-  if (number == "0000000000" || number == "") {
-    return "";
-  }
+  // if (number == "0000000000" || number == "") {
+  //   return "";
+  // }
 
   const cc = number.substr(0, 3); // +38
   const ac = number.substr(3, 3); // 053

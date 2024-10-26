@@ -26,7 +26,7 @@ import { PromoCode } from "components/PromoCode";
 import { EmptyShopCart } from "../EmptyShopCart/EmptyShopCart";
 
 export const ShopCartPayment = props => {
-  const isDesktop = useMediaQuery("(min-width: 1440px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const {
     products,

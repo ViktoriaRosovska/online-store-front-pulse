@@ -17,7 +17,7 @@ import { Portal } from "components/Modals/helpersForModal/modalPortal";
 import CommonModal from "components/Modals/CommonModal";
 import { Title } from "components/Typography/Typography.styled";
 import ModalDeleteUser from "components/Modals/ModalDeleteUser/ModalDeleteUser";
-import { formatPhoneNumber } from "../formHelpers/formatPhoneNumber";
+// import { formatPhoneNumber } from "../formHelpers/formatPhoneNumber";
 import { clearShopCart } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { clearPromoCode } from "../../../redux/promoCode/promoCodeSlice";
 import { Loader } from "../../Loader/Loader";
@@ -180,7 +180,7 @@ const UserEditForm = ({ selectedFile }) => {
         validationSchema={userEditValidationSchema}
         onSubmit={onSubmit}
       >
-        {({ setFieldValue, values }) => (
+        {({ setFieldValue }) => (
           <StyledForm>
             <CustomInput
               label="Ім’я"

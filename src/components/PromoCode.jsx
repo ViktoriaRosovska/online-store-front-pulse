@@ -65,16 +65,10 @@ export const PromoCode = ({ onFetchPromoCode }) => {
     }
   }, [data, error, dispatch, promoCode, discount]);
 
-  useEffect(() => {
-    verifyPromoStatus(isFetching);
-  }, [isFetching, verifyPromoStatus]);
-
   const handleChangePromo = promo => {
-    // dispatch(setPromoCode(promo));
-    // if (promo) checkPromoCode(promo);
-
     dispatch(setPromoCode(promo));
 
+    // verifyPromoStatus(isFetching);
     debounced(promo);
     verifyPromoStatus(false);
   };
