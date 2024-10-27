@@ -115,7 +115,7 @@ export const SocialBox = styled.div`
 export const StyledFormWrapper = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
-  height: 700px;
+  /* height: 700px; */
   /* &::-webkit-scrollbar {
     width: 5px;
     border: 1px solid transparent;
