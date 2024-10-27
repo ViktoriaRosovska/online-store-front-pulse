@@ -25,8 +25,8 @@ import {
   // useLazyLoginUserGoogleQuery,
   useFetchCurrentUserQuery,
 } from "../../../redux/auth/userAuthApi";
-import { useDispatch } from "react-redux";
-import { setCredentials } from "../../../redux/auth";
+// import { useDispatch } from "react-redux";
+// import { setCredentials } from "../../../redux/auth";
 
 const ModalAuth = ({
   onClose,
@@ -34,7 +34,7 @@ const ModalAuth = ({
   resetPassword,
   // redirectPath,
 }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [mode, setMode] = useState("login");
   const { data: userData, refetch: userRefetch } = useFetchCurrentUserQuery(
     undefined,
