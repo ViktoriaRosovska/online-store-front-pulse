@@ -131,7 +131,7 @@ const ModalAuth = ({
         </Button>
       </Navigation>
       <StyledFormWrapper>
-        <div style={{ height: "fit-content" }}>
+        <div style={{ height: "800px" }}>
           {mode === "login" ? (
             resetPassword ? (
               <UserResetPasswordForm onClose={onClose} />
