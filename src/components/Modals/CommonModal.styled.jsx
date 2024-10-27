@@ -29,7 +29,7 @@ export const ModalContent = styled.div`
   /* max-height: calc(100% - 80px); */
   max-height: 100%;
 
-  /* overflow-y: auto; */
+  overflow-y: auto;
 
   @media screen and (min-width: 375px) {
     /* max-height: calc(100% - 32px); */
