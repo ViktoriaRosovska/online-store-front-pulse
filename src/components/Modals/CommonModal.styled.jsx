@@ -29,28 +29,8 @@ export const ModalContent = styled.div`
   /* max-height: calc(100% - 80px); */
   max-height: 100%;
 
-  overflow-y: auto;
-  &::-webkit-scrollbar {
-    width: 5px;
-    border: 1px solid transparent;
-    position: absolute;
-  }
-  &::-webkit-scrollbar-button {
-    height: 20px;
-  }
-  &::-webkit-scrollbar-thumb {
-    box-shadow: inset 0 0 10px 10px var(--grey-btn-bg-color);
-    border: solid 1px transparent;
-    height: 10%;
-    border-radius: 20px;
-    max-height: 10%;
-  }
-  &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 10px 10px transparent;
-    border: solid 6px transparent;
-    height: 10%;
-    max-height: 10%;
-  }
+  /* overflow-y: auto; */
+
   @media screen and (min-width: 375px) {
     /* max-height: calc(100% - 32px); */
   }
