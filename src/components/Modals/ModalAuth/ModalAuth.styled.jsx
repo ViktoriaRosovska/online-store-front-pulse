@@ -116,13 +116,13 @@ export const StyledFormWrapper = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   height: 400px;
-  &::-webkit-scrollbar {
+  /* &::-webkit-scrollbar {
     width: 5px;
     border: 1px solid transparent;
     position: absolute;
   }
   &::-webkit-scrollbar-button {
-    /* background-color: transparent; */
+    
 
     height: 0;
   }
@@ -138,5 +138,5 @@ export const StyledFormWrapper = styled.div`
     border: solid 6px transparent;
     height: 10%;
     max-height: 10%;
-  }
+  } */
 `;
