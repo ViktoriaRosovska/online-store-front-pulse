@@ -43,7 +43,6 @@ import {
   addShopCartPhone,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { EmptyShopCart } from "../EmptyShopCart/EmptyShopCart";
-// import { formatPhoneNumber } from "components/form/formHelpers/formatPhoneNumber";
 
 export const ShopCartDelivery = props => {
   const navigate = useNavigate();
@@ -111,8 +110,6 @@ export const ShopCartDelivery = props => {
     setIsForgotPasswordModalOpen(false);
   };
 
-  // console.log("address", address);
-  //console.log(data);
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const [isActiveForm, setIsActiveForm] = useState(true);
 
@@ -128,9 +125,6 @@ export const ShopCartDelivery = props => {
       .filter(el => el !== " ")
       .join(" ");
     console.log(values, option);
-
-    // console.log(values.firstName);
-    // console.log(values.lastName);
 
     navigate(ROUTES.SHOPCARTPAYMENT);
   };
@@ -148,7 +142,6 @@ export const ShopCartDelivery = props => {
               initialValues={{
                 firstName: firstName,
                 lastName: lastName,
-                // phone: phone === "0000000000" ? "" : formatPhoneNumber(phone),
                 phone: phone,
                 email: email,
                 address: {

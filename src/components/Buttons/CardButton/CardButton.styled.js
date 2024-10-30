@@ -7,7 +7,8 @@ const CardButtonWrapper = styled(Link)`
   font-size: 18px;
   line-height: 20px;
 
-  background-color: var(--black-bg-color);
+  background-color: ${props =>
+    props.$disabled ? "var(--white-dark-bg-color)" : "var(--black-bg-color)"};
   color: white;
   display: flex;
   justify-content: center;
@@ -24,6 +25,7 @@ const CardButtonWrapper = styled(Link)`
     background-color: var(--white-dark-bg-color);
     color: black;
   }
+
   @media screen and (min-width: 1024px) {
     font-size: 20px;
     font-weight: 400;

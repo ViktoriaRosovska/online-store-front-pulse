@@ -17,10 +17,10 @@ import { Portal } from "components/Modals/helpersForModal/modalPortal";
 import CommonModal from "components/Modals/CommonModal";
 import { Title } from "components/Typography/Typography.styled";
 import ModalDeleteUser from "components/Modals/ModalDeleteUser/ModalDeleteUser";
-// import { formatPhoneNumber } from "../formHelpers/formatPhoneNumber";
 import { clearShopCart } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { clearPromoCode } from "../../../redux/promoCode/promoCodeSlice";
 import { Loader } from "../../Loader/Loader";
+import { formatPhone } from "../../../utils/formatPhone";
 
 const UserEditForm = ({ selectedFile }) => {
   const dispatch = useDispatch();
@@ -37,16 +37,11 @@ const UserEditForm = ({ selectedFile }) => {
     refetch();
   }, [refetch]);
 
-  // const phoneNumber =
-  //   user?.phone === "0000000000" ? "" : formatPhoneNumber(user?.phone);
-
   const onSubmit = async values => {
     const formData = new FormData();
     console.log("values phone", values.phone);
     if (values.phone !== "") {
-      // values.phone = values?.phone?.replace(/[\s()-]/g, "");
-      const userPhoneNumber = values.phone.replace(/[\s() -]/g, "").trim();
-      formData.append("phone", userPhoneNumber);
+      formData.append("phone", values.phone);
     }
     values.firstName = values.firstName
       ?.split(" ")
@@ -59,14 +54,8 @@ const UserEditForm = ({ selectedFile }) => {
       .join(" ")
       .trim();
 
-    // if (values.password) {
-    //   if (values.passwordCheck == values.password) {
-    //     formData.append("password", values.password);
-    //   }
-    // }
     Object.keys(values).forEach(key => {
       if (
-        // key !== "password" &&
         key !== "passwordCheck" &&
         key !== "phone" &&
         values[key] !== user[key] &&
@@ -110,18 +99,9 @@ const UserEditForm = ({ selectedFile }) => {
           }
         });
 
-      // const updatedPhoneNumber =
-      //   data?.user?.phone === "0000000000"
-      //     ? ""
-      //     : data?.user?.phone.replace(
-      //         /^(\+38)(\d{3})(\d{3})(\d{2})(\d{2})$/,
-      //         "$1($2)$3-$4-$5"
-      //       );
-      // values.phone = updatedPhoneNumber;
-
       await refetch();
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
 
@@ -143,7 +123,7 @@ const UserEditForm = ({ selectedFile }) => {
       dispatch(clearShopCart());
       dispatch(clearPromoCode());
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
 
@@ -168,10 +148,6 @@ const UserEditForm = ({ selectedFile }) => {
     passwordCheck: "",
   };
 
-  // const handleFileChange = (event) => {
-  //   setSelectedFile(event.target.files[0])
-  // }
-
   return (
     <Box>
       <Formik
@@ -180,7 +156,7 @@ const UserEditForm = ({ selectedFile }) => {
         validationSchema={userEditValidationSchema}
         onSubmit={onSubmit}
       >
-        {({ setFieldValue }) => (
+        {({ setFieldValue, values }) => (
           <StyledForm>
             <CustomInput
               label="Ім’я"
@@ -213,29 +189,17 @@ const UserEditForm = ({ selectedFile }) => {
               label="Номер телефону"
               name="phone"
               type="text"
-              placeholder="Номер телефону"
-              onKeyDown={e => {
-                e.key === "Enter" && e.preventDefault();
+              placeholder="+38(000)000-00-00"
+              onChange={async e => {
+                let raw = e.target.value
+                  .replace(/[^\d]/g, "")
+                  .replace(/^380?|^0+/g, "")
+                  .trim();
+                if (raw !== "") raw = "+380" + raw.substr(0, 12);
+
+                await setFieldValue("phone", raw);
               }}
-              // mask={[
-              //   "+",
-              //   "3",
-              //   "8",
-              //   "(",
-              //   "0",
-              //   /[0-9]/,
-              //   /[0-9]/,
-              //   ")",
-              //   /[0-9]/,
-              //   /[0-9]/,
-              //   /[0-9]/,
-              //   "-",
-              //   /[0-9]/,
-              //   /[0-9]/,
-              //   "-",
-              //   /[0-9]/,
-              //   /[0-9]/,
-              // ]}
+              value={formatPhone(values.phone)}
             />
             <CustomInput
               label="Пароль"

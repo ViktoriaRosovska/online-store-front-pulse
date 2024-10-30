@@ -1,4 +1,3 @@
-// import { useLocation } from "react-router-dom";
 import { CardButtonWrapper } from "./CardButton.styled";
 
 const CardButton = ({
@@ -10,8 +9,6 @@ const CardButton = ({
   onClick,
   $disabled,
 }) => {
-  // const location = useLocation().pathname;
-
   return (
     <CardButtonWrapper
       style={style}

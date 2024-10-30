@@ -12,10 +12,9 @@ export const Backdrop = styled.div`
 
 export const Modal = styled.div`
   position: absolute;
-  /* top: 72px; */
   left: 0;
   width: clamp(299px, 80%, 320px);
-  max-height: calc(100vh - 88px);
+  max-height: calc(100vh - 10px);
   padding-left: 24px;
   padding-right: 24px;
   padding-top: 75px;
@@ -26,15 +25,24 @@ export const Modal = styled.div`
   border-bottom-right-radius: 30px;
   background-color: #ffff;
   z-index: 500;
-  overflow-y: auto;
+  overflow-y: scroll;
 
-  scrollbar-width: thin;
-  scrollbar-color: var(--grey-text-color);
-  &::-webkit-scrollbar-thumb {
-    border-radius: 20px;
-    background-clip: padding-box;
+  &::-webkit-scrollbar {
+    width: 8px;
   }
   &::-webkit-scrollbar-button {
-    display: none;
+    height: 20px;
+  }
+  &::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 10px 10px var(--grey-btn-bg-color);
+    border: solid 3px transparent;
+    height: 10%;
+    border-radius: 20px;
+    max-height: 10%;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 10px 10px transparent;
+    height: 10%;
+    max-height: 10%;
   }
 `;
