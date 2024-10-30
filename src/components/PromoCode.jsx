@@ -41,9 +41,6 @@ export const PromoCode = ({ onFetchPromoCode }) => {
   const isPromoValid = useSelector(selectPromoValid);
   const promoCode = useSelector(selectPromoCode);
   const discount = useSelector(selectPromoCodeDiscount);
-  const verifyPromoStatus = isFetch => {
-    onFetchPromoCode(isFetch);
-  };
   const debounced = useDebouncedCallback(value => {
     if (value) {
       checkPromoCode(value);
@@ -65,12 +62,16 @@ export const PromoCode = ({ onFetchPromoCode }) => {
     }
   }, [data, error, dispatch, promoCode, discount]);
 
+  useEffect(() => {
+    if (!isFetching) onFetchPromoCode(false);
+  }, [isFetching]);
+
   const handleChangePromo = promo => {
     dispatch(setPromoCode(promo));
-
-    // verifyPromoStatus(isFetching);
     debounced(promo);
-    verifyPromoStatus(false);
+    if (promo) {
+      onFetchPromoCode(true);
+    } else onFetchPromoCode(false);
   };
 
   return (

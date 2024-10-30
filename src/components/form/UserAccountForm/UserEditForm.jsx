@@ -44,9 +44,7 @@ const UserEditForm = ({ selectedFile }) => {
     const formData = new FormData();
     console.log("values phone", values.phone);
     if (values.phone !== "") {
-      // values.phone = values?.phone?.replace(/[\s()-]/g, "");
-      const userPhoneNumber = values.phone.replace(/[\s() -]/g, "").trim();
-      formData.append("phone", userPhoneNumber);
+      formData.append("phone", values.phone);
     }
     values.firstName = values.firstName
       ?.split(" ")
@@ -125,6 +123,34 @@ const UserEditForm = ({ selectedFile }) => {
     }
   };
 
+  const formatPhone = number => {
+    // console.log("number", number);
+    // if (number == "0000000000" || number == "") {
+    //   return "";
+    // }
+
+    const cc = number.substr(0, 3); // +38
+    const ac = number.substr(3, 3); // 053
+    const n1 = number.substr(6, 3); // 123
+    const n2 = number.substr(9, 2); // 45
+    const n3 = number.substr(11, 2); // 67
+
+    let formatted = cc;
+    if (cc.length === 3) {
+      if (ac.length > 0) formatted += "(" + ac;
+      if (ac.length === 3) {
+        if (n1.length > 0) formatted += ")" + n1;
+        if (n1.length === 3) {
+          if (n2.length > 0) formatted += "-" + n2;
+          if (n2.length === 2 && n3.length > 0) formatted += "-" + n3;
+        }
+      }
+    }
+
+    return formatted;
+    //return formatPhoneNumber(number);
+  };
+
   const onDeleteUser = async () => {
     try {
       await userDelete()
@@ -180,7 +206,7 @@ const UserEditForm = ({ selectedFile }) => {
         validationSchema={userEditValidationSchema}
         onSubmit={onSubmit}
       >
-        {({ setFieldValue }) => (
+        {({ setFieldValue, values }) => (
           <StyledForm>
             <CustomInput
               label="Ім’я"
@@ -213,29 +239,18 @@ const UserEditForm = ({ selectedFile }) => {
               label="Номер телефону"
               name="phone"
               type="text"
-              placeholder="Номер телефону"
-              onKeyDown={e => {
-                e.key === "Enter" && e.preventDefault();
+              placeholder="+38(000)000-00-00"
+              onChange={async e => {
+                let raw = e.target.value
+                  .replace(/[^\d]/g, "")
+                  .replace(/^380?|^0+/g, "")
+                  .trim();
+                if (raw !== "") raw = "+380" + raw.substr(0, 12);
+
+                await setFieldValue("phone", raw);
+                //await setFieldValue("phoneStr", formatPhone(raw));
               }}
-              // mask={[
-              //   "+",
-              //   "3",
-              //   "8",
-              //   "(",
-              //   "0",
-              //   /[0-9]/,
-              //   /[0-9]/,
-              //   ")",
-              //   /[0-9]/,
-              //   /[0-9]/,
-              //   /[0-9]/,
-              //   "-",
-              //   /[0-9]/,
-              //   /[0-9]/,
-              //   "-",
-              //   /[0-9]/,
-              //   /[0-9]/,
-              // ]}
+              value={formatPhone(values.phone)}
             />
             <CustomInput
               label="Пароль"

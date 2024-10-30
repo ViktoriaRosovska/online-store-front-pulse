@@ -78,32 +78,12 @@ export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
           label="Номер телефону&#42;"
           placeholder="+38(000)000-00-00"
           name="phone"
-          // mask={[
-          //   "+",
-          //   "3",
-          //   "8",
-          //   "(",
-          //   "0",
-          //   /[0-9]/,
-          //   /[0-9]/,
-          //   ")",
-          //   /[0-9]/,
-          //   /[0-9]/,
-          //   /[0-9]/,
-          //   "-",
-          //   /[0-9]/,
-          //   /[0-9]/,
-          //   "-",
-          //   /[0-9]/,
-          //   /[0-9]/,
-          // ]}
           onChange={async e => {
             let raw = e.target.value
               .replace(/[^\d]/g, "")
               .replace(/^380?|^0+/g, "")
               .trim();
-            console.log("phone change", e.target.value, raw);
-            raw = "+380" + raw.substr(0, 12);
+            if (raw !== "") raw = "+380" + raw.substr(0, 12);
 
             dispatch(addShopCartPhone(raw));
             await setFieldValue("phone", raw);
