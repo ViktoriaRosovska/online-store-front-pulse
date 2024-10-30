@@ -131,43 +131,43 @@ const ModalAuth = ({
         </Button>
       </Navigation>
       <StyledFormWrapper>
-        <div style={{ height: "500px" }}>
-          {mode === "login" ? (
-            resetPassword ? (
-              <UserResetPasswordForm onClose={onClose} />
-            ) : (
-              <CustomLoginForm
-                onClose={onClose}
-                openForgotPasswordModal={openForgotPasswordModal}
-                redirectPath={locationPath}
-              />
-            )
+        {/* <div style={{ height: "500px" }}> */}
+        {mode === "login" ? (
+          resetPassword ? (
+            <UserResetPasswordForm onClose={onClose} />
           ) : (
-            <CustomRegisterForm onClose={onClose} redirectPath={locationPath} />
-          )}
-          {mode === "login" ? (
-            <Wrapper>
-              <QuestionText>Немає облікового запису?</QuestionText>
-              <Register onClick={switchToRegister}>Зареєструватися</Register>
-            </Wrapper>
-          ) : null}
+            <CustomLoginForm
+              onClose={onClose}
+              openForgotPasswordModal={openForgotPasswordModal}
+              redirectPath={locationPath}
+            />
+          )
+        ) : (
+          <CustomRegisterForm onClose={onClose} redirectPath={locationPath} />
+        )}
+        {mode === "login" ? (
+          <Wrapper>
+            <QuestionText>Немає облікового запису?</QuestionText>
+            <Register onClick={switchToRegister}>Зареєструватися</Register>
+          </Wrapper>
+        ) : null}
 
-          <OrWrapper>
-            <Line />
-            <OrText>Або</OrText>
-            <Line />
-          </OrWrapper>
+        <OrWrapper>
+          <Line />
+          <OrText>Або</OrText>
+          <Line />
+        </OrWrapper>
 
-          <SocialBox>
-            <a href="https://pulse-run-api.onrender.com/api/auth/google">
-              <GoogleSvg />
-            </a>
+        <SocialBox>
+          <a href="https://pulse-run-api.onrender.com/api/auth/google">
+            <GoogleSvg />
+          </a>
 
-            <a href="https://pulse-run-api.onrender.com/api/auth/facebook">
-              <FacebookSvg />
-            </a>
-          </SocialBox>
-        </div>
+          <a href="https://pulse-run-api.onrender.com/api/auth/facebook">
+            <FacebookSvg />
+          </a>
+        </SocialBox>
+        {/* </div> */}
       </StyledFormWrapper>
     </>
   );

@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Navigation = styled.div`
   display: flex;
-  /* justify-content: space-between; */
 `;
 
 export const Button = styled.button`
@@ -34,11 +33,9 @@ export const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   gap: 6px;
-  /* margin-top: 24px; */
   @media screen and (min-width: 1024px) {
     flex-direction: row;
     justify-content: center;
-    /* margin-top: 36px; */
   }
 `;
 
@@ -100,7 +97,6 @@ export const SocialBox = styled.div`
   }
 
   @media screen and (min-width: 1024px) {
-    /* margin-top: 36px; */
     gap: 32px;
 
     & svg {
@@ -115,15 +111,13 @@ export const SocialBox = styled.div`
 export const StyledFormWrapper = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
-  /* height: 700px; */
-  /* &::-webkit-scrollbar {
+  height: 400px;
+  &::-webkit-scrollbar {
     width: 5px;
     border: 1px solid transparent;
     position: absolute;
   }
   &::-webkit-scrollbar-button {
-    
-
     height: 0;
   }
   &::-webkit-scrollbar-thumb {
@@ -138,5 +132,5 @@ export const StyledFormWrapper = styled.div`
     border: solid 6px transparent;
     height: 10%;
     max-height: 10%;
-  } */
+  }
 `;

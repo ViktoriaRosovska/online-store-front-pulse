@@ -26,7 +26,6 @@ export const ShopCart = props => {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const onFetchPromoCode = fetchStatus => {
-    console.log("fetch promo", fetchStatus);
     setFetchPromoCode(fetchStatus);
   };
   useEffect(() => {
