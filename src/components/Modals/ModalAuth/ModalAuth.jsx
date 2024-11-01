@@ -163,7 +163,10 @@ const ModalAuth = ({
             <GoogleSvg />
           </a>
 
-          <a href="https://pulse-run-api.onrender.com/api/auth/facebook">
+          <a
+            href="https://pulse-run-api.onrender.com/api/auth/facebook"
+            target="_blank"
+          >
             <FacebookSvg />
           </a>
         </SocialBox>
