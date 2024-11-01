@@ -8,13 +8,11 @@ import { Preloader } from "components/Preloader/Preloader";
 import { useDispatch } from "react-redux";
 import { setCredentials, useFetchCurrentUserQuery } from "../../redux/auth";
 
-
 function SharedLayout() {
   const dispatch = useDispatch();
   const locationPath = useLocation().search;
 
   const { data, refetch } = useFetchCurrentUserQuery(undefined, {
-
     refetchOnMountOrArgChange: true,
   });
 
@@ -32,10 +30,9 @@ function SharedLayout() {
       const params = new URLSearchParams(location.search);
       params.delete("token");
     }
-
   }, [dispatch, locationPath, refetch]);
 
-  console.log("userData", userData);
+  // console.log("userData", data);
   return (
     <Suspense fallback={<Preloader />}>
       <SharedLayoutContainer>
