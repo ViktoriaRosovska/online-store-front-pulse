@@ -73,7 +73,7 @@ export const ImagesGrid = styled("div")`
 export const ImageWraper = styled("div")`
   flex-basis: calc((100% - 24px) / 2);
   height: 146px;
-  background-color: gray;
+  background-color: lightgray;
   border-radius: 16px;
   overflow: hidden;
   @media screen and (min-width: 1024px) {

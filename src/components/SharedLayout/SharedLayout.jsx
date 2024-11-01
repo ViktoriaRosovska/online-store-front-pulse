@@ -7,29 +7,32 @@ import { Suspense, useEffect } from "react";
 import { Preloader } from "components/Preloader/Preloader";
 import { useDispatch } from "react-redux";
 import { setCredentials, useFetchCurrentUserQuery } from "../../redux/auth";
-// import { useLazyLoginUserGoogleQuery } from "../../redux/auth/userAuthApi";
+
 
 function SharedLayout() {
   const dispatch = useDispatch();
   const locationPath = useLocation().search;
-  const { data: userData, refetch } = useFetchCurrentUserQuery(undefined, {
+
+  const { data, refetch } = useFetchCurrentUserQuery(undefined, {
+
     refetchOnMountOrArgChange: true,
   });
 
   useEffect(() => {
     console.log(locationPath);
-    let token = locationPath.substring(7, locationPath.length);
-    console.log(token);
 
-    if (token) {
-      dispatch(setCredentials({ token: token }));
+    if (locationPath.substring(1, 6) == "token") {
+      let token = locationPath.substring(7, locationPath.length - 1);
+      console.log(token);
 
+      if (token) {
+        dispatch(setCredentials({ token: token }));
+        refetch();
+      }
       const params = new URLSearchParams(location.search);
       params.delete("token");
-      refetch();
     }
 
-    // loginUserGoogle();
   }, [dispatch, locationPath, refetch]);
 
   console.log("userData", userData);

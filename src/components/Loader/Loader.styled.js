@@ -127,7 +127,13 @@ const StyledSeventhPiece = styled(StyledPiece)`
   -moz-animation-delay: 1s;
   -o-animation-delay: 1s; */
 `;
-
+const StyledLoaderPosition = styled.div`
+  width: 100%;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 export {
   StyledLoaderWrapper,
   StyledFirstPiece,
@@ -137,4 +143,5 @@ export {
   StyledFifthPiece,
   StyledSixPiece,
   StyledSeventhPiece,
+  StyledLoaderPosition,
 };
