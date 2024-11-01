@@ -18,7 +18,7 @@ function SharedLayout() {
 
   useEffect(() => {
     console.log(locationPath);
-    let token = locationPath.substring(7, locationPath.length - 1);
+    let token = locationPath.substring(7, locationPath.length);
     console.log(token);
 
     if (token) {
