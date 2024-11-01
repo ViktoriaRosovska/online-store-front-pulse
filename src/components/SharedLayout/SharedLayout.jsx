@@ -26,14 +26,11 @@ function SharedLayout() {
 
       const params = new URLSearchParams(location.search);
       params.delete("token");
+      refetch();
     }
 
     // loginUserGoogle();
-  }, [dispatch, locationPath]);
-
-  useEffect(() => {
-    refetch();
-  }, [refetch]);
+  }, [dispatch, locationPath, refetch]);
 
   console.log("userData", userData);
   return (
