@@ -5,34 +5,37 @@ const CardWrapper = styled.div`
   @media screen and (max-width: 374.98px) {
     /* width: 145px; */
     width: 300px;
-    height: auto;
+    height: 428px;
   }
   @media screen and (min-width: 375px) {
     width: 152px;
+    height: 300px;
     /* width: ${props => (props.$cardSlider ? "327px" : "152px")}; */
   }
   @media screen and (min-width: 1024px) {
     width: ${props => (props.$cardSlider ? "340px" : "320px")};
+    height: 462px;
   }
 `;
 const CardImage = styled.img`
   @media screen and (max-width: 374.98px) {
     /* width: 327px; */
     width: ${props => (props.$cardSlider ? "300px" : "300px")};
-    height: ${props => (props.$cardSlider ? "250px" : "auto")};
+    height: ${props => (props.$cardSlider ? "250px" : "300px")};
     object-fit: cover;
   }
   @media screen and (min-width: 375px) {
     width: 152px;
-    height: ${props => (props.$cardSlider ? "167px" : "auto")};
+    height: ${props => (props.$cardSlider ? "167px" : "152px")};
   }
 
   @media screen and (min-width: 1024px) {
     width: ${props => (props.$cardSlider ? "340px" : "320px")};
-    height: ${props => (props.$cardSlider ? "287px" : "auto")};
+    height: ${props => (props.$cardSlider ? "287px" : "320px")};
   }
 `;
 const ImageWrapper = styled.div`
+  background-color: lightgray;
   /* @media screen and (max-width: 374.98px) {
     width: 145px;
   } */

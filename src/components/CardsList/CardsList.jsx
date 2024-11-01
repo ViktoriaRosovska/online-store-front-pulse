@@ -8,6 +8,8 @@ import {
   useGetFavoritesQuery,
 } from "../../redux/user/userSlice/userApi.js";
 import { useCallback } from "react";
+import { StyledLoaderPosition } from "components/Loader/Loader.styled.js";
+import { Loader } from "components/Loader/Loader.jsx";
 
 export const CardsList = ({
   data,
@@ -26,15 +28,26 @@ export const CardsList = ({
   const [addToFavorites] = useAddToFavoritesMutation();
   const [deleteFromFavorites] = useDeleteFromFavoritesMutation();
 
-  const deletFav = useCallback(async ({ productId }) => {
-    await deleteFromFavorites({ productId });
-  }, [deleteFromFavorites]);
+  const deletFav = useCallback(
+    async ({ productId }) => {
+      await deleteFromFavorites({ productId });
+    },
+    [deleteFromFavorites]
+  );
 
-  const addFav = useCallback(({ productId }) => {
-    addToFavorites({ productId });
-  }, [addToFavorites]);
+  const addFav = useCallback(
+    ({ productId }) => {
+      addToFavorites({ productId });
+    },
+    [addToFavorites]
+  );
 
-  if (isFetching) return <div>Йде завантаження даних...</div>;
+  if (isFetching)
+    return (
+      <StyledLoaderPosition>
+        <Loader />
+      </StyledLoaderPosition>
+    );
   if (isError)
     return (
       <div>
@@ -61,6 +74,7 @@ export const CardsList = ({
                 favorites={isFavoriteError ? [] : favorites}
                 deleteFromFavorites={deletFav}
                 addToFavorites={addFav}
+                isFetching={isFetching}
               />
             );
           })

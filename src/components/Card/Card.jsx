@@ -28,7 +28,12 @@ const Card = ({
   const sales = cardfeature === "sales";
   const newBrands = cardfeature === "newbrands";
   const location = useLocation().pathname;
-
+  console.log("image", image);
+  const resizeImgLink = image.indexOf("upload/") + 7;
+  const tempStr = image.substring(0, resizeImgLink) + "w_500/";
+  const tempEnd = image.substring(resizeImgLink, image.length);
+  const newLink = tempStr + tempEnd;
+  // console.log(newLink);
   return (
     <li style={{ listStyle: "none" }}>
       <StyledCardLink
@@ -54,11 +59,12 @@ const Card = ({
             ) : null}
 
             <CardImage
-              src={image}
+              src={newLink}
               $sales={sales}
               $cardSlider={cardSlider}
-              loading="lazy"
+              // loading="lazy"
             />
+
             <FavoriteButton
               $sales={sales && sale > 0}
               $new={newBrands}

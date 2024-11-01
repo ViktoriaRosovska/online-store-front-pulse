@@ -42,6 +42,8 @@ import CommonModal from "components/Modals/CommonModal";
 import FavoriteButton from "components/Buttons/FavoriteButton/FavoriteButton";
 import { Container } from "../../main.styled";
 import { LastView } from "components/LastView/LastView";
+import { StyledLoaderPosition } from "components/Loader/Loader.styled";
+import { Loader } from "components/Loader/Loader";
 
 const ProductInfo = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -87,13 +89,17 @@ const ProductInfo = () => {
     if (isError) navigate("/404");
   }, [isError, navigate]);
 
-  if (isFetching) return <div>Loading...</div>;
+  if (isFetching)
+    return (
+      <StyledLoaderPosition>
+        <Loader />
+      </StyledLoaderPosition>
+    );
   if (!data) return null;
   if (isError || !data.name) return <div>Error Component</div>;
 
   const {
     name,
-    // price,
     sale,
     article,
     basePrice,
