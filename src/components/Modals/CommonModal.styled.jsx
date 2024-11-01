@@ -13,7 +13,6 @@ export const Backdrop = styled.div`
   padding-right: ${props => (props.$isSizeModal ? "0" : "16px")};
   background-color: var(--modal-backdrop-color);
   overflow: hidden;
-  /* z-index: 1001; */
 `;
 
 export const ModalContent = styled.div`
@@ -26,12 +25,28 @@ export const ModalContent = styled.div`
   z-index: 1400;
   margin-top: 16px;
   margin-bottom: 16px;
-  /* max-height: calc(100% - 80px); */
   max-height: 100%;
-
-  /* overflow-y: auto; */
-
+  height: fit-content;
   overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-button {
+    height: 40px;
+  }
+  &::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 10px 10px var(--grey-btn-bg-color);
+    border: solid 3px transparent;
+    height: 10%;
+    border-radius: 20px;
+    max-height: 10%;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 10px 10px transparent;
+    border: solid 3px transparent;
+    height: 10%;
+    max-height: 10%;
+  }
 
   @media screen and (min-width: 375px) {
     /* max-height: calc(100% - 32px); */
@@ -41,7 +56,6 @@ export const ModalContent = styled.div`
     width: fit-content;
     max-width: ${props => (props.$isSizeModal ? "fit-content" : "898px")};
     overflow-x: hidden;
-    /* max-width: 80%; */
   }
 `;
 

@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Navigation = styled.div`
   display: flex;
-  /* justify-content: space-between; */
 `;
 
 export const Button = styled.button`
@@ -34,11 +33,9 @@ export const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   gap: 6px;
-  /* margin-top: 24px; */
   @media screen and (min-width: 1024px) {
     flex-direction: row;
     justify-content: center;
-    /* margin-top: 36px; */
   }
 `;
 
@@ -100,7 +97,6 @@ export const SocialBox = styled.div`
   }
 
   @media screen and (min-width: 1024px) {
-    /* margin-top: 36px; */
     gap: 32px;
 
     & svg {
@@ -122,8 +118,6 @@ export const StyledFormWrapper = styled.div`
     position: absolute;
   }
   &::-webkit-scrollbar-button {
-    /* background-color: transparent; */
-
     height: 0;
   }
   &::-webkit-scrollbar-thumb {
