@@ -20,7 +20,7 @@ function SharedLayout() {
     console.log(locationPath);
 
     if (locationPath.substring(1, 6) == "token") {
-      let token = locationPath.substring(7, locationPath.length - 1);
+      let token = locationPath.substring(7, locationPath.length);
       console.log(token);
 
       if (token) {
