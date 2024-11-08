@@ -8,6 +8,7 @@ import {
   Wrapper,
 } from "./UserInfoCard.styled";
 import { generateAvatarFromName } from "../../../utils/generateAvatarFromName";
+import { ReactComponent as EditImage } from "../../../assets/svg/edit.svg";
 
 const UserInfoCard = ({ onFileSelect }) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -46,9 +47,10 @@ const UserInfoCard = ({ onFileSelect }) => {
           )}
         </Image>
         <Button type="button" onClick={handleFileClick}>
-          <svg>
+          {/* <svg>
             <use xlinkHref="../icons/profile-icons/profile-icons-sprite.svg#icon-edit"></use>
-          </svg>
+          </svg> */}
+          <EditImage />
           <input
             ref={fileInputRef}
             type="file"
