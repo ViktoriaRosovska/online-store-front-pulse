@@ -13,7 +13,9 @@ const UserInfoCard = ({ onFileSelect }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const { data } = useFetchCurrentUserQuery();
   const user = data?.user;
-  console.log(user.avatar);
+
+  // console.log(user?.avatar);
+
   const fileInputRef = useRef(null);
 
   const handleFileClick = () => {

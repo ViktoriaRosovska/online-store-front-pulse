@@ -28,7 +28,7 @@ const Card = ({
   const sales = cardfeature === "sales";
   const newBrands = cardfeature === "newbrands";
   const location = useLocation().pathname;
-  console.log("image", image);
+  // console.log("image", image);
   const resizeImgLink = image.indexOf("upload/") + 7;
   const tempStr = image.substring(0, resizeImgLink) + "w_500/";
   const tempEnd = image.substring(resizeImgLink, image.length);
