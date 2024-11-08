@@ -28,6 +28,8 @@ export const ShopCart = props => {
   const onFetchPromoCode = fetchStatus => {
     setFetchPromoCode(fetchStatus);
   };
+  console.log(onFetchPromoCode);
+
   useEffect(() => {
     onFetchPromoCode(fetchPromocode);
   }, [fetchPromocode]);
