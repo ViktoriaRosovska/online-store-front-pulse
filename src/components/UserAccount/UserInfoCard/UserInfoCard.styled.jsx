@@ -40,6 +40,9 @@ export const Image = styled.div`
   @media screen and (min-width: 1024px) {
     width: 130px;
     height: 130px;
+    img {
+      width: 130px;
+    }
   }
 `;
 
