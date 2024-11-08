@@ -71,7 +71,7 @@ function FavoriteButton(props) {
     }
   };
 
-  const isDesktop = useMediaQuery("(min-width: 1440px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
   return (
     <FavoriteBtn
       $productInfo={props.productInfo}

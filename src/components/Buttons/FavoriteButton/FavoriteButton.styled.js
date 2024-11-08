@@ -22,7 +22,7 @@ const FavoriteBtn = styled.button`
   &:active {
     cursor: pointer;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 36px;
     height: 36px;
     top: ${props => (props.$sales || props.$new ? "42px" : "16px")};
