@@ -1,9 +1,9 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import MediaQuery from "react-responsive";
-import instagramIcon from "/public/icons/social-media-icons/instagram-icon.svg";
-import facebookIcon from "/public/icons/social-media-icons/facebook-icon.svg";
-import mailIcon from "/public/icons/social-media-icons/mail-icon.svg";
-import phoneIcon from "/public/icons/social-media-icons/phone-icon.svg";
+import instagramIcon from "../../../../assets/svg/social-media-icons/instagram-icon.svg";
+import facebookIcon from "../../../../assets/svg/social-media-icons/facebook-icon.svg";
+import mailIcon from "../../../../assets/svg/social-media-icons/mail-icon.svg";
+import phoneIcon from "../../../../assets/svg/social-media-icons/phone-icon.svg";
 import menuArrayFooter from "./../../../../data/footerMenu.json";
 import {
   DesktopList,
@@ -18,7 +18,7 @@ import { selectUserToken } from "../../../../redux/auth";
 
 function FooterGlassInfo() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  
+
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
     useState(false);
 
@@ -29,10 +29,9 @@ function FooterGlassInfo() {
   const iconsArray = [instagramIcon, facebookIcon, mailIcon, phoneIcon];
 
   const handleOpenLoginModal = () => {
-    
     // setRedirectPath(redirectPath);
     setIsLoginModalOpen(true);
-    console.log("FooterGlassInfo  isLoginModalOpen", isLoginModalOpen)
+    console.log("FooterGlassInfo  isLoginModalOpen", isLoginModalOpen);
     setIsForgotPasswordModalOpen(false);
   };
 
