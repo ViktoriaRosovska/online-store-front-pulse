@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import logoFooterImg from "/public/logo-footer.svg";
+import logoFooterImg from "../../../assets/svg/logo-footer.svg";
 import FooterGlassInfo from "./FooterGlassInfo/FooterGlassInfo";
 import Copyright from "../Copyright/Copyright";
 import { Container } from "../../../main.styled";

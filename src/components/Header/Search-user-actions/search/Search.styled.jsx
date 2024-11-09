@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { ReactComponent as SearchMobileIcon } from "/public/icons/search-icon.svg";
+import { ReactComponent as SearchMobileIcon } from "../../../../assets/svg/search-icon.svg";
 import { ReactComponent as CloseSearcSvg } from "../../../../assets/svg/close-mobile-search.svg";
 
 export const CloseSearchIcon = styled(CloseSearcSvg)`
