@@ -196,9 +196,9 @@ const UserEditForm = ({ selectedFile }) => {
               onChange={async e => {
                 let raw = e.target.value
                   .replace(/[^\d]/g, "")
-                  .replace(/^380?|^0+/g, "")
+                  .replace(/^38/, "")
                   .trim();
-                if (raw !== "") raw = "+380" + raw.substr(0, 12);
+                if (raw !== "") raw = "+38" + raw.substr(0, 10);
 
                 await setFieldValue("phone", raw);
               }}

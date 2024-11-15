@@ -6,7 +6,7 @@ export const formatPhone = number => {
     const n2 = number.substr(9, 2); // 45
     const n3 = number.substr(11, 2); // 67
 
-    let formatted = cc;
+    let formatted = "";
     if (cc.length === 3) {
       if (ac.length > 0) formatted += "(" + ac;
       if (ac.length === 3) {

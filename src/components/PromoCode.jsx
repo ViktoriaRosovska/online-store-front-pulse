@@ -28,7 +28,7 @@ import {
   addShopCartDiscount,
   addShopCartPromoCode,
 } from "../redux/user/userShopCart/userShopCartSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 export const PromoCode = ({ onFetchPromoCode }) => {
@@ -36,6 +36,7 @@ export const PromoCode = ({ onFetchPromoCode }) => {
 
   const [checkPromoCode, { data, error, isFetching }] =
     useLazyCheckPromoCodeQuery();
+  const [checkPending, setCheckPending] = useState(false);
   const isPromoExpired = useSelector(selectPromoExpired);
   const isPromoInvalid = useSelector(selectPromoInvalid);
   const isPromoValid = useSelector(selectPromoValid);
@@ -44,6 +45,7 @@ export const PromoCode = ({ onFetchPromoCode }) => {
   const debounced = useDebouncedCallback(value => {
     if (value) {
       checkPromoCode(value);
+      setCheckPending(false);
     }
   }, 3000);
 
@@ -62,12 +64,15 @@ export const PromoCode = ({ onFetchPromoCode }) => {
     }
   }, [data, error, dispatch, promoCode, discount]);
 
+  useEffect(
+    () => onFetchPromoCode(isFetching || checkPending),
+    [onFetchPromoCode, isFetching, checkPending]
+  );
+
   const handleChangePromo = promo => {
     dispatch(setPromoCode(promo));
     debounced(promo);
-    if (promo) {
-      onFetchPromoCode(true);
-    } else onFetchPromoCode(false);
+    setCheckPending(Boolean(promo));
   };
 
   return (

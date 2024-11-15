@@ -14,7 +14,7 @@ import {
 import { ShopCartProductsListWithCloseBtn } from "../ShopCartProductsListWithCloseBtn";
 import { PromoCode } from "components/PromoCode";
 import { EmptyShopCart } from "../EmptyShopCart/EmptyShopCart";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CardButton from "components/Buttons/CardButton/CardButton";
 
 export const ShopCart = props => {
@@ -25,14 +25,8 @@ export const ShopCart = props => {
   let location = useLocation();
   const isDesktop = useMediaQuery("(min-width: 1024px)");
 
-  const onFetchPromoCode = fetchStatus => {
-    setFetchPromoCode(fetchStatus);
-  };
-  console.log(onFetchPromoCode);
+  const onFetchPromoCode = fetchStatus => setFetchPromoCode(fetchStatus);
 
-  useEffect(() => {
-    onFetchPromoCode(fetchPromocode);
-  }, [fetchPromocode]);
   return (
     <>
       <Title>{products.length > 0 ? props.title : "Кошик порожній"}</Title>
