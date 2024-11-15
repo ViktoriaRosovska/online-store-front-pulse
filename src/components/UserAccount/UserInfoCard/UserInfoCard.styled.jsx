@@ -42,6 +42,7 @@ export const Image = styled.div`
     height: 130px;
     img {
       width: 130px;
+      height: 130px;
     }
   }
 `;
@@ -59,15 +60,9 @@ export const GeneratedAvatar = styled.div`
 export const Button = styled.button`
   position: absolute;
   right: 0;
-  svg {
-    /* width: 24px;
-    height: 24px; */
-  }
 
   @media screen and (min-width: 1024px) {
     svg {
-      /* width: 32px;
-      height: 32px; */
       scale: 1.35;
     }
   }
