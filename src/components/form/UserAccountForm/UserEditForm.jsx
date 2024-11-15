@@ -66,10 +66,13 @@ const UserEditForm = ({ selectedFile }) => {
     });
 
     if (values.phone == "") {
-      formData.append("firstName", values.firstName);
-      formData.append("lastName", values.lastName);
+      if (!formData.has("firstName")) {
+        formData.append("firstName", values.firstName);
+      }
+      if (!formData.has("lastName")) {
+        formData.append("lastName", values.lastName);
+      }
     }
-
     if (selectedFile) {
       formData.append("avatar", selectedFile);
     }

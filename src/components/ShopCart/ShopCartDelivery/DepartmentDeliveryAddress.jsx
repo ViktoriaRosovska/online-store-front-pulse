@@ -16,14 +16,7 @@ import { SingleValue } from "./showPlaceholder";
 export const DepartmentDeliveryAddress = ({ setFieldValue, errors }) => {
   const { address, addressDepartment } = useSelector(selectUserShopCart);
   const dispatch = useDispatch();
-  const [
-    getDepartments,
-    {
-      data,
-      // isError: departmentIsError,
-      // isLoading: departmentIsLoading,
-    },
-  ] = useGetDepartmentsMutation();
+  const [getDepartments, { data }] = useGetDepartmentsMutation();
 
   useEffect(() => {
     if (address?.city.Ref) getDepartments(address?.city.Ref);
