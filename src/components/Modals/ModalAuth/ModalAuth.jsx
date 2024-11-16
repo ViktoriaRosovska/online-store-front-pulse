@@ -16,17 +16,9 @@ import {
   Wrapper,
 } from "./ModalAuth.styled";
 import UserResetPasswordForm from "components/form/UserResetPasswordForm/UserResetPasswordForm";
-// import { useLoginUserGoogleQuery } from "../../../redux/auth";
 import { useLocation } from "react-router-dom";
 
-// import { googleLogout, useGoogleLogin } from "@react-oauth/google";
-// import axios from "axios";
-import {
-  // useLazyLoginUserGoogleQuery,
-  useFetchCurrentUserQuery,
-} from "../../../redux/auth/userAuthApi";
-// import { useDispatch } from "react-redux";
-// import { setCredentials } from "../../../redux/auth";
+import { useFetchCurrentUserQuery } from "../../../redux/auth/userAuthApi";
 
 const ModalAuth = ({
   onClose,
@@ -34,7 +26,6 @@ const ModalAuth = ({
   resetPassword,
   // redirectPath,
 }) => {
-  // const dispatch = useDispatch();
   const [mode, setMode] = useState("login");
   const { data: userData, refetch: userRefetch } = useFetchCurrentUserQuery(
     undefined,
@@ -44,30 +35,6 @@ const ModalAuth = ({
   );
 
   const locationPath = useLocation().search;
-
-  // console.log(locationPath);
-  // dispatch(setCredentials({ token: token }));
-
-  // const [loginUserGoogle, { data, isLoading, error, refetch }] =
-  //   useLazyLoginUserGoogleQuery();
-
-  // const handleGoogleLogin = () => {
-  //   let token = locationPath.substring(7, locationPath.length - 1);
-  //    console.log(token);
-
-  //    loginUserGoogle();
-  //    dispatch(setCredentials({ token: token }));
-  // };
-
-  // useEffect(() => {
-  //   let token = locationPath.substring(7, locationPath.length - 1);
-  //   console.log(token);
-  //   if (token)
-  //     dispatch(setCredentials({ token: token })).then(() => {
-  //       const params = new URLSearchParams(location.search);
-  //       params.delete("token");
-  //     });
-  // }, [dispatch, locationPath]);
 
   useEffect(() => {
     userRefetch();
@@ -83,7 +50,6 @@ const ModalAuth = ({
   const switchToRegister = () => {
     setMode("register");
   };
-  // console.log(data);
 
   // const [user, setUser] = useState([]);
   // const [profile, setProfile] = useState([]);
@@ -131,7 +97,6 @@ const ModalAuth = ({
         </Button>
       </Navigation>
       <StyledFormWrapper>
-        {/* <div style={{ height: "500px" }}> */}
         {mode === "login" ? (
           resetPassword ? (
             <UserResetPasswordForm onClose={onClose} />
@@ -170,7 +135,6 @@ const ModalAuth = ({
             <FacebookSvg />
           </a>
         </SocialBox>
-        {/* </div> */}
       </StyledFormWrapper>
     </>
   );

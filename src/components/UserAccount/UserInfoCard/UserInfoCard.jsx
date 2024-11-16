@@ -14,9 +14,6 @@ const UserInfoCard = ({ onFileSelect }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const { data } = useFetchCurrentUserQuery();
   const user = data?.user;
-
-  // console.log(user?.avatar);
-
   const fileInputRef = useRef(null);
 
   const handleFileClick = () => {
@@ -27,10 +24,6 @@ const UserInfoCard = ({ onFileSelect }) => {
     onFileSelect(event.target.files[0]);
     setSelectedFile(event.target.files[0]);
   };
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
 
   return (
     <Wrapper>
@@ -47,9 +40,6 @@ const UserInfoCard = ({ onFileSelect }) => {
           )}
         </Image>
         <Button type="button" onClick={handleFileClick}>
-          {/* <svg>
-            <use xlinkHref="../icons/profile-icons/profile-icons-sprite.svg#icon-edit"></use>
-          </svg> */}
           <EditImage />
           <input
             ref={fileInputRef}

@@ -87,6 +87,7 @@ export const SocialBox = styled.div`
   display: flex;
   margin-top: 14px;
   justify-content: center;
+  padding-right: 15px;
   gap: 24px;
   & a {
     display: inline-flex;
@@ -112,6 +113,8 @@ export const StyledFormWrapper = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   height: 400px;
+  scrollbar-width: 2px;
+  scrollbar-color: var(--grey-btn-bg-color);
   &::-webkit-scrollbar {
     width: 5px;
     border: 1px solid transparent;

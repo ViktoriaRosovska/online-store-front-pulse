@@ -8,6 +8,7 @@ import manBoxMd from "../../assets/images/manBox-md.jpg";
 import womanBoxLg from "../../assets/images/woman-main-lg.png";
 import womanBoxSm from "../../assets/images/woman-main-sm.png";
 import womanBoxMd from "../../assets/images/woman-main-md.png";
+import Button from "components/Buttons/Button";
 
 export const SectionHero = styled.section`
   background-image: url(${heroBackgroundMobile});
@@ -27,13 +28,11 @@ export const SectionHero = styled.section`
   }
   @media screen and (min-width: 1024px) {
     background-image: url(${heroBackgroundLaptop});
-    /* height: 983px; */
     height: 915px;
   }
 
   @media screen and (min-width: 1440px) {
     background-image: url(${heroBackground});
-    /* height: 1024px; */
     height: 915px;
     padding-top: 185px;
   }
@@ -71,12 +70,8 @@ export const BoxHeroTitleWrapper = styled.div`
 
   > h1 {
     color: white;
-    font-family: var(--tittle-font);
-    line-height: 1;
-    font-weight: 400;
-    font-size: 48px;
     margin-bottom: 24px;
-
+    font: 400 48px/1 var(--tittle-font);
     @media screen and (min-width: 1024px) {
       font-size: 90px;
       line-height: 1.5;
@@ -174,17 +169,13 @@ export const BoxTitle = styled.div`
   padding: 7px 21.5px;
   display: flex;
   justify-content: center;
-  font-family: "Roboto";
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 30px;
+  font: 400 20px/30px "Roboto";
   letter-spacing: 0.01em;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 6px;
 
   @media screen and (min-width: 1024px) {
-    /* padding: 16.5px 37px; */
     font-size: 28px;
     font-weight: 400;
     line-height: 32px;
@@ -219,27 +210,6 @@ export const SectionNews = styled.section`
   }
 `;
 
-// import grayRibbon from "../../assets/images/grayRibbon.png";
-import Button from "components/Buttons/Button";
-
-// export const VectorBox = styled.div`
-//   height: 69px;
-//   background-image: url(${grayRibbon});
-//   background-size: cover;
-//   margin-bottom: -2px;
-// `;
-
-// export const SliderBox = styled.div`
-//   margin-left: auto;
-//   margin-right: auto;
-
-//   width: 100%;
-//   max-width: 1370px;
-//   /* height: 643px; */
-
-//   text-align: center;
-// `;
-
 export const SectionSale = styled.section`
   padding-top: 80px;
   margin-left: auto;
@@ -250,7 +220,7 @@ export const SectionSale = styled.section`
     padding-top: 120px;
   }
 `;
-const HeroButton = styled(Button)`
+export const HeroButton = styled(Button)`
   display: block;
 
   width: 100%;
@@ -271,5 +241,3 @@ const HeroButton = styled(Button)`
     height: 64px;
   }
 `;
-
-export { HeroButton };
