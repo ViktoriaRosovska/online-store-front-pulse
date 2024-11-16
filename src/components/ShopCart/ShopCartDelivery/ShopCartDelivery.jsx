@@ -169,7 +169,6 @@ export const ShopCartDelivery = props => {
               }}
               validateOnBlur={false}
               validateOnChange={true}
-              //validateOnChange={false}
             >
               {({ errors, values, setFieldValue, setErrors }) => (
                 <StyledDeliveryForm>

@@ -188,22 +188,28 @@ const UserEditForm = ({ selectedFile }) => {
                 e.key === "Enter" && e.preventDefault();
               }}
             />
-            <CustomInput
-              label="Номер телефону"
-              name="phone"
-              type="text"
-              placeholder="+38(000)000-00-00"
-              onChange={async e => {
-                let raw = e.target.value
-                  .replace(/[^\d]/g, "")
-                  .replace(/^380?|^0+/g, "")
-                  .trim();
-                if (raw !== "") raw = "+380" + raw.substr(0, 12);
+            <div style={{ position: "relative" }}>
+              <CustomInput
+                style={{ paddingLeft: "46px" }}
+                label="Номер телефону"
+                name="phone"
+                type="text"
+                placeholder="(000)000-00-00"
+                onChange={async e => {
+                  let raw = e.target.value
+                    .replace(/[^\d]/g, "")
+                    .replace(/^38/, "")
+                    .trim();
+                  if (raw !== "") raw = "+38" + raw.substr(0, 10);
 
-                await setFieldValue("phone", raw);
-              }}
-              value={formatPhone(values.phone)}
-            />
+                  await setFieldValue("phone", raw);
+                }}
+                value={formatPhone(values.phone)}
+              />
+            </div>
+            <p style={{ position: "absolute", top: "42px", left: "16px" }}>
+              +38
+            </p>
             <CustomInput
               label="Пароль"
               name="password"

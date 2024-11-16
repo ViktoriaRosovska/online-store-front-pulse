@@ -7,14 +7,13 @@ import {
   addShopCartEmail,
   addShopCartFirstName,
   addShopCartLastName,
-  addShopCartPhone,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { useDispatch } from "react-redux";
 import { formatPhone } from "../../../utils/formatPhone";
 
 export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
   const dispatch = useDispatch();
-  const { firstName, lastName, phone, email } = values;
+  const { firstName, lastName, email } = values;
 
   return (
     <>
@@ -42,24 +41,26 @@ export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
           }}
           value={firstName}
         />
+        <div style={{ position: "relative" }}>
+          <CustomInput
+            style={{ paddingLeft: "46px" }}
+            type="text"
+            label="Номер телефону&#42;"
+            placeholder="(000)000-00-00"
+            name="phone"
+            onChange={async e => {
+              let raw = e.target.value
+                .replace(/[^\d]/g, "")
+                .replace(/^38/, "")
+                .trim();
+              if (raw !== "") raw = "+38" + raw.substr(0, 10);
 
-        <CustomInput
-          type="text"
-          label="Номер телефону&#42;"
-          placeholder="+38(000)000-00-00"
-          name="phone"
-          onChange={async e => {
-            let raw = e.target.value
-              .replace(/[^\d]/g, "")
-              .replace(/^380?|^0+/g, "")
-              .trim();
-            if (raw !== "") raw = "+380" + raw.substr(0, 12);
-
-            dispatch(addShopCartPhone(raw));
-            await setFieldValue("phone", raw);
-          }}
-          value={formatPhone(phone)}
-        />
+              await setFieldValue("phone", raw);
+            }}
+            value={formatPhone(values.phone)}
+          />
+          <p style={{ position: "absolute", top: "42px", left: "16px" }}>+38</p>
+        </div>
         <CustomInput
           type="email"
           label="Email&#42;"
