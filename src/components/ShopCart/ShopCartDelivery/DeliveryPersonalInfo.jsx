@@ -10,6 +10,7 @@ import {
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { useDispatch } from "react-redux";
 import { formatPhone } from "../../../utils/formatPhone";
+import { StyledPhoneCode } from "../../../components/form/UserAccountForm/UserEditForm.styled";
 
 export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
   const dispatch = useDispatch();
@@ -59,7 +60,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
             }}
             value={formatPhone(values.phone)}
           />
-          <p style={{ position: "absolute", top: "42px", left: "16px" }}>+38</p>
+          <StyledPhoneCode>+38</StyledPhoneCode>
         </div>
         <CustomInput
           type="email"

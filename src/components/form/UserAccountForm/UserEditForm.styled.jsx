@@ -91,3 +91,14 @@ export const DeleteButton = styled.button`
     font-size: 20px;
   }
 `;
+export const StyledPhoneCode = styled.span`
+  position: absolute;
+  top: 42px;
+  left: 16px;
+  font-size: 16px;
+  line-height: 125%;
+  @media screen and (min-width: 1024px) {
+    top: 48px;
+    left: 16px;
+  }
+`;
