@@ -38,6 +38,7 @@ export const Input = styled.input`
      padding-right: 38px;
    `}
   &::placeholder {
+    font-family: "Roboto";
     font-size: 16px;
     line-height: 125%;
     color: gray;

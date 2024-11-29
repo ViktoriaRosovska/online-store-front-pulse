@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 import { Notify } from "notiflix";
 import { userEditValidationSchema } from "../formHelpers/formValidation";
 import CustomInput from "../formElements/CustomInput/CustomInput";
-import { Box, Button, DeleteButton, StyledForm } from "./UserEditForm.styled";
+import {
+  Box,
+  Button,
+  DeleteButton,
+  StyledForm,
+  StyledPhoneCode,
+} from "./UserEditForm.styled";
 import {
   removeCredentials,
   useFetchCurrentUserQuery,
@@ -39,7 +45,7 @@ const UserEditForm = ({ selectedFile }) => {
 
   const onSubmit = async values => {
     const formData = new FormData();
-    console.log("values phone", values.phone);
+    // console.log("values phone", values.phone);
     if (values.phone !== "") {
       formData.append("phone", values.phone);
     }
@@ -206,10 +212,9 @@ const UserEditForm = ({ selectedFile }) => {
                 }}
                 value={formatPhone(values.phone)}
               />
+              <StyledPhoneCode>+38</StyledPhoneCode>
             </div>
-            <p style={{ position: "absolute", top: "42px", left: "16px" }}>
-              +38
-            </p>
+
             <CustomInput
               label="Пароль"
               name="password"
