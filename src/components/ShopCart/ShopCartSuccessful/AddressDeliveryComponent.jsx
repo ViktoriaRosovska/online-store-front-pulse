@@ -3,6 +3,7 @@ import { StyledPaymentPropsWrapper } from "../ShopCartPayment/ShopCartPayment.st
 
 import { DELIVERY } from "../../../utils/DELIVERY";
 import { DeliveryCourierAddress } from "./DeliveryCourierAddress";
+import { formatPhone } from "../../../utils/formatPhone";
 
 export const AddressDeliveryComponent = ({
   address,
@@ -28,7 +29,7 @@ export const AddressDeliveryComponent = ({
         {deliveryType === DELIVERY.courier && <DeliveryCourierAddress />}
 
         <p>{lastName + " " + firstName}</p>
-        <p>{phone}</p>
+        <p>{"+38" + formatPhone(phone)}</p>
         <p>{email}</p>
       </StyledPaymentPropsWrapper>
     </>

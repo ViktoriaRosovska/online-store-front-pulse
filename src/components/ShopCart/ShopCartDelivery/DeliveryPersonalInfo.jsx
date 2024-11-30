@@ -56,7 +56,7 @@ export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
                 .replace(/^38/, "")
                 .trim();
               if (raw !== "") raw = "+38" + raw.substr(0, 10);
-              dispatch(addShopCartPhone(e.target.value));
+              dispatch(addShopCartPhone(raw));
               await setFieldValue("phone", raw);
             }}
             value={formatPhone(phone)}
