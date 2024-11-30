@@ -7,6 +7,7 @@ import {
   addShopCartEmail,
   addShopCartFirstName,
   addShopCartLastName,
+  addShopCartPhone,
 } from "../../../redux/user/userShopCart/userShopCartSlice";
 import { useDispatch } from "react-redux";
 import { formatPhone } from "../../../utils/formatPhone";
@@ -14,7 +15,7 @@ import { StyledPhoneCode } from "../../../components/form/UserAccountForm/UserEd
 
 export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
   const dispatch = useDispatch();
-  const { firstName, lastName, email } = values;
+  const { firstName, lastName, email, phone } = values;
 
   return (
     <>
@@ -55,10 +56,10 @@ export const DeliveryPersonalDetails = ({ setFieldValue, values }) => {
                 .replace(/^38/, "")
                 .trim();
               if (raw !== "") raw = "+38" + raw.substr(0, 10);
-
+              dispatch(addShopCartPhone(e.target.value));
               await setFieldValue("phone", raw);
             }}
-            value={formatPhone(values.phone)}
+            value={formatPhone(phone)}
           />
           <StyledPhoneCode>+38</StyledPhoneCode>
         </div>
