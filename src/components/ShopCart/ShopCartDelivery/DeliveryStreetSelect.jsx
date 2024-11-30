@@ -31,13 +31,11 @@ export const DeliveryStreetSelect = ({ setFieldValue, errors }) => {
   };
 
   const onSelectStreetChange = value => {
-    console.log("onStreetChange", value);
     setFieldValue("address.street", value);
     dispatch(addShopCartAddress({ street: value }));
   };
 
   const onSelectStreetBlur = e => {
-    // console.log(e.target.value);
     const search = e.target.value;
 
     if (search) {

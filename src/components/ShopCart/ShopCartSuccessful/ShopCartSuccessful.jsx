@@ -38,8 +38,6 @@ export const ShopCartSuccessful = ({ title }) => {
 
   const isDesktop = useMediaQuery("(min-width: 1024px)");
 
-  console.log(products);
-
   return (
     <>
       {products && products.length > 0 ? (

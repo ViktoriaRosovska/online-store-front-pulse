@@ -7,15 +7,11 @@ import { addShopCartAddress } from "../../../redux/user/userShopCart/userShopCar
 import { selectUserShopCart } from "../../../redux/user/userShopCart/userShopCartSelector";
 import { DeliveryStreetSelect } from "./DeliveryStreetSelect";
 
-export const CourierDeliveryAddress = ({ values, setFieldValue, errors }) => {
-  // console.log("courier values", values);
-
+export const CourierDeliveryAddress = ({ setFieldValue, errors }) => {
   const dispatch = useDispatch();
-
   const { address } = useSelector(selectUserShopCart);
 
   const handleChange = (value, func) => {
-    console.log(value);
     dispatch(func(value));
   };
 

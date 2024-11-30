@@ -8,7 +8,6 @@ import {
 } from "./DeliveryOrderDateInfo.styled";
 
 export const DeliveryOrderDateInfo = ({ products, deliveryType }) => {
-  console.log(products);
   const today = new Date();
   let nextDay = new Date();
 

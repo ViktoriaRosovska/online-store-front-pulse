@@ -53,7 +53,6 @@ export const ShopCartDelivery = props => {
   const onFetchPromoCode = fetchStatus => {
     setFetchPromoCode(fetchStatus);
   };
-  // console.log(onFetchPromoCode);
   const isLoggedIn = useSelector(selectUserToken);
   const dispatch = useDispatch();
 

@@ -24,14 +24,7 @@ export const PoshtomatDeliveryAddress = ({ setFieldValue, errors, values }) => {
   const { addressPoshtomat, address } = useSelector(selectUserShopCart);
 
   const dispatch = useDispatch();
-  const [
-    getDepartments,
-    {
-      data,
-      // isError: departmentIsError,
-      // isLoading: departmentIsLoading,
-    },
-  ] = useGetDepartmentsMutation();
+  const [getDepartments, { data }] = useGetDepartmentsMutation();
 
   useEffect(() => {
     if (address?.city.Ref) getDepartments(address?.city.Ref);
@@ -57,20 +50,12 @@ export const PoshtomatDeliveryAddress = ({ setFieldValue, errors, values }) => {
             onChange={e => onSelectDepartmentsChange(e)}
             displayDepartment={addressPoshtomat}
             name="address"
-            // isError={
-            //   errors.addressPoshtomat ||
-            //   values.addressPoshtomat.Description === undefined
-            // }
             isError={errors.addressPoshtomat}
             components={{ SingleValue }}
             noOptionsMessage={initialValues =>
               initialValues ? null : "За вашим запитом нічого не знайдено"
             }
           />
-          {/* {(errors.addressPoshtomat ||
-            values.addressPoshtomat.Description === undefined) && (
-            <Error>{"Введіть адресу поштомату"}</Error>
-          )} */}
           {errors.addressPoshtomat && (
             <Error>{"Введіть адресу поштомату"}</Error>
           )}
