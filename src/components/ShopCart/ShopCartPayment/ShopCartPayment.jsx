@@ -24,9 +24,14 @@ import { YourOrderPriceComponent } from "../ShopCart/YourOrderPriceComponent/You
 import { ShopCartProductsList } from "../ShopCartProductsList";
 import { PromoCode } from "components/PromoCode";
 import { EmptyShopCart } from "../EmptyShopCart/EmptyShopCart";
+import { useEffect, useState } from "react";
 
 export const ShopCartPayment = props => {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const [fetchPromocode, setFetchPromoCode] = useState(false);
+  const onFetchPromoCode = fetchStatus => {
+    setFetchPromoCode(fetchStatus);
+  };
 
   const {
     products,
@@ -42,6 +47,10 @@ export const ShopCartPayment = props => {
     lastName,
     phone,
   } = useSelector(selectUserShopCart);
+
+  useEffect(() => {
+    if (fetchPromocode) onFetchPromoCode(fetchPromocode);
+  }, [fetchPromocode]);
 
   return (
     <>
@@ -68,7 +77,7 @@ export const ShopCartPayment = props => {
                     totalPriceSum={totalPriceSum}
                     countQuantity={countQuantity}
                   />
-                  <PromoCode />
+                  <PromoCode onFetchPromoCode={onFetchPromoCode} />
                 </div>
               </div>
             </StyledDeliveryOrderWrapper>

@@ -53,7 +53,7 @@ export const ShopCartDelivery = props => {
   const onFetchPromoCode = fetchStatus => {
     setFetchPromoCode(fetchStatus);
   };
-  console.log(onFetchPromoCode);
+  // console.log(onFetchPromoCode);
   const isLoggedIn = useSelector(selectUserToken);
   const dispatch = useDispatch();
 
@@ -62,7 +62,7 @@ export const ShopCartDelivery = props => {
   }, [refetch]);
 
   useEffect(() => {
-    onFetchPromoCode(fetchPromocode);
+    if (fetchPromocode) onFetchPromoCode(fetchPromocode);
   }, [fetchPromocode]);
 
   const cart = useSelector(selectUserShopCart);
@@ -78,28 +78,28 @@ export const ShopCartDelivery = props => {
   } = cart;
 
   let firstName;
-  if (data?.user && !cart.firstName) {
-    firstName = data.user.firstName;
+  if (data?.user && !cart?.firstName) {
+    firstName = data?.user?.firstName;
     dispatch(addShopCartFirstName(firstName));
-  } else firstName = cart.firstName;
+  } else firstName = cart?.firstName;
 
   let lastName;
-  if (data?.user && !cart.lastName) {
-    lastName = data.user.lastName;
+  if (data?.user && !cart?.lastName) {
+    lastName = data?.user?.lastName;
     dispatch(addShopCartLastName(lastName));
-  } else lastName = cart.lastName;
+  } else lastName = cart?.lastName;
 
   let phone;
   if (data?.user && !cart.phone) {
-    phone = data.user.phone;
+    phone = data?.user?.phone;
     dispatch(addShopCartPhone(phone));
-  } else phone = cart.phone;
+  } else phone = cart?.phone;
 
   let email;
-  if (data?.user && !cart.email) {
-    email = data.user.email;
+  if (data?.user && !cart?.email) {
+    email = data?.user?.email;
     dispatch(addShopCartEmail(email));
-  } else email = cart.email;
+  } else email = cart?.email;
 
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
     useState(false);
@@ -115,7 +115,7 @@ export const ShopCartDelivery = props => {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const [isActiveForm, setIsActiveForm] = useState(true);
 
-  const onSubmit = (values, option) => {
+  const onSubmit = values => {
     values.firstName = firstName
       .trim()
       .split(" ")
@@ -126,7 +126,7 @@ export const ShopCartDelivery = props => {
       .split(" ")
       .filter(el => el !== " ")
       .join(" ");
-    console.log(values, option);
+    // console.log(values, option);
 
     navigate(ROUTES.SHOPCARTPAYMENT);
   };
